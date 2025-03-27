@@ -1,0 +1,126 @@
+/* details */
+#details-pane {
+    padding-top: 7em;
+}
+
+#details-pane-inner {
+    border-top: solid lightgray 1px;
+    margin-top: 4em;
+    padding-top: 1em;
+    font-size: 0.7em;
+}
+
+h4.sj-text-details-pane-summary {
+    display: none;
+    /* hide "Summary" header */
+}
+
+/* list reset (for legibility) */
+sjwc-lesson-content-item ul,
+sjwc-lesson-content-item ol {
+    list-style: revert;
+    margin: revert;
+    padding: revert;
+}
+
+sjwc-lesson-content-item li {
+    margin-left: -1em !important;
+    padding-left: 0.5em !important;
+}
+
+/* quickfix pre */
+pre {
+    background: none !important;
+    border: 1px solid #DCDCDC !important;
+    border-radius: 8px !important;
+    margin: 1em 0 !important;
+}
+
+/* blockquote */
+blockquote.cg {
+    background-image: linear-gradient(315deg, rgb(253, 225, 254), rgb(245, 246, 254) 72%) !important;
+    border-radius: 8px !important;
+    margin-top: 48px !important;
+    margin-bottom: 48px !important;
+    border: none;
+    margin: 48px 48px 48px 48px;
+    padding: 24px 24px 24px 24px;
+    line-height: 1.7;
+    max-width: 80%;
+}
+
+blockquote.cg>cite {
+    font-size: .8125em;
+    color: #555;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 9px;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+/* adjusting font size + spacing for lessons */
+sjwc-lesson-content-item p,
+sjwc-lesson-content-item li {
+    font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 1.2em !important;
+}
+
+sjwc-lesson-content-item p.lead {
+    font-size: 1.6em !important;
+}
+
+sjwc-lesson-content-item h2 {
+    margin-top: 1.4em !important;
+}
+
+sjwc-lesson-content-item h3 {
+    margin-top: 1.4em !important;
+}
+
+sjwc-lesson-content-item h4 {
+    margin-top: 1.4em;
+}
+
+#lp-footer {
+    padding-top: 5em;
+}
+
+sjwc-lesson-content-item img {
+    display: block !important;
+    margin: auto !important;
+}
+
+/* Inline code blocks */
+code:not([class*="language-"]) {
+    font-weight: bold;
+    padding: 6px 5px 5px 5px;
+    color: #a80c33;
+    background-color: #eee;
+    border-radius: 9px;
+    margin: 0px 3px 0px 3px;
+}
+
+/* CG memes */
+.content-img-outer-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-image: linear-gradient(315deg, rgb(253, 225, 254), rgb(245, 246, 254) 72%) !important;
+    border-radius: 8px !important;
+    margin-top: 48px !important;
+    margin-bottom: 48px !important;
+}
+
+.content-img-inner-container {
+    background-color: #fff !important;
+    padding: 24px !important;
+    margin: 64px !important;
+    border-radius: 8px !important;
+}
+
+.content-img-inner-container img {
+    border-radius: 4px !important;
+    max-height: 300px !important;
+    width: auto !important;
+}
