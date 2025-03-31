@@ -26,6 +26,7 @@ body {
 /* Header logo */
 #header .header-center-img.header-logo-svg {
   width: 230px !important;
+  height: 24px; /* Previously set by desktopLessonPageStyling() */
 }
 
 /* START change sign in button outline and text color */
@@ -603,3 +604,226 @@ sjwc-lesson-content-item pre code {
 sjwc-lesson-content-item pre code {
   -ms-overflow-style: none;
 }
+
+/* Chainguard Footer */
+/* formerly in the admin Global Code Snippet */
+
+.lp-footer {
+  position: relative;
+}
+.footer {
+  border-top: 1px solid #d0cfee;
+  padding: 63px 0 96px 0;
+  font-family: "Lato", Tahoma, sans-serif;
+}
+
+.footer-content-container {
+  width: 90%;
+  display: flex;
+  gap: 12px;
+  max-width: 1232px;
+  margin: 0 auto;
+  justify-content: space-between;
+  /* MEDIA QUERIES   */
+}
+
+.logo-col-content {
+  max-width: 224px;
+  flex-shrink: 1;
+  /* MEDIA QUERIES   */
+
+  .logo-container {
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    /* MEDIA QUERIES   */
+    /*     max-width: 156px; */
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .social-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .ctas {
+    margin-bottom: 16px;
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    font-size: 14px;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .cta-media-kit {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s ease-in;
+      margin-bottom: 30px;
+
+      &:hover {
+        color: #3443f4;
+      }
+
+      & .icon {
+        color: #3443f4;
+      }
+    }
+
+    .cta-contact-us {
+      transition: all 0.2s ease-in;
+      border: 2px solid #3443f4;
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 999px;
+
+      &:hover {
+        background-color: #3443f4;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.copyright {
+  font-size: 12px;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .privacy {
+    margin-right: 2px;
+    display: inline-block;
+    padding-right: 4px;
+    border-right: 1px solid #14003d;
+  }
+
+  .terms {
+    display: inline-block;
+    padding-left: 6px;
+  }
+}
+
+.footer-col {
+  font-size: 14px;
+
+  a {
+    text-decoration: none;
+    display: block;
+    margin: 14px 0;
+    color: inherit;
+    font-weight: 500px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  h2 {
+    margin: 0 0 18px 0;
+    font-size: 20px;
+  }
+}
+
+.product-col,
+.customers-col {
+  display: grid;
+  flex-shrink: 0;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.product-col {
+  a {
+    display: block;
+  }
+}
+
+.outlink {
+  display: flex !important;
+  /*   align-items: center; */
+  gap: 14px;
+}
+
+.why-chainguard-content,
+.company-content {
+  display: none;
+}
+
+.why-chainguard-col,
+.company-col {
+  display: block;
+}
+
+@media (max-width: 1280px) {
+  .why-chainguard-content,
+  .company-content {
+    display: block;
+  }
+
+  .why-chainguard-col,
+  .company-col {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-content-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-content-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    width: 200px;
+  }
+}
+
+/* /Chainguard Footer */
+
+/* Curriculum Page Styling */
+/* formerly in the admin Global Code Snippet */
+
+.sj-heading-paragraph {
+  display: none;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.sj-floater-text {
+  display: none;
+  font-family: "Space Mono";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 23.7px;
+  margin-bottom: 24px;
+  color: #7545fb;
+}
+
+/* /Curriculum Page Styling */
+
+/* COPY-CODEBLOCK-ICON SVG */
+/* formerly in the admin Global Code Snippet */
+
+.copy-icon {
+  display: none;
+}
+
+/* /COPY-CODEBLOCK-ICON SVG */

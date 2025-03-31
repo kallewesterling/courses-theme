@@ -1,3 +1,5 @@
+@import url("colors.css");
+
 @font-face {
   font-family: "Fusiona";
   src: url(fonts/BwFusiona-56Medium.woff2) format("woff2"),
@@ -21,6 +23,7 @@ body {
 */
 /* END make header gradient color */
 
+/* Header logo */
 #header .header-center-img.header-logo-svg {
   width: 230px !important;
 }
@@ -29,7 +32,7 @@ body {
 /*
 #header #header-right .login-link {
   border-radius: 4px !important;
-  color: #3443f4 !important;
+  color: var(--primary-blue-hex) !important;
   outline: solid 1px #c2c7fc !important;
 }
 */
@@ -37,7 +40,7 @@ body {
 
 /* START hover button text color */
 #header #header-right .login-link:hover {
-  color: white !important;
+  color: var(--primary-white-hex) !important;
 }
 
 /* END hover button text color */
@@ -49,7 +52,7 @@ body {
 }
 
 body {
-  color: #14003d;
+  color: var(--primary-dark-purple-hex);
 }
 
 h1,
@@ -63,7 +66,7 @@ h4,
 h5,
 h6 {
   font-family: "Fusiona", sans-serif;
-  color: #14003d;
+  color: var(--primary-dark-purple-hex);
 }
 
 span {
@@ -72,18 +75,18 @@ span {
 
 a,
 #curriculum-list-2 a {
-  color: #3443f4;
+  color: var(--primary-blue-hex);
 }
 
 label {
-  color: #14003d;
+  color: var(--primary-dark-purple-hex);
 }
 
 .button,
 .button-prev-title {
-  color: #14003d;
+  color: var(--primary-dark-purple-hex);
   background-color: transparent;
-  border: 2px solid #3443f4;
+  border: 2px solid var(--primary-blue-hex);
   border-radius: 999px;
   font-family: "Space Mono";
   font-size: 14px;
@@ -97,9 +100,9 @@ label {
 }
 
 .button:hover {
-  background-color: #3443f4 !important;
-  color: #fff !important;
-  border-color: #3443f4 !important;
+  background-color: var(--primary-blue-hex) !important;
+  color: var(--primary-white-hex) !important;
+  border-color: var(--primary-blue-hex) !important;
 }
 
 /* SPECIFIC STYLING */
@@ -114,9 +117,9 @@ label {
 }
 
 #header-right .login-link:hover {
-  background-color: #3443f4 !important;
-  color: #fff !important;
-  border-color: #3443f4 !important;
+  background-color: var(--primary-blue-hex) !important;
+  color: var(--primary-white-hex) !important;
+  border-color: var(--primary-blue-hex) !important;
 }
 
 /* CUR PAGE NAV END */
@@ -128,18 +131,18 @@ label {
   position: relative;
 
   .sj-floater-text {
-    color: #7af0fe;
+    color: var(--primary-cyan-hex);
   }
 
   h1,
   h2,
   p {
-    color: #fff;
+    color: var(--primary-white-hex);
   }
 
   .button {
-    color: #fff;
-    border-color: #7af0fe;
+    color: var(--primary-white-hex);
+    border-color: var(--primary-cyan-hex);
   }
 }
 
@@ -158,18 +161,18 @@ label {
   position: relative;
 
   .sj-floater-text {
-    color: #7af0fe;
+    color: var(--primary-cyan-hex);
   }
 
   h1,
   h2,
   p {
-    color: #fff;
+    color: var(--primary-white-hex);
   }
 
   .button {
-    color: #fff;
-    border-color: #7af0fe;
+    color: var(--primary-white-hex);
+    border-color: var(--primary-cyan-hex);
   }
 }
 
@@ -217,8 +220,8 @@ label {
 
 #button-sign-in:hover,
 #button-sign-up:hover {
-  background-color: #3443f4 !important;
-  color: #fff !important;
+  background-color: var(--primary-blue-hex) !important;
+  color: var(--primary-white-hex) !important;
 }
 
 /* LOGIN/SIGN UP BTNS STYLE END*/
@@ -252,7 +255,7 @@ label {
 }
 
 .lesson-row:hover {
-  background-color: #f9f9f9;
+  background-color: var(--secondary-light-gray-hex);
 }
 
 .course-details-card {
@@ -261,8 +264,8 @@ label {
   margin: 20px !important;
   margin-bottom: 50px !important;
   border-radius: 8px !important;
-  background-color: #fff !important;
-  border: 2px solid #3443f4 !important;
+  background-color: var(--primary-white-hex) !important;
+  border: 2px solid var(--primary-blue-hex) !important;
   display: flex !important;
   flex-direction: column !important;
   color: inherit !important;
@@ -277,7 +280,7 @@ label {
   font-family: "Fusiona";
   line-height: 20px;
   letter-spacing: -0.01em;
-  border-bottom: 2px solid #3443f4 !important;
+  border-bottom: 2px solid var(--primary-blue-hex) !important;
   padding: 24px;
 }
 
@@ -303,8 +306,8 @@ label {
 }
 
 .course-details-card-link {
-  background-color: #3443f4 !important;
-  color: #fff !important;
+  background-color: var(--primary-blue-hex) !important;
+  color: var(--primary-white-hex) !important;
   padding: 12px 20px !important;
   text-align: center !important;
   text-decoration: none !important;
@@ -384,7 +387,7 @@ body .lesson-page #lp-wrapper #lesson-body .lesson-top {
   font-weight: 600;
   font-size: 36px;
   line-height: 43.2px;
-  color: #14003d;
+  color: var(--primary-dark-purple-hex);
 }
 
 .content-img-outer-container {
@@ -403,7 +406,7 @@ body .lesson-page #lp-wrapper #lesson-body .lesson-top {
 }
 
 .content-img-inner-container {
-  background-color: #fff;
+  background-color: var(--primary-white-hex);
   padding: 24px;
   margin: 64px;
   border-radius: 8px;
@@ -414,14 +417,14 @@ body .lesson-page #lp-wrapper #lesson-body .lesson-top {
 }
 
 .course-details-card-link:visited {
-  background-color: #3443f4;
-  color: #fff;
+  background-color: var(--primary-blue-hex);
+  color: var(--primary-white-hex);
 }
 
 .course-details-card-link:hover,
 .course-details-card-link:active {
-  background-color: #3443f4;
-  color: #fff;
+  background-color: var(--primary-blue-hex);
+  color: var(--primary-white-hex);
 }
 
 .video-player.flex-video.widescreen {
@@ -430,8 +433,8 @@ body .lesson-page #lp-wrapper #lesson-body .lesson-top {
 }
 
 #lp-left-nav .lesson-active {
-  background-color: #f3f3f3;
-  color: #14003d;
+  background-color: var(--secondary-light-gray-hex);
+  color: var(--primary-dark-purple-hex);
   margin: 0 12px;
   border-radius: 4px;
 }
@@ -450,7 +453,7 @@ pre[class*="language-"] {
 .lp-color-scheme-light .lp-left-nav .section-title,
 .lesson-page #lp-wrapper #lesson-body,
 .course-text-content {
-  color: #14003d !important;
+  color: var(--primary-dark-purple-hex) !important;
 }
 
 .lp-color-scheme-light .lp-left-nav .course-title,
@@ -459,7 +462,7 @@ pre[class*="language-"] {
 }
 
 .bullet .fa.fa-check-circle {
-  color: #3443f4;
+  color: var(--primary-blue-hex);
 }
 
 #lp-footer .left .prev-lesson-button .button-content .fa.fa-angle-left {
@@ -539,7 +542,7 @@ pre[class*="language-"] {
   line-height: 24px;
   font-weight: 400;
   font-size: 16px;
-  color: #1c1c1c;
+  color: var(--answer-option);
 }
 
 /* SINGLE SELECT ANSWER OPTIONS */
@@ -547,7 +550,7 @@ pre[class*="language-"] {
   line-height: 24px;
   font-weight: 400;
   font-size: 16px;
-  color: #1c1c1c;
+  color: var(--answer-option);
 }
 
 .course-scrollable-content.course-text-content.quiz .question .row .form-answers.large-8.large-centered.columns #id_chosen_answers div label input {
@@ -583,7 +586,7 @@ pre[class*="language-"] {
 }
 
 .curriculumItem .lesson-row:hover {
-  background-color: #fff !important;
+  background-color: var(--primary-white-hex) !important;
 }
 
 /* HIDES FOR CHROME, SAFARI, AND OPERA */
@@ -600,3 +603,227 @@ sjwc-lesson-content-item pre code {
 sjwc-lesson-content-item pre code {
   -ms-overflow-style: none;
 }
+
+/* Chainguard Footer */
+/* formerly in the admin Global Code Snippet */
+
+.lp-footer {
+  position: relative;
+}
+.footer {
+  border-top: 1px solid #d0cfee;
+  padding: 63px 0 96px 0;
+  font-family: "Lato", Tahoma, sans-serif;
+}
+
+.footer-content-container {
+  width: 90%;
+  display: flex;
+  gap: 12px;
+  max-width: 1232px;
+  margin: 0 auto;
+  justify-content: space-between;
+  /* MEDIA QUERIES   */
+}
+
+.logo-col-content {
+  max-width: 224px;
+  flex-shrink: 1;
+  /* MEDIA QUERIES   */
+
+  .logo-container {
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    /* MEDIA QUERIES   */
+    /*     max-width: 156px; */
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .social-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .ctas {
+    margin-bottom: 16px;
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    font-size: 14px;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .cta-media-kit {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s ease-in;
+      margin-bottom: 30px;
+
+      &:hover {
+        color: #3443f4;
+      }
+
+      & .icon {
+        color: #3443f4;
+      }
+    }
+
+    .cta-contact-us {
+      transition: all 0.2s ease-in;
+      border: 2px solid #3443f4;
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 999px;
+
+      &:hover {
+        background-color: #3443f4;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.copyright {
+  font-size: 12px;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .privacy {
+    margin-right: 2px;
+    display: inline-block;
+    padding-right: 4px;
+    border-right: 1px solid #14003d;
+  }
+
+  .terms {
+    display: inline-block;
+    padding-left: 6px;
+  }
+}
+
+.footer-col {
+  font-size: 14px;
+
+  a {
+    text-decoration: none;
+    display: block;
+    margin: 14px 0;
+    color: inherit;
+    font-weight: 500px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  h2 {
+    margin: 0 0 18px 0;
+    font-size: 20px;
+  }
+}
+
+.product-col,
+.customers-col {
+  display: grid;
+  flex-shrink: 0;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.product-col {
+  a {
+    display: block;
+  }
+}
+
+.outlink {
+  display: flex !important;
+  /*   align-items: center; */
+  gap: 14px;
+}
+
+.why-chainguard-content,
+.company-content {
+  display: none;
+}
+
+.why-chainguard-col,
+.company-col {
+  display: block;
+}
+
+@media (max-width: 1280px) {
+  .why-chainguard-content,
+  .company-content {
+    display: block;
+  }
+
+  .why-chainguard-col,
+  .company-col {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-content-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-content-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    width: 200px;
+  }
+}
+
+/* /Chainguard Footer */
+
+/* Curriculum Page Styling */
+/* formerly in the admin Global Code Snippet */
+
+.sj-heading-paragraph {
+  display: none;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.sj-floater-text {
+  display: none;
+  font-family: "Space Mono";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 23.7px;
+  margin-bottom: 24px;
+  color: #7545fb;
+}
+
+/* /Curriculum Page Styling */
+
+/* COPY-CODEBLOCK-ICON SVG */
+/* formerly in the admin Global Code Snippet */
+
+.copy-icon {
+  display: none;
+}
+
+/* /COPY-CODEBLOCK-ICON SVG */
+
