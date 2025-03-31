@@ -221,12 +221,6 @@ body:not(.sj-page-catalog) {
     width: 100%;
 }
 
-.sj-floater-text {
-    /* previously set in mobileCourseDetailsPageStyling() + desktopCourseDetailsPageStyling() */
-    display: block;
-    margin-bottom: 24px;
-}
-
 h1.break-word {
     /* previously set in mobileCourseDetailsPageStyling() + desktopCourseDetailsPageStyling() */
     margin: 0 0 12px 0;
@@ -234,12 +228,6 @@ h1.break-word {
     font-weight: 600;
     line-height: 43.2px;
     letter-spacing: -.02em;
-}
-
-.sj-heading-paragraph {
-    /* previously set in mobileCourseDetailsPageStyling() + desktopCourseDetailsPageStyling() */
-    display: block;
-    margin: 0 0 24px 0;
 }
 
 .video-max {

@@ -818,6 +818,18 @@ sjwc-lesson-content-item pre code {
   color: #7545fb;
 }
 
+.sj-page-curriculum .sj-floater-text {
+  /* previously set in mobileCourseDetailsPageStyling() + desktopCourseDetailsPageStyling() */
+  display: block;
+  margin-bottom: 24px;
+}
+
+.sj-page-curriculum .sj-heading-paragraph {
+  /* previously set in mobileCourseDetailsPageStyling() + desktopCourseDetailsPageStyling() */
+  display: block;
+  margin: 0 0 24px 0;
+}
+
 /* /Curriculum Page Styling */
 
 /* COPY-CODEBLOCK-ICON SVG */
