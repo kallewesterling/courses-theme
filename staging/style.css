@@ -877,3 +877,7 @@ sjwc-lesson-content-item pre code {
   width: 100% !important;
 box-shadow: 0 0 7px #0000003d !important;
 }
+
+.sj-page-catalog .sj-course-ribbon-complete {
+  color: white !important;
+}
