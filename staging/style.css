@@ -851,3 +851,13 @@ sjwc-lesson-content-item pre code {
 .sj-page-catalog #catalog-content #catalog-courses {
   gap: 24px;
 }
+
+.sj-page-catalog .catalog-hero {
+  padding: 0 24px;
+}
+
+@media (max-width: 480px) {
+  .sj-page-catalog .coursebox-container {
+    width: 100% !important;
+  }
+}
