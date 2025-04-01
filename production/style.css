@@ -828,3 +828,13 @@ sjwc-lesson-content-item pre code {
 
 /* /COPY-CODEBLOCK-ICON SVG */
 
+/* 2 courses per column on front page */
+
+.sj-page-catalog .coursebox-container {
+  width: calc(50% - 24px);
+  margin: 0;
+}
+
+.sj-page-catalog #catalog-content #catalog-courses {
+  gap: 24px;
+}
