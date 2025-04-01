@@ -875,4 +875,5 @@ sjwc-lesson-content-item pre code {
   position: absolute !important;
   z-index: 1 !important;
   width: 100% !important;
+box-shadow: 0 0 7px #0000003d !important;
 }
