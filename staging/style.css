@@ -844,7 +844,7 @@ sjwc-lesson-content-item pre code {
 /* 2 courses per column on front page */
 
 .sj-page-catalog .coursebox-container {
-  width: calc(50% - 24px);
+  width: calc(50% - 24px) !important;
   margin: 0;
 }
 
@@ -856,7 +856,7 @@ sjwc-lesson-content-item pre code {
   padding: 0 24px;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .sj-page-catalog .coursebox-container {
     width: 100% !important;
   }
