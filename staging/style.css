@@ -861,3 +861,18 @@ sjwc-lesson-content-item pre code {
     width: 100% !important;
   }
 }
+
+.sj-page-catalog .badge-box {
+  font-weight: 800;
+  background-image: linear-gradient(315deg, rgb(253, 225, 254), rgb(245, 246, 254) 72%);
+  padding: 12px 12px 12px 24px;
+  margin-top: 0;
+  font-size: 1em;
+  text-transform: uppercase;
+  color: #c0a200;
+  left: 0;
+  top: 0;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+}
