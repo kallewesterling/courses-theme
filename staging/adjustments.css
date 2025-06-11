@@ -273,10 +273,12 @@ h1.break-word {
     justify-self: center;
 }
 
+/*
 .checkbox-icon {
     display: block;
     flex-shrink: 0;
 }
+*/
 
 .burger .fa-search, .burger .burger-text {
     /* hide text + search icon related to burger menu in lessons */
@@ -401,6 +403,7 @@ loginBottomBtnAndForgotPassBtn.style.marginBottom: 24px
     line-height: 24px;
 }
 
+/*
 #id_login {
 
 }
@@ -408,6 +411,7 @@ loginBottomBtnAndForgotPassBtn.style.marginBottom: 24px
 #id_password {
 
 }
+*/
 
 #facebook_login {
     display: none;
