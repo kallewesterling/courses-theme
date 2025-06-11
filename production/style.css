@@ -822,7 +822,7 @@ sjwc-lesson-content-item pre code {
 /* COPY-CODEBLOCK-ICON SVG */
 /* formerly in the admin Global Code Snippet */
 
-.copy-icon {
+.copy-icon, .checkbox-icon {
   display: none;
 }
 
