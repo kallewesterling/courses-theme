@@ -274,8 +274,8 @@ h1.break-word {
 }
 
 .checkbox-icon {
-    display: block;
-    flex-shrink: 0;
+/*     display: block; */
+    /*     flex-shrink: 0; */
 }
 
 .burger .fa-search, .burger .burger-text {
