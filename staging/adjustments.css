@@ -138,3 +138,14 @@ code:not([class*="language-"]) {
         height: 48px !important;
     }
 }
+
+/* #access-message [termsAndServicesText] should be same across mobile + desktop */
+body.sj-page-login #access-message, body.sj-page-signup #access-message {
+    font-size: 14px !important;
+    color: #545454 !important;
+    max-width: 368px;
+}
+
+body.sj-page-signup #access-message {
+    transform: translateX(-13px) !important;
+}

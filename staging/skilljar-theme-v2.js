@@ -689,9 +689,6 @@ function desktopLoginPageStyling() {
   const footerContainer = document.getElementById("footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
 
-  termsAndServicesText.style.maxWidth = "368px";
-  termsAndServicesText.style.fontSize = "14px";
-
   loginForm.append(termsAndServicesText);
 
   // STYLE THE LOGIN/SIGN UP TABS
@@ -810,9 +807,6 @@ function desktopSignUpPageStyling() {
   const footerContainer = document.getElementById("footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
 
-  termsAndServicesText.style.maxWidth = "368px";
-  termsAndServicesText.style.color = "#545454";
-  termsAndServicesText.style.fontSize = "14px";
   signUpForm.append(termsAndServicesText);
 
   // STYLE THE LOGIN/SIGN UP TABS
@@ -886,7 +880,6 @@ function desktopSignUpPageStyling() {
     signUpBottomBtnParent.classList.remove("text-center");
   }
   signUpBottomBtn.querySelector("span").textContent = "Sign up"; // ~
-  termsAndServicesText.style.transform = "translateX(-13px)";
 
   // STYLING OF RIGHT SIDE, OR SIGN UP WITH GOOGLE, TEXT AND BTN
   orSignInWithTextSpan.textContent = "Or Sign Up With";
@@ -1511,10 +1504,6 @@ function mobileLoginPageStyling() {
   const footerContainer = document.getElementById("footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
 
-  termsAndServicesText.style.maxWidth = "368px";
-  termsAndServicesText.style.color = "#545454";
-  termsAndServicesText.style.fontSize = "14px";
-
   loginForm.append(termsAndServicesText);
 
   // STYLE THE LOGIN/SIGN UP TABS
@@ -1599,8 +1588,7 @@ function mobileSignUpPageStyling() {
   const termsAndServicesText = document.getElementById("access-message"); // ~
   const loginContentContainer = document.querySelector(".large-6.columns"); // ~
   const orSignInWithGoogleContainer = loginContent.querySelectorAll(".row .large-6.columns")[3]; // ~
-  const orSignInWithGoogleList =
-    orSignInWithGoogleContainer.querySelector("ul"); // ~
+  const orSignInWithGoogleList = orSignInWithGoogleContainer.querySelector("ul"); // ~
   const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll("li"); // ~
 
   const signUpSignInContainer = document.querySelector(".large-12.columns"); // ~
@@ -1626,9 +1614,6 @@ function mobileSignUpPageStyling() {
   const footerContainer = document.getElementById("footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
 
-  termsAndServicesText.style.maxWidth = "368px";
-  termsAndServicesText.style.color = "#545454";
-  termsAndServicesText.style.fontSize = "14px";
   signUpForm.append(termsAndServicesText);
 
   // STYLE THE LOGIN/SIGN UP TABS
@@ -1697,7 +1682,6 @@ function mobileSignUpPageStyling() {
   }
 
   signUpBottomBtn.querySelector("span").textContent = "Sign up"; // ~
-  termsAndServicesText.style.transform = "translateX(-13px)";
 
   // STYLING OF RIGHT SIDE, OR SIGN UP WITH GOOGLE, TEXT AND BTN
   orSignInWithTextSpan.textContent = "or sign up with";
