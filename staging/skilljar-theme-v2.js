@@ -11,6 +11,7 @@ let isCatalogPage,
   isSignUpPage;
 let initialLoadComplete = false;
 let globalCurriculumSection, globalAboutSection;
+let width;
 
 function checkWindowWidth() {
   return (
@@ -3108,12 +3109,13 @@ function mobileLessonPageStyling() {
   mainLessonMainContainer.style.paddingTop = "0";
 
   navOpenIcon.style.position = "sticky";
-  const width = checkWindowWidth();
+
   if (width >= 767) {
     navOpenIcon.style.top = "24px";
   } else {
     navOpenIcon.style.top = "56px";
   }
+
   navOpenIcon.style.zIndex = "1";
   navOpenIcon.style.paddingRight = "12px";
   navOpenIcon.style.float = "right";
@@ -3430,6 +3432,8 @@ function renderCourse() {
 document.addEventListener("DOMContentLoaded", () => {
   inProd ? undefined : console.log("DOM LOADED");
 
+  width = checkWindowWidth();
+
   isCatalogPage = document.querySelector(".sj-page-catalog.sj-page-catalog-root") ? true : false;
   isCurriculumPage = document.querySelector(".sj-page-curriculum") ? true : false;
   isCourseDetailsPage = document.querySelector(".sj-page-detail.sj-page-detail-course") ? true : false;
@@ -3469,5 +3473,7 @@ document.addEventListener("DOMContentLoaded", () => {
 /////
 window.addEventListener("resize", () => {
   //BASICALLY SAME FUNCTION AS INIT!! JUST NEEDS TO MAKE SURE FUNC DOESNT GET CALLED UNNECESSARILY! SO USE THE CURRENTVIEW VAR AS REFERENCE!
+  width = checkWindowWidth();
+
   renderCourse();
 });
