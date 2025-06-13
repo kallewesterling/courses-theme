@@ -128,13 +128,13 @@ code:not([class*="language-"]) {
 /* Header image should change sizing from 24px to 48px when on mobile login page */
 
 .header-center-img {
-    height: 24px;
+    height: 24px !important;
 }
 
 @media (max-width: 991px) {
     body.sj-page-login .header-center-img,
     body.sj-page-curriculum .header-center-img,
     body.sj-page-lesson .header-center-img {
-        height: 48px;
+        height: 48px !important;
     }
 }
