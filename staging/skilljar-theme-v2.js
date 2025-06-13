@@ -1,6 +1,6 @@
 const inProd = false; // Set to true if in production environment
 
-let currentView = "";
+let currentView;
 let isCatalogPage,
   isCurriculumPage,
   isCourseDetailsPage,
@@ -14,6 +14,10 @@ let globalCurriculumSection, globalAboutSection;
 let width;
 
 const body = document.querySelector("body");
+
+function getViewport() {
+  return width <= 991 ? "mobile" : "desktop";
+}
 
 function checkWindowWidth() {
   return (
@@ -3434,12 +3438,7 @@ document.addEventListener("DOMContentLoaded", () => {
     isPageCatalogPath
   )
 
-  if (width <= 991 && !(currentView === "mobile")) {
-    currentView = "mobile";
-  }
-  else if (width > 991 && !(currentView === "desktop")) {
-    currentView = "desktop";
-  }
+  currentView = getViewport();
   inProd ? undefined : console.log("currentView: ", currentView);
   
   renderCourse();
@@ -3451,5 +3450,8 @@ window.addEventListener("resize", () => {
   width = checkWindowWidth();
   inProd ? undefined : console.log("resized: ", width);
 
+  currentView = getViewport();
+  inProd ? undefined : console.log("currentView: ", currentView);
+  
   renderCourse();
 });
