@@ -50,13 +50,6 @@ function getCurrentPage() {
     : false;
 }
 
-function getWidthAndCurrentPage() {
-  return {
-    width: checkWindowWidth(),
-    currentPage: getCurrentPage(),
-  };
-}
-
 function makeContentVisible() {
   const body = document.querySelector("body");
 
@@ -3145,7 +3138,7 @@ function mobileLessonPageStyling() {
   mainLessonMainContainer.style.paddingTop = "0";
 
   navOpenIcon.style.position = "sticky";
-  const { width } = getWidthAndCurrentPage();
+  const width = checkWindowWidth();
   if (width >= 767) {
     navOpenIcon.style.top = "24px";
   } else {
@@ -3418,7 +3411,7 @@ function handlePageStyling(
 }
 
 function renderCourse() {
-  const { width } = getWidthAndCurrentPage();
+  const width = checkWindowWidth();
   //console.log("resized: ", width);
 
   if (width <= 991 && !(currentView === "mobile")) {
