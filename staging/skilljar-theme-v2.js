@@ -27,7 +27,9 @@ function checkWindowWidth() {
   );
 }
 
-function insertFooter(isLessonsPage = false) {
+function insertFooter() {
+  inProd ? undefined : console.log("insertFooter called, isLessonsPage: ", isLessonsPage);
+
   const footerEl = document.getElementById("footer-container");
   let contentContainer;
 
@@ -82,9 +84,6 @@ function desktopCourseDetailsPageStyling() {
   const registerBtn = document.getElementById("purchase-button-wrapper-large");
   const mainHeadingContainer = document.querySelector(
     ".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"
-  );
-  const mainVideoContainer = document.querySelector(
-    ".columns.large-6.text-center.dp-promo-image-wrapper"
   );
   const backToCatalogBtn = document.querySelector(".back-to-catalog");
   const videoContainer = document.querySelector(".video-max");
@@ -215,7 +214,6 @@ function desktopCourseDetailsPageStyling() {
 
   //COURSE DETAILS CURRICULUM STYLING
   if (!initialLoadComplete) {
-    let groupIsOpen = false;
     // Check if course has Sections/Modules/Parts
     const hasSections = curriculumListContainer.querySelector(".section")
       ? true
@@ -225,10 +223,6 @@ function desktopCourseDetailsPageStyling() {
     if (!hasSections) {
       styleGroupContainer(curContainer);
     }
-
-    // const startingGroup = document.createElement("div");
-    // styleGroupHeading(startingGroup);
-    // curContainer.append(startingGroup);
 
     function styleGroupContainer(container) {
       container.style.border = "2px solid #3443F4";
@@ -633,16 +627,12 @@ function desktopLessonPageStyling() {
   const navOpenIcon = document.getElementById("left-nav-button");
   const hamburgerIcon = navOpenIcon.querySelector(".fa.fa-bars");
   const xIcon = navOpenIcon.querySelector(".fa.fa-times");
-  const leftNavMobileOverlay = document.getElementById("lpLeftNavBackground");
 
   const fullScreenBtn = document.querySelector(
     ".toggle-fullscreen.focus-link-v2 "
   );
   /// LESSON BODY VARS
   const lessonInnerContainer = document.getElementById("lesson-main-inner");
-  const quizPage = document.querySelector(
-    ".course-scrollable-content.course-text-content.quiz"
-  );
   const copyIcon = document.querySelector(".copy-icon");
   const lessonContentContainer = document.querySelector(
     "sjwc-lesson-content-item"
@@ -710,15 +700,6 @@ function desktopLessonPageStyling() {
 
   /////////HIDE FULL SCREEN BUTTON
   fullScreenBtn.style.display = "none";
-
-  /////////QUIZ PAGE STYLING
-  if (quizPage) {
-    const quizInitCheckboxIcon = document.querySelector(
-      ".fa.fa-check-square-o.quiz-icon"
-    );
-    //quizInitCheckboxIcon.style.display = "none";
-    //console.log("quizPage", quizPage);
-  }
 
   //SECOND PAGE OF STYLING INSTRUCTIONS FROM 1ST VERSION
   const parentEl = document.querySelector(".sj-page-lesson");
@@ -903,7 +884,6 @@ function desktopLoginPageStyling() {
   const orGoogleSignInInnerContainerListItems =
     orGoogleSignInInnerContainer.querySelectorAll("li");
   const signUpSignInContainer = document.querySelector(".large-12.columns");
-  const tabsContainer = document.getElementById("tabs");
   const loginTab = document.getElementById("login-tab-left");
   const signInTab = document.getElementById("login-tab-right");
   const signInTabText = signInTab.querySelector("a");
@@ -1034,24 +1014,16 @@ function desktopSignUpPageStyling() {
   const tabArrow = document.getElementById("tab-marker-signup");
   const termsAndServicesText = document.getElementById("access-message");
   const loginContentContainer = document.querySelector(".large-6.columns");
-  const orSignInWithGoogleContainer = loginContent.querySelectorAll(
-    ".row .large-6.columns"
-  )[3];
+  const orSignInWithGoogleContainer = loginContent.querySelectorAll(".row .large-6.columns")
   //console.log("orSignInWithGoogleContainer: ", orSignInWithGoogleContainer);
-  const orSignInWithGoogleList =
-    orSignInWithGoogleContainer.querySelector("ul");
+  const orSignInWithGoogleList = orSignInWithGoogleContainer.querySelector("ul");
   const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll("li");
   const signUpSignInContainer = document.querySelector(".large-12.columns");
-  const tabsContainer = document.getElementById("tabs");
   const loginTab = document.getElementById("login-tab-left");
-  loginTab;
   const loginTabText = loginTab.querySelector("a");
   const signInTab = document.getElementById("login-tab-right");
   const signInTabText = signInTab.querySelector("span");
-  const longInNote = document.querySelector(".loginNote.sj-text-login-note");
-  const orSignInWithContainer = document.querySelector(
-    ".socialaccount_providers li"
-  );
+  const orSignInWithContainer = document.querySelector(".socialaccount_providers li");
   const orSignInWithText = document.querySelector(".sj-text-sign-up-with");
   const orSignInWithTextSpan = orSignInWithText.querySelector("span");
 
@@ -1067,9 +1039,6 @@ function desktopSignUpPageStyling() {
   const passwordInput = document.getElementById("id_password1");
   const passwordInput2 = document.getElementById("id_password2");
   const signUpBottomBtn = document.getElementById("button-sign-up");
-  const forgotPasswordText = document.querySelector(
-    ".forgot-password.sj-text-forgot-password.focus-link-v2"
-  );
   const signUpForm = document.getElementById("signup_form");
 
   //FOOTER VARS
@@ -1217,10 +1186,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   //HEADER VARIABLES
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
   const headingFloaterText = document.querySelector(".sj-floater-text");
-  const container = document.querySelector(
-    ".large-8.push-4.columns.sj-summary.cp-summary-wrapper"
-  ); //DUPLICATE VAR
-  const btn = document.getElementById("resume-button"); //DUPLICATE VAR
+  const container = document.querySelector(".large-8.push-4.columns.sj-summary.cp-summary-wrapper"); //DUPLICATE VAR
   const mainHeading = document.querySelector(".break-word"); //DUPLICATE VAR
   const backToCatalogLink = document.querySelector(".back-to-catalog");
 
@@ -1409,7 +1375,6 @@ function desktopCurriculumPageNoCertificateStyling() {
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
 
-    let groupIsOpen = false;
     // Check if course has Sections/Modules/Parts
     const hasSections = curriculumParentContainer.querySelector("h3")
       ? true
@@ -1583,9 +1548,6 @@ function desktopCurriculumPageYesCertificationStyling() {
   );
   const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image");
   const sjHeaderImg = document.querySelector(".cp-promo-image img");
-  const resumeBtn = document.getElementById("resume-button");
-  //      const btnText = resumeBtn.querySelector('.button span').textContent;
-  //      const btnHref = resumeBtn.querySelector('.button').getAttribute("href");
 
   //BODY VARIABLES
   const bodyMainContainer = document.getElementById("cp-content");
@@ -1728,7 +1690,6 @@ function desktopCurriculumPageYesCertificationStyling() {
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
 
-    let groupIsOpen = false;
     const hasSections = curriculumParentContainer.querySelector("h3")
       ? true
       : false;
@@ -1865,7 +1826,6 @@ function mobileLoginPageStyling() {
   const orGoogleSignInInnerContainerListItems =
     orGoogleSignInInnerContainer.querySelectorAll("li");
   const signUpSignInContainer = document.querySelector(".large-12.columns");
-  const tabsContainer = document.getElementById("tabs");
   const loginTab = document.getElementById("login-tab-left");
   const signInTab = document.getElementById("login-tab-right");
   const signInTabText = signInTab.querySelector("a");
@@ -1993,13 +1953,11 @@ function mobileSignUpPageStyling() {
   const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll("li");
 
   const signUpSignInContainer = document.querySelector(".large-12.columns");
-  const tabsContainer = document.getElementById("tabs");
   const loginTab = document.getElementById("login-tab-left");
   loginTab;
   const loginTabText = loginTab.querySelector("a");
   const signInTab = document.getElementById("login-tab-right");
   const signInTabText = signInTab.querySelector("span");
-  const longInNote = document.querySelector(".loginNote.sj-text-login-note");
   const orSignInWithContainer = document.querySelector(
     ".socialaccount_providers li"
   );
@@ -2018,9 +1976,6 @@ function mobileSignUpPageStyling() {
   const passwordInput = document.getElementById("id_password1");
   const passwordInput2 = document.getElementById("id_password2");
   const signUpBottomBtn = document.getElementById("button-sign-up");
-  const forgotPasswordText = document.querySelector(
-    ".forgot-password.sj-text-forgot-password.focus-link-v2"
-  );
   const signUpForm = document.getElementById("signup_form");
 
   //FOOTER VARS
@@ -2307,7 +2262,6 @@ function mobileCourseDetailsPageStyling() {
 
   //COURSE DETAILS CURRICULUM STYLING
   if (!initialLoadComplete) {
-    let groupIsOpen = false;
     const hasSections = curriculumListContainer.querySelector(".section")
       ? true
       : false;
@@ -2596,7 +2550,6 @@ function mobileCurriculumPageNoCertificateStyling() {
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
 
-    let groupIsOpen = false;
     const hasSections = curriculumParentContainer.querySelector("h3")
       ? true
       : false;
@@ -2909,7 +2862,6 @@ function mobileCurriculumPageYesCertificateStyling() {
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
 
-    let groupIsOpen = false;
     const hasSections = curriculumParentContainer.querySelector("h3")
       ? true
       : false;
@@ -3061,9 +3013,6 @@ function mobileLessonPageStyling() {
   );
   /// LESSON BODY VARS
   const lessonInnerContainer = document.getElementById("lesson-main-inner");
-  const quizPage = document.querySelector(
-    ".course-scrollable-content.course-text-content.quiz"
-  );
   const copyIcon = document.querySelector(".copy-icon");
   const lessonContentContainer = document.querySelector(
     "sjwc-lesson-content-item"
@@ -3137,15 +3086,6 @@ function mobileLessonPageStyling() {
   /////////HIDE FULL SCREEN BUTTON
   fullScreenBtn.style.display = "none";
 
-  /////////QUIZ PAGE STYLING
-  if (quizPage) {
-    const quizInitCheckboxIcon = document.querySelector(
-      ".fa.fa-check-square-o.quiz-icon"
-    );
-    //quizInitCheckboxIcon.style.display = "none";
-    //console.log("quizPage", quizPage);
-  }
-
   //SECOND PAGE OF STYLING INSTRUCTIONS FROM 1ST VERSION
   const parentEl = document.querySelector(".sj-page-lesson");
   // const footerContainer = document.getElementById(
@@ -3184,7 +3124,7 @@ function mobileLessonPageStyling() {
     e.target.style.display = "none";
     openIcon.style.display = "inline-block";
   });
-  leftNavMobileOverlay.addEventListener("click", (e) => {
+  leftNavMobileOverlay.addEventListener("click", () => {
     closeIcon.style.display = "none";
     openIcon.style.display = "inline-block";
   });
@@ -3391,7 +3331,7 @@ function renderCourse() {
     document.getElementById("ep-footer").style.display = "none";
   }
 
-  insertFooter(isLessonsPage);
+  insertFooter();
 
   if (!body.classList.contains("sj-page-catalog")) {
     body.setAttribute(
