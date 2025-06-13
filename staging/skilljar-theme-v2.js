@@ -13,23 +13,14 @@ let initialLoadComplete = false;
 let globalCurriculumSection, globalAboutSection;
 let width;
 
+const body = document.querySelector("body");
+
 function checkWindowWidth() {
   return (
     window.innerWidth ||
     document.documentElement.clientWidth ||
     document.body.clientWidth
   );
-}
-
-function makeContentVisible() {
-  const body = document.querySelector("body");
-
-  if (!body.classList.contains("sj-page-catalog")) {
-    body.setAttribute(
-      "style",
-      "visibility: visible !important; opacity: 1 !important"
-    );
-  }
 }
 
 function insertFooter(isLessonsPage = false) {
@@ -51,14 +42,9 @@ function insertFooter(isLessonsPage = false) {
   contentContainer.append(footerEl);
 }
 
-function removeSJFooter(isLessonsPage = false) {
-  if (!isLessonsPage) {
-    document.getElementById("ep-footer").style.display = "none";
-  }
-}
-
-//DESTOP VIEW STYLINGS
 function desktopCatalogPageStyling() {
+  // Style desktop view
+  
   //grab variables
   const catalogBodyParentContainer = document.getElementById("catalog-content");
   const catalogContainer = document.getElementById("catalog-courses");
@@ -3383,56 +3369,40 @@ function handlePageStyling(
 }
 
 function renderCourse() {
-  const width = checkWindowWidth();
-  inProd ? undefined : console.log("resized: ", width);
+  handlePageStyling(
+    {
+      isCatalogPage,
+      isCourseDetailsPage,
+      isPageDetailPath,
+      isPageCatalogPath,
+      isLoginPage,
+      isSignUpPage,
+      isCurriculumPage,
+      isLessonsPage,
+    },
+    currentView
+  );
 
-  if (width <= 991 && !(currentView === "mobile")) {
-    currentView = "mobile";
-
-    handlePageStyling(
-      {
-        isCatalogPage,
-        isCourseDetailsPage,
-        isPageDetailPath,
-        isPageCatalogPath,
-        isLoginPage,
-        isSignUpPage,
-        isCurriculumPage,
-        isLessonsPage,
-      },
-      currentView
-    );
-  } else if (width > 991 && !(currentView === "desktop")) {
-    currentView = "desktop";
-
-    handlePageStyling(
-      {
-        isCatalogPage,
-        isCourseDetailsPage,
-        isPageDetailPath,
-        isPageCatalogPath,
-        isLoginPage,
-        isSignUpPage,
-        isCurriculumPage,
-        isLessonsPage,
-      },
-      currentView
-    );
+  if (!isLessonsPage) {
+    document.getElementById("ep-footer").style.display = "none";
   }
 
-  //console.log("currentView: ", currentView);
-  removeSJFooter(isLessonsPage);
   insertFooter(isLessonsPage);
-  makeContentVisible();
+
+  if (!body.classList.contains("sj-page-catalog")) {
+    body.setAttribute(
+      "style",
+      "visibility: visible !important; opacity: 1 !important"
+    );
+  }
 }
 
-/////
-//EVENT TO HANDLE FIRST/INITIAL RENDERING
-/////
 document.addEventListener("DOMContentLoaded", () => {
+  // Handle initial rendering
   inProd ? undefined : console.log("DOM LOADED");
 
   width = checkWindowWidth();
+  inProd ? undefined : console.log("resized: ", width);
 
   isCatalogPage = document.querySelector(".sj-page-catalog.sj-page-catalog-root") ? true : false;
   isCurriculumPage = document.querySelector(".sj-page-curriculum") ? true : false;
@@ -3464,16 +3434,22 @@ document.addEventListener("DOMContentLoaded", () => {
     isPageCatalogPath
   )
 
+  if (width <= 991 && !(currentView === "mobile")) {
+    currentView = "mobile";
+  }
+  else if (width > 991 && !(currentView === "desktop")) {
+    currentView = "desktop";
+  }
+  inProd ? undefined : console.log("currentView: ", currentView);
+  
   renderCourse();
   initialLoadComplete = true;
 });
 
-/////
-//EVENT TO HANDLE RESIZING RENDERING
-/////
 window.addEventListener("resize", () => {
-  //BASICALLY SAME FUNCTION AS INIT!! JUST NEEDS TO MAKE SURE FUNC DOESNT GET CALLED UNNECESSARILY! SO USE THE CURRENTVIEW VAR AS REFERENCE!
+  // Handle resized window
   width = checkWindowWidth();
+  inProd ? undefined : console.log("resized: ", width);
 
   renderCourse();
 });
