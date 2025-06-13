@@ -1,3 +1,5 @@
+const inProd = false; // Set to true if in production environment
+
 let currentView = "";
 let isCatalogPage,
   isCurriculumPage,
@@ -3380,7 +3382,7 @@ function handlePageStyling(
 
 function renderCourse() {
   const width = checkWindowWidth();
-  //console.log("resized: ", width);
+  inProd ? undefined : console.log("resized: ", width);
 
   if (width <= 991 && !(currentView === "mobile")) {
     currentView = "mobile";
@@ -3426,7 +3428,38 @@ function renderCourse() {
 //EVENT TO HANDLE FIRST/INITIAL RENDERING
 /////
 document.addEventListener("DOMContentLoaded", () => {
-  //console.log("DOM LOADED");
+  inProd ? undefined : console.log("DOM LOADED");
+
+  isCatalogPage = document.querySelector(".sj-page-catalog.sj-page-catalog-root") ? true : false;
+  isCurriculumPage = document.querySelector(".sj-page-curriculum") ? true : false;
+  isCourseDetailsPage = document.querySelector(".sj-page-detail.sj-page-detail-course") ? true : false;
+  isLessonsPage = document.querySelector(".sj-page-lesson") ? true : false;
+  isLoginPage = document.querySelector(".sj-page-login") ? true : false;
+  isSignUpPage = document.querySelector(".sj-page-signup") ? true : false;
+
+  //PATH PAGES
+  isPageDetailPath = document.querySelector(".sj-page-detail.sj-page-detail-bundle.sj-page-detail-path") ? true : false;
+  isPageCatalogPath = document.querySelector(".sj-page-catalog.sj-page-series.sj-page-path") ? true : false;
+  
+  inProd ? undefined : console.log(
+    "isCatalogPage: ",
+    isCatalogPage,
+    "isCurriculumPage: ",
+    isCurriculumPage,
+    "isCourseDetailsPage: ",
+    isCourseDetailsPage,
+    "isLessonsPage: ",
+    isLessonsPage,
+    "isLoginPage: ",
+    isLoginPage,
+    "isSignUpPage: ",
+    isSignUpPage,
+    "isPageDetailPath: ",
+    isPageDetailPath,
+    "isPageCatalogPath: ",
+    isPageCatalogPath
+  )
+
   renderCourse();
   initialLoadComplete = true;
 });
