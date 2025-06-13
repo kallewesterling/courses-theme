@@ -15,6 +15,10 @@ let width;
 
 const body = document.querySelector("body"); // ~
 
+function elemExists(selector) {
+  return document.querySelector(selector) ? true : false;
+}
+
 function getViewport() {
   return width <= 991 ? "mobile" : "desktop";
 }
@@ -231,12 +235,10 @@ function desktopCourseDetailsPageStyling() {
     }
 
     function styleGroupHeading(groupHeading) {
-      // console.log('groupHeading: ', groupHeading)
       groupHeading.textContent = groupHeading?.textContent?.trim();
       groupHeading.style.fontSize = "16px";
       groupHeading.style.fontWeight = "500";
       groupHeading.style.lineHeight = "125%";
-      //   groupHeading.style.letterSpacing = "-.16px";
       groupHeading.style.fontFamily = "Fusiona";
       groupHeading.style.padding = "24px";
       groupHeading.style.borderBottom = "2px solid #3443F4";
@@ -379,7 +381,7 @@ function desktopPathCourseDetailsPageStyling() {
   bodyContainer.style.maxWidth = "min(1152px, 90%)";
   catalogContainer.style.marginBottom = "85px";
   
-  console.log("reached end of path func");
+  inProd ? undefined : console.log("reached end of path func");
 }
 
 function desktopPathCatalogPageStyling() {
@@ -1248,7 +1250,7 @@ function desktopCurriculumPageNoCertificateStyling() {
 
 function desktopCurriculumPageYesCertificationStyling() {
   const courseDescription = skilljarCourse.short_description;
-  console.log("courseDescription: ", courseDescription);
+  inProd ? undefined : console.log("courseDescription: ", courseDescription);
 
   const logoImg = document.querySelector(".header-center-img"); // ~
 
@@ -1619,7 +1621,7 @@ function mobileLoginPageStyling() {
 }
 
 function mobileSignUpPageStyling() {
-  console.log("SIGN UP PAGE VIEW");
+  inProd ? undefined : console.log("SIGN UP PAGE VIEW");
   const logoImg = document.querySelector(".header-center-img"); // ~
   const fbBtn = document.getElementById("facebook_login"); // ~
   const googleBtn = document.getElementById("google_login"); // ~
@@ -2246,9 +2248,9 @@ function mobileCurriculumPageNoCertificateStyling() {
           curArr[i + 1] ? curArr[i + 1].tagName === "DIV" : true
         );
         // styling for mobile
-        console.log("wrap ran");
+        inProd ? undefined : console.log("wrap ran");
         el.querySelector(".title").style.textWrap = "wrap"; // ~
-        console.log("wrap ran DONE");
+        inProd ? undefined : console.log("wrap ran DONE");
 
         newListEl.append(el);
         curContainer.append(newListEl);
@@ -2895,19 +2897,32 @@ document.addEventListener("DOMContentLoaded", () => {
   // Handle initial rendering
   inProd ? undefined : console.log("DOM LOADED");
 
+  // Width 
   width = checkWindowWidth();
   inProd ? undefined : console.log("resized: ", width);
 
-  isCatalogPage = document.querySelector(".sj-page-catalog.sj-page-catalog-root") ? true : false;
-  isCurriculumPage = document.querySelector(".sj-page-curriculum") ? true : false;
-  isCourseDetailsPage = document.querySelector(".sj-page-detail.sj-page-detail-course") ? true : false;
-  isLessonsPage = document.querySelector(".sj-page-lesson") ? true : false;
-  isLoginPage = document.querySelector(".sj-page-login") ? true : false;
-  isSignUpPage = document.querySelector(".sj-page-signup") ? true : false;
+  // isCatalogPage is true if the page displays the catalog of courses (i.e. the landing page)
+  isCatalogPage = elemExists("body.sj-page-catalog"); 
+  
+  // isCurriculumPage is true if the page displays a course's curriculum which is not part of a learning path
+  isCurriculumPage = elemExists("body.sj-page-curriculum");
+  
+  // isCourseDetailsPage is true if the page displays a course's details that is part of a learning path
+  isCourseDetailsPage = elemExists("body.sj-page-detail-course");
+  
+  // isLessonsPage is true if the page displays one of a course's lesson
+  isLessonsPage = elemExists("body.sj-page-lesson");
+  
+  // isLoginPage is true if the page displays a login form
+  isLoginPage = elemExists("body.sj-page-login");
+  
+  // isLoginPage is true if the page displays a sign up form
+  isSignUpPage = elemExists("body.sj-page-signup");
 
-  // PATH PAGES
-  isPageDetailPath = document.querySelector(".sj-page-detail.sj-page-detail-bundle.sj-page-detail-path") ? true : false;
-  isPageCatalogPath = document.querySelector(".sj-page-catalog.sj-page-series.sj-page-path") ? true : false;
+  // isPageDetailPath is true if the page displays a learning path's details
+  isPageDetailPath = elemExists("body.sj-page-detail-path");
+
+  isPageCatalogPath = elemExists(".sj-page-catalog.sj-page-series.sj-page-path");
   
   inProd ? undefined : console.log(
     "isCatalogPage: ",
