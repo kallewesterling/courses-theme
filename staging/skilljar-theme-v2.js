@@ -427,8 +427,6 @@ function desktopPathCatalogPageStyling() {
 }
 
 function desktopLessonPageStyling() {
-  const logoImg = document.querySelector(".header-center-img"); // ~
-
   const leftNav = document.getElementById("lp-left-nav"); // ~
   const mainLessonContentContainer = document.getElementById("lp-wrapper"); // ~
   const mainLessonContentSubContainer = document.getElementById("lp-content"); // ~
@@ -450,9 +448,6 @@ function desktopLessonPageStyling() {
   // FOOTER VARS
   const footerContainer = document.getElementById("footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
-
-  // STYLE LOGO
-  logoImg.style.height = "24px";
 
   lessonInnerContainer.style.maxWidth = "712px";
   lessonInnerContainer.style.margin = "0 auto";
@@ -665,8 +660,6 @@ function desktopLessonPageStyling() {
 }
 
 function desktopLoginPageStyling() {
-  const logoImg = document.querySelector(".header-center-img"); // ~
-
   const fbBtn = document.getElementById("facebook_login"); // ~
   const googleBtn = document.getElementById("google_login"); // ~
   const loginContent = document.getElementById("login-content"); // ~
@@ -695,9 +688,6 @@ function desktopLoginPageStyling() {
   // FOOTER VARS
   const footerContainer = document.getElementById("footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
-
-  // STYLE LOGO
-  logoImg.style.height = "24px";
 
   termsAndServicesText.style.maxWidth = "368px";
   termsAndServicesText.style.fontSize = "14px";
@@ -788,7 +778,6 @@ function desktopLoginPageStyling() {
 }
 
 function desktopSignUpPageStyling() {
-  const logoImg = document.querySelector(".header-center-img"); // ~
   const fbBtn = document.getElementById("facebook_login"); // ~
   const googleBtn = document.getElementById("google_login"); // ~
   const loginContent = document.getElementById("login-content"); // ~
@@ -825,9 +814,6 @@ function desktopSignUpPageStyling() {
   termsAndServicesText.style.color = "#545454";
   termsAndServicesText.style.fontSize = "14px";
   signUpForm.append(termsAndServicesText);
-
-  // STYLE LOGO
-  logoImg.style.height = "24px";
 
   // STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = "flex";
@@ -949,8 +935,6 @@ function desktopSignUpPageStyling() {
 function desktopCurriculumPageNoCertificateStyling() {
   const courseDescription = skilljarCourse.short_description;
 
-  const logoImg = document.querySelector(".header-center-img"); // ~
-
   // HEADER VARIABLES
   const headingParagraph = document.querySelector(".sj-heading-paragraph"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
@@ -987,9 +971,6 @@ function desktopCurriculumPageNoCertificateStyling() {
   const curriculumParentContainer = document.getElementById("curriculum-list"); // ~
   const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
   const curriculumOutsideContainer = curriculumParentContainer.closest(".content");
-
-  // STYLE LOGO
-  logoImg.style.height = "24px";
 
   // TEST
   if (initialLoadComplete) {
@@ -1252,8 +1233,6 @@ function desktopCurriculumPageYesCertificationStyling() {
   const courseDescription = skilljarCourse.short_description;
   inProd ? undefined : console.log("courseDescription: ", courseDescription);
 
-  const logoImg = document.querySelector(".header-center-img"); // ~
-
   // HEADER VARIABLES
   const headingParagraph = document.querySelector(".sj-heading-paragraph"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
@@ -1279,9 +1258,6 @@ function desktopCurriculumPageYesCertificationStyling() {
   const InnerContentContainer = bodyMainContainer.querySelector(".columns"); // ~
   const tabsContainer = document.querySelector(".section-container.tabs"); // ~
   let [curriculumSection, aboutSection] = tabsContainer.querySelectorAll("section"); // ~
-
-  // STYLE LOGO
-  logoImg.style.height = "24px";
 
   // TEST
   if (initialLoadComplete) {
@@ -1507,9 +1483,6 @@ function desktopCurriculumPageYesCertificationStyling() {
 
 // MOBILE VIEW STYLINGS
 function mobileLoginPageStyling() {
-  // NAV VARS
-  const logoImg = document.querySelector(".header-center-img"); // ~
-
   const fbBtn = document.getElementById("facebook_login"); // ~
   const googleBtn = document.getElementById("google_login"); // ~
   const loginContent = document.getElementById("login-content"); // ~
@@ -1537,9 +1510,6 @@ function mobileLoginPageStyling() {
   // FOOTER VARS
   const footerContainer = document.getElementById("footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
-
-  // NAV STYLING
-  logoImg.style.maxHeight = "48px";
 
   termsAndServicesText.style.maxWidth = "368px";
   termsAndServicesText.style.color = "#545454";
@@ -1622,7 +1592,6 @@ function mobileLoginPageStyling() {
 
 function mobileSignUpPageStyling() {
   inProd ? undefined : console.log("SIGN UP PAGE VIEW");
-  const logoImg = document.querySelector(".header-center-img"); // ~
   const fbBtn = document.getElementById("facebook_login"); // ~
   const googleBtn = document.getElementById("google_login"); // ~
   const loginContent = document.getElementById("login-content"); // ~
@@ -1661,9 +1630,6 @@ function mobileSignUpPageStyling() {
   termsAndServicesText.style.color = "#545454";
   termsAndServicesText.style.fontSize = "14px";
   signUpForm.append(termsAndServicesText);
-
-  // STYLE LOGO
-  logoImg.style.minHeight = "48px";
 
   // STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = "flex";
@@ -1778,8 +1744,6 @@ function mobileSignUpPageStyling() {
 
 function mobileCourseDetailsPageStyling() {
   // NAV VARS
-  const navLogoImg = document.querySelector(".header-center-img"); // ~
-
   const headerContainer = document.querySelector(".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"); // ~
   const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
@@ -1822,8 +1786,6 @@ function mobileCourseDetailsPageStyling() {
 
   mobileBodyContent.setAttribute("style", "display: none !important;");
 
-  // NAV STYLING
-  navLogoImg.style.maxHeight = "48px";
   if (signInHeaderText) {
     signInHeaderText.style.display = "none";
     signInBtn.setAttribute("style", "color:#fff !important");
@@ -2011,11 +1973,6 @@ function mobileCourseDetailsPageStyling() {
 }
 
 function mobileCurriculumPageNoCertificateStyling() {
-  "textWrap";
-
-  // NAV VARS
-  const navLogoImg = document.querySelector(".header-center-img"); // ~
-
   // HEADER VARIABLES
   const headingParagraph = document.querySelector(".sj-heading-paragraph"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
@@ -2066,9 +2023,6 @@ function mobileCurriculumPageNoCertificateStyling() {
   // FOOTER VARS
   const footerContainer = document.getElementById("footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
-
-  // NAV STYLING
-  navLogoImg.style.maxHeight = "48px";
 
   // STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
   bodyMainContainer.style.display = "grid";
@@ -2292,9 +2246,6 @@ function mobileCurriculumPageNoCertificateStyling() {
 }
 
 function mobileCurriculumPageYesCertificateStyling() {
-  // NAV VARS
-  const navLogoImg = document.querySelector(".header-center-img"); // ~
-
   // HEADER VARIABLES
   const headingParagraph = document.querySelector(".sj-heading-paragraph"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
@@ -2344,9 +2295,6 @@ function mobileCurriculumPageYesCertificateStyling() {
   // FOOTER VARS
   const footerContainer = document.getElementById("footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
-
-  // NAV STYLING
-  navLogoImg.style.maxHeight = "48px";
 
   // STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
   bodyMainContainer.style.display = "grid";
@@ -2564,9 +2512,6 @@ function mobileCurriculumPageYesCertificateStyling() {
 }
 
 function mobileLessonPageStyling() {
-  // MAIN NAV VARS
-  const navLogoImg = document.querySelector(".header-center-img"); // ~
-
   const leftNav = document.getElementById("lp-left-nav"); // ~
   const mainLessonContentContainer = document.getElementById("lp-wrapper"); // ~
   const mainLessonContentSubContainer = document.getElementById("lp-content"); // ~
@@ -2588,9 +2533,6 @@ function mobileLessonPageStyling() {
   // FOOTER VARS
   const footerContainer = document.getElementById("footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
-
-  // MAIN NAV STYLING
-  navLogoImg.style.maxHeight = "48px";
 
   lessonInnerContainer.style.maxWidth = "712px";
   lessonInnerContainer.style.margin = "0 auto";
