@@ -26,7 +26,6 @@ body {
 /* Header logo */
 #header .header-center-img.header-logo-svg {
   width: 230px !important;
-  height: 24px; /* Previously set by desktopLessonPageStyling() */
 }
 
 /* START change sign in button outline and text color */
@@ -818,24 +817,12 @@ sjwc-lesson-content-item pre code {
   color: #7545fb;
 }
 
-.sj-page-curriculum .sj-floater-text {
-  /* previously set in mobileCourseDetailsPageStyling() + desktopCourseDetailsPageStyling() */
-  display: block;
-  margin-bottom: 24px;
-}
-
-.sj-page-curriculum .sj-heading-paragraph {
-  /* previously set in mobileCourseDetailsPageStyling() + desktopCourseDetailsPageStyling() */
-  display: block;
-  margin: 0 0 24px 0;
-}
-
 /* /Curriculum Page Styling */
 
 /* COPY-CODEBLOCK-ICON SVG */
 /* formerly in the admin Global Code Snippet */
 
-.copy-icon {
+.copy-icon, .checkbox-icon {
   display: none;
 }
 
@@ -875,7 +862,7 @@ sjwc-lesson-content-item pre code {
   position: absolute !important;
   z-index: 1 !important;
   width: 100% !important;
-box-shadow: 0 0 7px #0000003d !important;
+  box-shadow: 0 0 7px #0000003d !important;
 }
 
 .sj-page-catalog .sj-course-ribbon-complete {
