@@ -149,8 +149,8 @@ function desktopCourseDetailsPageStyling() {
   mainHeadingContainer.style.border = "0";
   mainHeadingContainer.style.maxWidth = "564px";
   mainInfoCardContained.style.display = "none";
-  headingFloaterText.style.display = "block";
-  headingFloaterText.style.marginBottom = "24px";
+  // headingFloaterText.style.display = "block";
+  // headingFloaterText.style.marginBottom = "24px";
   // mainHeading.style.margin = "0 0 12px 0";
   // mainHeading.style.fontSize = "36px";
   // mainHeading.style.fontWeight = "600";
@@ -354,9 +354,9 @@ function desktopPathCourseDetailsPageStyling() {
   mainHeadingContainer.style.maxWidth = "600px";
   mainInfoCardContained.style.display = "none";
   headingFloaterText.textContent = "Learning Path";
-  headingFloaterText.style.color = "#7AF0FE";
-  headingFloaterText.style.display = "block";
-  headingFloaterText.style.marginBottom = "24px";
+  // headingFloaterText.style.color = "#7AF0FE";
+  // headingFloaterText.style.display = "block";
+  // headingFloaterText.style.marginBottom = "24px";
   // mainHeading.style.margin = "0 0 12px 0";
   // mainHeading.style.fontSize = "36px";
   // mainHeading.style.fontWeight = "600";
@@ -1056,7 +1056,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   headingParagraph.textContent = courseDescription;
   headingParagraph.style.display = "block";
-  headingFloaterText.style.display = "block";
+  // headingFloaterText.style.display = "block";
 
   if (resumeBtn) {
     container.append(
@@ -1332,7 +1332,7 @@ function desktopCurriculumPageYesCertificationStyling() {
   // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   headingParagraph.textContent = courseDescription;
   headingParagraph.style.display = "block";
-  headingFloaterText.style.display = "block";
+  // headingFloaterText.style.display = "block";
   
   container.append(
     headingFloaterText,
@@ -1798,8 +1798,8 @@ function mobileCourseDetailsPageStyling() {
   mainHeadingContainer.style.maxWidth = "none";
   mainHeadingContainer.style.width = "100%";
   mainHeadingContainer.querySelector(".sj-course-info-wrapper").style.display = "none"; // ~
-  headingFloaterText.style.display = "block";
-  headingFloaterText.style.marginBottom = "24px";
+  // headingFloaterText.style.display = "block";
+  // headingFloaterText.style.marginBottom = "24px";
   // mainHeading.style.margin = "0 0 12px 0";
   // mainHeading.style.fontSize = "36px";
   // mainHeading.style.fontWeight = "600";
@@ -2078,7 +2078,7 @@ function mobileCurriculumPageNoCertificateStyling() {
 
   // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   headingParagraph.style.display = "block";
-  headingFloaterText.style.display = "block";
+  // headingFloaterText.style.display = "block";
   container.append(headingFloaterText, mainHeading, headingParagraph, btn);
 
   // CURRICULUM PAGE BODY STYLING
@@ -2344,7 +2344,7 @@ function mobileCurriculumPageYesCertificateStyling() {
 
   // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   headingParagraph.style.display = "block";
-  headingFloaterText.style.display = "block";
+  // headingFloaterText.style.display = "block";
   container.append(
     headingFloaterText,
     mainHeading,

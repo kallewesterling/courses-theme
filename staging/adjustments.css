@@ -177,6 +177,13 @@ body.sj-page-signup #access-message {
         line-height: 43.2px !important;
         letter-spacing: -0.02em !important;
     }
+
+    /* headingFloaterText */
+    .sj-floater-text {
+        color: #7AF0FE !important;
+        display: block !important;
+        margin-bottom: 24px !important;
+    }
 }
 
 #skilljar-content .top-row-grey::before {
