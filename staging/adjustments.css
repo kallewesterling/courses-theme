@@ -231,3 +231,34 @@ a.header-link.login-link {
         font-weight: 500 !important;
     }
 }
+
+/* bodyContainer (note, not for Learning Paths) */
+#dp-details {
+    padding: 0 !important;
+    margin: 96px auto 46px auto !important;
+    max-width: min(1152px, 90%) !important;
+    display: grid !important;
+    grid-template-columns: minmax(100px, 760px) minmax(100px, 368px) !important;
+    column-gap: 24px !important;
+}
+
+@media (max-width: 991px) {
+    #dp-details {
+        /* padding: 0 !important; */
+        margin: 72px auto -10px auto !important;
+        /* max-width: min(1152px, 90%) !important; */
+        /* display: grid !important; */
+        grid-template-columns: 1fr !important;
+        /* column-gap: 24px !important; */
+    }
+}
+
+/* bodyContainer (for Learning Paths */
+#dp-details-bundle {
+    padding: 0 !important;
+    margin: 96px auto 46px auto !important;
+    max-width: min(1152px, 90%) !important;
+    /* display: grid !important;
+    grid-template-columns: minmax(100px, 760px) minmax(100px, 368px) !important;
+    column-gap: 24px !important; */
+}

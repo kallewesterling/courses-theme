@@ -171,13 +171,12 @@ function desktopCourseDetailsPageStyling() {
   }
 
   //COURSE DETAILS PAGE BODY STYLING
-  bodyContainer.style.padding = "0";
-  bodyContainer.style.margin = "96px auto 46px auto";
-  bodyContainer.style.maxWidth = "min(1152px, 90%)";
-  bodyContainer.style.display = "grid";
-  bodyContainer.style.gridTemplateColumns =
-    "minmax(100px, 760px) minmax(100px, 368px)";
-  bodyContainer.style.columnGap = "24px";
+  // bodyContainer.style.padding = "0";
+  // bodyContainer.style.margin = "96px auto 46px auto";
+  // bodyContainer.style.maxWidth = "min(1152px, 90%)";
+  // bodyContainer.style.display = "grid";
+  // bodyContainer.style.gridTemplateColumns = "minmax(100px, 760px) minmax(100px, 368px)";
+  // bodyContainer.style.columnGap = "24px";
 
   secondaryBodyContainer.style.padding = "0";
   secondaryBodyContainer.style.maxWidth = "760px";
@@ -315,7 +314,7 @@ function desktopPathCourseDetailsPageStyling() {
   // const signInHeaderText = document.querySelector(".signin"); // ~
   // const signInBtn = document.querySelector(".header-link.login-link.sj-text-sign-in.focus-link-v2"); // ~
   ////BODY VARIABLES
-  const bodyContainer = document.getElementById("dp-details-bundle"); // ~
+  // const bodyContainer = document.getElementById("dp-details-bundle"); // ~
   const catalogContainer = document.getElementById("catalog-courses"); // ~
 
   // backToCatalogBtn.style.display = "none";
@@ -375,9 +374,9 @@ function desktopPathCourseDetailsPageStyling() {
   );
 
   // COURSE DETAILS PAGE BODY STYLING
-  bodyContainer.style.padding = "0";
-  bodyContainer.style.margin = "96px auto 46px auto";
-  bodyContainer.style.maxWidth = "min(1152px, 90%)";
+  // bodyContainer.style.padding = "0";
+  // bodyContainer.style.margin = "96px auto 46px auto";
+  // bodyContainer.style.maxWidth = "min(1152px, 90%)";
   catalogContainer.style.marginBottom = "85px";
   
   inProd ? undefined : console.log("reached end of path func");
@@ -1823,12 +1822,12 @@ function mobileCourseDetailsPageStyling() {
   videoContainer.style.paddingRight = "15px";
 
   // COURSE DETAILS PAGE BODY STYLING
-  bodyContainer.style.padding = "0";
-  bodyContainer.style.margin = "72px auto -10px auto";
-  bodyContainer.style.maxWidth = "min(1152px, 90%)";
-  bodyContainer.style.display = "grid";
-  bodyContainer.style.gridTemplateColumns = "1fr";
-  bodyContainer.style.columnGap = "24px";
+  // bodyContainer.style.padding = "0";
+  // bodyContainer.style.margin = "72px auto -10px auto";
+  // bodyContainer.style.maxWidth = "min(1152px, 90%)";
+  // bodyContainer.style.display = "grid";
+  // bodyContainer.style.gridTemplateColumns = "1fr";
+  // bodyContainer.style.columnGap = "24px";
 
   secondaryBodyContainer.setAttribute(
     "style",
