@@ -79,7 +79,7 @@ function desktopCatalogPageStyling() {
 }
 
 function desktopCourseDetailsPageStyling() {
-  const headerContainer = document.querySelector(".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"); // ~
+  // const headerContainer = document.querySelector(".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"); // ~
   const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
   const mainHeading = document.querySelector(".break-word"); // ~
@@ -133,12 +133,12 @@ function desktopCourseDetailsPageStyling() {
     // signInBtn.style.lineHeight = "20px";
   // }
 
-  headerContainer.style.backgroundColor = "#D0CFEE";
-  headerContainer.style.margin = "0";
-  headerContainer.style.maxWidth = "none";
-  headerContainer.style.paddingTop = "96px";
-  headerContainer.style.paddingBottom = "96px";
-  headerContainer.style.border = "0";
+  // headerContainer.style.backgroundColor = "#D0CFEE";
+  // headerContainer.style.margin = "0";
+  // headerContainer.style.maxWidth = "none";
+  // headerContainer.style.paddingTop = "96px";
+  // headerContainer.style.paddingBottom = "96px";
+  // headerContainer.style.border = "0";
   headerFlexContainer.style.flexDirection = "row-reverse";
   headerFlexContainer.style.flexWrap = "nowrap";
   headerFlexContainer.style.justifyContent = "start";
@@ -297,7 +297,7 @@ function desktopCourseDetailsPageStyling() {
 }
 
 function desktopPathCourseDetailsPageStyling() {
-  const headerContainer = document.querySelector(".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"); // ~
+  // const headerContainer = document.querySelector(".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"); // ~
   const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
   const mainHeading = document.querySelector(".break-word"); // ~
@@ -332,16 +332,15 @@ function desktopPathCourseDetailsPageStyling() {
     // signInBtn.style.lineHeight = "20px";
   // }
 
-  headerContainer.style.background =
-    "url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png)";
-  headerContainer.style.backgroundSize = "cover";
-  headerContainer.style.backgroundPosition = "center";
-  headerContainer.style.backgroundRepeat = "no-repeat";
-  headerContainer.style.margin = "0";
-  headerContainer.style.maxWidth = "none";
-  headerContainer.style.paddingTop = "96px";
-  headerContainer.style.paddingBottom = "96px";
-  headerContainer.style.border = "0";
+  // headerContainer.style.background = "url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png)";
+  // headerContainer.style.backgroundSize = "cover";
+  // headerContainer.style.backgroundPosition = "center";
+  // headerContainer.style.backgroundRepeat = "no-repeat";
+  // headerContainer.style.margin = "0";
+  // headerContainer.style.maxWidth = "none";
+  // headerContainer.style.paddingTop = "96px";
+  // headerContainer.style.paddingBottom = "96px";
+  // headerContainer.style.border = "0";
   headerFlexContainer.style.flexDirection = "row-reverse";
   headerFlexContainer.style.flexWrap = "nowrap";
   headerFlexContainer.style.justifyContent = "start";
@@ -1725,7 +1724,7 @@ function mobileSignUpPageStyling() {
 
 function mobileCourseDetailsPageStyling() {
   // NAV VARS
-  const headerContainer = document.querySelector(".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"); // ~
+  // const headerContainer = document.querySelector(".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"); // ~
   const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
   const mainHeading = document.querySelector(".break-word"); // ~
@@ -1779,13 +1778,12 @@ function mobileCourseDetailsPageStyling() {
     // signInBtn.style.fontWeight = "500";
   // }
 
-  headerContainer.style.background =
-    "linear-gradient(146deg, rgba(245,246,255,1) 0%, rgba(254,231,254,1) 100%)";
-  headerContainer.style.margin = "0";
-  headerContainer.style.maxWidth = "none";
-  headerContainer.style.paddingTop = "48px";
-  headerContainer.style.paddingBottom = "48px";
-  headerContainer.style.border = "0";
+  // headerContainer.style.background = "linear-gradient(146deg, rgba(245,246,255,1) 0%, rgba(254,231,254,1) 100%)";
+  // headerContainer.style.margin = "0";
+  // headerContainer.style.maxWidth = "none";
+  // headerContainer.style.paddingTop = "48px";
+  // headerContainer.style.paddingBottom = "48px";
+  // headerContainer.style.border = "0";
   headerFlexContainer.style.flexDirection = "column-reverse";
   headerFlexContainer.style.flexWrap = "nowrap";
   headerFlexContainer.style.justifyContent = "start";
