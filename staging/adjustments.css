@@ -198,6 +198,11 @@ body.sj-page-signup #access-message {
         gap: 24px !important;
         max-width: 1188px !important;
     }
+
+    /* videoContainer */
+    .video-max {
+        max-width: none !important;
+    }
 }
 
 @media (max-width: 991px) {
@@ -207,6 +212,11 @@ body.sj-page-signup #access-message {
         /* headerFlexContainer */
         .dp-row-flex-v2 {
             flex-direction: column-reverse !important;
+        }
+
+        /* videoContainer */
+        .video-max {
+            padding: 15px 0 15px 0 !important;            
         }
     }
 }
