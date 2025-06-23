@@ -759,8 +759,7 @@ function desktopLoginPageStyling() {
   googleBtn.textContent = "Continue with Google";
 
   fbBtn.style.display = "none";
-  googleBtn.style.background =
-    "linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%)";
+  googleBtn.style.background = "linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%)";
   googleBtn.style.width = "auto";
   googleBtn.style.textAlign = "center";
   loginContent.style.border = "0";
@@ -937,7 +936,7 @@ function desktopCurriculumPageNoCertificateStyling() {
 
   backToCatalogLink.style.display = "none";
 
-  const curriculumPageHeader = document.querySelector(".top-row-grey.top-row-white-v2.padding-side.row-v2"); // ~
+  // const curriculumPageHeader = document.querySelector(".top-row-grey.top-row-white-v2.padding-side.row-v2"); // ~
   const headerTextAndImgContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   const sjHeaderTextContainer = document.querySelector(".large-8.push-4.columns.sj-summary.cp-summary-wrapper"); // ~
   const sjHeaderTextHeading = document.querySelector(".break-word"); // ~
@@ -1024,10 +1023,10 @@ function desktopCurriculumPageNoCertificateStyling() {
   sjHeaderTextProgressBar.style.display = "none";
 
   // STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
-  curriculumPageHeader.style.maxWidth = "none";
-  curriculumPageHeader.style.padding = "0";
-  curriculumPageHeader.style.backgroundColor = "#D0CFEE";
-  curriculumPageHeader.style.border = "0";
+  // curriculumPageHeader.style.maxWidth = "none";
+  // curriculumPageHeader.style.padding = "0";
+  // curriculumPageHeader.style.backgroundColor = "#D0CFEE";
+  // curriculumPageHeader.style.border = "0";
 
   // STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
   // TEXT CONTAINER
@@ -1235,7 +1234,7 @@ function desktopCurriculumPageYesCertificationStyling() {
 
   backToCatalogLink.style.display = "none";
 
-  const curriculumPageHeader = document.querySelector(".top-row-grey.top-row-white-v2.padding-side.row-v2"); // ~
+  // const curriculumPageHeader = document.querySelector(".top-row-grey.top-row-white-v2.padding-side.row-v2"); // ~
   const headerTextAndImgContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   const sjHeaderTextContainer = document.querySelector(".large-8.push-4.columns.sj-summary.cp-summary-wrapper"); // ~
   const sjHeaderTextHeading = document.querySelector(".break-word"); // ~
@@ -1304,10 +1303,10 @@ function desktopCurriculumPageYesCertificationStyling() {
   sjHeaderTextProgressBar.style.display = "none";
 
   // STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
-  curriculumPageHeader.style.maxWidth = "none";
-  curriculumPageHeader.style.padding = "0";
-  curriculumPageHeader.style.backgroundImage = "linear-gradient(315deg,#fde1fe,#f5f6fe 72%)";
-  curriculumPageHeader.style.border = "0";
+  // curriculumPageHeader.style.maxWidth = "none";
+  // curriculumPageHeader.style.padding = "0";
+  // curriculumPageHeader.style.backgroundImage = "linear-gradient(315deg,#fde1fe,#f5f6fe 72%)";
+  // curriculumPageHeader.style.border = "0";
 
   // STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
   // TEXT CONTAINER
@@ -1967,7 +1966,7 @@ function mobileCurriculumPageNoCertificateStyling() {
 
   backToCatalogLink.style.display = "none";
 
-  const curriculumPageHeader = document.querySelector(".top-row-grey.top-row-white-v2.padding-side.row-v2"); // ~
+  // const curriculumPageHeader = document.querySelector(".top-row-grey.top-row-white-v2.padding-side.row-v2"); // ~
   const headerTextAndImgContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   const sjHeaderTextContainer = document.querySelector(".large-8.push-4.columns.sj-summary.cp-summary-wrapper"); // ~
   const sjHeaderTextHeading = document.querySelector(".break-word"); // ~
@@ -2044,10 +2043,10 @@ function mobileCurriculumPageNoCertificateStyling() {
   sjHeaderTextProgressBar.style.display = "none";
 
   // STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
-  curriculumPageHeader.style.maxWidth = "none";
-  curriculumPageHeader.style.padding = "0";
-  curriculumPageHeader.style.backgroundImage = "linear-gradient(315deg,#fde1fe,#f5f6fe 72%)";
-  curriculumPageHeader.style.border = "0";
+  // curriculumPageHeader.style.maxWidth = "none";
+  // curriculumPageHeader.style.padding = "0";
+  // curriculumPageHeader.style.backgroundImage = "linear-gradient(315deg,#fde1fe,#f5f6fe 72%)";
+  // curriculumPageHeader.style.border = "0";
 
   // STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
   // TEXT CONTAINER
@@ -2239,7 +2238,7 @@ function mobileCurriculumPageYesCertificateStyling() {
 
   backToCatalogLink.style.display = "none";
 
-  const curriculumPageHeader = document.querySelector(".top-row-grey.top-row-white-v2.padding-side.row-v2"); // ~
+  // const curriculumPageHeader = document.querySelector(".top-row-grey.top-row-white-v2.padding-side.row-v2"); // ~
   const headerTextAndImgContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   const sjHeaderTextContainer = document.querySelector(".large-8.push-4.columns.sj-summary.cp-summary-wrapper"); // ~
   const sjHeaderTextHeading = document.querySelector(".break-word"); // ~
@@ -2313,10 +2312,10 @@ function mobileCurriculumPageYesCertificateStyling() {
   sjHeaderTextProgressBar.style.display = "none";
 
   // STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
-  curriculumPageHeader.style.maxWidth = "none";
-  curriculumPageHeader.style.padding = "0";
-  curriculumPageHeader.style.backgroundImage = "linear-gradient(315deg,#fde1fe,#f5f6fe 72%)";
-  curriculumPageHeader.style.border = "0";
+  // curriculumPageHeader.style.maxWidth = "none";
+  // curriculumPageHeader.style.padding = "0";
+  // curriculumPageHeader.style.backgroundImage = "linear-gradient(315deg,#fde1fe,#f5f6fe 72%)";
+  // curriculumPageHeader.style.border = "0";
 
   // STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
   // TEXT CONTAINER

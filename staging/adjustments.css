@@ -149,3 +149,34 @@ body.sj-page-login #access-message, body.sj-page-signup #access-message {
 body.sj-page-signup #access-message {
     transform: translateX(-13px) !important;
 }
+
+#skilljar-content .top-row-grey {
+    max-width: none !important;
+    padding: 0px !important;
+    border: 0px !important;
+    background-image: linear-gradient(315deg, rgb(253, 225, 254), rgb(245, 246, 254) 72%) !important;
+    position: relative !important; /* is this really necessary? */
+}
+
+#skilljar-content .top-row-grey::before {
+    background-image: url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png) !important;
+    background-size: cover !important;
+    mix-blend-mode: multiply !important;
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+}
+
+#skilljar-content .top-row-grey {
+    p, h1, h2, .button {
+        color: var(--primary-white-hex) !important;
+    }
+
+    .button {
+        border-color: var(--primary-cyan-hex) !important;
+    }
+
+    .sj-floater-text {
+        color: var(--primary-cyan-hex) !important;
+    }
+}
