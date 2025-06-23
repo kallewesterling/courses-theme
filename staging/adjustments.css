@@ -265,6 +265,11 @@ a.header-link.login-link {
     display: grid !important;
     grid-template-columns: minmax(100px, 760px) minmax(100px, 368px) !important;
     column-gap: 24px !important;
+
+    /* mobileBodyContent */
+    .show-for-small {
+        display: none !important;
+    }
 }
 
 @media (max-width: 991px) {

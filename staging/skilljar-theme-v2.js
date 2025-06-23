@@ -95,7 +95,7 @@ function desktopCourseDetailsPageStyling() {
   // const signInBtn = document.querySelector(".header-link.login-link.sj-text-sign-in.focus-link-v2"); // ~
   ////BODY VARIABLES
   const bodyContainer = document.getElementById("dp-details"); // ~
-  const mobileBodyContent = document.querySelector(".row.show-for-small"); // ~
+  // const mobileBodyContent = document.querySelector(".row.show-for-small"); // ~
   const secondaryBodyContainer = document.querySelector(".row.hide-for-small.padded-side-bottom"); // ~
   const bodyColumns = secondaryBodyContainer.querySelectorAll(".columns"); // ~
   const curriculumListContainer = document.querySelector(".dp-curriculum"); //NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)! // ~
@@ -118,7 +118,7 @@ function desktopCourseDetailsPageStyling() {
   const courseDetailsCardLink = document.querySelector(".course-details-card-link"); // ~
 
   // backToCatalogBtn.style.display = "none";
-  mobileBodyContent.style.display = "none";
+  // mobileBodyContent.style.display = "none";
   // if (signInHeaderText) {
     // signInHeaderText.style.display = "none";
     // signInBtn.style.backgroundColor = "transparent";
@@ -1739,7 +1739,7 @@ function mobileCourseDetailsPageStyling() {
   // const signInBtn = document.querySelector(".header-link.login-link.sj-text-sign-in.focus-link-v2"); // ~
   // BODY VARIABLES
   const bodyContainer = document.getElementById("dp-details"); // ~
-  const mobileBodyContent = document.querySelector(".row.show-for-small"); // ~
+  // const mobileBodyContent = document.querySelector(".row.show-for-small"); // ~
   const secondaryBodyContainer = document.querySelector(".row.hide-for-small.padded-side-bottom"); // ~
   const bodyColumns = secondaryBodyContainer.querySelectorAll(".columns"); // ~
   const curriculumListContainer = document.querySelector(".dp-curriculum"); // NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)! // ~
@@ -1764,7 +1764,7 @@ function mobileCourseDetailsPageStyling() {
 
   // backToCatalogBtn.style.display = "none";
 
-  mobileBodyContent.setAttribute("style", "display: none !important;");
+  // mobileBodyContent.setAttribute("style", "display: none !important;");
 
   // if (signInHeaderText) {
     // signInHeaderText.style.display = "none";
