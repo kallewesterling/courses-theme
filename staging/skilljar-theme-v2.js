@@ -85,7 +85,7 @@ function desktopCourseDetailsPageStyling() {
   const mainHeading = document.querySelector(".break-word"); // ~
   const registerBtn = document.getElementById("purchase-button-wrapper-large"); // ~
   const mainHeadingContainer = document.querySelector(".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"); // ~
-  const backToCatalogBtn = document.querySelector(".back-to-catalog"); // ~
+  // const backToCatalogBtn = document.querySelector(".back-to-catalog"); // ~
   const videoContainer = document.querySelector(".video-max"); // ~
   const mainInfoCardContained = document.querySelector(".sj-course-info-wrapper"); // ~
   const headingParagraph = mainInfoCardContained.querySelector("h2"); // ~
@@ -117,7 +117,7 @@ function desktopCourseDetailsPageStyling() {
   const registerBtnText = document.querySelector(".purchase-button-full-text").textContent; // ~
   const courseDetailsCardLink = document.querySelector(".course-details-card-link"); // ~
 
-  backToCatalogBtn.style.display = "none";
+  // backToCatalogBtn.style.display = "none";
   mobileBodyContent.style.display = "none";
   if (signInHeaderText) {
     signInHeaderText.style.display = "none";
@@ -306,7 +306,7 @@ function desktopPathCourseDetailsPageStyling() {
   const registerBtnAnchor = document.getElementById("purchase-button"); // ~
   const mainHeadingContainer = document.querySelector(".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"); // ~
   
-  const backToCatalogBtn = document.querySelector(".back-to-catalog"); // ~
+  // const backToCatalogBtn = document.querySelector(".back-to-catalog"); // ~
 
   const mainInfoCardContained = document.querySelector(".sj-course-info-wrapper"); // ~
   const headingParagraph = mainInfoCardContained.querySelector("h2"); // ~
@@ -318,7 +318,7 @@ function desktopPathCourseDetailsPageStyling() {
   const bodyContainer = document.getElementById("dp-details-bundle"); // ~
   const catalogContainer = document.getElementById("catalog-courses"); // ~
 
-  backToCatalogBtn.style.display = "none";
+  // backToCatalogBtn.style.display = "none";
   if (signInHeaderText) {
     signInHeaderText.style.display = "none";
     signInBtn.style.backgroundColor = "transparent";
@@ -1734,7 +1734,7 @@ function mobileCourseDetailsPageStyling() {
   const registerBtn = document.getElementById("purchase-button-wrapper-large"); // ~
   const mainHeadingContainer = document.querySelector(".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"); // ~
   const mainVideoContainer = document.querySelector(".columns.large-6.text-center.dp-promo-image-wrapper"); // ~
-  const backToCatalogBtn = document.querySelector(".back-to-catalog"); // ~
+  // const backToCatalogBtn = document.querySelector(".back-to-catalog"); // ~
   const videoContainer = document.querySelector(".video-max"); // ~
   // SIGN IN VARIABLES (WHEN USER NOT LOGGED IN)
   const signInHeaderText = document.querySelector(".signin"); // ~
@@ -1764,7 +1764,7 @@ function mobileCourseDetailsPageStyling() {
   const footerContainer = document.getElementById("footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
 
-  backToCatalogBtn.style.display = "none";
+  // backToCatalogBtn.style.display = "none";
 
   mobileBodyContent.setAttribute("style", "display: none !important;");
 

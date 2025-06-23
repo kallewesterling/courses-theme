@@ -194,3 +194,8 @@ body.sj-page-signup #access-message {
     position: absolute !important;
     inset: 0 !important;
 }
+
+/* backToCatalogBtn */
+.back-to-catalog {
+    display: none !important;
+}
