@@ -168,6 +168,15 @@ body.sj-page-signup #access-message {
     .sj-floater-text {
         color: var(--primary-cyan-hex) !important;
     }
+
+    /* mainHeading */
+    h1.break-word {
+        margin: 0 0 12px 0 !important;
+        font-size: 36px !important;
+        font-weight: 600 !important;
+        line-height: 43.2px !important;
+        letter-spacing: -0.02em !important;
+    }
 }
 
 #skilljar-content .top-row-grey::before {

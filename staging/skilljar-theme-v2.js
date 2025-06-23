@@ -151,11 +151,11 @@ function desktopCourseDetailsPageStyling() {
   mainInfoCardContained.style.display = "none";
   headingFloaterText.style.display = "block";
   headingFloaterText.style.marginBottom = "24px";
-  mainHeading.style.margin = "0 0 12px 0";
-  mainHeading.style.fontSize = "36px";
-  mainHeading.style.fontWeight = "600";
-  mainHeading.style.lineHeight = "43.2px";
-  mainHeading.style.letterSpacing = "-.02em";
+  // mainHeading.style.margin = "0 0 12px 0";
+  // mainHeading.style.fontSize = "36px";
+  // mainHeading.style.fontWeight = "600";
+  // mainHeading.style.lineHeight = "43.2px";
+  // mainHeading.style.letterSpacing = "-.02em";
   headingParagraph.style.display = "block";
   headingParagraph.style.margin = "0 0 24px 0";
   mainHeadingContainer.append(
@@ -357,12 +357,11 @@ function desktopPathCourseDetailsPageStyling() {
   headingFloaterText.style.color = "#7AF0FE";
   headingFloaterText.style.display = "block";
   headingFloaterText.style.marginBottom = "24px";
-  mainHeading.style.color = "#fff";
-  mainHeading.style.margin = "0 0 12px 0";
-  mainHeading.style.fontSize = "36px";
-  mainHeading.style.fontWeight = "600";
-  mainHeading.style.lineHeight = "43.2px";
-  mainHeading.style.letterSpacing = "-.02em";
+  // mainHeading.style.margin = "0 0 12px 0";
+  // mainHeading.style.fontSize = "36px";
+  // mainHeading.style.fontWeight = "600";
+  // mainHeading.style.lineHeight = "43.2px";
+  // mainHeading.style.letterSpacing = "-.02em";
   headingParagraph.style.color = "#fff";
   headingParagraph.style.display = "block";
   headingParagraph.style.margin = "0 0 24px 0";
@@ -1801,11 +1800,11 @@ function mobileCourseDetailsPageStyling() {
   mainHeadingContainer.querySelector(".sj-course-info-wrapper").style.display = "none"; // ~
   headingFloaterText.style.display = "block";
   headingFloaterText.style.marginBottom = "24px";
-  mainHeading.style.margin = "0 0 12px 0";
-  mainHeading.style.fontSize = "36px";
-  mainHeading.style.fontWeight = "600";
-  mainHeading.style.lineHeight = "43.2px";
-  mainHeading.style.letterSpacing = "-.02em";
+  // mainHeading.style.margin = "0 0 12px 0";
+  // mainHeading.style.fontSize = "36px";
+  // mainHeading.style.fontWeight = "600";
+  // mainHeading.style.lineHeight = "43.2px";
+  // mainHeading.style.letterSpacing = "-.02em";
   headingParagraph.style.display = "block";
   headingParagraph.style.margin = "0 0 24px 0";
   mainHeadingContainer.append(
