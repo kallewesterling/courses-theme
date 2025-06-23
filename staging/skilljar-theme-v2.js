@@ -80,7 +80,7 @@ function desktopCatalogPageStyling() {
 
 function desktopCourseDetailsPageStyling() {
   // const headerContainer = document.querySelector(".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"); // ~
-  const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
+  // const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
   const mainHeading = document.querySelector(".break-word"); // ~
   const registerBtn = document.getElementById("purchase-button-wrapper-large"); // ~
@@ -139,11 +139,11 @@ function desktopCourseDetailsPageStyling() {
   // headerContainer.style.paddingTop = "96px";
   // headerContainer.style.paddingBottom = "96px";
   // headerContainer.style.border = "0";
-  headerFlexContainer.style.flexDirection = "row-reverse";
-  headerFlexContainer.style.flexWrap = "nowrap";
-  headerFlexContainer.style.justifyContent = "start";
-  headerFlexContainer.style.gap = "24px";
-  headerFlexContainer.style.maxWidth = "1188px";
+  // headerFlexContainer.style.flexDirection = "row-reverse";
+  // headerFlexContainer.style.flexWrap = "nowrap";
+  // headerFlexContainer.style.justifyContent = "start";
+  // headerFlexContainer.style.gap = "24px";
+  // headerFlexContainer.style.maxWidth = "1188px";
 
   //RENDERING OF COURSE DETAILS PAGE TEXT HEADING ON LEFT
   mainHeadingContainer.style.border = "0";
@@ -298,7 +298,7 @@ function desktopCourseDetailsPageStyling() {
 
 function desktopPathCourseDetailsPageStyling() {
   // const headerContainer = document.querySelector(".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"); // ~
-  const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
+  // const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
   const mainHeading = document.querySelector(".break-word"); // ~
   const registerBtn = document.getElementById("purchase-button-wrapper-large"); // ~
@@ -341,11 +341,11 @@ function desktopPathCourseDetailsPageStyling() {
   // headerContainer.style.paddingTop = "96px";
   // headerContainer.style.paddingBottom = "96px";
   // headerContainer.style.border = "0";
-  headerFlexContainer.style.flexDirection = "row-reverse";
-  headerFlexContainer.style.flexWrap = "nowrap";
-  headerFlexContainer.style.justifyContent = "start";
-  headerFlexContainer.style.gap = "24px";
-  headerFlexContainer.style.maxWidth = "1188px";
+  // headerFlexContainer.style.flexDirection = "row-reverse";
+  // headerFlexContainer.style.flexWrap = "nowrap";
+  // headerFlexContainer.style.justifyContent = "start";
+  // headerFlexContainer.style.gap = "24px";
+  // headerFlexContainer.style.maxWidth = "1188px";
 
   // RENDERING OF COURSE DETAILS PAGE TEXT HEADING ON LEFT
   mainHeadingContainer.style.border = "0";
@@ -1725,7 +1725,7 @@ function mobileSignUpPageStyling() {
 function mobileCourseDetailsPageStyling() {
   // NAV VARS
   // const headerContainer = document.querySelector(".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"); // ~
-  const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
+  // const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
   const mainHeading = document.querySelector(".break-word"); // ~
   const headingParagraph = document.querySelector(".sj-heading-paragraph"); // ~
@@ -1784,11 +1784,11 @@ function mobileCourseDetailsPageStyling() {
   // headerContainer.style.paddingTop = "48px";
   // headerContainer.style.paddingBottom = "48px";
   // headerContainer.style.border = "0";
-  headerFlexContainer.style.flexDirection = "column-reverse";
-  headerFlexContainer.style.flexWrap = "nowrap";
-  headerFlexContainer.style.justifyContent = "start";
-  headerFlexContainer.style.gap = "24px";
-  headerFlexContainer.style.maxWidth = "1188px";
+  // headerFlexContainer.style.flexDirection = "column-reverse";
+  // headerFlexContainer.style.flexWrap = "nowrap";
+  // headerFlexContainer.style.justifyContent = "start";
+  // headerFlexContainer.style.gap = "24px";
+  // headerFlexContainer.style.maxWidth = "1188px";
 
   // RENDERING OF COURSE DETAILS PAGE TEXT HEADING ON LEFT
   mainHeadingContainer.style.border = "0";

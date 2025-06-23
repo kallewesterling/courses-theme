@@ -189,11 +189,25 @@ body.sj-page-signup #access-message {
         display: block !important;
         margin-bottom: 24px !important;
     }
+
+    /* headerFlexContainer */
+    .dp-row-flex-v2 {
+        flex-direction: row-reverse !important;
+        flex-wrap: nowrap !important;
+        justify-content: start !important;
+        gap: 24px !important;
+        max-width: 1188px !important;
+    }
 }
 
 @media (max-width: 991px) {
     #skilljar-content .top-row-grey {
         padding: 48px 0 48px 0 !important;
+        
+        /* headerFlexContainer */
+        .dp-row-flex-v2 {
+            flex-direction: column-reverse !important;
+        }
     }
 }
 
