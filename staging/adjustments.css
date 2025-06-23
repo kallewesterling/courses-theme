@@ -199,3 +199,35 @@ body.sj-page-signup #access-message {
 .back-to-catalog {
     display: none !important;
 }
+
+/* signInHeaderText */
+.signin {
+    display: none !important;
+}
+
+/* signInBtn */
+a.header-link.login-link {
+    background-color: transparent !important;
+    padding: 8px 12px !important;
+    margin-right: 24px !important;
+    border: 2px solid #3443F4 !important;
+    border-radius: 999px !important;
+    font-size: 14px !important;
+    font-family: "Space Mono", monospace !important;
+    font-weight: 700 !important;
+    line-height: 20px !important;
+    color: #3443F4 !important;
+}
+
+@media (max-width: 991px) {
+    a.header-link.login-link {
+        color: #fff !important;
+        padding: 4px 8px !important;
+        margin-right: 24px !important;
+        border-color: #3443F4 !important;
+        background-color: #3443F4 !important;
+        font-size: 14px !important;
+        line-height: 20px !important;
+        font-weight: 500 !important;
+    }
+}

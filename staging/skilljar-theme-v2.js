@@ -91,8 +91,8 @@ function desktopCourseDetailsPageStyling() {
   const headingParagraph = mainInfoCardContained.querySelector("h2"); // ~
 
   //SIGN IN VARIABLES (WHEN USER NOT LOGGED IN)
-  const signInHeaderText = document.querySelector(".signin"); // ~
-  const signInBtn = document.querySelector(".header-link.login-link.sj-text-sign-in.focus-link-v2"); // ~
+  // const signInHeaderText = document.querySelector(".signin"); // ~
+  // const signInBtn = document.querySelector(".header-link.login-link.sj-text-sign-in.focus-link-v2"); // ~
   ////BODY VARIABLES
   const bodyContainer = document.getElementById("dp-details"); // ~
   const mobileBodyContent = document.querySelector(".row.show-for-small"); // ~
@@ -119,19 +119,19 @@ function desktopCourseDetailsPageStyling() {
 
   // backToCatalogBtn.style.display = "none";
   mobileBodyContent.style.display = "none";
-  if (signInHeaderText) {
-    signInHeaderText.style.display = "none";
-    signInBtn.style.backgroundColor = "transparent";
-    signInBtn.style.padding = "8px 12px";
-    signInBtn.style.marginRight = "24px";
-    signInBtn.style.borderColor = "#3443F4";
-    signInBtn.style.border = "2px solid #3443F4";
-    signInBtn.style.borderRadius = "999px";
-    signInBtn.style.fontSize = "14px";
-    signInBtn.style.fontFamily = "Space Mono";
-    signInBtn.style.fontWeight = "700";
-    signInBtn.style.lineHeight = "20px";
-  }
+  // if (signInHeaderText) {
+    // signInHeaderText.style.display = "none";
+    // signInBtn.style.backgroundColor = "transparent";
+    // signInBtn.style.padding = "8px 12px";
+    // signInBtn.style.marginRight = "24px";
+    // signInBtn.style.borderColor = "#3443F4";
+    // signInBtn.style.border = "2px solid #3443F4";
+    // signInBtn.style.borderRadius = "999px";
+    // signInBtn.style.fontSize = "14px";
+    // signInBtn.style.fontFamily = "Space Mono";
+    // signInBtn.style.fontWeight = "700";
+    // signInBtn.style.lineHeight = "20px";
+  // }
 
   headerContainer.style.backgroundColor = "#D0CFEE";
   headerContainer.style.margin = "0";
@@ -312,26 +312,26 @@ function desktopPathCourseDetailsPageStyling() {
   const headingParagraph = mainInfoCardContained.querySelector("h2"); // ~
 
   //SIGN IN VARIABLES (WHEN USER NOT LOGGED IN)
-  const signInHeaderText = document.querySelector(".signin"); // ~
-  const signInBtn = document.querySelector(".header-link.login-link.sj-text-sign-in.focus-link-v2"); // ~
+  // const signInHeaderText = document.querySelector(".signin"); // ~
+  // const signInBtn = document.querySelector(".header-link.login-link.sj-text-sign-in.focus-link-v2"); // ~
   ////BODY VARIABLES
   const bodyContainer = document.getElementById("dp-details-bundle"); // ~
   const catalogContainer = document.getElementById("catalog-courses"); // ~
 
   // backToCatalogBtn.style.display = "none";
-  if (signInHeaderText) {
-    signInHeaderText.style.display = "none";
-    signInBtn.style.backgroundColor = "transparent";
-    signInBtn.style.padding = "8px 12px";
-    signInBtn.style.marginRight = "24px";
-    signInBtn.style.borderColor = "#3443F4";
-    signInBtn.style.border = "2px solid #3443F4";
-    signInBtn.style.borderRadius = "999px";
-    signInBtn.style.fontSize = "14px";
-    signInBtn.style.fontFamily = "Space Mono";
-    signInBtn.style.fontWeight = "700";
-    signInBtn.style.lineHeight = "20px";
-  }
+  // if (signInHeaderText) {
+    // signInHeaderText.style.display = "none";
+    // signInBtn.style.backgroundColor = "transparent";
+    // signInBtn.style.padding = "8px 12px";
+    // signInBtn.style.marginRight = "24px";
+    // signInBtn.style.borderColor = "#3443F4";
+    // signInBtn.style.border = "2px solid #3443F4";
+    // signInBtn.style.borderRadius = "999px";
+    // signInBtn.style.fontSize = "14px";
+    // signInBtn.style.fontFamily = "Space Mono";
+    // signInBtn.style.fontWeight = "700";
+    // signInBtn.style.lineHeight = "20px";
+  // }
 
   headerContainer.style.background =
     "url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png)";
@@ -1737,8 +1737,8 @@ function mobileCourseDetailsPageStyling() {
   // const backToCatalogBtn = document.querySelector(".back-to-catalog"); // ~
   const videoContainer = document.querySelector(".video-max"); // ~
   // SIGN IN VARIABLES (WHEN USER NOT LOGGED IN)
-  const signInHeaderText = document.querySelector(".signin"); // ~
-  const signInBtn = document.querySelector(".header-link.login-link.sj-text-sign-in.focus-link-v2"); // ~
+  // const signInHeaderText = document.querySelector(".signin"); // ~
+  // const signInBtn = document.querySelector(".header-link.login-link.sj-text-sign-in.focus-link-v2"); // ~
   // BODY VARIABLES
   const bodyContainer = document.getElementById("dp-details"); // ~
   const mobileBodyContent = document.querySelector(".row.show-for-small"); // ~
@@ -1768,17 +1768,17 @@ function mobileCourseDetailsPageStyling() {
 
   mobileBodyContent.setAttribute("style", "display: none !important;");
 
-  if (signInHeaderText) {
-    signInHeaderText.style.display = "none";
-    signInBtn.setAttribute("style", "color:#fff !important");
-    signInBtn.style.padding = "4px 8px";
-    signInBtn.style.marginRight = "24px";
-    signInBtn.style.borderColor = "#3443F4";
-    signInBtn.style.backgroundColor = "#3443F4";
-    signInBtn.style.fontSize = "14px";
-    signInBtn.style.lineHeight = "20px";
-    signInBtn.style.fontWeight = "500";
-  }
+  // if (signInHeaderText) {
+    // signInHeaderText.style.display = "none";
+    // signInBtn.setAttribute("style", "color:#fff !important");
+    // signInBtn.style.padding = "4px 8px";
+    // signInBtn.style.marginRight = "24px";
+    // signInBtn.style.borderColor = "#3443F4";
+    // signInBtn.style.backgroundColor = "#3443F4";
+    // signInBtn.style.fontSize = "14px";
+    // signInBtn.style.lineHeight = "20px";
+    // signInBtn.style.fontWeight = "500";
+  // }
 
   headerContainer.style.background =
     "linear-gradient(146deg, rgba(245,246,255,1) 0%, rgba(254,231,254,1) 100%)";
