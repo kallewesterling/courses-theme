@@ -202,12 +202,12 @@ function desktopCourseDetailsPageStyling() {
     let curContainer = document.createElement("li");
 
     if (!hasSections) {
-      curContainer.classList.add("module-list")
       styleGroupContainer(curContainer);
     }
 
     function styleGroupContainer(container) {
       inProd ? undefined : console.log("styleGroupContainer called");
+      container.classList.add("module-list");
       container.style.border = "2px solid #3443F4";
       container.style.borderRadius = "8px";
       container.style.marginBottom = "48px";
@@ -216,6 +216,8 @@ function desktopCourseDetailsPageStyling() {
 
     function styleListItem(lessonEl, isLastChild) {
       inProd ? undefined : console.log("styleListItem called");
+      lessonEl.classList.add("lesson-item");
+
       //display none for icon w/ class 'type-icon'
       const icon = lessonEl.querySelector(".type-icon"); // ~
       icon.style.display = "none";
@@ -250,7 +252,6 @@ function desktopCourseDetailsPageStyling() {
         curriculumListContainer.append(curContainer);
         //reset curContainer while pushing current 'section' in there for the next iteration
         curContainer = document.createElement("li");
-        curContainer.classList.add("module-list");
         styleGroupContainer(curContainer);
 
         const newGroupHeading = document.createElement("div");
@@ -263,7 +264,6 @@ function desktopCourseDetailsPageStyling() {
         //transfer inner html of current list item to new created div
         const newListItem = document.createElement("div");
         newListItem.innerHTML = curListItem.innerHTML;
-        newListItem.classList.add("lesson-item");
         styleListItem(
           newListItem,
           arr[i + 1] ? arr[i + 1].classList.contains("section") : true
@@ -1120,6 +1120,7 @@ function desktopCurriculumPageNoCertificateStyling() {
 
     function styleGroupContainer(container) {
       inProd ? undefined : console.log("styleGroupContainer called");
+      container.classList.add("module-list");
       container.style.border = "2px solid #3443f4";
       container.style.borderRadius = "8px";
       container.style.marginBottom = "48px";
@@ -1128,6 +1129,8 @@ function desktopCurriculumPageNoCertificateStyling() {
 
     function styleListItem(lessonEl, isLastChild) {
       inProd ? undefined : console.log("styleListItem called");
+      lessonEl.classList.add("lesson-item");
+
       lessonEl.style.padding = "24px";
       lessonEl.style.fontSize = "16px";
       lessonEl.style.fontWeight = "400";
@@ -1382,6 +1385,7 @@ function desktopCurriculumPageYesCertificationStyling() {
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
 
+    // Check if course has Sections/Modules/Parts
     const hasSections = curriculumParentContainer.querySelector("h3") ? true : false; // ~
     let curContainer = document.createElement("div");
 
@@ -1391,6 +1395,7 @@ function desktopCurriculumPageYesCertificationStyling() {
 
     function styleGroupContainer(container) {
       inProd ? undefined : console.log("styleGroupContainer called");
+      container.classList.add("module-list");
       container.style.border = "2px solid #3443f4";
       container.style.borderRadius = "8px";
       container.style.marginBottom = "48px";
@@ -1399,6 +1404,8 @@ function desktopCurriculumPageYesCertificationStyling() {
 
     function styleListItem(lessonEl, isLastChild) {
       inProd ? undefined : console.log("styleListItem called");
+      lessonEl.classList.add("lesson-item");
+
       lessonEl.style.padding = "24px";
       lessonEl.style.fontSize = "16px";
       lessonEl.style.fontWeight = "400";
@@ -1886,6 +1893,7 @@ function mobileCourseDetailsPageStyling() {
 
     function styleGroupContainer(container) {
       inProd ? undefined : console.log("styleGroupContainer called");
+      container.classList.add("module-list");
       container.style.border = "1px solid #DCDCDC";
       container.style.borderRadius = "8px";
       container.style.marginBottom = "48px";
@@ -1894,6 +1902,8 @@ function mobileCourseDetailsPageStyling() {
 
     function styleListItem(lessonEl, isLastChild) {
       inProd ? undefined : console.log("styleListItem called");
+      lessonEl.classList.add("lesson-item");
+
       // display none for icon w/ class 'type-icon'
       const icon = lessonEl.querySelector(".type-icon"); // ~
       icon.style.display = "none";
@@ -2143,6 +2153,7 @@ function mobileCurriculumPageNoCertificateStyling() {
 
     function styleGroupContainer(container) {
       inProd ? undefined : console.log("styleGroupContainer called");
+      container.classList.add("module-list");
       container.style.border = "1px solid #DCDCDC";
       container.style.borderRadius = "8px";
       container.style.marginBottom = "48px";
@@ -2151,6 +2162,8 @@ function mobileCurriculumPageNoCertificateStyling() {
 
     function styleListItem(lessonEl, isLastChild) {
       inProd ? undefined : console.log("styleListItem called");
+      lessonEl.classList.add("lesson-item");
+
       lessonEl.style.padding = "24px";
       lessonEl.style.fontSize = "16px";
       lessonEl.style.fontWeight = "400";
@@ -2414,6 +2427,7 @@ function mobileCurriculumPageYesCertificateStyling() {
 
     function styleGroupContainer(container) {
       inProd ? undefined : console.log("styleGroupContainer called");
+      container.classList.add("module-list");
       container.style.border = "1px solid #DCDCDC";
       container.style.borderRadius = "8px";
       container.style.marginBottom = "48px";
@@ -2422,6 +2436,8 @@ function mobileCurriculumPageYesCertificateStyling() {
 
     function styleListItem(lessonEl, isLastChild) {
       inProd ? undefined : console.log("styleListItem called");
+      lessonEl.classList.add("lesson-item");
+      
       lessonEl.style.padding = "24px";
       lessonEl.style.fontSize = "16px";
       lessonEl.style.fontWeight = "400";
