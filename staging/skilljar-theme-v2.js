@@ -34,7 +34,7 @@ function checkWindowWidth() {
 function insertFooter() {
   inProd ? undefined : console.log("insertFooter called, isLessonsPage: ", isLessonsPage);
 
-  const footerEl = document.getElementById("footer-container"); // ~
+  const footerEl = document.querySelector("#footer-container"); // ~
   let contentContainer;
 
   if (isLessonsPage) {
@@ -45,7 +45,7 @@ function insertFooter() {
       footerEl.style.display = "flex";
     }
   } else {
-    contentContainer = document.getElementById("skilljar-content"); // ~
+    contentContainer = document.querySelector("#skilljar-content"); // ~
     footerEl.style.display = "flex";
   }
 
@@ -57,8 +57,8 @@ function desktopCatalogPageStyling() {
   // Style desktop view
   
   //grab variables
-  const catalogBodyParentContainer = document.getElementById("catalog-content"); // ~
-  const catalogContainer = document.getElementById("catalog-courses"); // ~
+  const catalogBodyParentContainer = document.querySelector("#catalog-content"); // ~
+  const catalogContainer = document.querySelector("#catalog-courses"); // ~
 
   if (!initialLoadComplete) {
     //create container div for courses catalog list
@@ -93,7 +93,7 @@ function desktopCourseDetailsPageStyling() {
   // const signInHeaderText = document.querySelector(".signin"); // ~
   // const signInBtn = document.querySelector(".header-link.login-link.sj-text-sign-in.focus-link-v2"); // ~
   ////BODY VARIABLES
-  const bodyContainer = document.getElementById("dp-details"); // ~
+  const bodyContainer = document.querySelector("#dp-details"); // ~
   // const mobileBodyContent = document.querySelector(".row.show-for-small"); // ~
   const secondaryBodyContainer = document.querySelector(".row.hide-for-small.padded-side-bottom"); // ~
   const bodyColumns = secondaryBodyContainer.querySelectorAll(".columns"); // ~
@@ -111,7 +111,7 @@ function desktopCourseDetailsPageStyling() {
   }
   const checkboxIcon = document.querySelector(".checkbox-icon"); // ~
   const registerBtnLink = document
-    .getElementById("purchase-button")
+    .querySelector("#purchase-button")
     .getAttribute("href");
   const registerBtnText = document.querySelector(".purchase-button-full-text").textContent; // ~
   const courseDetailsCardLink = document.querySelector(".course-details-card-link"); // ~
@@ -160,7 +160,7 @@ function desktopCourseDetailsPageStyling() {
 
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
   const mainHeading = document.querySelector(".break-word"); // ~
-  const registerBtn = document.getElementById("purchase-button-wrapper-large"); // ~
+  const registerBtn = document.querySelector("#purchase-button-wrapper-large"); // ~
 
   mainHeadingContainer.append(
     headingFloaterText,
@@ -309,8 +309,8 @@ function desktopPathCourseDetailsPageStyling() {
   // const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
   const mainHeading = document.querySelector(".break-word"); // ~
-  const registerBtn = document.getElementById("purchase-button-wrapper-large"); // ~
-  const registerBtnAnchor = document.getElementById("purchase-button"); // ~
+  const registerBtn = document.querySelector("#purchase-button-wrapper-large"); // ~
+  const registerBtnAnchor = document.querySelector("#purchase-button"); // ~
   const mainHeadingContainer = document.querySelector(".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"); // ~
   
   // const backToCatalogBtn = document.querySelector(".back-to-catalog"); // ~
@@ -322,8 +322,8 @@ function desktopPathCourseDetailsPageStyling() {
   // const signInHeaderText = document.querySelector(".signin"); // ~
   // const signInBtn = document.querySelector(".header-link.login-link.sj-text-sign-in.focus-link-v2"); // ~
   ////BODY VARIABLES
-  // const bodyContainer = document.getElementById("dp-details-bundle"); // ~
-  const catalogContainer = document.getElementById("catalog-courses"); // ~
+  // const bodyContainer = document.querySelector("#dp-details-bundle"); // ~
+  const catalogContainer = document.querySelector("#catalog-courses"); // ~
 
   // backToCatalogBtn.style.display = "none";
   // if (signInHeaderText) {
@@ -393,10 +393,10 @@ function desktopPathCatalogPageStyling() {
   inProd ? undefined : console.log("desktopPathCatalogPageStyling called");
   const backArrowBtn = document.querySelector(".back-to-catalog"); // ~
 
-  const mainContentContainer = document.getElementById("catalog-content"); // ~
+  const mainContentContainer = document.querySelector("#catalog-content"); // ~
   const topContentContainer = mainContentContainer.querySelector(".path-curriculum-resume-wrapper"); // ~
   const coursesList = document
-    .getElementById("catalog-courses") // ~
+    .querySelector("#catalog-courses") // ~
     .querySelectorAll(".coursebox-container"); // ~
 
   coursesList.forEach((course) => {
@@ -434,26 +434,26 @@ function desktopPathCatalogPageStyling() {
 
 function desktopLessonPageStyling() {
   inProd ? undefined : console.log("desktopLessonPageStyling called");
-  const leftNav = document.getElementById("lp-left-nav"); // ~
-  const mainLessonContentContainer = document.getElementById("lp-wrapper"); // ~
-  const mainLessonContentSubContainer = document.getElementById("lp-content"); // ~
-  const mainLessonInnerContainer = document.getElementById("lesson-body"); // ~
-  const mainLessonMainContainer = document.getElementById("lesson-main"); // ~
+  const leftNav = document.querySelector("#lp-left-nav"); // ~
+  const mainLessonContentContainer = document.querySelector("#lp-wrapper"); // ~
+  const mainLessonContentSubContainer = document.querySelector("#lp-content"); // ~
+  const mainLessonInnerContainer = document.querySelector("#lesson-body"); // ~
+  const mainLessonMainContainer = document.querySelector("#lesson-main"); // ~
 
-  const lessonFooter = document.getElementById("lp-footer"); // ~
-  const navOpenIcon = document.getElementById("left-nav-button"); // ~
+  const lessonFooter = document.querySelector("#lp-footer"); // ~
+  const navOpenIcon = document.querySelector("#left-nav-button"); // ~
   const hamburgerIcon = navOpenIcon.querySelector(".fa.fa-bars"); // ~
   const xIcon = navOpenIcon.querySelector(".fa.fa-times"); // ~
 
   const fullScreenBtn = document.querySelector(".toggle-fullscreen.focus-link-v2"); // ~
   // LESSON BODY VARS
-  const lessonInnerContainer = document.getElementById("lesson-main-inner"); // ~
+  const lessonInnerContainer = document.querySelector("#lesson-main-inner"); // ~
   const copyIcon = document.querySelector(".copy-icon"); // ~
   const lessonContentContainer = document.querySelector("sjwc-lesson-content-item"); // ~
   const codeBlocks = lessonContentContainer.querySelectorAll("pre"); // ~
 
   // FOOTER VARS
-  const footerContainer = document.getElementById("footer-container"); // ~
+  const footerContainer = document.querySelector("#footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
 
   lessonInnerContainer.style.maxWidth = "712px";
@@ -538,8 +538,8 @@ function desktopLessonPageStyling() {
   });
 
   // STYLING OF THE LEFT NAV LINKS
-  const lessonNavLinksContainer = document.getElementById("curriculum-list-2"); // ~
-  const backToCurriculumEl = document.getElementById("left-nav-return-text"); // ~
+  const lessonNavLinksContainer = document.querySelector("#curriculum-list-2"); // ~
+  const backToCurriculumEl = document.querySelector("#left-nav-return-text"); // ~
   const links = lessonNavLinksContainer.querySelectorAll("a"); // ~
   const sectionTitles = lessonNavLinksContainer.querySelectorAll(".section-title"); // ~
 
@@ -669,33 +669,33 @@ function desktopLessonPageStyling() {
 
 function desktopLoginPageStyling() {
   inProd ? undefined : console.log("desktopLoginPageStyling called");
-  const fbBtn = document.getElementById("facebook_login"); // ~
-  const googleBtn = document.getElementById("google_login"); // ~
-  const loginContent = document.getElementById("login-content"); // ~
-  const tabArrow = document.getElementById("tab-marker-login"); // ~
-  const termsAndServicesText = document.getElementById("access-message"); // ~
+  const fbBtn = document.querySelector("#facebook_login"); // ~
+  const googleBtn = document.querySelector("#google_login"); // ~
+  const loginContent = document.querySelector("#login-content"); // ~
+  const tabArrow = document.querySelector("#tab-marker-login"); // ~
+  const termsAndServicesText = document.querySelector("#access-message"); // ~
   const loginContentContainer = document.querySelector(".large-6.columns"); // ~
   const orGoogleSignInContainer = loginContent.querySelectorAll(".large-6.columns")[1]; // ~
   const orGoogleSignInInnerContainer = orGoogleSignInContainer.querySelector("ul"); // ~
   const orGoogleSignInInnerContainerListItems = orGoogleSignInInnerContainer.querySelectorAll("li"); // ~
   const signUpSignInContainer = document.querySelector(".large-12.columns"); // ~
-  const loginTab = document.getElementById("login-tab-left"); // ~
-  const signInTab = document.getElementById("login-tab-right"); // ~
+  const loginTab = document.querySelector("#login-tab-left"); // ~
+  const signInTab = document.querySelector("#login-tab-right"); // ~
   const signInTabText = signInTab.querySelector("a"); // ~
   const longInNote = document.querySelector(".loginNote.sj-text-login-note"); // ~
   const orSignInWithContainer = document.querySelector(".socialaccount_providers li"); // ~
   const orSignInWithTextEl = orSignInWithContainer.querySelector(".sj-text-sign-in-with span"); // ~
-  const loginInput = document.getElementById("id_login"); // ~
-  const passwordInput = document.getElementById("id_password"); // ~
-  const loginBottomBtn = document.getElementById("button-sign-in"); // ~
+  const loginInput = document.querySelector("#id_login"); // ~
+  const passwordInput = document.querySelector("#id_password"); // ~
+  const loginBottomBtn = document.querySelector("#button-sign-in"); // ~
   const forgotPasswordText = document.querySelector(".forgot-password.sj-text-forgot-password.focus-link-v2"); // ~
   const loginBottomBtnAndForgotPassBtn =
     loginBottomBtn.closest(".large-12.columns");
 
-  const loginForm = document.getElementById("login_form"); // ~
+  const loginForm = document.querySelector("#login_form"); // ~
 
   // FOOTER VARS
-  const footerContainer = document.getElementById("footer-container"); // ~
+  const footerContainer = document.querySelector("#footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
 
   loginForm.append(termsAndServicesText);
@@ -784,19 +784,19 @@ function desktopLoginPageStyling() {
 
 function desktopSignUpPageStyling() {
   inProd ? undefined : console.log("desktopSignUpPageStyling called");
-  const fbBtn = document.getElementById("facebook_login"); // ~
-  const googleBtn = document.getElementById("google_login"); // ~
-  const loginContent = document.getElementById("login-content"); // ~
-  const tabArrow = document.getElementById("tab-marker-signup"); // ~
-  const termsAndServicesText = document.getElementById("access-message"); // ~
+  const fbBtn = document.querySelector("#facebook_login"); // ~
+  const googleBtn = document.querySelector("#google_login"); // ~
+  const loginContent = document.querySelector("#login-content"); // ~
+  const tabArrow = document.querySelector("#tab-marker-signup"); // ~
+  const termsAndServicesText = document.querySelector("#access-message"); // ~
   const loginContentContainer = document.querySelector(".large-6.columns"); // ~
   const orSignInWithGoogleContainer = loginContent.querySelectorAll(".row .large-6.columns") // ~
   const orSignInWithGoogleList = orSignInWithGoogleContainer.querySelector("ul"); // ~
   const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll("li"); // ~
   const signUpSignInContainer = document.querySelector(".large-12.columns"); // ~
-  const loginTab = document.getElementById("login-tab-left"); // ~
+  const loginTab = document.querySelector("#login-tab-left"); // ~
   const loginTabText = loginTab.querySelector("a"); // ~
-  const signInTab = document.getElementById("login-tab-right"); // ~
+  const signInTab = document.querySelector("#login-tab-right"); // ~
   const signInTabText = signInTab.querySelector("span"); // ~
   const orSignInWithContainer = document.querySelector(".socialaccount_providers li"); // ~
   const orSignInWithText = document.querySelector(".sj-text-sign-up-with"); // ~
@@ -806,14 +806,14 @@ function desktopSignUpPageStyling() {
   const lastNameLabel = document.querySelector('label[for="id_last_name"] span span'); // ~
 
   const loginLabel = document.querySelector('label[for="id_email"]'); // ~
-  const loginInput = document.getElementById("id_email"); // ~
-  const passwordInput = document.getElementById("id_password1"); // ~
-  const passwordInput2 = document.getElementById("id_password2"); // ~
-  const signUpBottomBtn = document.getElementById("button-sign-up"); // ~
-  const signUpForm = document.getElementById("signup_form"); // ~
+  const loginInput = document.querySelector("#id_email"); // ~
+  const passwordInput = document.querySelector("#id_password1"); // ~
+  const passwordInput2 = document.querySelector("#id_password2"); // ~
+  const signUpBottomBtn = document.querySelector("#button-sign-up"); // ~
+  const signUpForm = document.querySelector("#signup_form"); // ~
 
   // FOOTER VARS
-  const footerContainer = document.getElementById("footer-container"); // ~
+  const footerContainer = document.querySelector("#footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
 
   signUpForm.append(termsAndServicesText);
@@ -956,7 +956,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   const sjHeaderImgContainer = document.querySelector(".large-4.pull-8.columns.cp-promo-image-wrapper"); // ~
   const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image"); // ~
   const sjHeaderImg = document.querySelector(".cp-promo-image img"); // ~
-  const resumeBtn = document.getElementById("resume-button"); // ~
+  const resumeBtn = document.querySelector("#resume-button"); // ~
   
   let btnText, btnHref;
   if (resumeBtn) {
@@ -965,13 +965,13 @@ function desktopCurriculumPageNoCertificateStyling() {
   }
 
   // BODY VARIABLES
-  const bodyMainContainer = document.getElementById("cp-content"); // ~
+  const bodyMainContainer = document.querySelector("#cp-content"); // ~
   const InnerContentContainer = bodyMainContainer.querySelector(".columns"); // ~
   const tabsContainer = document.querySelector(".section-container.tabs"); // ~
   let [curriculumSection, aboutSection] = tabsContainer.querySelectorAll("section"); // ~
   const pageIcons = document.querySelectorAll(".type-icon.hide-for-small"); // ~
   const lessonListItems = document.querySelectorAll(".lesson-row"); // ~
-  const curriculumParentContainer = document.getElementById("curriculum-list"); // ~
+  const curriculumParentContainer = document.querySelector("#curriculum-list"); // ~
   const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
   const curriculumOutsideContainer = curriculumParentContainer.closest(".content");
 
@@ -1261,7 +1261,7 @@ function desktopCurriculumPageYesCertificationStyling() {
   const sjHeaderImg = document.querySelector(".cp-promo-image img"); // ~
 
   // BODY VARIABLES
-  const bodyMainContainer = document.getElementById("cp-content"); // ~
+  const bodyMainContainer = document.querySelector("#cp-content"); // ~
   const InnerContentContainer = bodyMainContainer.querySelector(".columns"); // ~
   const tabsContainer = document.querySelector(".section-container.tabs"); // ~
   let [curriculumSection, aboutSection] = tabsContainer.querySelectorAll("section"); // ~
@@ -1275,7 +1275,7 @@ function desktopCurriculumPageYesCertificationStyling() {
 
   const pageIcons = document.querySelectorAll(".type-icon.hide-for-small"); // ~
   const lessonListItems = document.querySelectorAll(".lesson-row"); // ~
-  const curriculumParentContainer = document.getElementById("curriculum-list"); // ~
+  const curriculumParentContainer = document.querySelector("#curriculum-list"); // ~
   const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
   const curriculumOutsideContainer = curriculumParentContainer.closest(".content");
 
@@ -1494,32 +1494,32 @@ function desktopCurriculumPageYesCertificationStyling() {
 // MOBILE VIEW STYLINGS
 function mobileLoginPageStyling() {
   inProd ? undefined : console.log("mobileLoginPageStyling called");
-  const fbBtn = document.getElementById("facebook_login"); // ~
-  const googleBtn = document.getElementById("google_login"); // ~
-  const loginContent = document.getElementById("login-content"); // ~
-  const tabArrow = document.getElementById("tab-marker-login"); // ~
-  const termsAndServicesText = document.getElementById("access-message"); // ~
+  const fbBtn = document.querySelector("#facebook_login"); // ~
+  const googleBtn = document.querySelector("#google_login"); // ~
+  const loginContent = document.querySelector("#login-content"); // ~
+  const tabArrow = document.querySelector("#tab-marker-login"); // ~
+  const termsAndServicesText = document.querySelector("#access-message"); // ~
   const loginContentContainer = document.querySelector(".large-6.columns"); // ~
   const orGoogleSignInContainer = loginContent.querySelectorAll(".large-6.columns")[1]; // ~
   const orGoogleSignInInnerContainer = orGoogleSignInContainer.querySelector("ul"); // ~
   const orGoogleSignInInnerContainerListItems = orGoogleSignInInnerContainer.querySelectorAll("li"); // ~
   const signUpSignInContainer = document.querySelector(".large-12.columns"); // ~
-  const loginTab = document.getElementById("login-tab-left"); // ~
-  const signInTab = document.getElementById("login-tab-right"); // ~
+  const loginTab = document.querySelector("#login-tab-left"); // ~
+  const signInTab = document.querySelector("#login-tab-right"); // ~
   const signInTabText = signInTab.querySelector("a"); // ~
   const longInNote = document.querySelector(".loginNote.sj-text-login-note"); // ~
   const orSignInWithContainer = document.querySelector(".socialaccount_providers li"); // ~
   const orSignInWithTextEl = orSignInWithContainer.querySelector(".sj-text-sign-in-with span"); // ~
-  const loginInput = document.getElementById("id_login"); // ~
-  const passwordInput = document.getElementById("id_password"); // ~
-  const loginBottomBtn = document.getElementById("button-sign-in"); // ~
+  const loginInput = document.querySelector("#id_login"); // ~
+  const passwordInput = document.querySelector("#id_password"); // ~
+  const loginBottomBtn = document.querySelector("#button-sign-in"); // ~
   const forgotPasswordText = document.querySelector(".forgot-password.sj-text-forgot-password.focus-link-v2"); // ~
   const loginBottomBtnAndForgotPassBtn = loginBottomBtn.closest(".large-12.columns");
 
-  const loginForm = document.getElementById("login_form"); // ~
+  const loginForm = document.querySelector("#login_form"); // ~
 
   // FOOTER VARS
-  const footerContainer = document.getElementById("footer-container"); // ~
+  const footerContainer = document.querySelector("#footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
 
   loginForm.append(termsAndServicesText);
@@ -1599,20 +1599,20 @@ function mobileLoginPageStyling() {
 
 function mobileSignUpPageStyling() {
   inProd ? undefined : console.log("mobileSignUpPageStyling called");
-  const fbBtn = document.getElementById("facebook_login"); // ~
-  const googleBtn = document.getElementById("google_login"); // ~
-  const loginContent = document.getElementById("login-content"); // ~
-  const tabArrow = document.getElementById("tab-marker-signup"); // ~
-  const termsAndServicesText = document.getElementById("access-message"); // ~
+  const fbBtn = document.querySelector("#facebook_login"); // ~
+  const googleBtn = document.querySelector("#google_login"); // ~
+  const loginContent = document.querySelector("#login-content"); // ~
+  const tabArrow = document.querySelector("#tab-marker-signup"); // ~
+  const termsAndServicesText = document.querySelector("#access-message"); // ~
   const loginContentContainer = document.querySelector(".large-6.columns"); // ~
   const orSignInWithGoogleContainer = loginContent.querySelectorAll(".row .large-6.columns")[3]; // ~
   const orSignInWithGoogleList = orSignInWithGoogleContainer.querySelector("ul"); // ~
   const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll("li"); // ~
 
   const signUpSignInContainer = document.querySelector(".large-12.columns"); // ~
-  const loginTab = document.getElementById("login-tab-left"); // ~
+  const loginTab = document.querySelector("#login-tab-left"); // ~
   const loginTabText = loginTab.querySelector("a"); // ~
-  const signInTab = document.getElementById("login-tab-right"); // ~
+  const signInTab = document.querySelector("#login-tab-right"); // ~
   const signInTabText = signInTab.querySelector("span"); // ~
   const orSignInWithContainer = document.querySelector(".socialaccount_providers li"); // ~
   const orSignInWithText = document.querySelector(".sj-text-sign-up-with"); // ~
@@ -1622,14 +1622,14 @@ function mobileSignUpPageStyling() {
   const lastNameLabel = document.querySelector('label[for="id_last_name"] span span'); // ~
 
   const loginLabel = document.querySelector('label[for="id_email"]'); // ~
-  const loginInput = document.getElementById("id_email"); // ~
-  const passwordInput = document.getElementById("id_password1"); // ~
-  const passwordInput2 = document.getElementById("id_password2"); // ~
-  const signUpBottomBtn = document.getElementById("button-sign-up"); // ~
-  const signUpForm = document.getElementById("signup_form"); // ~
+  const loginInput = document.querySelector("#id_email"); // ~
+  const passwordInput = document.querySelector("#id_password1"); // ~
+  const passwordInput2 = document.querySelector("#id_password2"); // ~
+  const signUpBottomBtn = document.querySelector("#button-sign-up"); // ~
+  const signUpForm = document.querySelector("#signup_form"); // ~
 
   // FOOTER VARS
-  const footerContainer = document.getElementById("footer-container"); // ~
+  const footerContainer = document.querySelector("#footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
 
   signUpForm.append(termsAndServicesText);
@@ -1752,7 +1752,7 @@ function mobileCourseDetailsPageStyling() {
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
   const mainHeading = document.querySelector(".break-word"); // ~
   const headingParagraph = document.querySelector(".sj-heading-paragraph"); // ~
-  const registerBtn = document.getElementById("purchase-button-wrapper-large"); // ~
+  const registerBtn = document.querySelector("#purchase-button-wrapper-large"); // ~
   const mainHeadingContainer = document.querySelector(".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"); // ~
   // const mainVideoContainer = document.querySelector(".columns.large-6.text-center.dp-promo-image-wrapper"); // ~
   // const backToCatalogBtn = document.querySelector(".back-to-catalog"); // ~
@@ -1761,7 +1761,7 @@ function mobileCourseDetailsPageStyling() {
   // const signInHeaderText = document.querySelector(".signin"); // ~
   // const signInBtn = document.querySelector(".header-link.login-link.sj-text-sign-in.focus-link-v2"); // ~
   // BODY VARIABLES
-  const bodyContainer = document.getElementById("dp-details"); // ~
+  const bodyContainer = document.querySelector("#dp-details"); // ~
   // const mobileBodyContent = document.querySelector(".row.show-for-small"); // ~
   const secondaryBodyContainer = document.querySelector(".row.hide-for-small.padded-side-bottom"); // ~
   const bodyColumns = secondaryBodyContainer.querySelectorAll(".columns"); // ~
@@ -1776,13 +1776,13 @@ function mobileCourseDetailsPageStyling() {
   const courseDetailCardListItems = courseDetailCardContainer.querySelectorAll("li"); // ~
   const checkboxIcon = document.querySelector(".checkbox-icon"); // ~
   const registerBtnLink = document
-    .getElementById("purchase-button")
+    .querySelector("#purchase-button")
     .getAttribute("href");
   const registerBtnText = document.querySelector(".purchase-button-full-text").textContent; // ~
   const courseDetailsCardLink = document.querySelector(".course-details-card-link"); // ~
 
   // FOOTER VARS
-  const footerContainer = document.getElementById("footer-container"); // ~
+  const footerContainer = document.querySelector("#footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
 
   // backToCatalogBtn.style.display = "none";
@@ -1983,7 +1983,7 @@ function mobileCurriculumPageNoCertificateStyling() {
   const headingParagraph = document.querySelector(".sj-heading-paragraph"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
   const container = document.querySelector(".large-8.push-4.columns.sj-summary.cp-summary-wrapper"); // DUPLICATE VAR // ~
-  const btn = document.getElementById("resume-button"); // DUPLICATE VAR // ~
+  const btn = document.querySelector("#resume-button"); // DUPLICATE VAR // ~
   const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR // ~
   const backToCatalogLink = document.querySelector(".back-to-catalog"); // ~
 
@@ -1998,18 +1998,18 @@ function mobileCurriculumPageNoCertificateStyling() {
   const sjHeaderImgContainer = document.querySelector(".large-4.pull-8.columns.cp-promo-image-wrapper"); // ~
   const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image"); // ~
   const sjHeaderImg = document.querySelector(".cp-promo-image img"); // ~
-  const resumeBtn = document.getElementById("resume-button"); // ~
+  const resumeBtn = document.querySelector("#resume-button"); // ~
   const btnText = resumeBtn.querySelector(".button span").textContent; // ~
   const btnHref = resumeBtn.querySelector(".button").getAttribute("href"); // ~
 
   // BODY VARIABLES
-  const bodyMainContainer = document.getElementById("cp-content"); // ~
+  const bodyMainContainer = document.querySelector("#cp-content"); // ~
   const InnerContentContainer = bodyMainContainer.querySelector(".columns"); // ~
   const tabsContainer = document.querySelector(".section-container.tabs"); // ~
   let [curriculumSection, aboutSection] = tabsContainer.querySelectorAll("section"); // ~
   const pageIcons = document.querySelectorAll(".type-icon.hide-for-small"); // ~
   const lessonListItems = document.querySelectorAll(".lesson-row"); // ~
-  const curriculumParentContainer = document.getElementById("curriculum-list"); // ~
+  const curriculumParentContainer = document.querySelector("#curriculum-list"); // ~
   const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
   const curriculumOutsideContainer = curriculumParentContainer.closest(".content");
 
@@ -2027,7 +2027,7 @@ function mobileCurriculumPageNoCertificateStyling() {
   const courseDetailsCardLink = document.querySelector(".course-details-card-link"); // ~
 
   // FOOTER VARS
-  const footerContainer = document.getElementById("footer-container"); // ~
+  const footerContainer = document.querySelector("#footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
 
   // STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
@@ -2277,7 +2277,7 @@ function mobileCurriculumPageYesCertificateStyling() {
   const sjHeaderImg = document.querySelector(".cp-promo-image img"); // ~
 
   // BODY VARIABLES
-  const bodyMainContainer = document.getElementById("cp-content"); // ~
+  const bodyMainContainer = document.querySelector("#cp-content"); // ~
   const InnerContentContainer = bodyMainContainer.querySelector(".columns"); // ~
   const tabsContainer = document.querySelector(".section-container.tabs"); // ~
   let [curriculumSection, aboutSection] = tabsContainer.querySelectorAll("section"); // ~
@@ -2291,7 +2291,7 @@ function mobileCurriculumPageYesCertificateStyling() {
 
   const pageIcons = document.querySelectorAll(".type-icon.hide-for-small"); // ~
   const lessonListItems = document.querySelectorAll(".lesson-row"); // ~
-  const curriculumParentContainer = document.getElementById("curriculum-list"); // ~
+  const curriculumParentContainer = document.querySelector("#curriculum-list"); // ~
   const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
   const curriculumOutsideContainer =
     curriculumParentContainer.closest(".content");
@@ -2303,7 +2303,7 @@ function mobileCurriculumPageYesCertificateStyling() {
   const courseDetailsCardLink = document.querySelector(".course-details-card-link"); // ~
 
   // FOOTER VARS
-  const footerContainer = document.getElementById("footer-container"); // ~
+  const footerContainer = document.querySelector("#footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
 
   // STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
@@ -2526,26 +2526,26 @@ function mobileCurriculumPageYesCertificateStyling() {
 
 function mobileLessonPageStyling() {
   inProd ? undefined : console.log("mobileLessonPageStyling called");
-  const leftNav = document.getElementById("lp-left-nav"); // ~
-  const mainLessonContentContainer = document.getElementById("lp-wrapper"); // ~
-  const mainLessonContentSubContainer = document.getElementById("lp-content"); // ~
-  const mainLessonInnerContainer = document.getElementById("lesson-body"); // ~
-  const mainLessonMainContainer = document.getElementById("lesson-main"); // ~
+  const leftNav = document.querySelector("#lp-left-nav"); // ~
+  const mainLessonContentContainer = document.querySelector("#lp-wrapper"); // ~
+  const mainLessonContentSubContainer = document.querySelector("#lp-content"); // ~
+  const mainLessonInnerContainer = document.querySelector("#lesson-body"); // ~
+  const mainLessonMainContainer = document.querySelector("#lesson-main"); // ~
 
-  const lessonFooter = document.getElementById("lp-footer"); // ~
-  const navOpenIcon = document.getElementById("left-nav-button"); // ~
+  const lessonFooter = document.querySelector("#lp-footer"); // ~
+  const navOpenIcon = document.querySelector("#left-nav-button"); // ~
   const hamburgerIcon = navOpenIcon.querySelector(".fa.fa-bars"); // ~
   const xIcon = navOpenIcon.querySelector(".fa.fa-times"); // ~
-  const leftNavMobileOverlay = document.getElementById("lpLeftNavBackground"); // ~
+  const leftNavMobileOverlay = document.querySelector("#lpLeftNavBackground"); // ~
   const fullScreenBtn = document.querySelector(".toggle-fullscreen.focus-link-v2"); // ~
   // LESSON BODY VARS
-  const lessonInnerContainer = document.getElementById("lesson-main-inner"); // ~
+  const lessonInnerContainer = document.querySelector("#lesson-main-inner"); // ~
   const copyIcon = document.querySelector(".copy-icon"); // ~
   const lessonContentContainer = document.querySelector("sjwc-lesson-content-item"); // ~
   const codeBlocks = lessonContentContainer.querySelectorAll("pre"); // ~
 
   // FOOTER VARS
-  const footerContainer = document.getElementById("footer-container"); // ~
+  const footerContainer = document.querySelector("#footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
 
   lessonInnerContainer.style.maxWidth = "712px";
@@ -2647,8 +2647,8 @@ function mobileLessonPageStyling() {
   });
 
   // STYLING OF THE LEFT NAV LINKS
-  const lessonNavLinksContainer = document.getElementById("curriculum-list-2"); // ~
-  const backToCurriculumEl = document.getElementById("left-nav-return-text"); // ~
+  const lessonNavLinksContainer = document.querySelector("#curriculum-list-2"); // ~
+  const backToCurriculumEl = document.querySelector("#left-nav-return-text"); // ~
   const links = lessonNavLinksContainer.querySelectorAll("a"); // ~
   const sectionTitles = lessonNavLinksContainer.querySelectorAll(".section-title"); // ~
 
@@ -2839,7 +2839,7 @@ function renderCourse() {
   );
 
   if (!isLessonsPage) {
-    document.getElementById("ep-footer").style.display = "none"; // ~
+    document.querySelector("#ep-footer").style.display = "none"; // ~
   }
 
   insertFooter();
