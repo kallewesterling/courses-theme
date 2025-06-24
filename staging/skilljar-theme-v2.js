@@ -83,7 +83,6 @@ function desktopCourseDetailsPageStyling() {
   inProd ? undefined : console.log("desktopCourseDetailsPageStyling called");
   // const headerContainer = document.querySelector(".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"); // ~
   // const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
-  const mainHeadingContainer = document.querySelector(".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"); // ~
   // const backToCatalogBtn = document.querySelector(".back-to-catalog"); // ~
   // const videoContainer = document.querySelector(".video-max"); // ~
   const mainInfoCardContained = document.querySelector(".sj-course-info-wrapper"); // ~
@@ -158,6 +157,7 @@ function desktopCourseDetailsPageStyling() {
   headingParagraph.style.display = "block";
   headingParagraph.style.margin = "0 0 24px 0";
 
+  const mainHeadingContainer = document.querySelector(".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
   const mainHeading = document.querySelector(".break-word"); // ~
   const registerBtn = document.querySelector("#purchase-button-wrapper-large"); // ~
