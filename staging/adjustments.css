@@ -219,6 +219,11 @@ body.sj-page-signup #access-message {
         .sj-course-info-wrapper {
             display: none !important;
         }
+
+        /*  sjHeaderTextSubheading, sjHeaderTextProgressBar */
+        .cp-lessons, .progress-bar {
+            display: none !important;
+        }
     }
 
     /* resumeBtn */
