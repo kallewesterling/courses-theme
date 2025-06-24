@@ -323,6 +323,10 @@ body.sj-page-signup #access-message {
             margin: 0 !important;
         }
     }
+
+    .large-7.columns {
+        margin-bottom: 48px !important;
+    }
 }
 
 @media (max-width: 991px) {
