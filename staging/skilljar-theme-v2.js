@@ -63,14 +63,15 @@ function desktopCatalogPageStyling() {
   if (!initialLoadComplete) {
     //create container div for courses catalog list
     const catalogContentContainer = document.createElement("div");
-    catalogContentContainer.style.maxWidth = "min(1232px, 90%)";
-    catalogContentContainer.style.margin = "96px auto";
+    catalogContentContainer.id = "catalog-content-wrapper";
+    // catalogContentContainer.style.maxWidth = "min(1232px, 90%)";
+    // catalogContentContainer.style.margin = "96px auto";
 
     //create header for list
     const allCoursesHeader = document.createElement("h2");
     allCoursesHeader.textContent = "All Courses";
-    allCoursesHeader.style.fontSize = "48px";
-    allCoursesHeader.style.marginBottom = "38px";
+    // allCoursesHeader.style.fontSize = "48px";
+    // allCoursesHeader.style.marginBottom = "38px";
 
     catalogContentContainer.append(allCoursesHeader, catalogContainer);
     catalogBodyParentContainer.append(catalogContentContainer);
