@@ -417,3 +417,8 @@ a.header-link.login-link {
     grid-template-columns: minmax(100px, 760px) minmax(100px, 368px) !important;
     column-gap: 24px !important; */
 }
+
+/* catalogContainer */
+body.sj-page-detail #catalog-courses {
+    margin-bottom: 85px !important;
+}
