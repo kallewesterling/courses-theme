@@ -1921,6 +1921,7 @@ function mobileCourseDetailsPageStyling() {
     function styleListItem(lessonEl, isLastChild) {
       inProd ? undefined : console.log("styleListItem called");
       lessonEl.classList.add("lesson-item");
+      lessonEl.classList.add("lesson-item-gray-border");
 
       // display none for icon w/ class 'type-icon'
       const icon = lessonEl.querySelector(".type-icon"); // ~
@@ -2190,6 +2191,7 @@ function mobileCurriculumPageNoCertificateStyling() {
     function styleListItem(lessonEl, isLastChild) {
       inProd ? undefined : console.log("styleListItem called");
       lessonEl.classList.add("lesson-item");
+      lessonEl.classList.add("lesson-item-gray-border");
 
       // lessonEl.style.padding = "24px";
       // lessonEl.style.fontSize = "16px";
@@ -2474,6 +2476,7 @@ function mobileCurriculumPageYesCertificateStyling() {
     function styleListItem(lessonEl, isLastChild) {
       inProd ? undefined : console.log("styleListItem called");
       lessonEl.classList.add("lesson-item");
+      lessonEl.classList.add("lesson-item-gray-border");
 
       // lessonEl.style.padding = "24px";
       // lessonEl.style.fontSize = "16px";

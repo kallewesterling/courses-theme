@@ -417,6 +417,14 @@ body.sj-page-signup #access-message {
                 font-size: 16px !important;
                 font-weight: 400 !important;
                 line-height: 150% !important;
+                border-bottom: 2px solid #3443f4 !important;
+            }
+            .lesson-item-gray-border {
+                border: 1px solid #DCDCDC !important;
+            }
+
+            .lesson-item:last-child, .lesson-item-gray-border:last-child {
+                border-bottom: none !important;
             }
         }
     }
