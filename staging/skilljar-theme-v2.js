@@ -15,6 +15,17 @@ let width;
 
 const body = document.querySelector("body"); // ~
 
+const elements = {}
+
+function getElem(selector) {
+  if (!hasOwnProperty(elements, selector)) {
+    elements[selector] = document.querySelector(selector);
+  }
+  
+  console.log(`getElem called with selector: ${selector}`, elements[selector]);
+  return elements[selector]
+}
+
 function elemExists(selector) {
   return document.querySelector(selector) ? true : false;
 }
@@ -70,6 +81,7 @@ function desktopCatalogPageStyling() {
     catalogBodyParentContainer.append(catalogContentContainer);
 
     initialLoadComplete = true;
+    console.log("initialLoadComplete set to true")
   }
 }
 
@@ -217,7 +229,7 @@ function desktopCourseDetailsPageStyling() {
 
     function styleListItem(lessonEl, /* isLastChild */) {
       inProd ? undefined : console.log("styleListItem called");
-      lessonEl.classList.add("lesson-item");
+      // lessonEl.classList.add("lesson-item");
 
       //display none for icon w/ class 'type-icon'
       // const icon = lessonEl.querySelector(".type-icon"); // ~
@@ -267,6 +279,7 @@ function desktopCourseDetailsPageStyling() {
         //transfer inner html of current list item to new created div
         const newListItem = document.createElement("div");
         newListItem.innerHTML = curListItem.innerHTML;
+        newListItem.classList.add("lesson-item");
         styleListItem(
           newListItem,
           //arr[i + 1] ? arr[i + 1].classList.contains("section") : true
@@ -974,7 +987,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   let [curriculumSection, aboutSection] = document.querySelectorAll(".section-container.tabs section"); // ~
   curriculumSection.id = "curriculum-section";
   aboutSection.id = "about-section";
-//   aboutSection.classList.add("active"); /* TODO: This may be causing some problem */
+  // aboutSection.classList.add("active"); /* TODO: This may be causing some problem */
 
   // const pageIcons = document.querySelectorAll(".type-icon.hide-for-small"); // ~
   // const lessonListItems = document.querySelectorAll(".lesson-row"); // ~
@@ -1922,8 +1935,8 @@ function mobileCourseDetailsPageStyling() {
 
     function styleListItem(lessonEl, /* isLastChild */) {
       inProd ? undefined : console.log("styleListItem called");
-      lessonEl.classList.add("lesson-item");
-      lessonEl.classList.add("lesson-item-gray-border");
+      // lessonEl.classList.add("lesson-item");
+      // lessonEl.classList.add("lesson-item-gray-border");
 
       // display none for icon w/ class 'type-icon'
       // const icon = lessonEl.querySelector(".type-icon"); // ~
@@ -1972,6 +1985,8 @@ function mobileCourseDetailsPageStyling() {
         // transfer inner html of current list item to new created div
         const newListItem = document.createElement("div");
         newListItem.innerHTML = curListItem.innerHTML;
+        newListItem.classList.add("lesson-item");
+        newListItem.classList.add("lesson-item-gray-border");
         styleListItem(
           newListItem,
           //arr[i + 1] ? arr[i + 1].classList.contains("section") : true
@@ -2976,6 +2991,8 @@ document.addEventListener("DOMContentLoaded", () => {
   inProd ? undefined : console.log("currentView: ", currentView);
   
   renderCourse();
+
+  console.log("initialLoadComplete set to true")
   initialLoadComplete = true;
 });
 
