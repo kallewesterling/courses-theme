@@ -963,7 +963,9 @@ function desktopCurriculumPageNoCertificateStyling() {
   const bodyMainContainer = document.querySelector("#cp-content"); // ~
   const InnerContentContainer = bodyMainContainer.querySelector(".columns"); // ~
   const tabsContainer = document.querySelector(".section-container.tabs"); // ~
-  let [curriculumSection, aboutSection] = tabsContainer.querySelectorAll("section"); // ~
+  let [curriculumSection, aboutSection] = document.querySelectorAll(".section-container.tabs section"); // ~
+  curriculumSection.id = "curriculum-section";
+  aboutSection.id = "about-section";
   const pageIcons = document.querySelectorAll(".type-icon.hide-for-small"); // ~
   const lessonListItems = document.querySelectorAll(".lesson-row"); // ~
   const curriculumParentContainer = document.querySelector("#curriculum-list"); // ~

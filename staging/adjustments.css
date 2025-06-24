@@ -329,7 +329,7 @@ body.sj-page-signup #access-message {
     }
 
     /* curriculumSection */
-    section:nth-child(1) {
+    #curriculum-section {
         margin-top: 48px !important;
         padding: 0 !important;
 
@@ -348,7 +348,7 @@ body.sj-page-signup #access-message {
     }
     
     /* aboutSection */
-    section:nth-child(2) {
+    #about-section {
         padding: 0 !important;
 
         h3 {
