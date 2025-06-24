@@ -85,8 +85,7 @@ function desktopCourseDetailsPageStyling() {
   // const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   // const backToCatalogBtn = document.querySelector(".back-to-catalog"); // ~
   // const videoContainer = document.querySelector(".video-max"); // ~
-  const mainInfoCardContained = document.querySelector(".sj-course-info-wrapper"); // ~
-  const headingParagraph = mainInfoCardContained.querySelector("h2"); // ~
+  // const mainInfoCardContained = document.querySelector(".sj-course-info-wrapper"); // ~
 
   //SIGN IN VARIABLES (WHEN USER NOT LOGGED IN)
   // const signInHeaderText = document.querySelector(".signin"); // ~
@@ -146,7 +145,7 @@ function desktopCourseDetailsPageStyling() {
   //RENDERING OF COURSE DETAILS PAGE TEXT HEADING ON LEFT
   // mainHeadingContainer.style.border = "0";
   // mainHeadingContainer.style.maxWidth = "564px";
-  mainInfoCardContained.style.display = "none";
+  // mainInfoCardContained.style.display = "none";
   // headingFloaterText.style.display = "block";
   // headingFloaterText.style.marginBottom = "24px";
   // mainHeading.style.margin = "0 0 12px 0";
@@ -154,12 +153,13 @@ function desktopCourseDetailsPageStyling() {
   // mainHeading.style.fontWeight = "600";
   // mainHeading.style.lineHeight = "43.2px";
   // mainHeading.style.letterSpacing = "-.02em";
-  headingParagraph.style.display = "block";
-  headingParagraph.style.margin = "0 0 24px 0";
+  // headingParagraph.style.display = "block";
+  // headingParagraph.style.margin = "0 0 24px 0";
 
   const mainHeadingContainer = document.querySelector(".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
   const mainHeading = document.querySelector(".break-word"); // ~
+  const headingParagraph = mainHeadingContainer.querySelector("h2"); // ~
   const registerBtn = document.querySelector("#purchase-button-wrapper-large"); // ~
 
   mainHeadingContainer.append(
