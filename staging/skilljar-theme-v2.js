@@ -202,17 +202,18 @@ function desktopCourseDetailsPageStyling() {
     let curContainer = document.createElement("li");
 
     if (!hasSections) {
-      styleGroupContainer(curContainer);
+      curContainer.classList.add("module-list");
+      // styleGroupContainer(curContainer);
     }
 
-    function styleGroupContainer(container) {
-      inProd ? undefined : console.log("styleGroupContainer called");
-      container.classList.add("module-list");
-      container.style.border = "2px solid #3443F4";
-      // container.style.borderRadius = "8px";
-      // container.style.marginBottom = "48px";
-      // container.style.padding = "0";
-    }
+    // function styleGroupContainer(container) {
+    //   inProd ? undefined : console.log("styleGroupContainer called");
+    //   container.classList.add("module-list");
+    //   // container.style.border = "2px solid #3443F4";
+    //   // container.style.borderRadius = "8px";
+    //   // container.style.marginBottom = "48px";
+    //   // container.style.padding = "0";
+    // }
 
     function styleListItem(lessonEl, isLastChild) {
       inProd ? undefined : console.log("styleListItem called");
@@ -252,7 +253,8 @@ function desktopCourseDetailsPageStyling() {
         curriculumListContainer.append(curContainer);
         //reset curContainer while pushing current 'section' in there for the next iteration
         curContainer = document.createElement("li");
-        styleGroupContainer(curContainer);
+        curContainer.classList.add("module-list");
+        // styleGroupContainer(curContainer);
 
         const newGroupHeading = document.createElement("div");
         newGroupHeading.innerHTML = curListItem.innerHTML;
@@ -1115,26 +1117,27 @@ function desktopCurriculumPageNoCertificateStyling() {
     let curContainer = document.createElement("div");
 
     if (!hasSections) {
-      styleGroupContainer(curContainer);
+      // styleGroupContainer(curContainer);
+      curContainer.classList.add("module-list");
     }
 
-    function styleGroupContainer(container) {
-      inProd ? undefined : console.log("styleGroupContainer called");
-      container.classList.add("module-list");
-      container.style.border = "2px solid #3443f4";
-      // container.style.borderRadius = "8px";
-      // container.style.marginBottom = "48px";
-      // container.style.padding = "0";
-    }
+    // function styleGroupContainer(container) {
+    //   inProd ? undefined : console.log("styleGroupContainer called");
+    //   container.classList.add("module-list");
+    //   // container.style.border = "2px solid #3443f4";
+    //   // container.style.borderRadius = "8px";
+    //   // container.style.marginBottom = "48px";
+    //   // container.style.padding = "0";
+    // }
 
     function styleListItem(lessonEl, isLastChild) {
       inProd ? undefined : console.log("styleListItem called");
       lessonEl.classList.add("lesson-item");
 
-      lessonEl.style.padding = "24px";
-      lessonEl.style.fontSize = "16px";
-      lessonEl.style.fontWeight = "400";
-      lessonEl.style.lineHeight = "150%";
+      // lessonEl.style.padding = "24px";
+      // lessonEl.style.fontSize = "16px";
+      // lessonEl.style.fontWeight = "400";
+      // lessonEl.style.lineHeight = "150%";
       if (!isLastChild) {
         lessonEl.style.borderBottom = "2px solid #3443f4";
       }
@@ -1171,7 +1174,8 @@ function desktopCurriculumPageNoCertificateStyling() {
         curriculumParentContainer.append(curContainer);
         // reset curContainer while pushing current new heading & icon in there for the next iteration
         curContainer = document.createElement("div");
-        styleGroupContainer(curContainer);
+        curContainer.classList.add("module-list");
+        // styleGroupContainer(curContainer);
 
         const newGroupHeading = document.createElement("div");
         newGroupHeading.style.display = "flex";
@@ -1390,26 +1394,27 @@ function desktopCurriculumPageYesCertificationStyling() {
     let curContainer = document.createElement("div");
 
     if (!hasSections) {
-      styleGroupContainer(curContainer);
+      // styleGroupContainer(curContainer);
+      curContainer.classList.add("module-list");
     }
 
-    function styleGroupContainer(container) {
-      inProd ? undefined : console.log("styleGroupContainer called");
-      container.classList.add("module-list");
-      container.style.border = "2px solid #3443f4";
-      // container.style.borderRadius = "8px";
-      // container.style.marginBottom = "48px";
-      // container.style.padding = "0";
-    }
+    // function styleGroupContainer(container) {
+    //   inProd ? undefined : console.log("styleGroupContainer called");
+    //   container.classList.add("module-list");
+    //   // container.style.border = "2px solid #3443f4";
+    //   // container.style.borderRadius = "8px";
+    //   // container.style.marginBottom = "48px";
+    //   // container.style.padding = "0";
+    // }
 
     function styleListItem(lessonEl, isLastChild) {
       inProd ? undefined : console.log("styleListItem called");
       lessonEl.classList.add("lesson-item");
 
-      lessonEl.style.padding = "24px";
-      lessonEl.style.fontSize = "16px";
-      lessonEl.style.fontWeight = "400";
-      lessonEl.style.lineHeight = "150%";
+      // lessonEl.style.padding = "24px";
+      // lessonEl.style.fontSize = "16px";
+      // lessonEl.style.fontWeight = "400";
+      // lessonEl.style.lineHeight = "150%";
       if (!isLastChild) {
         lessonEl.style.borderBottom = "2px solid #3443f4";
       }
@@ -1446,7 +1451,8 @@ function desktopCurriculumPageYesCertificationStyling() {
         curriculumParentContainer.append(curContainer);
         // reset curContainer while pushing current new heading & icon in there for the next iteration
         curContainer = document.createElement("div");
-        styleGroupContainer(curContainer);
+        curContainer.classList.add("module-list");
+        // styleGroupContainer(curContainer);
 
         const newGroupHeading = document.createElement("div");
         newGroupHeading.style.display = "flex";
@@ -1888,17 +1894,20 @@ function mobileCourseDetailsPageStyling() {
     let curContainer = document.createElement("li");
 
     if (!hasSections) {
-      styleGroupContainer(curContainer);
+      // styleGroupContainer(curContainer);
+      curContainer.classList.add("module-list");
+      curContainer.classList.add("module-list-gray-border");
     }
 
-    function styleGroupContainer(container) {
-      inProd ? undefined : console.log("styleGroupContainer called");
-      container.classList.add("module-list");
-      container.style.border = "1px solid #DCDCDC";
-      // container.style.borderRadius = "8px";
-      // container.style.marginBottom = "48px";
-      // container.style.padding = "0";
-    }
+    // function styleGroupContainer(container) {
+    //   inProd ? undefined : console.log("styleGroupContainer called");
+    //   container.classList.add("module-list");
+    //   container.classList.add("module-list-gray-border");
+    //   // container.style.border = "1px solid #DCDCDC";
+    //   // container.style.borderRadius = "8px";
+    //   // container.style.marginBottom = "48px";
+    //   // container.style.padding = "0";
+    // }
 
     function styleListItem(lessonEl, isLastChild) {
       inProd ? undefined : console.log("styleListItem called");
@@ -1938,7 +1947,9 @@ function mobileCourseDetailsPageStyling() {
         curriculumListContainer.append(curContainer);
         // reset curContainer while pushing current 'section' in there for the next iteration
         curContainer = document.createElement("li");
-        styleGroupContainer(curContainer);
+        curContainer.classList.add("module-list");
+        curContainer.classList.add("module-list-gray-border");
+        // styleGroupContainer(curContainer);
         const newGroupHeading = document.createElement("div");
         newGroupHeading.innerHTML = curListItem.innerHTML;
         styleGroupHeading(newGroupHeading);
@@ -2148,26 +2159,29 @@ function mobileCurriculumPageNoCertificateStyling() {
     let curContainer = document.createElement("div");
 
     if (!hasSections) {
-      styleGroupContainer(curContainer);
+      // styleGroupContainer(curContainer);
+      curContainer.classList.add("module-list");
+      curContainer.classList.add("module-list-gray-border");
     }
 
-    function styleGroupContainer(container) {
-      inProd ? undefined : console.log("styleGroupContainer called");
-      container.classList.add("module-list");
-      container.style.border = "1px solid #DCDCDC";
-      // container.style.borderRadius = "8px";
-      // container.style.marginBottom = "48px";
-      // container.style.padding = "0";
-    }
+    // function styleGroupContainer(container) {
+    //   inProd ? undefined : console.log("styleGroupContainer called");
+    //   container.classList.add("module-list");
+    //   container.classList.add("module-list-gray-border");
+    //   // container.style.border = "1px solid #DCDCDC";
+    //   // container.style.borderRadius = "8px";
+    //   // container.style.marginBottom = "48px";
+    //   // container.style.padding = "0";
+    // }
 
     function styleListItem(lessonEl, isLastChild) {
       inProd ? undefined : console.log("styleListItem called");
       lessonEl.classList.add("lesson-item");
 
-      lessonEl.style.padding = "24px";
-      lessonEl.style.fontSize = "16px";
-      lessonEl.style.fontWeight = "400";
-      lessonEl.style.lineHeight = "150%";
+      // lessonEl.style.padding = "24px";
+      // lessonEl.style.fontSize = "16px";
+      // lessonEl.style.fontWeight = "400";
+      // lessonEl.style.lineHeight = "150%";
       if (!isLastChild) {
         lessonEl.style.borderBottom = "1px solid #DCDCDC";
       }
@@ -2204,7 +2218,9 @@ function mobileCurriculumPageNoCertificateStyling() {
         curriculumParentContainer.append(curContainer);
         // reset curContainer while pushing current new heading & icon in there for the next iteration
         curContainer = document.createElement("div");
-        styleGroupContainer(curContainer);
+        // styleGroupContainer(curContainer);
+        curContainer.classList.add("module-list");
+        curContainer.classList.add("module-list-gray-border");
 
         const newGroupHeading = document.createElement("div");
         newGroupHeading.style.display = "flex";
@@ -2422,26 +2438,29 @@ function mobileCurriculumPageYesCertificateStyling() {
     let curContainer = document.createElement("div");
 
     if (!hasSections) {
-      styleGroupContainer(curContainer);
+      // styleGroupContainer(curContainer);
+      curContainer.classList.add("module-list");
+      curContainer.classList.add("module-list-gray-border");
     }
 
-    function styleGroupContainer(container) {
-      inProd ? undefined : console.log("styleGroupContainer called");
-      container.classList.add("module-list");
-      container.style.border = "1px solid #DCDCDC";
-      // container.style.borderRadius = "8px";
-      // container.style.marginBottom = "48px";
-      // container.style.padding = "0";
-    }
+    // function styleGroupContainer(container) {
+    //   inProd ? undefined : console.log("styleGroupContainer called");
+    //   container.classList.add("module-list");
+    //   container.classList.add("module-list-gray-border");
+    //   // container.style.border = "1px solid #DCDCDC";
+    //   // container.style.borderRadius = "8px";
+    //   // container.style.marginBottom = "48px";
+    //   // container.style.padding = "0";
+    // }
 
     function styleListItem(lessonEl, isLastChild) {
       inProd ? undefined : console.log("styleListItem called");
       lessonEl.classList.add("lesson-item");
 
-      lessonEl.style.padding = "24px";
-      lessonEl.style.fontSize = "16px";
-      lessonEl.style.fontWeight = "400";
-      lessonEl.style.lineHeight = "150%";
+      // lessonEl.style.padding = "24px";
+      // lessonEl.style.fontSize = "16px";
+      // lessonEl.style.fontWeight = "400";
+      // lessonEl.style.lineHeight = "150%";
       if (!isLastChild) {
         lessonEl.style.borderBottom = "1px solid #DCDCDC";
       }
@@ -2478,7 +2497,9 @@ function mobileCurriculumPageYesCertificateStyling() {
         curriculumParentContainer.append(curContainer);
         // reset curContainer while pushing current new heading & icon in there for the next iteration
         curContainer = document.createElement("div");
-        styleGroupContainer(curContainer);
+        // styleGroupContainer(curContainer);
+        curContainer.classList.add("module-list");
+        curContainer.classList.add("module-list-gray-border");
 
         const newGroupHeading = document.createElement("div");
         newGroupHeading.style.display = "flex";
