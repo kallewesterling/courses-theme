@@ -345,6 +345,32 @@ body.sj-page-signup #access-message {
             border: 0px !important;
             padding: 0 !important;
         }
+
+        /* lessonListItem(s) */
+        .lesson-row {
+            display: flex !important;
+            align-items: center !important;
+            gap: 12px !important;
+
+            /* titleEl */
+            .title {
+                position: static !important;
+                color: #1C1C1C !important; /* add to colors? */
+                display: flex !important;
+                align-items: center !important;
+                margin: 0 !important;
+                transform: translateY(2px) !important;
+            }
+            
+            .bullet {
+                position: static !important;
+            }
+            
+            /* pageIcons */
+            .type-icon {
+                display: none !important;
+            }
+        }
     }
     
     /* aboutSection */

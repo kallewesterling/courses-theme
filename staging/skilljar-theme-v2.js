@@ -963,11 +963,14 @@ function desktopCurriculumPageNoCertificateStyling() {
   const bodyMainContainer = document.querySelector("#cp-content"); // ~
   const InnerContentContainer = bodyMainContainer.querySelector(".columns"); // ~
   const tabsContainer = document.querySelector(".section-container.tabs"); // ~
+  
   let [curriculumSection, aboutSection] = document.querySelectorAll(".section-container.tabs section"); // ~
   curriculumSection.id = "curriculum-section";
   aboutSection.id = "about-section";
-  const pageIcons = document.querySelectorAll(".type-icon.hide-for-small"); // ~
-  const lessonListItems = document.querySelectorAll(".lesson-row"); // ~
+  aboutSection.classList.add("active");
+
+  // const pageIcons = document.querySelectorAll(".type-icon.hide-for-small"); // ~
+  // const lessonListItems = document.querySelectorAll(".lesson-row"); // ~
   const curriculumParentContainer = document.querySelector("#curriculum-list"); // ~
   const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
   const curriculumOutsideContainer = curriculumParentContainer.closest(".content");
@@ -1080,21 +1083,21 @@ function desktopCurriculumPageNoCertificateStyling() {
   tabsContainer.style.margin = "0 0 46px 0";
   // bodyMainContainer.style.paddingTop = "0";
   // bodyMainContainer.style.paddingBottom = "0";
-  if (aboutSection) {
-    aboutSection.classList.add("active");
-  }
-  curriculumSection.style.marginTop = "48px";
+  // if (aboutSection) {
+  //   aboutSection.classList.add("active");
+  // }
+  // curriculumSection.style.marginTop = "48px";
 
-  if (aboutSection) {
-    aboutSection.querySelector("h3").style.fontWeight = "600"; // ~
-    aboutSection.querySelector(".title").style.display = "none"; // ~
-    aboutSection.querySelector(".content").style.border = "0"; // ~
-    aboutSection.querySelector(".content").style.padding = "0"; // ~
-  }
-  curriculumSection.querySelector(".title").style.display = "none"; // ~
-  curriculumSection.querySelector("h2").style.fontWeight = "600"; // ~
-  curriculumSection.querySelector(".content").style.border = "0"; // ~
-  curriculumSection.querySelector(".content").style.padding = "0"; // ~
+  // if (aboutSection) {
+    // aboutSection.querySelector("h3").style.fontWeight = "600"; // ~
+    // aboutSection.querySelector(".title").style.display = "none"; // ~
+    // aboutSection.querySelector(".content").style.border = "0"; // ~
+    // aboutSection.querySelector(".content").style.padding = "0"; // ~
+  // }
+  // curriculumSection.querySelector(".title").style.display = "none"; // ~
+  // curriculumSection.querySelector("h2").style.fontWeight = "600"; // ~
+  // curriculumSection.querySelector(".content").style.border = "0"; // ~
+  // curriculumSection.querySelector(".content").style.padding = "0"; // ~
 
   // NEW CURRICULUM DISPLAY STYLING
   if (!initialLoadComplete) {
@@ -1203,30 +1206,30 @@ function desktopCurriculumPageNoCertificateStyling() {
   }
 
   // CURRICULUM ITSELF STYLING
-  pageIcons.forEach((pageIcon) => {
-    pageIcon.setAttribute("style", "display:none !important");
-  });
-  lessonListItems.forEach((item) => {
-    const titleEl = item.querySelector(".title"); // ~
-    item.style.display = "flex";
-    item.style.alignItems = "center";
-    item.style.gap = "12px";
+  // pageIcons.forEach((pageIcon) => {
+  //   pageIcon.setAttribute("style", "display:none !important");
+  // });
+  // lessonListItems.forEach((item) => {
+  //   const titleEl = item.querySelector(".title"); // ~
+    // item.style.display = "flex";
+    // item.style.alignItems = "center";
+    // item.style.gap = "12px";
 
-    item.querySelector(".bullet").style.position = "static"; // ~
+    // item.querySelector(".bullet").style.position = "static"; // ~
 
-    titleEl.style.position = "static";
-    titleEl.style.color = "#1C1C1C";
-    titleEl.style.display = "flex";
-    titleEl.style.alignItems = "center";
-    titleEl.style.margin = "0";
-    titleEl.style.transform = "translateY(2px)";
-  });
+    // titleEl.style.position = "static";
+    // titleEl.style.color = "#1C1C1C";
+    // titleEl.style.display = "flex";
+    // titleEl.style.alignItems = "center";
+    // titleEl.style.margin = "0";
+    // titleEl.style.transform = "translateY(2px)";
+  // });
 
-  curriculumSection.setAttribute(
-    "style",
-    "padding: 0 !important; margin-top: 48px !important;"
-  );
-  aboutSection.setAttribute("style", "padding: 0 !important");
+  // curriculumSection.setAttribute(
+  //   "style",
+  //   "padding: 0 !important; margin-top: 48px !important;"
+  // );
+  // aboutSection.setAttribute("style", "padding: 0 !important");
 }
 
 function desktopCurriculumPageYesCertificationStyling() {
@@ -1267,8 +1270,8 @@ function desktopCurriculumPageYesCertificationStyling() {
     tabsContainer.append(curriculumSection, aboutSection);
   }
 
-  const pageIcons = document.querySelectorAll(".type-icon.hide-for-small"); // ~
-  const lessonListItems = document.querySelectorAll(".lesson-row"); // ~
+  // const pageIcons = document.querySelectorAll(".type-icon.hide-for-small"); // ~
+  // const lessonListItems = document.querySelectorAll(".lesson-row"); // ~
   const curriculumParentContainer = document.querySelector("#curriculum-list"); // ~
   const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
   const curriculumOutsideContainer = curriculumParentContainer.closest(".content");
@@ -1465,24 +1468,24 @@ function desktopCurriculumPageYesCertificationStyling() {
   }
 
   // CURRICULUM ITSELF STYLING
-  pageIcons.forEach((pageIcon) => {
-    pageIcon.setAttribute("style", "display:none !important");
-  });
-  lessonListItems.forEach((item) => {
-    const titleEl = item.querySelector(".title"); // ~
-    item.style.display = "flex";
-    item.style.alignItems = "center";
-    item.style.gap = "12px";
+  // pageIcons.forEach((pageIcon) => {
+  //   pageIcon.setAttribute("style", "display:none !important");
+  // });
+  // lessonListItems.forEach((item) => {
+    // const titleEl = item.querySelector(".title"); // ~
+    // item.style.display = "flex";
+    // item.style.alignItems = "center";
+    // item.style.gap = "12px";
 
-    item.querySelector(".bullet").style.position = "static"; // ~
+    // item.querySelector(".bullet").style.position = "static"; // ~
 
-    titleEl.style.position = "static";
-    titleEl.style.color = "#1C1C1C";
-    titleEl.style.display = "flex";
-    titleEl.style.alignItems = "center";
-    titleEl.style.margin = "0";
-    titleEl.style.transform = "translateY(2px)";
-  });
+    // titleEl.style.position = "static";
+    // titleEl.style.color = "#1C1C1C";
+    // titleEl.style.display = "flex";
+    // titleEl.style.alignItems = "center";
+    // titleEl.style.margin = "0";
+    // titleEl.style.transform = "translateY(2px)";
+  // });
 }
 
 // MOBILE VIEW STYLINGS
@@ -2001,8 +2004,8 @@ function mobileCurriculumPageNoCertificateStyling() {
   const InnerContentContainer = bodyMainContainer.querySelector(".columns"); // ~
   const tabsContainer = document.querySelector(".section-container.tabs"); // ~
   let [curriculumSection, aboutSection] = tabsContainer.querySelectorAll("section"); // ~
-  const pageIcons = document.querySelectorAll(".type-icon.hide-for-small"); // ~
-  const lessonListItems = document.querySelectorAll(".lesson-row"); // ~
+  // const pageIcons = document.querySelectorAll(".type-icon.hide-for-small"); // ~
+  // const lessonListItems = document.querySelectorAll(".lesson-row"); // ~
   const curriculumParentContainer = document.querySelector("#curriculum-list"); // ~
   const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
   const curriculumOutsideContainer = curriculumParentContainer.closest(".content");
@@ -2221,24 +2224,24 @@ function mobileCurriculumPageNoCertificateStyling() {
   }
 
   // CURRICULUM ITSELF STYLING
-  pageIcons.forEach((pageIcon) => {
-    pageIcon.setAttribute("style", "display:none !important");
-  });
-  lessonListItems.forEach((item) => {
-    const titleEl = item.querySelector(".title"); // ~
-    item.style.display = "flex";
-    item.style.alignItems = "center";
-    item.style.gap = "12px";
+  // pageIcons.forEach((pageIcon) => {
+  //   pageIcon.setAttribute("style", "display:none !important");
+  // });
+  // lessonListItems.forEach((item) => {
+    // const titleEl = item.querySelector(".title"); // ~
+    // item.style.display = "flex";
+    // item.style.alignItems = "center";
+    // item.style.gap = "12px";
 
-    item.querySelector(".bullet").style.position = "static"; // ~
+    // item.querySelector(".bullet").style.position = "static"; // ~
 
-    titleEl.style.position = "static";
-    titleEl.style.color = "#1C1C1C";
-    titleEl.style.display = "flex";
-    titleEl.style.alignItems = "center";
-    titleEl.style.margin = "0";
-    titleEl.style.transform = "translateY(2px)";
-  });
+    // titleEl.style.position = "static";
+    // titleEl.style.color = "#1C1C1C";
+    // titleEl.style.display = "flex";
+    // titleEl.style.alignItems = "center";
+    // titleEl.style.margin = "0";
+    // titleEl.style.transform = "translateY(2px)";
+  // });
 
   // FOOTER STYLING
   footerContainer.style.paddingLeft = 0;
@@ -2283,8 +2286,8 @@ function mobileCurriculumPageYesCertificateStyling() {
     tabsContainer.append(curriculumSection, aboutSection);
   }
 
-  const pageIcons = document.querySelectorAll(".type-icon.hide-for-small"); // ~
-  const lessonListItems = document.querySelectorAll(".lesson-row"); // ~
+  // const pageIcons = document.querySelectorAll(".type-icon.hide-for-small"); // ~
+  // const lessonListItems = document.querySelectorAll(".lesson-row"); // ~
   const curriculumParentContainer = document.querySelector("#curriculum-list"); // ~
   const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
   const curriculumOutsideContainer =
@@ -2490,25 +2493,25 @@ function mobileCurriculumPageYesCertificateStyling() {
   }
 
   // CURRICULUM ITSELF STYLING
-  pageIcons.forEach((pageIcon) => {
-    pageIcon.setAttribute("style", "display:none !important");
-  });
+  // pageIcons.forEach((pageIcon) => {
+  //   pageIcon.setAttribute("style", "display:none !important");
+  // });
 
-  lessonListItems.forEach((item) => {
-    const titleEl = item.querySelector(".title"); // ~
-    item.style.display = "flex";
-    item.style.alignItems = "center";
-    item.style.gap = "12px";
+  // lessonListItems.forEach((item) => {
+  //   const titleEl = item.querySelector(".title"); // ~
+    // item.style.display = "flex";
+    // item.style.alignItems = "center";
+    // item.style.gap = "12px";
 
-    item.querySelector(".bullet").style.position = "static"; // ~
+    // item.querySelector(".bullet").style.position = "static"; // ~
 
-    titleEl.style.position = "static";
-    titleEl.style.color = "#1C1C1C";
-    titleEl.style.display = "flex";
-    titleEl.style.alignItems = "center";
-    titleEl.style.margin = "0";
-    titleEl.style.transform = "translateY(2px)";
-  });
+    // titleEl.style.position = "static";
+    // titleEl.style.color = "#1C1C1C";
+    // titleEl.style.display = "flex";
+    // titleEl.style.alignItems = "center";
+    // titleEl.style.margin = "0";
+    // titleEl.style.transform = "translateY(2px)";
+  // });
 
   // FOOTER STYLING
   footerContainer.style.paddingLeft = 0;
