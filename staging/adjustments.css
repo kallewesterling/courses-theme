@@ -298,7 +298,7 @@ body.sj-page-signup #access-message {
     }
 }
 
-#cp-content, #dp-content {
+#cp-content, #dp-details {
     /* bodyColumns */
     .columns {
         float: none !important;

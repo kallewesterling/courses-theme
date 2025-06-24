@@ -187,10 +187,10 @@ function desktopCourseDetailsPageStyling() {
       column.style.marginBottom = "48px";
     }
 
-    const innerCol = column.querySelector(".dp-curriculum"); // ~
-    if (innerCol) {
-      innerCol.style.margin = "0";
-    }
+    // const innerCol = column.querySelector(".dp-curriculum"); // ~
+    // if (innerCol) {
+    //   innerCol.style.margin = "0";
+    // }
   });
 
   //COURSE DETAILS CURRICULUM STYLING
@@ -1847,21 +1847,21 @@ function mobileCourseDetailsPageStyling() {
   secondaryBodyContainer.style.display = "grid"; // !important;
 
   bodyColumns.forEach((column) => {
-    column.style.float = "none";
-    column.style.padding = "0";
-    column.style.width = "100%";
-    column.style.display = "block";
+    // column.style.float = "none";
+    // column.style.padding = "0";
+    // column.style.width = "100%";
+    // column.style.display = "block";
 
-    column.querySelector("h3").style.fontWeight = "600"; // ~
+    // column.querySelector("h3").style.fontWeight = "600"; // ~
 
     if (column.classList.contains("large-7")) {
       column.style.marginBottom = "48px";
     }
 
-    const innerCol = column.querySelector(".dp-curriculum"); // ~
-    if (innerCol) {
-      innerCol.style.margin = "0";
-    }
+    // const innerCol = column.querySelector(".dp-curriculum"); // ~
+    // if (innerCol) {
+      // innerCol.style.margin = "0";
+    // }
   });
 
   // COURSE DETAILS CURRICULUM STYLING
