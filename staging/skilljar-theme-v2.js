@@ -18,7 +18,7 @@ const body = document.querySelector("body"); // ~
 const elements = {}
 
 function getElem(selector) {
-  if (!hasOwnProperty(elements, selector)) {
+  if (elements[selector] === undefined) {
     elements[selector] = document.querySelector(selector);
   }
   
@@ -987,7 +987,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   let [curriculumSection, aboutSection] = document.querySelectorAll(".section-container.tabs section"); // ~
   curriculumSection.id = "curriculum-section";
   aboutSection.id = "about-section";
-  // aboutSection.classList.add("active"); /* TODO: This may be causing some problem */
+  aboutSection.classList.add("active"); /* TODO: This may be causing some problem */
 
   // const pageIcons = document.querySelectorAll(".type-icon.hide-for-small"); // ~
   // const lessonListItems = document.querySelectorAll(".lesson-row"); // ~
