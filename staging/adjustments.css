@@ -203,6 +203,12 @@ body.sj-page-signup #access-message {
     .video-max {
         max-width: none !important;
     }
+
+    /* mainHeadingContainer */
+    .dp-summary-wrapper {
+        border: 0px !important;
+        max-width: 564px !important; /* 600px set on Learning Paths in JS */
+    }
 }
 
 @media (max-width: 991px) {
@@ -222,6 +228,11 @@ body.sj-page-signup #access-message {
         /* mainVideoContainer */
         .dp-promo-image-wrapper {
             padding: 0 !important;
+            max-width: none !important;
+            width: 100% !important;
+        }
+
+        .dp-summary-wrapper { 
             max-width: none !important;
             width: 100% !important;
         }

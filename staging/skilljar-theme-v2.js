@@ -146,8 +146,8 @@ function desktopCourseDetailsPageStyling() {
   // headerFlexContainer.style.maxWidth = "1188px";
 
   //RENDERING OF COURSE DETAILS PAGE TEXT HEADING ON LEFT
-  mainHeadingContainer.style.border = "0";
-  mainHeadingContainer.style.maxWidth = "564px";
+  // mainHeadingContainer.style.border = "0";
+  // mainHeadingContainer.style.maxWidth = "564px";
   mainInfoCardContained.style.display = "none";
   // headingFloaterText.style.display = "block";
   // headingFloaterText.style.marginBottom = "24px";
@@ -348,8 +348,8 @@ function desktopPathCourseDetailsPageStyling() {
   // headerFlexContainer.style.maxWidth = "1188px";
 
   // RENDERING OF COURSE DETAILS PAGE TEXT HEADING ON LEFT
-  mainHeadingContainer.style.border = "0";
-  mainHeadingContainer.style.maxWidth = "600px";
+  // mainHeadingContainer.style.border = "0";
+  // mainHeadingContainer.style.maxWidth = "600px";
   mainInfoCardContained.style.display = "none";
   headingFloaterText.textContent = "Learning Path";
   // headingFloaterText.style.color = "#7AF0FE";
@@ -1791,9 +1791,9 @@ function mobileCourseDetailsPageStyling() {
   // headerFlexContainer.style.maxWidth = "1188px";
 
   // RENDERING OF COURSE DETAILS PAGE TEXT HEADING ON LEFT
-  mainHeadingContainer.style.border = "0";
-  mainHeadingContainer.style.maxWidth = "none";
-  mainHeadingContainer.style.width = "100%";
+  // mainHeadingContainer.style.border = "0";
+  // mainHeadingContainer.style.maxWidth = "none";
+  // mainHeadingContainer.style.width = "100%";
   mainHeadingContainer.querySelector(".sj-course-info-wrapper").style.display = "none"; // ~
   // headingFloaterText.style.display = "block";
   // headingFloaterText.style.marginBottom = "24px";
