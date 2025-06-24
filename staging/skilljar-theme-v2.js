@@ -53,6 +53,7 @@ function insertFooter() {
 }
 
 function desktopCatalogPageStyling() {
+  inProd ? undefined : console.log("desktopCatalogPageStyling called");
   // Style desktop view
   
   //grab variables
@@ -79,6 +80,7 @@ function desktopCatalogPageStyling() {
 }
 
 function desktopCourseDetailsPageStyling() {
+  inProd ? undefined : console.log("desktopCourseDetailsPageStyling called");
   // const headerContainer = document.querySelector(".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"); // ~
   // const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
@@ -211,6 +213,7 @@ function desktopCourseDetailsPageStyling() {
     }
 
     function styleGroupContainer(container) {
+      inProd ? undefined : console.log("styleGroupContainer called");
       container.style.border = "2px solid #3443F4";
       container.style.borderRadius = "8px";
       container.style.marginBottom = "48px";
@@ -218,6 +221,7 @@ function desktopCourseDetailsPageStyling() {
     }
 
     function styleListItem(lessonItem, isLastChild) {
+      inProd ? undefined : console.log("styleListItem called");
       //display none for icon w/ class 'type-icon'
       const icon = lessonItem.querySelector(".type-icon"); // ~
       icon.style.display = "none";
@@ -234,6 +238,7 @@ function desktopCourseDetailsPageStyling() {
     }
 
     function styleGroupHeading(groupHeading) {
+      inProd ? undefined : console.log("styleGroupHeading called");
       groupHeading.textContent = groupHeading?.textContent?.trim();
       groupHeading.style.fontSize = "16px";
       groupHeading.style.fontWeight = "500";
@@ -297,6 +302,7 @@ function desktopCourseDetailsPageStyling() {
 }
 
 function desktopPathCourseDetailsPageStyling() {
+  inProd ? undefined : console.log("desktopPathCourseDetailsPageStyling called");
   // const headerContainer = document.querySelector(".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"); // ~
   // const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
@@ -382,6 +388,7 @@ function desktopPathCourseDetailsPageStyling() {
 }
 
 function desktopPathCatalogPageStyling() {
+  inProd ? undefined : console.log("desktopPathCatalogPageStyling called");
   const backArrowBtn = document.querySelector(".back-to-catalog"); // ~
 
   const mainContentContainer = document.getElementById("catalog-content"); // ~
@@ -424,6 +431,7 @@ function desktopPathCatalogPageStyling() {
 }
 
 function desktopLessonPageStyling() {
+  inProd ? undefined : console.log("desktopLessonPageStyling called");
   const leftNav = document.getElementById("lp-left-nav"); // ~
   const mainLessonContentContainer = document.getElementById("lp-wrapper"); // ~
   const mainLessonContentSubContainer = document.getElementById("lp-content"); // ~
@@ -574,6 +582,7 @@ function desktopLessonPageStyling() {
   // HANDLE CODE BLOCK CUSTOM STYLING
 
   function animateCopiedTooltip(tooltipEl) {
+    inProd ? undefined : console.log("animateCopiedTooltip called");
     tooltipEl.style.opacity = "1";
 
     setTimeout(() => {
@@ -657,6 +666,7 @@ function desktopLessonPageStyling() {
 }
 
 function desktopLoginPageStyling() {
+  inProd ? undefined : console.log("desktopLoginPageStyling called");
   const fbBtn = document.getElementById("facebook_login"); // ~
   const googleBtn = document.getElementById("google_login"); // ~
   const loginContent = document.getElementById("login-content"); // ~
@@ -771,6 +781,7 @@ function desktopLoginPageStyling() {
 }
 
 function desktopSignUpPageStyling() {
+  inProd ? undefined : console.log("desktopSignUpPageStyling called");
   const fbBtn = document.getElementById("facebook_login"); // ~
   const googleBtn = document.getElementById("google_login"); // ~
   const loginContent = document.getElementById("login-content"); // ~
@@ -922,6 +933,7 @@ function desktopSignUpPageStyling() {
 }
 
 function desktopCurriculumPageNoCertificateStyling() {
+  inProd ? undefined : console.log("desktopCurriculumPageNoCertificateStyling called");
   const courseDescription = skilljarCourse.short_description;
 
   // HEADER VARIABLES
@@ -1103,6 +1115,7 @@ function desktopCurriculumPageNoCertificateStyling() {
     }
 
     function styleGroupContainer(container) {
+      inProd ? undefined : console.log("styleGroupContainer called");
       container.style.border = "2px solid #3443f4";
       container.style.borderRadius = "8px";
       container.style.marginBottom = "48px";
@@ -1110,6 +1123,7 @@ function desktopCurriculumPageNoCertificateStyling() {
     }
 
     function styleListItem(lessonEl, isLastChild) {
+      inProd ? undefined : console.log("styleListItem called");
       lessonEl.style.padding = "24px";
       lessonEl.style.fontSize = "16px";
       lessonEl.style.fontWeight = "400";
@@ -1120,6 +1134,7 @@ function desktopCurriculumPageNoCertificateStyling() {
     }
 
     function styleGroupHeading(groupHeadingContainer) {
+      inProd ? undefined : console.log("styleGroupHeading called");
       groupHeadingContainer.style.padding = "24px";
       groupHeadingContainer.style.borderBottom = "2px solid #3443f4";
 
@@ -1219,6 +1234,7 @@ function desktopCurriculumPageNoCertificateStyling() {
 }
 
 function desktopCurriculumPageYesCertificationStyling() {
+  inProd ? undefined : console.log("desktopCurriculumPageYesCertificationStyling called");
   const courseDescription = skilljarCourse.short_description;
   inProd ? undefined : console.log("courseDescription: ", courseDescription);
 
@@ -1370,6 +1386,7 @@ function desktopCurriculumPageYesCertificationStyling() {
     }
 
     function styleGroupContainer(container) {
+      inProd ? undefined : console.log("styleGroupContainer called");
       container.style.border = "2px solid #3443f4";
       container.style.borderRadius = "8px";
       container.style.marginBottom = "48px";
@@ -1377,6 +1394,7 @@ function desktopCurriculumPageYesCertificationStyling() {
     }
 
     function styleListItem(lessonEl, isLastChild) {
+      inProd ? undefined : console.log("styleListItem called");
       lessonEl.style.padding = "24px";
       lessonEl.style.fontSize = "16px";
       lessonEl.style.fontWeight = "400";
@@ -1387,6 +1405,7 @@ function desktopCurriculumPageYesCertificationStyling() {
     }
 
     function styleGroupHeading(groupHeadingContainer) {
+      inProd ? undefined : console.log("styleGroupHeading called");
       groupHeadingContainer.style.padding = "24px";
       groupHeadingContainer.style.borderBottom = "2px solid #3443f4";
 
@@ -1472,6 +1491,7 @@ function desktopCurriculumPageYesCertificationStyling() {
 
 // MOBILE VIEW STYLINGS
 function mobileLoginPageStyling() {
+  inProd ? undefined : console.log("mobileLoginPageStyling called");
   const fbBtn = document.getElementById("facebook_login"); // ~
   const googleBtn = document.getElementById("google_login"); // ~
   const loginContent = document.getElementById("login-content"); // ~
@@ -1576,7 +1596,7 @@ function mobileLoginPageStyling() {
 }
 
 function mobileSignUpPageStyling() {
-  inProd ? undefined : console.log("SIGN UP PAGE VIEW");
+  inProd ? undefined : console.log("mobileSignUpPageStyling called");
   const fbBtn = document.getElementById("facebook_login"); // ~
   const googleBtn = document.getElementById("google_login"); // ~
   const loginContent = document.getElementById("login-content"); // ~
@@ -1723,6 +1743,7 @@ function mobileSignUpPageStyling() {
 }
 
 function mobileCourseDetailsPageStyling() {
+  inProd ? undefined : console.log("mobileCourseDetailsPageStyling called");
   // NAV VARS
   // const headerContainer = document.querySelector(".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"); // ~
   // const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
@@ -1859,6 +1880,7 @@ function mobileCourseDetailsPageStyling() {
     }
 
     function styleGroupContainer(container) {
+      inProd ? undefined : console.log("styleGroupContainer called");
       container.style.border = "1px solid #DCDCDC";
       container.style.borderRadius = "8px";
       container.style.marginBottom = "48px";
@@ -1866,6 +1888,7 @@ function mobileCourseDetailsPageStyling() {
     }
 
     function styleListItem(lessonItem, isLastChild) {
+      inProd ? undefined : console.log("styleListItem called");
       // display none for icon w/ class 'type-icon'
       const icon = lessonItem.querySelector(".type-icon"); // ~
       icon.style.display = "none";
@@ -1882,6 +1905,7 @@ function mobileCourseDetailsPageStyling() {
     }
 
     function styleGroupHeading(groupHeading) {
+      inProd ? undefined : console.log("styleGroupHeading called");
       groupHeading.textContent = groupHeading?.textContent?.trim();
       groupHeading.style.fontSize = "16px";
       groupHeading.style.fontWeight = "500";
@@ -1952,6 +1976,7 @@ function mobileCourseDetailsPageStyling() {
 }
 
 function mobileCurriculumPageNoCertificateStyling() {
+  inProd ? undefined : console.log("mobileCurriculumPageNoCertificateStyling called");
   // HEADER VARIABLES
   const headingParagraph = document.querySelector(".sj-heading-paragraph"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
@@ -2112,6 +2137,7 @@ function mobileCurriculumPageNoCertificateStyling() {
     }
 
     function styleGroupContainer(container) {
+      inProd ? undefined : console.log("styleGroupContainer called");
       container.style.border = "1px solid #DCDCDC";
       container.style.borderRadius = "8px";
       container.style.marginBottom = "48px";
@@ -2119,6 +2145,7 @@ function mobileCurriculumPageNoCertificateStyling() {
     }
 
     function styleListItem(lessonEl, isLastChild) {
+      inProd ? undefined : console.log("styleListItem called");
       lessonEl.style.padding = "24px";
       lessonEl.style.fontSize = "16px";
       lessonEl.style.fontWeight = "400";
@@ -2129,6 +2156,7 @@ function mobileCurriculumPageNoCertificateStyling() {
     }
 
     function styleGroupHeading(groupHeadingContainer) {
+      inProd ? undefined : console.log("styleGroupHeading called");
       groupHeadingContainer.style.padding = "24px";
       groupHeadingContainer.style.borderBottom = "1px solid #DCDCDC";
 
@@ -2225,6 +2253,7 @@ function mobileCurriculumPageNoCertificateStyling() {
 }
 
 function mobileCurriculumPageYesCertificateStyling() {
+  inProd ? undefined : console.log("mobileCurriculumPageYesCertificateStyling called");
   // HEADER VARIABLES
   const headingParagraph = document.querySelector(".sj-heading-paragraph"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
@@ -2379,6 +2408,7 @@ function mobileCurriculumPageYesCertificateStyling() {
     }
 
     function styleGroupContainer(container) {
+      inProd ? undefined : console.log("styleGroupContainer called");
       container.style.border = "1px solid #DCDCDC";
       container.style.borderRadius = "8px";
       container.style.marginBottom = "48px";
@@ -2386,6 +2416,7 @@ function mobileCurriculumPageYesCertificateStyling() {
     }
 
     function styleListItem(lessonEl, isLastChild) {
+      inProd ? undefined : console.log("styleListItem called");
       lessonEl.style.padding = "24px";
       lessonEl.style.fontSize = "16px";
       lessonEl.style.fontWeight = "400";
@@ -2396,6 +2427,7 @@ function mobileCurriculumPageYesCertificateStyling() {
     }
 
     function styleGroupHeading(groupHeadingContainer) {
+      inProd ? undefined : console.log("styleGroupHeading called");
       groupHeadingContainer.style.padding = "24px";
       groupHeadingContainer.style.borderBottom = "1px solid #DCDCDC";
 
@@ -2491,6 +2523,7 @@ function mobileCurriculumPageYesCertificateStyling() {
 }
 
 function mobileLessonPageStyling() {
+  inProd ? undefined : console.log("mobileLessonPageStyling called");
   const leftNav = document.getElementById("lp-left-nav"); // ~
   const mainLessonContentContainer = document.getElementById("lp-wrapper"); // ~
   const mainLessonContentSubContainer = document.getElementById("lp-content"); // ~
@@ -2659,6 +2692,7 @@ function mobileLessonPageStyling() {
   // HANDLE CODE BLOCK CUSTOM STYLING
 
   function animateCopiedTooltip(tooltipEl) {
+    inProd ? undefined : console.log("animateCopiedTooltip called");
     tooltipEl.style.opacity = "1";
 
     setTimeout(() => {
@@ -2786,6 +2820,8 @@ function handlePageStyling(
 }
 
 function renderCourse() {
+  inProd ? undefined : console.log("renderCourse called");
+
   handlePageStyling(
     {
       isCatalogPage,
