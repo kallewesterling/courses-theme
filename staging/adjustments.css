@@ -180,7 +180,7 @@ body.sj-page-signup #access-message {
         font-size: 36px !important;
         font-weight: 600 !important;
         line-height: 43.2px !important;
-        letter-spacing: -0.02em !important;
+        letter-spacing: -0.5px !important;
     }
 
     /* headingFloaterText */
@@ -197,6 +197,7 @@ body.sj-page-signup #access-message {
         justify-content: start !important;
         gap: 24px !important;
         max-width: 1188px !important;
+        margin: 96px 0 !important;
     }
 
     /* videoContainer */
@@ -218,6 +219,11 @@ body.sj-page-signup #access-message {
         .sj-course-info-wrapper {
             display: none !important;
         }
+    }
+
+    /* resumeBtn */
+    #resume-button {
+        margin: 0px !important;
     }
 }
 
