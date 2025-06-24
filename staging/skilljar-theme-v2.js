@@ -88,7 +88,7 @@ function desktopCourseDetailsPageStyling() {
   const bodyContainer = document.querySelector("#dp-details"); // ~
   // const mobileBodyContent = document.querySelector(".row.show-for-small"); // ~
   const secondaryBodyContainer = document.querySelector(".row.hide-for-small.padded-side-bottom"); // ~
-  const bodyColumns = secondaryBodyContainer.querySelectorAll(".columns"); // ~
+  // const bodyColumns = secondaryBodyContainer.querySelectorAll(".columns"); // ~
   const curriculumListContainer = document.querySelector(".dp-curriculum"); //NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)! // ~
   const curriculumListHeader = curriculumListContainer
     .closest(".sj-curriculum-wrapper")
@@ -175,7 +175,7 @@ function desktopCourseDetailsPageStyling() {
 
   secondaryBodyContainer.style.padding = "0";
   secondaryBodyContainer.style.maxWidth = "760px";
-  bodyColumns.forEach((column) => {
+  // bodyColumns.forEach((column) => {
     // column.style.float = "none";
     // column.style.padding = "0";
     // column.style.width = "100%";
@@ -191,7 +191,7 @@ function desktopCourseDetailsPageStyling() {
     // if (innerCol) {
     //   innerCol.style.margin = "0";
     // }
-  });
+  // });
 
   //COURSE DETAILS CURRICULUM STYLING
   if (!initialLoadComplete) {
@@ -1756,7 +1756,7 @@ function mobileCourseDetailsPageStyling() {
   const bodyContainer = document.querySelector("#dp-details"); // ~
   // const mobileBodyContent = document.querySelector(".row.show-for-small"); // ~
   const secondaryBodyContainer = document.querySelector(".row.hide-for-small.padded-side-bottom"); // ~
-  const bodyColumns = secondaryBodyContainer.querySelectorAll(".columns"); // ~
+  // const bodyColumns = secondaryBodyContainer.querySelectorAll(".columns"); // ~
   const curriculumListContainer = document.querySelector(".dp-curriculum"); // NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)! // ~
   const curriculumListHeader = curriculumListContainer
     .closest(".sj-curriculum-wrapper")
@@ -1846,7 +1846,7 @@ function mobileCourseDetailsPageStyling() {
   secondaryBodyContainer.style.maxWidth = "760px";
   secondaryBodyContainer.style.display = "grid"; // !important;
 
-  bodyColumns.forEach((column) => {
+  // bodyColumns.forEach((column) => {
     // column.style.float = "none";
     // column.style.padding = "0";
     // column.style.width = "100%";
@@ -1862,7 +1862,7 @@ function mobileCourseDetailsPageStyling() {
     // if (innerCol) {
       // innerCol.style.margin = "0";
     // }
-  });
+  // });
 
   // COURSE DETAILS CURRICULUM STYLING
   if (!initialLoadComplete) {
