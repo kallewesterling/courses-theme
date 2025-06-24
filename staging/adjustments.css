@@ -282,6 +282,12 @@ body.sj-page-signup #access-message {
     }
 }
 
+/* courseDetailCardContainer */
+.course-details-card {
+    margin: 0 0 46px 0 !important;
+    justify-self: center !important;
+}
+
 /* #skilljar-content .top-row-grey::before {
     background-image: url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png) !important;
     background-size: cover !important;

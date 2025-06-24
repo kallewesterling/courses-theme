@@ -284,8 +284,8 @@ function desktopCourseDetailsPageStyling() {
   //COURSE DETAILS GRID STRUCTURE STYLING - ADDING DETAILS CARD ON RIGHT SIDE
   if (courseDetailCardContainer) {
     bodyContainer.append(courseDetailCardContainer);
-    courseDetailCardContainer.style.margin = "0 0 46px 0";
-    courseDetailCardContainer.style.justifySelf = "center";
+    // courseDetailCardContainer.style.margin = "0 0 46px 0";
+    // courseDetailCardContainer.style.justifySelf = "center";
     courseDetailCardListItems.forEach((li) => {
       const iconClone = checkboxIcon.cloneNode(true);
       iconClone.style.display = "block";
@@ -1964,8 +1964,8 @@ function mobileCourseDetailsPageStyling() {
   }
 
   // COURSE DETAILS GRID STRUCTURE STYLING - ADDING DETAILS CARD ON RIGHT SIDE
-  courseDetailCardContainer.style.margin = "0 0 46px 0";
-  courseDetailCardContainer.style.justifySelf = "center";
+  // courseDetailCardContainer.style.margin = "0 0 46px 0";
+  // courseDetailCardContainer.style.justifySelf = "center";
 
   // FOOTER STYLING
   footerContainer.style.paddingLeft = 0;
