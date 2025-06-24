@@ -176,12 +176,12 @@ function desktopCourseDetailsPageStyling() {
   secondaryBodyContainer.style.padding = "0";
   secondaryBodyContainer.style.maxWidth = "760px";
   bodyColumns.forEach((column) => {
-    column.style.float = "none";
-    column.style.padding = "0";
-    column.style.width = "100%";
-    column.style.display = "block";
+    // column.style.float = "none";
+    // column.style.padding = "0";
+    // column.style.width = "100%";
+    // column.style.display = "block";
 
-    column.querySelector("h3").style.fontWeight = "600"; // ~
+    // column.querySelector("h3").style.fontWeight = "600"; // ~
 
     if (column.classList.contains("large-7")) {
       column.style.marginBottom = "48px";

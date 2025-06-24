@@ -298,6 +298,25 @@ body.sj-page-signup #access-message {
     }
 }
 
+#cp-content, #dp-content {
+    /* bodyColumns */
+    .columns {
+        float: none !important;
+        padding: 0 !important;
+        width: 100% !important;
+        display: block !important;
+
+        h3 {
+            font-weight: 600 !important;
+        }
+
+        /* innerCol */
+        ul.dp-curriculum {
+            margin: 0 !important;
+        }
+    }
+}
+
 /* #skilljar-content .top-row-grey::before {
     background-image: url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png) !important;
     background-size: cover !important;
