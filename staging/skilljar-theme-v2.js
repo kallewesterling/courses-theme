@@ -1145,13 +1145,15 @@ function desktopCurriculumPageNoCertificateStyling() {
 
     function styleGroupHeading(groupHeadingContainer) {
       inProd ? undefined : console.log("styleGroupHeading called");
+      groupHeadingContainer.classList.add("module-list-heading-container");
       groupHeadingContainer.style.padding = "24px";
       groupHeadingContainer.style.borderBottom = "2px solid #3443f4";
 
       // get actual group heading
       const groupHeading = groupHeadingContainer.querySelector("h3") || groupHeadingContainer; // ~
-
+      groupHeading.classList.add("module-list-heading");
       groupHeading.textContent = groupHeading?.textContent?.trim();
+
       groupHeading.style.fontSize = "16px";
       groupHeading.style.fontFamily = "Fusiona";
       groupHeading.style.fontWeight = "500";
