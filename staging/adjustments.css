@@ -218,6 +218,13 @@ body.sj-page-signup #access-message {
         .video-max {
             padding: 15px 0 15px 0 !important;            
         }
+
+        /* mainVideoContainer */
+        .dp-promo-image-wrapper {
+            padding: 0 !important;
+            max-width: none !important;
+            width: 100% !important;
+        }
     }
 }
 

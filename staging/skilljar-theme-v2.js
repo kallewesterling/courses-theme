@@ -1731,7 +1731,7 @@ function mobileCourseDetailsPageStyling() {
   const headingParagraph = document.querySelector(".sj-heading-paragraph"); // ~
   const registerBtn = document.getElementById("purchase-button-wrapper-large"); // ~
   const mainHeadingContainer = document.querySelector(".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"); // ~
-  const mainVideoContainer = document.querySelector(".columns.large-6.text-center.dp-promo-image-wrapper"); // ~
+  // const mainVideoContainer = document.querySelector(".columns.large-6.text-center.dp-promo-image-wrapper"); // ~
   // const backToCatalogBtn = document.querySelector(".back-to-catalog"); // ~
   // const videoContainer = document.querySelector(".video-max"); // ~
   // SIGN IN VARIABLES (WHEN USER NOT LOGGED IN)
@@ -1812,9 +1812,9 @@ function mobileCourseDetailsPageStyling() {
   );
 
   // VIDEO STYLING
-  mainVideoContainer.style.padding = "0";
-  mainVideoContainer.style.maxWidth = "none";
-  mainVideoContainer.style.width = "100%";
+  // mainVideoContainer.style.padding = "0";
+  // mainVideoContainer.style.maxWidth = "none";
+  // mainVideoContainer.style.width = "100%";
   // videoContainer.style.maxWidth = "none";
   // videoContainer.style.paddingLeft = "15px";
   // videoContainer.style.paddingRight = "15px";
