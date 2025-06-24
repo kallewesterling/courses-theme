@@ -379,6 +379,23 @@ body.sj-page-signup #access-message {
                 border-radius: 8px !important;
                 margin-bottom: 48px !important;
                 padding: 0px !important;
+                
+                /* groupHeadingContainer */
+                .module-list-heading-container {
+                    display: flex !important;
+                    gap: 12px !important;
+                    padding: 24px !important;
+                    border-bottom: 2px solid rgb(52, 67, 244) !important;
+
+                    h3 {
+                        font-size: 16px !important;
+                        font-family: Fusiona !important;
+                        font-weight: 500 !important;
+                        line-height: 125% !important;
+                        letter-spacing: -0.16px !important;
+                        margin: 0px !important;
+                    }
+                }
             }
 
             .module-list-gray-border {
