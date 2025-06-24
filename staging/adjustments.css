@@ -206,7 +206,7 @@ body.sj-page-signup #access-message {
     }
 
     /* mainHeadingContainer */
-    .sj-summary, .dp-summary-wrapper {
+    .sj-summary, .dp-summary-wrapper { /* cp-summary-wrapper also, maybe that's breaking? */
         border: 0px !important;
         max-width: 564px !important; /* 600px set on Learning Paths in JS */
 
@@ -298,7 +298,15 @@ body.sj-page-signup #access-message {
     }
 }
 
+/* bodyMainContainer */
 #cp-content, #dp-details {
+    display: grid !important;
+    margin-top: 96px !important;
+    grid-template-columns: minmax(100px, 760px) minmax(100px, 368px) !important;
+    column-gap: 24px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+
     /* bodyColumns */
     .columns {
         float: none !important;
@@ -317,6 +325,13 @@ body.sj-page-signup #access-message {
     }
 }
 
+@media (max-width: 991px) {
+    /* bodyMainContainer */
+    #cp-content, #dp-details {
+        grid-template-columns: 1fr !important;
+        width: 90% !important;
+    }
+}
 /* #skilljar-content .top-row-grey::before {
     background-image: url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png) !important;
     background-size: cover !important;
