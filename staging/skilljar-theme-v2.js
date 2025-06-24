@@ -213,13 +213,13 @@ function desktopCourseDetailsPageStyling() {
       container.style.padding = "0";
     }
 
-    function styleListItem(lessonItem, isLastChild) {
+    function styleListItem(lessonEl, isLastChild) {
       inProd ? undefined : console.log("styleListItem called");
       //display none for icon w/ class 'type-icon'
-      const icon = lessonItem.querySelector(".type-icon"); // ~
+      const icon = lessonEl.querySelector(".type-icon"); // ~
       icon.style.display = "none";
 
-      const lessonItemText = lessonItem.querySelector(".lesson-wrapper"); // ~
+      const lessonItemText = lessonEl.querySelector(".lesson-wrapper"); // ~
       lessonItemText.style.padding = "24px";
       lessonItemText.style.fontSize = "16px";
       lessonItemText.style.fontWeight = "400";
@@ -314,7 +314,7 @@ function desktopPathCourseDetailsPageStyling() {
   // const signInBtn = document.querySelector(".header-link.login-link.sj-text-sign-in.focus-link-v2"); // ~
   ////BODY VARIABLES
   // const bodyContainer = document.querySelector("#dp-details-bundle"); // ~
-  const catalogContainer = document.querySelector("#catalog-courses"); // ~
+  // const catalogContainer = document.querySelector("#catalog-courses"); // ~
 
   // backToCatalogBtn.style.display = "none";
   // if (signInHeaderText) {
@@ -375,7 +375,7 @@ function desktopPathCourseDetailsPageStyling() {
   // bodyContainer.style.padding = "0";
   // bodyContainer.style.margin = "96px auto 46px auto";
   // bodyContainer.style.maxWidth = "min(1152px, 90%)";
-  catalogContainer.style.marginBottom = "85px";
+  // catalogContainer.style.marginBottom = "85px";
   
   inProd ? undefined : console.log("reached end of path func");
 }
@@ -1881,13 +1881,13 @@ function mobileCourseDetailsPageStyling() {
       container.style.padding = "0";
     }
 
-    function styleListItem(lessonItem, isLastChild) {
+    function styleListItem(lessonEl, isLastChild) {
       inProd ? undefined : console.log("styleListItem called");
       // display none for icon w/ class 'type-icon'
-      const icon = lessonItem.querySelector(".type-icon"); // ~
+      const icon = lessonEl.querySelector(".type-icon"); // ~
       icon.style.display = "none";
 
-      const lessonItemText = lessonItem.querySelector(".lesson-wrapper"); // ~
+      const lessonItemText = lessonEl.querySelector(".lesson-wrapper"); // ~
       lessonItemText.style.padding = "24px";
       lessonItemText.style.fontSize = "16px";
       lessonItemText.style.fontWeight = "400";
