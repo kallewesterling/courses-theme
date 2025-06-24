@@ -302,7 +302,7 @@ function desktopPathCourseDetailsPageStyling() {
   const mainHeading = document.querySelector(".break-word"); // ~
   const registerBtn = document.querySelector("#purchase-button-wrapper-large"); // ~
   const registerBtnAnchor = document.querySelector("#purchase-button"); // ~
-  const mainHeadingContainer = document.querySelector(".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"); // ~
+  const mainHeadingContainer = document.querySelector(".dp-summary-wrapper"); // ~
   
   // const backToCatalogBtn = document.querySelector(".back-to-catalog"); // ~
 
