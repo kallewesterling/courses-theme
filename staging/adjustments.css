@@ -391,6 +391,11 @@ body.sj-page-signup #access-message {
     #cp-content, #dp-details {
         grid-template-columns: 1fr !important;
         width: 90% !important;
+        
+        /* InnerContentContainer */
+        .columns {
+            width: 100% !important;
+        }
     }
 }
 /* #skilljar-content .top-row-grey::before {
