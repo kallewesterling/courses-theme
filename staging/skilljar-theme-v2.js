@@ -103,10 +103,7 @@ function desktopCourseDetailsPageStyling() {
 
   ////CARD VARIABLES
   const courseDetailCardContainer = secondaryBodyContainer.querySelector(".course-details-card"); // ~
-  let courseDetailCardListItems;
-  if (courseDetailCardContainer) {
-    courseDetailCardListItems = courseDetailCardContainer.querySelectorAll("li"); // ~
-  }
+  const courseDetailCardListItems = document.querySelectorAll(".course-details-card li"); // ~
   const checkboxIcon = document.querySelector(".checkbox-icon"); // ~
   const registerBtnLink = document
     .querySelector("#purchase-button")
@@ -988,10 +985,7 @@ function desktopCurriculumPageNoCertificateStyling() {
 
   // CARD VARIABLES
   const courseDetailsCard = document.querySelector(".course-details-card"); // ~
-  let courseDetailCardListItems;
-  if (courseDetailsCard) {
-    courseDetailCardListItems = courseDetailsCard.querySelectorAll("li"); // ~
-  }
+  const courseDetailCardListItems = document.querySelectorAll(".course-details-card li"); // ~
   const checkboxIcon = document.querySelector(".checkbox-icon"); // ~
   const courseDetailsCardLink = document.querySelector(".course-details-card-link"); // ~
 
@@ -1285,7 +1279,7 @@ function desktopCurriculumPageYesCertificationStyling() {
 
   // CARD VARIABLES
   const courseDetailsCard = document.querySelector(".course-details-card"); // ~
-  const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li"); // ~
+  const courseDetailCardListItems = document.querySelectorAll(".course-details-card li"); // ~
   const checkboxIcon = document.querySelector(".checkbox-icon"); // ~
   const courseDetailsCardLink = document.querySelector(".course-details-card-link"); // ~
 
@@ -1777,7 +1771,7 @@ function mobileCourseDetailsPageStyling() {
 
   // CARD VARIABLES
   const courseDetailCardContainer = document.querySelectorAll(".course-details-card")[0]; // ~
-  const courseDetailCardListItems = courseDetailCardContainer.querySelectorAll("li"); // ~
+  const courseDetailCardListItems = document.querySelectorAll(".course-details-card li"); // ~
   const checkboxIcon = document.querySelector(".checkbox-icon"); // ~
   const registerBtnLink = document
     .querySelector("#purchase-button")
@@ -2026,7 +2020,7 @@ function mobileCurriculumPageNoCertificateStyling() {
 
   // CARD VARIABLES
   const courseDetailsCard = document.querySelector(".course-details-card"); // ~
-  const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li"); // ~
+  const courseDetailCardListItems = document.querySelectorAll(".course-details-card li"); // ~
   const checkboxIcon = document.querySelector(".checkbox-icon"); // ~
   const courseDetailsCardLink = document.querySelector(".course-details-card-link"); // ~
 
@@ -2302,7 +2296,7 @@ function mobileCurriculumPageYesCertificateStyling() {
 
   // CARD VARIABLES
   const courseDetailsCard = document.querySelector(".course-details-card"); // ~
-  const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li"); // ~
+  const courseDetailCardListItems = document.querySelectorAll(".course-details-card li"); // ~
   const checkboxIcon = document.querySelector(".checkbox-icon"); // ~
   const courseDetailsCardLink = document.querySelector(".course-details-card-link"); // ~
 
