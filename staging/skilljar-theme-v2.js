@@ -943,7 +943,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   // backToCatalogLink.style.display = "none";
 
   // const curriculumPageHeader = document.querySelector(".top-row-grey.top-row-white-v2.padding-side.row-v2"); // ~
-  const headerTextAndImgContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
+  const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   const sjHeaderTextContainer = document.querySelector(".large-8.push-4.columns.sj-summary.cp-summary-wrapper"); // ~
   // const sjHeaderTextHeading = document.querySelector(".break-word"); // ~
   // const sjHeaderTextSubheading = document.querySelector(".cp-lessons"); // ~
@@ -1057,10 +1057,10 @@ function desktopCurriculumPageNoCertificateStyling() {
   // sjHeaderImg.style.height = "auto";
   // sjHeaderImg.style.maxWidth = "100%";
   // PARENT CONTAINER
-  headerTextAndImgContainer.style.margin = "96px 0";
-  headerTextAndImgContainer.style.justifyContent = "center";
-  headerTextAndImgContainer.style.flexWrap = "nowrap";
-  headerTextAndImgContainer.style.gap = "24px";
+  headerFlexContainer.style.margin = "96px 0";
+  headerFlexContainer.style.justifyContent = "center";
+  headerFlexContainer.style.flexWrap = "nowrap";
+  headerFlexContainer.style.gap = "24px";
 
   // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   headingParagraph.textContent = courseDescription;
@@ -1247,7 +1247,7 @@ function desktopCurriculumPageYesCertificationStyling() {
   // backToCatalogLink.style.display = "none";
 
   // const curriculumPageHeader = document.querySelector(".top-row-grey.top-row-white-v2.padding-side.row-v2"); // ~
-  const headerTextAndImgContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
+  const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   const sjHeaderTextContainer = document.querySelector(".large-8.push-4.columns.sj-summary.cp-summary-wrapper"); // ~
   // const sjHeaderTextHeading = document.querySelector(".break-word"); // ~
   // const sjHeaderTextSubheading = document.querySelector(".cp-lessons"); // ~
@@ -1337,10 +1337,10 @@ function desktopCurriculumPageYesCertificationStyling() {
   // sjHeaderImg.style.height = "auto";
   // sjHeaderImg.style.maxWidth = "100%";
   // PARENT CONTAINER
-  headerTextAndImgContainer.style.margin = "96px 0";
-  headerTextAndImgContainer.style.justifyContent = "center";
-  headerTextAndImgContainer.style.flexWrap = "nowrap";
-  headerTextAndImgContainer.style.gap = "24px";
+  headerFlexContainer.style.margin = "96px 0";
+  headerFlexContainer.style.justifyContent = "center";
+  headerFlexContainer.style.flexWrap = "nowrap";
+  headerFlexContainer.style.gap = "24px";
 
   // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   headingParagraph.textContent = courseDescription;
@@ -1452,6 +1452,7 @@ function desktopCurriculumPageYesCertificationStyling() {
         // else, normal/expected behaviour
         // transfer inner html of current list item to new created div
         const newListEl = document.createElement("div");
+        newListEl.classList.add("curriculumItem");
         styleListItem(
           newListEl,
           curArr[i + 1] ? curArr[i + 1].tagName === "DIV" : true
@@ -1989,7 +1990,7 @@ function mobileCurriculumPageNoCertificateStyling() {
   // backToCatalogLink.style.display = "none";
 
   // const curriculumPageHeader = document.querySelector(".top-row-grey.top-row-white-v2.padding-side.row-v2"); // ~
-  const headerTextAndImgContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
+  const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   const sjHeaderTextContainer = document.querySelector(".large-8.push-4.columns.sj-summary.cp-summary-wrapper"); // ~
   // const sjHeaderTextHeading = document.querySelector(".break-word"); // ~
   // const sjHeaderTextSubheading = document.querySelector(".cp-lessons"); // ~
@@ -2092,10 +2093,10 @@ function mobileCurriculumPageNoCertificateStyling() {
   // sjHeaderImg.style.maxWidth = "100%";
   // PARENT CONTAINER
   container.style.width = "90%";
-  headerTextAndImgContainer.style.margin = "96px 0";
-  headerTextAndImgContainer.style.justifyContent = "center";
-  headerTextAndImgContainer.style.flexWrap = "wrap";
-  headerTextAndImgContainer.style.gap = "24px";
+  headerFlexContainer.style.margin = "96px 0";
+  headerFlexContainer.style.justifyContent = "center";
+  headerFlexContainer.style.flexWrap = "wrap";
+  headerFlexContainer.style.gap = "24px";
 
   // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   headingParagraph.style.display = "block";
@@ -2263,7 +2264,7 @@ function mobileCurriculumPageYesCertificateStyling() {
   // backToCatalogLink.style.display = "none";
 
   // const curriculumPageHeader = document.querySelector(".top-row-grey.top-row-white-v2.padding-side.row-v2"); // ~
-  const headerTextAndImgContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
+  const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   const sjHeaderTextContainer = document.querySelector(".large-8.push-4.columns.sj-summary.cp-summary-wrapper"); // ~
   // const sjHeaderTextHeading = document.querySelector(".break-word"); // ~
   // const sjHeaderTextSubheading = document.querySelector(".cp-lessons"); // ~
@@ -2362,10 +2363,10 @@ function mobileCurriculumPageYesCertificateStyling() {
   // sjHeaderImg.style.maxWidth = "100%";
   // PARENT CONTAINER
   container.style.width = "90%";
-  headerTextAndImgContainer.style.margin = "96px 0";
-  headerTextAndImgContainer.style.justifyContent = "center";
-  headerTextAndImgContainer.style.flexWrap = "wrap";
-  headerTextAndImgContainer.style.gap = "24px";
+  headerFlexContainer.style.margin = "96px 0";
+  headerFlexContainer.style.justifyContent = "center";
+  headerFlexContainer.style.flexWrap = "wrap";
+  headerFlexContainer.style.gap = "24px";
 
   // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   headingParagraph.style.display = "block";
