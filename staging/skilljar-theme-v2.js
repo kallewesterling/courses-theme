@@ -957,9 +957,9 @@ function desktopCurriculumPageNoCertificateStyling() {
   // const sjHeaderTextHeading = document.querySelector(".break-word"); // ~
   // const sjHeaderTextSubheading = document.querySelector(".cp-lessons"); // ~
   // const sjHeaderTextProgressBar = document.querySelector(".progress-bar.button-border-color"); // ~
-  const sjHeaderImgContainer = document.querySelector(".large-4.pull-8.columns.cp-promo-image-wrapper"); // ~
-  const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image"); // ~
-  const sjHeaderImg = document.querySelector(".cp-promo-image img"); // ~
+  // const sjHeaderImgContainer = document.querySelector(".large-4.pull-8.columns.cp-promo-image-wrapper"); // ~
+  // const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image"); // ~
+  // const sjHeaderImg = document.querySelector(".cp-promo-image img"); // ~
   const resumeBtn = document.querySelector("#resume-button"); // ~
   
   let btnText, btnHref;
@@ -1055,14 +1055,14 @@ function desktopCurriculumPageNoCertificateStyling() {
   //   resumeBtn.style.marginRight = "0";
   // }
   // IMG CONTAINER
-  sjHeaderImgContainer.style.position = "static";
-  sjHeaderImgContainer.style.padding = "0";
-  sjHeaderImgContainer.style.width = "564px";
-  sjHeaderImgContainer.style.height = "auto";
-  sjHeaderImgDirectContainer.style.maxHeight = "none";
-  sjHeaderImg.style.maxHeight = "none";
-  sjHeaderImg.style.height = "auto";
-  sjHeaderImg.style.maxWidth = "100%";
+  // sjHeaderImgContainer.style.position = "static";
+  // sjHeaderImgContainer.style.padding = "0";
+  // sjHeaderImgContainer.style.width = "564px";
+  // sjHeaderImgContainer.style.height = "auto";
+  // sjHeaderImgDirectContainer.style.maxHeight = "none";
+  // sjHeaderImg.style.maxHeight = "none";
+  // sjHeaderImg.style.height = "auto";
+  // sjHeaderImg.style.maxWidth = "100%";
   // PARENT CONTAINER
   headerTextAndImgContainer.style.margin = "96px 0";
   headerTextAndImgContainer.style.justifyContent = "center";
@@ -1260,9 +1260,9 @@ function desktopCurriculumPageYesCertificationStyling() {
   // const sjHeaderTextSubheading = document.querySelector(".cp-lessons"); // ~
   // const sjHeaderTextProgressBar = document.querySelector(".progress-bar.button-border-color"); // ~
   const certificateEl = document.querySelector(".cp-certificate"); // ~
-  const sjHeaderImgContainer = document.querySelector(".large-4.pull-8.columns.cp-promo-image-wrapper"); // ~
-  const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image"); // ~
-  const sjHeaderImg = document.querySelector(".cp-promo-image img"); // ~
+  // const sjHeaderImgContainer = document.querySelector(".large-4.pull-8.columns.cp-promo-image-wrapper"); // ~
+  // const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image"); // ~
+  // const sjHeaderImg = document.querySelector(".cp-promo-image img"); // ~
 
   // BODY VARIABLES
   const bodyMainContainer = document.querySelector("#cp-content"); // ~
@@ -1335,14 +1335,14 @@ function desktopCurriculumPageYesCertificationStyling() {
   sjHeaderTextContainer.style.border = "0";
   sjHeaderTextContainer.style.textAlign = "left";
   // IMG CONTAINER
-  sjHeaderImgContainer.style.position = "static";
-  sjHeaderImgContainer.style.padding = "0";
-  sjHeaderImgContainer.style.width = "564px";
-  sjHeaderImgContainer.style.height = "auto";
-  sjHeaderImgDirectContainer.style.maxHeight = "none";
-  sjHeaderImg.style.maxHeight = "none";
-  sjHeaderImg.style.height = "auto";
-  sjHeaderImg.style.maxWidth = "100%";
+  // sjHeaderImgContainer.style.position = "static";
+  // sjHeaderImgContainer.style.padding = "0";
+  // sjHeaderImgContainer.style.width = "564px";
+  // sjHeaderImgContainer.style.height = "auto";
+  // sjHeaderImgDirectContainer.style.maxHeight = "none";
+  // sjHeaderImg.style.maxHeight = "none";
+  // sjHeaderImg.style.height = "auto";
+  // sjHeaderImg.style.maxWidth = "100%";
   // PARENT CONTAINER
   headerTextAndImgContainer.style.margin = "96px 0";
   headerTextAndImgContainer.style.justifyContent = "center";
@@ -2001,9 +2001,9 @@ function mobileCurriculumPageNoCertificateStyling() {
   // const sjHeaderTextHeading = document.querySelector(".break-word"); // ~
   // const sjHeaderTextSubheading = document.querySelector(".cp-lessons"); // ~
   // const sjHeaderTextProgressBar = document.querySelector(".progress-bar.button-border-color"); // ~
-  const sjHeaderImgContainer = document.querySelector(".large-4.pull-8.columns.cp-promo-image-wrapper"); // ~
-  const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image"); // ~
-  const sjHeaderImg = document.querySelector(".cp-promo-image img"); // ~
+  // const sjHeaderImgContainer = document.querySelector(".large-4.pull-8.columns.cp-promo-image-wrapper"); // ~
+  // const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image"); // ~
+  // const sjHeaderImg = document.querySelector(".cp-promo-image img"); // ~
   // const resumeBtn = document.querySelector("#resume-button"); // ~
 
   // BODY VARIABLES
@@ -2088,15 +2088,15 @@ function mobileCurriculumPageNoCertificateStyling() {
   // resumeBtn.style.marginLeft = "0";
   // resumeBtn.style.marginRight = "0";
   // IMG CONTAINER
-  sjHeaderImgContainer.style.position = "static";
-  sjHeaderImgContainer.style.padding = "0";
-  sjHeaderImgContainer.style.width = "90%";
-  sjHeaderImgContainer.style.maxWidth = "564px";
-  sjHeaderImgContainer.style.height = "auto";
-  sjHeaderImgDirectContainer.style.maxHeight = "none";
-  sjHeaderImg.style.maxHeight = "none";
-  sjHeaderImg.style.height = "auto";
-  sjHeaderImg.style.maxWidth = "100%";
+  // sjHeaderImgContainer.style.position = "static";
+  // sjHeaderImgContainer.style.padding = "0";
+  // sjHeaderImgContainer.style.width = "90%";
+  // sjHeaderImgContainer.style.maxWidth = "564px";
+  // sjHeaderImgContainer.style.height = "auto";
+  // sjHeaderImgDirectContainer.style.maxHeight = "none";
+  // sjHeaderImg.style.maxHeight = "none";
+  // sjHeaderImg.style.height = "auto";
+  // sjHeaderImg.style.maxWidth = "100%";
   // PARENT CONTAINER
   container.style.width = "90%";
   headerTextAndImgContainer.style.margin = "96px 0";
@@ -2276,9 +2276,9 @@ function mobileCurriculumPageYesCertificateStyling() {
   // const sjHeaderTextSubheading = document.querySelector(".cp-lessons"); // ~
   // const sjHeaderTextProgressBar = document.querySelector(".progress-bar.button-border-color"); // ~
   const certificateEl = document.querySelector(".cp-certificate"); // ~
-  const sjHeaderImgContainer = document.querySelector(".large-4.pull-8.columns.cp-promo-image-wrapper"); // ~
-  const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image"); // ~
-  const sjHeaderImg = document.querySelector(".cp-promo-image img"); // ~
+  // const sjHeaderImgContainer = document.querySelector(".large-4.pull-8.columns.cp-promo-image-wrapper"); // ~
+  // const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image"); // ~
+  // const sjHeaderImg = document.querySelector(".cp-promo-image img"); // ~
 
   // BODY VARIABLES
   const bodyMainContainer = document.querySelector("#cp-content"); // ~
@@ -2358,15 +2358,15 @@ function mobileCurriculumPageYesCertificateStyling() {
   sjHeaderTextContainer.style.border = "0";
   sjHeaderTextContainer.style.textAlign = "left";
   //IMG CONTAINER
-  sjHeaderImgContainer.style.position = "static";
-  sjHeaderImgContainer.style.padding = "0";
-  sjHeaderImgContainer.style.width = "90%";
-  sjHeaderImgContainer.style.maxWidth = "564px";
-  sjHeaderImgContainer.style.height = "auto";
-  sjHeaderImgDirectContainer.style.maxHeight = "none";
-  sjHeaderImg.style.maxHeight = "none";
-  sjHeaderImg.style.height = "auto";
-  sjHeaderImg.style.maxWidth = "100%";
+  // sjHeaderImgContainer.style.position = "static";
+  // sjHeaderImgContainer.style.padding = "0";
+  // sjHeaderImgContainer.style.width = "90%";
+  // sjHeaderImgContainer.style.maxWidth = "564px";
+  // sjHeaderImgContainer.style.height = "auto";
+  // sjHeaderImgDirectContainer.style.maxHeight = "none";
+  // sjHeaderImg.style.maxHeight = "none";
+  // sjHeaderImg.style.height = "auto";
+  // sjHeaderImg.style.maxWidth = "100%";
   // PARENT CONTAINER
   container.style.width = "90%";
   headerTextAndImgContainer.style.margin = "96px 0";
