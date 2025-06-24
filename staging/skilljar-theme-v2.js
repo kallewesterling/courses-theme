@@ -209,9 +209,9 @@ function desktopCourseDetailsPageStyling() {
       inProd ? undefined : console.log("styleGroupContainer called");
       container.classList.add("module-list");
       container.style.border = "2px solid #3443F4";
-      container.style.borderRadius = "8px";
-      container.style.marginBottom = "48px";
-      container.style.padding = "0";
+      // container.style.borderRadius = "8px";
+      // container.style.marginBottom = "48px";
+      // container.style.padding = "0";
     }
 
     function styleListItem(lessonEl, isLastChild) {
@@ -1122,9 +1122,9 @@ function desktopCurriculumPageNoCertificateStyling() {
       inProd ? undefined : console.log("styleGroupContainer called");
       container.classList.add("module-list");
       container.style.border = "2px solid #3443f4";
-      container.style.borderRadius = "8px";
-      container.style.marginBottom = "48px";
-      container.style.padding = "0";
+      // container.style.borderRadius = "8px";
+      // container.style.marginBottom = "48px";
+      // container.style.padding = "0";
     }
 
     function styleListItem(lessonEl, isLastChild) {
@@ -1397,9 +1397,9 @@ function desktopCurriculumPageYesCertificationStyling() {
       inProd ? undefined : console.log("styleGroupContainer called");
       container.classList.add("module-list");
       container.style.border = "2px solid #3443f4";
-      container.style.borderRadius = "8px";
-      container.style.marginBottom = "48px";
-      container.style.padding = "0";
+      // container.style.borderRadius = "8px";
+      // container.style.marginBottom = "48px";
+      // container.style.padding = "0";
     }
 
     function styleListItem(lessonEl, isLastChild) {
@@ -1895,9 +1895,9 @@ function mobileCourseDetailsPageStyling() {
       inProd ? undefined : console.log("styleGroupContainer called");
       container.classList.add("module-list");
       container.style.border = "1px solid #DCDCDC";
-      container.style.borderRadius = "8px";
-      container.style.marginBottom = "48px";
-      container.style.padding = "0";
+      // container.style.borderRadius = "8px";
+      // container.style.marginBottom = "48px";
+      // container.style.padding = "0";
     }
 
     function styleListItem(lessonEl, isLastChild) {
@@ -2155,9 +2155,9 @@ function mobileCurriculumPageNoCertificateStyling() {
       inProd ? undefined : console.log("styleGroupContainer called");
       container.classList.add("module-list");
       container.style.border = "1px solid #DCDCDC";
-      container.style.borderRadius = "8px";
-      container.style.marginBottom = "48px";
-      container.style.padding = "0";
+      // container.style.borderRadius = "8px";
+      // container.style.marginBottom = "48px";
+      // container.style.padding = "0";
     }
 
     function styleListItem(lessonEl, isLastChild) {
@@ -2429,15 +2429,15 @@ function mobileCurriculumPageYesCertificateStyling() {
       inProd ? undefined : console.log("styleGroupContainer called");
       container.classList.add("module-list");
       container.style.border = "1px solid #DCDCDC";
-      container.style.borderRadius = "8px";
-      container.style.marginBottom = "48px";
-      container.style.padding = "0";
+      // container.style.borderRadius = "8px";
+      // container.style.marginBottom = "48px";
+      // container.style.padding = "0";
     }
 
     function styleListItem(lessonEl, isLastChild) {
       inProd ? undefined : console.log("styleListItem called");
       lessonEl.classList.add("lesson-item");
-      
+
       lessonEl.style.padding = "24px";
       lessonEl.style.fontSize = "16px";
       lessonEl.style.fontWeight = "400";

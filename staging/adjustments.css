@@ -484,3 +484,11 @@ a.header-link.login-link {
 body.sj-page-detail #catalog-courses {
     margin-bottom: 85px !important;
 }
+
+/* styleGroupContainer */
+#curriculum-list .module-list {
+    border: 2px solid rgb(52, 67, 244) !important;
+    border-radius: 8px !important;
+    margin-bottom: 48px !important;
+    padding: 0px !important;
+}
