@@ -202,6 +202,7 @@ function desktopCourseDetailsPageStyling() {
     let curContainer = document.createElement("li");
 
     if (!hasSections) {
+      curContainer.classList.add("module-list")
       styleGroupContainer(curContainer);
     }
 
@@ -249,9 +250,12 @@ function desktopCourseDetailsPageStyling() {
         curriculumListContainer.append(curContainer);
         //reset curContainer while pushing current 'section' in there for the next iteration
         curContainer = document.createElement("li");
+        curContainer.classList.add("module-list");
         styleGroupContainer(curContainer);
+
         const newGroupHeading = document.createElement("div");
         newGroupHeading.innerHTML = curListItem.innerHTML;
+        newGroupHeading.classList.add("module-title");
         styleGroupHeading(newGroupHeading);
         curContainer.append(newGroupHeading);
       } else {
@@ -259,6 +263,7 @@ function desktopCourseDetailsPageStyling() {
         //transfer inner html of current list item to new created div
         const newListItem = document.createElement("div");
         newListItem.innerHTML = curListItem.innerHTML;
+        newListItem.classList.add("lesson-item");
         styleListItem(
           newListItem,
           arr[i + 1] ? arr[i + 1].classList.contains("section") : true
