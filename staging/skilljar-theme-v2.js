@@ -2628,7 +2628,10 @@ function mobileLessonPageStyling() {
   });
 }
 
-function handlePageStyling() {
+function renderPage() {
+  inProd ? undefined : console.log(timestamp() + " [renderPage] Called");
+
+  /* Route to correct view */
   if (current.isCourseDetailsPage) {
     current.viewport === "desktop"
       ? desktopCourseDetailsPageStyling()
@@ -2665,12 +2668,6 @@ function handlePageStyling() {
   } else if (current.isCatalogPage) {
     current.viewport === "desktop" ? desktopCatalogPageStyling() : null;
   }
-}
-
-function renderPage() {
-  inProd ? undefined : console.log(timestamp() + " [renderPage] Called");
-
-  handlePageStyling();
 
   /* Insert footer in the right place */
   let contentContainer = current.isLessonsPage ? document.querySelector(".sj-page-lesson") : document.querySelector("#skilljar-content"); // ~
@@ -2698,7 +2695,7 @@ document.addEventListener("DOMContentLoaded", () => {
   current.isLessonsPage = elemExists("body.sj-page-lesson");
   
   current.// isLoginPage is true if the page displays a login form
-  isLoginPage = elemExists("body.sj-page-login");
+  current.isLoginPage = elemExists("body.sj-page-login");
   
   // isLoginPage is true if the page displays a sign up form
   current.isSignUpPage = elemExists("body.sj-page-signup");
