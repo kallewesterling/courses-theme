@@ -598,7 +598,10 @@ body.sj-page-detail #catalog-courses {
 }
 
 /* checkboxIcon */
+svg.checkbox-icon {
+    display: none !important
+}
 .course-details-card svg.checkbox-icon {
-    display: block;
-    flex-shrink: 0;
+    display: block !important;
+    flex-shrink: 0 !important;
 }
