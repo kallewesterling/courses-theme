@@ -740,7 +740,7 @@ body.sj-page-login, body.sj-page-signup {
             text-decoration: underline !important; /* should only be on sign in */
         }
         
-        #span.sj-text-sign-in, div.sj-text-sign-up span {
+        span.sj-text-sign-in span, div.sj-text-sign-up span {
             /* "active tab" for login/signup page */
             font-family: "Space Mono", monospace !important;
             font-weight: 700 !important;
