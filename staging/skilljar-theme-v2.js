@@ -1019,14 +1019,6 @@ function desktopCurriculumPageNoCertificateStyling() {
       curContainer.classList.add("module-list");
     }
 
-    function styleGroupHeading(groupHeadingContainer) {
-      inProd ? undefined : console.log("styleGroupHeading called");
-
-      const groupHeading = groupHeadingContainer.querySelector("h3") || groupHeadingContainer; // ~
-      groupHeading.classList.add("module-list-heading");
-      groupHeading.textContent = groupHeading?.textContent?.trim();
-    }
-
     curriculumItemsListLIVE.forEach((el) => {
       if (el?.tagName) {
         el.classList.add("curriculumItem");
@@ -1051,7 +1043,9 @@ function desktopCurriculumPageNoCertificateStyling() {
         newGroupHeading.textContent = el.querySelector("h3").textContent; // ~
         newGroupHeadingContainer.append(newGroupHeading);
 
-        styleGroupHeading(newGroupHeadingContainer);
+        const groupHeading = newGroupHeadingContainer.querySelector("h3") || newGroupHeadingContainer; // ~
+        groupHeading.classList.add("module-list-heading");
+        groupHeading.textContent = groupHeading?.textContent?.trim();
 
         curContainer.append(newGroupHeadingContainer);
         el.style.display = "none";
