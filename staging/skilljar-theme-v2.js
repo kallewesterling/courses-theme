@@ -13,8 +13,6 @@ let initialLoadComplete = false;
 let globalCurriculumSection, globalAboutSection;
 let width;
 
-const body = document.querySelector("body"); // ~
-
 /* Utility functions */
 const timestamp = () => (new Date).toISOString().slice(11, 19);
 
