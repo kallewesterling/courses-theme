@@ -145,6 +145,8 @@ function signUpPageStyling() {
 }
 
 function courseCatalog() {
+  inProd ? undefined : log("[courseCatalog] Called");
+
   // Put content in the correct order
   const mainHeadingContainer = document.querySelector(".dp-summary-wrapper, sj-summary"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
