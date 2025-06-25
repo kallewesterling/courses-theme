@@ -1,14 +1,6 @@
 const inProd = false; // Set to true if in production environment
 
 let current = {};
-let isCatalogPage,
-  isCurriculumPage,
-  isCourseDetailsPage,
-  isPageDetailPath,
-  isPageCatalogPath,
-  isLessonsPage,
-  isLoginPage,
-  isSignUpPage;
 let initialLoadComplete = false;
 let globalCurriculumSection, globalAboutSection;
 let width;
@@ -2637,23 +2629,23 @@ function mobileLessonPageStyling() {
 }
 
 function handlePageStyling() {
-  if (isCourseDetailsPage) {
+  if (current.isCourseDetailsPage) {
     current.viewport === "desktop"
       ? desktopCourseDetailsPageStyling()
       : mobileCourseDetailsPageStyling();
-  } else if (isPageDetailPath) {
+  } else if (current.isPageDetailPath) {
     current.viewport === "desktop" ? desktopPathCourseDetailsPageStyling() : null;
-  } else if (isPageCatalogPath) {
+  } else if (current.isPageCatalogPath) {
     current.viewport === "desktop" ? desktopPathCatalogPageStyling() : null;
-  } else if (isLoginPage) {
+  } else if (current.isLoginPage) {
     current.viewport === "desktop"
       ? desktopLoginPageStyling()
       : mobileLoginPageStyling();
-  } else if (isSignUpPage) {
+  } else if (current.isSignUpPage) {
     current.viewport === "desktop"
       ? desktopSignUpPageStyling()
       : mobileSignUpPageStyling();
-  } else if (isCurriculumPage) {
+  } else if (current.isCurriculumPage) {
     const certificateEl = document.querySelector(".cp-certificate"); // ~
 
     if (!certificateEl) {
@@ -2666,11 +2658,11 @@ function handlePageStyling() {
         ? desktopCurriculumPageYesCertificationStyling()
         : mobileCurriculumPageYesCertificateStyling();
     }
-  } else if (isLessonsPage) {
+  } else if (current.isLessonsPage) {
     current.viewport === "desktop"
       ? desktopLessonPageStyling()
       : mobileLessonPageStyling();
-  } else if (isCatalogPage) {
+  } else if (current.isCatalogPage) {
     current.viewport === "desktop" ? desktopCatalogPageStyling() : null;
   }
 }
@@ -2694,46 +2686,46 @@ document.addEventListener("DOMContentLoaded", () => {
   inProd ? undefined : console.log(timestamp() + " [DOMContentLoaded] Resized: ", width);
 
   // isCatalogPage is true if the page displays the catalog of courses (i.e. the landing page)
-  isCatalogPage = elemExists("body.sj-page-catalog"); 
+  current.isCatalogPage = elemExists("body.sj-page-catalog"); 
   
   // isCurriculumPage is true if the page displays a course's curriculum which is not part of a learning path
-  isCurriculumPage = elemExists("body.sj-page-curriculum");
+  current.isCurriculumPage = elemExists("body.sj-page-curriculum");
   
   // isCourseDetailsPage is true if the page displays a course's details that is part of a learning path
-  isCourseDetailsPage = elemExists("body.sj-page-detail-course");
+  current.isCourseDetailsPage = elemExists("body.sj-page-detail-course");
   
   // isLessonsPage is true if the page displays one of a course's lesson
-  isLessonsPage = elemExists("body.sj-page-lesson");
+  current.isLessonsPage = elemExists("body.sj-page-lesson");
   
-  // isLoginPage is true if the page displays a login form
+  current.// isLoginPage is true if the page displays a login form
   isLoginPage = elemExists("body.sj-page-login");
   
   // isLoginPage is true if the page displays a sign up form
-  isSignUpPage = elemExists("body.sj-page-signup");
+  current.isSignUpPage = elemExists("body.sj-page-signup");
 
   // isPageDetailPath is true if the page displays a learning path's details
-  isPageDetailPath = elemExists("body.sj-page-detail-path");
+  current.isPageDetailPath = elemExists("body.sj-page-detail-path");
 
-  isPageCatalogPath = elemExists(".sj-page-catalog.sj-page-series.sj-page-path");
+  current.isPageCatalogPath = elemExists(".sj-page-catalog.sj-page-series.sj-page-path");
   
   inProd ? undefined : console.log(
     "[DOMContentLoaded]",
-    "isCatalogPage: ",
-    isCatalogPage,
-    "isCurriculumPage: ",
-    isCurriculumPage,
-    "isCourseDetailsPage: ",
-    isCourseDetailsPage,
-    "isLessonsPage: ",
-    isLessonsPage,
-    "isLoginPage: ",
-    isLoginPage,
-    "isSignUpPage: ",
-    isSignUpPage,
-    "isPageDetailPath: ",
-    isPageDetailPath,
-    "isPageCatalogPath: ",
-    isPageCatalogPath
+    "current.isCatalogPage: ",
+    current.isCatalogPage,
+    "current.isCurriculumPage: ",
+    current.isCurriculumPage,
+    "current.isCourseDetailsPage: ",
+    current.isCourseDetailsPage,
+    "current.isLessonsPage: ",
+    current.isLessonsPage,
+    "current.isLoginPage: ",
+    current.isLoginPage,
+    "current.isSignUpPage: ",
+    current.isSignUpPage,
+    "current.isPageDetailPath: ",
+    current.isPageDetailPath,
+    "current.isPageCatalogPath: ",
+    current.isPageCatalogPath
   )
 
   current.viewport = getViewport();
