@@ -15,7 +15,7 @@ let width;
 
 const body = document.querySelector("body"); // ~
 
-const timestamp = () => Date.now();
+const timestamp = () => (new Date).toISOString().slice(11,19);
 
 function elemExists(selector) {
   return document.querySelector(selector) ? true : false;
