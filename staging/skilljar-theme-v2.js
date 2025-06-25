@@ -2706,20 +2706,9 @@ function renderCourse() {
     currentView
   );
 
-  // if (!isLessonsPage) {
-  //   document.querySelector("#ep-footer").style.display = "none"; // ~
-  // }
-
   /* Insert footer in the right place */
   let contentContainer = isLessonsPage ? document.querySelector(".sj-page-lesson") : document.querySelector("#skilljar-content"); // ~
   contentContainer.append(document.querySelector("#footer-container"));
-
-  // if (!body.classList.contains("sj-page-catalog")) {
-  //   body.setAttribute(
-  //     "style",
-  //     "visibility: visible !important; opacity: 1 !important"
-  //   );
-  // }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
