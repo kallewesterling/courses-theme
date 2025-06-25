@@ -315,88 +315,19 @@ function desktopCourseDetailsPageStyling() {
 
 function desktopPathCourseDetailsPageStyling() {
   inProd ? undefined : console.log(timestamp() + " [desktopPathCourseDetailsPageStyling] Called");
-  // const headerContainer = document.querySelector(".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"); // ~
-  // const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
-  const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
-  const mainHeading = document.querySelector(".break-word"); // ~
-  const registerBtn = document.querySelector("#purchase-button-wrapper-large"); // ~
-  // const registerBtnAnchor = document.querySelector("#purchase-button"); // ~
-  const mainHeadingContainer = document.querySelector(".dp-summary-wrapper"); // ~
   
-  // const backToCatalogBtn = document.querySelector(".back-to-catalog"); // ~
-
-  const mainInfoCardContained = document.querySelector(".sj-course-info-wrapper"); // ~
-  const headingParagraph = mainInfoCardContained.querySelector("h2"); // ~
-
-  //SIGN IN VARIABLES (WHEN USER NOT LOGGED IN)
-  // const signInHeaderText = document.querySelector(".signin"); // ~
-  // const signInBtn = document.querySelector(".header-link.login-link.sj-text-sign-in.focus-link-v2"); // ~
-  ////BODY VARIABLES
-  // const bodyContainer = document.querySelector("#dp-details-bundle"); // ~
-  // const catalogContainer = document.querySelector("#catalog-courses"); // ~
-
-  // backToCatalogBtn.style.display = "none";
-  // if (signInHeaderText) {
-    // signInHeaderText.style.display = "none";
-    // signInBtn.style.backgroundColor = "transparent";
-    // signInBtn.style.padding = "8px 12px";
-    // signInBtn.style.marginRight = "24px";
-    // signInBtn.style.borderColor = "#3443F4";
-    // signInBtn.style.border = "2px solid #3443F4";
-    // signInBtn.style.borderRadius = "999px";
-    // signInBtn.style.fontSize = "14px";
-    // signInBtn.style.fontFamily = "Space Mono";
-    // signInBtn.style.fontWeight = "700";
-    // signInBtn.style.lineHeight = "20px";
-  // }
-
-  // headerContainer.style.background = "url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png)";
-  // headerContainer.style.backgroundSize = "cover";
-  // headerContainer.style.backgroundPosition = "center";
-  // headerContainer.style.backgroundRepeat = "no-repeat";
-  // headerContainer.style.margin = "0";
-  // headerContainer.style.maxWidth = "none";
-  // headerContainer.style.paddingTop = "96px";
-  // headerContainer.style.paddingBottom = "96px";
-  // headerContainer.style.border = "0";
-  // headerFlexContainer.style.flexDirection = "row-reverse";
-  // headerFlexContainer.style.flexWrap = "nowrap";
-  // headerFlexContainer.style.justifyContent = "start";
-  // headerFlexContainer.style.gap = "24px";
-  // headerFlexContainer.style.maxWidth = "1188px";
-
-  // RENDERING OF COURSE DETAILS PAGE TEXT HEADING ON LEFT
-  // mainHeadingContainer.style.border = "0";
-  // mainHeadingContainer.style.maxWidth = "600px";
-  // mainInfoCardContained.style.display = "none";
+  const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
   headingFloaterText.textContent = "Learning Path";
-  // headingFloaterText.style.color = "#7AF0FE";
-  // headingFloaterText.style.display = "block";
-  // headingFloaterText.style.marginBottom = "24px";
-  // mainHeading.style.margin = "0 0 12px 0";
-  // mainHeading.style.fontSize = "36px";
-  // mainHeading.style.fontWeight = "600";
-  // mainHeading.style.lineHeight = "43.2px";
-  // mainHeading.style.letterSpacing = "-.02em";
-  // headingParagraph.style.color = "#fff";
-  // headingParagraph.style.display = "block";
-  // headingParagraph.style.margin = "0 0 24px 0";
-  // registerBtnAnchor.style.borderColor = "#7AF0FE";
-  // registerBtnAnchor.style.color = "#fff";
-  mainHeadingContainer.append(
+  const mainHeading = document.querySelector(".break-word"); // ~
+  const headingParagraph = document.querySelector(".sj-course-info-wrapper h2"); // ~
+  const registerBtn = document.querySelector("#purchase-button-wrapper-large"); // ~
+  
+  document.querySelector(".dp-summary-wrapper").append(
     headingFloaterText,
     mainHeading,
     headingParagraph,
     registerBtn
   );
-
-  // COURSE DETAILS PAGE BODY STYLING
-  // bodyContainer.style.padding = "0";
-  // bodyContainer.style.margin = "96px auto 46px auto";
-  // bodyContainer.style.maxWidth = "min(1152px, 90%)";
-  // catalogContainer.style.marginBottom = "85px";
-  
-  inProd ? undefined : console.log(timestamp() + " [desktopPathCourseDetailsPageStyling] Reached end of path func");
 }
 
 function desktopPathCatalogPageStyling() {
@@ -2169,14 +2100,8 @@ function renderPage() {
   } else if (current.isPageCatalogPath) {
     current.viewport === "desktop" ? desktopPathCatalogPageStyling() : null;
   } else if (current.isLoginPage) {
-    // current.viewport === "desktop"
-    //   ? desktopLoginPageStyling()
-    //   : mobileLoginPageStyling();
     loginPageStyling();
   } else if (current.isSignUpPage) {
-    // current.viewport === "desktop"
-    //   ? desktopSignUpPageStyling()
-    //   : mobileSignUpPageStyling();
     signUpPageStyling();
   } else if (current.isCurriculumPage) {
     const certificateEl = document.querySelector(".cp-certificate"); // ~
