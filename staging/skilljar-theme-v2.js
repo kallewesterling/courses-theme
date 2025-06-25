@@ -2694,7 +2694,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // isLessonsPage is true if the page displays one of a course's lesson
   current.isLessonsPage = elemExists("body.sj-page-lesson");
   
-  current.// isLoginPage is true if the page displays a login form
+  // isLoginPage is true if the page displays a login form
   current.isLoginPage = elemExists("body.sj-page-login");
   
   // isLoginPage is true if the page displays a sign up form
