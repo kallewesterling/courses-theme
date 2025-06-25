@@ -15,17 +15,6 @@ let width;
 
 const body = document.querySelector("body"); // ~
 
-const elements = {}
-
-function getElem(selector) {
-  if (elements[selector] === undefined) {
-    elements[selector] = document.querySelector(selector);
-  }
-  
-  console.log(`getElem called with selector: ${selector}`, elements[selector]);
-  return elements[selector]
-}
-
 function elemExists(selector) {
   return document.querySelector(selector) ? true : false;
 }
