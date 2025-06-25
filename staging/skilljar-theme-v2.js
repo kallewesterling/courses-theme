@@ -158,9 +158,10 @@ function desktopCourseDetailsPageStyling() {
 
     const curriculumListContainer = document.querySelector(".dp-curriculum"); //NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)! // ~
 
-    document.querySelectorAll(".dp-curriculum li").forEach((li) => {
+    curriculumListContainer.querySelectorAll("li").forEach((li) => {
       if (li.classList.contains("section")) {
         curriculumListContainer.append(curContainer);
+
         curContainer = document.createElement("li");
         curContainer.classList.add("module-list");
 
@@ -615,7 +616,6 @@ function desktopCurriculumPageNoCertificateStyling() {
         // reset curContainer while pushing current new heading & icon in there for the next iteration
         curContainer = document.createElement("div");
         curContainer.classList.add("module-list");
-        // styleGroupContainer(curContainer);
 
         const newGroupHeadingContainer = document.createElement("div");
         newGroupHeadingContainer.classList.add("module-list-heading-container");
@@ -866,12 +866,9 @@ function desktopCurriculumPageYesCertificationStyling() {
         // reset curContainer while pushing current new heading & icon in there for the next iteration
         curContainer = document.createElement("div");
         curContainer.classList.add("module-list");
-        // styleGroupContainer(curContainer);
 
         const newGroupHeadingContainer = document.createElement("div");
         newGroupHeadingContainer.classList.add("module-list-heading-container");
-        // newGroupHeadingContainer.style.display = "flex";
-        // newGroupHeadingContainer.style.gap = "12px";
         
         const newGroupHeading = document.createElement("h3");
         newGroupHeading.textContent = el.querySelector("h3").textContent; // ~
@@ -1114,7 +1111,7 @@ function mobileCourseDetailsPageStyling() {
         curContainer = document.createElement("li");
         curContainer.classList.add("module-list");
         curContainer.classList.add("module-list-gray-border");
-        // styleGroupContainer(curContainer);
+
         const newGroupHeading = document.createElement("div");
         newGroupHeading.innerHTML = curListItem.innerHTML;
         styleGroupHeading(newGroupHeading);
@@ -1397,8 +1394,6 @@ function mobileCurriculumPageNoCertificateStyling() {
 
         const newGroupHeadingContainer = document.createElement("div");
         newGroupHeadingContainer.classList.add("module-list-heading-container");
-        // newGroupHeadingContainer.style.display = "flex";
-        // newGroupHeadingContainer.style.gap = "12px";
         
         const newGroupHeading = document.createElement("h3");
         newGroupHeading.textContent = el.querySelector("h3").textContent; // ~
@@ -1684,8 +1679,6 @@ function mobileCurriculumPageYesCertificateStyling() {
 
         const newGroupHeadingContainer = document.createElement("div");
         newGroupHeadingContainer.classList.add("module-list-heading-container");
-        // newGroupHeadingContainer.style.display = "flex";
-        // newGroupHeadingContainer.style.gap = "12px";
         
         const newGroupHeading = document.createElement("h3");
         newGroupHeading.textContent = el.querySelector("h3").textContent; // ~

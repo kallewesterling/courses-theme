@@ -369,7 +369,7 @@ body.sj-page-signup #access-message {
         }
 
         /* lessonListItem(s) */
-        .lesson-row {
+        .lesson-row, .lesson-item {
             display: flex !important;
             align-items: center !important;
             gap: 12px !important;
@@ -424,7 +424,7 @@ body.sj-page-signup #access-message {
                 border: 1px solid #DCDCDC !important;
             }
 
-            .lesson-item {
+            .lesson-item, .lesson-wrapper {
                 padding: 24px !important;
                 font-size: 16px !important;
                 font-weight: 400 !important;
