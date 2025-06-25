@@ -153,6 +153,10 @@ function desktopCourseDetailsPageStyling() {
     registerBtn
   );
 
+  let [curriculumSection, aboutSection] = document.querySelectorAll(".row.hide-for-small.padded-side-bottom .columns");
+  curriculumSection.id = "curriculum-section";
+  aboutSection.id = "about-section";
+
   if (!current.initialLoadComplete) {
     let curContainer = document.createElement("li");
     
