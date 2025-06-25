@@ -15,29 +15,18 @@ let width;
 
 const body = document.querySelector("body"); // ~
 
-const timestamp = () => (new Date).toISOString().slice(11,19);
+/* Utility functions */
+const timestamp = () => (new Date).toISOString().slice(11, 19);
 
-function elemExists(selector) {
-  return document.querySelector(selector) ? true : false;
-}
+const elemExists = (selector, parent = document) => parent.querySelector(selector) ? true : false;
 
-function getViewport() {
-  return width <= 991 ? "mobile" : "desktop";
-}
+const getViewport = () => width <= 991 ? "mobile" : "desktop";
 
-function checkWindowWidth() {
-  return (
-    window.innerWidth ||
-    document.documentElement.clientWidth ||
-    document.body.clientWidth
-  );
-}
-
-function insertFooter() {
-  inProd ? undefined : console.log(timestamp() + " [insertFooter] Called, isLessonsPage: ", isLessonsPage);
-
-  
-}
+const checkWindowWidth = () => (
+  window.innerWidth ||
+  document.documentElement.clientWidth ||
+  document.body.clientWidth
+);
 
 function desktopCatalogPageStyling() {
   inProd ? undefined : console.log(timestamp() + " [desktopCatalogPageStyling] Called");
