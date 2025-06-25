@@ -650,9 +650,9 @@ function desktopLoginPageStyling() {
   // const loginInput = document.querySelector("#id_login"); // ~
   // const passwordInput = document.querySelector("#id_password"); // ~
   const loginBottomBtn = document.querySelector("#button-sign-in"); // ~
-  const forgotPasswordText = document.querySelector(".forgot-password.sj-text-forgot-password.focus-link-v2"); // ~
-  const loginBottomBtnAndForgotPassBtn =
-    loginBottomBtn.closest(".large-12.columns");
+  // const forgotPasswordText = document.querySelector(".forgot-password.sj-text-forgot-password.focus-link-v2"); // ~
+  // const loginBottomBtnAndForgotPassBtn =
+  //   loginBottomBtn.closest(".large-12.columns");
 
   const loginForm = document.querySelector("#login_form"); // ~
   loginForm.append(document.querySelector("#access-message"));
@@ -723,10 +723,10 @@ function desktopLoginPageStyling() {
   loginBottomBtn.style.border = "2px solid #3443f4";
   loginBottomBtn.style.borderRadius = "999px";
   loginBottomBtn.style.marginBottom = "2px";
-  forgotPasswordText.style.fontSize = "16px";
-  forgotPasswordText.style.fontFamily = "Space Mono";
-  forgotPasswordText.style.marginBottom = "2px";
-  loginBottomBtnAndForgotPassBtn.style.marginBottom = "24px";
+  // forgotPasswordText.style.fontSize = "16px";
+  // forgotPasswordText.style.fontFamily = "Space Mono";
+  // forgotPasswordText.style.marginBottom = "2px";
+  // loginBottomBtnAndForgotPassBtn.style.marginBottom = "24px";
 
   // STYLING OF SIDE 'SIGN IN W/' GOOGLE ELS
   document.querySelector(".sj-text-sign-in-with span").textContent = "Or Log In With";
@@ -1324,7 +1324,7 @@ function mobileLoginPageStyling() {
   // const orGoogleSignInInnerContainer = orGoogleSignInContainer.querySelector("ul"); // ~
   // const orGoogleSignInInnerContainerListItems = orGoogleSignInInnerContainer.querySelectorAll("li"); // ~
   // const signUpSignInContainer = document.querySelector(".large-12.columns"); // ~
-  const loginTab = document.querySelector("#login-tab-left"); // ~
+  // const loginTab = document.querySelector("#login-tab-left"); // ~
   const signInTab = document.querySelector("#login-tab-right"); // ~
   const signInTabText = signInTab.querySelector("a"); // ~
   // const longInNote = document.querySelector(".loginNote.sj-text-login-note"); // ~
@@ -1332,8 +1332,8 @@ function mobileLoginPageStyling() {
   // const loginInput = document.querySelector("#id_login"); // ~
   // const passwordInput = document.querySelector("#id_password"); // ~
   const loginBottomBtn = document.querySelector("#button-sign-in"); // ~
-  const forgotPasswordText = document.querySelector(".forgot-password.sj-text-forgot-password.focus-link-v2"); // ~
-  const loginBottomBtnAndForgotPassBtn = loginBottomBtn.closest(".large-12.columns");
+  // const forgotPasswordText = document.querySelector(".forgot-password.sj-text-forgot-password.focus-link-v2"); // ~
+  // const loginBottomBtnAndForgotPassBtn = loginBottomBtn.closest(".large-12.columns");
 
   const loginForm = document.querySelector("#login_form"); // ~
   loginForm.append(document.querySelector("#access-message"));
@@ -1348,7 +1348,7 @@ function mobileLoginPageStyling() {
   // tabs.style.borderRadius = "100px";
   // tabs.style.display = "flex";
   // tabs.style.padding = "4px";
-  loginTab.querySelector("span span").textContent = "Log in"; // ~
+  document.querySelector("#login-tab-left span span").textContent = "Log in"; // ~
   // loginTab.style.border = "0";
   // loginTab.style.display = "flex";
   // loginTab.style.padding = "8px 16px";
@@ -1392,9 +1392,9 @@ function mobileLoginPageStyling() {
   loginBottomBtn.style.height = "48px";
   loginBottomBtn.style.fontSize = "16px";
   loginBottomBtn.style.marginBottom = "12px";
-  forgotPasswordText.style.fontSize = "16px";
-  forgotPasswordText.style.marginBottom = "2px";
-  loginBottomBtnAndForgotPassBtn.style.marginBottom = "24px";
+  // forgotPasswordText.style.fontSize = "16px";
+  // forgotPasswordText.style.marginBottom = "2px";
+  // loginBottomBtnAndForgotPassBtn.style.marginBottom = "24px";
 
   // STYLING OF SIDE 'SIGN IN W/' GOOGLE ELS
   document.querySelector(".sj-text-sign-in-with span").textContent = "Or Log In With";

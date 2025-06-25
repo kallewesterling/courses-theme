@@ -628,7 +628,7 @@ body.sj-page-login, body.sj-page-signup {
     }
 
     /* tabArrow */
-    #tab-marker-login {
+    .tab-marker {
         display: none !important;
     }
 
@@ -658,7 +658,7 @@ body.sj-page-login, body.sj-page-signup {
     }
 
     /* loginInput */
-    #id_email, #id_login, #id_password1 {
+    /* #id_email, #id_login, #id_password1 {
         border-radius: 4px !important;
         border-color: #dcdcdc !important;
         padding: 12px !important;
@@ -669,10 +669,10 @@ body.sj-page-login, body.sj-page-signup {
         border: 2px solid #3443f4 !important;
         padding: 20px 15px !important;
         font-size: 14px !important;
-    }
+    } */
 
     #id_password1, #id_password2 {
-        border-radius: 4px !important;
+        /* border-radius: 4px !important; */
         margin-bottom: 24px !important;
     }
 
@@ -742,19 +742,31 @@ body.sj-page-login, body.sj-page-signup {
         }
     }
 
-    label {
-        font-family: "Fusiona";
-        margin-bottom: 12px !important;
-        font-weight: 500 !important;
-        font-size: 16px !important;
-        line-height: 20px !important;
-    }
+    #login_form, #signup_form {
+        label {
+            font-family: "Fusiona";
+            margin-bottom: 12px !important;
+            font-weight: 500 !important;
+            font-size: 16px !important;
+            line-height: 20px !important;
+        }
 
-    input {
-        border-radius: 4px !important;
-        border: 2px solid #3443f4 !important;
-        padding: 20px 15px !important;
-        line-height: 24px !important;
+        input {
+            border-radius: 4px !important;
+            border: 2px solid #3443f4 !important;
+            padding: 20px 15px !important;
+            line-height: 24px !important;
+        }
+
+        .sj-text-forgot-password {
+            font-family: "Space Mono", monospace !important;
+            font-size: 16px !important;
+            margin-bottom: 2px !important;
+        }
+
+        div.large-12.columns:has(.sj-text-forgot-password) {
+            margin-bottom: 24px !important;
+        }
     }
 }
 
