@@ -723,11 +723,18 @@ body.sj-page-login, body.sj-page-signup {
         /* loginTab */
         #login-tab-left {
             border: 0px !important;
+        }
+        
+        #login-tab-left a, #login-tab-right a {
+            /* active link to login/signup (on signup/login page respectively) */
+            color: #3443f4 !important;
             text-decoration: underline !important; /* should only be on sign in */
-            
-            a {
-                color: #3443f4 !important;
-            }
+        }
+
+        #login-tab-left span, #login-tab-right span {
+            /* "active tab" for login/signup page */
+            color: rgba(52, 67, 244, .4) !important;
+            text-decoration: none !important;
         }
 
         /* signInTab [should have been signUpTab] */
@@ -755,7 +762,6 @@ body.sj-page-login, body.sj-page-signup {
             border-radius: 4px !important;
             border: 2px solid #3443f4 !important;
             padding: 20px 15px !important;
-            line-height: 24px !important;
         }
 
         .sj-text-forgot-password {
