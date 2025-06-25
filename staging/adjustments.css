@@ -737,7 +737,8 @@ body.sj-page-login, body.sj-page-signup {
             /* active link to login/signup (on signup/login page respectively) */
             color: rgba(52, 67, 244, .4) !important;
             font-weight: 700 !important;
-            text-decoration: underline !important; /* should only be on sign in */
+            text-decoration: underline !important;
+            font-size: 18px !important;
         }
         
         span.sj-text-sign-in span, div.sj-text-sign-up span {
@@ -746,6 +747,7 @@ body.sj-page-login, body.sj-page-signup {
             font-weight: 700 !important;
             color: #3443f4 !important;
             text-decoration: none !important;
+            font-size: 18px !important;
         }
     }
 
