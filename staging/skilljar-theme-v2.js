@@ -2708,25 +2708,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   current.isPageCatalogPath = elemExists(".sj-page-catalog.sj-page-series.sj-page-path");
   
-  inProd ? undefined : console.log(
-    "[DOMContentLoaded]",
-    "current.isCatalogPage: ",
-    current.isCatalogPage,
-    "current.isCurriculumPage: ",
-    current.isCurriculumPage,
-    "current.isCourseDetailsPage: ",
-    current.isCourseDetailsPage,
-    "current.isLessonsPage: ",
-    current.isLessonsPage,
-    "current.isLoginPage: ",
-    current.isLoginPage,
-    "current.isSignUpPage: ",
-    current.isSignUpPage,
-    "current.isPageDetailPath: ",
-    current.isPageDetailPath,
-    "current.isPageCatalogPath: ",
-    current.isPageCatalogPath
-  )
+  inProd ? undefined : console.log("[DOMContentLoaded] current = ", current);
 
   current.viewport = getViewport();
   inProd ? undefined : console.log(timestamp() + " [DOMContentLoaded] current.viewport: ", current.viewport);
