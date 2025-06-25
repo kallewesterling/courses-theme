@@ -1020,6 +1020,7 @@ function desktopCurriculumPageNoCertificateStyling() {
     }
 
     curriculumItemsListLIVE.forEach((el) => {
+      inProd ? undefined : console.log("curriculumItemsListLIVE, iteration: ", el);
       if (el?.tagName) {
         el.classList.add("curriculumItem");
       }
