@@ -210,7 +210,7 @@ function desktopCourseDetailsPageStyling() {
       curContainer.append(groupHeading);
     }
 
-    curriculumList.forEach((curListItem, i, arr) => {
+    curriculumList.forEach((curListItem) => {
       //first check if current item contains 'section' class
       if (curListItem.classList.contains("section")) {
         //Yes? push curContainer into curriculumListContainer
@@ -960,7 +960,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   }
 
   const headingParagraph = document.querySelector(".sj-heading-paragraph"); // ~
-  headingParagraph.textContent = skilljarCourse.short_description;
+  headingParagraph.textContent = skilljarCourse.short_description;  // eslint-disable-line no-undef
 
   const container = document.querySelector(".large-8.push-4.columns.sj-summary.cp-summary-wrapper"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
@@ -1156,7 +1156,7 @@ function desktopCurriculumPageYesCertificationStyling() {
 
   // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   const headingParagraph = document.querySelector(".sj-heading-paragraph"); // ~
-  headingParagraph.textContent = skilljarCourse.short_description;;
+  headingParagraph.textContent = skilljarCourse.short_description;  // eslint-disable-line no-undef
   // headingParagraph.style.display = "block";
   // headingFloaterText.style.display = "block";
   
@@ -1248,7 +1248,7 @@ function desktopCurriculumPageYesCertificationStyling() {
     const curriculumItemsListNonLive =
       curriculumParentContainer.querySelectorAll(".curriculumItem"); // ~
 
-    curriculumItemsListNonLive.forEach((el, i, curArr) => {
+    curriculumItemsListNonLive.forEach((el) => {
       if (el.tagName === "DIV") {
         // Yes? push curContainer into parent container
         curriculumParentContainer.append(curContainer);
@@ -1748,7 +1748,7 @@ function mobileCourseDetailsPageStyling() {
       curContainer.append(groupHeading);
     }
 
-    curriculumList.forEach((curListItem, i, arr) => {
+    curriculumList.forEach((curListItem) => {
       // first check if current item contains 'section' class
       if (curListItem.classList.contains("section")) {
         // Yes? push curContainer into curriculumListContainer
@@ -2028,7 +2028,7 @@ function mobileCurriculumPageNoCertificateStyling() {
 
     const curriculumItemsListNonLive = curriculumParentContainer.querySelectorAll(".curriculumItem"); // ~
 
-    curriculumItemsListNonLive.forEach((el, i, curArr) => {
+    curriculumItemsListNonLive.forEach((el) => {
       if (el.tagName === "DIV") {
         // Yes? push curContainer into parent container
         curriculumParentContainer.append(curContainer);
@@ -2315,7 +2315,7 @@ function mobileCurriculumPageYesCertificateStyling() {
 
     const curriculumItemsListNonLive = curriculumParentContainer.querySelectorAll(".curriculumItem"); // ~
 
-    curriculumItemsListNonLive.forEach((el, i, curArr) => {
+    curriculumItemsListNonLive.forEach((el) => {
       if (el.tagName === "DIV") {
         // Yes? push curContainer into parent container
         curriculumParentContainer.append(curContainer);
