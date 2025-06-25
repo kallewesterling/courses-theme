@@ -516,6 +516,11 @@ a.header-link.login-link {
     color: #3443F4 !important;
 }
 
+/* insertFooter function */
+#footer-container {
+    display: flex !important;
+}
+
 @media (max-width: 991px) {
     a.header-link.login-link {
         color: #fff !important;
@@ -526,6 +531,11 @@ a.header-link.login-link {
         font-size: 14px !important;
         line-height: 20px !important;
         font-weight: 500 !important;
+    }
+
+    /* insertFooter function */
+    .sj-page-lesson #footer-container {
+        display: none !important; /* hide footer on mobile devices; TODO: we want to set this on smaller screens ONLY? */
     }
 }
 

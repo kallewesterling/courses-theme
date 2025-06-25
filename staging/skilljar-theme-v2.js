@@ -36,22 +36,7 @@ function checkWindowWidth() {
 function insertFooter() {
   inProd ? undefined : console.log(timestamp() + " [insertFooter] Called, isLessonsPage: ", isLessonsPage);
 
-  const footerEl = document.querySelector("#footer-container"); // ~
-  let contentContainer;
-
-  if (isLessonsPage) {
-    contentContainer = document.querySelector(".sj-page-lesson"); // ~
-    if (currentView === "mobile") {
-      footerEl.style.display = "none";
-    } else {
-      footerEl.style.display = "flex";
-    }
-  } else {
-    contentContainer = document.querySelector("#skilljar-content"); // ~
-    footerEl.style.display = "flex";
-  }
-
-  contentContainer.append(footerEl);
+  
 }
 
 function desktopCatalogPageStyling() {
@@ -2736,7 +2721,9 @@ function renderCourse() {
     document.querySelector("#ep-footer").style.display = "none"; // ~
   }
 
-  insertFooter();
+  /* Insert footer in the right place */
+  let contentContainer = isLessonsPage ? document.querySelector(".sj-page-lesson") : document.querySelector("#skilljar-content"); // ~
+  contentContainer.append(document.querySelector("#footer-container"));
 
   if (!body.classList.contains("sj-page-catalog")) {
     body.setAttribute(
