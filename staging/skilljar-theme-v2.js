@@ -123,7 +123,7 @@ function signUpPageStyling() {
 
   // fix inputs
   document.querySelector("input#id_email").setAttribute("placeholder", "Work Email");
-  document.querySelector("input#id_password2").setAttribute("placeholder", "Password confirm");
+  document.querySelector("input#id_password2").setAttribute("placeholder", "Password Confirm");
 
   // fix labels
   document.querySelector('label[for="id_first_name"] span span').textContent = "First Name";
@@ -133,7 +133,12 @@ function signUpPageStyling() {
 }
 
 function desktopCourseDetailsPageStyling() {
+  /* 
+  in our staging environment, this function is called on this page:
+  https://chainguard-test.skilljar.com/secure-or-sorry-understanding-software-vulnerabilities
+  */
   inProd ? undefined : console.log(timestamp() + " [desktopCourseDetailsPageStyling] Called");
+  
   // Put content in the correct order
   const mainHeadingContainer = document.querySelector(".dp-summary-wrapper, sj-summary"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
@@ -172,8 +177,7 @@ function desktopCourseDetailsPageStyling() {
         newGroupHeading.textContent = newGroupHeading?.textContent?.trim();
         newGroupHeading.style.padding = "24px";
         newGroupHeading.style.borderBottom = "2px solid #3443F4";
-        curContainer.append(newGroupHeading);
-
+        
         curContainer.append(newGroupHeading);
       } else {
         const newListItem = document.createElement("div");
@@ -195,14 +199,11 @@ function desktopCourseDetailsPageStyling() {
   }
 
   //COURSE DETAILS GRID STRUCTURE STYLING - ADDING DETAILS CARD ON RIGHT SIDE
-  const secondaryBodyContainer = document.querySelector(".row.hide-for-small.padded-side-bottom"); // ~
-  const courseDetailCardContainer = secondaryBodyContainer.querySelector(".course-details-card"); // ~
-  const checkboxIcon = document.querySelector(".checkbox-icon"); // ~
-  
+  const courseDetailCardContainer = document.querySelector(".course-details-card"); // ~
   if (courseDetailCardContainer) {
     document.querySelector("#dp-details").append(courseDetailCardContainer);
     document.querySelectorAll(".course-details-card li").forEach((li) => {
-      li.prepend(checkboxIcon.cloneNode(true));
+      li.prepend(document.querySelector(".checkbox-icon").cloneNode(true));
     });
   }
 
