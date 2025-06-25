@@ -875,29 +875,31 @@ function desktopSignUpPageStyling() {
   // loginContent.style.border = "0";
   // tabArrow.style.display = "none";
 
-  const labels = document.querySelectorAll("label"); // ~
-  labels.forEach((label) => {
-    label.style.marginBottom = "12px";
-    label.style.fontWeight = "500";
-    label.style.fontSize = "16px";
-    label.style.fontFamily = "Fusiona";
-    label.style.lineHeight = "20px";
+  // const labels = document.querySelectorAll("label"); // ~
+  // labels.forEach((label) => {
+  //   // label.style.marginBottom = "12px";
+  //   // label.style.fontWeight = "500";
+  //   // label.style.fontSize = "16px";
+  //   // label.style.fontFamily = "Fusiona";
+  //   // label.style.lineHeight = "20px";
 
-    if (label.getAttribute("for") === "id_password2") {
-      label.querySelector(".input-label-text span").textContent = "Password Confirm";} // ~
-  });
+  //   if (label.getAttribute("for") === "id_password2") {
+  //     label.querySelector(".input-label-text span").textContent = "Password Confirm";} // ~
+  // });
+  document.querySelector("label[for=id_password2] .input-label-text span").textContent = "Password Confirm";
 
-  const inputs = document.querySelectorAll("input"); // ~
-  inputs.forEach((input) => {
-    input.style.borderRadius = "4px";
-    input.style.border = "2px solid #3443f4";
-    input.style.padding = "20px 15px";
-    input.style.lineHeight = "24px";
+  // const inputs = document.querySelectorAll("input"); // ~
+  // inputs.forEach((input) => {
+  //   // input.style.borderRadius = "4px";
+  //   // input.style.border = "2px solid #3443f4";
+  //   // input.style.padding = "20px 15px";
+  //   // input.style.lineHeight = "24px";
 
-    if (input.getAttribute("id") === "id_password2") {
-      input.setAttribute("placeholder", "Password confirm");
-    }
-  });
+  //   if (input.getAttribute("id") === "id_password2") {
+  //     input.setAttribute("placeholder", "Password confirm");
+  //   }
+  // });
+  document.querySelector("input#id_password2").setAttribute("placeholder", "Password confirm");
 
   // FOOTER STYLING
   footerContainer.style.paddingLeft = "40px";
@@ -1530,29 +1532,31 @@ function mobileSignUpPageStyling() {
   // loginContent.style.border = "0";
   // tabArrow.style.display = "none";
 
-  const labels = document.querySelectorAll("label"); // ~
-  labels.forEach((label) => {
-    label.style.marginBottom = "12px";
-    label.style.fontWeight = "500";
-    label.style.fontSize = "16px";
-    label.style.lineHeight = "20px";
+  // const labels = document.querySelectorAll("label"); // ~
+  // labels.forEach((label) => {
+  //   // label.style.marginBottom = "12px";
+  //   // label.style.fontWeight = "500";
+  //   // label.style.fontSize = "16px";
+  //   // label.style.lineHeight = "20px";
 
-    if (label.getAttribute("for") === "id_password2") {
-      label.querySelector(".input-label-text span").textContent = "Password confirm"; // ~
-    }
-  });
+  //   if (label.getAttribute("for") === "id_password2") {
+  //     label.querySelector(".input-label-text span").textContent = "Password confirm"; // ~
+  //   }
+  // });
+  document.querySelector("label[for=id_password2] .input-label-text span").textContent = "Password confirm";
 
-  const inputs = document.querySelectorAll("input"); // ~
-  inputs.forEach((input) => {
-    input.style.borderRadius = "4px";
-    input.style.borderColor = "rgb(220, 220, 220)";
-    input.style.padding = "12px";
-    input.style.lineHeight = "24px";
+  // const inputs = document.querySelectorAll("input"); // ~
+  // inputs.forEach((input) => {
+  //   // input.style.borderRadius = "4px";
+  //   // input.style.borderColor = "rgb(220, 220, 220)";
+  //   // input.style.padding = "12px";
+  //   // input.style.lineHeight = "24px";
 
-    if (input.getAttribute("id") === "id_password2") {
-      input.setAttribute("placeholder", "Password confirm");
-    }
-  });
+  //   if (input.getAttribute("id") === "id_password2") {
+  //     input.setAttribute("placeholder", "Password confirm");
+  //   }
+  // });
+  document.querySelector("input#id_password2").setAttribute("placeholder", "Password confirm");
 
   // FOOTER STYLING
   footerContainer.style.paddingLeft = 0;
