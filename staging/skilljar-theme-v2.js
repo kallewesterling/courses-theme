@@ -1039,83 +1039,51 @@ function desktopCurriculumPageYesCertificationStyling() {
 
 const attachAccessMessage = (parent) => document.querySelector(`#${parent}`).append(document.querySelector("#access-message"));
 
-function desktopLoginPageStyling() {
-  inProd ? undefined : console.log(timestamp() + " [desktopLoginPageStyling] Called");
-  
-  // append "T&C to login form"
+function fixForm() {
+  inProd ? undefined : console.log(timestamp() + " [fixForm] Called");
+
+  document.querySelector("button#google_login").textContent = "Continue with Google";
+  document.querySelector("#login-tab-right span").textContent = "Sign Up";
+}
+
+function loginPageStyling() {
+  inProd ? undefined : console.log(timestamp() + " [loginPageStyling] Called");
+
+  // general fixes
+  fixForm();
+
+  // append T&C to login form
   attachAccessMessage("login_form");
-  // document.querySelector("#login_form").append(document.querySelector("#access-message"));
 
-  // add text content + ...
-  document.querySelector(".sj-text-sign-in-with span").textContent = "Or Log In With";
-  document.querySelector("button#google_login").textContent = "Continue with Google";
-  document.querySelector("#login-tab-right span").textContent = "Sign Up"; // ~
-  document.querySelector("#button-sign-in").textContent = "Log In";
-
-  const loginTab = document.querySelector("#login-tab-left"); // ~
-  loginTab.querySelector("span span").textContent = "Log In"; // ~
+  // fix text content
+  document.querySelector("button#button-sign-in").textContent = "Log In";
+  document.querySelector("#login-tab-left span span").textContent = "Log In";
+  document.querySelector("h4.sj-text-sign-in-with span").textContent = "Or Log In With";
 }
 
-function desktopSignUpPageStyling() {
-  inProd ? undefined : console.log(timestamp() + " [desktopSignUpPageStyling] Called");
-  const loginTab = document.querySelector("#login-tab-left"); // ~
-  const loginTabText = loginTab.querySelector("a"); // ~
-  const signInTab = document.querySelector("#login-tab-right"); // ~
-  const signInTabText = signInTab.querySelector("span"); // ~
+function signUpPageStyling() {
+  inProd ? undefined : console.log(timestamp() + " [signUpPageStyling] Called");
 
-  // append "T&C to login form"
+  // general fixes
+  fixForm();
+
+  // append T&C to signup form
   attachAccessMessage("signup_form");
-  // document.querySelector("#signup_form").append(document.querySelector("#access-message"));
 
-  loginTabText.querySelector("span").textContent = "Log In"; // ~
-  
-  signInTabText.textContent = "Sign up";
-  
-  document.querySelector('label[for="id_first_name"] span span').textContent = "First Name";
-  document.querySelector('label[for="id_last_name"] span span').textContent = "Last Name";
-  document.querySelector('label[for="id_email"]').textContent = "Work Email";
-  document.querySelector("#id_email").setAttribute("placeholder", "Work Email");
-  document.querySelector("#button-sign-up span").textContent = "Sign up"; // ~
-  document.querySelector(".sj-text-sign-up-with span").textContent = "Or Sign Up With";
-  document.querySelector("button#google_login").textContent = "Continue with Google";
-  document.querySelector("label[for=id_password2] .input-label-text span").textContent = "Password Confirm";
-  document.querySelector("input#id_password2").setAttribute("placeholder", "Password confirm");
-}
-
-function mobileLoginPageStyling() {
-  inProd ? undefined : console.log(timestamp() + " [mobileLoginPageStyling] Called");
-  
-  // append "T&C to login form"
-  attachAccessMessage("login_form");
-  // document.querySelector("#login_form").append(document.querySelector("#access-message"));
-
-  // change text content + placeholders
-  document.querySelector(".sj-text-sign-in-with span").textContent = "Or Log In With";
-  document.querySelector("button#google_login").textContent = "Continue with Google";
-  document.querySelector("#login-tab-left span span").textContent = "Log in"; // ~
-  document.querySelector("#login-tab-right span").textContent = "Sign up"; // ~
-  document.querySelector("button#button-sign-in").textContent = "Log in";
-}
-
-function mobileSignUpPageStyling() {
-  inProd ? undefined : console.log(timestamp() + " [mobileSignUpPageStyling] Called");
-
-  // append "T&C to login form"
-  attachAccessMessage("signup_form");
-  // document.querySelector("#signup_form").append(document.querySelector("#access-message"));
-
-  // change text content + placeholders
-  document.querySelector("button#button-sign-up span").textContent = "Sign up"; // ~
+  // fix text content
+  document.querySelector("button#button-sign-up span").textContent = "Sign up";
+  document.querySelector("#login-tab-left a span").textContent = "Log In";
   document.querySelector("h4.sj-text-sign-up-with span").textContent = "Or Sign Up With";
-  document.querySelector("button#google_login").textContent = "Continue with Google";
+
+  // fix inputs
+  document.querySelector("input#id_email").setAttribute("placeholder", "Work Email");
+  document.querySelector("input#id_password2").setAttribute("placeholder", "Password confirm");
+
+  // fix labels
   document.querySelector('label[for="id_first_name"] span span').textContent = "First Name";
   document.querySelector('label[for="id_last_name"] span span').textContent = "Last Name";
   document.querySelector('label[for="id_email"]').textContent = "Work Email";
-  document.querySelector("#login-tab-left a span").textContent = "Log in"; // ~
-  document.querySelector("#login-tab-right span").textContent = "Sign up";
-  document.querySelector("label[for=id_password2] .input-label-text span").textContent = "Password confirm";
-  document.querySelector("input#id_password2").setAttribute("placeholder", "Password confirm");
-  document.querySelector("input#id_email").setAttribute("placeholder", "Work Email");
+  document.querySelector("label[for=id_password2] .input-label-text span").textContent = "Password Confirm";
 }
 
 function mobileCourseDetailsPageStyling() {
@@ -2202,13 +2170,15 @@ function renderPage() {
   } else if (current.isPageCatalogPath) {
     current.viewport === "desktop" ? desktopPathCatalogPageStyling() : null;
   } else if (current.isLoginPage) {
-    current.viewport === "desktop"
-      ? desktopLoginPageStyling()
-      : mobileLoginPageStyling();
+    // current.viewport === "desktop"
+    //   ? desktopLoginPageStyling()
+    //   : mobileLoginPageStyling();
+    loginPageStyling();
   } else if (current.isSignUpPage) {
-    current.viewport === "desktop"
-      ? desktopSignUpPageStyling()
-      : mobileSignUpPageStyling();
+    // current.viewport === "desktop"
+    //   ? desktopSignUpPageStyling()
+    //   : mobileSignUpPageStyling();
+    signUpPageStyling();
   } else if (current.isCurriculumPage) {
     const certificateEl = document.querySelector(".cp-certificate"); // ~
 
