@@ -727,13 +727,13 @@ body.sj-page-login, body.sj-page-signup {
         
         #login-tab-left a, #login-tab-right a {
             /* active link to login/signup (on signup/login page respectively) */
-            color: #3443f4 !important;
+            color: rgba(52, 67, 244, .4) !important;
             text-decoration: underline !important; /* should only be on sign in */
         }
-
-        #login-tab-left span, #login-tab-right span {
+        
+        #span.sj-text-sign-in, div.sj-text-sign-up span {
             /* "active tab" for login/signup page */
-            color: rgba(52, 67, 244, .4) !important;
+            color: #3443f4 !important;
             text-decoration: none !important;
         }
 
