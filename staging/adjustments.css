@@ -625,6 +625,10 @@ body.sj-page-login, body.sj-page-signup {
     /* loginContent */
     #login-content {
         border: 0px !important;
+
+        .text-center:has(#button-sign-up) {
+            text-align: left !important;
+        }
     }
 
     /* tabArrow */
