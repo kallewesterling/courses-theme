@@ -135,7 +135,7 @@ function signUpPageStyling() {
 function desktopCourseDetailsPageStyling() {
   inProd ? undefined : console.log(timestamp() + " [desktopCourseDetailsPageStyling] Called");
   // Put content in the correct order
-  const mainHeadingContainer = document.querySelector(".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"); // ~
+  const mainHeadingContainer = document.querySelector(".dp-summary-wrapper, sj-summary"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
   const mainHeading = document.querySelector(".break-word"); // ~
   const headingParagraph = mainHeadingContainer.querySelector("h2"); // ~
@@ -196,22 +196,18 @@ function desktopCourseDetailsPageStyling() {
   //COURSE DETAILS GRID STRUCTURE STYLING - ADDING DETAILS CARD ON RIGHT SIDE
   const secondaryBodyContainer = document.querySelector(".row.hide-for-small.padded-side-bottom"); // ~
   const courseDetailCardContainer = secondaryBodyContainer.querySelector(".course-details-card"); // ~
-  const courseDetailCardListItems = document.querySelectorAll(".course-details-card li"); // ~
   const checkboxIcon = document.querySelector(".checkbox-icon"); // ~
   
   if (courseDetailCardContainer) {
     document.querySelector("#dp-details").append(courseDetailCardContainer);
-    // courseDetailCardContainer.style.margin = "0 0 46px 0";
-    // courseDetailCardContainer.style.justifySelf = "center";
-    courseDetailCardListItems.forEach((li) => {
-      const iconClone = checkboxIcon.cloneNode(true);
-      li.prepend(iconClone);
+    document.querySelectorAll(".course-details-card li").forEach((li) => {
+      li.prepend(checkboxIcon.cloneNode(true));
     });
   }
 
   const courseDetailsCardLink = document.querySelector(".course-details-card-link"); // ~
   if (courseDetailsCardLink) {
-    const text = document.querySelector(".purchase-button-full-text").textContent;
+    const text = document.querySelector(".purchase-button-full-text").textContent.trim();
     const link = document.querySelector("#purchase-button").getAttribute("href") || "";
     courseDetailsCardLink.textContent = text;
     courseDetailsCardLink.setAttribute("href", link);
