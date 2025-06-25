@@ -636,11 +636,11 @@ function desktopLessonPageStyling() {
 
 function desktopLoginPageStyling() {
   inProd ? undefined : console.log(timestamp() + " [desktopLoginPageStyling] Called");
-  const fbBtn = document.querySelector("#facebook_login"); // ~
+  // const fbBtn = document.querySelector("#facebook_login"); // ~
   const googleBtn = document.querySelector("#google_login"); // ~
   const loginContent = document.querySelector("#login-content"); // ~
-  const tabArrow = document.querySelector("#tab-marker-login"); // ~
-  const termsAndServicesText = document.querySelector("#access-message"); // ~
+  // const tabArrow = document.querySelector("#tab-marker-login"); // ~
+  // const termsAndServicesText = document.querySelector("#access-message"); // ~
   const loginContentContainer = document.querySelector(".large-6.columns"); // ~
   const orGoogleSignInContainer = loginContent.querySelectorAll(".large-6.columns")[1]; // ~
   const orGoogleSignInInnerContainer = orGoogleSignInContainer.querySelector("ul"); // ~
@@ -665,7 +665,7 @@ function desktopLoginPageStyling() {
   const footerContainer = document.querySelector("#footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
 
-  loginForm.append(termsAndServicesText);
+  loginForm.append(document.querySelector("#access-message"));
 
   // STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = "flex";
@@ -695,7 +695,7 @@ function desktopLoginPageStyling() {
   signInTabText.style.lineHeight = "24px";
 
   // STYLE THE LOGIN TEXT CONTENT BOX
-  loginContentContainer.style.width = "50%";
+  // loginContentContainer.style.width = "50%";
   orGoogleSignInContainer.style.width = "50%";
   orGoogleSignInInnerContainer.style.paddingLeft = "125px";
   orGoogleSignInInnerContainerListItems.forEach((li) => {
@@ -734,12 +734,12 @@ function desktopLoginPageStyling() {
   orSignInWithTextEl.textContent = "Or Log In With";
   googleBtn.textContent = "Continue with Google";
 
-  fbBtn.style.display = "none";
-  googleBtn.style.background = "linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%)";
-  googleBtn.style.width = "auto";
-  googleBtn.style.textAlign = "center";
-  loginContent.style.border = "0";
-  tabArrow.style.display = "none";
+  // fbBtn.style.display = "none";
+  // googleBtn.style.background = "linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%)";
+  // googleBtn.style.width = "auto";
+  // googleBtn.style.textAlign = "center";
+  // loginContent.style.border = "0";
+  // tabArrow.style.display = "none";
 
   // FOOTER STYLING
   footerContainer.style.paddingLeft = "40px";
@@ -751,12 +751,12 @@ function desktopLoginPageStyling() {
 
 function desktopSignUpPageStyling() {
   inProd ? undefined : console.log(timestamp() + " [desktopSignUpPageStyling] Called");
-  const fbBtn = document.querySelector("#facebook_login"); // ~
+  // const fbBtn = document.querySelector("#facebook_login"); // ~
   const googleBtn = document.querySelector("#google_login"); // ~
   const loginContent = document.querySelector("#login-content"); // ~
-  const tabArrow = document.querySelector("#tab-marker-signup"); // ~
-  const termsAndServicesText = document.querySelector("#access-message"); // ~
-  const loginContentContainer = document.querySelector(".large-6.columns"); // ~
+  // const tabArrow = document.querySelector("#tab-marker-signup"); // ~
+  // const termsAndServicesText = document.querySelector("#access-message"); // ~
+  // const loginContentContainer = document.querySelector(".large-6.columns"); // ~
   const orSignInWithGoogleContainer = loginContent.querySelectorAll(".row .large-6.columns") // ~
   const orSignInWithGoogleList = orSignInWithGoogleContainer.querySelector("ul"); // ~
   const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll("li"); // ~
@@ -783,7 +783,7 @@ function desktopSignUpPageStyling() {
   const footerContainer = document.querySelector("#footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
 
-  signUpForm.append(termsAndServicesText);
+  signUpForm.append(document.querySelector("#access-message"));
 
   // STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = "flex";
@@ -814,9 +814,9 @@ function desktopSignUpPageStyling() {
   signInTabText.style.lineHeight = "24px";
 
   // STYLE THE SIGNUP TEXT CONTENT BOX
-  loginContentContainer.style.width = "50%";
-  orSignInWithGoogleContainer.style.width = "50%";
-  orSignInWithGoogleContainer.style.paddingLeft = "100px";
+  // loginContentContainer.style.width = "50%";
+  // orSignInWithGoogleContainer.style.width = "50%";
+  // orSignInWithGoogleContainer.style.paddingLeft = "100px";
   orSignInWithGoogleList.style.paddingLeft = "25px";
   orSignInWithGoogleItems.forEach((li) => {
     li.style.padding = "0";
@@ -861,13 +861,13 @@ function desktopSignUpPageStyling() {
   orSignInWithTextSpan.textContent = "Or Sign Up With";
   googleBtn.textContent = "Continue with Google";
 
-  fbBtn.style.display = "none";
-  googleBtn.style.background =
-    "linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%)";
-  googleBtn.style.width = "auto";
-  googleBtn.style.textAlign = "center";
-  loginContent.style.border = "0";
-  tabArrow.style.display = "none";
+  // fbBtn.style.display = "none";
+  // googleBtn.style.background =
+  //   "linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%)";
+  // googleBtn.style.width = "auto";
+  // googleBtn.style.textAlign = "center";
+  // loginContent.style.border = "0";
+  // tabArrow.style.display = "none";
 
   const labels = document.querySelectorAll("label"); // ~
   labels.forEach((label) => {
@@ -1307,12 +1307,12 @@ function desktopCurriculumPageYesCertificationStyling() {
 // MOBILE VIEW STYLINGS
 function mobileLoginPageStyling() {
   inProd ? undefined : console.log(timestamp() + " [mobileLoginPageStyling] Called");
-  const fbBtn = document.querySelector("#facebook_login"); // ~
+  // const fbBtn = document.querySelector("#facebook_login"); // ~
   const googleBtn = document.querySelector("#google_login"); // ~
   const loginContent = document.querySelector("#login-content"); // ~
-  const tabArrow = document.querySelector("#tab-marker-login"); // ~
-  const termsAndServicesText = document.querySelector("#access-message"); // ~
-  const loginContentContainer = document.querySelector(".large-6.columns"); // ~
+  // const tabArrow = document.querySelector("#tab-marker-login"); // ~
+  // const termsAndServicesText = document.querySelector("#access-message"); // ~
+  // const loginContentContainer = document.querySelector(".large-6.columns"); // ~
   const orGoogleSignInContainer = loginContent.querySelectorAll(".large-6.columns")[1]; // ~
   const orGoogleSignInInnerContainer = orGoogleSignInContainer.querySelector("ul"); // ~
   const orGoogleSignInInnerContainerListItems = orGoogleSignInInnerContainer.querySelectorAll("li"); // ~
@@ -1335,7 +1335,7 @@ function mobileLoginPageStyling() {
   const footerContainer = document.querySelector("#footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
 
-  loginForm.append(termsAndServicesText);
+  loginForm.append(document.querySelector("#access-message"));
 
   // STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = "flex";
@@ -1364,7 +1364,7 @@ function mobileLoginPageStyling() {
   signInTabText.style.lineHeight = "24px";
 
   // STYLE THE LOGIN TEXT CONTENT BOX
-  loginContentContainer.style.width = "100%";
+  // loginContentContainer.style.width = "100%";
   orGoogleSignInContainer.style.width = "100%";
   orGoogleSignInInnerContainer.style.padding = "0";
   orGoogleSignInInnerContainerListItems.forEach((li) => {
@@ -1395,12 +1395,12 @@ function mobileLoginPageStyling() {
   orSignInWithTextEl.textContent = "or log in with";
   googleBtn.textContent = "Continue with Google";
 
-  fbBtn.style.display = "none";
-  googleBtn.style.backgroundColor = "#3443F4";
-  googleBtn.style.width = "100%";
-  googleBtn.style.textAlign = "center";
-  loginContent.style.border = "0";
-  tabArrow.style.display = "none";
+  // fbBtn.style.display = "none";
+  // googleBtn.style.backgroundColor = "#3443F4";
+  // googleBtn.style.width = "100%";
+  // googleBtn.style.textAlign = "center";
+  // loginContent.style.border = "0";
+  // tabArrow.style.display = "none";
 
   // FOOTER STYLING
   footerContainer.style.paddingLeft = 0;
@@ -1412,12 +1412,12 @@ function mobileLoginPageStyling() {
 
 function mobileSignUpPageStyling() {
   inProd ? undefined : console.log(timestamp() + " [mobileSignUpPageStyling] Called");
-  const fbBtn = document.querySelector("#facebook_login"); // ~
+  // const fbBtn = document.querySelector("#facebook_login"); // ~
   const googleBtn = document.querySelector("#google_login"); // ~
   const loginContent = document.querySelector("#login-content"); // ~
-  const tabArrow = document.querySelector("#tab-marker-signup"); // ~
-  const termsAndServicesText = document.querySelector("#access-message"); // ~
-  const loginContentContainer = document.querySelector(".large-6.columns"); // ~
+  // const tabArrow = document.querySelector("#tab-marker-signup"); // ~
+  // const termsAndServicesText = document.querySelector("#access-message"); // ~
+  // const loginContentContainer = document.querySelector(".large-6.columns"); // ~
   const orSignInWithGoogleContainer = loginContent.querySelectorAll(".row .large-6.columns")[3]; // ~
   const orSignInWithGoogleList = orSignInWithGoogleContainer.querySelector("ul"); // ~
   const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll("li"); // ~
@@ -1445,7 +1445,7 @@ function mobileSignUpPageStyling() {
   const footerContainer = document.querySelector("#footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
 
-  signUpForm.append(termsAndServicesText);
+  signUpForm.append(document.querySelector("#access-message"));
 
   // STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = "flex";
@@ -1475,9 +1475,9 @@ function mobileSignUpPageStyling() {
   signInTabText.style.lineHeight = "24px";
 
   // STYLE THE SIGNUP TEXT CONTENT BOX
-  loginContentContainer.style.width = "100%";
-  orSignInWithGoogleContainer.style.width = "100%";
-  orSignInWithGoogleContainer.style.padding = "0";
+  // loginContentContainer.style.width = "100%";
+  // orSignInWithGoogleContainer.style.width = "100%";
+  // orSignInWithGoogleContainer.style.padding = "0";
   orSignInWithGoogleList.style.padding = "0";
   orSignInWithGoogleItems.forEach((li) => {
     li.style.padding = "0";
@@ -1518,12 +1518,12 @@ function mobileSignUpPageStyling() {
   orSignInWithTextSpan.textContent = "or sign up with";
   googleBtn.textContent = "Continue with Google";
 
-  fbBtn.style.display = "none";
-  googleBtn.style.backgroundColor = "#3443F4";
-  googleBtn.style.width = "100%";
-  googleBtn.style.textAlign = "center";
-  loginContent.style.border = "0";
-  tabArrow.style.display = "none";
+  // fbBtn.style.display = "none";
+  // googleBtn.style.backgroundColor = "#3443F4";
+  // googleBtn.style.width = "100%";
+  // googleBtn.style.textAlign = "center";
+  // loginContent.style.border = "0";
+  // tabArrow.style.display = "none";
 
   const labels = document.querySelectorAll("label"); // ~
   labels.forEach((label) => {

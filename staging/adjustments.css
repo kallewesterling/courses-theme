@@ -605,3 +605,61 @@ svg.checkbox-icon {
     display: block !important;
     flex-shrink: 0 !important;
 }
+
+body.sj-page-login, body.sj-page-signup {
+    /* login + signup page elements */
+
+    /* fbBtn */
+    #facebook_login {
+        display: none !important;
+    }
+
+    /* googleBtn */
+    #google_login {
+        /* background-color: #3443F4 !important; */
+        background: linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%) !important;
+        text-align: center !important;
+        width: auto !important;
+    }
+
+    /* loginContent */
+    #login-content {
+        border: 0px !important;
+    }
+
+    /* tabArrow */
+    #tab-marker-login {
+        display: none !important;
+    }
+
+    /* loginContentContainer */
+    .large-6.columns:has(#signup_form) {
+        width: 50% !important;
+    }
+
+    .large-6.columns:has(.sj-text-sign-in-with) {
+        width: 50% !important;
+        padding-left: 100px !important;
+    }
+}
+
+@media (max-width: 991px) {
+    body.sj-page-login, body.sj-page-signup {
+        /* login + signup page elements */
+
+        /* googleBtn */
+        #google_login {
+            width: 100% !important;
+        }
+
+        /* loginContentContainer */
+        .large-6.columns:has(#signup_form) {
+            width: 100% !important;
+        }
+
+        .large-6.columns:has(.sj-text-sign-in-with) {
+            width: 100% !important;
+            padding: 0px !important;
+        }
+    }
+}
