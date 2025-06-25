@@ -445,6 +445,18 @@ body.sj-page-signup #access-message {
                 border-bottom: none !important;
             }
         }
+
+        .content:has(#curriculum-list) {
+            /* curriculumOutsideContainer.querySelector("h2").style.display = "none"; */
+            h2 {
+                display: none !important;
+            }
+
+            /* curriculumOutsideContainer.querySelector("hr").style.display = "none"; */
+            hr {
+                display: none !important;
+            }
+        }
     }
     
     /* aboutSection */
