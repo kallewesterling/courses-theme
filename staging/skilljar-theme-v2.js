@@ -2638,19 +2638,7 @@ function mobileLessonPageStyling() {
   });
 }
 
-function handlePageStyling(
-  {
-    isCatalogPage,
-    isCourseDetailsPage,
-    isPageDetailPath,
-    isPageCatalogPath,
-    isLoginPage,
-    isSignUpPage,
-    isCurriculumPage,
-    isLessonsPage,
-  },
-  currentView
-) {
+function handlePageStyling() {
   if (isCourseDetailsPage) {
     currentView === "desktop"
       ? desktopCourseDetailsPageStyling()
@@ -2692,19 +2680,7 @@ function handlePageStyling(
 function renderCourse() {
   inProd ? undefined : console.log(timestamp() + " [renderCourse] Called");
 
-  handlePageStyling(
-    {
-      isCatalogPage,
-      isCourseDetailsPage,
-      isPageDetailPath,
-      isPageCatalogPath,
-      isLoginPage,
-      isSignUpPage,
-      isCurriculumPage,
-      isLessonsPage,
-    },
-    currentView
-  );
+  handlePageStyling();
 
   /* Insert footer in the right place */
   let contentContainer = isLessonsPage ? document.querySelector(".sj-page-lesson") : document.querySelector("#skilljar-content"); // ~
