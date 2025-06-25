@@ -1,16 +1,14 @@
 const inProd = false; // Set to true if in production environment
 
 let current = {};
-let initialLoadComplete = false;
 let globalCurriculumSection, globalAboutSection;
-let width;
 
 /* Utility functions */
 const timestamp = () => (new Date).toISOString().slice(11, 19);
 
 const elemExists = (selector, parent = document) => parent.querySelector(selector) ? true : false;
 
-const getViewport = () => width <= 991 ? "mobile" : "desktop";
+const getViewport = () => checkWindowWidth() <= 991 ? "mobile" : "desktop";
 
 const checkWindowWidth = () => (
   window.innerWidth ||
@@ -21,7 +19,7 @@ const checkWindowWidth = () => (
 function desktopCatalogPageStyling() {
   inProd ? undefined : console.log(timestamp() + " [desktopCatalogPageStyling] Called");
 
-  if (!initialLoadComplete) {
+  if (!current.initialLoadComplete) {
     const catalogContentContainer = document.createElement("div");
     catalogContentContainer.id = "catalog-content-wrapper";
 
@@ -31,9 +29,58 @@ function desktopCatalogPageStyling() {
     catalogContentContainer.append(allCoursesHeader, document.querySelector("#catalog-courses"));
     document.querySelector("#catalog-content").append(catalogContentContainer);
 
-    initialLoadComplete = true;
-    console.log(timestamp() + " [desktopCatalogPageStyling] initialLoadComplete set to true")
+    current.initialLoadComplete = true;
+    console.log(timestamp() + " [desktopCatalogPageStyling] current.initialLoadComplete set to true")
   }
+}
+
+const attachAccessMessage = (parent) => document.querySelector(`#${parent}`).append(document.querySelector("#access-message"));
+
+function fixForm() {
+  inProd ? undefined : console.log(timestamp() + " [fixForm] Called");
+
+  document.querySelector("button#google_login").textContent = "Continue with Google";
+  document.querySelector("#login-tab-right span").textContent = "Sign Up";
+}
+
+function loginPageStyling() {
+  inProd ? undefined : console.log(timestamp() + " [loginPageStyling] Called");
+
+  // general fixes
+  fixForm();
+
+  // append T&C to login form
+  attachAccessMessage("login_form");
+
+  // fix text content
+  document.querySelector("button#button-sign-in").textContent = "Log In";
+  document.querySelector("#login-tab-left span span").textContent = "Log In";
+  document.querySelector("h4.sj-text-sign-in-with span").textContent = "Or Log In With";
+}
+
+function signUpPageStyling() {
+  inProd ? undefined : console.log(timestamp() + " [signUpPageStyling] Called");
+
+  // general fixes
+  fixForm();
+
+  // append T&C to signup form
+  attachAccessMessage("signup_form");
+
+  // fix text content
+  document.querySelector("button#button-sign-up span").textContent = "Sign up";
+  document.querySelector("#login-tab-left a span").textContent = "Log In";
+  document.querySelector("h4.sj-text-sign-up-with span").textContent = "Or Sign Up With";
+
+  // fix inputs
+  document.querySelector("input#id_email").setAttribute("placeholder", "Work Email");
+  document.querySelector("input#id_password2").setAttribute("placeholder", "Password confirm");
+
+  // fix labels
+  document.querySelector('label[for="id_first_name"] span span').textContent = "First Name";
+  document.querySelector('label[for="id_last_name"] span span').textContent = "Last Name";
+  document.querySelector('label[for="id_email"]').textContent = "Work Email";
+  document.querySelector("label[for=id_password2] .input-label-text span").textContent = "Password Confirm";
 }
 
 function desktopCourseDetailsPageStyling() {
@@ -157,7 +204,7 @@ function desktopCourseDetailsPageStyling() {
   // });
 
   //COURSE DETAILS CURRICULUM STYLING
-  if (!initialLoadComplete) {
+  if (!current.initialLoadComplete) {
     // Check if course has Sections/Modules/Parts
     const hasSections = curriculumListContainer.querySelector(".section")
       ? true
@@ -648,7 +695,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
   const curriculumOutsideContainer = curriculumParentContainer.closest(".content");
 
-  if (initialLoadComplete) {
+  if (current.initialLoadComplete) {
     curriculumSection = globalCurriculumSection;
     aboutSection = globalAboutSection;
     tabsContainer.append(curriculumSection, aboutSection);
@@ -666,14 +713,14 @@ function desktopCurriculumPageNoCertificateStyling() {
     }
   }
 
-  if (courseDetailsCardLink && resumeBtn) {
-    let btnText = resumeBtn?.querySelector(".button span").textContent || ""; // ~
-    let btnHref = resumeBtn?.querySelector(".button").getAttribute("href") || ""; // ~
+  const btnText = document.querySelector("#resume-button .button span").textContent || "";
+  const btnHref = document.querySelector("#resume-button .button").getAttribute("href") || "";
+  if (courseDetailsCardLink && btnText && btnHref) {
     courseDetailsCardLink.textContent = btnText;
     courseDetailsCardLink.setAttribute("href", btnHref);
   }
 
-  if (!initialLoadComplete) {
+  if (!current.initialLoadComplete) {
     const courseDetailCardListItems = document.querySelectorAll(".course-details-card li"); // ~
     const checkboxIcon = document.querySelector(".checkbox-icon"); // ~
 
@@ -701,7 +748,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   // CURRICULUM PAGE BODY STYLING
   tabsContainer.append(curriculumSection);
   
-  if (!initialLoadComplete) {
+  if (!current.initialLoadComplete) {
     // add vars to global
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
@@ -801,7 +848,7 @@ function desktopCurriculumPageYesCertificationStyling() {
   aboutSection.id = "about-section";
 
   // TEST
-  if (initialLoadComplete) {
+  if (current.initialLoadComplete) {
     curriculumSection = globalCurriculumSection;
     aboutSection = globalAboutSection;
     tabsContainer.append(curriculumSection, aboutSection);
@@ -830,7 +877,7 @@ function desktopCurriculumPageYesCertificationStyling() {
     courseDetailsCardLink.style.display = "none";
   }
 
-  if (!initialLoadComplete) {
+  if (!current.initialLoadComplete) {
     courseDetailCardListItems.forEach((li) => {
       const iconClone = checkboxIcon.cloneNode(true);
       // iconClone.style.display = "block";
@@ -910,7 +957,7 @@ function desktopCurriculumPageYesCertificationStyling() {
   curriculumSection.querySelector(".content").style.padding = "0"; // ~
 
   // NEW CURRICULUM DISPLAY STYLING
-  if (!initialLoadComplete) {
+  if (!current.initialLoadComplete) {
     // set global curriculum and about section vars
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
@@ -1035,55 +1082,6 @@ function desktopCurriculumPageYesCertificationStyling() {
     // titleEl.style.margin = "0";
     // titleEl.style.transform = "translateY(2px)";
   // });
-}
-
-const attachAccessMessage = (parent) => document.querySelector(`#${parent}`).append(document.querySelector("#access-message"));
-
-function fixForm() {
-  inProd ? undefined : console.log(timestamp() + " [fixForm] Called");
-
-  document.querySelector("button#google_login").textContent = "Continue with Google";
-  document.querySelector("#login-tab-right span").textContent = "Sign Up";
-}
-
-function loginPageStyling() {
-  inProd ? undefined : console.log(timestamp() + " [loginPageStyling] Called");
-
-  // general fixes
-  fixForm();
-
-  // append T&C to login form
-  attachAccessMessage("login_form");
-
-  // fix text content
-  document.querySelector("button#button-sign-in").textContent = "Log In";
-  document.querySelector("#login-tab-left span span").textContent = "Log In";
-  document.querySelector("h4.sj-text-sign-in-with span").textContent = "Or Log In With";
-}
-
-function signUpPageStyling() {
-  inProd ? undefined : console.log(timestamp() + " [signUpPageStyling] Called");
-
-  // general fixes
-  fixForm();
-
-  // append T&C to signup form
-  attachAccessMessage("signup_form");
-
-  // fix text content
-  document.querySelector("button#button-sign-up span").textContent = "Sign up";
-  document.querySelector("#login-tab-left a span").textContent = "Log In";
-  document.querySelector("h4.sj-text-sign-up-with span").textContent = "Or Sign Up With";
-
-  // fix inputs
-  document.querySelector("input#id_email").setAttribute("placeholder", "Work Email");
-  document.querySelector("input#id_password2").setAttribute("placeholder", "Password confirm");
-
-  // fix labels
-  document.querySelector('label[for="id_first_name"] span span').textContent = "First Name";
-  document.querySelector('label[for="id_last_name"] span span').textContent = "Last Name";
-  document.querySelector('label[for="id_email"]').textContent = "Work Email";
-  document.querySelector("label[for=id_password2] .input-label-text span").textContent = "Password Confirm";
 }
 
 function mobileCourseDetailsPageStyling() {
@@ -1215,7 +1213,7 @@ function mobileCourseDetailsPageStyling() {
   // });
 
   // COURSE DETAILS CURRICULUM STYLING
-  if (!initialLoadComplete) {
+  if (!current.initialLoadComplete) {
     const hasSections = curriculumListContainer.querySelector(".section") ? true : false; // ~
     let curContainer = document.createElement("li");
 
@@ -1370,7 +1368,7 @@ function mobileCurriculumPageNoCertificateStyling() {
   const curriculumOutsideContainer = curriculumParentContainer.closest(".content");
 
   // TEST
-  if (initialLoadComplete) {
+  if (current.initialLoadComplete) {
     curriculumSection = globalCurriculumSection;
     aboutSection = globalAboutSection;
     tabsContainer.append(curriculumSection, aboutSection);
@@ -1400,7 +1398,7 @@ function mobileCurriculumPageNoCertificateStyling() {
     courseDetailsCardLink.setAttribute("href", btnHref);
   }
 
-  if (!initialLoadComplete) {
+  if (!current.initialLoadComplete) {
     courseDetailCardListItems.forEach((li) => {
       const iconClone = checkboxIcon.cloneNode(true);
       // iconClone.style.display = "block";
@@ -1483,7 +1481,7 @@ function mobileCurriculumPageNoCertificateStyling() {
   curriculumSection.querySelector(".content").style.padding = "0"; // ~
 
   // NEW CURRICULUM DISPLAY STYLING
-  if (!initialLoadComplete) {
+  if (!current.initialLoadComplete) {
     // set global curriculum and about section vars
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
@@ -1650,7 +1648,7 @@ function mobileCurriculumPageYesCertificateStyling() {
   aboutSection.id = "about-section";
 
   // TEST
-  if (initialLoadComplete) {
+  if (current.initialLoadComplete) {
     curriculumSection = globalCurriculumSection;
     aboutSection = globalAboutSection;
     tabsContainer.append(curriculumSection, aboutSection);
@@ -1684,7 +1682,7 @@ function mobileCurriculumPageYesCertificateStyling() {
 
   courseDetailsCardLink.style.display = "none";
 
-  if (!initialLoadComplete) {
+  if (!current.initialLoadComplete) {
     courseDetailCardListItems.forEach((li) => {
       const iconClone = checkboxIcon.cloneNode(true);
       // iconClone.style.display = "block";
@@ -1770,7 +1768,7 @@ function mobileCurriculumPageYesCertificateStyling() {
   curriculumSection.querySelector(".content").style.padding = "0"; // ~
 
   // NEW CURRICULUM DISPLAY STYLING
-  if (!initialLoadComplete) {
+  if (!current.initialLoadComplete) {
     // set global curriculum and about section vars
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
@@ -1958,7 +1956,7 @@ function mobileLessonPageStyling() {
 
   navOpenIcon.style.position = "sticky";
 
-  if (width >= 767) {
+  if (checkWindowWidth() >= 767) {
     navOpenIcon.style.top = "24px";
   } else {
     navOpenIcon.style.top = "56px";
@@ -2209,10 +2207,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Handle initial rendering
   inProd ? undefined : console.log(timestamp() + " [DOMContentLoaded] Called");
 
-  // Width 
-  width = checkWindowWidth();
-  inProd ? undefined : console.log(timestamp() + " [DOMContentLoaded] Resized: ", width);
-
   // isCatalogPage is true if the page displays the catalog of courses (i.e. the landing page)
   current.isCatalogPage = elemExists("body.sj-page-catalog"); 
   
@@ -2243,16 +2237,14 @@ document.addEventListener("DOMContentLoaded", () => {
   
   renderPage();
 
-  inProd ? undefined : console.log(timestamp() + " [DOMContentLoaded] initialLoadComplete set to true");
-  initialLoadComplete = true;
+  inProd ? undefined : console.log(timestamp() + " [DOMContentLoaded] current.initialLoadComplete set to true");
+  current.initialLoadComplete = true;
 });
 
 window.addEventListener("resize", () => {
   // Handle resized window
-  width = checkWindowWidth();
   current.viewport = getViewport();
   
-  inProd ? undefined : console.log(timestamp() + " [event:resize] Resized: ", width);
   inProd ? undefined : console.log(timestamp() + " [event:resize] current.viewport: ", current.viewport);
   
   renderPage();
