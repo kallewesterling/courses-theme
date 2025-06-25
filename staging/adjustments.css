@@ -342,6 +342,7 @@ body.sj-page-signup #access-message {
         /* innerCol */
         ul.dp-curriculum {
             margin: 0 !important;
+            padding: 0 !important; /* from desktopCourseDetailsPageStyling */
         }
     }
 
@@ -814,5 +815,17 @@ body.sj-page-login, body.sj-page-signup {
             font-size: 16px !important;
             margin-bottom: 12px !important;
         }
+    }
+}
+
+body.sj-page-detail-course {
+    /* curriculumListHeader */
+    .sj-curriculum-wrapper:has(.dp-curriculum) h3 {
+        display: none !important;
+    }
+    
+    .row.hide-for-small.padded-side-bottom {
+        padding: 0 !important;
+        max-width: 760px !important;
     }
 }

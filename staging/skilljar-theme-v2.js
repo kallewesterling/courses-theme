@@ -4,18 +4,44 @@ let current = {};
 let globalCurriculumSection, globalAboutSection;
 
 /* Utility functions */
+
+/*
+  * Function to get the current timestamp in HH:MM:SS format
+  * @returns {string} - Returns the current timestamp in HH:MM:SS format
+*/
 const timestamp = () => (new Date).toISOString().slice(11, 19);
 
+/*
+  * Function to check if an element exists in the DOM
+  * @param {string} selector - The CSS selector of the element to check.
+  * @param {Element} [parent=document] - The parent element to search within.
+  * @returns {boolean} - Returns true if the element exists, otherwise false.
+*/
 const elemExists = (selector, parent = document) => parent.querySelector(selector) ? true : false;
 
+/*
+  * Function to get the current viewport type based on window width
+  * @returns {string} - Returns "mobile" if window width is less than or equal
+  * to 991px, otherwise returns "desktop".
+*/
 const getViewport = () => checkWindowWidth() <= 991 ? "mobile" : "desktop";
 
+/*
+  * Function to check the current window width
+  * @returns {number} - Returns the current window width in pixels.
+*/
 const checkWindowWidth = () => (
   window.innerWidth ||
   document.documentElement.clientWidth ||
   document.body.clientWidth
 );
 
+/*
+  * Function to apply styling to the desktop catalog page
+  * This function modifies the catalog page by creating a new container for the catalog content,
+  * appending a header, and moving the existing catalog courses into this new container.
+  * @returns {void}
+*/
 function desktopCatalogPageStyling() {
   inProd ? undefined : console.log(timestamp() + " [desktopCatalogPageStyling] Called");
 
@@ -34,8 +60,19 @@ function desktopCatalogPageStyling() {
   }
 }
 
+/*
+  * Function to attach the access message to a specified parent element
+  * This function appends the access message element to the specified parent element in the DOM.
+  * @param {string} parent - The ID of the parent element to which the access message will be appended.
+  * @returns {void}
+*/
 const attachAccessMessage = (parent) => document.querySelector(`#${parent}`).append(document.querySelector("#access-message"));
 
+/*
+  * Function to fix the form on the login and signup pages
+  * This function modifies the text content of the Google login button and the sign-up tab text.
+  * @returns {void}
+*/
 function fixForm() {
   inProd ? undefined : console.log(timestamp() + " [fixForm] Called");
 
@@ -43,6 +80,12 @@ function fixForm() {
   document.querySelector("#login-tab-right span").textContent = "Sign Up";
 }
 
+/*
+  * Function to apply styling to the login and signup pages
+  * This function modifies the text content of the login and signup buttons, and appends the terms and conditions message.
+  * It also fixes the form by calling the fixForm function.
+  * @returns {void}
+*/
 function loginPageStyling() {
   inProd ? undefined : console.log(timestamp() + " [loginPageStyling] Called");
 
@@ -58,6 +101,12 @@ function loginPageStyling() {
   document.querySelector("h4.sj-text-sign-in-with span").textContent = "Or Log In With";
 }
 
+/*
+  * Function to apply styling to the sign-up page.
+  * This function modifies the text content of the sign-up button, login tab text, and input placeholders.
+  * It also appends the terms and conditions message to the sign-up form.
+  * @returns {void}
+*/
 function signUpPageStyling() {
   inProd ? undefined : console.log(timestamp() + " [signUpPageStyling] Called");
 
@@ -85,78 +134,7 @@ function signUpPageStyling() {
 
 function desktopCourseDetailsPageStyling() {
   inProd ? undefined : console.log(timestamp() + " [desktopCourseDetailsPageStyling] Called");
-  // const headerContainer = document.querySelector(".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"); // ~
-  // const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
-  // const backToCatalogBtn = document.querySelector(".back-to-catalog"); // ~
-  // const videoContainer = document.querySelector(".video-max"); // ~
-  // const mainInfoCardContained = document.querySelector(".sj-course-info-wrapper"); // ~
-
-  //SIGN IN VARIABLES (WHEN USER NOT LOGGED IN)
-  // const signInHeaderText = document.querySelector(".signin"); // ~
-  // const signInBtn = document.querySelector(".header-link.login-link.sj-text-sign-in.focus-link-v2"); // ~
-  ////BODY VARIABLES
-  const bodyContainer = document.querySelector("#dp-details"); // ~
-  // const mobileBodyContent = document.querySelector(".row.show-for-small"); // ~
-  const secondaryBodyContainer = document.querySelector(".row.hide-for-small.padded-side-bottom"); // ~
-  // const bodyColumns = secondaryBodyContainer.querySelectorAll(".columns"); // ~
-  const curriculumListContainer = document.querySelector(".dp-curriculum"); //NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)! // ~
-  const curriculumListHeader = curriculumListContainer
-    .closest(".sj-curriculum-wrapper")
-    .querySelector("h3"); // ~
-  const curriculumList = curriculumListContainer.querySelectorAll("li"); // ~
-
-  ////CARD VARIABLES
-  const courseDetailCardContainer = secondaryBodyContainer.querySelector(".course-details-card"); // ~
-  const courseDetailCardListItems = document.querySelectorAll(".course-details-card li"); // ~
-  const checkboxIcon = document.querySelector(".checkbox-icon"); // ~
-  const registerBtnLink = document
-    .querySelector("#purchase-button")
-    .getAttribute("href");
-  const registerBtnText = document.querySelector(".purchase-button-full-text").textContent; // ~
-  const courseDetailsCardLink = document.querySelector(".course-details-card-link"); // ~
-
-  // backToCatalogBtn.style.display = "none";
-  // mobileBodyContent.style.display = "none";
-  // if (signInHeaderText) {
-    // signInHeaderText.style.display = "none";
-    // signInBtn.style.backgroundColor = "transparent";
-    // signInBtn.style.padding = "8px 12px";
-    // signInBtn.style.marginRight = "24px";
-    // signInBtn.style.borderColor = "#3443F4";
-    // signInBtn.style.border = "2px solid #3443F4";
-    // signInBtn.style.borderRadius = "999px";
-    // signInBtn.style.fontSize = "14px";
-    // signInBtn.style.fontFamily = "Space Mono";
-    // signInBtn.style.fontWeight = "700";
-    // signInBtn.style.lineHeight = "20px";
-  // }
-
-  // headerContainer.style.backgroundColor = "#D0CFEE";
-  // headerContainer.style.margin = "0";
-  // headerContainer.style.maxWidth = "none";
-  // headerContainer.style.paddingTop = "96px";
-  // headerContainer.style.paddingBottom = "96px";
-  // headerContainer.style.border = "0";
-  // headerFlexContainer.style.flexDirection = "row-reverse";
-  // headerFlexContainer.style.flexWrap = "nowrap";
-  // headerFlexContainer.style.justifyContent = "start";
-  // headerFlexContainer.style.gap = "24px";
-  // headerFlexContainer.style.maxWidth = "1188px";
-
-  //RENDERING OF COURSE DETAILS PAGE TEXT HEADING ON LEFT
-  // mainHeadingContainer.style.border = "0";
-  // mainHeadingContainer.style.maxWidth = "564px";
-  // mainInfoCardContained.style.display = "none";
-  // headingFloaterText.style.display = "block";
-  // headingFloaterText.style.marginBottom = "24px";
-  // mainHeading.style.margin = "0 0 12px 0";
-  // mainHeading.style.fontSize = "36px";
-  // mainHeading.style.fontWeight = "600";
-  // mainHeading.style.lineHeight = "43.2px";
-  // mainHeading.style.letterSpacing = "-.02em";
-  // headingParagraph.style.display = "block";
-  // headingParagraph.style.margin = "0 0 24px 0";
-
+  // Put content in the correct order
   const mainHeadingContainer = document.querySelector(".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
   const mainHeading = document.querySelector(".break-word"); // ~
@@ -170,149 +148,82 @@ function desktopCourseDetailsPageStyling() {
     registerBtn
   );
 
-  //VIDEO STYLING
-  // if (videoContainer && videoContainer.style) {
-  //   videoContainer.style.maxWidth = "none";
-  // }
-
-  //COURSE DETAILS PAGE BODY STYLING
-  // bodyContainer.style.padding = "0";
-  // bodyContainer.style.margin = "96px auto 46px auto";
-  // bodyContainer.style.maxWidth = "min(1152px, 90%)";
-  // bodyContainer.style.display = "grid";
-  // bodyContainer.style.gridTemplateColumns = "minmax(100px, 760px) minmax(100px, 368px)";
-  // bodyContainer.style.columnGap = "24px";
-
-  secondaryBodyContainer.style.padding = "0";
-  secondaryBodyContainer.style.maxWidth = "760px";
-  // bodyColumns.forEach((column) => {
-    // column.style.float = "none";
-    // column.style.padding = "0";
-    // column.style.width = "100%";
-    // column.style.display = "block";
-
-    // column.querySelector("h3").style.fontWeight = "600"; // ~
-
-    // if (column.classList.contains("large-7")) {
-    //   column.style.marginBottom = "48px";
-    // }
-
-    // const innerCol = column.querySelector(".dp-curriculum"); // ~
-    // if (innerCol) {
-    //   innerCol.style.margin = "0";
-    // }
-  // });
-
-  //COURSE DETAILS CURRICULUM STYLING
   if (!current.initialLoadComplete) {
-    // Check if course has Sections/Modules/Parts
-    const hasSections = curriculumListContainer.querySelector(".section")
-      ? true
-      : false; // ~
     let curContainer = document.createElement("li");
-
+    
+    const hasSections = elemExists(".section", document.querySelector(".dp-curriculum"));
     if (!hasSections) {
       curContainer.classList.add("module-list");
-      // styleGroupContainer(curContainer);
     }
 
-    // function styleGroupContainer(container) {
-    //   inProd ? undefined : console.log(timestamp() + " [styleGroupContainer] Called");
-    //   container.classList.add("module-list");
-    //   // container.style.border = "2px solid #3443F4";
-    //   // container.style.borderRadius = "8px";
-    //   // container.style.marginBottom = "48px";
-    //   // container.style.padding = "0";
-    // }
+    const curriculumListContainer = document.querySelector(".dp-curriculum"); //NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)! // ~
 
-    function styleListItem(lessonEl, /* isLastChild */) {
-      inProd ? undefined : console.log(timestamp() + " [styleListItem] Called");
-      // lessonEl.classList.add("lesson-item");
-
-      //display none for icon w/ class 'type-icon'
-      // const icon = lessonEl.querySelector(".type-icon"); // ~
-      // icon.style.display = "none";
-
-      const lessonItemText = lessonEl.querySelector(".lesson-wrapper"); // ~
-      lessonItemText.style.padding = "24px";
-      lessonItemText.style.fontSize = "16px";
-      lessonItemText.style.fontWeight = "400";
-      lessonItemText.style.lineHeight = "150%";
-
-      // if (!isLastChild) {
-      //   lessonItemText.style.borderBottom = "2px solid #3443F4";
-      // }
-    }
-
-    function styleGroupHeading(groupHeading) {
-      inProd ? undefined : console.log(timestamp() + " [styleGroupHeading] Called");
-      groupHeading.classList.add("module-list-heading");
-      groupHeading.textContent = groupHeading?.textContent?.trim();
-      // groupHeading.style.fontSize = "16px";
-      // groupHeading.style.fontWeight = "500";
-      // groupHeading.style.lineHeight = "125%";
-      // groupHeading.style.fontFamily = "Fusiona";
-      groupHeading.style.padding = "24px";
-      groupHeading.style.borderBottom = "2px solid #3443F4";
-      curContainer.append(groupHeading);
-    }
-
-    curriculumList.forEach((curListItem) => {
-      //first check if current item contains 'section' class
-      if (curListItem.classList.contains("section")) {
-        //Yes? push curContainer into curriculumListContainer
+    document.querySelectorAll(".dp-curriculum li").forEach((li) => {
+      if (li.classList.contains("section")) {
         curriculumListContainer.append(curContainer);
-        //reset curContainer while pushing current 'section' in there for the next iteration
         curContainer = document.createElement("li");
         curContainer.classList.add("module-list");
-        // styleGroupContainer(curContainer);
 
         const newGroupHeading = document.createElement("div");
-        newGroupHeading.innerHTML = curListItem.innerHTML;
+        newGroupHeading.innerHTML = li.innerHTML;
         newGroupHeading.classList.add("module-title");
-        styleGroupHeading(newGroupHeading);
+        newGroupHeading.classList.add("module-list-heading");
+        newGroupHeading.textContent = newGroupHeading?.textContent?.trim();
+        newGroupHeading.style.padding = "24px";
+        newGroupHeading.style.borderBottom = "2px solid #3443F4";
+        curContainer.append(newGroupHeading);
+
         curContainer.append(newGroupHeading);
       } else {
-        // else, normal/expected behaviour
-        //transfer inner html of current list item to new created div
         const newListItem = document.createElement("div");
-        newListItem.innerHTML = curListItem.innerHTML;
+        newListItem.innerHTML = li.innerHTML;
         newListItem.classList.add("lesson-item");
-        styleListItem(
-          newListItem,
-          //arr[i + 1] ? arr[i + 1].classList.contains("section") : true
-        );
+        
+        const lessonItemText = newListItem.querySelector(".lesson-wrapper"); // ~
+        lessonItemText.style.padding = "24px";
+        lessonItemText.style.fontSize = "16px";
+        lessonItemText.style.fontWeight = "400";
+        lessonItemText.style.lineHeight = "150%";
+
         curContainer.append(newListItem);
       }
-      curListItem.style.display = "none";
+      li.style.display = "none";
     });
 
-    //LAST, unpushed SECTION; push it out to curriculumListContainer
     curriculumListContainer.append(curContainer);
-
-    curriculumListHeader.style.display = "none";
-    curriculumListContainer.style.padding = "0";
   }
 
   //COURSE DETAILS GRID STRUCTURE STYLING - ADDING DETAILS CARD ON RIGHT SIDE
+  const secondaryBodyContainer = document.querySelector(".row.hide-for-small.padded-side-bottom"); // ~
+  const courseDetailCardContainer = secondaryBodyContainer.querySelector(".course-details-card"); // ~
+  const courseDetailCardListItems = document.querySelectorAll(".course-details-card li"); // ~
+  const checkboxIcon = document.querySelector(".checkbox-icon"); // ~
+  
   if (courseDetailCardContainer) {
-    bodyContainer.append(courseDetailCardContainer);
+    document.querySelector("#dp-details").append(courseDetailCardContainer);
     // courseDetailCardContainer.style.margin = "0 0 46px 0";
     // courseDetailCardContainer.style.justifySelf = "center";
     courseDetailCardListItems.forEach((li) => {
       const iconClone = checkboxIcon.cloneNode(true);
-      // iconClone.style.display = "block";
-      // iconClone.style.flexShrink = "0";
       li.prepend(iconClone);
     });
   }
 
+  const courseDetailsCardLink = document.querySelector(".course-details-card-link"); // ~
   if (courseDetailsCardLink) {
-    courseDetailsCardLink.textContent = registerBtnText;
-    courseDetailsCardLink.setAttribute("href", registerBtnLink);
+    const text = document.querySelector(".purchase-button-full-text").textContent;
+    const link = document.querySelector("#purchase-button").getAttribute("href") || "";
+    courseDetailsCardLink.textContent = text;
+    courseDetailsCardLink.setAttribute("href", link);
   }
 }
 
+/*
+  * Function to apply styling to the course details page for learning paths
+  * This function modifies the text content of the heading floater, main heading, and heading paragraph.
+  * It also appends these elements to the summary wrapper.
+  * @returns {void}
+*/
 function desktopPathCourseDetailsPageStyling() {
   inProd ? undefined : console.log(timestamp() + " [desktopPathCourseDetailsPageStyling] Called");
   
