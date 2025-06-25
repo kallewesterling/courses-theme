@@ -720,21 +720,10 @@ body.sj-page-login, body.sj-page-signup {
                 line-height: 24px !important;
             }
         }
+
         /* loginTab */
         #login-tab-left {
             border: 0px !important;
-        }
-        
-        #login-tab-left a, #login-tab-right a {
-            /* active link to login/signup (on signup/login page respectively) */
-            color: rgba(52, 67, 244, .4) !important;
-            text-decoration: underline !important; /* should only be on sign in */
-        }
-        
-        #span.sj-text-sign-in, div.sj-text-sign-up span {
-            /* "active tab" for login/signup page */
-            color: #3443f4 !important;
-            text-decoration: none !important;
         }
 
         /* signInTab [should have been signUpTab] */
@@ -742,10 +731,21 @@ body.sj-page-login, body.sj-page-signup {
             display: flex !important;
             padding: 8px 16px !important;
             align-items: center !important;
-
-            a {
-                color: rgba(52, 67, 244, .4) !important;
-            }
+        }
+        
+        #login-tab-left a, #login-tab-right a {
+            /* active link to login/signup (on signup/login page respectively) */
+            color: rgba(52, 67, 244, .4) !important;
+            font-weight: 700 !important;
+            text-decoration: underline !important; /* should only be on sign in */
+        }
+        
+        #span.sj-text-sign-in, div.sj-text-sign-up span {
+            /* "active tab" for login/signup page */
+            font-family: "Space Mono", monospace !important;
+            font-weight: 700 !important;
+            color: #3443f4 !important;
+            text-decoration: none !important;
         }
     }
 

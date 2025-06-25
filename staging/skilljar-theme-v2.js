@@ -789,24 +789,24 @@ function desktopSignUpPageStyling() {
   // loginTab.style.alignItems = "center";
   // loginTab.style.borderRadius = "100px";
   
-  loginTabText.style.color = "rgba(52, 67, 244, .4)";
-  loginTabText.style.fontWeight = "700";
-  loginTabText.style.fontSize = "18px";
-  loginTabText.style.fontFamily = "Space Mono";
-  loginTabText.style.lineHeight = "24px";
+  // loginTabText.style.color = "rgba(52, 67, 244, .4)";
+  // loginTabText.style.fontWeight = "700";
+  // loginTabText.style.fontSize = "18px";
+  // loginTabText.style.fontFamily = "Space Mono";
+  // loginTabText.style.lineHeight = "24px";
   
-  signInTab.style.display = "flex";
-  signInTab.style.alignItems = "center";
-  signInTab.style.padding = "8px 16px";
-  signInTab.style.borderRadius = "100px";
+  // signInTab.style.display = "flex";
+  // signInTab.style.alignItems = "center";
+  // signInTab.style.padding = "8px 16px";
+  // signInTab.style.borderRadius = "100px";
   
   signInTabText.textContent = "Sign up";
-  signInTabText.style.color = "#3443f4";
-  signInTabText.style.textDecoration = "underline";
-  signInTabText.style.fontFamily = "Space Mono";
-  signInTabText.style.fontWeight = "700";
-  signInTabText.style.fontSize = "18px";
-  signInTabText.style.lineHeight = "24px";
+  // signInTabText.style.color = "#3443f4";
+  // signInTabText.style.textDecoration = "underline";
+  // signInTabText.style.fontFamily = "Space Mono";
+  // signInTabText.style.fontWeight = "700";
+  // signInTabText.style.fontSize = "18px";
+  // signInTabText.style.lineHeight = "24px";
 
   // STYLE THE SIGNUP TEXT CONTENT BOX
   // loginContentContainer.style.width = "50%";
@@ -1363,10 +1363,10 @@ function mobileLoginPageStyling() {
   signInTab.style.display = "flex";
   signInTab.style.alignItems = "center";
   signInTab.style.padding = "8px 16px";
-  signInTabText.style.color = "#8C8C8C";
-  signInTabText.style.fontWeight = "500";
-  signInTabText.style.fontSize = "16px";
-  signInTabText.style.lineHeight = "24px";
+  // signInTabText.style.color = "#8C8C8C";
+  // signInTabText.style.fontWeight = "500";
+  // signInTabText.style.fontSize = "16px";
+  // signInTabText.style.lineHeight = "24px";
 
   // STYLE THE LOGIN TEXT CONTENT BOX
   // loginContentContainer.style.width = "100%";
@@ -1457,20 +1457,20 @@ function mobileSignUpPageStyling() {
   // loginTab.style.padding = "8px 16px";
   // loginTab.style.alignItems = "center";
   // loginTab.style.borderRadius = "100px";
-  loginTabText.style.color = "#8C8C8C";
-  loginTabText.style.fontWeight = "500";
-  loginTabText.style.fontSize = "16px";
-  loginTabText.style.lineHeight = "24px";
+  // loginTabText.style.color = "#8C8C8C";
+  // loginTabText.style.fontWeight = "500";
+  // loginTabText.style.fontSize = "16px";
+  // loginTabText.style.lineHeight = "24px";
   signInTab.style.display = "flex";
   signInTab.style.alignItems = "center";
   signInTab.style.padding = "8px 16px";
   signInTab.style.backgroundColor = "#3443F4";
   signInTab.style.borderRadius = "100px";
   signInTabText.textContent = "Sign up";
-  signInTabText.style.color = "#fff";
-  signInTabText.style.fontWeight = "500";
-  signInTabText.style.fontSize = "16px";
-  signInTabText.style.lineHeight = "24px";
+  // signInTabText.style.color = "#fff";
+  // signInTabText.style.fontWeight = "500";
+  // signInTabText.style.fontSize = "16px";
+  // signInTabText.style.lineHeight = "24px";
 
   // STYLE THE SIGNUP TEXT CONTENT BOX
   // loginContentContainer.style.width = "100%";
