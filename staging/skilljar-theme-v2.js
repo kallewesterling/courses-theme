@@ -2714,12 +2714,12 @@ function renderCourse() {
   let contentContainer = isLessonsPage ? document.querySelector(".sj-page-lesson") : document.querySelector("#skilljar-content"); // ~
   contentContainer.append(document.querySelector("#footer-container"));
 
-  if (!body.classList.contains("sj-page-catalog")) {
-    body.setAttribute(
-      "style",
-      "visibility: visible !important; opacity: 1 !important"
-    );
-  }
+  // if (!body.classList.contains("sj-page-catalog")) {
+  //   body.setAttribute(
+  //     "style",
+  //     "visibility: visible !important; opacity: 1 !important"
+  //   );
+  // }
 }
 
 document.addEventListener("DOMContentLoaded", () => {

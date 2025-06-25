@@ -521,6 +521,17 @@ a.header-link.login-link {
     display: flex !important;
 }
 
+/* !body.classList.contains("sj-page-catalog") */
+body.sj-page-curriculum,
+body.sj-page-detail-course,
+body.sj-page-lesson,
+body.sj-page-login,
+body.sj-page-signup,
+body.sj-page-detail-path {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
 @media (max-width: 991px) {
     a.header-link.login-link {
         color: #fff !important;
