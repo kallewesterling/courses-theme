@@ -32,7 +32,7 @@ function checkWindowWidth() {
 }
 
 function insertFooter() {
-  inProd ? undefined : console.log("insertFooter called, isLessonsPage: ", isLessonsPage);
+  inProd ? undefined : console.log("[insertFooter] Called, isLessonsPage: ", isLessonsPage);
 
   const footerEl = document.querySelector("#footer-container"); // ~
   let contentContainer;
@@ -53,29 +53,25 @@ function insertFooter() {
 }
 
 function desktopCatalogPageStyling() {
-  inProd ? undefined : console.log("desktopCatalogPageStyling called");
-  // Style desktop view
-  
-  //grab variables
-  const catalogBodyParentContainer = document.querySelector("#catalog-content"); // ~
-  const catalogContainer = document.querySelector("#catalog-courses"); // ~
+  inProd ? undefined : console.log("[desktopCatalogPageStyling] Called");
 
   if (!initialLoadComplete) {
-    //create container div for courses catalog list
     const catalogContentContainer = document.createElement("div");
     catalogContentContainer.id = "catalog-content-wrapper";
+
     const allCoursesHeader = document.createElement("h2");
     allCoursesHeader.textContent = "All Courses";
-    catalogContentContainer.append(allCoursesHeader, catalogContainer);
-    catalogBodyParentContainer.append(catalogContentContainer);
+    
+    catalogContentContainer.append(allCoursesHeader, document.querySelector("#catalog-courses"));
+    document.querySelector("#catalog-content").append(catalogContentContainer);
 
     initialLoadComplete = true;
-    console.log("initialLoadComplete set to true")
+    console.log("[desktopCatalogPageStyling] initialLoadComplete set to true")
   }
 }
 
 function desktopCourseDetailsPageStyling() {
-  inProd ? undefined : console.log("desktopCourseDetailsPageStyling called");
+  inProd ? undefined : console.log("[desktopCourseDetailsPageStyling] Called");
   // const headerContainer = document.querySelector(".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"); // ~
   // const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   // const backToCatalogBtn = document.querySelector(".back-to-catalog"); // ~
@@ -208,7 +204,7 @@ function desktopCourseDetailsPageStyling() {
     }
 
     // function styleGroupContainer(container) {
-    //   inProd ? undefined : console.log("styleGroupContainer called");
+    //   inProd ? undefined : console.log("[styleGroupContainer] Called");
     //   container.classList.add("module-list");
     //   // container.style.border = "2px solid #3443F4";
     //   // container.style.borderRadius = "8px";
@@ -217,7 +213,7 @@ function desktopCourseDetailsPageStyling() {
     // }
 
     function styleListItem(lessonEl, /* isLastChild */) {
-      inProd ? undefined : console.log("styleListItem called");
+      inProd ? undefined : console.log("[styleListItem] Called");
       // lessonEl.classList.add("lesson-item");
 
       //display none for icon w/ class 'type-icon'
@@ -236,7 +232,7 @@ function desktopCourseDetailsPageStyling() {
     }
 
     function styleGroupHeading(groupHeading) {
-      inProd ? undefined : console.log("styleGroupHeading called");
+      inProd ? undefined : console.log("[styleGroupHeading] Called");
       groupHeading.classList.add("module-list-heading");
       groupHeading.textContent = groupHeading?.textContent?.trim();
       // groupHeading.style.fontSize = "16px";
@@ -305,7 +301,7 @@ function desktopCourseDetailsPageStyling() {
 }
 
 function desktopPathCourseDetailsPageStyling() {
-  inProd ? undefined : console.log("desktopPathCourseDetailsPageStyling called");
+  inProd ? undefined : console.log("[desktopPathCourseDetailsPageStyling] Called");
   // const headerContainer = document.querySelector(".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"); // ~
   // const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
@@ -387,11 +383,11 @@ function desktopPathCourseDetailsPageStyling() {
   // bodyContainer.style.maxWidth = "min(1152px, 90%)";
   // catalogContainer.style.marginBottom = "85px";
   
-  inProd ? undefined : console.log("reached end of path func");
+  inProd ? undefined : console.log("[desktopPathCourseDetailsPageStyling] Reached end of path func");
 }
 
 function desktopPathCatalogPageStyling() {
-  inProd ? undefined : console.log("desktopPathCatalogPageStyling called");
+  inProd ? undefined : console.log("[desktopPathCatalogPageStyling] Called");
   const backArrowBtn = document.querySelector(".back-to-catalog"); // ~
 
   const mainContentContainer = document.querySelector("#catalog-content"); // ~
@@ -434,7 +430,7 @@ function desktopPathCatalogPageStyling() {
 }
 
 function desktopLessonPageStyling() {
-  inProd ? undefined : console.log("desktopLessonPageStyling called");
+  inProd ? undefined : console.log("[desktopLessonPageStyling] Called");
   const leftNav = document.querySelector("#lp-left-nav"); // ~
   const mainLessonContentContainer = document.querySelector("#lp-wrapper"); // ~
   const mainLessonContentSubContainer = document.querySelector("#lp-content"); // ~
@@ -585,7 +581,7 @@ function desktopLessonPageStyling() {
   // HANDLE CODE BLOCK CUSTOM STYLING
 
   function animateCopiedTooltip(tooltipEl) {
-    inProd ? undefined : console.log("animateCopiedTooltip called");
+    inProd ? undefined : console.log("[animateCopiedTooltip] Called");
     tooltipEl.style.opacity = "1";
 
     setTimeout(() => {
@@ -673,7 +669,7 @@ function desktopLessonPageStyling() {
 }
 
 function desktopLoginPageStyling() {
-  inProd ? undefined : console.log("desktopLoginPageStyling called");
+  inProd ? undefined : console.log("[desktopLoginPageStyling] Called");
   const fbBtn = document.querySelector("#facebook_login"); // ~
   const googleBtn = document.querySelector("#google_login"); // ~
   const loginContent = document.querySelector("#login-content"); // ~
@@ -788,7 +784,7 @@ function desktopLoginPageStyling() {
 }
 
 function desktopSignUpPageStyling() {
-  inProd ? undefined : console.log("desktopSignUpPageStyling called");
+  inProd ? undefined : console.log("[desktopSignUpPageStyling] Called");
   const fbBtn = document.querySelector("#facebook_login"); // ~
   const googleBtn = document.querySelector("#google_login"); // ~
   const loginContent = document.querySelector("#login-content"); // ~
@@ -940,7 +936,7 @@ function desktopSignUpPageStyling() {
 }
 
 function desktopCurriculumPageNoCertificateStyling() {
-  inProd ? undefined : console.log("desktopCurriculumPageNoCertificateStyling called");
+  inProd ? undefined : console.log("[desktopCurriculumPageNoCertificateStyling] Called");
   const bodyMainContainer = document.querySelector("#cp-content"); // ~
   const tabsContainer = document.querySelector(".section-container.tabs"); // ~
   
@@ -1020,7 +1016,7 @@ function desktopCurriculumPageNoCertificateStyling() {
     }
 
     curriculumItemsListLIVE.forEach((el) => {
-      inProd ? undefined : console.log("curriculumItemsListLIVE, iteration: ", el);
+      inProd ? undefined : console.log("[curriculumItemsListLIVE] iteration: ", el);
       if (el?.tagName) {
         el.classList.add("curriculumItem");
       }
@@ -1075,9 +1071,8 @@ function desktopCurriculumPageNoCertificateStyling() {
 }
 
 function desktopCurriculumPageYesCertificationStyling() {
-  inProd ? undefined : console.log("desktopCurriculumPageYesCertificationStyling called");
+  inProd ? undefined : console.log("[desktopCurriculumPageYesCertificationStyling] Called");
   // const courseDescription = skilljarCourse.short_description;
-  // inProd ? undefined : console.log("courseDescription: ", skilljarCourse.short_description;);
 
   // HEADER VARIABLES
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
@@ -1231,7 +1226,7 @@ function desktopCurriculumPageYesCertificationStyling() {
     }
 
     // function styleGroupContainer(container) {
-    //   inProd ? undefined : console.log("styleGroupContainer called");
+    //   inProd ? undefined : console.log("[styleGroupContainer] Called");
     //   container.classList.add("module-list");
     //   // container.style.border = "2px solid #3443f4";
     //   // container.style.borderRadius = "8px";
@@ -1253,7 +1248,7 @@ function desktopCurriculumPageYesCertificationStyling() {
     // }
 
     function styleGroupHeading(groupHeadingContainer) {
-      inProd ? undefined : console.log("styleGroupHeading called");
+      inProd ? undefined : console.log("[styleGroupHeading] Called");
       groupHeadingContainer.classList.add("module-list-heading-container");
       // groupHeadingContainer.style.padding = "24px";
       // groupHeadingContainer.style.borderBottom = "2px solid #3443f4";
@@ -1345,7 +1340,7 @@ function desktopCurriculumPageYesCertificationStyling() {
 
 // MOBILE VIEW STYLINGS
 function mobileLoginPageStyling() {
-  inProd ? undefined : console.log("mobileLoginPageStyling called");
+  inProd ? undefined : console.log("[mobileLoginPageStyling] Called");
   const fbBtn = document.querySelector("#facebook_login"); // ~
   const googleBtn = document.querySelector("#google_login"); // ~
   const loginContent = document.querySelector("#login-content"); // ~
@@ -1450,7 +1445,7 @@ function mobileLoginPageStyling() {
 }
 
 function mobileSignUpPageStyling() {
-  inProd ? undefined : console.log("mobileSignUpPageStyling called");
+  inProd ? undefined : console.log("[mobileSignUpPageStyling] Called");
   const fbBtn = document.querySelector("#facebook_login"); // ~
   const googleBtn = document.querySelector("#google_login"); // ~
   const loginContent = document.querySelector("#login-content"); // ~
@@ -1597,7 +1592,7 @@ function mobileSignUpPageStyling() {
 }
 
 function mobileCourseDetailsPageStyling() {
-  inProd ? undefined : console.log("mobileCourseDetailsPageStyling called");
+  inProd ? undefined : console.log("[mobileCourseDetailsPageStyling] Called");
   // NAV VARS
   // const headerContainer = document.querySelector(".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"); // ~
   // const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2"); // ~
@@ -1736,7 +1731,7 @@ function mobileCourseDetailsPageStyling() {
     }
 
     // function styleGroupContainer(container) {
-    //   inProd ? undefined : console.log("styleGroupContainer called");
+    //   inProd ? undefined : console.log("[styleGroupContainer] Called");
     //   container.classList.add("module-list");
     //   container.classList.add("module-list-gray-border");
     //   // container.style.border = "1px solid #DCDCDC";
@@ -1746,7 +1741,7 @@ function mobileCourseDetailsPageStyling() {
     // }
 
     function styleListItem(lessonEl, /* isLastChild */) {
-      inProd ? undefined : console.log("styleListItem called");
+      inProd ? undefined : console.log("[styleListItem] Called");
       // lessonEl.classList.add("lesson-item");
       // lessonEl.classList.add("lesson-item-gray-border");
 
@@ -1766,7 +1761,7 @@ function mobileCourseDetailsPageStyling() {
     }
 
     function styleGroupHeading(groupHeading) {
-      inProd ? undefined : console.log("styleGroupHeading called");
+      inProd ? undefined : console.log("[styleGroupHeading] Called");
       groupHeading.classList.add("module-list-heading");
       groupHeading.textContent = groupHeading?.textContent?.trim();
       // groupHeading.style.fontSize = "16px";
@@ -1842,7 +1837,7 @@ function mobileCourseDetailsPageStyling() {
 }
 
 function mobileCurriculumPageNoCertificateStyling() {
-  inProd ? undefined : console.log("mobileCurriculumPageNoCertificateStyling called");
+  inProd ? undefined : console.log("[mobileCurriculumPageNoCertificateStyling] Called");
   // HEADER VARIABLES
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
   const container = document.querySelector(".large-8.push-4.columns.sj-summary.cp-summary-wrapper"); // DUPLICATE VAR // ~
@@ -2008,7 +2003,7 @@ function mobileCurriculumPageNoCertificateStyling() {
     }
 
     // function styleGroupContainer(container) {
-    //   inProd ? undefined : console.log("styleGroupContainer called");
+    //   inProd ? undefined : console.log("[styleGroupContainer] Called");
     //   container.classList.add("module-list");
     //   container.classList.add("module-list-gray-border");
     //   // container.style.border = "1px solid #DCDCDC";
@@ -2018,7 +2013,7 @@ function mobileCurriculumPageNoCertificateStyling() {
     // }
 
     // function styleListItem(lessonEl, /* isLastChild */) {
-    //   inProd ? undefined : console.log("styleListItem called");
+    //   inProd ? undefined : console.log("[styleListItem] Called");
     //   lessonEl.classList.add("lesson-item");
     //   lessonEl.classList.add("lesson-item-gray-border");
 
@@ -2032,7 +2027,7 @@ function mobileCurriculumPageNoCertificateStyling() {
     // }
 
     function styleGroupHeading(groupHeadingContainer) {
-      inProd ? undefined : console.log("styleGroupHeading called");
+      inProd ? undefined : console.log("[styleGroupHeading] Called");
       groupHeadingContainer.classList.add("module-list-heading-container");
       // groupHeadingContainer.style.padding = "24px";
       groupHeadingContainer.style.borderBottom = "1px solid #DCDCDC";
@@ -2092,9 +2087,8 @@ function mobileCurriculumPageNoCertificateStyling() {
         //   //curArr[i + 1] ? curArr[i + 1].tagName === "DIV" : true
         // );
         // styling for mobile
-        inProd ? undefined : console.log("wrap ran");
         el.querySelector(".title").style.textWrap = "wrap"; // ~
-        inProd ? undefined : console.log("wrap ran DONE");
+        inProd ? undefined : console.log("[mobileCurriculumPageNoCertificateStyling] Wrap ran");
 
         newListEl.append(el);
         curContainer.append(newListEl);
@@ -2136,7 +2130,7 @@ function mobileCurriculumPageNoCertificateStyling() {
 }
 
 function mobileCurriculumPageYesCertificateStyling() {
-  inProd ? undefined : console.log("mobileCurriculumPageYesCertificateStyling called");
+  inProd ? undefined : console.log("[mobileCurriculumPageYesCertificateStyling] Called");
   // HEADER VARIABLES
   // const backToCatalogLink = document.querySelector(".back-to-catalog"); // ~
 
@@ -2296,7 +2290,7 @@ function mobileCurriculumPageYesCertificateStyling() {
     }
 
     // function styleGroupContainer(container) {
-    //   inProd ? undefined : console.log("styleGroupContainer called");
+    //   inProd ? undefined : console.log("[styleGroupContainer] Called");
     //   container.classList.add("module-list");
     //   container.classList.add("module-list-gray-border");
     //   // container.style.border = "1px solid #DCDCDC";
@@ -2306,7 +2300,7 @@ function mobileCurriculumPageYesCertificateStyling() {
     // }
 
     // function styleListItem(lessonEl, /* isLastChild */) {
-    //   inProd ? undefined : console.log("styleListItem called");
+    //   inProd ? undefined : console.log("[styleListItem] Called");
     //   lessonEl.classList.add("lesson-item");
     //   lessonEl.classList.add("lesson-item-gray-border");
 
@@ -2320,7 +2314,7 @@ function mobileCurriculumPageYesCertificateStyling() {
     // }
 
     function styleGroupHeading(groupHeadingContainer) {
-      inProd ? undefined : console.log("styleGroupHeading called");
+      inProd ? undefined : console.log("[styleGroupHeading] Called");
       groupHeadingContainer.classList.add("module-list-heading-container");
       // groupHeadingContainer.style.padding = "24px";
       groupHeadingContainer.style.borderBottom = "1px solid #DCDCDC";
@@ -2423,7 +2417,7 @@ function mobileCurriculumPageYesCertificateStyling() {
 }
 
 function mobileLessonPageStyling() {
-  inProd ? undefined : console.log("mobileLessonPageStyling called");
+  inProd ? undefined : console.log("[mobileLessonPageStyling] Called");
   const leftNav = document.querySelector("#lp-left-nav"); // ~
   const mainLessonContentContainer = document.querySelector("#lp-wrapper"); // ~
   const mainLessonContentSubContainer = document.querySelector("#lp-content"); // ~
@@ -2592,7 +2586,7 @@ function mobileLessonPageStyling() {
   // HANDLE CODE BLOCK CUSTOM STYLING
 
   function animateCopiedTooltip(tooltipEl) {
-    inProd ? undefined : console.log("animateCopiedTooltip called");
+    inProd ? undefined : console.log("[animateCopiedTooltip] Called");
     tooltipEl.style.opacity = "1";
 
     setTimeout(() => {
@@ -2720,7 +2714,7 @@ function handlePageStyling(
 }
 
 function renderCourse() {
-  inProd ? undefined : console.log("renderCourse called");
+  inProd ? undefined : console.log("[renderCourse] Called");
 
   handlePageStyling(
     {
@@ -2752,11 +2746,11 @@ function renderCourse() {
 
 document.addEventListener("DOMContentLoaded", () => {
   // Handle initial rendering
-  inProd ? undefined : console.log("DOM LOADED");
+  inProd ? undefined : console.log("[DOMContentLoaded] Called");
 
   // Width 
   width = checkWindowWidth();
-  inProd ? undefined : console.log("resized: ", width);
+  inProd ? undefined : console.log("[DOMContentLoaded] Resized: ", width);
 
   // isCatalogPage is true if the page displays the catalog of courses (i.e. the landing page)
   isCatalogPage = elemExists("body.sj-page-catalog"); 
@@ -2782,6 +2776,7 @@ document.addEventListener("DOMContentLoaded", () => {
   isPageCatalogPath = elemExists(".sj-page-catalog.sj-page-series.sj-page-path");
   
   inProd ? undefined : console.log(
+    "[DOMContentLoaded]",
     "isCatalogPage: ",
     isCatalogPage,
     "isCurriculumPage: ",
@@ -2801,21 +2796,21 @@ document.addEventListener("DOMContentLoaded", () => {
   )
 
   currentView = getViewport();
-  inProd ? undefined : console.log("currentView: ", currentView);
+  inProd ? undefined : console.log("[DOMContentLoaded] currentView: ", currentView);
   
   renderCourse();
 
-  console.log("initialLoadComplete set to true")
+  inProd ? undefined : console.log("[DOMContentLoaded] initialLoadComplete set to true");
   initialLoadComplete = true;
 });
 
 window.addEventListener("resize", () => {
   // Handle resized window
   width = checkWindowWidth();
-  inProd ? undefined : console.log("resized: ", width);
-
   currentView = getViewport();
-  inProd ? undefined : console.log("currentView: ", currentView);
+  
+  inProd ? undefined : console.log("[event:resize] Resized: ", width);
+  inProd ? undefined : console.log("[event:resize] currentView: ", currentView);
   
   renderCourse();
 });
