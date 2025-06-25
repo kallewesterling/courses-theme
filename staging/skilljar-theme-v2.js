@@ -1,6 +1,6 @@
 const inProd = false; // Set to true if in production environment
 
-let currentView;
+let current = {};
 let isCatalogPage,
   isCurriculumPage,
   isCourseDetailsPage,
@@ -2638,40 +2638,40 @@ function mobileLessonPageStyling() {
 
 function handlePageStyling() {
   if (isCourseDetailsPage) {
-    currentView === "desktop"
+    current.viewport === "desktop"
       ? desktopCourseDetailsPageStyling()
       : mobileCourseDetailsPageStyling();
   } else if (isPageDetailPath) {
-    currentView === "desktop" ? desktopPathCourseDetailsPageStyling() : null;
+    current.viewport === "desktop" ? desktopPathCourseDetailsPageStyling() : null;
   } else if (isPageCatalogPath) {
-    currentView === "desktop" ? desktopPathCatalogPageStyling() : null;
+    current.viewport === "desktop" ? desktopPathCatalogPageStyling() : null;
   } else if (isLoginPage) {
-    currentView === "desktop"
+    current.viewport === "desktop"
       ? desktopLoginPageStyling()
       : mobileLoginPageStyling();
   } else if (isSignUpPage) {
-    currentView === "desktop"
+    current.viewport === "desktop"
       ? desktopSignUpPageStyling()
       : mobileSignUpPageStyling();
   } else if (isCurriculumPage) {
     const certificateEl = document.querySelector(".cp-certificate"); // ~
 
     if (!certificateEl) {
-      currentView === "desktop"
+      current.viewport === "desktop"
         ? desktopCurriculumPageNoCertificateStyling()
         : mobileCurriculumPageNoCertificateStyling();
     } else {
       // CURRICULUM PAGE W COMPLETED CERTIFICATION GOES HERE [YESSS CERTIFICATION] <<<<<<<<<<< [CHECK TO MAKE SURE THIS WORKS; NOT TESTED]
-      currentView === "desktop"
+      current.viewport === "desktop"
         ? desktopCurriculumPageYesCertificationStyling()
         : mobileCurriculumPageYesCertificateStyling();
     }
   } else if (isLessonsPage) {
-    currentView === "desktop"
+    current.viewport === "desktop"
       ? desktopLessonPageStyling()
       : mobileLessonPageStyling();
   } else if (isCatalogPage) {
-    currentView === "desktop" ? desktopCatalogPageStyling() : null;
+    current.viewport === "desktop" ? desktopCatalogPageStyling() : null;
   }
 }
 
@@ -2736,8 +2736,8 @@ document.addEventListener("DOMContentLoaded", () => {
     isPageCatalogPath
   )
 
-  currentView = getViewport();
-  inProd ? undefined : console.log(timestamp() + " [DOMContentLoaded] currentView: ", currentView);
+  current.viewport = getViewport();
+  inProd ? undefined : console.log(timestamp() + " [DOMContentLoaded] current.viewport: ", current.viewport);
   
   renderCourse();
 
@@ -2748,10 +2748,10 @@ document.addEventListener("DOMContentLoaded", () => {
 window.addEventListener("resize", () => {
   // Handle resized window
   width = checkWindowWidth();
-  currentView = getViewport();
+  current.viewport = getViewport();
   
   inProd ? undefined : console.log(timestamp() + " [event:resize] Resized: ", width);
-  inProd ? undefined : console.log(timestamp() + " [event:resize] currentView: ", currentView);
+  inProd ? undefined : console.log(timestamp() + " [event:resize] current.viewport: ", current.viewport);
   
   renderCourse();
 });
