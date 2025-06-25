@@ -762,7 +762,7 @@ function desktopCurriculumPageNoCertificateStyling() {
     }
 
     curriculumItemsListLIVE.forEach((el) => {
-      inProd ? undefined : console.log(timestamp() + " [curriculumItemsListLIVE] iteration: ", el);
+      // inProd ? undefined : console.log(timestamp() + " [curriculumItemsListLIVE] iteration: ", el);
       if (el?.tagName) {
         el.classList.add("curriculumItem");
       }
@@ -947,10 +947,11 @@ function desktopCurriculumPageYesCertificationStyling() {
   aboutSection.classList.add("active");
   curriculumSection.style.marginTop = "48px";
 
-  aboutSection.querySelector("h3").style.fontWeight = "600"; // ~
-  aboutSection.querySelector(".title").style.display = "none"; // ~
-  aboutSection.querySelector(".content").style.border = "0"; // ~
-  aboutSection.querySelector(".content").style.padding = "0"; // ~
+  // aboutSection.querySelector("h3").style.fontWeight = "600"; // ~
+  // aboutSection.querySelector(".title").style.display = "none"; // ~
+  // aboutSection.querySelector(".content").style.border = "0"; // ~
+  // aboutSection.querySelector(".content").style.padding = "0"; // ~
+
   curriculumSection.querySelector(".title").style.display = "none"; // ~
   curriculumSection.querySelector("h2").style.fontWeight = "600"; // ~
   curriculumSection.querySelector(".content").style.border = "0"; // ~
