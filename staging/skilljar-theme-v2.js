@@ -2706,9 +2706,9 @@ function renderCourse() {
     currentView
   );
 
-  if (!isLessonsPage) {
-    document.querySelector("#ep-footer").style.display = "none"; // ~
-  }
+  // if (!isLessonsPage) {
+  //   document.querySelector("#ep-footer").style.display = "none"; // ~
+  // }
 
   /* Insert footer in the right place */
   let contentContainer = isLessonsPage ? document.querySelector(".sj-page-lesson") : document.querySelector("#skilljar-content"); // ~

@@ -532,6 +532,12 @@ body.sj-page-detail-path {
     opacity: 1 !important;
 }
 
+/* hide Skilljar footer */
+#ep-footer {
+    display: none !important;
+}
+
+
 @media (max-width: 991px) {
     a.header-link.login-link {
         color: #fff !important;
