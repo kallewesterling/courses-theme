@@ -652,8 +652,13 @@ body.sj-page-login, body.sj-page-signup {
         }
     }
 
+    /* longInNote */
+    .sj-text-login-note {
+        display: none !important;
+    }
+
     /* signUpSignInContainer */
-    #login-tab-container .large-12.columns {
+    #login-tab-container #tabs {
         display: flex !important;
         
         /* tabs */
@@ -661,7 +666,39 @@ body.sj-page-login, body.sj-page-signup {
             border-radius: 100px !important;
             display: flex !important;
             padding: 4px !important;
-            background-color: #F3F3F3 !important; /* used to be on only mobile */
+        }
+
+        #login-tab-left, #login-tab-right {
+            display: flex !important;
+            padding: 8px 16px !important;
+            align-items: center !important;
+
+            a {
+                font-family: "Space Mono", monospace !important;
+                font-weight: 700 !important;
+                font-size: 18px !important;
+                line-height: 24px !important;
+            }
+        }
+        /* loginTab */
+        #login-tab-left {
+            border: 0px !important;
+            text-decoration: underline !important; /* should only be on sign in */
+            
+            a {
+                color: #3443f4 !important;
+            }
+        }
+
+        /* signInTab [should have been signUpTab] */
+        #login-tab-right {
+            display: flex !important;
+            padding: 8px 16px !important;
+            align-items: center !important;
+
+            a {
+                color: rgba(52, 67, 244, .4) !important;
+            }
         }
     }
 }

@@ -646,12 +646,9 @@ function desktopLoginPageStyling() {
   // const orGoogleSignInInnerContainer = orGoogleSignInContainer.querySelector("ul"); // ~
   // const orGoogleSignInInnerContainerListItems = orGoogleSignInInnerContainer.querySelectorAll("li"); // ~
   // const signUpSignInContainer = document.querySelector(".large-12.columns"); // ~
-  const loginTab = document.querySelector("#login-tab-left"); // ~
-  const signInTab = document.querySelector("#login-tab-right"); // ~
-  const signInTabText = signInTab.querySelector("a"); // ~
-  const longInNote = document.querySelector(".loginNote.sj-text-login-note"); // ~
-  const orSignInWithContainer = document.querySelector(".socialaccount_providers li"); // ~
-  const orSignInWithTextEl = orSignInWithContainer.querySelector(".sj-text-sign-in-with span"); // ~
+  // const longInNote = document.querySelector(".loginNote.sj-text-login-note"); // ~
+  // const orSignInWithContainer = document.querySelector(".socialaccount_providers li"); // ~
+  const orSignInWithTextEl = document.querySelector(".sj-text-sign-in-with span"); // ~
   const loginInput = document.querySelector("#id_login"); // ~
   const passwordInput = document.querySelector("#id_password"); // ~
   const loginBottomBtn = document.querySelector("#button-sign-in"); // ~
@@ -660,39 +657,42 @@ function desktopLoginPageStyling() {
     loginBottomBtn.closest(".large-12.columns");
 
   const loginForm = document.querySelector("#login_form"); // ~
+  loginForm.append(document.querySelector("#access-message"));
 
   // FOOTER VARS
   const footerContainer = document.querySelector("#footer-container"); // ~
   const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
-
-  loginForm.append(document.querySelector("#access-message"));
 
   // STYLE THE LOGIN/SIGN UP TABS
   // signUpSignInContainer.style.display = "flex";
   // tabs.style.borderRadius = "100px";
   // tabs.style.display = "flex";
   // tabs.style.padding = "4px";
+  const loginTab = document.querySelector("#login-tab-left"); // ~
   loginTab.querySelector("span span").textContent = "Log In"; // ~
-  loginTab.style.border = "0";
-  loginTab.style.display = "flex";
-  loginTab.style.padding = "8px 16px";
-  loginTab.style.alignItems = "center";
-  loginTab.style.textDecoration = "underline";
-  loginTab.style.fontFamily = "Space Mono";
-  loginTab.style.color = "#3443f4";
-  loginTab.style.fontWeight = "700";
-  loginTab.style.fontSize = "18px";
-  loginTab.style.lineHeight = "24px";
+  // loginTab.style.border = "0";
+  // loginTab.style.display = "flex";
+  // loginTab.style.padding = "8px 16px";
+  // loginTab.style.alignItems = "center";
+  // loginTab.style.textDecoration = "underline";
+  // loginTab.style.fontFamily = "Space Mono";
+  // loginTab.style.color = "#3443f4";
+  // loginTab.style.fontWeight = "700";
+  // loginTab.style.fontSize = "18px";
+  // loginTab.style.lineHeight = "24px";
+  // loginTab.style.fontFamily = "Space Mono";
 
+  const signInTab = document.querySelector("#login-tab-right"); // ~
   signInTab.querySelector("span").textContent = "Sign Up"; // ~
-  signInTab.style.display = "flex";
-  signInTab.style.alignItems = "center";
-  signInTab.style.padding = "8px 16px";
-  signInTabText.style.color = "rgba(52, 67, 244, .4)";
-  loginTab.style.fontFamily = "Space Mono";
-  signInTabText.style.fontWeight = "700";
-  signInTabText.style.fontSize = "18px";
-  signInTabText.style.lineHeight = "24px";
+  // const signInTabText = signInTab.querySelector("a"); // ~
+  // signInTab.style.display = "flex";
+  // signInTab.style.alignItems = "center";
+  // signInTab.style.padding = "8px 16px";
+  // signInTabText.style.color = "rgba(52, 67, 244, .4)";
+  
+  // signInTabText.style.fontWeight = "700";
+  // signInTabText.style.fontSize = "18px";
+  // signInTabText.style.lineHeight = "24px";
 
   // STYLE THE LOGIN TEXT CONTENT BOX
   // loginContentContainer.style.width = "50%";
@@ -702,8 +702,8 @@ function desktopLoginPageStyling() {
   //   li.style.padding = "0";
   // });
 
-  longInNote.style.display = "none";
-  orSignInWithContainer.style.paddingBottom = "0";
+  // longInNote.style.display = "none";
+  // orSignInWithContainer.style.paddingBottom = "0";
   loginInput.style.borderRadius = "4px";
   loginInput.style.border = "2px solid #3443f4";
   loginInput.style.padding = "20px 15px";
@@ -765,7 +765,7 @@ function desktopSignUpPageStyling() {
   const loginTabText = loginTab.querySelector("a"); // ~
   const signInTab = document.querySelector("#login-tab-right"); // ~
   const signInTabText = signInTab.querySelector("span"); // ~
-  const orSignInWithContainer = document.querySelector(".socialaccount_providers li"); // ~
+  // const orSignInWithContainer = document.querySelector(".socialaccount_providers li"); // ~
   const orSignInWithText = document.querySelector(".sj-text-sign-up-with"); // ~
   const orSignInWithTextSpan = orSignInWithText.querySelector("span"); // ~
 
@@ -826,7 +826,7 @@ function desktopSignUpPageStyling() {
   //   li.style.padding = "0";
   // });
 
-  orSignInWithContainer.style.paddingBottom = "0";
+  // orSignInWithContainer.style.paddingBottom = "0";
   orSignInWithText.style.marginBottom = "12px";
   orSignInWithText.style.fontWeight = "500";
   orSignInWithText.style.fontSize = "16px";
@@ -1330,9 +1330,9 @@ function mobileLoginPageStyling() {
   const loginTab = document.querySelector("#login-tab-left"); // ~
   const signInTab = document.querySelector("#login-tab-right"); // ~
   const signInTabText = signInTab.querySelector("a"); // ~
-  const longInNote = document.querySelector(".loginNote.sj-text-login-note"); // ~
-  const orSignInWithContainer = document.querySelector(".socialaccount_providers li"); // ~
-  const orSignInWithTextEl = orSignInWithContainer.querySelector(".sj-text-sign-in-with span"); // ~
+  // const longInNote = document.querySelector(".loginNote.sj-text-login-note"); // ~
+  // const orSignInWithContainer = document.querySelector(".socialaccount_providers li"); // ~
+  const orSignInWithTextEl = document.querySelector(".sj-text-sign-in-with span"); // ~
   const loginInput = document.querySelector("#id_login"); // ~
   const passwordInput = document.querySelector("#id_password"); // ~
   const loginBottomBtn = document.querySelector("#button-sign-in"); // ~
@@ -1381,8 +1381,8 @@ function mobileLoginPageStyling() {
   //   li.style.padding = "0";
   // });
 
-  longInNote.style.display = "none";
-  orSignInWithContainer.style.paddingBottom = "0";
+  // longInNote.style.display = "none";
+  // orSignInWithContainer.style.paddingBottom = "0";
   loginInput.style.borderRadius = "4px";
   loginInput.style.borderColor = "#DCDCDC";
   loginInput.style.padding = "12px";
@@ -1437,7 +1437,7 @@ function mobileSignUpPageStyling() {
   const loginTabText = loginTab.querySelector("a"); // ~
   const signInTab = document.querySelector("#login-tab-right"); // ~
   const signInTabText = signInTab.querySelector("span"); // ~
-  const orSignInWithContainer = document.querySelector(".socialaccount_providers li"); // ~
+  // const orSignInWithContainer = document.querySelector(".socialaccount_providers li"); // ~
   const orSignInWithText = document.querySelector(".sj-text-sign-up-with"); // ~
   const orSignInWithTextSpan = orSignInWithText.querySelector("span"); // ~
 
@@ -1493,7 +1493,7 @@ function mobileSignUpPageStyling() {
   //   li.style.padding = "0";
   // });
 
-  orSignInWithContainer.style.paddingBottom = "0";
+  // orSignInWithContainer.style.paddingBottom = "0";
   orSignInWithText.style.marginBottom = "12px";
   orSignInWithText.style.fontWeight = "500";
   orSignInWithText.style.fontSize = "16px";
