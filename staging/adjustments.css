@@ -677,7 +677,7 @@ body.sj-page-login, body.sj-page-signup {
     }
 
     /* signUpBottomBtn */
-    #button-sign-up {
+    #button-sign-up, #button-sign-in {
         width: 368px !important;
         height: 48px !important;
         font-size: 16px !important;
@@ -687,6 +687,7 @@ body.sj-page-login, body.sj-page-signup {
         border: 2px solid #3443f4 !important;
         border-radius: 999px !important;
         margin-top: 24px !important;
+        margin-bottom: 2px !important;
     }
 
     /* orSignInWithText */
@@ -803,10 +804,11 @@ body.sj-page-login, body.sj-page-signup {
         }
 
         /* signUpBottomBtn */
-        #button-sign-up {
+        #button-sign-up, #button-sign-in {
             width: 100% !important;
             height: 48px !important;
             font-size: 16px !important;
+            margin-bottom: 12px !important;
         }
     }
 }

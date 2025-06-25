@@ -634,281 +634,6 @@ function desktopLessonPageStyling() {
   });
 }
 
-function desktopLoginPageStyling() {
-  inProd ? undefined : console.log(timestamp() + " [desktopLoginPageStyling] Called");
-  // const fbBtn = document.querySelector("#facebook_login"); // ~
-  // const loginContent = document.querySelector("#login-content"); // ~
-  // const tabArrow = document.querySelector("#tab-marker-login"); // ~
-  // const termsAndServicesText = document.querySelector("#access-message"); // ~
-  // const loginContentContainer = document.querySelector(".large-6.columns"); // ~
-  // const orGoogleSignInContainer = loginContent.querySelectorAll(".large-6.columns")[1]; // ~
-  // const orGoogleSignInInnerContainer = orGoogleSignInContainer.querySelector("ul"); // ~
-  // const orGoogleSignInInnerContainerListItems = orGoogleSignInInnerContainer.querySelectorAll("li"); // ~
-  // const signUpSignInContainer = document.querySelector(".large-12.columns"); // ~
-  // const longInNote = document.querySelector(".loginNote.sj-text-login-note"); // ~
-  // const orSignInWithContainer = document.querySelector(".socialaccount_providers li"); // ~
-  // const loginInput = document.querySelector("#id_login"); // ~
-  // const passwordInput = document.querySelector("#id_password"); // ~
-  const loginBottomBtn = document.querySelector("#button-sign-in"); // ~
-  // const forgotPasswordText = document.querySelector(".forgot-password.sj-text-forgot-password.focus-link-v2"); // ~
-  // const loginBottomBtnAndForgotPassBtn =
-  //   loginBottomBtn.closest(".large-12.columns");
-
-  const loginForm = document.querySelector("#login_form"); // ~
-  loginForm.append(document.querySelector("#access-message"));
-
-  // FOOTER VARS
-  const footerContainer = document.querySelector("#footer-container"); // ~
-  const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
-
-  // STYLE THE LOGIN/SIGN UP TABS
-  // signUpSignInContainer.style.display = "flex";
-  // tabs.style.borderRadius = "100px";
-  // tabs.style.display = "flex";
-  // tabs.style.padding = "4px";
-  const loginTab = document.querySelector("#login-tab-left"); // ~
-  loginTab.querySelector("span span").textContent = "Log In"; // ~
-  // loginTab.style.border = "0";
-  // loginTab.style.display = "flex";
-  // loginTab.style.padding = "8px 16px";
-  // loginTab.style.alignItems = "center";
-  // loginTab.style.textDecoration = "underline";
-  // loginTab.style.fontFamily = "Space Mono";
-  // loginTab.style.color = "#3443f4";
-  // loginTab.style.fontWeight = "700";
-  // loginTab.style.fontSize = "18px";
-  // loginTab.style.lineHeight = "24px";
-  // loginTab.style.fontFamily = "Space Mono";
-
-  const signInTab = document.querySelector("#login-tab-right"); // ~
-  signInTab.querySelector("span").textContent = "Sign Up"; // ~
-  // const signInTabText = signInTab.querySelector("a"); // ~
-  // signInTab.style.display = "flex";
-  // signInTab.style.alignItems = "center";
-  // signInTab.style.padding = "8px 16px";
-  // signInTabText.style.color = "rgba(52, 67, 244, .4)";
-  
-  // signInTabText.style.fontWeight = "700";
-  // signInTabText.style.fontSize = "18px";
-  // signInTabText.style.lineHeight = "24px";
-
-  // STYLE THE LOGIN TEXT CONTENT BOX
-  // loginContentContainer.style.width = "50%";
-  // orGoogleSignInContainer.style.width = "50%";
-  // orGoogleSignInInnerContainer.style.paddingLeft = "125px";
-  // orGoogleSignInInnerContainerListItems.forEach((li) => {
-  //   li.style.padding = "0";
-  // });
-
-  // longInNote.style.display = "none";
-  // orSignInWithContainer.style.paddingBottom = "0";
-  // loginInput.style.borderRadius = "4px";
-  // loginInput.style.border = "2px solid #3443f4";
-  // loginInput.style.padding = "20px 15px";
-  // loginInput.style.fontSize = "14px";
-  // loginInput.style.lineHeight = "24px";
-  // passwordInput.style.borderRadius = "4px";
-  // passwordInput.style.border = "2px solid #3443f4";
-  // passwordInput.style.padding = "20px 15px";
-  // passwordInput.style.fontSize = "14px";
-  // passwordInput.style.lineHeight = "24px";
-  // passwordInput.style.marginBottom = "24px";
-  loginBottomBtn.textContent = "Log In";
-  loginBottomBtn.style.fontFamily = "Space Mono";
-  loginBottomBtn.style.color = "#14003d";
-  loginBottomBtn.style.width = "368px";
-  loginBottomBtn.style.height = "48px";
-  loginBottomBtn.style.fontSize = "16px";
-  loginBottomBtn.style.backgroundColor = "transparent";
-  loginBottomBtn.style.border = "2px solid #3443f4";
-  loginBottomBtn.style.borderRadius = "999px";
-  loginBottomBtn.style.marginBottom = "2px";
-  // forgotPasswordText.style.fontSize = "16px";
-  // forgotPasswordText.style.fontFamily = "Space Mono";
-  // forgotPasswordText.style.marginBottom = "2px";
-  // loginBottomBtnAndForgotPassBtn.style.marginBottom = "24px";
-
-  // STYLING OF SIDE 'SIGN IN W/' GOOGLE ELS
-  document.querySelector(".sj-text-sign-in-with span").textContent = "Or Log In With";
-  document.querySelector("#google_login").textContent = "Continue with Google";
-
-  // fbBtn.style.display = "none";
-  // googleBtn.style.background = "linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%)";
-  // googleBtn.style.width = "auto";
-  // googleBtn.style.textAlign = "center";
-  // loginContent.style.border = "0";
-  // tabArrow.style.display = "none";
-
-  // FOOTER STYLING
-  footerContainer.style.paddingLeft = "40px";
-  footerContainer.style.paddingRight = "40px";
-  footerCols.forEach((col) => {
-    col.style.width = "270px";
-  });
-}
-
-function desktopSignUpPageStyling() {
-  inProd ? undefined : console.log(timestamp() + " [desktopSignUpPageStyling] Called");
-  // const fbBtn = document.querySelector("#facebook_login"); // ~
-  // const loginContent = document.querySelector("#login-content"); // ~
-  // const tabArrow = document.querySelector("#tab-marker-signup"); // ~
-  // const termsAndServicesText = document.querySelector("#access-message"); // ~
-  // const loginContentContainer = document.querySelector(".large-6.columns"); // ~
-  // const orSignInWithGoogleContainer = loginContent.querySelectorAll(".row .large-6.columns") // ~
-  // const orSignInWithGoogleList = orSignInWithGoogleContainer.querySelector("ul"); // ~
-  // const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll("li"); // ~
-  // const signUpSignInContainer = document.querySelector(".large-12.columns"); // ~
-  const loginTab = document.querySelector("#login-tab-left"); // ~
-  const loginTabText = loginTab.querySelector("a"); // ~
-  const signInTab = document.querySelector("#login-tab-right"); // ~
-  const signInTabText = signInTab.querySelector("span"); // ~
-  // const orSignInWithContainer = document.querySelector(".socialaccount_providers li"); // ~
-  // const orSignInWithText = document.querySelector(".sj-text-sign-up-with"); // ~
-
-  // const passwordInput = document.querySelector("#id_password1"); // ~
-  // const passwordInput2 = document.querySelector("#id_password2"); // ~
-  const signUpBottomBtn = document.querySelector("#button-sign-up"); // ~
-  const signUpForm = document.querySelector("#signup_form"); // ~
-
-  // FOOTER VARS
-  const footerContainer = document.querySelector("#footer-container"); // ~
-  const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
-
-  signUpForm.append(document.querySelector("#access-message"));
-
-  // STYLE THE LOGIN/SIGN UP TABS
-  // signUpSignInContainer.style.display = "flex";
-  // tabs.style.borderRadius = "100px";
-  // tabs.style.display = "flex";
-  // tabs.style.padding = "4px";
-  loginTabText.querySelector("span").textContent = "Log In"; // ~
-  
-  // loginTab.style.border = "0";
-  // loginTab.style.display = "flex";
-  // loginTab.style.padding = "8px 16px";
-  // loginTab.style.alignItems = "center";
-  // loginTab.style.borderRadius = "100px";
-  
-  // loginTabText.style.color = "rgba(52, 67, 244, .4)";
-  // loginTabText.style.fontWeight = "700";
-  // loginTabText.style.fontSize = "18px";
-  // loginTabText.style.fontFamily = "Space Mono";
-  // loginTabText.style.lineHeight = "24px";
-  
-  // signInTab.style.display = "flex";
-  // signInTab.style.alignItems = "center";
-  // signInTab.style.padding = "8px 16px";
-  // signInTab.style.borderRadius = "100px";
-  
-  signInTabText.textContent = "Sign up";
-  // signInTabText.style.color = "#3443f4";
-  // signInTabText.style.textDecoration = "underline";
-  // signInTabText.style.fontFamily = "Space Mono";
-  // signInTabText.style.fontWeight = "700";
-  // signInTabText.style.fontSize = "18px";
-  // signInTabText.style.lineHeight = "24px";
-
-  // STYLE THE SIGNUP TEXT CONTENT BOX
-  // loginContentContainer.style.width = "50%";
-  // orSignInWithGoogleContainer.style.width = "50%";
-  // orSignInWithGoogleContainer.style.paddingLeft = "100px";
-  // orSignInWithGoogleList.style.paddingLeft = "25px";
-  // orSignInWithGoogleItems.forEach((li) => {
-  //   li.style.padding = "0";
-  // });
-
-  // orSignInWithContainer.style.paddingBottom = "0";
-  // orSignInWithText.style.marginBottom = "12px";
-  // orSignInWithText.style.fontWeight = "500";
-  // orSignInWithText.style.fontSize = "16px";
-  // orSignInWithText.style.lineHeight = "20px";
-  
-  const firstNameLabel = document.querySelector('label[for="id_first_name"] span span'); // ~
-  firstNameLabel.textContent = "First Name";
-  
-  const lastNameLabel = document.querySelector('label[for="id_last_name"] span span'); // ~
-  lastNameLabel.textContent = "Last Name";
-  
-  const loginLabel = document.querySelector('label[for="id_email"]'); // ~
-  loginLabel.textContent = "Work Email";
-  
-  const loginInput = document.querySelector("#id_email"); // ~
-  loginInput.setAttribute("placeholder", "Work Email");
-  
-  // loginInput.style.borderRadius = "4px";
-  // loginInput.style.borderColor = "#DCDCDC";
-  // loginInput.style.padding = "12px";
-  // loginInput.style.lineHeight = "24px";
-  
-  // passwordInput.style.borderRadius = "4px";
-  // passwordInput.style.borderColor = "#DCDCDC";
-  // passwordInput.style.padding = "12px";
-  // passwordInput.style.lineHeight = "24px";
-  
-  // passwordInput2.style.marginBottom = "24px";
-
-  // signUpBottomBtn.style.width = "368px";
-  // signUpBottomBtn.style.height = "48px";
-  // signUpBottomBtn.style.fontSize = "16px";
-  // signUpBottomBtn.style.fontFamily = "Space Mono";
-  // signUpBottomBtn.style.color = "#14003d";
-  // signUpBottomBtn.style.backgroundColor = "transparent";
-  // signUpBottomBtn.style.border = "2px solid #3443f4";
-  // signUpBottomBtn.style.borderRadius = "999px";
-
-  const signUpBottomBtnParent = signUpBottomBtn?.closest(".text-center");
-  if (signUpBottomBtnParent) {
-    signUpBottomBtnParent.style.textAlign = "left";
-    signUpBottomBtnParent.classList.remove("text-center");
-  }
-  signUpBottomBtn.querySelector("span").textContent = "Sign up"; // ~
-
-  // STYLING OF RIGHT SIDE, OR SIGN UP WITH GOOGLE, TEXT AND BTN
-  document.querySelector(".sj-text-sign-up-with span").textContent = "Or Sign Up With";
-  document.querySelector("#google_login").textContent = "Continue with Google";
-
-  // fbBtn.style.display = "none";
-  // googleBtn.style.background =
-  //   "linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%)";
-  // googleBtn.style.width = "auto";
-  // googleBtn.style.textAlign = "center";
-  // loginContent.style.border = "0";
-  // tabArrow.style.display = "none";
-
-  // const labels = document.querySelectorAll("label"); // ~
-  // labels.forEach((label) => {
-  //   // label.style.marginBottom = "12px";
-  //   // label.style.fontWeight = "500";
-  //   // label.style.fontSize = "16px";
-  //   // label.style.fontFamily = "Fusiona";
-  //   // label.style.lineHeight = "20px";
-
-  //   if (label.getAttribute("for") === "id_password2") {
-  //     label.querySelector(".input-label-text span").textContent = "Password Confirm";} // ~
-  // });
-  document.querySelector("label[for=id_password2] .input-label-text span").textContent = "Password Confirm";
-
-  // const inputs = document.querySelectorAll("input"); // ~
-  // inputs.forEach((input) => {
-  //   // input.style.borderRadius = "4px";
-  //   // input.style.border = "2px solid #3443f4";
-  //   // input.style.padding = "20px 15px";
-  //   // input.style.lineHeight = "24px";
-
-  //   if (input.getAttribute("id") === "id_password2") {
-  //     input.setAttribute("placeholder", "Password confirm");
-  //   }
-  // });
-  document.querySelector("input#id_password2").setAttribute("placeholder", "Password confirm");
-
-  // FOOTER STYLING
-  footerContainer.style.paddingLeft = "40px";
-  footerContainer.style.paddingRight = "40px";
-  footerCols.forEach((col) => {
-    col.style.width = "270px";
-  });
-}
-
 function desktopCurriculumPageNoCertificateStyling() {
   inProd ? undefined : console.log(timestamp() + " [desktopCurriculumPageNoCertificateStyling] Called");
   const bodyMainContainer = document.querySelector("#cp-content"); // ~
@@ -1312,258 +1037,85 @@ function desktopCurriculumPageYesCertificationStyling() {
   // });
 }
 
-// MOBILE VIEW STYLINGS
-function mobileLoginPageStyling() {
-  inProd ? undefined : console.log(timestamp() + " [mobileLoginPageStyling] Called");
-  // const fbBtn = document.querySelector("#facebook_login"); // ~
-  // const loginContent = document.querySelector("#login-content"); // ~
-  // const tabArrow = document.querySelector("#tab-marker-login"); // ~
-  // const termsAndServicesText = document.querySelector("#access-message"); // ~
-  // const loginContentContainer = document.querySelector(".large-6.columns"); // ~
-  // const orGoogleSignInContainer = loginContent.querySelectorAll(".large-6.columns")[1]; // ~
-  // const orGoogleSignInInnerContainer = orGoogleSignInContainer.querySelector("ul"); // ~
-  // const orGoogleSignInInnerContainerListItems = orGoogleSignInInnerContainer.querySelectorAll("li"); // ~
-  // const signUpSignInContainer = document.querySelector(".large-12.columns"); // ~
-  // const loginTab = document.querySelector("#login-tab-left"); // ~
-  const signInTab = document.querySelector("#login-tab-right"); // ~
-  const signInTabText = signInTab.querySelector("a"); // ~
-  // const longInNote = document.querySelector(".loginNote.sj-text-login-note"); // ~
-  // const orSignInWithContainer = document.querySelector(".socialaccount_providers li"); // ~
-  // const loginInput = document.querySelector("#id_login"); // ~
-  // const passwordInput = document.querySelector("#id_password"); // ~
-  const loginBottomBtn = document.querySelector("#button-sign-in"); // ~
-  // const forgotPasswordText = document.querySelector(".forgot-password.sj-text-forgot-password.focus-link-v2"); // ~
-  // const loginBottomBtnAndForgotPassBtn = loginBottomBtn.closest(".large-12.columns");
+const attachAccessMessage = (parent) => document.querySelector(`#${parent}`).append(document.querySelector("#access-message"));
 
-  const loginForm = document.querySelector("#login_form"); // ~
-  loginForm.append(document.querySelector("#access-message"));
+function desktopLoginPageStyling() {
+  inProd ? undefined : console.log(timestamp() + " [desktopLoginPageStyling] Called");
+  
+  // append "T&C to login form"
+  attachAccessMessage("login_form");
+  // document.querySelector("#login_form").append(document.querySelector("#access-message"));
 
-  // FOOTER VARS
-  const footerContainer = document.querySelector("#footer-container"); // ~
-  const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
-
-  // STYLE THE LOGIN/SIGN UP TABS
-  // signUpSignInContainer.style.display = "flex";
-  // tabs.style.backgroundColor = "#F3F3F3";
-  // tabs.style.borderRadius = "100px";
-  // tabs.style.display = "flex";
-  // tabs.style.padding = "4px";
-  document.querySelector("#login-tab-left span span").textContent = "Log in"; // ~
-  // loginTab.style.border = "0";
-  // loginTab.style.display = "flex";
-  // loginTab.style.padding = "8px 16px";
-  // loginTab.style.alignItems = "center";
-  // loginTab.style.backgroundColor = "#3443F4";
-  // loginTab.style.color = "#fff";
-  // loginTab.style.fontWeight = "500";
-  // loginTab.style.fontSize = "16px";
-  // loginTab.style.lineHeight = "24px";
-  // loginTab.style.borderRadius = "100px";
-  signInTab.querySelector("span").textContent = "Sign up"; // ~
-  signInTab.style.display = "flex";
-  signInTab.style.alignItems = "center";
-  signInTab.style.padding = "8px 16px";
-  // signInTabText.style.color = "#8C8C8C";
-  // signInTabText.style.fontWeight = "500";
-  // signInTabText.style.fontSize = "16px";
-  // signInTabText.style.lineHeight = "24px";
-
-  // STYLE THE LOGIN TEXT CONTENT BOX
-  // loginContentContainer.style.width = "100%";
-  // orGoogleSignInContainer.style.width = "100%";
-  // orGoogleSignInInnerContainer.style.padding = "0";
-  // orGoogleSignInInnerContainerListItems.forEach((li) => {
-  //   li.style.padding = "0";
-  // });
-
-  // longInNote.style.display = "none";
-  // orSignInWithContainer.style.paddingBottom = "0";
-  // loginInput.style.borderRadius = "4px";
-  // loginInput.style.borderColor = "#DCDCDC";
-  // loginInput.style.padding = "12px";
-  // loginInput.style.lineHeight = "24px";
-  // passwordInput.style.borderRadius = "4px";
-  // passwordInput.style.borderColor = "#DCDCDC";
-  // passwordInput.style.padding = "12px";
-  // passwordInput.style.lineHeight = "24px";
-  // passwordInput.style.marginBottom = "24px";
-  loginBottomBtn.textContent = "Log in";
-  loginBottomBtn.style.width = "100%";
-  loginBottomBtn.style.height = "48px";
-  loginBottomBtn.style.fontSize = "16px";
-  loginBottomBtn.style.marginBottom = "12px";
-  // forgotPasswordText.style.fontSize = "16px";
-  // forgotPasswordText.style.marginBottom = "2px";
-  // loginBottomBtnAndForgotPassBtn.style.marginBottom = "24px";
-
-  // STYLING OF SIDE 'SIGN IN W/' GOOGLE ELS
+  // add text content + ...
   document.querySelector(".sj-text-sign-in-with span").textContent = "Or Log In With";
-  document.querySelector("#google_login").textContent = "Continue with Google";
+  document.querySelector("button#google_login").textContent = "Continue with Google";
+  document.querySelector("#login-tab-right span").textContent = "Sign Up"; // ~
+  document.querySelector("#button-sign-in").textContent = "Log In";
 
-  // fbBtn.style.display = "none";
-  // googleBtn.style.backgroundColor = "#3443F4";
-  // googleBtn.style.width = "100%";
-  // googleBtn.style.textAlign = "center";
-  // loginContent.style.border = "0";
-  // tabArrow.style.display = "none";
-
-  // FOOTER STYLING
-  footerContainer.style.paddingLeft = 0;
-  footerContainer.style.paddingRight = 0;
-  footerCols.forEach((col) => {
-    col.style.width = "212px";
-  });
+  const loginTab = document.querySelector("#login-tab-left"); // ~
+  loginTab.querySelector("span span").textContent = "Log In"; // ~
 }
 
-function mobileSignUpPageStyling() {
-  inProd ? undefined : console.log(timestamp() + " [mobileSignUpPageStyling] Called");
-  // const fbBtn = document.querySelector("#facebook_login"); // ~
-  // const loginContent = document.querySelector("#login-content"); // ~
-  // const tabArrow = document.querySelector("#tab-marker-signup"); // ~
-  // const termsAndServicesText = document.querySelector("#access-message"); // ~
-  // const loginContentContainer = document.querySelector(".large-6.columns"); // ~
-  // const orSignInWithGoogleContainer = loginContent.querySelectorAll(".row .large-6.columns")[3]; // ~
-  // const orSignInWithGoogleList = orSignInWithGoogleContainer.querySelector("ul"); // ~
-  // const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll("li"); // ~
-
-  // const signUpSignInContainer = document.querySelector(".large-12.columns"); // ~
+function desktopSignUpPageStyling() {
+  inProd ? undefined : console.log(timestamp() + " [desktopSignUpPageStyling] Called");
   const loginTab = document.querySelector("#login-tab-left"); // ~
   const loginTabText = loginTab.querySelector("a"); // ~
   const signInTab = document.querySelector("#login-tab-right"); // ~
   const signInTabText = signInTab.querySelector("span"); // ~
-  // const orSignInWithContainer = document.querySelector(".socialaccount_providers li"); // ~
-  // const orSignInWithText = document.querySelector(".sj-text-sign-up-with"); // ~
 
-  // const passwordInput = document.querySelector("#id_password1"); // ~
-  // const passwordInput2 = document.querySelector("#id_password2"); // ~
-  const signUpBottomBtn = document.querySelector("#button-sign-up"); // ~
-  const signUpForm = document.querySelector("#signup_form"); // ~
+  // append "T&C to login form"
+  attachAccessMessage("signup_form");
+  // document.querySelector("#signup_form").append(document.querySelector("#access-message"));
 
-  // FOOTER VARS
-  const footerContainer = document.querySelector("#footer-container"); // ~
-  const footerCols = footerContainer.querySelectorAll(".global-footer-column"); // ~
-
-  signUpForm.append(document.querySelector("#access-message"));
-
-  // STYLE THE LOGIN/SIGN UP TABS
-  // signUpSignInContainer.style.display = "flex";
-  // tabs.style.backgroundColor = "#F3F3F3";
-  // tabs.style.borderRadius = "100px";
-  // tabs.style.display = "flex";
-  // tabs.style.padding = "4px";
-  loginTabText.querySelector("span").textContent = "Log in"; // ~
-  // loginTab.style.border = "0";
-  // loginTab.style.display = "flex";
-  // loginTab.style.padding = "8px 16px";
-  // loginTab.style.alignItems = "center";
-  // loginTab.style.borderRadius = "100px";
-  // loginTabText.style.color = "#8C8C8C";
-  // loginTabText.style.fontWeight = "500";
-  // loginTabText.style.fontSize = "16px";
-  // loginTabText.style.lineHeight = "24px";
-  signInTab.style.display = "flex";
-  signInTab.style.alignItems = "center";
-  signInTab.style.padding = "8px 16px";
-  signInTab.style.backgroundColor = "#3443F4";
-  signInTab.style.borderRadius = "100px";
+  loginTabText.querySelector("span").textContent = "Log In"; // ~
+  
   signInTabText.textContent = "Sign up";
-  // signInTabText.style.color = "#fff";
-  // signInTabText.style.fontWeight = "500";
-  // signInTabText.style.fontSize = "16px";
-  // signInTabText.style.lineHeight = "24px";
-
-  // STYLE THE SIGNUP TEXT CONTENT BOX
-  // loginContentContainer.style.width = "100%";
-  // orSignInWithGoogleContainer.style.width = "100%";
-  // orSignInWithGoogleContainer.style.padding = "0";
-  // orSignInWithGoogleList.style.padding = "0";
-  // orSignInWithGoogleItems.forEach((li) => {
-  //   li.style.padding = "0";
-  // });
-
-  // orSignInWithContainer.style.paddingBottom = "0";
-  // orSignInWithText.style.marginBottom = "12px";
-  // orSignInWithText.style.fontWeight = "500";
-  // orSignInWithText.style.fontSize = "16px";
-  // orSignInWithText.style.lineHeight = "20px";
   
-  const firstNameLabel = document.querySelector('label[for="id_first_name"] span span'); // ~
-  firstNameLabel.textContent = "First Name";
-  
-  const lastNameLabel = document.querySelector('label[for="id_last_name"] span span'); // ~
-  lastNameLabel.textContent = "Last Name";
-
-  const loginLabel = document.querySelector('label[for="id_email"]'); // ~
-  loginLabel.textContent = "Work Email";
-  
-  const loginInput = document.querySelector("#id_email"); // ~
-  loginInput.setAttribute("placeholder", "Work Email");
-
-  // loginInput.style.borderRadius = "4px";
-  // loginInput.style.borderColor = "#DCDCDC";
-  // loginInput.style.padding = "12px";
-  // loginInput.style.lineHeight = "24px";
-  // passwordInput.style.borderRadius = "4px";
-  // passwordInput.style.borderColor = "#DCDCDC";
-  // passwordInput.style.padding = "12px";
-  // passwordInput.style.lineHeight = "24px";
-  // passwordInput2.style.marginBottom = "24px";
-
-  // signUpBottomBtn.style.width = "100%";
-  // signUpBottomBtn.style.height = "48px";
-  // signUpBottomBtn.style.fontSize = "16px";
-
-  const signUpBottomBtnParent = signUpBottomBtn?.closest(".text-center");
-  if (signUpBottomBtnParent) {
-    signUpBottomBtnParent.style.textAlign = "left";
-    signUpBottomBtnParent.classList.remove("text-center");
-  }
-
-  signUpBottomBtn.querySelector("span").textContent = "Sign up"; // ~
-
-  // STYLING OF RIGHT SIDE, OR SIGN UP WITH GOOGLE, TEXT AND BTN
+  document.querySelector('label[for="id_first_name"] span span').textContent = "First Name";
+  document.querySelector('label[for="id_last_name"] span span').textContent = "Last Name";
+  document.querySelector('label[for="id_email"]').textContent = "Work Email";
+  document.querySelector("#id_email").setAttribute("placeholder", "Work Email");
+  document.querySelector("#button-sign-up span").textContent = "Sign up"; // ~
   document.querySelector(".sj-text-sign-up-with span").textContent = "Or Sign Up With";
-  document.querySelector("#google_login").textContent = "Continue with Google";
-
-  // fbBtn.style.display = "none";
-  // googleBtn.style.backgroundColor = "#3443F4";
-  // googleBtn.style.width = "100%";
-  // googleBtn.style.textAlign = "center";
-  // loginContent.style.border = "0";
-  // tabArrow.style.display = "none";
-
-  // const labels = document.querySelectorAll("label"); // ~
-  // labels.forEach((label) => {
-  //   // label.style.marginBottom = "12px";
-  //   // label.style.fontWeight = "500";
-  //   // label.style.fontSize = "16px";
-  //   // label.style.lineHeight = "20px";
-
-  //   if (label.getAttribute("for") === "id_password2") {
-  //     label.querySelector(".input-label-text span").textContent = "Password confirm"; // ~
-  //   }
-  // });
-  document.querySelector("label[for=id_password2] .input-label-text span").textContent = "Password confirm";
-
-  // const inputs = document.querySelectorAll("input"); // ~
-  // inputs.forEach((input) => {
-  //   // input.style.borderRadius = "4px";
-  //   // input.style.borderColor = "rgb(220, 220, 220)";
-  //   // input.style.padding = "12px";
-  //   // input.style.lineHeight = "24px";
-
-  //   if (input.getAttribute("id") === "id_password2") {
-  //     input.setAttribute("placeholder", "Password confirm");
-  //   }
-  // });
+  document.querySelector("button#google_login").textContent = "Continue with Google";
+  document.querySelector("label[for=id_password2] .input-label-text span").textContent = "Password Confirm";
   document.querySelector("input#id_password2").setAttribute("placeholder", "Password confirm");
+}
 
-  // FOOTER STYLING
-  footerContainer.style.paddingLeft = 0;
-  footerContainer.style.paddingRight = 0;
-  footerCols.forEach((col) => {
-    col.style.width = "212px";
-  });
+function mobileLoginPageStyling() {
+  inProd ? undefined : console.log(timestamp() + " [mobileLoginPageStyling] Called");
+  
+  // append "T&C to login form"
+  attachAccessMessage("login_form");
+  // document.querySelector("#login_form").append(document.querySelector("#access-message"));
+
+  // change text content + placeholders
+  document.querySelector(".sj-text-sign-in-with span").textContent = "Or Log In With";
+  document.querySelector("button#google_login").textContent = "Continue with Google";
+  document.querySelector("#login-tab-left span span").textContent = "Log in"; // ~
+  document.querySelector("#login-tab-right span").textContent = "Sign up"; // ~
+  document.querySelector("button#button-sign-in").textContent = "Log in";
+}
+
+function mobileSignUpPageStyling() {
+  inProd ? undefined : console.log(timestamp() + " [mobileSignUpPageStyling] Called");
+
+  // append "T&C to login form"
+  attachAccessMessage("signup_form");
+  // document.querySelector("#signup_form").append(document.querySelector("#access-message"));
+
+  // change text content + placeholders
+  document.querySelector("button#button-sign-up span").textContent = "Sign up"; // ~
+  document.querySelector("h4.sj-text-sign-up-with span").textContent = "Or Sign Up With";
+  document.querySelector("button#google_login").textContent = "Continue with Google";
+  document.querySelector('label[for="id_first_name"] span span').textContent = "First Name";
+  document.querySelector('label[for="id_last_name"] span span').textContent = "Last Name";
+  document.querySelector('label[for="id_email"]').textContent = "Work Email";
+  document.querySelector("#login-tab-left a span").textContent = "Log in"; // ~
+  document.querySelector("#login-tab-right span").textContent = "Sign up";
+  document.querySelector("label[for=id_password2] .input-label-text span").textContent = "Password confirm";
+  document.querySelector("input#id_password2").setAttribute("placeholder", "Password confirm");
+  document.querySelector("input#id_email").setAttribute("placeholder", "Work Email");
 }
 
 function mobileCourseDetailsPageStyling() {
