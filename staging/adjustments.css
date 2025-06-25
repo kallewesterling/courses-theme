@@ -657,6 +657,46 @@ body.sj-page-login, body.sj-page-signup {
         display: none !important;
     }
 
+    /* loginInput */
+    #id_email, #id_login, #id_password1 {
+        border-radius: 4px !important;
+        border-color: #dcdcdc !important;
+        padding: 12px !important;
+        line-height: 24px !important;
+    }
+
+    #id_login, #id_password1 {
+        border: 2px solid #3443f4 !important;
+        padding: 20px 15px !important;
+        font-size: 14px !important;
+    }
+
+    #id_password1, #id_password2 {
+        border-radius: 4px !important;
+        margin-bottom: 24px !important;
+    }
+
+    /* signUpBottomBtn */
+    #button-sign-up {
+        width: 368px !important;
+        height: 48px !important;
+        font-size: 16px !important;
+        font-family: "Space Mono", monospace !important;
+        color: #14003d !important;
+        background-color: transparent !important;
+        border: 2px solid #3443f4 !important;
+        border-radius: 999px !important;
+        margin-top: 24px !important;
+    }
+
+    /* orSignInWithText */
+    .sj-text-sign-up-with {
+        margin-bottom: 12px !important;
+        font-weight: 500 !important;
+        font-size: 16px !important;
+        line-height: 20px !important;
+    }
+
     /* signUpSignInContainer */
     #login-tab-container #tabs {
         display: flex !important;
@@ -665,13 +705,13 @@ body.sj-page-login, body.sj-page-signup {
         .login-tab {
             border-radius: 100px !important;
             display: flex !important;
+            align-items: center !important;
             padding: 4px !important;
         }
 
         #login-tab-left, #login-tab-right {
-            display: flex !important;
+            border: 0px !important;
             padding: 8px 16px !important;
-            align-items: center !important;
 
             a {
                 font-family: "Space Mono", monospace !important;
@@ -725,6 +765,13 @@ body.sj-page-login, body.sj-page-signup {
             ul {
                 padding: 0px !important;
             }
+        }
+
+        /* signUpBottomBtn */
+        #button-sign-up {
+            width: 100% !important;
+            height: 48px !important;
+            font-size: 16px !important;
         }
     }
 }
