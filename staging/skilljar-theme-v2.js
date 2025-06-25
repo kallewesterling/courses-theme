@@ -2667,8 +2667,8 @@ function handlePageStyling() {
   }
 }
 
-function renderCourse() {
-  inProd ? undefined : console.log(timestamp() + " [renderCourse] Called");
+function renderPage() {
+  inProd ? undefined : console.log(timestamp() + " [renderPage] Called");
 
   handlePageStyling();
 
@@ -2713,7 +2713,7 @@ document.addEventListener("DOMContentLoaded", () => {
   current.viewport = getViewport();
   inProd ? undefined : console.log(timestamp() + " [DOMContentLoaded] current.viewport: ", current.viewport);
   
-  renderCourse();
+  renderPage();
 
   inProd ? undefined : console.log(timestamp() + " [DOMContentLoaded] initialLoadComplete set to true");
   initialLoadComplete = true;
@@ -2727,5 +2727,5 @@ window.addEventListener("resize", () => {
   inProd ? undefined : console.log(timestamp() + " [event:resize] Resized: ", width);
   inProd ? undefined : console.log(timestamp() + " [event:resize] current.viewport: ", current.viewport);
   
-  renderCourse();
+  renderPage();
 });
