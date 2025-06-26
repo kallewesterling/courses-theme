@@ -176,9 +176,9 @@ function renderCommonStart() {
     current.cardLink = btn.href || "";
 
     // fix the course info section
-    if (document.querySelectorAll("#dp-details #course-info .columns")) {
+    if (document.querySelectorAll("#dp-details #course-info .columns").length) {
         [aboutSection, curriculumSection] = document.querySelectorAll("#dp-details #course-info .columns");
-    } else if (document.querySelectorAll(".section-container.tabs section")) {
+    } else if (document.querySelectorAll(".section-container.tabs section").length) {
         [curriculumSection, aboutSection] = document.querySelectorAll("div.content[data-section-content]");
         document.querySelector("div.columns:has(.section-container)").append(aboutSection, curriculumSection)
     } else {
