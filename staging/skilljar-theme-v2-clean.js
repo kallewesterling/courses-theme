@@ -177,6 +177,7 @@ function renderCommonStart() {
     } else {
         current.cardText = "";
         current.cardLink = "";
+        console.warn("No button found, skipping related modifications.");
     }
 
     // fix the course info section
