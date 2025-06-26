@@ -171,7 +171,7 @@ function desktopCourseDetailsPageStyling() {
 
   courseCatalog();
 
-  let [curriculumSection, aboutSection] = document.querySelectorAll(".row.hide-for-small.padded-side-bottom .columns");
+  let [aboutSection, curriculumSection] = document.querySelectorAll(".row.hide-for-small.padded-side-bottom .columns");
   curriculumSection.id = "curriculum-section";
   aboutSection.id = "about-section";
 
