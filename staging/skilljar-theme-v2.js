@@ -144,21 +144,25 @@ function signUpPageStyling() {
   document.querySelector("label[for=id_password2] .input-label-text span").textContent = "Password Confirm";
 }
 
-function courseCatalog() {
+function courseCatalog(injectDescription = true, floaterText = "Course") {
   inProd ? undefined : log("[courseCatalog] Called");
 
   // Put content in the correct order
-  const mainHeadingContainer = document.querySelector(".dp-summary-wrapper, sj-summary"); // ~
-  const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
-  const mainHeading = document.querySelector(".break-word"); // ~
-  const headingParagraph = mainHeadingContainer.querySelector("h2"); // ~
-  const registerBtn = document.querySelector("#purchase-button-wrapper-large"); // ~
+  const mainHeadingContainer = document.querySelector(".dp-summary-wrapper, sj-summary");
+  const headingFloaterText = document.querySelector(".sj-floater-text");
+  headingFloaterText.textContent = floaterText;
+  const mainHeading = document.querySelector(".break-word");
+  const headingParagraph = mainHeadingContainer.querySelector("h2");
+  const registerBtn = document.querySelector("#purchase-button-wrapper-large");
+
+  if (injectDescription)
+    headingParagraph.textContent = skilljarCourse.short_description || "<!-- skilljarCourse.short_description -->"; // eslint-disable-line no-undef
 
   mainHeadingContainer.append(
-    headingFloaterText,
-    mainHeading,
-    headingParagraph,
-    registerBtn
+    headingFloaterText || "<!-- headingFloaterText -->",
+    mainHeading        || "<!-- mainHeading -->",
+    headingParagraph   || "<!-- headingParagraph -->",
+    registerBtn        || "<!-- registerBtn -->"
   );
 }
 
@@ -250,16 +254,18 @@ function desktopPathCourseDetailsPageStyling() {
   
   const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
   headingFloaterText.textContent = "Learning Path";
-  const mainHeading = document.querySelector(".break-word"); // ~
-  const headingParagraph = document.querySelector(".sj-course-info-wrapper h2"); // ~
-  const registerBtn = document.querySelector("#purchase-button-wrapper-large"); // ~
+
+  courseCatalog(false, "Learning Path"); // false to not inject description
+  // const mainHeading = document.querySelector(".break-word"); // ~
+  // const headingParagraph = document.querySelector(".sj-course-info-wrapper h2"); // ~
+  // const registerBtn = document.querySelector("#purchase-button-wrapper-large"); // ~
   
-  document.querySelector(".dp-summary-wrapper").append(
-    headingFloaterText,
-    mainHeading,
-    headingParagraph,
-    registerBtn
-  );
+  // document.querySelector(".dp-summary-wrapper").append(
+  //   headingFloaterText,
+  //   mainHeading,
+  //   headingParagraph,
+  //   registerBtn
+  // );
 }
 
 function desktopPathCatalogPageStyling() {
@@ -595,19 +601,20 @@ function desktopCurriculumPageNoCertificateStyling() {
     }
   }
 
-  const headingParagraph = document.querySelector(".sj-heading-paragraph"); // ~
-  headingParagraph.textContent = skilljarCourse.short_description;  // eslint-disable-line no-undef
+  courseCatalog();
+  // const headingParagraph = document.querySelector(".sj-heading-paragraph"); // ~
+  // headingParagraph.textContent = skilljarCourse.short_description;  // eslint-disable-line no-undef
 
-  const container = document.querySelector(".large-8.push-4.columns.sj-summary.cp-summary-wrapper"); // ~
-  const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
-  const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR // ~
+  // const container = document.querySelector(".large-8.push-4.columns.sj-summary.cp-summary-wrapper"); // ~
+  // const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
+  // const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR // ~
 
-  container.append(
-    headingFloaterText,
-    mainHeading,
-    headingParagraph,
-    resumeBtn || ""
-  );
+  // container.append(
+  //   headingFloaterText,
+  //   mainHeading,
+  //   headingParagraph,
+  //   resumeBtn || ""
+  // );
 
   // CURRICULUM PAGE BODY STYLING
   tabsContainer.append(curriculumSection);
@@ -708,19 +715,21 @@ function desktopCurriculumPageYesCertificationStyling() {
   }
 
   // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-  const container = document.querySelector(".large-8.push-4.columns.sj-summary.cp-summary-wrapper"); // DUPLICATE VAR // ~  
-  const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
-  const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR // ~
-  const headingParagraph = document.querySelector(".sj-heading-paragraph"); // ~
-  headingParagraph.textContent = skilljarCourse.short_description;  // eslint-disable-line no-undef
+  courseCatalog(false); // false to not inject description
+  // const container = document.querySelector(".large-8.push-4.columns.sj-summary.cp-summary-wrapper"); // DUPLICATE VAR // ~  
+  // const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
+  // const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR // ~
+  // const headingParagraph = document.querySelector(".sj-heading-paragraph"); // ~
+  // headingParagraph.textContent = skilljarCourse.short_description;  // eslint-disable-line no-undef
+  
+  // container.append(
+  //   headingFloaterText,
+  //   mainHeading,
+  //   headingParagraph,
+  // );
+  
   const certificateEl = document.querySelector(".cp-certificate"); // ~
-
-  container.append(
-    headingFloaterText,
-    mainHeading,
-    headingParagraph,
-    certificateEl
-  );
+  document.querySelector(".sj-summary").append(certificateEl);
 
   // CURRICULUM PAGE BODY STYLING
   tabsContainer.append(curriculumSection);
@@ -945,15 +954,15 @@ function mobileCurriculumPageNoCertificateStyling() {
   
   
   // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-  const container = document.querySelector(".large-8.push-4.columns.sj-summary.cp-summary-wrapper"); // DUPLICATE VAR // ~
-  const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
-  const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR // ~
-  const headingParagraph = document.querySelector(".sj-heading-paragraph"); // ~
-  const btn = document.querySelector("#resume-button"); // ~
+  // const container = document.querySelector(".large-8.push-4.columns.sj-summary.cp-summary-wrapper"); // DUPLICATE VAR // ~
+  // const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
+  // const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR // ~
+  // const headingParagraph = document.querySelector(".sj-heading-paragraph"); // ~
+  // const btn = document.querySelector("#resume-button"); // ~
   
-  container.style.width = "90%";
-  
-  container.append(headingFloaterText, mainHeading, headingParagraph, btn);
+  // container.append(headingFloaterText, mainHeading, headingParagraph, btn);
+
+  courseCatalog(false); // false to not inject description
 
   // CURRICULUM PAGE BODY STYLING
   tabsContainer.append(curriculumSection);
@@ -1090,18 +1099,22 @@ function mobileCurriculumPageYesCertificateStyling() {
   }
   
   // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-  const container = document.querySelector(".large-8.push-4.columns.sj-summary.cp-summary-wrapper"); // DUPLICATE VAR // ~
-  const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
-  const mainHeading = document.querySelector(".break-word"); // ~
-  const headingParagraph = document.querySelector(".sj-heading-paragraph"); // ~
-  const certificateEl = document.querySelector(".cp-certificate"); // ~
+  // const container = document.querySelector(".large-8.push-4.columns.sj-summary.cp-summary-wrapper"); // DUPLICATE VAR // ~
+  // const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
+  // const mainHeading = document.querySelector(".break-word"); // ~
+  // const headingParagraph = document.querySelector(".sj-heading-paragraph"); // ~
+  
+  // container.append(
+  //   headingFloaterText,
+  //   mainHeading,
+  //   headingParagraph,
+  // );
 
-  container.append(
-    headingFloaterText,
-    mainHeading,
-    headingParagraph,
-    certificateEl
-  );
+  courseCatalog(false); // false to not inject description
+  
+  const certificateEl = document.querySelector(".cp-certificate"); // ~
+  document.querySelector(".sj-summary").append(certificateEl);
+
   // CURRICULUM PAGE BODY STYLING
   tabsContainer.append(curriculumSection);
   aboutSection.classList.add("active");
