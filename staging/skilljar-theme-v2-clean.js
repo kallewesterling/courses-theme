@@ -169,9 +169,13 @@ function renderCommonStart() {
 
     renderAllStart(); // before anything else
     
+    // drop the "show for small" element
+    document.querySelector("#dp-details .show-for-small").remove();
+
     // set ids for elements
     document.querySelector("#skilljar-content .top-row-grey").id = "cta";
-    if (document.querySelectorAll("#dp-details .hide-for-small .columns")) {
+    document.querySelector("#dp-details .hide-for-small").id = "course-info";
+    if (document.querySelectorAll("#dp-details #course-info .columns")) {
         let [aboutSection, curriculumSection] = document.querySelectorAll("#dp-details .hide-for-small .columns");
         curriculumSection.id = "curriculum-section";
         aboutSection.id = "about-section";
