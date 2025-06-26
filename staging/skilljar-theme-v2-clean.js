@@ -178,9 +178,6 @@ function renderCommonStart() {
         aboutSection.id = "about-section";
     }
 
-    // drop the "show for small" element
-    document.querySelector("#dp-details .show-for-small").remove();
-
     // remove the "hide for small" class from the course details section
     document.querySelector("#dp-details #course-info").classList.remove("hide-for-small");
 
@@ -190,14 +187,25 @@ function renderCommonStart() {
         document.querySelector("#dp-details").append(courseDetailsCard);
     
     // add checkbox icon to course details card
-    if (!current.initialLoadComplete)
-        document.querySelectorAll(".course-details-card li").forEach((li) => {
-            li.prepend(document.querySelector(".checkbox-icon").cloneNode(true));
-        });
+    document.querySelectorAll(".course-details-card li").forEach((li) => {
+        li.prepend(document.querySelector(".checkbox-icon").cloneNode(true));
+    });
+
+    // fix link on course details card
+    const courseDetailsCardLink = document.querySelector(".course-details-card-link");
+    const btn = document.querySelector("a#purchase-button");
+    courseDetailsCardLink.textContent = btn.textContent.trim();
+    courseDetailsCardLink.href = btn.href || "";
 }
 
 function renderCommonEnd() {
     log("[renderCommonEnd] Called");
+
+    // drop the "show for small" element
+    document.querySelector("#dp-details .show-for-small").remove();
+
+    // remove .sj-course-info-wrapper
+    document.querySelector(".sj-course-info-wrapper").remove();
 
     renderAllEnd(); // after everything else
 }
