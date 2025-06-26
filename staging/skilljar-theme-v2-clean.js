@@ -175,47 +175,46 @@ function renderCommonStart() {
     current.cardText = btn.textContent.trim();
     current.cardLink = btn.href || "";
 
-    // set ids for elements
-    document.querySelector("#skilljar-content .top-row-grey").id = "cta";
-    document.querySelector("#dp-details .hide-for-small").id = "course-info";
-    
     // fix the course info section
     if (document.querySelectorAll("#dp-details #course-info .columns")) {
         [aboutSection, curriculumSection] = document.querySelectorAll("#dp-details #course-info .columns");
-    }
-    if (document.querySelectorAll(".section-container.tabs section")) {
+    } else if (document.querySelectorAll(".section-container.tabs section")) {
         [curriculumSection, aboutSection] = document.querySelectorAll("div.content[data-section-content]");
         document.querySelector("div.columns:has(.section-container)").append(aboutSection, curriculumSection)
+    } else {
+        console.warn("No expected course info sections found, skipping related modifications.");
     }
 
-    if (curriculumSection) {
-        curriculumSection.id = "curriculum-section";
-    }
-
-    if (aboutSection) {
-        aboutSection.id = "about-section";
-    }
-    
-    // add checkbox icon to course details card
-    document.querySelectorAll(".course-details-card li").forEach((li) => {
-        li.prepend(document.querySelector(".checkbox-icon").cloneNode(true));
-    });
-
-    // fix link on course details card
-    const courseDetailsCardLink = document.querySelector(".course-details-card-link");
-    courseDetailsCardLink.textContent = current.cardText;
-    courseDetailsCardLink.href = current.cardLink;
+    // set ids for elements
+    document.querySelector("#skilljar-content .top-row-grey").id = "cta";
+    document.querySelector("#dp-details .hide-for-small").id = "course-info";
+    curriculumSection ? curriculumSection.id = "curriculum-section" : console.warn("No curriculum section found, skipping related modifications.");
+    aboutSection ? aboutSection.id = "about-section" : console.warn("No about section found, skipping related modifications.");
 
     // move elements to the right place
     const courseDetailsCard = document.querySelector(".course-details-card");
-    if (courseDetailsCard)
-        if (document.querySelector("#dp-details"))
-            document.querySelector("#dp-details").append(courseDetailsCard);
-        else
-            if (document.querySelector("#cp-content"))
-                document.querySelector("#cp-content").append(courseDetailsCard);
+    if (courseDetailsCard) {
+        // add checkbox icon to course details card
+        document.querySelectorAll(".course-details-card li").forEach((li) => {
+            li.prepend(document.querySelector(".checkbox-icon").cloneNode(true));
+        });
 
-    console.log(courseDetailsCardLink, courseDetailsCardLink.textContent, courseDetailsCardLink.href)
+        // fix link on course details card
+        const courseDetailsCardLink = document.querySelector(".course-details-card-link");
+        courseDetailsCardLink.textContent = current.cardText;
+        courseDetailsCardLink.href = current.cardLink;
+        
+        if (document.querySelector("#dp-details")) {
+            document.querySelector("#dp-details").append(courseDetailsCard);
+        } else if (document.querySelector("#cp-content")) {
+            document.querySelector("#cp-content").append(courseDetailsCard);
+        } else {
+            throw new Error("No suitable container found for course details card");
+        }
+    } else {
+        console.warn("No expected course details card found, skipping related modifications.");
+    }
+
 }
 
 function renderCommonEnd() {
