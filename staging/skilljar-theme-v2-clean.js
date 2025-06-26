@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
     current.page = "path-details";
 
   // Page is "path-catalog" if the page displays a catalog of learning paths
-  if (elemExists("body.sj-page-catalog.sj-page-series.sj-page-path"))
+  if (elemExists("body.sj-page-series.sj-page-path"))
     current.page = "path-catalog";
 
   // Page is "login" if the page displays a login form
