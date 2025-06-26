@@ -186,11 +186,6 @@ function renderCommonStart() {
 
     // remove the "hide for small" class from the course details section
     document.querySelector("#dp-details #course-info").classList.remove("hide-for-small");
-
-    // move elements to the right place
-    const courseDetailsCard = document.querySelector(".course-details-card");
-    if (courseDetailsCard)
-        document.querySelector("#dp-details").append(courseDetailsCard);
     
     // add checkbox icon to course details card
     document.querySelectorAll(".course-details-card li").forEach((li) => {
@@ -201,6 +196,11 @@ function renderCommonStart() {
     const courseDetailsCardLink = document.querySelector(".course-details-card-link");
     courseDetailsCardLink.textContent = current.cardText;
     courseDetailsCardLink.href = current.cardLink;
+
+    // move elements to the right place
+    const courseDetailsCard = document.querySelector(".course-details-card");
+    if (courseDetailsCard)
+        document.querySelector("#dp-details").append(courseDetailsCard);
 
     console.log(courseDetailsCardLink, courseDetailsCardLink.textContent, courseDetailsCardLink.href)
 }
