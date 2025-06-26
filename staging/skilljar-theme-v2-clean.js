@@ -166,6 +166,7 @@ function renderAllEnd() {
 
 function renderCommonStart() {
     log("[renderCommonStart] Called");
+    let aboutSection, curriculumSection;
 
     renderAllStart(); // before anything else
     
@@ -173,19 +174,22 @@ function renderCommonStart() {
     const btn = document.querySelector("a#purchase-button");
     current.cardText = btn.textContent.trim();
     current.cardLink = btn.href || "";
-    console.log(current);
 
     // set ids for elements
     document.querySelector("#skilljar-content .top-row-grey").id = "cta";
     document.querySelector("#dp-details .hide-for-small").id = "course-info";
     if (document.querySelectorAll("#dp-details #course-info .columns")) {
-        let [aboutSection, curriculumSection] = document.querySelectorAll("#dp-details .hide-for-small .columns");
-        curriculumSection.id = "curriculum-section";
-        aboutSection.id = "about-section";
+        [aboutSection, curriculumSection] = document.querySelectorAll("#dp-details #course-info .columns");
+    }
+    if (document.querySelectorAll(".section-container.tabs section")) {
+        [curriculumSection, aboutSection] = document.querySelectorAll(".section-container.tabs section");
     }
 
-    // remove the "hide for small" class from the course details section
-    document.querySelector("#dp-details #course-info").classList.remove("hide-for-small");
+    if (curriculumSection)
+        curriculumSection.id = "curriculum-section";
+    
+    if (aboutSection)
+        aboutSection.id = "about-section";
     
     // add checkbox icon to course details card
     document.querySelectorAll(".course-details-card li").forEach((li) => {
@@ -210,6 +214,9 @@ function renderCommonEnd() {
 
     // drop the "show for small" element
     document.querySelector("#dp-details .show-for-small").remove();
+
+    // remove the "hide for small" class from the course details section
+    document.querySelector("#dp-details #course-info").classList.remove("hide-for-small");
 
     // remove .sj-course-info-wrapper
     document.querySelector(".sj-course-info-wrapper").remove();
@@ -318,7 +325,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (elemExists("body.sj-page-curriculum"))
         renderCurriculum();
 
-    // The page displays a course's details that is part of a learning path
+    // The page displays a course's details when not logged in/registered for course
     if (elemExists("body.sj-page-detail-course"))
         renderCourseDetails();
   
