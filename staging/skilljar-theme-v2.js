@@ -66,9 +66,6 @@ function catalogPageStyling() {
     
     catalogContentContainer.append(allCoursesHeader, document.querySelector("#catalog-courses"));
     document.querySelector("#catalog-content").append(catalogContentContainer);
-
-    current.initialLoadComplete = true;
-    log("[catalogPageStyling] current.initialLoadComplete set to true")
   }
 }
 
@@ -146,18 +143,21 @@ function signUpPageStyling() {
 
 function courseCatalog(injectDescription = true, floaterText = "Course") {
   inProd ? undefined : log(`[courseCatalog] Called with injectDescription: ${injectDescription}, floaterText: ${floaterText}`);
-
-  // Put content in the correct order
+  
+  // get elements
   const mainHeadingContainer = document.querySelector(".dp-summary-wrapper, sj-summary");
   const headingFloaterText = document.querySelector(".sj-floater-text");
-  headingFloaterText.textContent = floaterText;
   const mainHeading = document.querySelector(".break-word");
   const headingParagraph = mainHeadingContainer.querySelector("h2");
   const registerBtn = document.querySelector("#purchase-button-wrapper-large");
-
+  
+  // fix text content
+  headingFloaterText.textContent = floaterText;
+  
   if (injectDescription)
-    headingParagraph.textContent = skilljarCourse.short_description || "<!-- skilljarCourse.short_description -->"; // eslint-disable-line no-undef
+    headingParagraph.textContent = skilljarCourse.short_description || ""; // eslint-disable-line no-undef
 
+  // append elements to the main heading container
   mainHeadingContainer.append(
     headingFloaterText || "<!-- headingFloaterText -->",
     mainHeading        || "<!-- mainHeading -->",
