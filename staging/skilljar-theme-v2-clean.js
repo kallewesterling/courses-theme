@@ -172,7 +172,7 @@ function renderAllEnd() {
 
 
 function renameAndCollect() {
-    /////////// Reorder sections in some pages
+    log("[renameAndCollect] Called");
     // if (document.querySelectorAll(".section-container.tabs section").length === 2) {
     //     const columns = document.querySelectorAll(".section-container.tabs section");
     //     document.querySelector("div.columns:has(.section-container)").append(columns[1], columns[0])
@@ -199,9 +199,22 @@ function renameAndCollect() {
         console.warn("No button found, skipping related modifications.");
     }
     
-    [current.aboutSection, current.curriculumSection] = document.querySelectorAll(".course-info .columns, .course-info section");
+    [current.aboutSection, current.curriculumSection] = document.querySelectorAll(".course-info .columns");
+    if (!current.aboutSection || !current.curriculumSection)
+        [current.aboutSection, current.curriculumSection] = document.querySelectorAll(".course-info section")
+    if (!current.aboutSection || !current.curriculumSection)
+        throw new Error("No about or curriculum section found, cannot proceed with modifications.");
+        
     current.curriculumSection ? current.curriculumSection.id = "curriculum-section" : console.warn("No curriculum section found, skipping related modifications.");
     current.aboutSection ? current.aboutSection.id = "about-section" : console.warn("No about section found, skipping related modifications.");
+
+    /////////// Reorder sections in some pages
+    if (document.querySelectorAll(".section-container.tabs section").length === 2) {
+        document.querySelector(".course-info").append(
+            document.querySelector("#about-section"),
+            document.querySelector("#curriculum-section")
+        )
+    }
 }
 
 function renderCommonStart() {
