@@ -343,6 +343,20 @@ body.sj-page-signup #access-message {
         ul.dp-curriculum {
             margin: 0 !important;
             padding: 0 !important; /* from desktopCourseDetailsPageStyling */
+
+            li.module-list {
+                .module-title {
+                    padding: 24px !important;
+                    border-bottom: 2px solid #3443f4 !important;
+                }
+
+                .lesson-item .lesson-wrapper {
+                    padding: 24px !important;
+                    font-size: 16px !important;
+                    font-weight: 400 !important;
+                    line-height: 150% !important;
+                }
+            }
         }
     }
 
@@ -396,6 +410,7 @@ body.sj-page-signup #access-message {
 
         /* styleGroupContainer */
         #curriculum-list {
+            
             .module-list {
                 border: 2px solid #3443f4 !important;
                 border-radius: 8px !important;
