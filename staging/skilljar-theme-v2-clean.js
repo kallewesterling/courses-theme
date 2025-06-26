@@ -50,6 +50,7 @@ const checkWindowWidth = () => window.innerWidth || document.documentElement.cli
 */
 function renderCatalog() { // fka catalogPageStyling
     log("[renderCatalog] Called");
+    current.page = "catalog";
 
     if (!current.initialLoadComplete) {
         const catalogContentContainer = document.createElement("div");
@@ -95,6 +96,7 @@ function fixForm() {
 */
 function renderLogin() { // fka loginPageStyling
     log("[renderLogin] Called");
+    current.page = "login";
 
     // general fixes
     fixForm();
@@ -116,6 +118,7 @@ function renderLogin() { // fka loginPageStyling
 */
 function renderSignup() { // fka signUpPageStyling
     log("[renderSignup] Called");
+    current.page = "sign-up";
 
     // general fixes
     fixForm();
@@ -175,9 +178,9 @@ function renderCommonStart() {
     }
 
     // move elements to the right place
-    const courseDetailCardContainer = document.querySelector(".course-details-card");
-    if (courseDetailCardContainer)
-        document.querySelector("#dp-details").append(courseDetailCardContainer);
+    const courseDetailsCard = document.querySelector(".course-details-card");
+    if (courseDetailsCard)
+        document.querySelector("#dp-details").append(courseDetailsCard);
     
     // add checkbox icon to course details card
     if (!current.initialLoadComplete)
@@ -194,6 +197,7 @@ function renderCommonEnd() {
 
 function renderCurriculum() { // fka desktopCurriculumPageNoCertificateStyling / mobileCurriculumPageNoCertificateStyling / desktopCurriculumPageYesCertificationStyling / mobileCurriculumPageYesCertificateStyling
     log("[renderCurriculum] Called");
+    current.page = "curriculum";
 
     renderCommonStart();
 
@@ -205,6 +209,7 @@ function renderCurriculum() { // fka desktopCurriculumPageNoCertificateStyling /
 
 function renderCourseDetails() { // fka desktopCourseDetailsPageStyling / mobileCourseDetailsPageStyling
     log("[renderCourseDetails] Called");
+    current.page = "course-details";
 
     renderCommonStart();
 
@@ -216,6 +221,7 @@ function renderCourseDetails() { // fka desktopCourseDetailsPageStyling / mobile
 
 function renderPathDetails() { // fka desktopPathCourseDetailsPageStyling
     log("[renderPathDetails] Called");
+    current.page = "path-details";
 
     renderCommonStart();
 
@@ -227,6 +233,7 @@ function renderPathDetails() { // fka desktopPathCourseDetailsPageStyling
 
 function renderPathCatalog() { // fka desktopPathCatalogPageStyling
     log("[renderPathCatalog] Called");
+    current.page = "path-catalog";
 
     renderCommonStart();
 
@@ -260,6 +267,8 @@ function renderLessonEnd() {
 
 function renderLesson() { // fka desktopLessonPageStyling / mobileLessonPageStyling
     log("[renderLesson] Called");
+    current.page = "lesson";
+
     renderLessonStart();
     
     // ...
@@ -272,83 +281,58 @@ function renderLesson() { // fka desktopLessonPageStyling / mobileLessonPageStyl
   *************** ROUTING and GENERAL ***************
 */
 
-function renderPage() {
-  log("[renderPage] Called");
-
-  if (current.page === "catalog")
-    renderCatalog();
-
-  if (current.page === "login")
-    renderLogin();
-
-  if (current.page === "sign-up")
-    renderSignup();
-
-  if (current.page === "curriculum")
-    renderCurriculum();
-
-  if (current.page === "course-details")
-    renderCourseDetails();
-
-  if (current.page === "lesson")
-    renderLesson();
-
-  if (current.page === "path-details")
-    renderPathDetails();
-
-  if (current.page === "path-catalog")
-    renderPathCatalog();
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-  // Handle initial rendering
-  log("[DOMContentLoaded] Called");
+    // Handle initial rendering
+    log("[DOMContentLoaded] Called");
 
-  // Page is "catalog" if the page displays the catalog of courses (i.e. the landing page)
-  if (elemExists("body.sj-page-catalog"))
-    current.page = "catalog";
+    current.viewport = getViewport();
+    log(`[DOMContentLoaded] Current viewport: ${current.viewport}`);
 
-  // Page is "curriculum" if the page displays a course's curriculum which is not part of a learning path
-  if (elemExists("body.sj-page-curriculum"))
-    current.page = "curriculum";
+    // The page displays the catalog of courses (i.e. the landing page)
+    if (elemExists("body.sj-page-catalog"))
+        renderCatalog();
 
-  // Page is "course-details" if the page displays a course's details that is part of a learning path
-  if (elemExists("body.sj-page-detail-course"))
-    current.page = "course-details";
+    // The page displays a course's curriculum which is not part of a learning path
+    if (elemExists("body.sj-page-curriculum"))
+        renderCurriculum();
+
+    // The page displays a course's details that is part of a learning path
+    if (elemExists("body.sj-page-detail-course"))
+        renderCourseDetails();
   
-  // Page is "lesson" if the page displays one of a course's lesson
-  if (elemExists("body.sj-page-lesson"))
-    current.page = "lesson";
+    // The page displays one of a course's lesson
+    if (elemExists("body.sj-page-lesson"))
+        renderLesson();
   
-  // Page is "path-details" if the page displays a learning path's details
-  if (elemExists("body.sj-page-detail-path"))
-    current.page = "path-details";
+    // The page displays a learning path's details
+    if (elemExists("body.sj-page-detail-path"))
+        renderPathDetails();
 
-  // Page is "path-catalog" if the page displays a catalog of learning paths
-  if (elemExists("body.sj-page-series.sj-page-path"))
-    current.page = "path-catalog";
+    // The page displays a catalog of learning paths
+    if (elemExists("body.sj-page-series.sj-page-path"))
+        renderPathCatalog();
 
-  // Page is "login" if the page displays a login form
-  if (elemExists("body.sj-page-login"))
-    current.page = "login";
+    // The page displays a login form
+    if (elemExists("body.sj-page-login"))
+        renderLogin();
 
-  // Page is "sign-up" if the page displays a sign up form
-  if (elemExists("body.sj-page-signup"))
-    current.page = "sign-up";
-  
-  current.viewport = getViewport();
-  log(`[DOMContentLoaded] current.page: ${current.page}; current viewport: ${current.viewport}`);
-  
-  renderPage();
+    // The page displays a sign up form
+    if (elemExists("body.sj-page-signup"))
+        renderSignup();
 
-  log("[DOMContentLoaded] current.initialLoadComplete set to true");
-  current.initialLoadComplete = true;
+    log("[DOMContentLoaded] current.initialLoadComplete set to true");
+    current.initialLoadComplete = true;
 });
 
-window.addEventListener("resize", () => {
-  current.viewport = getViewport();
+/*
+Dropping the following as we should not need to re-render on resize
+This is because the page should be responsive and adapt to the viewport
+size without needing a re-render.
+*/
+// window.addEventListener("resize", () => {
+//   current.viewport = getViewport();
   
-  log(`[event:resize] current.viewport: ${current.viewport}`);
+//   log(`[event:resize] current.viewport: ${current.viewport}`);
   
-  renderPage();
-});
+//   renderPage();
+// });
