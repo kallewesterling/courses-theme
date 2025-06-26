@@ -201,7 +201,7 @@ function renameAndCollect() {
     
     [current.aboutSection, current.curriculumSection] = document.querySelectorAll(".course-info .columns");
     if (!current.aboutSection || !current.curriculumSection)
-        [current.aboutSection, current.curriculumSection] = document.querySelectorAll(".course-info section")
+        [current.curriculumSection, current.aboutSection] = document.querySelectorAll(".course-info section")
     if (!current.aboutSection || !current.curriculumSection)
         throw new Error("No about or curriculum section found, cannot proceed with modifications.");
         
@@ -210,10 +210,7 @@ function renameAndCollect() {
 
     /////////// Reorder sections in some pages
     if (document.querySelectorAll(".section-container.tabs section").length === 2) {
-        document.querySelector(".course-info").append(
-            document.querySelector("#about-section"),
-            document.querySelector("#curriculum-section")
-        )
+        document.querySelector(".course-info").append(current.aboutSection, current.curriculumSection)
     }
 }
 
