@@ -190,18 +190,24 @@ function renderCommonStart() {
     }
 
     // set ids for elements
+    current.curriculumSection ? current.curriculumSection.id = "curriculum-section" : console.warn("No curriculum section found, skipping related modifications.");
+    current.aboutSection ? current.aboutSection.id = "about-section" : console.warn("No about section found, skipping related modifications.");
     document.querySelector("#skilljar-content .top-row-grey").id = "cta";
     try {
         document.querySelector("#dp-details .hide-for-small").id = "course-info";
-    } catch (e) {
+    } catch {
         try {
             document.querySelector("#cp-content .tabs-wrapper-v2").id = "course-info";
-        } catch (e) {
+        } catch {
             console.warn("No course info section found, skipping related modifications.");
         }
     }
-    current.curriculumSection ? current.curriculumSection.id = "curriculum-section" : console.warn("No curriculum section found, skipping related modifications.");
-    current.aboutSection ? current.aboutSection.id = "about-section" : console.warn("No about section found, skipping related modifications.");
+    try {
+        // drop the "show for small" element
+        document.querySelector("#dp-details .show-for-small").remove();
+    } catch {
+        console.info("No 'show for small' element found, skipping related modifications.");
+    }
 
     // move elements to the right place
     const courseDetailsCard = document.querySelector(".course-details-card");
@@ -232,10 +238,7 @@ function renderCommonStart() {
 
 function renderCommonEnd() {
     log("[renderCommonEnd] Called");
-
-    // drop the "show for small" element
-    document.querySelector("#dp-details .show-for-small").remove();
-
+    
     // remove the "hide for small" class from the course details section
     document.querySelector("#dp-details #course-info").classList.remove("hide-for-small");
 
