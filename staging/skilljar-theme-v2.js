@@ -164,6 +164,12 @@ function courseCatalog(injectDescription = true, floaterText = "Course") {
     headingParagraph   || "<!-- headingParagraph -->",
     registerBtn        || "<!-- registerBtn -->"
   );
+
+  // remove unwanted elements
+  [
+    ...document.querySelectorAll(".lesson-item .type-icon"),
+    ...document.querySelectorAll(".lesson-modular"),
+  ].forEach((el) => el.remove());
 }
 
 function desktopCourseDetailsPageStyling() {
