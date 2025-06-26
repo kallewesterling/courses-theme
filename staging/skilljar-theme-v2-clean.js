@@ -15,7 +15,7 @@ const inProd = false, // Set to true if in production environment
 * @param {string} msg - The message to log.
 * @returns {string} - Returns the current timestamp in HH:MM:SS format
 */
-const log = (msg) => inProd ? undefined : console.log((new Date).toISOString().slice(11, 19), msg);
+const log = (msg, variable) => inProd ? undefined : console.log((new Date).toISOString().slice(11, 19), msg, variable);
 
 /*
 * Function to check if an element exists in the DOM
@@ -166,7 +166,6 @@ function renderAllEnd() {
 
 function renderCommonStart() {
     log("[renderCommonStart] Called");
-    let aboutSection, curriculumSection;
 
     renderAllStart(); // before anything else
     
@@ -177,10 +176,10 @@ function renderCommonStart() {
 
     // fix the course info section
     if (document.querySelectorAll("#dp-details #course-info .columns").length) {
-        [aboutSection, curriculumSection] = document.querySelectorAll("#dp-details #course-info .columns");
+        [current.aboutSection, current.curriculumSection] = document.querySelectorAll("#dp-details #course-info .columns");
     } else if (document.querySelectorAll(".section-container.tabs section").length) {
-        [curriculumSection, aboutSection] = document.querySelectorAll("div.content[data-section-content]");
-        document.querySelector("div.columns:has(.section-container)").append(aboutSection, curriculumSection)
+        [current.curriculumSection, current.aboutSection] = document.querySelectorAll("div.content[data-section-content]");
+        document.querySelector("div.columns:has(.section-container)").append(current.aboutSection, current.curriculumSection)
     } else {
         console.warn("No expected course info sections found, skipping related modifications.");
     }
@@ -188,8 +187,8 @@ function renderCommonStart() {
     // set ids for elements
     document.querySelector("#skilljar-content .top-row-grey").id = "cta";
     document.querySelector("#dp-details .hide-for-small").id = "course-info";
-    curriculumSection ? curriculumSection.id = "curriculum-section" : console.warn("No curriculum section found, skipping related modifications.");
-    aboutSection ? aboutSection.id = "about-section" : console.warn("No about section found, skipping related modifications.");
+    current.curriculumSection ? current.curriculumSection.id = "curriculum-section" : console.warn("No curriculum section found, skipping related modifications.");
+    current.aboutSection ? current.aboutSection.id = "about-section" : console.warn("No about section found, skipping related modifications.");
 
     // move elements to the right place
     const courseDetailsCard = document.querySelector(".course-details-card");
@@ -215,6 +214,7 @@ function renderCommonStart() {
         console.warn("No expected course details card found, skipping related modifications.");
     }
 
+    log("[renderCommonStart]", current);
 }
 
 function renderCommonEnd() {
