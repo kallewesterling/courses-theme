@@ -256,7 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
     current.page = "curriculum";
 
   // Page is "course-details" if the page displays a course's details that is part of a learning path
-  if (elemExists("body.sj-page-curriculum"))
+  if (elemExists("body.sj-page-detail-course"))
     current.page = "course-details";
   
   // Page is "lesson" if the page displays one of a course's lesson
