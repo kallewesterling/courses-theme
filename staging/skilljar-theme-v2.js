@@ -145,7 +145,7 @@ function signUpPageStyling() {
 }
 
 function courseCatalog(injectDescription = true, floaterText = "Course") {
-  inProd ? undefined : log("[courseCatalog] Called");
+  inProd ? undefined : log(`[courseCatalog] Called with injectDescription: ${injectDescription}, floaterText: ${floaterText}`);
 
   // Put content in the correct order
   const mainHeadingContainer = document.querySelector(".dp-summary-wrapper, sj-summary");
@@ -229,9 +229,11 @@ function desktopCourseDetailsPageStyling() {
   const courseDetailCardContainer = document.querySelector(".course-details-card"); // ~
   if (courseDetailCardContainer) {
     document.querySelector("#dp-details").append(courseDetailCardContainer);
-    document.querySelectorAll(".course-details-card li").forEach((li) => {
-      li.prepend(document.querySelector(".checkbox-icon").cloneNode(true));
-    });
+    if (!current.initialLoadComplete) {
+      document.querySelectorAll(".course-details-card li").forEach((li) => {
+        li.prepend(document.querySelector(".checkbox-icon").cloneNode(true));
+      });
+    }
   }
 
   const courseDetailsCardLink = document.querySelector(".course-details-card-link"); // ~
@@ -252,9 +254,6 @@ function desktopCourseDetailsPageStyling() {
 function desktopPathCourseDetailsPageStyling() {
   inProd ? undefined : log("[desktopPathCourseDetailsPageStyling] Called");
   
-  const headingFloaterText = document.querySelector(".sj-floater-text"); // ~
-  headingFloaterText.textContent = "Learning Path";
-
   courseCatalog(false, "Learning Path"); // false to not inject description
   // const mainHeading = document.querySelector(".break-word"); // ~
   // const headingParagraph = document.querySelector(".sj-course-info-wrapper h2"); // ~
@@ -591,14 +590,9 @@ function desktopCurriculumPageNoCertificateStyling() {
   }
 
   if (!current.initialLoadComplete) {
-    const courseDetailCardListItems = document.querySelectorAll(".course-details-card li"); // ~
-    const checkboxIcon = document.querySelector(".checkbox-icon"); // ~
-
-    if (courseDetailCardListItems) {
-      courseDetailCardListItems.forEach((li) => {
-        li.prepend(checkboxIcon.cloneNode(true));
-      });
-    }
+    document.querySelectorAll(".course-details-card li").forEach((li) => {
+      li.prepend(document.querySelector(".checkbox-icon").cloneNode(true));
+    });
   }
 
   courseCatalog();
@@ -894,10 +888,11 @@ function mobileCourseDetailsPageStyling() {
     // ADD COURSE DETAILS CARD INTO RIGHT CONTAINER
     const bodyContainer = document.querySelector("#dp-details"); // ~
     bodyContainer.append(courseDetailCardContainer);
-
-    document.querySelectorAll(".course-details-card li").forEach((li) => {
-      li.prepend(document.querySelector(".checkbox-icon").cloneNode(true));
-    });
+    if (!current.initialLoadComplete) {
+      document.querySelectorAll(".course-details-card li").forEach((li) => {
+        li.prepend(document.querySelector(".checkbox-icon").cloneNode(true));
+      });
+    }
 
     const registerBtnLink = document
       .querySelector("#purchase-button")
@@ -1081,8 +1076,6 @@ function mobileCurriculumPageYesCertificateStyling() {
   const curriculumOutsideContainer = curriculumList.closest(".content");
 
   // CARD VARIABLES
-  const courseDetailCardListItems = document.querySelectorAll(".course-details-card li"); // ~
-  const checkboxIcon = document.querySelector(".checkbox-icon"); // ~
   const courseDetailsCardLink = document.querySelector(".course-details-card-link"); // ~
 
   const bodyMainContainer = document.querySelector("#cp-content"); // ~
@@ -1092,9 +1085,8 @@ function mobileCurriculumPageYesCertificateStyling() {
   courseDetailsCardLink.style.display = "none";
 
   if (!current.initialLoadComplete) {
-    courseDetailCardListItems.forEach((li) => {
-      const iconClone = checkboxIcon.cloneNode(true);
-      li.prepend(iconClone);
+    document.querySelectorAll(".course-details-card li").forEach((li) => {
+      li.prepend(document.querySelector(".checkbox-icon").cloneNode(true));
     });
   }
   
