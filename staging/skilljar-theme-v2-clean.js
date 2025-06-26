@@ -171,8 +171,13 @@ function renderCommonStart() {
     
     // get needed info
     const btn = document.querySelector("a#purchase-button");
-    current.cardText = btn.textContent.trim();
-    current.cardLink = btn.href || "";
+    if (btn) {
+        current.cardText = btn.textContent.trim();
+        current.cardLink = btn.href || "";
+    } else {
+        current.cardText = "";
+        current.cardLink = "";
+    }
 
     // fix the course info section
     if (document.querySelectorAll("#dp-details #course-info .columns").length) {
