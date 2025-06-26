@@ -191,7 +191,15 @@ function renderCommonStart() {
 
     // set ids for elements
     document.querySelector("#skilljar-content .top-row-grey").id = "cta";
-    document.querySelector("#dp-details .hide-for-small").id = "course-info";
+    try {
+        document.querySelector("#dp-details .hide-for-small").id = "course-info";
+    } catch (e) {
+        try {
+            document.querySelector("#cp-content .tabs-wrapper-v2").id = "course-info";
+        } catch (e) {
+            console.warn("No course info section found, skipping related modifications.");
+        }
+    }
     current.curriculumSection ? current.curriculumSection.id = "curriculum-section" : console.warn("No curriculum section found, skipping related modifications.");
     current.aboutSection ? current.aboutSection.id = "about-section" : console.warn("No about section found, skipping related modifications.");
 
