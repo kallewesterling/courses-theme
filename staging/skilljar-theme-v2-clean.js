@@ -178,18 +178,23 @@ function renderCommonStart() {
     // set ids for elements
     document.querySelector("#skilljar-content .top-row-grey").id = "cta";
     document.querySelector("#dp-details .hide-for-small").id = "course-info";
+    
+    // fix the course info section
     if (document.querySelectorAll("#dp-details #course-info .columns")) {
         [aboutSection, curriculumSection] = document.querySelectorAll("#dp-details #course-info .columns");
     }
     if (document.querySelectorAll(".section-container.tabs section")) {
-        [curriculumSection, aboutSection] = document.querySelectorAll(".section-container.tabs section");
+        [curriculumSection, aboutSection] = document.querySelectorAll("div.content[data-section-content]");
+        document.querySelector("div.columns:has(.section-container)").append(aboutSection, curriculumSection)
     }
 
-    if (curriculumSection)
+    if (curriculumSection) {
         curriculumSection.id = "curriculum-section";
-    
-    if (aboutSection)
+    }
+
+    if (aboutSection) {
         aboutSection.id = "about-section";
+    }
     
     // add checkbox icon to course details card
     document.querySelectorAll(".course-details-card li").forEach((li) => {
@@ -204,7 +209,11 @@ function renderCommonStart() {
     // move elements to the right place
     const courseDetailsCard = document.querySelector(".course-details-card");
     if (courseDetailsCard)
-        document.querySelector("#dp-details").append(courseDetailsCard);
+        if (document.querySelector("#dp-details"))
+            document.querySelector("#dp-details").append(courseDetailsCard);
+        else
+            if (document.querySelector("#cp-content"))
+                document.querySelector("#cp-content").append(courseDetailsCard);
 
     console.log(courseDetailsCardLink, courseDetailsCardLink.textContent, courseDetailsCardLink.href)
 }
