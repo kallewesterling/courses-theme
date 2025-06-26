@@ -176,6 +176,7 @@ function desktopCourseDetailsPageStyling() {
   aboutSection.id = "about-section";
 
   if (!current.initialLoadComplete) {
+    inProd ? undefined : log("initalLoadComplete is false -->");
     let curContainer = document.createElement("li");
     
     const hasSections = elemExists(".section", document.querySelector(".dp-curriculum"));
