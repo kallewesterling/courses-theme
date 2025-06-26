@@ -169,6 +169,12 @@ function renderCommonStart() {
 
     renderAllStart(); // before anything else
     
+    // get needed info
+    const btn = document.querySelector("a#purchase-button");
+    current.cardText = btn.textContent.trim();
+    current.cardLink = btn.href || "";
+    console.log(current);
+
     // set ids for elements
     document.querySelector("#skilljar-content .top-row-grey").id = "cta";
     document.querySelector("#dp-details .hide-for-small").id = "course-info";
@@ -193,9 +199,8 @@ function renderCommonStart() {
 
     // fix link on course details card
     const courseDetailsCardLink = document.querySelector(".course-details-card-link");
-    const btn = document.querySelector("a#purchase-button");
-    courseDetailsCardLink.textContent = btn.textContent.trim();
-    courseDetailsCardLink.href = btn.href || "";
+    courseDetailsCardLink.textContent = current.cardText;
+    courseDetailsCardLink.href = current.cardLink;
 }
 
 function renderCommonEnd() {
