@@ -1,3 +1,7 @@
 .course-details-card {
     margin-top: 0px !important;
 }
+
+.course-info .section-container.tabs {
+    display: none !important;
+}

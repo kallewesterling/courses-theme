@@ -2,7 +2,13 @@
 *************** CONSTANTS + GLOBALS ***************
 */
 const inProd = false, // Set to true if in production environment
-      current = {};
+      current = {
+        courseCTA: "",
+        courseCTALink: "",
+        page: "",
+        viewport: "",
+        initialLoadComplete: false,
+      };
 
 /*
 *************** UTILITY FUNCTIONS ***************
@@ -164,45 +170,47 @@ function renderAllEnd() {
   *************** SKILLJAR THEME FUNCTIONS: Curriculum and course/path info ***************
 */
 
+
+function renameAndCollect() {
+    /////////// Reorder sections in some pages
+    if (document.querySelectorAll(".section-container.tabs section").length === 2) {
+        const columns = document.querySelectorAll(".section-container.tabs section");
+        document.querySelector("div.columns:has(.section-container)").append(columns[1], columns[0])
+    }
+
+    ////////// Rename
+    document.querySelector("#skilljar-content .top-row-grey").classList.add("cg-cta");
+    document.querySelector(".cg-cta .dp-summary-wrapper, .cg-cta .cp-summary-wrapper").classList.add("cg-course-summary");
+
+    try {
+        document.querySelector("#dp-details .hide-for-small, #cp-content .tabs-wrapper-v2").classList.add("course-info");
+    } catch {
+        console.warn("No course info section found, skipping related modifications.");
+    }
+
+    ////////// Get needed info
+    const btn = document.querySelector(".cg-course-summary a#purchase-button");
+    if (btn) {
+        current.courseCTA = btn.textContent.trim();
+        current.courseCTALink = btn.href || "";
+    } else {
+        current.courseCTA = "";
+        current.courseCTALink = "";
+        console.warn("No button found, skipping related modifications.");
+    }
+    
+    [current.aboutSection, current.curriculumSection] = document.querySelectorAll(".course-info .columns, .course-info section");
+    current.curriculumSection ? current.curriculumSection.id = "curriculum-section" : console.warn("No curriculum section found, skipping related modifications.");
+    current.aboutSection ? current.aboutSection.id = "about-section" : console.warn("No about section found, skipping related modifications.");
+}
+
 function renderCommonStart() {
     log("[renderCommonStart] Called");
 
     renderAllStart(); // before anything else
     
-    // get needed info
-    const btn = document.querySelector("a#purchase-button");
-    if (btn) {
-        current.cardText = btn.textContent.trim();
-        current.cardLink = btn.href || "";
-    } else {
-        current.cardText = "";
-        current.cardLink = "";
-        console.warn("No button found, skipping related modifications.");
-    }
-
-    // fix the course info section
-    if (document.querySelectorAll("#dp-details #course-info .columns").length) {
-        [current.aboutSection, current.curriculumSection] = document.querySelectorAll("#dp-details #course-info .columns");
-    } else if (document.querySelectorAll(".section-container.tabs section").length) {
-        [current.curriculumSection, current.aboutSection] = document.querySelectorAll("div.content[data-section-content]");
-        document.querySelector("div.columns:has(.section-container)").append(current.aboutSection, current.curriculumSection)
-    } else {
-        console.warn("No expected course info sections found, skipping related modifications.");
-    }
-
-    // set ids for elements
-    current.curriculumSection ? current.curriculumSection.id = "curriculum-section" : console.warn("No curriculum section found, skipping related modifications.");
-    current.aboutSection ? current.aboutSection.id = "about-section" : console.warn("No about section found, skipping related modifications.");
-    document.querySelector("#skilljar-content .top-row-grey").id = "cta";
-    try {
-        document.querySelector("#dp-details .hide-for-small").id = "course-info";
-    } catch {
-        try {
-            document.querySelector("#cp-content .tabs-wrapper-v2").id = "course-info";
-        } catch {
-            console.warn("No course info section found, skipping related modifications.");
-        }
-    }
+    renameAndCollect();
+    
     try {
         // drop the "show for small" element
         document.querySelector("#dp-details .show-for-small").remove();
@@ -220,8 +228,8 @@ function renderCommonStart() {
 
         // fix link on course details card
         const courseDetailsCardLink = document.querySelector(".course-details-card-link");
-        courseDetailsCardLink.textContent = current.cardText;
-        courseDetailsCardLink.href = current.cardLink;
+        courseDetailsCardLink.textContent = current.courseCTA;
+        courseDetailsCardLink.href = current.courseCTALink;
         
         if (document.querySelector("#dp-details")) {
             document.querySelector("#dp-details").append(courseDetailsCard);
