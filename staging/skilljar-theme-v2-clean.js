@@ -201,6 +201,8 @@ function renderCommonStart() {
     const courseDetailsCardLink = document.querySelector(".course-details-card-link");
     courseDetailsCardLink.textContent = current.cardText;
     courseDetailsCardLink.href = current.cardLink;
+
+    console.log(courseDetailsCardLink, courseDetailsCardLink.textContent, courseDetailsCardLink.href)
 }
 
 function renderCommonEnd() {
