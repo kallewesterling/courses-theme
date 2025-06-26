@@ -5,3 +5,7 @@
 .course-info .section-container.tabs {
     display: none !important;
 }
+
+p.title.focus-link-v2 {
+    display: none !important;
+}
