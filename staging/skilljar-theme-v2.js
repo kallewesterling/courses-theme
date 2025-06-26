@@ -164,7 +164,9 @@ function courseCatalog(injectDescription = true, floaterText = "Course") {
     headingParagraph   || "<!-- headingParagraph -->",
     registerBtn        || "<!-- registerBtn -->"
   );
+}
 
+function dropElems() {
   // remove unwanted elements
   [
     ...document.querySelectorAll(".lesson-item .type-icon"),
@@ -249,6 +251,8 @@ function desktopCourseDetailsPageStyling() {
     courseDetailsCardLink.textContent = text;
     courseDetailsCardLink.setAttribute("href", link);
   }
+
+  dropElems();
 }
 
 /*
@@ -271,6 +275,8 @@ function desktopPathCourseDetailsPageStyling() {
   //   headingParagraph,
   //   registerBtn
   // );
+
+  dropElems();
 }
 
 function desktopPathCatalogPageStyling() {
@@ -682,6 +688,8 @@ function desktopCurriculumPageNoCertificateStyling() {
     );
     globalAboutSection.setAttribute("style", "padding: 0 !important");
   }
+
+  dropElems();
 }
 
 function desktopCurriculumPageYesCertificationStyling() {
@@ -803,6 +811,8 @@ function desktopCurriculumPageYesCertificationStyling() {
     // curriculumOutsideContainer.querySelector("h2").style.display = "none"; // ~
     // curriculumOutsideContainer.querySelector("hr").style.display = "none"; // ~
   }
+
+  dropElems();
 }
 
 function mobileCourseDetailsPageStyling() {
@@ -916,6 +926,8 @@ function mobileCourseDetailsPageStyling() {
   footerCols.forEach((col) => {
     col.style.width = "212px";
   });
+
+  dropElems();
 }
 
 function mobileCurriculumPageNoCertificateStyling() {
@@ -1062,6 +1074,8 @@ function mobileCurriculumPageNoCertificateStyling() {
   footerCols.forEach((col) => {
     col.style.width = "212px";
   });
+
+  dropElems();
 }
 
 function mobileCurriculumPageYesCertificateStyling() {
@@ -1207,6 +1221,8 @@ function mobileCurriculumPageYesCertificateStyling() {
   footerCols.forEach((col) => {
     col.style.width = "212px";
   });
+
+  dropElems();
 }
 
 function mobileLessonPageStyling() {
