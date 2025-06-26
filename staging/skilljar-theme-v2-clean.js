@@ -169,9 +169,6 @@ function renderCommonStart() {
 
     renderAllStart(); // before anything else
     
-    // drop the "show for small" element
-    document.querySelector("#dp-details .show-for-small").remove();
-
     // set ids for elements
     document.querySelector("#skilljar-content .top-row-grey").id = "cta";
     document.querySelector("#dp-details .hide-for-small").id = "course-info";
@@ -180,6 +177,12 @@ function renderCommonStart() {
         curriculumSection.id = "curriculum-section";
         aboutSection.id = "about-section";
     }
+
+    // drop the "show for small" element
+    document.querySelector("#dp-details .show-for-small").remove();
+
+    // remove the "hide for small" class from the course details section
+    document.querySelector("#dp-details #course-info").classList.remove("hide-for-small");
 
     // move elements to the right place
     const courseDetailsCard = document.querySelector(".course-details-card");
