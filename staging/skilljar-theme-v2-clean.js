@@ -173,10 +173,10 @@ function renderAllEnd() {
 
 function renameAndCollect() {
     /////////// Reorder sections in some pages
-    if (document.querySelectorAll(".section-container.tabs section").length === 2) {
-        const columns = document.querySelectorAll(".section-container.tabs section");
-        document.querySelector("div.columns:has(.section-container)").append(columns[1], columns[0])
-    }
+    // if (document.querySelectorAll(".section-container.tabs section").length === 2) {
+    //     const columns = document.querySelectorAll(".section-container.tabs section");
+    //     document.querySelector("div.columns:has(.section-container)").append(columns[1], columns[0])
+    // }
 
     ////////// Rename
     document.querySelector("#skilljar-content .top-row-grey").classList.add("cg-cta");
@@ -249,7 +249,7 @@ function renderCommonEnd() {
     log("[renderCommonEnd] Called");
     
     // remove the "hide for small" class from the course details section
-    document.querySelector("#dp-details #course-info").classList.remove("hide-for-small");
+    document.querySelector("#dp-details .course-info").classList.remove("hide-for-small");
 
     // remove .sj-course-info-wrapper
     document.querySelector(".sj-course-info-wrapper").remove();
