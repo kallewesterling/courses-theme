@@ -343,25 +343,32 @@ label {
 }
 
 .content-table {
-  display: grid;
+   display: grid;
+   margin-bottom: 48px;
+   font-size: 16px;
+
+    .table-header {
+        border-bottom: 1px solid #DCDCDC;
+        font-weight: 600;
+        line-height: 20px;
+        letter-spacing: -0.01em;
+        padding: 12px;
+    }
+    .table-row {
+        padding: 24px 12px;
+        font-weight: 400;
+        line-height: 24px;
+        border-bottom: 1px solid #DCDCDC;
+    }
+
+    p {
+        font-size: inherit !important;
+        margin: 3px 0;
+    }
 }
 
 .intro-table {
   grid-template-rows: 2;
-}
-
-.table-header {
-  border-bottom: 1px solid #dcdcdc;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: -0.01em;
-  padding: 12px;
-}
-
-.table-row {
-  padding: 24px 12px;
-  font-weight: 400;
-  line-height: 24px;
 }
 
 .learning-outcomes {
