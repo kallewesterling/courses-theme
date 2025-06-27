@@ -95,7 +95,7 @@ function fixForm() {
   * It also fixes the form by calling the fixForm function.
   * @returns {void}
 */
-function loginPageStyling() {
+function renderLogin() {
   inProd ? undefined : log("[loginPageStyling] Called");
 
   // general fixes
@@ -116,7 +116,7 @@ function loginPageStyling() {
   * It also appends the terms and conditions message to the sign-up form.
   * @returns {void}
 */
-function signUpPageStyling() {
+function renderSignup() {
   inProd ? undefined : log("[signUpPageStyling] Called");
 
   // general fixes
@@ -238,7 +238,7 @@ function desktopCourseDetailsPageStyling() {
   const courseDetailsCardLink = document.querySelector(".course-details-card-link"); // ~
   if (courseDetailsCardLink) {
     const text = document.querySelector(".purchase-button-full-text").textContent.trim();
-    const link = document.querySelector("#purchase-button").getAttribute("href") || "";
+    const link = document.querySelector("a#purchase-button").getAttribute("href") || "";
     courseDetailsCardLink.textContent = text;
     courseDetailsCardLink.setAttribute("href", link);
   }
@@ -1435,9 +1435,9 @@ function renderPage() {
   } else if (current.isPageCatalogPath) {
     current.viewport === "desktop" ? desktopPathCatalogPageStyling() : null;
   } else if (current.isLoginPage) {
-    loginPageStyling(); // we use the same for both desktop and mobile
+    renderLogin(); // we use the same for both desktop and mobile
   } else if (current.isSignUpPage) {
-    signUpPageStyling(); // we use the same for both desktop and mobile
+    renderSignup(); // we use the same for both desktop and mobile
   } else if (current.isCurriculumPage) {
     const certificateEl = document.querySelector(".cp-certificate"); // ~
 
