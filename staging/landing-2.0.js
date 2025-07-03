@@ -134,6 +134,35 @@ const coursesData = {
   ]
 };
 
+const videoData = {
+    learningLabs: [
+        {
+            "title": "Chainguard Libraries for Python",
+            "description": "Open source libraries help you move fast, but pulling in external dependencies can introduce supply chain risk. This session covers fundamental concepts of Chainguard Libraries, package managers and dependencies, PyPI and build tools, configuring repository managers, and running example application builds.",
+            "link": "https://www.youtube.com/watch?v=h_nzhPY_vDA&list=PLLjvkjPNmuZmvi2ZDXicVAWAC_mg2Jpgn",
+            "image": "https://placehold.co/600x400"
+        },
+        {
+            "title": "Chainguard Libraries for Java",
+            "description": "This Learning Lab covers Chainguard Libraries for Java. It starts with an overview about libraries and the Java ecosystem and progresses to a demo with Apache Maven and Sonatype Nexus.",
+            "link": "https://www.youtube.com/watch?v=z42b2_lePNI&list=PLLjvkjPNmuZmvi2ZDXicVAWAC_mg2Jpgn",
+            "image": "https://placehold.co/600x400"
+        },
+        {
+            "title": "Chainguard FIPS Images",
+            "description": "This Learning Lab covers what FIPS is, and dives in to Chainguard FIPS Images.",
+            "link": "https://www.youtube.com/watch?v=SYeym1SinA0&list=PLLjvkjPNmuZmvi2ZDXicVAWAC_mg2Jpgn",
+            "image": "https://placehold.co/600x400"
+        },
+        {
+            "title": "Chainguard AI Images",
+            "description": "This Learning Lab covers how to train an animal detection model and run it in inference with Chainguard's AI Image, how lightweight Chainguard Images for AI minimize attack surface for AI in production, and how you can use AI frameworks like PyTorch in production with 0 CVEs from day one.",
+            "link": "https://www.youtube.com/watch?v=Dbh4OMsZkNg&list=PLLjvkjPNmuZmvi2ZDXicVAWAC_mg2Jpgn",
+            "image": "https://placehold.co/600x400"
+        }
+    ]
+}
+
 const elems = {
     collections: {}
 };
@@ -225,6 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.createElement("div"),
         document.createElement("div"),
         document.createElement("div"),
+        document.createElement("div"),
     ];
     rows.forEach(row => row.classList.add("row"));
 
@@ -277,6 +307,17 @@ document.addEventListener("DOMContentLoaded", () => {
     aiCourseCards.classList.add("cards-container");
     aiCourseCards.append(...aiCourses);
     rows[3].append(aiCourseHeaders, aiCourseCards);
+
+    //rows[4] = learningLabs
+    rows[4].classList.add("learning-labs");
+    const learningLabHeaders = createHeaders("Learning Labs", "Recorded hands-on labs where we show you how our tools work.", true);
+    const learningLabs = videoData.learningLabs.map(lab => {
+        return generateCard(lab.title, lab.image, lab.description, lab.link, "Learning Lab Image");
+    });
+    const learningLabCards = document.createElement("div");
+    learningLabCards.classList.add("cards-container");
+    learningLabCards.append(...learningLabs);
+    rows[4].append(learningLabHeaders, learningLabCards);
 
     // append all rows to the main content area
     [...document.querySelectorAll(".tile-content-block")].forEach(elem => elem.remove())
