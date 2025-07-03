@@ -139,8 +139,9 @@ const elems = {
 };
 
 const generateCard = (title, image, description, link, alt) => {
-    const card = document.createElement("div");
+    const card = document.createElement("a");
     card.classList.add("card");
+    card.href = link ? link : "#";
 
     const cardImage = document.createElement("img");
     cardImage.src = image ? image : "https://placehold.co/600x400";
