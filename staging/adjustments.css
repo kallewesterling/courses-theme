@@ -860,6 +860,16 @@ body.sj-page-detail-course {
 body.cg-v2 {
     /* new landing page */
 
+    .row.featured-courses,
+    .row.featured-learning-paths,
+    .row.quick-start-courses,
+    .row.ai-courses {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: left;
+        align-items: left;
+    }
+
     .row.featured-courses h1,
     .row.featured-learning-paths h1,
     .row.quick-start-courses h1,
