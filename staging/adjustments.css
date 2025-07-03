@@ -868,7 +868,7 @@ body.cg-v2 {
         font-weight: 600 !important;
         line-height: 43.2px !important;
         letter-spacing: -0.5px !important;
-        margin-bottom: 24px !important;
+        margin-bottom: 0px !important;
     }
 
     .row.featured-courses h2,
@@ -891,5 +891,21 @@ body.cg-v2 {
         margin-bottom: 24px !important;
     }
 
-    
+    .card {
+        float: left;
+        max-width: 350px;
+        border-radius: 10px;
+        border: 1px solid black;
+        margin: 0px 30px 30px 0px;
+        box-shadow: 10px 10px #0000ff;
+
+        img {
+            border-radius: 10px 10px 0 0;
+        }
+
+        h3, p, button {
+            margin: 10px 10px 10px 10px;
+        }
+
+    }
 }
