@@ -21,7 +21,7 @@ const inProd = false, // Set to true if in production environment
 * @param {string} msg - The message to log.
 * @returns {string} - Returns the current timestamp in HH:MM:SS format
 */
-const log = (msg, variable) => inProd ? undefined : console.log((new Date).toISOString().slice(11, 19), msg, variable);
+const log = (msg, variable) => inProd ? undefined : console.info((new Date).toISOString().slice(11, 19), msg, variable);
 
 /*
 * Function to check if an element exists in the DOM
