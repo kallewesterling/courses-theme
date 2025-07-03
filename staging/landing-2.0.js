@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //rows[0] = featuredCourses 
     rows[0].classList.add("featured-courses");
-    const featuredCourseHeaders = createHeaders("Featured Courses", "A collection of our newest releases and recommended courses to get you started on your security journey.", false);
+    const featuredCourseHeaders = createHeaders("Featured Courses", "A collection of our newest releases and recommended courses to get you started on your security journey.", true);
     const featuredCourses = coursesData.featuredCourses.map(courseId => {
         const course = coursesData.courses.find(c => c.link === courseId);
         return generateCard(course.title, course.image, course.description, `/${course.link}`, "Featured Course Image");
@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //rows[1] = featuredLearningPaths
     rows[1].classList.add("featured-learning-paths");
-    const featuredLearningPathHeaders = createHeaders("Featured Learning Paths", "Explore our curated learning paths designed to take you from beginner to advanced in various security domains. They also give you a badge when you complete them, which you can add to your LinkedIn profile.", false);
+    const featuredLearningPathHeaders = createHeaders("Featured Learning Paths", "Explore our curated learning paths designed to take you from beginner to advanced in various security domains. They also give you a badge when you complete them, which you can add to your LinkedIn profile.", true);
     const featuredLearningPaths = coursesData.featuredLearningPaths.map(pathId => {
         const path = coursesData.learningPaths.find(p => p.link === pathId);
         return generateCard(path.title, path.image, path.description, `/${path.link}`, "Featured Learning Path Image");
@@ -249,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //rows[2] = quickStartCourses
     rows[2].classList.add("quick-start-courses");
-    const quickStartHeaders = createHeaders("Chainguard Quick Start", "Get started with Chainguard's secure software supply chain tools. This course covers the basics of using Chainguard Enforce, a tool that helps you ensure your software supply chain is secure and compliant.", false);
+    const quickStartHeaders = createHeaders("Chainguard Quick Start", "Get started with Chainguard's secure software supply chain tools. This course covers the basics of using Chainguard Enforce, a tool that helps you ensure your software supply chain is secure and compliant.", true);
     const quickStartCourses = coursesData.quickStartCourses.map(courseId => {
         const course = coursesData.courses.find(c => c.link === courseId);
         return generateCard(course.title, course.image, course.description, `/${course.link}`, "Quick Start Course Image");
@@ -258,7 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //rows[3] = aiCourses
     rows[3].classList.add("ai-courses");
-    const aiCourseHeaders = createHeaders("Artificial Intelligence Security", "Learn how to secure AI systems and applications. Our AI focused courses cover topics like secure AI development, AI threat modeling, and AI risk management.", false);
+    const aiCourseHeaders = createHeaders("Artificial Intelligence Security", "Learn how to secure AI systems and applications. Our AI focused courses cover topics like secure AI development, AI threat modeling, and AI risk management.", true);
     const aiCourses = coursesData.aiCourses.map(courseId => {
         const course = coursesData.courses.find(c => c.link === courseId);
         return generateCard(course.title, course.image, course.description, `/${course.link}`, "AI Course Image");
