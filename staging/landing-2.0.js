@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const course = coursesData.courses.find(c => c.link === courseId);
         return generateCard(course.title, course.image, course.description, `/${course.link}`, "Featured Course Image");
     });
-    rows[0].append(...[...featuredCourseHeaders, ...featuredCourses]);
+    rows[0].append(...[featuredCourseHeaders, ...featuredCourses]);
 
     //rows[1] = featuredLearningPaths
     rows[1].classList.add("featured-learning-paths");
@@ -245,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const path = coursesData.learningPaths.find(p => p.link === pathId);
         return generateCard(path.title, path.image, path.description, `/${path.link}`, "Featured Learning Path Image");
     });
-    rows[1].append(...[...featuredLearningPathHeaders, ...featuredLearningPaths]);
+    rows[1].append(...[featuredLearningPathHeaders, ...featuredLearningPaths]);
 
     //rows[2] = quickStartCourses
     rows[2].classList.add("quick-start-courses");
@@ -254,7 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const course = coursesData.courses.find(c => c.link === courseId);
         return generateCard(course.title, course.image, course.description, `/${course.link}`, "Quick Start Course Image");
     });
-    rows[2].append(...[...quickStartHeaders, ...quickStartCourses]);
+    rows[2].append(...[quickStartHeaders, ...quickStartCourses]);
 
     //rows[3] = aiCourses
     rows[3].classList.add("ai-courses");
@@ -263,7 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const course = coursesData.courses.find(c => c.link === courseId);
         return generateCard(course.title, course.image, course.description, `/${course.link}`, "AI Course Image");
     });
-    rows[3].append(...[...aiCourseHeaders, ...aiCourses]);
+    rows[3].append(...[aiCourseHeaders, ...aiCourses]);
 
     // append all rows to the main content area
     [...document.querySelectorAll(".tile-content-block")].forEach(elem => elem.remove())
