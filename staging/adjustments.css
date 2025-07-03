@@ -864,10 +864,10 @@ body.cg-v2 {
     .row.featured-learning-paths,
     .row.quick-start-courses,
     .row.ai-courses {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: left;
-        align-items: left;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: left !important;
+        align-items: left !important;
     }
 
     .row.featured-courses h1,
@@ -901,21 +901,28 @@ body.cg-v2 {
         margin-bottom: 24px !important;
     }
 
-    .card {
-        float: left;
-        max-width: 350px;
-        border-radius: 10px;
-        border: 1px solid black;
-        margin: 0px 30px 30px 0px;
-        box-shadow: 10px 10px #0000ff;
+    .cards-container {
+        width: 100% !important;
+        
+        .card {
+            float: left !important;
+            max-width: 350px !important;
+            border-radius: 10px !important;
+            border: 1px solid black !important;
+            margin: 0px 30px 30px 0px !important;
+            box-shadow: 10px 10px #0000ff !important;
 
-        img {
-            border-radius: 10px 10px 0 0;
+            img {
+                border-radius: 10px 10px 0 0 !important;
+            }
+
+            h3, p, button {
+                margin: 10px 10px 10px 10px !important;
+            }
+
+            h3 {
+                font-weight: 600 !important;
+            }
         }
-
-        h3, p, button {
-            margin: 10px 10px 10px 10px;
-        }
-
     }
 }
