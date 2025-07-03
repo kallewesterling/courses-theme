@@ -856,3 +856,40 @@ body.sj-page-detail-course {
         max-width: 760px !important;
     }
 }
+
+body.cg-v2 {
+    /* new landing page */
+
+    .row.featured-courses h1,
+    .row.featured-learning-paths h1,
+    .row.quick-start-courses h1,
+    .row.ai-courses h1 {
+        font-size: 24px !important;
+        font-weight: 600 !important;
+        line-height: 43.2px !important;
+        letter-spacing: -0.5px !important;
+        margin-bottom: 24px !important;
+    }
+
+    .row.featured-courses h2,
+    .row.featured-learning-paths h2,
+    .row.quick-start-courses h2,
+    .row.ai-courses h2 {
+        font-size: 12px !important;
+        font-weight: 400 !important;
+        line-height: 24px !important;
+        margin-bottom: 24px !important;
+    }
+
+    .row.featured-courses p,
+    .row.featured-learning-paths p,
+    .row.quick-start-courses p,
+    .row.ai-courses p {
+        font-size: 10px !important;
+        font-weight: 400 !important;
+        line-height: 24px !important;
+        margin-bottom: 24px !important;
+    }
+
+    
+}

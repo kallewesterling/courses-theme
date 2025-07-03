@@ -175,41 +175,36 @@ const createButton = (text, href, primary = true) => {
     return button;
 }
 
-const createHeaderContent = (title, subtitle) => {
+const createHeaderContent = (title, subtitle, classes) => {
     const headerTitle = document.createElement("h1");
     headerTitle.textContent = title;
-    headerTitle.classList.add("header-title");
+    headerTitle.classList.add("title");
+    headerTitle.classList.add(...classes);
     const headerSubtitle = document.createElement("h2");
     headerSubtitle.textContent = subtitle;
-    headerSubtitle.classList.add("header-subtitle");
+    headerSubtitle.classList.add("subtitle");
+    headerSubtitle.classList.add(...classes);
     return [headerTitle, headerSubtitle];
 }
 
-const createHeaders = (title, subtitle, wrap=true) => {
+const createHeaders = (title, subtitle, wrap=true, classes=[]) => {
     if (wrap) {
         const headerWrapper = document.createElement("div");
         headerWrapper.classList.add("header-wrapper");
-        headerWrapper.append(...createHeaderContent(title, subtitle));
+        headerWrapper.append(...createHeaderContent(title, subtitle, classes));
         return headerWrapper;
     } else {
-        return createHeaderContent(title, subtitle);
+        return createHeaderContent(title, subtitle, classes);
     }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     console.info("Landing 2.0 script loaded");
     
+    document.querySelector("body").classList.add("cg-v2");
+    
     elems.header = document.querySelector(".page-content-block.html-content-block[data-index='0']");
 
-    // move all content from header's subdiv to main content + drop the elems
-    // new Array(...elems.header.querySelector("div.sj-html-content").children)
-    //     .forEach(elem => {
-    //         elem.style.display = "block"; // ensure they are block elements
-    //     });
-
-    // remove all existing header content
-    // new Array(...elems.header.querySelectorAll("div")).forEach(elem => elem.remove()) 
-    
     // create new header content
     const headers = createHeaders("Level Up Your Security Smarts", "Short, clear courses to boost your software security knowledge and badges you'll actually want to earn. Built for busy tech professionals.", false)
     
