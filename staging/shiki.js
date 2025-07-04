@@ -7,7 +7,6 @@ import { codeToHtml } from 'https://esm.sh/shiki@3.0.0'
 
 function addCopyButton(options = {}) {
     // From https://github.com/joshnuss/shiki-transformer-copy-button
-    const toggleMs = options.toggle || 3000
 
     return {
         name: 'shiki-transformer-copy-button',
@@ -16,10 +15,10 @@ function addCopyButton(options = {}) {
                 'button',
                 {
                     class: 'copy',
-                    onclick: `
-                        navigator.clipboard.writeText(this.parentElement.innerText.replace(/^\\$ /g,''));
+                    onclick: String.raw`
+                        navigator.clipboard.writeText(this.parentElement.innerText.replace(/^$ /g,''));
                         this.classList.add('copied');
-                        setTimeout(() => this.classList.remove('copied'), ${toggleMs})`
+                        setTimeout(() => this.classList.remove('copied'), 2000)`
                 },
                 [h('span', { class: 'ready' }), h('span', { class: 'success' })]
             )
