@@ -993,3 +993,7 @@ pre.shiki button.copy {
     }
   }
 }
+
+body.sj-page-lesson #lp-footer {
+    padding-top: unset !important;
+}
