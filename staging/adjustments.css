@@ -101,9 +101,6 @@ code:not([class*="language-"]) {
     color: #643fca !important;
 }
 
-code {
-}
-
 /* CG memes */
 .content-img-outer-container {
     display: flex !important;
@@ -931,8 +928,14 @@ body.cg-v2 {
 }
 
 pre.shiki {
-    background: revert;
-    border: revert;
-    border-radius: revert;
-    margin: revert;
+    background: revert !important;
+    border: revert !important;
+    border-radius: revert !important;
+    margin: revert !important;
+    border-left: 10px #00000014 solid !important;
+    padding-left: 10px !important;
+
+    code {
+        background-color: revert !important;
+    }
 }
