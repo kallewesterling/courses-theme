@@ -5,27 +5,26 @@ const THEME = 'min-light'; // Shiki theme to use
 import { createHighlighter } from 'https://esm.sh/shiki@3.0.0'
 
 function addCopyButton(options = {}) {
-  const toggleMs = options.toggle || 3000
+    // From https://github.com/joshnuss/shiki-transformer-copy-button
+    const toggleMs = options.toggle || 3000
 
-  return {
-    name: 'shiki-transformer-copy-button',
-    pre(node) {
-      const button = h(
-        'button',
-        {
-          class: 'copy',
-          onclick: `
-          navigator.clipboard.writeText(this.parentElement.innerText);
-          this.classList.add('copied');
-          setTimeout(() => this.classList.remove('copied'), ${toggleMs})
-        `
-        },
-        [h('span', { class: 'ready' }), h('span', { class: 'success' })]
-      )
-
-      node.children.push(button)
+    return {
+        name: 'shiki-transformer-copy-button',
+        pre(node) {
+            const button = h(
+                'button',
+                {
+                    class: 'copy',
+                    onclick: `
+                        navigator.clipboard.writeText(this.parentElement.innerText);
+                        this.classList.add('copied');
+                        setTimeout(() => this.classList.remove('copied'), ${toggleMs})`
+                },
+                [h('span', { class: 'ready' }), h('span', { class: 'success' })]
+            )
+            node.children.push(button)
+        }
     }
-  }
 }
 
 // await document loaded
@@ -34,7 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     
     const langs = document.querySelectorAll("code[data-lang]").forEach(codeElement => codeElement.dataset.lang) || [];
 
-    highlighter = await createHighlighter({themes: [THEME], langs})
+    const highlighter = await createHighlighter({themes: [THEME], langs})
 
     document.querySelectorAll("code[data-lang]").forEach(async (codeElement) => {
         const lang = codeElement.dataset.lang;
