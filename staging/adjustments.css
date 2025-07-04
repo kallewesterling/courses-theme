@@ -929,3 +929,10 @@ body.cg-v2 {
         }
     }
 }
+
+pre.shiki {
+    background: revert;
+    border: revert;
+    border-radius: revert;
+    margin: revert;
+}
