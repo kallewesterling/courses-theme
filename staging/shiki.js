@@ -17,7 +17,7 @@ function addCopyButton(options = {}) {
                 {
                     class: 'copy',
                     onclick: `
-                        navigator.clipboard.writeText(this.parentElement.innerText.replace(/^\$ /g,''));
+                        navigator.clipboard.writeText(this.parentElement.innerText.replace(/^\\$ /g,''));
                         this.classList.add('copied');
                         setTimeout(() => this.classList.remove('copied'), ${toggleMs})`
                 },
