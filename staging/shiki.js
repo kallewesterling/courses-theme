@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("DOM fully loaded and parsed");
     
     const langs = document.querySelectorAll("code[data-lang]").forEach(codeElement => codeElement.dataset.lang) || [];
+    console.log(`langs: ${langs}`);
 
     const highlighter = await createHighlighter({themes: [THEME], langs})
 
