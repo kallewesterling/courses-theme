@@ -929,6 +929,7 @@ body.cg-v2 {
 
 pre.shiki {
     background: revert !important;
+    background-color: #ffffff !important;
     border: revert !important;
     border-radius: revert !important;
     margin: revert !important;
