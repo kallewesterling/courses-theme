@@ -9,4 +9,7 @@ document.querySelectorAll("code[data-lang]").forEach(async (codeElement) => {
     const code = codeElement.textContent.trim();
     const html = await codeToHtml(code, { lang, theme: THEME });
     codeElement.parentElement.outerHTML = html; // Replace the code element with highlighted HTML
-}
+    console.log(codeElement);
+    console.log(html);
+    console.log("--------");
+});
