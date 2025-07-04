@@ -931,10 +931,11 @@ pre.shiki {
     background: revert !important;
     background-color: #ffffff !important;
     border: revert !important;
-    border-radius: revert !important;
+    border-radius: 20px 0px 0px 0px !important;
     margin: revert !important;
     border-left: 10px #00000014 solid !important;
-    padding-left: 10px !important;
+    padding: 10px 20px 0 20px !important;
+    border-top: 1px #00000014 solid !important;
 
     code {
         background-color: revert !important;
@@ -962,6 +963,7 @@ pre.shiki button.copy {
   width: 28px;
   padding: 0;
   display: flex;
+  background-color: #00000014;
 
   & span {
     width: 100%;
