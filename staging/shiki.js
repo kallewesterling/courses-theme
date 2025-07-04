@@ -9,6 +9,7 @@ document.querySelectorAll("code[data-lang]").forEach(async (codeElement) => {
     const code = codeElement.textContent.trim();
     const html = await codeToHtml(code, { lang, theme: THEME });
     codeElement.parentElement.outerHTML = html; // Replace the code element with highlighted HTML
+    codeElement.parentElement.dataset.lang = lang; // Preserve the language in the parent element
     console.log(codeElement);
     console.log(html);
     console.log("--------");

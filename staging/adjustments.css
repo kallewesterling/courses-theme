@@ -938,5 +938,13 @@ pre.shiki {
 
     code {
         background-color: revert !important;
+        padding: revert !important;
+        margin: revert !important;
     }
+}
+
+pre.shiki[data-lang="console"]::before {
+    content: "$" !important;
+    color: #00000038 !important;
+    font-weight: 600 !important;
 }
