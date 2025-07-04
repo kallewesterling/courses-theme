@@ -335,17 +335,17 @@ function renderLessonEnd() {
     // ...
     
 
-    shiki  // eslint-disable-line no-undef
-        .getHighlighter({
-            theme: SHIKI_HIGHLIGHTER
-        })
-        .then(highlighter => {
-            document.querySelectorAll('pre').forEach(element => {
-            const language = element.dataset.lang || 'text';
-            const code = highlighter.codeToHtml(element.innerText, language);
-            element.innerHTML = code
-            })
-        })
+    // shiki  // eslint-disable-line no-undef
+    //     .getHighlighter({
+    //         theme: SHIKI_HIGHLIGHTER
+    //     })
+    //     .then(highlighter => {
+    //         document.querySelectorAll('pre').forEach(element => {
+    //         const language = element.dataset.lang || 'text';
+    //         const code = highlighter.codeToHtml(element.innerText, language);
+    //         element.innerHTML = code
+    //         })
+    //     })
     renderAllEnd(); // after everything else
 }
 
