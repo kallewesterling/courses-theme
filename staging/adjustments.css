@@ -948,3 +948,45 @@ pre.shiki[data-lang="console"]::before {
     color: #00000038 !important;
     font-weight: 600 !important;
 }
+
+
+pre.shiki:has(code) {
+  position: relative;
+}
+
+pre.shiki button.copy {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  height: 28px;
+  width: 28px;
+  padding: 0;
+  display: flex;
+
+  & span {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  & .ready {
+    background-image: url(/icons/copy.svg);
+  }
+
+  & .success {
+    display: none;
+    background-image: url(/icons/copy-success.svg);
+  }
+
+  &.copied {
+    & .success {
+      display: block;
+    }
+
+    & .ready {
+      display: none;
+    }
+  }
+}
