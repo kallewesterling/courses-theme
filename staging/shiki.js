@@ -2,6 +2,7 @@
 
 const THEME = 'min-light'; // Shiki theme to use
 
+import {h} from 'https://esm.sh/hastscript@9?bundle'
 import { codeToHtml } from 'https://esm.sh/shiki@3.0.0'
 
 function addCopyButton(options = {}) {
