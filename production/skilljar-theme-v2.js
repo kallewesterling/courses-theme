@@ -868,7 +868,7 @@ function desktopLessonPageStyling() {
       "style",
       "display: inline-block; padding: 24px !important; overflow-x: scroll; width: 100%"
     );
-    const copyText = codeEl.textContent;
+    const copyText = codeEl.textContent.trim().replace(/^\$ /g,'');
 
     //CREATE PARENT CONTAINER & STYLE AS FLEX CONTAINER, COL DIR, AND ALIGN INTEMS START (OR END)
     const container = document.createElement("div");
@@ -906,7 +906,8 @@ function desktopLessonPageStyling() {
     iconClone.addEventListener("click", async () => {
       try {
         await navigator.clipboard.writeText(copyText);
-        //console.log("Content copied to clipboard");
+        console.log("Content copied to clipboard:");
+        console.log(copyText);
         animateCopiedTooltip(tooltipContainer);
       } catch (err) {
         console.error("Failed to copy codeblock to clipboard: ", err);
