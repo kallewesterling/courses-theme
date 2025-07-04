@@ -2,7 +2,6 @@
 *************** CONSTANTS + GLOBALS ***************
 */
 const inProd = false, // Set to true if in production environment
-      SHIKI_HIGHLIGHTER = 'github-dark', // Shiki highlighter theme
       current = {
         courseCTA: "",
         courseCTALink: "",
