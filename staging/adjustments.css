@@ -996,4 +996,8 @@ pre.shiki button.copy {
 
 body.sj-page-lesson #lp-footer {
     padding-top: unset !important;
+
+    div.toggle-fullscreen {
+        display: none !important;
+    }
 }
