@@ -95,13 +95,13 @@ sjwc-lesson-content-item img {
 code:not([class*="language-"]) {
     font-weight: bold;
     padding: 6px 5px 5px 5px;
-    background-color: #eee;
     border-radius: 9px;
     margin: 0px 3px 0px 3px;
+    background-color: #0000000f;
+    color: #643fca !important;
 }
 
 code {
-    color: #643fca !important;
 }
 
 /* CG memes */
