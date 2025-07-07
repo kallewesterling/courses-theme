@@ -1,5 +1,3 @@
-// indicate that it is a module
-
 const THEME = 'min-light'; // Shiki theme to use
 
 import {h} from 'https://esm.sh/hastscript@9?bundle'
