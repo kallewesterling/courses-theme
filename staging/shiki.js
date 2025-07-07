@@ -37,6 +37,3 @@ document.querySelectorAll("code[data-lang]").forEach(async (codeElement) => {
     parent.outerHTML = html; // Replace the code element with highlighted HTML
     parent.dataset.lang = lang; // Preserve the language in the parent element
 });
-
-document.addEventListener("DOMContentLoaded", async () => {
-});
