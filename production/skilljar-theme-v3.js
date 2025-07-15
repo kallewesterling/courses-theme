@@ -60,6 +60,44 @@ function insertFooter() {
   contentContainer.append(globalElements.footer);
 }
 
+function styleGroupContainer(container, variation = 'gray') {
+  container.style.border =
+    variation === 'gray' ? '1px solid #DCDCDC' : '2px solid #3443f4';
+  container.style.borderRadius = '8px';
+  container.style.marginBottom = '48px';
+  container.style.padding = '0';
+}
+
+function styleListItem(lessonEl, isLastChild, variation = 'gray') {
+  lessonEl.style.padding = '24px';
+  lessonEl.style.fontSize = '16px';
+  lessonEl.style.fontWeight = '400';
+  lessonEl.style.lineHeight = '150%';
+  if (!isLastChild) {
+    lessonEl.style.borderBottom =
+      variation === 'gray' ? '1px solid #DCDCDC' : '2px solid #3443f4';
+  }
+}
+
+function styleGroupHeading(groupHeadingContainer, variation = 'gray') {
+  groupHeadingContainer.style.padding = '24px';
+  groupHeadingContainer.style.borderBottom =
+    variation === 'gray' ? '1px solid #DCDCDC' : '2px solid #3443f4';
+
+  //get actual group heading
+  const groupHeading =
+    groupHeadingContainer.querySelector('h3') || groupHeadingContainer;
+
+  groupHeading.textContent = groupHeading?.textContent?.trim();
+  groupHeading.style.fontSize = '16px';
+  groupHeading.style.fontFamily = 'Fusiona';
+  groupHeading.style.fontWeight = '500';
+  groupHeading.style.lineHeight = '125%';
+  groupHeading.style.letterSpacing = '-.16px';
+  groupHeading.style.margin = '0';
+  groupHeading.style.textWrap = 'wrap';
+}
+
 //DESKTOP VIEW STYLINGS
 function desktopCatalogPageStyling() {
   //grab variables
@@ -82,7 +120,6 @@ function desktopCatalogPageStyling() {
     catalogBodyParentContainer.append(catalogContentContainer);
 
     initialLoadComplete = true;
-    
   }
 }
 
@@ -233,14 +270,7 @@ function desktopCourseDetailsPageStyling() {
     let curContainer = document.createElement('li');
 
     if (!hasSections) {
-      styleGroupContainer(curContainer);
-    }
-
-    function styleGroupContainer(container) {
-      container.style.border = '2px solid #3443F4';
-      container.style.borderRadius = '8px';
-      container.style.marginBottom = '48px';
-      container.style.padding = '0';
+      styleGroupContainer(curContainer, 'blue');
     }
 
     function styleListItem(lessonItem, isLastChild) {
@@ -259,17 +289,6 @@ function desktopCourseDetailsPageStyling() {
       }
     }
 
-    function styleGroupHeading(groupHeading) {
-      groupHeading.textContent = groupHeading?.textContent?.trim();
-      groupHeading.style.fontSize = '16px';
-      groupHeading.style.fontWeight = '500';
-      groupHeading.style.lineHeight = '125%';
-      groupHeading.style.fontFamily = 'Fusiona';
-      groupHeading.style.padding = '24px';
-      groupHeading.style.borderBottom = '2px solid #3443F4';
-      curContainer.append(groupHeading);
-    }
-
     curriculumList.forEach((curListItem, i, arr) => {
       //first check if current item contains 'section' class
       if (curListItem.classList.contains('section')) {
@@ -280,7 +299,7 @@ function desktopCourseDetailsPageStyling() {
         styleGroupContainer(curContainer);
         const newGroupHeading = document.createElement('div');
         newGroupHeading.innerHTML = curListItem.innerHTML;
-        styleGroupHeading(newGroupHeading);
+        styleGroupHeading(newGroupHeading, 'blue');
         curContainer.append(newGroupHeading);
       } else {
         // else, normal/expected behaviour
@@ -1204,41 +1223,7 @@ function desktopCurriculumPageNoCertificateStyling() {
     let curContainer = document.createElement('div');
 
     if (!hasSections) {
-      styleGroupContainer(curContainer);
-    }
-
-    function styleGroupContainer(container) {
-      container.style.border = '2px solid #3443f4';
-      container.style.borderRadius = '8px';
-      container.style.marginBottom = '48px';
-      container.style.padding = '0';
-    }
-
-    function styleListItem(lessonEl, isLastChild) {
-      lessonEl.style.padding = '24px';
-      lessonEl.style.fontSize = '16px';
-      lessonEl.style.fontWeight = '400';
-      lessonEl.style.lineHeight = '150%';
-      if (!isLastChild) {
-        lessonEl.style.borderBottom = '2px solid #3443f4';
-      }
-    }
-
-    function styleGroupHeading(groupHeadingContainer) {
-      groupHeadingContainer.style.padding = '24px';
-      groupHeadingContainer.style.borderBottom = '2px solid #3443f4';
-
-      //get actual group heading
-      const groupHeading =
-        groupHeadingContainer.querySelector('h3') || groupHeadingContainer;
-
-      groupHeading.textContent = groupHeading?.textContent?.trim();
-      groupHeading.style.fontSize = '16px';
-      groupHeading.style.fontFamily = 'Fusiona';
-      groupHeading.style.fontWeight = '500';
-      groupHeading.style.lineHeight = '125%';
-      groupHeading.style.letterSpacing = '-.16px';
-      groupHeading.style.margin = '0';
+      styleGroupContainer(curContainer, 'blue');
     }
 
     curriculumItemsListLIVE.forEach((el) => {
@@ -1266,7 +1251,7 @@ function desktopCurriculumPageNoCertificateStyling() {
         groupH3Tag.textContent = el.querySelector('h3').textContent;
         newGroupHeading.append(groupH3Tag);
 
-        styleGroupHeading(newGroupHeading);
+        styleGroupHeading(newGroupHeading, 'blue');
 
         curContainer.append(newGroupHeading);
         el.style.display = 'none';
@@ -1501,40 +1486,7 @@ function desktopCurriculumPageYesCertificationStyling() {
     let curContainer = document.createElement('div');
 
     if (!hasSections) {
-      styleGroupContainer(curContainer);
-    }
-
-    function styleGroupContainer(container) {
-      container.style.border = '2px solid #3443f4';
-      container.style.borderRadius = '8px';
-      container.style.marginBottom = '48px';
-      container.style.padding = '0';
-    }
-
-    function styleListItem(lessonEl, isLastChild) {
-      lessonEl.style.padding = '24px';
-      lessonEl.style.fontSize = '16px';
-      lessonEl.style.fontWeight = '400';
-      lessonEl.style.lineHeight = '150%';
-      if (!isLastChild) {
-        lessonEl.style.borderBottom = '2px solid #3443f4';
-      }
-    }
-
-    function styleGroupHeading(groupHeadingContainer) {
-      groupHeadingContainer.style.padding = '24px';
-      groupHeadingContainer.style.borderBottom = '2px solid #3443f4';
-
-      //get actual group heading
-      const groupHeading =
-        groupHeadingContainer.querySelector('h3') || groupHeadingContainer;
-
-      groupHeading.textContent = groupHeading?.textContent?.trim();
-      groupHeading.style.fontSize = '16px';
-      groupHeading.style.fontWeight = '500';
-      groupHeading.style.lineHeight = '125%';
-      groupHeading.style.letterSpacing = '-.16px';
-      groupHeading.style.margin = '0';
+      styleGroupContainer(curContainer, 'blue');
     }
 
     curriculumItemsListLIVE.forEach((el) => {
@@ -1562,7 +1514,7 @@ function desktopCurriculumPageYesCertificationStyling() {
         groupH3Tag.textContent = el.querySelector('h3').textContent;
         newGroupHeading.append(groupH3Tag);
 
-        styleGroupHeading(newGroupHeading);
+        styleGroupHeading(newGroupHeading, 'blue');
 
         curContainer.append(newGroupHeading);
         el.style.display = 'none';
@@ -1572,7 +1524,8 @@ function desktopCurriculumPageYesCertificationStyling() {
         const newListEl = document.createElement('div');
         styleListItem(
           newListEl,
-          curArr[i + 1] ? curArr[i + 1].tagName === 'DIV' : true
+          curArr[i + 1] ? curArr[i + 1].tagName === 'DIV' : true,
+          blue
         );
         newListEl.append(el);
         curContainer.append(newListEl);
@@ -2049,13 +2002,6 @@ function mobileCourseDetailsPageStyling() {
       styleGroupContainer(curContainer);
     }
 
-    function styleGroupContainer(container) {
-      container.style.border = '1px solid #DCDCDC';
-      container.style.borderRadius = '8px';
-      container.style.marginBottom = '48px';
-      container.style.padding = '0';
-    }
-
     function styleListItem(lessonItem, isLastChild) {
       //display none for icon w/ class 'type-icon'
       const icon = lessonItem.querySelector('.type-icon');
@@ -2331,40 +2277,6 @@ function mobileCurriculumPageNoCertificateStyling() {
       styleGroupContainer(curContainer);
     }
 
-    function styleGroupContainer(container) {
-      container.style.border = '1px solid #DCDCDC';
-      container.style.borderRadius = '8px';
-      container.style.marginBottom = '48px';
-      container.style.padding = '0';
-    }
-
-    function styleListItem(lessonEl, isLastChild) {
-      lessonEl.style.padding = '24px';
-      lessonEl.style.fontSize = '16px';
-      lessonEl.style.fontWeight = '400';
-      lessonEl.style.lineHeight = '150%';
-      if (!isLastChild) {
-        lessonEl.style.borderBottom = '1px solid #DCDCDC';
-      }
-    }
-
-    function styleGroupHeading(groupHeadingContainer) {
-      groupHeadingContainer.style.padding = '24px';
-      groupHeadingContainer.style.borderBottom = '1px solid #DCDCDC';
-
-      //get actual group heading
-      const groupHeading =
-        groupHeadingContainer.querySelector('h3') || groupHeadingContainer;
-
-      groupHeading.textContent = groupHeading?.textContent?.trim();
-      groupHeading.style.fontSize = '16px';
-      groupHeading.style.fontWeight = '500';
-      groupHeading.style.lineHeight = '125%';
-      groupHeading.style.letterSpacing = '-.16px';
-      groupHeading.style.margin = '0';
-      groupHeading.style.textWrap = 'wrap';
-    }
-
     curriculumItemsListLIVE.forEach((el) => {
       if (el?.tagName) {
         el.classList.add('curriculumItem');
@@ -2626,40 +2538,6 @@ function mobileCurriculumPageYesCertificateStyling() {
 
     if (!hasSections) {
       styleGroupContainer(curContainer);
-    }
-
-    function styleGroupContainer(container) {
-      container.style.border = '1px solid #DCDCDC';
-      container.style.borderRadius = '8px';
-      container.style.marginBottom = '48px';
-      container.style.padding = '0';
-    }
-
-    function styleListItem(lessonEl, isLastChild) {
-      lessonEl.style.padding = '24px';
-      lessonEl.style.fontSize = '16px';
-      lessonEl.style.fontWeight = '400';
-      lessonEl.style.lineHeight = '150%';
-      if (!isLastChild) {
-        lessonEl.style.borderBottom = '1px solid #DCDCDC';
-      }
-    }
-
-    function styleGroupHeading(groupHeadingContainer) {
-      groupHeadingContainer.style.padding = '24px';
-      groupHeadingContainer.style.borderBottom = '1px solid #DCDCDC';
-
-      //get actual group heading
-      const groupHeading =
-        groupHeadingContainer.querySelector('h3') || groupHeadingContainer;
-
-      groupHeading.textContent = groupHeading?.textContent?.trim();
-      groupHeading.style.fontSize = '16px';
-      groupHeading.style.fontWeight = '500';
-      groupHeading.style.lineHeight = '125%';
-      groupHeading.style.letterSpacing = '-.16px';
-      groupHeading.style.margin = '0';
-      groupHeading.style.textWrap = 'wrap';
     }
 
     curriculumItemsListLIVE.forEach((el) => {
