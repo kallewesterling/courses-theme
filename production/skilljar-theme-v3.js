@@ -501,9 +501,6 @@ function desktopLessonPageStyling() {
   //FOOTER VARS
   const footerContainer = document.querySelector('#footer-container');
 
-  //STYLE LOGO
-  globalElements.logoImg.style.height = '24px';
-
   lessonInnerContainer.style.maxWidth = '712px';
   lessonInnerContainer.style.margin = '0 auto';
 
@@ -717,8 +714,7 @@ function desktopLessonPageStyling() {
 }
 
 function desktopLoginPageStyling() {
-  const fbBtn = document.querySelector('#facebook_login');
-  const googleBtn = document.querySelector('#google_login');
+  handleAuthStyle();
   const loginContent = document.querySelector('#login-content');
   const tabArrow = document.querySelector('#tab-marker-login');
   const termsAndServicesText = document.querySelector('#access-message');
@@ -737,9 +733,6 @@ function desktopLoginPageStyling() {
   const orSignInWithContainer = document.querySelector(
     '.socialaccount_providers li'
   );
-  const orSignInWithTextEl = orSignInWithContainer.querySelector(
-    '.sj-text-sign-in-with span'
-  );
   const loginInput = document.querySelector('#id_login');
   const passwordInput = document.querySelector('#id_password');
   const loginBottomBtn = document.querySelector('#button-sign-in');
@@ -750,12 +743,6 @@ function desktopLoginPageStyling() {
     loginBottomBtn.closest('.large-12.columns');
 
   const loginForm = document.querySelector('#login_form');
-
-  //STYLE LOGO
-  globalElements.logoImg.style.height = '24px';
-
-  termsAndServicesText.style.maxWidth = '368px';
-  termsAndServicesText.style.fontSize = '14px';
 
   loginForm.append(termsAndServicesText);
 
@@ -818,15 +805,6 @@ function desktopLoginPageStyling() {
   forgotPasswordText.style.marginBottom = '2px';
   loginBottomBtnAndForgotPassBtn.style.marginBottom = '24px';
 
-  //STYLING OF SIDE 'SIGN IN W/' GOOGLE ELS
-  orSignInWithTextEl.textContent = 'Or Log In With';
-  googleBtn.textContent = 'Continue with Google';
-
-  fbBtn.style.display = 'none';
-  googleBtn.style.background =
-    'linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%)';
-  googleBtn.style.width = 'auto';
-  googleBtn.style.textAlign = 'center';
   loginContent.style.border = '0';
   tabArrow.style.display = 'none';
 
@@ -839,8 +817,7 @@ function desktopLoginPageStyling() {
 }
 
 function desktopSignUpPageStyling() {
-  const fbBtn = document.querySelector('#facebook_login');
-  const googleBtn = document.querySelector('#google_login');
+  handleAuthStyle();
   const loginContent = document.querySelector('#login-content');
   const tabArrow = document.querySelector('#tab-marker-signup');
   const termsAndServicesText = document.querySelector('#access-message');
@@ -877,13 +854,7 @@ function desktopSignUpPageStyling() {
   const signUpBottomBtn = document.querySelector('#button-sign-up');
   const signUpForm = document.querySelector('#signup_form');
 
-  termsAndServicesText.style.maxWidth = '368px';
-  termsAndServicesText.style.color = '#545454';
-  termsAndServicesText.style.fontSize = '14px';
   signUpForm.append(termsAndServicesText);
-
-  //STYLE LOGO
-  globalElements.logoImg.style.height = '24px';
 
   //STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = 'flex';
@@ -953,17 +924,10 @@ function desktopSignUpPageStyling() {
     signUpBottomBtnParent.classList.remove('text-center');
   }
   signUpBottomBtn.querySelector('span').textContent = 'Sign up';
-  termsAndServicesText.style.transform = 'translateX(-13px)';
 
   //STYLING OF RIGHT SIDE, OR SIGN UP WITH GOOGLE, TEXT AND BTN
   orSignInWithTextSpan.textContent = 'Or Sign Up With';
-  googleBtn.textContent = 'Continue with Google';
 
-  fbBtn.style.display = 'none';
-  googleBtn.style.background =
-    'linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%)';
-  googleBtn.style.width = 'auto';
-  googleBtn.style.textAlign = 'center';
   loginContent.style.border = '0';
   tabArrow.style.display = 'none';
 
@@ -1054,9 +1018,6 @@ function desktopCurriculumPageNoCertificateStyling() {
   const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
   const curriculumOutsideContainer =
     curriculumParentContainer.closest('.content');
-
-  //STYLE LOGO
-  globalElements.logoImg.style.height = '24px';
 
   //TEST
   if (view.loaded) {
@@ -1332,9 +1293,6 @@ function desktopCurriculumPageYesCertificationStyling() {
   let [curriculumSection, aboutSection] =
     tabsContainer.querySelectorAll('section');
 
-  //STYLE LOGO
-  globalElements.logoImg.style.height = '24px';
-
   //TEST
   if (view.loaded) {
     curriculumSection = globalCurriculumSection;
@@ -1535,10 +1493,25 @@ function desktopCurriculumPageYesCertificationStyling() {
   });
 }
 
+function handleAuthStyle(login = true) {
+  Object.assign(document.querySelector('#google_login'), {
+    textContent: 'Continue with Google',
+  });
+  if (login) {
+    // do login
+    Object.assign(document.querySelector('.sj-text-sign-in-with span'), {
+      textContent: 'Or Log In With',
+    });
+  } else {
+    Object.assign(document.querySelector('.sj-text-sign-up-with span'), {
+      textContent: 'Or Sign Up With',
+    });
+  }
+}
+
 //MOBILE VIEW STYLINGS
 function mobileLoginPageStyling() {
-  const fbBtn = document.querySelector('#facebook_login');
-  const googleBtn = document.querySelector('#google_login');
+  handleAuthStyle();
   const loginContent = document.querySelector('#login-content');
   const tabArrow = document.querySelector('#tab-marker-login');
   const termsAndServicesText = document.querySelector('#access-message');
@@ -1557,9 +1530,6 @@ function mobileLoginPageStyling() {
   const orSignInWithContainer = document.querySelector(
     '.socialaccount_providers li'
   );
-  const orSignInWithTextEl = orSignInWithContainer.querySelector(
-    '.sj-text-sign-in-with span'
-  );
   const loginInput = document.querySelector('#id_login');
   const passwordInput = document.querySelector('#id_password');
   const loginBottomBtn = document.querySelector('#button-sign-in');
@@ -1570,13 +1540,6 @@ function mobileLoginPageStyling() {
     loginBottomBtn.closest('.large-12.columns');
 
   const loginForm = document.querySelector('#login_form');
-
-  //NAV STYLING
-  globalElements.logoImg.style.maxHeight = '48px';
-
-  termsAndServicesText.style.maxWidth = '368px';
-  termsAndServicesText.style.color = '#545454';
-  termsAndServicesText.style.fontSize = '14px';
 
   loginForm.append(termsAndServicesText);
 
@@ -1630,14 +1593,6 @@ function mobileLoginPageStyling() {
   forgotPasswordText.style.marginBottom = '2px';
   loginBottomBtnAndForgotPassBtn.style.marginBottom = '24px';
 
-  //STYLING OF SIDE 'SIGN IN W/' GOOGLE ELS
-  orSignInWithTextEl.textContent = 'or log in with';
-  googleBtn.textContent = 'Continue with Google';
-
-  fbBtn.style.display = 'none';
-  googleBtn.style.backgroundColor = '#3443F4';
-  googleBtn.style.width = '100%';
-  googleBtn.style.textAlign = 'center';
   loginContent.style.border = '0';
   tabArrow.style.display = 'none';
 
@@ -1650,8 +1605,7 @@ function mobileLoginPageStyling() {
 }
 
 function mobileSignUpPageStyling() {
-  const fbBtn = document.querySelector('#facebook_login');
-  const googleBtn = document.querySelector('#google_login');
+  handleAuthStyle();
   const loginContent = document.querySelector('#login-content');
   const tabArrow = document.querySelector('#tab-marker-signup');
   const termsAndServicesText = document.querySelector('#access-message');
@@ -1673,7 +1627,6 @@ function mobileSignUpPageStyling() {
     '.socialaccount_providers li'
   );
   const orSignInWithText = document.querySelector('.sj-text-sign-up-with');
-  const orSignInWithTextSpan = orSignInWithText.querySelector('span');
 
   const firstNameLabel = document.querySelector(
     'label[for="id_first_name"] span span'
@@ -1689,13 +1642,7 @@ function mobileSignUpPageStyling() {
   const signUpBottomBtn = document.querySelector('#button-sign-up');
   const signUpForm = document.querySelector('#signup_form');
 
-  termsAndServicesText.style.maxWidth = '368px';
-  termsAndServicesText.style.color = '#545454';
-  termsAndServicesText.style.fontSize = '14px';
   signUpForm.append(termsAndServicesText);
-
-  //STYLE LOGO
-  globalElements.logoImg.style.minHeight = '48px';
 
   //STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = 'flex';
@@ -1759,16 +1706,7 @@ function mobileSignUpPageStyling() {
   }
 
   signUpBottomBtn.querySelector('span').textContent = 'Sign up';
-  termsAndServicesText.style.transform = 'translateX(-13px)';
 
-  //STYLING OF RIGHT SIDE, OR SIGN UP WITH GOOGLE, TEXT AND BTN
-  orSignInWithTextSpan.textContent = 'or sign up with';
-  googleBtn.textContent = 'Continue with Google';
-
-  fbBtn.style.display = 'none';
-  googleBtn.style.backgroundColor = '#3443F4';
-  googleBtn.style.width = '100%';
-  googleBtn.style.textAlign = 'center';
   loginContent.style.border = '0';
   tabArrow.style.display = 'none';
 
@@ -1860,8 +1798,6 @@ function mobileCourseDetailsPageStyling() {
   backToCatalogBtn.style.display = 'none';
   mobileBodyContent.setAttribute('style', 'display: none !important;');
 
-  //NAV STYLING
-  globalElements.logoImg.style.maxHeight = '48px';
   if (signInHeaderText) {
     signInHeaderText.style.display = 'none';
     signInBtn.setAttribute('style', 'color:#fff !important');
@@ -2107,9 +2043,6 @@ function mobileCurriculumPageNoCertificateStyling() {
   const courseDetailsCardLink = document.querySelector(
     '.course-details-card-link'
   );
-
-  //NAV STYLING
-  globalElements.logoImg.style.maxHeight = '48px';
 
   //STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
   bodyMainContainer.style.display = 'grid';
@@ -2365,9 +2298,6 @@ function mobileCurriculumPageYesCertificateStyling() {
     '.course-details-card-link'
   );
 
-  //NAV STYLING
-  globalElements.logoImg.style.maxHeight = '48px';
-
   //STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
   bodyMainContainer.style.display = 'grid';
   bodyMainContainer.style.gridTemplateColumns = '1fr';
@@ -2581,9 +2511,6 @@ function mobileLessonPageStyling() {
   lessonView.codeBlocks = new Array(
     ...document.querySelectorAll('pre:has(code):not(.language-ansi)')
   ).filter((d) => !d.dataset['no-copy']);
-
-  //MAIN NAV STYLING
-  globalElements.logoImg.style.maxHeight = '48px';
 
   lessonInnerContainer.style.maxWidth = '712px';
   lessonInnerContainer.style.margin = '0 auto';

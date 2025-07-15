@@ -6,14 +6,6 @@
     url(fonts/BwFusiona-56Medium.woff) format('woff');
 }
 
-#header .header-center-img.header-logo-svg {
-  width: 230px !important;
-}
-
-#header #header-right .login-link:hover {
-  color: var(--primary-white-hex) !important;
-}
-
 * {
   font-family: 'Lato', sans-serif;
 }
@@ -72,17 +64,37 @@ label {
   border-color: var(--primary-blue-hex) !important;
 }
 
-#header-right .login-link {
-  transition: all 0.2s ease-in;
-  font-size: 14px;
-  font-weight: 700;
-  font-family: 'Space Mono';
+#header {
+  .header-center-img {
+    height: 24px;
+    .header-logo-svg {
+      width: 230px !important;
+    }
+  }
+
+  #header-right {
+    .login-link {
+      transition: all 0.2s ease-in;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: 'Space Mono';
+    }
+    .login-link:hover {
+      background-color: var(--primary-blue-hex) !important;
+      color: var(--primary-white-hex) !important;
+      border-color: var(--primary-blue-hex) !important;
+    }
+  }
 }
 
-#header-right .login-link:hover {
-  background-color: var(--primary-blue-hex) !important;
-  color: var(--primary-white-hex) !important;
-  border-color: var(--primary-blue-hex) !important;
+/* on mobile */
+
+@media (max-width: 991px) {
+  #header {
+    .header-center-img {
+      max-height: 48px;
+    }
+  }
 }
 
 #skilljar-content
@@ -153,16 +165,15 @@ label {
 }
 
 #catalog-content {
-
   #catalog-wrapper {
     max-width: min(1232px, 90%) !important;
     margin: 96px auto !important;
 
     h2 {
-        font-size: 48px !important;
-        margin-bottom: 38px !important;        
+      font-size: 48px !important;
+      margin-bottom: 38px !important;
     }
-    
+
     #catalog-courses {
       justify-content: start;
       gap: 24px;
@@ -601,7 +612,6 @@ sjwc-lesson-content-item pre code::-webkit-scrollbar {
   display: none;
 }
 
-
 sjwc-lesson-content-item pre code {
   scrollbar-width: none; /* HIDES FOR firefox */
   -ms-overflow-style: none; /* HIDES FOR EDGE & IE */
@@ -850,4 +860,42 @@ sjwc-lesson-content-item pre code {
 
 .sj-page-catalog .sj-course-ribbon-complete {
   color: white !important;
+}
+
+/* Login/sign-up page style */
+body.sj-page-login,
+body.sj-page-signup {
+  #facebook_login {
+    display: none;
+  }
+
+  #google_login {
+    background: linear-gradient(225deg, #7545fb 0%, #7af0fe 100%) !important;
+    width: auto !important;
+    text-align: center !important;
+  }
+  
+      #access-message {
+        max-width: 368px;
+        font-size: 14px;
+      color: #545454;
+      }
+}
+
+@media (max-width: 991px) {
+  body.sj-page-login,
+  body.sj-page-signup {
+    #google_login {
+      width: 100%;
+    }
+
+    #login_content {
+      width: 100%;
+      border: 0;
+    }
+
+    #access-message {
+      transform: translateX(-13px); /* technically only on sign up */
+    }
+  }
 }
