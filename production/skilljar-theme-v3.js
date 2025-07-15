@@ -2970,19 +2970,7 @@ function mobileLessonPageStyling() {
   });
 }
 
-function handlePageStyling(
-  {
-    isCatalogPage,
-    isCourseDetailsPage,
-    isPageDetailPath,
-    isPageCatalogPath,
-    isLoginPage,
-    isSignUpPage,
-    isCurriculumPage,
-    isLessonsPage,
-  },
-  currentView
-) {
+function handlePageStyling() {
   if (isCourseDetailsPage) {
     currentView === "desktop"
       ? desktopCourseDetailsPageStyling()
@@ -3026,36 +3014,10 @@ function renderCourse() {
 
   if (width <= 991 && !(currentView === "mobile")) {
     currentView = "mobile";
-
-    handlePageStyling(
-      {
-        isCatalogPage,
-        isCourseDetailsPage,
-        isPageDetailPath,
-        isPageCatalogPath,
-        isLoginPage,
-        isSignUpPage,
-        isCurriculumPage,
-        isLessonsPage,
-      },
-      currentView
-    );
+    handlePageStyling();
   } else if (width > 991 && !(currentView === "desktop")) {
     currentView = "desktop";
-
-    handlePageStyling(
-      {
-        isCatalogPage,
-        isCourseDetailsPage,
-        isPageDetailPath,
-        isPageCatalogPath,
-        isLoginPage,
-        isSignUpPage,
-        isCurriculumPage,
-        isLessonsPage,
-      },
-      currentView
-    );
+    handlePageStyling();
   }
 
   if (!isLessonsPage) {
