@@ -1,5 +1,5 @@
 const lessonView = {};
-let currentView = '';
+
 let initialLoadComplete = false;
 let globalCurriculumSection, globalAboutSection;
 
@@ -28,6 +28,8 @@ const view = {
   )
     ? true
     : false,
+  size: 0,
+  viewport: 'desktop',
 };
 
 const globalElements = {
@@ -37,20 +39,12 @@ const globalElements = {
   logoImg: document.querySelector('header .header-center-img'),
 };
 
-function checkWindowWidth() {
-  return (
-    window.innerWidth ||
-    document.documentElement.clientWidth ||
-    document.body.clientWidth
-  );
-}
-
 function insertFooter() {
   let contentContainer;
 
   if (view.isLessonsPage) {
     contentContainer = document.querySelector('.sj-page-lesson');
-    if (currentView === 'mobile') {
+    if (view.viewport === 'mobile') {
       globalElements.footer.style.display = 'none';
     } else {
       globalElements.footer.style.display = 'flex';
@@ -2613,8 +2607,7 @@ function mobileLessonPageStyling() {
   mainLessonMainContainer.style.paddingTop = '0';
 
   navOpenIcon.style.position = 'sticky';
-  const width = checkWindowWidth();
-  if (width >= 767) {
+  if (view.size >= 767) {
     navOpenIcon.style.top = '24px';
   } else {
     navOpenIcon.style.top = '56px';
@@ -2816,53 +2809,52 @@ function mobileLessonPageStyling() {
 
 function handlePageStyling() {
   if (view.isCourseDetailsPage) {
-    currentView === 'desktop'
+    view.viewport === 'desktop'
       ? desktopCourseDetailsPageStyling()
       : mobileCourseDetailsPageStyling();
   } else if (view.isPageDetailPath) {
-    currentView === 'desktop' ? desktopPathCourseDetailsPageStyling() : null;
+    view.viewport === 'desktop' ? desktopPathCourseDetailsPageStyling() : null;
   } else if (view.isPageCatalogPath) {
-    currentView === 'desktop' ? desktopPathCatalogPageStyling() : null;
+    view.viewport === 'desktop' ? desktopPathCatalogPageStyling() : null;
   } else if (view.isLoginPage) {
-    currentView === 'desktop'
+    view.viewport === 'desktop'
       ? desktopLoginPageStyling()
       : mobileLoginPageStyling();
   } else if (view.isSignUpPage) {
-    currentView === 'desktop'
+    view.viewport === 'desktop'
       ? desktopSignUpPageStyling()
       : mobileSignUpPageStyling();
   } else if (view.isCurriculumPage) {
     const certificateEl = document.querySelector('.cp-certificate');
 
     if (!certificateEl) {
-      currentView === 'desktop'
+      view.viewport === 'desktop'
         ? desktopCurriculumPageNoCertificateStyling()
         : mobileCurriculumPageNoCertificateStyling();
     } else {
       //CURRICULUM PAGE W COMPLETED CERTIFICATION GOES HERE [YESSS CERTIFICATION] <<<<<<<<<<< [CHECK TO MAKE SURE THIS WORKS; NOT TESTED]
-      currentView === 'desktop'
+      view.viewport === 'desktop'
         ? desktopCurriculumPageYesCertificationStyling()
         : mobileCurriculumPageYesCertificateStyling();
     }
   } else if (view.isLessonsPage) {
-    currentView === 'desktop'
+    view.viewport === 'desktop'
       ? desktopLessonPageStyling()
       : mobileLessonPageStyling();
   } else if (view.isCatalogPage) {
-    currentView === 'desktop' ? desktopCatalogPageStyling() : null;
+    view.viewport === 'desktop' ? desktopCatalogPageStyling() : null;
   }
 }
 
 function renderCourse() {
-  const width = checkWindowWidth();
+  view.width = (
+    window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth
+  )
 
-  if (width <= 991 && !(currentView === 'mobile')) {
-    currentView = 'mobile';
-    handlePageStyling();
-  } else if (width > 991 && !(currentView === 'desktop')) {
-    currentView = 'desktop';
-    handlePageStyling();
-  }
+  view.viewport = view.width <= 991 ? "mobile" : "desktop";
+  handlePageStyling();
 
   if (!view.isLessonsPage) {
     document.querySelector('#ep-footer').style.display = 'none';
