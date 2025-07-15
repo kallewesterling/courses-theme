@@ -3114,7 +3114,7 @@ function mobileLessonPageStyling() {
   const lessonContentContainer = document.querySelector(
     "sjwc-lesson-content-item"
   );
-  const codeBlocks = document.querySelectorAll("pre:has(code)");
+  const codeBlocks = document.querySelectorAll("pre:has(code):not(.language-ansi)");
 
   //FOOTER VARS
   const footerContainer = document.getElementById("footer-container");
