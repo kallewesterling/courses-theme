@@ -32,6 +32,7 @@ const view = {
 
 const globalElements = {
   footer: document.querySelector('#footer-container'),
+  signInBtn: document.querySelector('header .login-link'),
 };
 
 function checkWindowWidth() {
@@ -143,9 +144,6 @@ function desktopCourseDetailsPageStyling() {
 
   //SIGN IN VARIABLES (WHEN USER NOT LOGGED IN)
   const signInHeaderText = document.querySelector('.signin');
-  const signInBtn = document.querySelector(
-    '.header-link.login-link.sj-text-sign-in.focus-link-v2'
-  );
   //BODY VARIABLES
   const bodyContainer = document.querySelector('#dp-details');
   const mobileBodyContent = document.querySelector('.row.show-for-small');
@@ -183,16 +181,16 @@ function desktopCourseDetailsPageStyling() {
   mobileBodyContent.style.display = 'none';
   if (signInHeaderText) {
     signInHeaderText.style.display = 'none';
-    signInBtn.style.backgroundColor = 'transparent';
-    signInBtn.style.padding = '8px 12px';
-    signInBtn.style.marginRight = '24px';
-    signInBtn.style.borderColor = '#3443F4';
-    signInBtn.style.border = '2px solid #3443F4';
-    signInBtn.style.borderRadius = '999px';
-    signInBtn.style.fontSize = '14px';
-    signInBtn.style.fontFamily = 'Space Mono';
-    signInBtn.style.fontWeight = '700';
-    signInBtn.style.lineHeight = '20px';
+    globalElements.signInBtn.style.backgroundColor = 'transparent';
+    globalElements.signInBtn.style.padding = '8px 12px';
+    globalElements.signInBtn.style.marginRight = '24px';
+    globalElements.signInBtn.style.borderColor = '#3443F4';
+    globalElements.signInBtn.style.border = '2px solid #3443F4';
+    globalElements.signInBtn.style.borderRadius = '999px';
+    globalElements.signInBtn.style.fontSize = '14px';
+    globalElements.signInBtn.style.fontFamily = 'Space Mono';
+    globalElements.signInBtn.style.fontWeight = '700';
+    globalElements.signInBtn.style.lineHeight = '20px';
   }
 
   headerContainer.style.backgroundColor = '#D0CFEE';
@@ -361,9 +359,6 @@ function desktopPathCourseDetailsPageStyling() {
 
   //SIGN IN VARIABLES (WHEN USER NOT LOGGED IN)
   const signInHeaderText = document.querySelector('.signin');
-  const signInBtn = document.querySelector(
-    '.header-link.login-link.sj-text-sign-in.focus-link-v2'
-  );
   //BODY VARIABLES
   const bodyContainer = document.querySelector('#dp-details-bundle');
   const catalogContainer = document.querySelector('#catalog-courses');
@@ -371,16 +366,16 @@ function desktopPathCourseDetailsPageStyling() {
   backToCatalogBtn.style.display = 'none';
   if (signInHeaderText) {
     signInHeaderText.style.display = 'none';
-    signInBtn.style.backgroundColor = 'transparent';
-    signInBtn.style.padding = '8px 12px';
-    signInBtn.style.marginRight = '24px';
-    signInBtn.style.borderColor = '#3443F4';
-    signInBtn.style.border = '2px solid #3443F4';
-    signInBtn.style.borderRadius = '999px';
-    signInBtn.style.fontSize = '14px';
-    signInBtn.style.fontFamily = 'Space Mono';
-    signInBtn.style.fontWeight = '700';
-    signInBtn.style.lineHeight = '20px';
+    globalElements.signInBtn.style.backgroundColor = 'transparent';
+    globalElements.signInBtn.style.padding = '8px 12px';
+    globalElements.signInBtn.style.marginRight = '24px';
+    globalElements.signInBtn.style.borderColor = '#3443F4';
+    globalElements.signInBtn.style.border = '2px solid #3443F4';
+    globalElements.signInBtn.style.borderRadius = '999px';
+    globalElements.signInBtn.style.fontSize = '14px';
+    globalElements.signInBtn.style.fontFamily = 'Space Mono';
+    globalElements.signInBtn.style.fontWeight = '700';
+    globalElements.signInBtn.style.lineHeight = '20px';
   }
 
   headerContainer.style.background =
