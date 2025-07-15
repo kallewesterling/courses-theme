@@ -94,7 +94,7 @@ function removeSJFooter(isLessonsPage = false) {
   }
 }
 
-//DESTOP VIEW STYLINGS
+//DESKTOP VIEW STYLINGS
 function desktopCatalogPageStyling() {
   //grab variables
   const catalogBodyParentContainer = document.getElementById("catalog-content");
@@ -142,7 +142,7 @@ function desktopCourseDetailsPageStyling() {
   const signInBtn = document.querySelector(
     ".header-link.login-link.sj-text-sign-in.focus-link-v2"
   );
-  ////BODY VARIABLES
+  //BODY VARIABLES
   const bodyContainer = document.getElementById("dp-details");
   const mobileBodyContent = document.querySelector(".row.show-for-small");
   const secondaryBodyContainer = document.querySelector(
@@ -155,7 +155,7 @@ function desktopCourseDetailsPageStyling() {
     .querySelector("h3");
   const curriculumList = curriculumListContainer.querySelectorAll("li");
 
-  ////CARD VARIABLES
+  //CARD VARIABLES
   const courseDetailCardContainer = secondaryBodyContainer.querySelector(
     ".course-details-card"
   );
@@ -269,10 +269,6 @@ function desktopCourseDetailsPageStyling() {
       styleGroupContainer(curContainer);
     }
 
-    // const startingGroup = document.createElement("div");
-    // styleGroupHeading(startingGroup);
-    // curContainer.append(startingGroup);
-
     function styleGroupContainer(container) {
       container.style.border = "2px solid #3443F4";
       container.style.borderRadius = "8px";
@@ -297,12 +293,10 @@ function desktopCourseDetailsPageStyling() {
     }
 
     function styleGroupHeading(groupHeading) {
-      // console.log('groupHeading: ', groupHeading)
       groupHeading.textContent = groupHeading?.textContent?.trim();
       groupHeading.style.fontSize = "16px";
       groupHeading.style.fontWeight = "500";
       groupHeading.style.lineHeight = "125%";
-      //   groupHeading.style.letterSpacing = "-.16px";
       groupHeading.style.fontFamily = "Fusiona";
       groupHeading.style.padding = "24px";
       groupHeading.style.borderBottom = "2px solid #3443F4";
@@ -373,11 +367,7 @@ function desktopPathCourseDetailsPageStyling() {
   const mainHeadingContainer = document.querySelector(
     ".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"
   );
-  // const mainVideoContainer = document.querySelector(
-  //   ".columns.large-6.text-center.dp-promo-image-wrapper"
-  // );
   const backToCatalogBtn = document.querySelector(".back-to-catalog");
-  // const videoContainer = document.querySelector(".video-max");
   const mainInfoCardContained = document.querySelector(
     ".sj-course-info-wrapper"
   );
@@ -388,43 +378,11 @@ function desktopPathCourseDetailsPageStyling() {
   const signInBtn = document.querySelector(
     ".header-link.login-link.sj-text-sign-in.focus-link-v2"
   );
-  ////BODY VARIABLES
+  //BODY VARIABLES
   const bodyContainer = document.getElementById("dp-details-bundle");
   const catalogContainer = document.getElementById("catalog-courses");
 
-  // const mobileBodyContent = document.querySelector(".row.show-for-small");
-  // const secondaryBodyContainer = document.querySelector(
-  //   ".row.hide-for-small.padded-side-bottom"
-  // );
-  // const bodyColumns = secondaryBodyContainer.querySelectorAll(".columns");
-  // const curriculumListContainer = document.querySelector(".dp-curriculum"); //NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)!
-  // const curriculumListHeader = curriculumListContainer
-  //   .closest(".sj-curriculum-wrapper")
-  // .querySelector("h3");
-  // const curriculumList = curriculumListContainer.querySelectorAll("li");
-
-  ////CARD VARIABLES
-  // const courseDetailCardContainer = secondaryBodyContainer.querySelector(
-  //   ".course-details-card"
-  // );
-  // let courseDetailCardListItems;
-  // if (courseDetailCardContainer) {
-  //   courseDetailCardListItems =
-  //     courseDetailCardContainer.querySelectorAll("li");
-  // }
-  // const checkboxIcon = document.querySelector(".checkbox-icon");
-  // const registerBtnLink = document
-  //   .getElementById("purchase-button")
-  //   .getAttribute("href");
-  // const registerBtnText = document.querySelector(
-  //   ".purchase-button-full-text"
-  // ).textContent;
-  // const courseDetailsCardLink = document.querySelector(
-  //   ".course-details-card-link"
-  // );
-
   backToCatalogBtn.style.display = "none";
-  // mobileBodyContent.style.display = "none";
   if (signInHeaderText) {
     signInHeaderText.style.display = "none";
     signInBtn.style.backgroundColor = "transparent";
@@ -439,7 +397,6 @@ function desktopPathCourseDetailsPageStyling() {
     signInBtn.style.lineHeight = "20px";
   }
 
-  // headerContainer.style.backgroundColor = "#D0CFEE";
   headerContainer.style.background =
     "url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png)";
   headerContainer.style.backgroundSize = "cover";
@@ -456,7 +413,7 @@ function desktopPathCourseDetailsPageStyling() {
   headerFlexContainer.style.gap = "24px";
   headerFlexContainer.style.maxWidth = "1188px";
 
-  // //RENDERING OF COURSE DETAILS PAGE TEXT HEADING ON LEFT
+  //RENDERING OF COURSE DETAILS PAGE TEXT HEADING ON LEFT
   mainHeadingContainer.style.border = "0";
   mainHeadingContainer.style.maxWidth = "600px";
   mainInfoCardContained.style.display = "none";
@@ -482,140 +439,12 @@ function desktopPathCourseDetailsPageStyling() {
     registerBtn
   );
 
-  // //VIDEO STYLING
-  // if (videoContainer && videoContainer.style) {
-  //   videoContainer.style.maxWidth = "none";
-  // }
-
-  // //COURSE DETAILS PAGE BODY STYLING
+  //COURSE DETAILS PAGE BODY STYLING
   bodyContainer.style.padding = "0";
   bodyContainer.style.margin = "96px auto 46px auto";
   bodyContainer.style.maxWidth = "min(1152px, 90%)";
   catalogContainer.style.marginBottom = "85px";
-  // bodyContainer.style.display = "grid";
-  // bodyContainer.style.gridTemplateColumns =
-  //   "minmax(100px, 760px) minmax(100px, 368px)";
-  // bodyContainer.style.columnGap = "24px";
 
-  // secondaryBodyContainer.style.padding = "0";
-  // secondaryBodyContainer.style.maxWidth = "760px";
-  // bodyColumns.forEach((column) => {
-  //   column.style.float = "none";
-  //   column.style.padding = "0";
-  //   column.style.width = "100%";
-  //   column.style.display = "block";
-
-  //   column.querySelector("h3").style.fontWeight = "600";
-
-  //   if (column.classList.contains("large-7")) {
-  //     column.style.marginBottom = "48px";
-  //   }
-
-  //   const innerCol = column.querySelector(".dp-curriculum");
-  //   if (innerCol) {
-  //     innerCol.style.margin = "0";
-  //   }
-  // });
-
-  // //COURSE DETAILS CURRICULUM STYLING
-  // if (!initialLoadComplete) {
-  //   let groupIsOpen = false;
-  //   let curContainer = document.createElement("li");
-  //   styleGroupContainer(curContainer);
-
-  //   const startingGroup = document.createElement("div");
-  //   styleGroupHeading(startingGroup);
-  //   curContainer.append(startingGroup);
-
-  //   function styleGroupContainer(container) {
-  //     container.style.border = "2px solid #3443F4";
-  //     container.style.borderRadius = "8px";
-  //     container.style.marginBottom = "48px";
-  //     container.style.padding = "0";
-  //   }
-
-  //   function styleListItem(lessonItem, isLastChild) {
-  //     //display none for icon w/ class 'type-icon'
-  //     const icon = lessonItem.querySelector(".type-icon");
-  //     icon.style.display = "none";
-
-  //     const lessonItemText = lessonItem.querySelector(".lesson-wrapper");
-  //     lessonItemText.style.padding = "24px";
-  //     lessonItemText.style.fontSize = "16px";
-  //     lessonItemText.style.fontWeight = "400";
-  //     lessonItemText.style.lineHeight = "150%";
-
-  //     if (!isLastChild) {
-  //       lessonItemText.style.borderBottom = "2px solid #3443F4";
-  //     }
-  //   }
-
-  //   function styleGroupHeading(groupHeading) {
-  //     // console.log('groupHeading: ', groupHeading)
-  //     groupHeading.textContent =
-  //       groupHeading?.textContent?.trim() === ""
-  //         ? "Introduction"
-  //         : groupHeading?.textContent?.trim();
-  //     groupHeading.style.fontSize = "16px";
-  //     groupHeading.style.fontWeight = "500";
-  //     groupHeading.style.lineHeight = "125%";
-  //     //   groupHeading.style.letterSpacing = "-.16px";
-  //     groupHeading.style.fontFamily = "Fusiona";
-  //     groupHeading.style.padding = "24px";
-  //     groupHeading.style.borderBottom = "2px solid #3443F4";
-  //     curContainer.append(groupHeading);
-  //   }
-
-  //   curriculumList.forEach((curListItem, i, arr) => {
-  //     //first check if current item contains 'section' class
-  //     if (curListItem.classList.contains("section")) {
-  //       //Yes? push curContainer into curriculumListContainer
-  //       curriculumListContainer.append(curContainer);
-  //       //reset curContainer while pushing current 'section' in there for the next iteration
-  //       curContainer = document.createElement("li");
-  //       styleGroupContainer(curContainer);
-  //       const newGroupHeading = document.createElement("div");
-  //       newGroupHeading.innerHTML = curListItem.innerHTML;
-  //       styleGroupHeading(newGroupHeading);
-  //       curContainer.append(newGroupHeading);
-  //     } else {
-  //       // else, normal/expected behaviour
-  //       //transfer inner html of current list item to new created div
-  //       const newListItem = document.createElement("div");
-  //       newListItem.innerHTML = curListItem.innerHTML;
-  //       styleListItem(
-  //         newListItem,
-  //         arr[i + 1] ? arr[i + 1].classList.contains("section") : true
-  //       );
-  //       curContainer.append(newListItem);
-  //     }
-  //     curListItem.style.display = "none";
-  //   });
-
-  //   //LAST, unpushed SECTION; push it out to curriculumListContainer
-  //   curriculumListContainer.append(curContainer);
-
-  //   curriculumListHeader.style.display = "none";
-  //   curriculumListContainer.style.padding = "0";
-  // }
-
-  // //COURSE DETAILS GRID STRUCTURE STYLING - ADDING DETAILS CARD ON RIGHT SIDE
-  // if (courseDetailCardContainer) {
-  //   bodyContainer.append(courseDetailCardContainer);
-  //   courseDetailCardContainer.style.margin = "0 0 46px 0";
-  //   courseDetailCardContainer.style.justifySelf = "center";
-  //   courseDetailCardListItems.forEach((li) => {
-  //     const iconClone = checkboxIcon.cloneNode(true);
-  //     iconClone.style.display = "block";
-  //     iconClone.style.flexShrink = "0";
-  //     li.prepend(iconClone);
-  //   });
-  // }
-
-  // if (courseDetailsCardLink) {
-  //   courseDetailsCardLink.textContent = registerBtnText;
-  //   courseDetailsCardLink.setAttribute("href", registerBtnLink);
-  // }
   console.log("reached end of path func");
 }
 
@@ -631,11 +460,11 @@ function desktopPathCatalogPageStyling() {
     .querySelectorAll(".coursebox-container");
 
   coursesList.forEach((course) => {
-    //Outter border
+    //Outer border
     course.style.border = "2px solid #D0CFEE";
     course.style.borderRadius = "20px";
 
-    //inner border
+    //Inner border
     const innerContainer = course.querySelector(".course-overview");
     if (innerContainer) {
       innerContainer.style.borderTop = "2px solid #D0CFEE";
@@ -680,7 +509,7 @@ function desktopLessonPageStyling() {
   const fullScreenBtn = document.querySelector(
     ".toggle-fullscreen.focus-link-v2 "
   );
-  /// LESSON BODY VARS
+  //LESSON BODY VARS
   const lessonInnerContainer = document.getElementById("lesson-main-inner");
   const copyIcon = document.querySelector(".copy-icon");
   const lessonContentContainer = document.querySelector(
@@ -692,7 +521,7 @@ function desktopLessonPageStyling() {
   const footerContainer = document.getElementById("footer-container");
   const footerCols = footerContainer.querySelectorAll(".global-footer-column");
 
-  ///////STYLE LOGO
+  //STYLE LOGO
   logoImg.style.height = "24px";
 
   lessonInnerContainer.style.maxWidth = "712px";
@@ -735,25 +564,21 @@ function desktopLessonPageStyling() {
   lessonFooter.style.position = "relative";
   lessonFooter.style.border = "0";
   lessonFooter.style.backgroundColor = "transparent";
-  //lessonFooter.style.backgroundColor = "red";
 
   leftNav.style.position = "absolute";
   leftNav.style.backgroundColor = "#f9f9f9";
   leftNav.style.width = "320px";
   leftNav.style.marginBottom = "0px";
-  // leftNav.style.height = "100%";
-  // leftNav.style.paddingBottom = "40px";
+
   mainLessonContentContainer.style.height = "100vh";
   mainLessonContentContainer.style.overflowY = "auto";
   mainLessonContentContainer.style.paddingBottom = "0";
 
-  /////////HIDE FULL SCREEN BUTTON
+  //HIDE FULL SCREEN BUTTON
   fullScreenBtn.style.display = "none";
 
   //SECOND PAGE OF STYLING INSTRUCTIONS FROM 1ST VERSION
   const parentEl = document.querySelector(".sj-page-lesson");
-
-  // footerContainer.style.marginTop = "60px";
 
   const openIcon = document.querySelector(".fa.fa-bars");
   const searchIcon = document.querySelector(".fa.fa-search");
@@ -825,9 +650,6 @@ function desktopLessonPageStyling() {
     title.style.fontWeight = "700";
   });
 
-  // const copyIcon = document.querySelector('.checkbox-icon');
-  // const lessonContentContainer = document.querySelector('sjwc-lesson-content-item');
-  // const codeBlocks = lessonContentContainer.querySelectorAll('pre');
   //HANDLE CODE BLOCK CUSTOM STYLING
 
   function animateCopiedTooltip(tooltipEl) {
@@ -839,15 +661,11 @@ function desktopLessonPageStyling() {
   }
 
   lessonView.codeBlocks.filter(d => !d.dataset.noCopy).forEach((el) => {
-    //console.log(el);
-
     //WILL NEED TO CLEAN UP THE STYLING OF EL!!!!!!!!!!
     el.style.padding = "0";
     el.style.overflow = "visible";
     el.style.position = "relative";
     const codeEl = el.querySelector("code");
-    // codeEl.style.display = 'inline-block';
-    // codeEl.style.padding = '24px !important';
     codeEl.setAttribute(
       "style",
       "display: inline-block; padding: 24px !important; overflow-x: scroll; width: 100%"
@@ -890,7 +708,6 @@ function desktopLessonPageStyling() {
     iconClone.addEventListener("click", async () => {
       try {
         await navigator.clipboard.writeText(copyText);
-        //console.log("Content copied to clipboard");
         animateCopiedTooltip(tooltipContainer);
       } catch (err) {
         console.error("Failed to copy codeblock to clipboard: ", err);
@@ -898,7 +715,7 @@ function desktopLessonPageStyling() {
     });
   });
 
-  // Makes lesson links pop up in new tab
+  //Makes lesson links pop up in new tab
   lessonContentContainer.querySelectorAll("a").forEach((el) => {
     el.setAttribute("target", "_blank");
   });
@@ -958,31 +775,27 @@ function desktopLoginPageStyling() {
   const footerContainer = document.getElementById("footer-container");
   const footerCols = footerContainer.querySelectorAll(".global-footer-column");
 
-  ///////STYLE LOGO
+  //STYLE LOGO
   logoImg.style.height = "24px";
 
   termsAndServicesText.style.maxWidth = "368px";
-  // termsAndServicesText.style.color = "#545454";
   termsAndServicesText.style.fontSize = "14px";
 
   loginForm.append(termsAndServicesText);
 
-  //////STYLE THE LOGIN/SIGN UP TABS
+  //STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = "flex";
-  // tabs.style.backgroundColor = "#F3F3F3";
   loginTab.querySelector("span span").textContent = "Log In";
   loginTab.style.border = "0";
   loginTab.style.display = "flex";
   loginTab.style.padding = "8px 16px";
   loginTab.style.alignItems = "center";
-  // loginTab.style.backgroundColor = "#3443F4";
   loginTab.style.textDecoration = "underline";
   loginTab.style.fontFamily = "Space Mono";
   loginTab.style.color = "#3443f4";
   loginTab.style.fontWeight = "700";
   loginTab.style.fontSize = "18px";
   loginTab.style.lineHeight = "24px";
-  // loginTab.style.borderRadius = "100px";
   signInTab.querySelector("span").textContent = "Sign Up";
   signInTab.style.display = "flex";
   signInTab.style.alignItems = "center";
@@ -993,15 +806,13 @@ function desktopLoginPageStyling() {
   signInTabText.style.fontSize = "18px";
   signInTabText.style.lineHeight = "24px";
 
-  //////STYLE THE LOGIN TEXT CONTENT BOX
+  //STYLE THE LOGIN TEXT CONTENT BOX
   loginContentContainer.style.width = "50%";
   orGoogleSignInContainer.style.width = "50%";
   orGoogleSignInInnerContainer.style.paddingLeft = "125px";
   orGoogleSignInInnerContainerListItems.forEach((li) => {
     li.style.padding = "0";
   });
-
-  //
 
   longInNote.style.display = "none";
   orSignInWithContainer.style.paddingBottom = "0";
@@ -1026,7 +837,6 @@ function desktopLoginPageStyling() {
   loginBottomBtn.style.border = "2px solid #3443f4";
   loginBottomBtn.style.borderRadius = "999px";
   loginBottomBtn.style.marginBottom = "2px";
-  //forgotPasswordText.style.height = '48px';
   forgotPasswordText.style.fontSize = "16px";
   forgotPasswordText.style.fontFamily = "Space Mono";
   forgotPasswordText.style.marginBottom = "2px";
@@ -1063,7 +873,6 @@ function desktopSignUpPageStyling() {
   const orSignInWithGoogleContainer = loginContent.querySelectorAll(
     ".row .large-6.columns"
   )[3];
-  //console.log("orSignInWithGoogleContainer: ", orSignInWithGoogleContainer);
   const orSignInWithGoogleList =
     orSignInWithGoogleContainer.querySelector("ul");
   const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll("li");
@@ -1102,12 +911,11 @@ function desktopSignUpPageStyling() {
   termsAndServicesText.style.fontSize = "14px";
   signUpForm.append(termsAndServicesText);
 
-  ///////STYLE LOGO
+  //STYLE LOGO
   logoImg.style.height = "24px";
 
-  //////STYLE THE LOGIN/SIGN UP TABS
+  //STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = "flex";
-  // tabs.style.backgroundColor = "#F3F3F3";
   loginTabText.querySelector("span").textContent = "Log In";
   loginTab.style.border = "0";
   loginTab.style.display = "flex";
@@ -1122,7 +930,6 @@ function desktopSignUpPageStyling() {
   signInTab.style.display = "flex";
   signInTab.style.alignItems = "center";
   signInTab.style.padding = "8px 16px";
-  // signInTab.style.backgroundColor = "#3443F4";
   signInTab.style.borderRadius = "100px";
   signInTabText.textContent = "Sign up";
   signInTabText.style.color = "#3443f4";
@@ -1132,7 +939,7 @@ function desktopSignUpPageStyling() {
   signInTabText.style.fontSize = "18px";
   signInTabText.style.lineHeight = "24px";
 
-  //////STYLE THE SIGNUP TEXT CONTENT BOX
+  //STYLE THE SIGNUP TEXT CONTENT BOX
   loginContentContainer.style.width = "50%";
   orSignInWithGoogleContainer.style.width = "50%";
   orSignInWithGoogleContainer.style.paddingLeft = "100px";
@@ -1140,9 +947,6 @@ function desktopSignUpPageStyling() {
   orSignInWithGoogleItems.forEach((li) => {
     li.style.padding = "0";
   });
-  // const orSignInWithGoogleList = orSignInWithGoogleContainer.querySelector('ul');
-  // const orSignInWithGoogleItems
-  //
 
   orSignInWithContainer.style.paddingBottom = "0";
   orSignInWithText.style.marginBottom = "12px";
@@ -1200,7 +1004,6 @@ function desktopSignUpPageStyling() {
     label.style.fontFamily = "Fusiona";
     label.style.lineHeight = "20px";
 
-    //            console.log(label.getAttribute('for'));
     if (label.getAttribute("for") === "id_password2") {
       label.querySelector(".input-label-text span").textContent =
         "Password Confirm";
@@ -1283,7 +1086,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   const curriculumOutsideContainer =
     curriculumParentContainer.closest(".content");
 
-  ///////STYLE LOGO
+  //STYLE LOGO
   logoImg.style.height = "24px";
 
   //TEST
@@ -1357,8 +1160,6 @@ function desktopCurriculumPageNoCertificateStyling() {
   sjHeaderTextContainer.style.position = "static";
   sjHeaderTextContainer.style.padding = "0";
   sjHeaderTextContainer.style.maxWidth = "564px";
-  //sjHeaderTextContainer.style.height = '376px';
-  //      sjHeaderTextContainer.style.marginRight = '96px';
   sjHeaderTextContainer.style.border = "0";
   sjHeaderTextContainer.style.textAlign = "left";
   if (resumeBtn) {
@@ -1372,7 +1173,6 @@ function desktopCurriculumPageNoCertificateStyling() {
   sjHeaderImgContainer.style.height = "auto";
   sjHeaderImgDirectContainer.style.maxHeight = "none";
   sjHeaderImg.style.maxHeight = "none";
-  //      sjHeaderImg.style.width = '564px';
   sjHeaderImg.style.height = "auto";
   sjHeaderImg.style.maxWidth = "100%";
   //PARENT CONTAINER
@@ -1387,7 +1187,6 @@ function desktopCurriculumPageNoCertificateStyling() {
   headingFloaterText.style.display = "block";
 
   if (resumeBtn) {
-    // container.append(headingFloaterText, mainHeading, headingParagraph, btn);
     container.append(
       headingFloaterText,
       mainHeading,
@@ -1398,7 +1197,7 @@ function desktopCurriculumPageNoCertificateStyling() {
     container.append(headingFloaterText, mainHeading, headingParagraph);
   }
 
-  ///////CURRICULUM PAGE BODY STYLING
+  //CURRICULUM PAGE BODY STYLING
   tabsContainer.append(curriculumSection);
   tabsContainer.style.margin = "0 0 46px 0";
   bodyMainContainer.style.paddingTop = "0";
@@ -1437,10 +1236,6 @@ function desktopCurriculumPageNoCertificateStyling() {
       styleGroupContainer(curContainer);
     }
 
-    // const startingGroup = document.createElement("div");
-    // styleGroupHeading(startingGroup);
-    // curContainer.append(startingGroup);
-
     function styleGroupContainer(container) {
       container.style.border = "2px solid #3443f4";
       container.style.borderRadius = "8px";
@@ -1459,8 +1254,6 @@ function desktopCurriculumPageNoCertificateStyling() {
     }
 
     function styleGroupHeading(groupHeadingContainer) {
-      // console.log('groupHeading: ', groupHeading)
-
       groupHeadingContainer.style.padding = "24px";
       groupHeadingContainer.style.borderBottom = "2px solid #3443f4";
 
@@ -1485,7 +1278,6 @@ function desktopCurriculumPageNoCertificateStyling() {
 
     const curriculumItemsListNonLive =
       curriculumParentContainer.querySelectorAll(".curriculumItem");
-    //console.log('curriculumItemsListNonLive: ', curriculumItemsListNonLive);
 
     curriculumItemsListNonLive.forEach((el, i, curArr) => {
       if (el.tagName === "DIV") {
@@ -1535,7 +1327,7 @@ function desktopCurriculumPageNoCertificateStyling() {
     globalAboutSection.setAttribute("style", "padding: 0 !important");
   }
 
-  ////////CURRICULUM ITSELF STYLING
+  //CURRICULUM ITSELF STYLING
   pageIcons.forEach((pageIcon) => {
     pageIcon.setAttribute("style", "display:none !important");
   });
@@ -1575,7 +1367,6 @@ function desktopCurriculumPageYesCertificationStyling() {
   const container = document.querySelector(
     ".large-8.push-4.columns.sj-summary.cp-summary-wrapper"
   ); //DUPLICATE VAR
-  //const btn = document.getElementById('resume-button');  //DUPLICATE VAR
   const mainHeading = document.querySelector(".break-word"); //DUPLICATE VAR
   const backToCatalogLink = document.querySelector(".back-to-catalog");
 
@@ -1601,8 +1392,6 @@ function desktopCurriculumPageYesCertificationStyling() {
   );
   const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image");
   const sjHeaderImg = document.querySelector(".cp-promo-image img");
-  //      const btnText = resumeBtn.querySelector('.button span').textContent;
-  //      const btnHref = resumeBtn.querySelector('.button').getAttribute("href");
 
   //BODY VARIABLES
   const bodyMainContainer = document.getElementById("cp-content");
@@ -1611,7 +1400,7 @@ function desktopCurriculumPageYesCertificationStyling() {
   let [curriculumSection, aboutSection] =
     tabsContainer.querySelectorAll("section");
 
-  ///////STYLE LOGO
+  //STYLE LOGO
   logoImg.style.height = "24px";
 
   //TEST
@@ -1646,7 +1435,6 @@ function desktopCurriculumPageYesCertificationStyling() {
     bodyMainContainer.append(courseDetailsCard);
 
     courseDetailsCardLink.style.display = "none";
-    //                courseDetailsCardLink.setAttribute("href", btnHref);
   }
 
   if (!initialLoadComplete) {
@@ -1682,12 +1470,8 @@ function desktopCurriculumPageYesCertificationStyling() {
   sjHeaderTextContainer.style.position = "static";
   sjHeaderTextContainer.style.padding = "0";
   sjHeaderTextContainer.style.maxWidth = "564px";
-  //sjHeaderTextContainer.style.height = '376px';
-  //      sjHeaderTextContainer.style.marginRight = '96px';
   sjHeaderTextContainer.style.border = "0";
   sjHeaderTextContainer.style.textAlign = "left";
-  //      resumeBtn.style.marginLeft = '0';
-  //      resumeBtn.style.marginRight = '0';
   //IMG CONTAINER
   sjHeaderImgContainer.style.position = "static";
   sjHeaderImgContainer.style.padding = "0";
@@ -1695,7 +1479,6 @@ function desktopCurriculumPageYesCertificationStyling() {
   sjHeaderImgContainer.style.height = "auto";
   sjHeaderImgDirectContainer.style.maxHeight = "none";
   sjHeaderImg.style.maxHeight = "none";
-  //      sjHeaderImg.style.width = '564px';
   sjHeaderImg.style.height = "auto";
   sjHeaderImg.style.maxWidth = "100%";
   //PARENT CONTAINER
@@ -1708,11 +1491,7 @@ function desktopCurriculumPageYesCertificationStyling() {
   headingParagraph.textContent = courseDescription;
   headingParagraph.style.display = "block";
   headingFloaterText.style.display = "block";
-  // container.append(
-  //   headingFloaterText,
-  //   mainHeading,
-  //   headingParagraph
-  // );
+  
   container.append(
     headingFloaterText,
     mainHeading,
@@ -1720,7 +1499,7 @@ function desktopCurriculumPageYesCertificationStyling() {
     certificateEl
   );
 
-  ///////CURRICULUM PAGE BODY STYLING
+  //CURRICULUM PAGE BODY STYLING
   tabsContainer.append(curriculumSection);
   tabsContainer.style.margin = "0 0 46px 0";
   bodyMainContainer.style.paddingTop = "0";
@@ -1754,10 +1533,6 @@ function desktopCurriculumPageYesCertificationStyling() {
       styleGroupContainer(curContainer);
     }
 
-    // const startingGroup = document.createElement("div");
-    // styleGroupHeading(startingGroup);
-    // curContainer.append(startingGroup);
-
     function styleGroupContainer(container) {
       container.style.border = "2px solid #3443f4";
       container.style.borderRadius = "8px";
@@ -1776,8 +1551,6 @@ function desktopCurriculumPageYesCertificationStyling() {
     }
 
     function styleGroupHeading(groupHeadingContainer) {
-      // console.log('groupHeading: ', groupHeading)
-
       groupHeadingContainer.style.padding = "24px";
       groupHeadingContainer.style.borderBottom = "2px solid #3443f4";
 
@@ -1801,7 +1574,6 @@ function desktopCurriculumPageYesCertificationStyling() {
 
     const curriculumItemsListNonLive =
       curriculumParentContainer.querySelectorAll(".curriculumItem");
-    //console.log('curriculumItemsListNonLive: ', curriculumItemsListNonLive);
 
     curriculumItemsListNonLive.forEach((el, i, curArr) => {
       if (el.tagName === "DIV") {
@@ -1842,7 +1614,7 @@ function desktopCurriculumPageYesCertificationStyling() {
     curriculumOutsideContainer.querySelector("hr").style.display = "none";
   }
 
-  ////////CURRICULUM ITSELF STYLING
+  //CURRICULUM ITSELF STYLING
   pageIcons.forEach((pageIcon) => {
     pageIcon.setAttribute("style", "display:none !important");
   });
@@ -1915,7 +1687,7 @@ function mobileLoginPageStyling() {
 
   loginForm.append(termsAndServicesText);
 
-  //////STYLE THE LOGIN/SIGN UP TABS
+  //STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = "flex";
   loginTab.querySelector("span span").textContent = "Log in";
   loginTab.style.border = "0";
@@ -1937,7 +1709,7 @@ function mobileLoginPageStyling() {
   signInTabText.style.fontSize = "16px";
   signInTabText.style.lineHeight = "24px";
 
-  //////STYLE THE LOGIN TEXT CONTENT BOX
+  //STYLE THE LOGIN TEXT CONTENT BOX
   loginContentContainer.style.width = "100%";
   orGoogleSignInContainer.style.width = "100%";
   orGoogleSignInInnerContainer.style.padding = "0";
@@ -1945,7 +1717,6 @@ function mobileLoginPageStyling() {
     li.style.padding = "0";
   });
 
-  //
   longInNote.style.display = "none";
   orSignInWithContainer.style.paddingBottom = "0";
   loginInput.style.borderRadius = "4px";
@@ -1962,7 +1733,6 @@ function mobileLoginPageStyling() {
   loginBottomBtn.style.height = "48px";
   loginBottomBtn.style.fontSize = "16px";
   loginBottomBtn.style.marginBottom = "12px";
-  //forgotPasswordText.style.height = '48px';
   forgotPasswordText.style.fontSize = "16px";
   forgotPasswordText.style.marginBottom = "2px";
   loginBottomBtnAndForgotPassBtn.style.marginBottom = "24px";
@@ -1998,7 +1768,6 @@ function mobileSignUpPageStyling() {
   const orSignInWithGoogleContainer = loginContent.querySelectorAll(
     ".row .large-6.columns"
   )[3];
-  //console.log("orSignInWithGoogleContainer: ", orSignInWithGoogleContainer);
   const orSignInWithGoogleList =
     orSignInWithGoogleContainer.querySelector("ul");
   const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll("li");
@@ -2038,10 +1807,10 @@ function mobileSignUpPageStyling() {
   termsAndServicesText.style.fontSize = "14px";
   signUpForm.append(termsAndServicesText);
 
-  ///////STYLE LOGO
+  //STYLE LOGO
   logoImg.style.minHeight = "48px";
 
-  //////STYLE THE LOGIN/SIGN UP TABS
+  //STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = "flex";
   loginTabText.querySelector("span").textContent = "Log in";
   loginTab.style.border = "0";
@@ -2064,7 +1833,7 @@ function mobileSignUpPageStyling() {
   signInTabText.style.fontSize = "16px";
   signInTabText.style.lineHeight = "24px";
 
-  //////STYLE THE SIGNUP TEXT CONTENT BOX
+  //STYLE THE SIGNUP TEXT CONTENT BOX
   loginContentContainer.style.width = "100%";
   orSignInWithGoogleContainer.style.width = "100%";
   orSignInWithGoogleContainer.style.padding = "0";
@@ -2073,10 +1842,6 @@ function mobileSignUpPageStyling() {
     li.style.padding = "0";
   });
 
-  // const orSignInWithGoogleList = orSignInWithGoogleContainer.querySelector('ul');
-  // const orSignInWithGoogleItems
-
-  //
   orSignInWithContainer.style.paddingBottom = "0";
   orSignInWithText.style.marginBottom = "12px";
   orSignInWithText.style.fontWeight = "500";
@@ -2127,7 +1892,6 @@ function mobileSignUpPageStyling() {
     label.style.fontSize = "16px";
     label.style.lineHeight = "20px";
 
-    //            console.log(label.getAttribute('for'));
     if (label.getAttribute("for") === "id_password2") {
       label.querySelector(".input-label-text span").textContent =
         "Password confirm";
@@ -2179,13 +1943,12 @@ function mobileCourseDetailsPageStyling() {
   const signInBtn = document.querySelector(
     ".header-link.login-link.sj-text-sign-in.focus-link-v2"
   );
-  ////BODY VARIABLES
+  //BODY VARIABLES
   const bodyContainer = document.getElementById("dp-details");
   const mobileBodyContent = document.querySelector(".row.show-for-small");
   const secondaryBodyContainer = document.querySelector(
     ".row.hide-for-small.padded-side-bottom"
   );
-  //console.log('secondaryBodyContainer: ', secondaryBodyContainer)
   const bodyColumns = secondaryBodyContainer.querySelectorAll(".columns");
   const curriculumListContainer = document.querySelector(".dp-curriculum"); //NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)!
   const curriculumListHeader = curriculumListContainer
@@ -2193,7 +1956,7 @@ function mobileCourseDetailsPageStyling() {
     .querySelector("h3");
   const curriculumList = curriculumListContainer.querySelectorAll("li");
 
-  ////CARD VARIABLES
+  //CARD VARIABLES
   const courseDetailCardContainer = document.querySelectorAll(
     ".course-details-card"
   )[0];
@@ -2215,7 +1978,6 @@ function mobileCourseDetailsPageStyling() {
   const footerCols = footerContainer.querySelectorAll(".global-footer-column");
 
   backToCatalogBtn.style.display = "none";
-  //mobileBodyContent.style.display = "none";
   mobileBodyContent.setAttribute("style", "display: none !important;");
 
   //NAV STYLING
@@ -2283,8 +2045,6 @@ function mobileCourseDetailsPageStyling() {
   bodyContainer.style.gridTemplateColumns = "1fr";
   bodyContainer.style.columnGap = "24px";
 
-  //secondaryBodyContainer.style.padding = "0";
-  //secondaryBodyContainer.style.maxWidth = "760px";
   secondaryBodyContainer.setAttribute(
     "style",
     "padding: 0; max-width: 760px; display: grid !important;"
@@ -2318,10 +2078,6 @@ function mobileCourseDetailsPageStyling() {
       styleGroupContainer(curContainer);
     }
 
-    // const startingGroup = document.createElement("div");
-    // styleGroupHeading(startingGroup);
-    // curContainer.append(startingGroup);
-
     function styleGroupContainer(container) {
       container.style.border = "1px solid #DCDCDC";
       container.style.borderRadius = "8px";
@@ -2346,7 +2102,6 @@ function mobileCourseDetailsPageStyling() {
     }
 
     function styleGroupHeading(groupHeading) {
-      // console.log('groupHeading: ', groupHeading)
       groupHeading.textContent = groupHeading?.textContent?.trim();
       groupHeading.style.fontSize = "16px";
       groupHeading.style.fontWeight = "500";
@@ -2554,7 +2309,6 @@ function mobileCurriculumPageNoCertificateStyling() {
   sjHeaderImgContainer.style.height = "auto";
   sjHeaderImgDirectContainer.style.maxHeight = "none";
   sjHeaderImg.style.maxHeight = "none";
-  //      sjHeaderImg.style.width = '564px';
   sjHeaderImg.style.height = "auto";
   sjHeaderImg.style.maxWidth = "100%";
   //PARENT CONTAINER
@@ -2569,7 +2323,7 @@ function mobileCurriculumPageNoCertificateStyling() {
   headingFloaterText.style.display = "block";
   container.append(headingFloaterText, mainHeading, headingParagraph, btn);
 
-  ///////CURRICULUM PAGE BODY STYLING
+  //CURRICULUM PAGE BODY STYLING
   tabsContainer.append(curriculumSection);
   tabsContainer.style.margin = "96px 0 46px 0";
   bodyMainContainer.style.paddingTop = "0";
@@ -2606,10 +2360,6 @@ function mobileCurriculumPageNoCertificateStyling() {
       styleGroupContainer(curContainer);
     }
 
-    // const startingGroup = document.createElement("div");
-    // styleGroupHeading(startingGroup);
-    // curContainer.append(startingGroup);
-
     function styleGroupContainer(container) {
       container.style.border = "1px solid #DCDCDC";
       container.style.borderRadius = "8px";
@@ -2628,8 +2378,6 @@ function mobileCurriculumPageNoCertificateStyling() {
     }
 
     function styleGroupHeading(groupHeadingContainer) {
-      // console.log('groupHeading: ', groupHeading)
-
       groupHeadingContainer.style.padding = "24px";
       groupHeadingContainer.style.borderBottom = "1px solid #DCDCDC";
 
@@ -2654,7 +2402,6 @@ function mobileCurriculumPageNoCertificateStyling() {
 
     const curriculumItemsListNonLive =
       curriculumParentContainer.querySelectorAll(".curriculumItem");
-    //console.log('curriculumItemsListNonLive: ', curriculumItemsListNonLive);
 
     curriculumItemsListNonLive.forEach((el, i, curArr) => {
       if (el.tagName === "DIV") {
@@ -2700,7 +2447,7 @@ function mobileCurriculumPageNoCertificateStyling() {
     curriculumOutsideContainer.querySelector("hr").style.display = "none";
   }
 
-  ////////CURRICULUM ITSELF STYLING
+  //CURRICULUM ITSELF STYLING
   pageIcons.forEach((pageIcon) => {
     pageIcon.setAttribute("style", "display:none !important");
   });
@@ -2738,7 +2485,6 @@ function mobileCurriculumPageYesCertificateStyling() {
   const container = document.querySelector(
     ".large-8.push-4.columns.sj-summary.cp-summary-wrapper"
   ); //DUPLICATE VAR
-  //const btn = document.getElementById("resume-button"); //DUPLICATE VAR
   const mainHeading = document.querySelector(".break-word"); //DUPLICATE VAR
   const backToCatalogLink = document.querySelector(".back-to-catalog");
 
@@ -2764,9 +2510,6 @@ function mobileCurriculumPageYesCertificateStyling() {
   );
   const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image");
   const sjHeaderImg = document.querySelector(".cp-promo-image img");
-  //const resumeBtn = document.getElementById("resume-button");
-  //const btnText = resumeBtn.querySelector(".button span").textContent;
-  //const btnHref = resumeBtn.querySelector(".button").getAttribute("href");
 
   //BODY VARIABLES
   const bodyMainContainer = document.getElementById("cp-content");
@@ -2813,8 +2556,6 @@ function mobileCurriculumPageYesCertificateStyling() {
   courseDetailsCard.style.justifySelf = "center";
   bodyMainContainer.append(courseDetailsCard);
 
-  //courseDetailsCardLink.textContent = btnText;
-  //courseDetailsCardLink.setAttribute("href", btnHref);
   courseDetailsCardLink.style.display = "none";
 
   if (!initialLoadComplete) {
@@ -2855,8 +2596,7 @@ function mobileCurriculumPageYesCertificateStyling() {
 
   sjHeaderTextContainer.style.border = "0";
   sjHeaderTextContainer.style.textAlign = "left";
-  //resumeBtn.style.marginLeft = "0";
-  //resumeBtn.style.marginRight = "0";
+
   //IMG CONTAINER
   sjHeaderImgContainer.style.position = "static";
   sjHeaderImgContainer.style.padding = "0";
@@ -2865,7 +2605,6 @@ function mobileCurriculumPageYesCertificateStyling() {
   sjHeaderImgContainer.style.height = "auto";
   sjHeaderImgDirectContainer.style.maxHeight = "none";
   sjHeaderImg.style.maxHeight = "none";
-  //      sjHeaderImg.style.width = '564px';
   sjHeaderImg.style.height = "auto";
   sjHeaderImg.style.maxWidth = "100%";
   //PARENT CONTAINER
@@ -2884,7 +2623,7 @@ function mobileCurriculumPageYesCertificateStyling() {
     headingParagraph,
     certificateEl
   );
-  ///////CURRICULUM PAGE BODY STYLING
+  //CURRICULUM PAGE BODY STYLING
   tabsContainer.append(curriculumSection);
   tabsContainer.style.margin = "96px 0 46px 0";
   bodyMainContainer.style.paddingTop = "0";
@@ -2918,10 +2657,6 @@ function mobileCurriculumPageYesCertificateStyling() {
       styleGroupContainer(curContainer);
     }
 
-    // const startingGroup = document.createElement("div");
-    // styleGroupHeading(startingGroup);
-    // curContainer.append(startingGroup);
-
     function styleGroupContainer(container) {
       container.style.border = "1px solid #DCDCDC";
       container.style.borderRadius = "8px";
@@ -2940,8 +2675,6 @@ function mobileCurriculumPageYesCertificateStyling() {
     }
 
     function styleGroupHeading(groupHeadingContainer) {
-      // console.log('groupHeading: ', groupHeading)
-
       groupHeadingContainer.style.padding = "24px";
       groupHeadingContainer.style.borderBottom = "1px solid #DCDCDC";
 
@@ -2966,7 +2699,6 @@ function mobileCurriculumPageYesCertificateStyling() {
 
     const curriculumItemsListNonLive =
       curriculumParentContainer.querySelectorAll(".curriculumItem");
-    //console.log('curriculumItemsListNonLive: ', curriculumItemsListNonLive);
 
     curriculumItemsListNonLive.forEach((el, i, curArr) => {
       if (el.tagName === "DIV") {
@@ -3010,7 +2742,7 @@ function mobileCurriculumPageYesCertificateStyling() {
     curriculumOutsideContainer.querySelector("hr").style.display = "none";
   }
 
-  ////////CURRICULUM ITSELF STYLING
+  //CURRICULUM ITSELF STYLING
   pageIcons.forEach((pageIcon) => {
     pageIcon.setAttribute("style", "display:none !important");
   });
@@ -3039,8 +2771,6 @@ function mobileCurriculumPageYesCertificateStyling() {
 }
 
 function mobileLessonPageStyling() {
-  "left-nav-button";
-
   //MAIN NAV VARS
   const navLogoImg = document.querySelector(".header-center-img");
 
@@ -3118,7 +2848,6 @@ function mobileLessonPageStyling() {
   lessonFooter.style.position = "relative";
   lessonFooter.style.border = "0";
   lessonFooter.style.backgroundColor = "transparent";
-  //lessonFooter.style.backgroundColor = "red";
 
   leftNav.style.position = "fixed";
   leftNav.style.backgroundColor = "#f9f9f9";
@@ -3126,17 +2855,13 @@ function mobileLessonPageStyling() {
   leftNav.style.height = "100%";
   leftNav.style.paddingBottom = "40px";
   mainLessonContentContainer.style.height = "100vh";
-  //mainLessonContentContainer.style.overflowY = "auto";
   mainLessonContentContainer.style.paddingBottom = "0";
 
-  /////////HIDE FULL SCREEN BUTTON
+  //HIDE FULL SCREEN BUTTON
   fullScreenBtn.style.display = "none";
 
   //SECOND PAGE OF STYLING INSTRUCTIONS FROM 1ST VERSION
   const parentEl = document.querySelector(".sj-page-lesson");
-  // const footerContainer = document.getElementById(
-  //   "footer-container"
-  // );
 
   footerContainer.style.marginTop = "0";
 
@@ -3221,9 +2946,6 @@ function mobileLessonPageStyling() {
     title.style.letterSpacing = ".05em";
   });
 
-  // const copyIcon = document.querySelector('.checkbox-icon');
-  // const lessonContentContainer = document.querySelector('sjwc-lesson-content-item');
-  // const codeBlocks = lessonContentContainer.querySelectorAll('pre');
   //HANDLE CODE BLOCK CUSTOM STYLING
 
   function animateCopiedTooltip(tooltipEl) {
@@ -3235,15 +2957,11 @@ function mobileLessonPageStyling() {
   }
 
   lessonView.codeBlocks.filter(d => !d.dataset.noCopy).forEach((el) => {
-    //console.log(el);
-
     //WILL NEED TO CLEAN UP THE STYLING OF EL!!!!!!!!!!
     el.style.padding = "0";
     el.style.overflow = "visible";
     el.style.position = "relative";
     const codeEl = el.querySelector("code");
-    // codeEl.style.display = 'inline-block';
-    // codeEl.style.padding = '24px !important';
     codeEl.setAttribute(
       "style",
       "display: inline-block; padding: 24px !important; overflow-x: scroll; width: 100%"
@@ -3286,7 +3004,6 @@ function mobileLessonPageStyling() {
     iconClone.addEventListener("click", async () => {
       try {
         await navigator.clipboard.writeText(copyText);
-        //console.log("Content copied to clipboard");
         animateCopiedTooltip(tooltipContainer);
       } catch (err) {
         console.error("Failed to copy codeblock to clipboard: ", err);
@@ -3360,7 +3077,6 @@ function handlePageStyling(
 
 function renderCourse() {
   const { width } = getWidthAndCurrentPage();
-  //console.log("resized: ", width);
 
   if (width <= 991 && !(currentView === "mobile")) {
     currentView = "mobile";
@@ -3396,7 +3112,6 @@ function renderCourse() {
     );
   }
 
-  //console.log("currentView: ", currentView);
   removeSJFooter(isLessonsPage);
   insertFooter(isLessonsPage);
   makeContentVisible();
