@@ -52,6 +52,13 @@ const pageElements = {
     content: document.querySelector('#catalog-content'),
     courseContainer: document.querySelector('#catalog-courses'),
   },
+
+  auth: {
+    signupForm: document.querySelector('#signup_form'),
+    loginForm: document.querySelector('#login_form'),
+    termsAndServices: document.querySelector('#access-message'),
+    email: document.querySelector('#id_login'),
+  },
 };
 
 function insertFooter() {
@@ -715,12 +722,9 @@ function desktopLessonPageStyling() {
 
 function desktopLoginPageStyling() {
   handleAuthStyle();
-  const loginContent = document.querySelector('#login-content');
-  const tabArrow = document.querySelector('#tab-marker-login');
-  const termsAndServicesText = document.querySelector('#access-message');
   const loginContentContainer = document.querySelector('.large-6.columns');
   const orGoogleSignInContainer =
-    loginContent.querySelectorAll('.large-6.columns')[1];
+    document.querySelectorAll('#login-content .large-6.columns')[1];
   const orGoogleSignInInnerContainer =
     orGoogleSignInContainer.querySelector('ul');
   const orGoogleSignInInnerContainerListItems =
@@ -733,7 +737,6 @@ function desktopLoginPageStyling() {
   const orSignInWithContainer = document.querySelector(
     '.socialaccount_providers li'
   );
-  const loginInput = document.querySelector('#id_login');
   const passwordInput = document.querySelector('#id_password');
   const loginBottomBtn = document.querySelector('#button-sign-in');
   const forgotPasswordText = document.querySelector(
@@ -741,10 +744,6 @@ function desktopLoginPageStyling() {
   );
   const loginBottomBtnAndForgotPassBtn =
     loginBottomBtn.closest('.large-12.columns');
-
-  const loginForm = document.querySelector('#login_form');
-
-  loginForm.append(termsAndServicesText);
 
   //STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = 'flex';
@@ -779,11 +778,6 @@ function desktopLoginPageStyling() {
 
   longInNote.style.display = 'none';
   orSignInWithContainer.style.paddingBottom = '0';
-  loginInput.style.borderRadius = '4px';
-  loginInput.style.border = '2px solid #3443f4';
-  loginInput.style.padding = '20px 15px';
-  loginInput.style.fontSize = '14px';
-  loginInput.style.lineHeight = '24px';
   passwordInput.style.borderRadius = '4px';
   passwordInput.style.border = '2px solid #3443f4';
   passwordInput.style.padding = '20px 15px';
@@ -805,9 +799,6 @@ function desktopLoginPageStyling() {
   forgotPasswordText.style.marginBottom = '2px';
   loginBottomBtnAndForgotPassBtn.style.marginBottom = '24px';
 
-  loginContent.style.border = '0';
-  tabArrow.style.display = 'none';
-
   //FOOTER STYLING
   globalElements.footer.style.paddingLeft = '40px';
   globalElements.footer.style.paddingRight = '40px';
@@ -818,12 +809,9 @@ function desktopLoginPageStyling() {
 
 function desktopSignUpPageStyling() {
   handleAuthStyle();
-  const loginContent = document.querySelector('#login-content');
-  const tabArrow = document.querySelector('#tab-marker-signup');
-  const termsAndServicesText = document.querySelector('#access-message');
   const loginContentContainer = document.querySelector('.large-6.columns');
-  const orSignInWithGoogleContainer = loginContent.querySelectorAll(
-    '.row .large-6.columns'
+  const orSignInWithGoogleContainer = document.querySelectorAll(
+    '#login-content .row .large-6.columns'
   )[3];
   const orSignInWithGoogleList =
     orSignInWithGoogleContainer.querySelector('ul');
@@ -852,9 +840,6 @@ function desktopSignUpPageStyling() {
   const passwordInput = document.querySelector('#id_password1');
   const passwordInput2 = document.querySelector('#id_password2');
   const signUpBottomBtn = document.querySelector('#button-sign-up');
-  const signUpForm = document.querySelector('#signup_form');
-
-  signUpForm.append(termsAndServicesText);
 
   //STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = 'flex';
@@ -898,10 +883,6 @@ function desktopSignUpPageStyling() {
   firstNameLabel.textContent = 'First Name';
   lastNameLabel.textContent = 'Last Name';
   loginLabel.textContent = 'Work Email';
-  loginInput.style.borderRadius = '4px';
-  loginInput.style.borderColor = '#DCDCDC';
-  loginInput.style.padding = '12px';
-  loginInput.style.lineHeight = '24px';
   loginInput.setAttribute('placeholder', 'Work Email');
   passwordInput.style.borderRadius = '4px';
   passwordInput.style.borderColor = '#DCDCDC';
@@ -927,9 +908,6 @@ function desktopSignUpPageStyling() {
 
   //STYLING OF RIGHT SIDE, OR SIGN UP WITH GOOGLE, TEXT AND BTN
   orSignInWithTextSpan.textContent = 'Or Sign Up With';
-
-  loginContent.style.border = '0';
-  tabArrow.style.display = 'none';
 
   const labels = document.querySelectorAll('label');
   labels.forEach((label) => {
@@ -1494,30 +1472,39 @@ function desktopCurriculumPageYesCertificationStyling() {
 }
 
 function handleAuthStyle(login = true) {
+  // Set the Google login button text
   Object.assign(document.querySelector('#google_login'), {
     textContent: 'Continue with Google',
   });
+
   if (login) {
-    // do login
+    // Set the correct CTA for login
     Object.assign(document.querySelector('.sj-text-sign-in-with span'), {
       textContent: 'Or Log In With',
     });
+
+    // Add the T&C text to the login form
+    pageElements.auth.loginForm.append(pageElements.auth.termsAndServices);
   } else {
+    // Set the correct CTA for signup
     Object.assign(document.querySelector('.sj-text-sign-up-with span'), {
       textContent: 'Or Sign Up With',
     });
+
+    // Add the T&C text to the signup form
+    pageElements.auth.signupForm.append(pageElements.auth.termsAndServices);
+
+    // Add Work Email to email signup
+    Object.assign(pageElements.auth.email, { placeholder: 'Work Email' });
   }
 }
 
 //MOBILE VIEW STYLINGS
 function mobileLoginPageStyling() {
   handleAuthStyle();
-  const loginContent = document.querySelector('#login-content');
-  const tabArrow = document.querySelector('#tab-marker-login');
-  const termsAndServicesText = document.querySelector('#access-message');
   const loginContentContainer = document.querySelector('.large-6.columns');
   const orGoogleSignInContainer =
-    loginContent.querySelectorAll('.large-6.columns')[1];
+    document.querySelectorAll('#login-content .large-6.columns')[1];
   const orGoogleSignInInnerContainer =
     orGoogleSignInContainer.querySelector('ul');
   const orGoogleSignInInnerContainerListItems =
@@ -1530,7 +1517,6 @@ function mobileLoginPageStyling() {
   const orSignInWithContainer = document.querySelector(
     '.socialaccount_providers li'
   );
-  const loginInput = document.querySelector('#id_login');
   const passwordInput = document.querySelector('#id_password');
   const loginBottomBtn = document.querySelector('#button-sign-in');
   const forgotPasswordText = document.querySelector(
@@ -1538,10 +1524,6 @@ function mobileLoginPageStyling() {
   );
   const loginBottomBtnAndForgotPassBtn =
     loginBottomBtn.closest('.large-12.columns');
-
-  const loginForm = document.querySelector('#login_form');
-
-  loginForm.append(termsAndServicesText);
 
   //STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = 'flex';
@@ -1575,10 +1557,6 @@ function mobileLoginPageStyling() {
 
   longInNote.style.display = 'none';
   orSignInWithContainer.style.paddingBottom = '0';
-  loginInput.style.borderRadius = '4px';
-  loginInput.style.borderColor = '#DCDCDC';
-  loginInput.style.padding = '12px';
-  loginInput.style.lineHeight = '24px';
   passwordInput.style.borderRadius = '4px';
   passwordInput.style.borderColor = '#DCDCDC';
   passwordInput.style.padding = '12px';
@@ -1593,9 +1571,6 @@ function mobileLoginPageStyling() {
   forgotPasswordText.style.marginBottom = '2px';
   loginBottomBtnAndForgotPassBtn.style.marginBottom = '24px';
 
-  loginContent.style.border = '0';
-  tabArrow.style.display = 'none';
-
   //FOOTER STYLING
   globalElements.footer.style.paddingLeft = 0;
   globalElements.footer.style.paddingRight = 0;
@@ -1606,12 +1581,9 @@ function mobileLoginPageStyling() {
 
 function mobileSignUpPageStyling() {
   handleAuthStyle();
-  const loginContent = document.querySelector('#login-content');
-  const tabArrow = document.querySelector('#tab-marker-signup');
-  const termsAndServicesText = document.querySelector('#access-message');
   const loginContentContainer = document.querySelector('.large-6.columns');
-  const orSignInWithGoogleContainer = loginContent.querySelectorAll(
-    '.row .large-6.columns'
+  const orSignInWithGoogleContainer = document.querySelectorAll(
+    '#login-content .row .large-6.columns'
   )[3];
   const orSignInWithGoogleList =
     orSignInWithGoogleContainer.querySelector('ul');
@@ -1640,9 +1612,6 @@ function mobileSignUpPageStyling() {
   const passwordInput = document.querySelector('#id_password1');
   const passwordInput2 = document.querySelector('#id_password2');
   const signUpBottomBtn = document.querySelector('#button-sign-up');
-  const signUpForm = document.querySelector('#signup_form');
-
-  signUpForm.append(termsAndServicesText);
 
   //STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = 'flex';
@@ -1684,10 +1653,6 @@ function mobileSignUpPageStyling() {
   firstNameLabel.textContent = 'First name';
   lastNameLabel.textContent = 'Last name';
   loginLabel.textContent = 'Work email';
-  loginInput.style.borderRadius = '4px';
-  loginInput.style.borderColor = '#DCDCDC';
-  loginInput.style.padding = '12px';
-  loginInput.style.lineHeight = '24px';
   loginInput.setAttribute('placeholder', 'Work email');
   passwordInput.style.borderRadius = '4px';
   passwordInput.style.borderColor = '#DCDCDC';
@@ -1706,9 +1671,6 @@ function mobileSignUpPageStyling() {
   }
 
   signUpBottomBtn.querySelector('span').textContent = 'Sign up';
-
-  loginContent.style.border = '0';
-  tabArrow.style.display = 'none';
 
   const labels = document.querySelectorAll('label');
   labels.forEach((label) => {
