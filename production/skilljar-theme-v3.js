@@ -33,6 +33,7 @@ const view = {
 const globalElements = {
   footer: document.querySelector('#footer-container'),
   signInBtn: document.querySelector('header .login-link'),
+  logoImg: document.querySelector('header .header-center-img'),
 };
 
 function checkWindowWidth() {
@@ -474,8 +475,6 @@ function desktopPathCatalogPageStyling() {
 }
 
 function desktopLessonPageStyling() {
-  const logoImg = document.querySelector('.header-center-img');
-
   const leftNav = document.querySelector('#lp-left-nav');
   const mainLessonContentContainer = document.querySelector('#lp-wrapper');
   const mainLessonContentSubContainer = document.querySelector('#lp-content');
@@ -505,7 +504,7 @@ function desktopLessonPageStyling() {
   const footerCols = footerContainer.querySelectorAll('.global-footer-column');
 
   //STYLE LOGO
-  logoImg.style.height = '24px';
+  globalElements.logoImg.style.height = '24px';
 
   lessonInnerContainer.style.maxWidth = '712px';
   lessonInnerContainer.style.margin = '0 auto';
@@ -720,8 +719,6 @@ function desktopLessonPageStyling() {
 }
 
 function desktopLoginPageStyling() {
-  const logoImg = document.querySelector('.header-center-img');
-
   const fbBtn = document.querySelector('#facebook_login');
   const googleBtn = document.querySelector('#google_login');
   const loginContent = document.querySelector('#login-content');
@@ -761,7 +758,7 @@ function desktopLoginPageStyling() {
   const footerCols = footerContainer.querySelectorAll('.global-footer-column');
 
   //STYLE LOGO
-  logoImg.style.height = '24px';
+  globalElements.logoImg.style.height = '24px';
 
   termsAndServicesText.style.maxWidth = '368px';
   termsAndServicesText.style.fontSize = '14px';
@@ -848,7 +845,6 @@ function desktopLoginPageStyling() {
 }
 
 function desktopSignUpPageStyling() {
-  const logoImg = document.querySelector('.header-center-img');
   const fbBtn = document.querySelector('#facebook_login');
   const googleBtn = document.querySelector('#google_login');
   const loginContent = document.querySelector('#login-content');
@@ -897,7 +893,7 @@ function desktopSignUpPageStyling() {
   signUpForm.append(termsAndServicesText);
 
   //STYLE LOGO
-  logoImg.style.height = '24px';
+  globalElements.logoImg.style.height = '24px';
 
   //STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = 'flex';
@@ -1019,8 +1015,6 @@ function desktopCurriculumPageNoCertificateStyling() {
   // eslint-disable-next-line no-undef
   const courseDescription = skilljarCourse.short_description;
 
-  const logoImg = document.querySelector('.header-center-img');
-
   //HEADER VARIABLES
   const headingParagraph = document.querySelector('.sj-heading-paragraph');
   const headingFloaterText = document.querySelector('.sj-floater-text');
@@ -1072,7 +1066,7 @@ function desktopCurriculumPageNoCertificateStyling() {
     curriculumParentContainer.closest('.content');
 
   //STYLE LOGO
-  logoImg.style.height = '24px';
+  globalElements.logoImg.style.height = '24px';
 
   //TEST
   if (initialLoadComplete) {
@@ -1310,8 +1304,6 @@ function desktopCurriculumPageYesCertificationStyling() {
   const courseDescription = skilljarCourse.short_description;
   console.log('courseDescription: ', courseDescription);
 
-  const logoImg = document.querySelector('.header-center-img');
-
   //HEADER VARIABLES
   const headingParagraph = document.querySelector('.sj-heading-paragraph');
   const headingFloaterText = document.querySelector('.sj-floater-text');
@@ -1352,7 +1344,7 @@ function desktopCurriculumPageYesCertificationStyling() {
     tabsContainer.querySelectorAll('section');
 
   //STYLE LOGO
-  logoImg.style.height = '24px';
+  globalElements.logoImg.style.height = '24px';
 
   //TEST
   if (initialLoadComplete) {
@@ -1556,9 +1548,6 @@ function desktopCurriculumPageYesCertificationStyling() {
 
 //MOBILE VIEW STYLINGS
 function mobileLoginPageStyling() {
-  //NAV VARS
-  const logoImg = document.querySelector('.header-center-img');
-
   const fbBtn = document.querySelector('#facebook_login');
   const googleBtn = document.querySelector('#google_login');
   const loginContent = document.querySelector('#login-content');
@@ -1598,7 +1587,7 @@ function mobileLoginPageStyling() {
   const footerCols = footerContainer.querySelectorAll('.global-footer-column');
 
   //NAV STYLING
-  logoImg.style.maxHeight = '48px';
+  globalElements.logoImg.style.maxHeight = '48px';
 
   termsAndServicesText.style.maxWidth = '368px';
   termsAndServicesText.style.color = '#545454';
@@ -1677,7 +1666,6 @@ function mobileLoginPageStyling() {
 
 function mobileSignUpPageStyling() {
   console.log('SIGN UP PAGE VIEW');
-  const logoImg = document.querySelector('.header-center-img');
   const fbBtn = document.querySelector('#facebook_login');
   const googleBtn = document.querySelector('#google_login');
   const loginContent = document.querySelector('#login-content');
@@ -1727,7 +1715,7 @@ function mobileSignUpPageStyling() {
   signUpForm.append(termsAndServicesText);
 
   //STYLE LOGO
-  logoImg.style.minHeight = '48px';
+  globalElements.logoImg.style.minHeight = '48px';
 
   //STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = 'flex';
@@ -1838,9 +1826,6 @@ function mobileSignUpPageStyling() {
 }
 
 function mobileCourseDetailsPageStyling() {
-  //NAV VARS
-  const navLogoImg = document.querySelector('.header-center-img');
-
   const headerContainer = document.querySelector(
     '.top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2'
   );
@@ -1900,7 +1885,7 @@ function mobileCourseDetailsPageStyling() {
   mobileBodyContent.setAttribute('style', 'display: none !important;');
 
   //NAV STYLING
-  navLogoImg.style.maxHeight = '48px';
+  globalElements.logoImg.style.maxHeight = '48px';
   if (signInHeaderText) {
     signInHeaderText.style.display = 'none';
     signInBtn.setAttribute('style', 'color:#fff !important');
@@ -2086,9 +2071,6 @@ function mobileCourseDetailsPageStyling() {
 function mobileCurriculumPageNoCertificateStyling() {
   'textWrap';
 
-  //NAV VARS
-  const navLogoImg = document.querySelector('.header-center-img');
-
   //HEADER VARIABLES
   const headingParagraph = document.querySelector('.sj-heading-paragraph');
   const headingFloaterText = document.querySelector('.sj-floater-text');
@@ -2157,7 +2139,7 @@ function mobileCurriculumPageNoCertificateStyling() {
   const footerCols = footerContainer.querySelectorAll('.global-footer-column');
 
   //NAV STYLING
-  navLogoImg.style.maxHeight = '48px';
+  globalElements.logoImg.style.maxHeight = '48px';
 
   //STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
   bodyMainContainer.style.display = 'grid';
@@ -2354,9 +2336,6 @@ function mobileCurriculumPageNoCertificateStyling() {
 }
 
 function mobileCurriculumPageYesCertificateStyling() {
-  //NAV VARS
-  const navLogoImg = document.querySelector('.header-center-img');
-
   //HEADER VARIABLES
   const headingParagraph = document.querySelector('.sj-heading-paragraph');
   const headingFloaterText = document.querySelector('.sj-floater-text');
@@ -2423,7 +2402,7 @@ function mobileCurriculumPageYesCertificateStyling() {
   const footerCols = footerContainer.querySelectorAll('.global-footer-column');
 
   //NAV STYLING
-  navLogoImg.style.maxHeight = '48px';
+  globalElements.logoImg.style.maxHeight = '48px';
 
   //STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
   bodyMainContainer.style.display = 'grid';
@@ -2615,9 +2594,6 @@ function mobileCurriculumPageYesCertificateStyling() {
 }
 
 function mobileLessonPageStyling() {
-  //MAIN NAV VARS
-  const navLogoImg = document.querySelector('.header-center-img');
-
   const leftNav = document.querySelector('#lp-left-nav');
   const mainLessonContentContainer = document.querySelector('#lp-wrapper');
   const mainLessonContentSubContainer = document.querySelector('#lp-content');
@@ -2647,7 +2623,7 @@ function mobileLessonPageStyling() {
   const footerCols = footerContainer.querySelectorAll('.global-footer-column');
 
   //MAIN NAV STYLING
-  navLogoImg.style.maxHeight = '48px';
+  globalElements.logoImg.style.maxHeight = '48px';
 
   lessonInnerContainer.style.maxWidth = '712px';
   lessonInnerContainer.style.margin = '0 auto';
