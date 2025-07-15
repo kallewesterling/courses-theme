@@ -4,7 +4,6 @@ const debug = (msg, level = 'log') => {
 
 const lessonView = {};
 
-let initialLoadComplete = false;
 let globalCurriculumSection, globalAboutSection;
 
 const view = {
@@ -34,6 +33,7 @@ const view = {
     : false,
   size: 0,
   viewport: 'desktop',
+  loaded: false,
 };
 
 const globalElements = {
@@ -43,6 +43,12 @@ const globalElements = {
   ),
   signInBtn: document.querySelector('header .login-link'),
   logoImg: document.querySelector('header .header-center-img'),
+
+  // catalog view elements
+  catalog: {
+    content: document.querySelector('#catalog-content'),
+    courseContainer: document.querySelector('#catalog-courses'),
+  }
 };
 
 function insertFooter() {
@@ -97,24 +103,19 @@ function styleGroupHeading(container, variation = 'gray') {
 }
 
 //DESKTOP VIEW STYLINGS
-function desktopCatalogPageStyling() {
-  if (!initialLoadComplete) {
-    debug('desktopCatalogPageStyling called');
-    //create container div for courses catalog list
-    const catalogDiv = document.createElement('div');
-    catalogDiv.style.maxWidth = 'min(1232px, 90%)';
-    catalogDiv.style.margin = '96px auto';
+function initCatalog() {
+  if (!view.loaded) {
+    debug('initCatalog called');
 
-    //create header for list
-    const header = document.createElement('h2');
-    header.textContent = 'All Courses';
-    header.style.fontSize = '48px';
-    header.style.marginBottom = '38px';
+    // Create catalog wrapper and header
+    const catalogWrapper = Object.assign(document.createElement("div"), { id: "catalog-wrapper" });
+    const header = Object.assign(document.createElement("h2"), { textContent: "All Courses" });
+    
+    // Append header and wrapper to the catalog content
+    catalogWrapper.append(header, globalElements.catalog.courseContainer);
+    globalElements.catalog.content.append(catalogWrapper);
 
-    catalogDiv.append(header, document.querySelector('#catalog-courses'));
-    document.querySelector('#catalog-content').append(catalogDiv);
-
-    initialLoadComplete = true;
+    view.loaded = true;
   }
 }
 
@@ -254,7 +255,7 @@ function desktopCourseDetailsPageStyling() {
   });
 
   //COURSE DETAILS CURRICULUM STYLING
-  if (!initialLoadComplete) {
+  if (!view.loaded) {
     // Check if course has Sections/Modules/Parts
     const hasSections = curriculumListContainer.querySelector('.section')
       ? true
@@ -1051,7 +1052,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   globalElements.logoImg.style.height = '24px';
 
   //TEST
-  if (initialLoadComplete) {
+  if (view.loaded) {
     curriculumSection = globalCurriculumSection;
     aboutSection = globalAboutSection;
     tabsContainer.append(curriculumSection, aboutSection);
@@ -1087,7 +1088,7 @@ function desktopCurriculumPageNoCertificateStyling() {
     courseDetailsCardLink.setAttribute('href', btnHref);
   }
 
-  if (!initialLoadComplete) {
+  if (!view.loaded) {
     if (courseDetailCardListItems) {
       courseDetailCardListItems.forEach((li) => {
         const iconClone = checkboxIcon.cloneNode(true);
@@ -1182,7 +1183,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   /////////////////////////////////
   //NEW CURRICULUM DISPLAY STYLING
   /////////////////////////////////
-  if (!initialLoadComplete) {
+  if (!view.loaded) {
     //add vars to global
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
@@ -1328,7 +1329,7 @@ function desktopCurriculumPageYesCertificationStyling() {
   globalElements.logoImg.style.height = '24px';
 
   //TEST
-  if (initialLoadComplete) {
+  if (view.loaded) {
     curriculumSection = globalCurriculumSection;
     aboutSection = globalAboutSection;
     tabsContainer.append(curriculumSection, aboutSection);
@@ -1361,7 +1362,7 @@ function desktopCurriculumPageYesCertificationStyling() {
     courseDetailsCardLink.style.display = 'none';
   }
 
-  if (!initialLoadComplete) {
+  if (!view.loaded) {
     courseDetailCardListItems.forEach((li) => {
       const iconClone = checkboxIcon.cloneNode(true);
       iconClone.style.display = 'block';
@@ -1443,7 +1444,7 @@ function desktopCurriculumPageYesCertificationStyling() {
   /////////////////////////////////
   //NEW CURRICULUM DISPLAY STYLING
   /////////////////////////////////
-  if (!initialLoadComplete) {
+  if (!view.loaded) {
     //set global curriculum and about section vars
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
@@ -1940,7 +1941,7 @@ function mobileCourseDetailsPageStyling() {
   });
 
   //COURSE DETAILS CURRICULUM STYLING
-  if (!initialLoadComplete) {
+  if (!view.loaded) {
     const hasSections = curriculumListContainer.querySelector('.section')
       ? true
       : false;
@@ -2086,7 +2087,7 @@ function mobileCurriculumPageNoCertificateStyling() {
     curriculumParentContainer.closest('.content');
 
   //TEST
-  if (initialLoadComplete) {
+  if (view.loaded) {
     curriculumSection = globalCurriculumSection;
     aboutSection = globalAboutSection;
     tabsContainer.append(curriculumSection, aboutSection);
@@ -2117,7 +2118,7 @@ function mobileCurriculumPageNoCertificateStyling() {
     courseDetailsCardLink.setAttribute('href', btnHref);
   }
 
-  if (!initialLoadComplete) {
+  if (!view.loaded) {
     courseDetailCardListItems.forEach((li) => {
       const iconClone = checkboxIcon.cloneNode(true);
       iconClone.style.display = 'block';
@@ -2202,7 +2203,7 @@ function mobileCurriculumPageNoCertificateStyling() {
   /////////////////////////////////
   //NEW CURRICULUM DISPLAY STYLING
   /////////////////////////////////
-  if (!initialLoadComplete) {
+  if (!view.loaded) {
     //set global curriculum and about section vars
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
@@ -2336,7 +2337,7 @@ function mobileCurriculumPageYesCertificateStyling() {
     tabsContainer.querySelectorAll('section');
 
   //TEST
-  if (initialLoadComplete) {
+  if (view.loaded) {
     curriculumSection = globalCurriculumSection;
     aboutSection = globalAboutSection;
     tabsContainer.append(curriculumSection, aboutSection);
@@ -2371,7 +2372,7 @@ function mobileCurriculumPageYesCertificateStyling() {
 
   courseDetailsCardLink.style.display = 'none';
 
-  if (!initialLoadComplete) {
+  if (!view.loaded) {
     courseDetailCardListItems.forEach((li) => {
       const iconClone = checkboxIcon.cloneNode(true);
       iconClone.style.display = 'block';
@@ -2456,7 +2457,7 @@ function mobileCurriculumPageYesCertificateStyling() {
   /////////////////////////////////
   //NEW CURRICULUM DISPLAY STYLING
   /////////////////////////////////
-  if (!initialLoadComplete) {
+  if (!view.loaded) {
     //set global curriculum and about section vars
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
@@ -2834,7 +2835,7 @@ function handlePageStyling() {
       ? desktopLessonPageStyling()
       : mobileLessonPageStyling();
   } else if (view.isCatalogPage) {
-    view.viewport === 'desktop' ? desktopCatalogPageStyling() : null;
+    initCatalog();
   }
 }
 
@@ -2867,7 +2868,7 @@ function renderCourse() {
 /////
 document.addEventListener('DOMContentLoaded', () => {
   renderCourse();
-  initialLoadComplete = true;
+  view.loaded = true;
 });
 
 /////
