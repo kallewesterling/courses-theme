@@ -693,7 +693,7 @@ function desktopLessonPageStyling() {
   const lessonContentContainer = document.querySelector(
     "sjwc-lesson-content-item"
   );
-  const codeBlocks = lessonContentContainer.querySelectorAll("pre");
+  const codeBlocks = document.querySelectorAll("pre:has(code):not(.language-ansi)");
 
   //FOOTER VARS
   const footerContainer = document.getElementById("footer-container");
