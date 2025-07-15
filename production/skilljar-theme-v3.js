@@ -57,7 +57,7 @@ const pageElements = {
     signupForm: document.querySelector('#signup_form'),
     loginForm: document.querySelector('#login_form'),
     termsAndServices: document.querySelector('#access-message'),
-    email: document.querySelector('#id_login'),
+    email: document.querySelector('input#id_login') || document.querySelector('input#id_email'),
     loginBtn: document.querySelector('#button-sign-in'),
     formPane: document.querySelectorAll('#login-content .large-6.columns')[0],
     buttonPane: document.querySelectorAll('#login-content .large-6.columns')[1],
