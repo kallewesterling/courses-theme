@@ -1,3 +1,4 @@
+const lessonView = {}
 let currentView = "";
 let isCatalogPage,
   isCurriculumPage,
@@ -693,7 +694,7 @@ function desktopLessonPageStyling() {
   const lessonContentContainer = document.querySelector(
     "sjwc-lesson-content-item"
   );
-  const codeBlocks = document.querySelectorAll("pre:has(code):not(.language-ansi)");
+  lessonView.codeBlocks = new Array(...document.querySelectorAll("pre:has(code):not(.language-ansi)")).filter(d => !d.dataset["no-copy"]);
 
   //FOOTER VARS
   const footerContainer = document.getElementById("footer-container");
@@ -854,7 +855,7 @@ function desktopLessonPageStyling() {
     }, 400);
   }
 
-  codeBlocks.forEach((el) => {
+  lessonView.codeBlocks.forEach((el) => {
     //console.log(el);
 
     //WILL NEED TO CLEAN UP THE STYLING OF EL!!!!!!!!!!
@@ -3113,7 +3114,7 @@ function mobileLessonPageStyling() {
   const lessonContentContainer = document.querySelector(
     "sjwc-lesson-content-item"
   );
-  const codeBlocks = document.querySelectorAll("pre:has(code):not(.language-ansi)");
+  lessonView.codeBlocks = new Array(...document.querySelectorAll("pre:has(code):not(.language-ansi)")).filter(d => !d.dataset["no-copy"]);
 
   //FOOTER VARS
   const footerContainer = document.getElementById("footer-container");
