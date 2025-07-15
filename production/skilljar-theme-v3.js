@@ -40,19 +40,13 @@ const globalElements = {
 };
 
 function insertFooter() {
-  let contentContainer;
-
-  if (view.isLessonsPage) {
-    contentContainer = document.querySelector('.sj-page-lesson');
-    if (view.viewport === 'mobile') {
-      globalElements.footer.style.display = 'none';
-    } else {
-      globalElements.footer.style.display = 'flex';
-    }
+  if (view.isLessonsPage && view.viewport === 'mobile') {
+    globalElements.footer.style.display = 'none';
   } else {
-    contentContainer = document.querySelector('#skilljar-content');
     globalElements.footer.style.display = 'flex';
   }
+  
+  let contentContainer = view.isLessonsPage ? document.querySelector('.sj-page-lesson') : document.querySelector('#skilljar-content');
 
   contentContainer.append(globalElements.footer);
 }
