@@ -970,9 +970,6 @@ function desktopLoginPageStyling() {
   //////STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = "flex";
   // tabs.style.backgroundColor = "#F3F3F3";
-  tabs.style.borderRadius = "100px";
-  tabs.style.display = "flex";
-  tabs.style.padding = "4px";
   loginTab.querySelector("span span").textContent = "Log In";
   loginTab.style.border = "0";
   loginTab.style.display = "flex";
@@ -1111,9 +1108,6 @@ function desktopSignUpPageStyling() {
   //////STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = "flex";
   // tabs.style.backgroundColor = "#F3F3F3";
-  tabs.style.borderRadius = "100px";
-  tabs.style.display = "flex";
-  tabs.style.padding = "4px";
   loginTabText.querySelector("span").textContent = "Log In";
   loginTab.style.border = "0";
   loginTab.style.display = "flex";
@@ -1234,6 +1228,7 @@ function desktopSignUpPageStyling() {
 }
 
 function desktopCurriculumPageNoCertificateStyling() {
+  // eslint-disable-next-line no-undef
   const courseDescription = skilljarCourse.short_description;
 
   const logoImg = document.querySelector(".header-center-img");
@@ -1568,6 +1563,7 @@ function desktopCurriculumPageNoCertificateStyling() {
 }
 
 function desktopCurriculumPageYesCertificationStyling() {
+  // eslint-disable-next-line no-undef
   const courseDescription = skilljarCourse.short_description;
   console.log("courseDescription: ", courseDescription);
 
@@ -1921,10 +1917,6 @@ function mobileLoginPageStyling() {
 
   //////STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = "flex";
-  tabs.style.backgroundColor = "#F3F3F3";
-  tabs.style.borderRadius = "100px";
-  tabs.style.display = "flex";
-  tabs.style.padding = "4px";
   loginTab.querySelector("span span").textContent = "Log in";
   loginTab.style.border = "0";
   loginTab.style.display = "flex";
@@ -2051,10 +2043,6 @@ function mobileSignUpPageStyling() {
 
   //////STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = "flex";
-  tabs.style.backgroundColor = "#F3F3F3";
-  tabs.style.borderRadius = "100px";
-  tabs.style.display = "flex";
-  tabs.style.padding = "4px";
   loginTabText.querySelector("span").textContent = "Log in";
   loginTab.style.border = "0";
   loginTab.style.display = "flex";
@@ -2321,7 +2309,6 @@ function mobileCourseDetailsPageStyling() {
 
   //COURSE DETAILS CURRICULUM STYLING
   if (!initialLoadComplete) {
-    let groupIsOpen = false;
     const hasSections = curriculumListContainer.querySelector(".section")
       ? true
       : false;
@@ -2610,7 +2597,6 @@ function mobileCurriculumPageNoCertificateStyling() {
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
 
-    let groupIsOpen = false;
     const hasSections = curriculumParentContainer.querySelector("h3")
       ? true
       : false;
@@ -2923,7 +2909,6 @@ function mobileCurriculumPageYesCertificateStyling() {
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
 
-    let groupIsOpen = false;
     const hasSections = curriculumParentContainer.querySelector("h3")
       ? true
       : false;
@@ -3075,9 +3060,6 @@ function mobileLessonPageStyling() {
   );
   /// LESSON BODY VARS
   const lessonInnerContainer = document.getElementById("lesson-main-inner");
-  const quizPage = document.querySelector(
-    ".course-scrollable-content.course-text-content.quiz"
-  );
   const copyIcon = document.querySelector(".copy-icon");
   const lessonContentContainer = document.querySelector(
     "sjwc-lesson-content-item"
@@ -3150,15 +3132,6 @@ function mobileLessonPageStyling() {
   /////////HIDE FULL SCREEN BUTTON
   fullScreenBtn.style.display = "none";
 
-  /////////QUIZ PAGE STYLING
-  if (quizPage) {
-    const quizInitCheckboxIcon = document.querySelector(
-      ".fa.fa-check-square-o.quiz-icon"
-    );
-    //quizInitCheckboxIcon.style.display = "none";
-    //console.log("quizPage", quizPage);
-  }
-
   //SECOND PAGE OF STYLING INSTRUCTIONS FROM 1ST VERSION
   const parentEl = document.querySelector(".sj-page-lesson");
   // const footerContainer = document.getElementById(
@@ -3197,7 +3170,7 @@ function mobileLessonPageStyling() {
     e.target.style.display = "none";
     openIcon.style.display = "inline-block";
   });
-  leftNavMobileOverlay.addEventListener("click", (e) => {
+  leftNavMobileOverlay.addEventListener("click", () => {
     closeIcon.style.display = "none";
     openIcon.style.display = "inline-block";
   });
