@@ -42,10 +42,10 @@ const globalElements = {
 };
 
 function insertFooter() {
+  globalElements.footer.style.display = 'flex';
+
   if (view.isLessonsPage && view.viewport === 'mobile') {
     globalElements.footer.style.display = 'none';
-  } else {
-    globalElements.footer.style.display = 'flex';
   }
 
   let contentContainer = view.isLessonsPage
