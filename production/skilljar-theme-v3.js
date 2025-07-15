@@ -1525,7 +1525,7 @@ function desktopCurriculumPageYesCertificationStyling() {
         styleListItem(
           newListEl,
           curArr[i + 1] ? curArr[i + 1].tagName === 'DIV' : true,
-          blue
+          'blue'
         );
         newListEl.append(el);
         curContainer.append(newListEl);
