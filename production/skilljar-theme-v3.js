@@ -63,34 +63,33 @@ function styleGroupContainer(container, variation = 'gray') {
   container.style.padding = '0';
 }
 
-function styleListItem(lessonEl, isLastChild, variation = 'gray') {
-  lessonEl.style.padding = '24px';
-  lessonEl.style.fontSize = '16px';
-  lessonEl.style.fontWeight = '400';
-  lessonEl.style.lineHeight = '150%';
+function styleListItem(div, isLastChild, variation = 'gray') {
+  div.style.padding = '24px';
+  div.style.fontSize = '16px';
+  div.style.fontWeight = '400';
+  div.style.lineHeight = '150%';
   if (!isLastChild) {
-    lessonEl.style.borderBottom =
+    div.style.borderBottom =
       variation === 'gray' ? '1px solid #DCDCDC' : '2px solid #3443f4';
   }
 }
 
-function styleGroupHeading(groupHeadingContainer, variation = 'gray') {
-  groupHeadingContainer.style.padding = '24px';
-  groupHeadingContainer.style.borderBottom =
+function styleGroupHeading(container, variation = 'gray') {
+  container.style.padding = '24px';
+  container.style.borderBottom =
     variation === 'gray' ? '1px solid #DCDCDC' : '2px solid #3443f4';
 
   //get actual group heading
-  const groupHeading =
-    groupHeadingContainer.querySelector('h3') || groupHeadingContainer;
+  const heading = container.querySelector('h3') || container;
 
-  groupHeading.textContent = groupHeading?.textContent?.trim();
-  groupHeading.style.fontSize = '16px';
-  groupHeading.style.fontFamily = 'Fusiona';
-  groupHeading.style.fontWeight = '500';
-  groupHeading.style.lineHeight = '125%';
-  groupHeading.style.letterSpacing = '-.16px';
-  groupHeading.style.margin = '0';
-  groupHeading.style.textWrap = 'wrap';
+  heading.textContent = heading?.textContent?.trim();
+  heading.style.fontSize = '16px';
+  heading.style.fontFamily = 'Fusiona';
+  heading.style.fontWeight = '500';
+  heading.style.lineHeight = '125%';
+  heading.style.letterSpacing = '-.16px';
+  heading.style.margin = '0';
+  heading.style.textWrap = 'wrap';
 }
 
 //DESKTOP VIEW STYLINGS
@@ -265,12 +264,12 @@ function desktopCourseDetailsPageStyling() {
       styleGroupContainer(curContainer, 'blue');
     }
 
-    function styleListItem(lessonItem, isLastChild) {
+    function styleListItem(div, isLastChild) {
       //display none for icon w/ class 'type-icon'
-      const icon = lessonItem.querySelector('.type-icon');
+      const icon = div.querySelector('.type-icon');
       icon.style.display = 'none';
 
-      const lessonItemText = lessonItem.querySelector('.lesson-wrapper');
+      const lessonItemText = div.querySelector('.lesson-wrapper');
       lessonItemText.style.padding = '24px';
       lessonItemText.style.fontSize = '16px';
       lessonItemText.style.fontWeight = '400';
@@ -296,13 +295,13 @@ function desktopCourseDetailsPageStyling() {
       } else {
         // else, normal/expected behaviour
         //transfer inner html of current list item to new created div
-        const newListItem = document.createElement('div');
-        newListItem.innerHTML = curListItem.innerHTML;
+        const div = document.createElement('div');
+        div.innerHTML = curListItem.innerHTML;
         styleListItem(
-          newListItem,
+          div,
           arr[i + 1] ? arr[i + 1].classList.contains('section') : true
         );
-        curContainer.append(newListItem);
+        curContainer.append(div);
       }
       curListItem.style.display = 'none';
     });
@@ -1229,16 +1228,16 @@ function desktopCurriculumPageNoCertificateStyling() {
       } else {
         // else, normal/expected behaviour
         //transfer inner html of current list item to new created div
-        const newListEl = document.createElement('div');
+        const div = document.createElement('div');
         styleListItem(
-          newListEl,
+          div,
           curArr[i + 1] ? curArr[i + 1].tagName === 'DIV' : true
         );
 
         el.querySelector('.title').style.textWrap = 'wrap';
 
-        newListEl.append(el);
-        curContainer.append(newListEl);
+        div.append(el);
+        curContainer.append(div);
       }
     });
 
@@ -1489,14 +1488,14 @@ function desktopCurriculumPageYesCertificationStyling() {
       } else {
         // else, normal/expected behaviour
         //transfer inner html of current list item to new created div
-        const newListEl = document.createElement('div');
+        const div = document.createElement('div');
         styleListItem(
-          newListEl,
+          div,
           curArr[i + 1] ? curArr[i + 1].tagName === 'DIV' : true,
           'blue'
         );
-        newListEl.append(el);
-        curContainer.append(newListEl);
+        div.append(el);
+        curContainer.append(div);
       }
     });
 
@@ -1950,12 +1949,12 @@ function mobileCourseDetailsPageStyling() {
       styleGroupContainer(curContainer);
     }
 
-    function styleListItem(lessonItem, isLastChild) {
+    function styleListItem(div, isLastChild) {
       //display none for icon w/ class 'type-icon'
-      const icon = lessonItem.querySelector('.type-icon');
+      const icon = div.querySelector('.type-icon');
       icon.style.display = 'none';
 
-      const lessonItemText = lessonItem.querySelector('.lesson-wrapper');
+      const lessonItemText = div.querySelector('.lesson-wrapper');
       lessonItemText.style.padding = '24px';
       lessonItemText.style.fontSize = '16px';
       lessonItemText.style.fontWeight = '400';
@@ -1992,13 +1991,13 @@ function mobileCourseDetailsPageStyling() {
       } else {
         // else, normal/expected behaviour
         //transfer inner html of current list item to new created div
-        const newListItem = document.createElement('div');
-        newListItem.innerHTML = curListItem.innerHTML;
+        const div = document.createElement('div');
+        div.innerHTML = curListItem.innerHTML;
         styleListItem(
-          newListItem,
+          div,
           arr[i + 1] ? arr[i + 1].classList.contains('section') : true
         );
-        curContainer.append(newListItem);
+        curContainer.append(div);
       }
       curListItem.style.display = 'none';
     });
@@ -2248,16 +2247,16 @@ function mobileCurriculumPageNoCertificateStyling() {
       } else {
         // else, normal/expected behaviour
         //transfer inner html of current list item to new created div
-        const newListEl = document.createElement('div');
+        const div = document.createElement('div');
         styleListItem(
-          newListEl,
+          div,
           curArr[i + 1] ? curArr[i + 1].tagName === 'DIV' : true
         );
         //styling for mobile
         el.querySelector('.title').style.textWrap = 'wrap';
 
-        newListEl.append(el);
-        curContainer.append(newListEl);
+        div.append(el);
+        curContainer.append(div);
       }
     });
 
@@ -2502,16 +2501,16 @@ function mobileCurriculumPageYesCertificateStyling() {
       } else {
         // else, normal/expected behaviour
         //transfer inner html of current list item to new created div
-        const newListEl = document.createElement('div');
+        const div = document.createElement('div');
         styleListItem(
-          newListEl,
+          div,
           curArr[i + 1] ? curArr[i + 1].tagName === 'DIV' : true
         );
         //styling for mobile
         el.querySelector('.title').style.textWrap = 'wrap';
 
-        newListEl.append(el);
-        curContainer.append(newListEl);
+        div.append(el);
+        curContainer.append(div);
       }
     });
 
