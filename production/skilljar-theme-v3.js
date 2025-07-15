@@ -32,6 +32,7 @@ const view = {
 
 const globalElements = {
   footer: document.querySelector('#footer-container'),
+  footerCols: document.querySelectorAll('#footer-container .global-footer-column'),
   signInBtn: document.querySelector('header .login-link'),
   logoImg: document.querySelector('header .header-center-img'),
 };
@@ -501,7 +502,6 @@ function desktopLessonPageStyling() {
 
   //FOOTER VARS
   const footerContainer = document.querySelector('#footer-container');
-  const footerCols = footerContainer.querySelectorAll('.global-footer-column');
 
   //STYLE LOGO
   globalElements.logoImg.style.height = '24px';
@@ -711,9 +711,9 @@ function desktopLessonPageStyling() {
   }
 
   //FOOTER STYLING
-  footerContainer.style.paddingLeft = '40px';
+  globalElements.footer.style.paddingLeft = '40px';
   footerContainer.style.paddingRight = '40px';
-  footerCols.forEach((col) => {
+  globalElements.footerCols.forEach((col) => {
     col.style.width = '270px';
   });
 }
@@ -752,10 +752,6 @@ function desktopLoginPageStyling() {
     loginBottomBtn.closest('.large-12.columns');
 
   const loginForm = document.querySelector('#login_form');
-
-  //FOOTER VARS
-  const footerContainer = document.querySelector('#footer-container');
-  const footerCols = footerContainer.querySelectorAll('.global-footer-column');
 
   //STYLE LOGO
   globalElements.logoImg.style.height = '24px';
@@ -837,9 +833,9 @@ function desktopLoginPageStyling() {
   tabArrow.style.display = 'none';
 
   //FOOTER STYLING
-  footerContainer.style.paddingLeft = '40px';
-  footerContainer.style.paddingRight = '40px';
-  footerCols.forEach((col) => {
+  globalElements.footer.style.paddingLeft = '40px';
+  globalElements.footer.style.paddingRight = '40px';
+  globalElements.footerCols.forEach((col) => {
     col.style.width = '270px';
   });
 }
@@ -882,10 +878,6 @@ function desktopSignUpPageStyling() {
   const passwordInput2 = document.querySelector('#id_password2');
   const signUpBottomBtn = document.querySelector('#button-sign-up');
   const signUpForm = document.querySelector('#signup_form');
-
-  //FOOTER VARS
-  const footerContainer = document.querySelector('#footer-container');
-  const footerCols = footerContainer.querySelectorAll('.global-footer-column');
 
   termsAndServicesText.style.maxWidth = '368px';
   termsAndServicesText.style.color = '#545454';
@@ -1004,9 +996,9 @@ function desktopSignUpPageStyling() {
   });
 
   //FOOTER STYLING
-  footerContainer.style.paddingLeft = '40px';
-  footerContainer.style.paddingRight = '40px';
-  footerCols.forEach((col) => {
+  globalElements.footer.style.paddingLeft = '40px';
+  globalElements.footer.style.paddingRight = '40px';
+  globalElements.footerCols.forEach((col) => {
     col.style.width = '270px';
   });
 }
@@ -1582,10 +1574,6 @@ function mobileLoginPageStyling() {
 
   const loginForm = document.querySelector('#login_form');
 
-  //FOOTER VARS
-  const footerContainer = document.querySelector('#footer-container');
-  const footerCols = footerContainer.querySelectorAll('.global-footer-column');
-
   //NAV STYLING
   globalElements.logoImg.style.maxHeight = '48px';
 
@@ -1657,9 +1645,9 @@ function mobileLoginPageStyling() {
   tabArrow.style.display = 'none';
 
   //FOOTER STYLING
-  footerContainer.style.paddingLeft = 0;
-  footerContainer.style.paddingRight = 0;
-  footerCols.forEach((col) => {
+  globalElements.footer.style.paddingLeft = 0;
+  globalElements.footer.style.paddingRight = 0;
+  globalElements.footerCols.forEach((col) => {
     col.style.width = '212px';
   });
 }
@@ -1704,10 +1692,6 @@ function mobileSignUpPageStyling() {
   const passwordInput2 = document.querySelector('#id_password2');
   const signUpBottomBtn = document.querySelector('#button-sign-up');
   const signUpForm = document.querySelector('#signup_form');
-
-  //FOOTER VARS
-  const footerContainer = document.querySelector('#footer-container');
-  const footerCols = footerContainer.querySelectorAll('.global-footer-column');
 
   termsAndServicesText.style.maxWidth = '368px';
   termsAndServicesText.style.color = '#545454';
@@ -1818,9 +1802,9 @@ function mobileSignUpPageStyling() {
   });
 
   //FOOTER STYLING
-  footerContainer.style.paddingLeft = 0;
-  footerContainer.style.paddingRight = 0;
-  footerCols.forEach((col) => {
+  globalElements.footer.style.paddingLeft = 0;
+  globalElements.footer.style.paddingRight = 0;
+  globalElements.footerCols.forEach((col) => {
     col.style.width = '212px';
   });
 }
@@ -1876,10 +1860,6 @@ function mobileCourseDetailsPageStyling() {
   const courseDetailsCardLink = document.querySelector(
     '.course-details-card-link'
   );
-
-  //FOOTER VARS
-  const footerContainer = document.querySelector('#footer-container');
-  const footerCols = footerContainer.querySelectorAll('.global-footer-column');
 
   backToCatalogBtn.style.display = 'none';
   mobileBodyContent.setAttribute('style', 'display: none !important;');
@@ -2061,16 +2041,14 @@ function mobileCourseDetailsPageStyling() {
   courseDetailCardContainer.style.justifySelf = 'center';
 
   //FOOTER STYLING
-  footerContainer.style.paddingLeft = 0;
-  footerContainer.style.paddingRight = 0;
-  footerCols.forEach((col) => {
+  globalElements.footer.style.paddingLeft = 0;
+  globalElements.footer.style.paddingRight = 0;
+  globalElements.footerCols.forEach((col) => {
     col.style.width = '212px';
   });
 }
 
 function mobileCurriculumPageNoCertificateStyling() {
-  'textWrap';
-
   //HEADER VARIABLES
   const headingParagraph = document.querySelector('.sj-heading-paragraph');
   const headingFloaterText = document.querySelector('.sj-floater-text');
@@ -2133,10 +2111,6 @@ function mobileCurriculumPageNoCertificateStyling() {
   const courseDetailsCardLink = document.querySelector(
     '.course-details-card-link'
   );
-
-  //FOOTER VARS
-  const footerContainer = document.querySelector('#footer-container');
-  const footerCols = footerContainer.querySelectorAll('.global-footer-column');
 
   //NAV STYLING
   globalElements.logoImg.style.maxHeight = '48px';
@@ -2328,9 +2302,9 @@ function mobileCurriculumPageNoCertificateStyling() {
   });
 
   //FOOTER STYLING
-  footerContainer.style.paddingLeft = 0;
-  footerContainer.style.paddingRight = 0;
-  footerCols.forEach((col) => {
+  globalElements.footer.style.paddingLeft = 0;
+  globalElements.footer.style.paddingRight = 0;
+  globalElements.footerCols.forEach((col) => {
     col.style.width = '212px';
   });
 }
@@ -2396,10 +2370,6 @@ function mobileCurriculumPageYesCertificateStyling() {
   const courseDetailsCardLink = document.querySelector(
     '.course-details-card-link'
   );
-
-  //FOOTER VARS
-  const footerContainer = document.querySelector('#footer-container');
-  const footerCols = footerContainer.querySelectorAll('.global-footer-column');
 
   //NAV STYLING
   globalElements.logoImg.style.maxHeight = '48px';
@@ -2586,9 +2556,9 @@ function mobileCurriculumPageYesCertificateStyling() {
   });
 
   //FOOTER STYLING
-  footerContainer.style.paddingLeft = 0;
-  footerContainer.style.paddingRight = 0;
-  footerCols.forEach((col) => {
+  globalElements.footer.style.paddingLeft = 0;
+  globalElements.footer.style.paddingRight = 0;
+  globalElements.footerCols.forEach((col) => {
     col.style.width = '212px';
   });
 }
@@ -2617,10 +2587,6 @@ function mobileLessonPageStyling() {
   lessonView.codeBlocks = new Array(
     ...document.querySelectorAll('pre:has(code):not(.language-ansi)')
   ).filter((d) => !d.dataset['no-copy']);
-
-  //FOOTER VARS
-  const footerContainer = document.querySelector('#footer-container');
-  const footerCols = footerContainer.querySelectorAll('.global-footer-column');
 
   //MAIN NAV STYLING
   globalElements.logoImg.style.maxHeight = '48px';
@@ -2685,7 +2651,7 @@ function mobileLessonPageStyling() {
   //SECOND PAGE OF STYLING INSTRUCTIONS FROM 1ST VERSION
   const parentEl = document.querySelector('.sj-page-lesson');
 
-  footerContainer.style.marginTop = '0';
+  globalElements.footer.style.marginTop = '0';
 
   const openIcon = document.querySelector('.fa.fa-bars');
   const searchIcon = document.querySelector('.fa.fa-search');
@@ -2841,9 +2807,9 @@ function mobileLessonPageStyling() {
   });
 
   //FOOTER STYLING
-  footerContainer.style.paddingLeft = 0;
-  footerContainer.style.paddingRight = 0;
-  footerCols.forEach((col) => {
+  globalElements.footer.style.paddingLeft = 0;
+  globalElements.footer.style.paddingRight = 0;
+  globalElements.footerCols.forEach((col) => {
     col.style.width = '212px';
   });
 }
