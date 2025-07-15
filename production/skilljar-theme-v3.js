@@ -51,13 +51,6 @@ function getCurrentPage() {
     : false;
 }
 
-function getWidthAndCurrentPage() {
-  return {
-    width: checkWindowWidth(),
-    currentPage: getCurrentPage(),
-  };
-}
-
 function insertFooter(isLessonsPage = false) {
   const footerEl = document.getElementById("footer-container");
   let contentContainer;
@@ -2808,7 +2801,7 @@ function mobileLessonPageStyling() {
   mainLessonMainContainer.style.paddingTop = "0";
 
   navOpenIcon.style.position = "sticky";
-  const { width } = getWidthAndCurrentPage();
+  const width = checkWindowWidth();
   if (width >= 767) {
     navOpenIcon.style.top = "24px";
   } else {
@@ -3059,7 +3052,7 @@ function handlePageStyling(
 }
 
 function renderCourse() {
-  const { width } = getWidthAndCurrentPage();
+  const width = checkWindowWidth();
 
   if (width <= 991 && !(currentView === "mobile")) {
     currentView = "mobile";
