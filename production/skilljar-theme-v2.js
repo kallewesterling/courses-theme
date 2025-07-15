@@ -694,7 +694,7 @@ function desktopLessonPageStyling() {
   const lessonContentContainer = document.querySelector(
     "sjwc-lesson-content-item"
   );
-  lessonView.codeBlocks = new Array(...document.querySelectorAll("pre:has(code):not(.language-ansi)")).filter(d => !d.dataset["no-copy"]);
+  lessonView.codeBlocks = new Array(...document.querySelectorAll("pre:has(code):not(.language-ansi)"));
 
   //FOOTER VARS
   const footerContainer = document.getElementById("footer-container");
@@ -855,7 +855,7 @@ function desktopLessonPageStyling() {
     }, 400);
   }
 
-  lessonView.codeBlocks.forEach((el) => {
+  lessonView.codeBlocks.filter(d => !d.dataset.noCopy).forEach((el) => {
     //console.log(el);
 
     //WILL NEED TO CLEAN UP THE STYLING OF EL!!!!!!!!!!
@@ -3294,7 +3294,7 @@ function mobileLessonPageStyling() {
     }, 400);
   }
 
-  codeBlocks.forEach((el) => {
+  lessonView.codeBlocks.filter(d => !d.dataset.noCopy).forEach((el) => {
     //console.log(el);
 
     //WILL NEED TO CLEAN UP THE STYLING OF EL!!!!!!!!!!
