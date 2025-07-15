@@ -45,10 +45,13 @@ const globalElements = {
   logoImg: document.querySelector('header .header-center-img'),
 
   // catalog view elements
+};
+
+const pageElements = {
   catalog: {
     content: document.querySelector('#catalog-content'),
     courseContainer: document.querySelector('#catalog-courses'),
-  }
+  },
 };
 
 function insertFooter() {
@@ -108,12 +111,16 @@ function initCatalog() {
     debug('initCatalog called');
 
     // Create catalog wrapper and header
-    const catalogWrapper = Object.assign(document.createElement("div"), { id: "catalog-wrapper" });
-    const header = Object.assign(document.createElement("h2"), { textContent: "All Courses" });
-    
+    const catalogWrapper = Object.assign(document.createElement('div'), {
+      id: 'catalog-wrapper',
+    });
+    const header = Object.assign(document.createElement('h2'), {
+      textContent: 'All Courses',
+    });
+
     // Append header and wrapper to the catalog content
-    catalogWrapper.append(header, globalElements.catalog.courseContainer);
-    globalElements.catalog.content.append(catalogWrapper);
+    catalogWrapper.append(header, pageElements.catalog.courseContainer);
+    pageElements.catalog.content.append(catalogWrapper);
 
     view.loaded = true;
   }
