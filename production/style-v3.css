@@ -6,46 +6,13 @@
     url(fonts/BwFusiona-56Medium.woff) format('woff');
 }
 
-/*
-body {
-  visibility: hidden !important;
-    opacity: 0 !important;
-    transition: opacity 0.5s;
-}
-*/
-
-/* START make header gradient color */
-/*
-#header {
-  background: linear-gradient(146deg, rgba(245,246,255,1) 0%, rgba(254,231,254,1) 100%);
-  box-shadow: 0 1px 12px rgba(0,0,0,.2);
-}
-*/
-/* END make header gradient color */
-
-/* Header logo */
 #header .header-center-img.header-logo-svg {
   width: 230px !important;
 }
 
-/* START change sign in button outline and text color */
-/*
-#header #header-right .login-link {
-  border-radius: 4px !important;
-  color: var(--primary-blue-hex) !important;
-  outline: solid 1px #c2c7fc !important;
-}
-*/
-/* END change sign in button outline and text color */
-
-/* START hover button text color */
 #header #header-right .login-link:hover {
   color: var(--primary-white-hex) !important;
 }
-
-/* END hover button text color */
-
-/* GENERAL STYLING */
 
 * {
   font-family: 'Lato', sans-serif;
@@ -105,10 +72,6 @@ label {
   border-color: var(--primary-blue-hex) !important;
 }
 
-/* SPECIFIC STYLING */
-
-/* CUR PAGE NAV START */
-
 #header-right .login-link {
   transition: all 0.2s ease-in;
   font-size: 14px;
@@ -122,11 +85,6 @@ label {
   border-color: var(--primary-blue-hex) !important;
 }
 
-/* CUR PAGE NAV END */
-
-/* BANNER W/ BACKGROUND START*/
-
-/* course details pg */
 #skilljar-content
   .top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2[style='background-color: rgb(208, 207, 238); margin: 0px; max-width: none; padding-top: 96px; padding-bottom: 96px; border: 0px;'] {
   position: relative;
@@ -151,14 +109,12 @@ label {
   .top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2[style='background-color: rgb(208, 207, 238); margin: 0px; max-width: none; padding-top: 96px; padding-bottom: 96px; border: 0px;']::before {
   background-image: url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png);
   background-size: cover;
-  /* opacity: 0.15; */
   mix-blend-mode: multiply;
   content: '';
   position: absolute;
   inset: 0;
 }
 
-/* curriculum pg */
 #skilljar-content
   .top-row-grey.top-row-white-v2.padding-side.row-v2[style='max-width: none; padding: 0px; background-color: rgb(208, 207, 238); border: 0px;'] {
   position: relative;
@@ -183,16 +139,11 @@ label {
   .top-row-grey.top-row-white-v2.padding-side.row-v2[style='max-width: none; padding: 0px; background-color: rgb(208, 207, 238); border: 0px;']::before {
   background-image: url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png);
   background-size: cover;
-  /* opacity: 0.15; */
   mix-blend-mode: multiply;
   content: '';
   position: absolute;
   inset: 0;
 }
-
-/* BANNER W/ BACKGROUND END*/
-
-/* COURSE CATALOG PAGE STYLING START */
 
 .sj-page-catalog .no-catalog-filters .catalog-center-width,
 .catalog-filters .catalog-center-width {
@@ -201,22 +152,28 @@ label {
   padding: 0;
 }
 
-#catalog-content #catalog-courses {
-  justify-content: start;
+#catalog-content {
+
+  #catalog-wrapper {
+    max-width: min(1232px, 90%) !important;
+    margin: 96px auto !important;
+
+    h2 {
+        font-size: 48px !important;
+        margin-bottom: 38px !important;        
+    }
+    
+    #catalog-courses {
+      justify-content: start;
+      gap: 24px;
+    }
+  }
 }
-
-/* COURSE CATALOG PAGE STYLING END */
-
-/* PATH CATALOG PAGE STYLING START */
 
 .expandable-view
   a.coursebox-container[title='Claim your Container Crusader Credential']::after {
   content: none;
 }
-
-/* PATH CATALOG PAGE STYLING END */
-
-/* LOGIN/SIGN UP BTNS STYLE START*/
 
 #button-sign-in,
 #button-sign-up {
@@ -228,8 +185,6 @@ label {
   background-color: var(--primary-blue-hex) !important;
   color: var(--primary-white-hex) !important;
 }
-
-/* LOGIN/SIGN UP BTNS STYLE END*/
 
 .global-footer-column {
   width: 270px;
@@ -326,9 +281,6 @@ label {
   transition: all 0.2s !important;
 }
 
-/* .card-button:hover {
-    background-color: #2a36c3;
-  } */
 #cp-content::before,
 #cp-content::after,
 .row.dp-row-flex-v2::before,
@@ -406,11 +358,6 @@ body .lesson-page #lp-wrapper #lesson-body .lesson-top {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-image: linear-gradient(
-      315deg,
-      rgb(253, 225, 254),
-      rgb(245, 246, 254) 72%
-    ); */
   background-image: none !important;
   border-radius: 8px;
   margin-top: 48px;
@@ -459,8 +406,6 @@ pre[class*='language-'] {
   background: none;
 }
 
-/* LESSON PAGE STYLING START */
-
 .lp-color-scheme-light .lp-left-nav .course-title,
 .lp-color-scheme-light .lp-left-nav .section-title,
 .lesson-page #lp-wrapper #lesson-body,
@@ -481,9 +426,6 @@ pre[class*='language-'] {
   display: none;
 }
 
-/* LESSON PAGE STYLING END */
-
-/* /////// STYLING OF QUIZ PAGES  ///////// */
 .course-scrollable-content.course-text-content.quiz .start-quiz {
   border: 1px solid #dcdcdc;
   border-radius: 8px;
@@ -537,7 +479,6 @@ pre[class*='language-'] {
   margin: 0;
 }
 
-/* STYLING OF QUESTION */
 .course-scrollable-content.course-text-content.quiz .question {
   border: 1px solid #dcdcdc;
   border-radius: 8px;
@@ -572,7 +513,6 @@ pre[class*='language-'] {
   width: 100%;
 }
 
-/* MULTIPLE SELECT ANSWER OPTIONS */
 .course-scrollable-content.course-text-content.quiz
   .question
   .row
@@ -586,7 +526,6 @@ pre[class*='language-'] {
   color: var(--answer-option);
 }
 
-/* SINGLE SELECT ANSWER OPTIONS */
 .course-scrollable-content.course-text-content.quiz
   .question
   .row
@@ -662,22 +601,16 @@ sjwc-lesson-content-item pre code::-webkit-scrollbar {
   display: none;
 }
 
-/* HIDES FOR firefox */
-sjwc-lesson-content-item pre code {
-  scrollbar-width: none;
-}
 
-/* HIDES FOR EDGE & IE */
 sjwc-lesson-content-item pre code {
-  -ms-overflow-style: none;
+  scrollbar-width: none; /* HIDES FOR firefox */
+  -ms-overflow-style: none; /* HIDES FOR EDGE & IE */
 }
-
-/* Chainguard Footer */
-/* formerly in the admin Global Code Snippet */
 
 .lp-footer {
   position: relative;
 }
+
 .footer {
   border-top: 1px solid #d0cfee;
   padding: 63px 0 96px 0;
@@ -691,21 +624,17 @@ sjwc-lesson-content-item pre code {
   max-width: 1232px;
   margin: 0 auto;
   justify-content: space-between;
-  /* MEDIA QUERIES   */
 }
 
 .logo-col-content {
   max-width: 224px;
   flex-shrink: 1;
-  /* MEDIA QUERIES   */
 
   .logo-container {
     margin-bottom: 28px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* MEDIA QUERIES   */
-    /*     max-width: 156px; */
 
     img {
       width: 100%;
@@ -820,7 +749,6 @@ sjwc-lesson-content-item pre code {
 
 .outlink {
   display: flex !important;
-  /*   align-items: center; */
   gap: 14px;
 }
 
@@ -864,11 +792,6 @@ sjwc-lesson-content-item pre code {
   }
 }
 
-/* /Chainguard Footer */
-
-/* Curriculum Page Styling */
-/* formerly in the admin Global Code Snippet */
-
 .sj-heading-paragraph {
   display: none;
   font-size: 16px;
@@ -885,27 +808,14 @@ sjwc-lesson-content-item pre code {
   color: #7545fb;
 }
 
-/* /Curriculum Page Styling */
-
-/* COPY-CODEBLOCK-ICON SVG */
-/* formerly in the admin Global Code Snippet */
-
 .copy-icon,
 .checkbox-icon {
   display: none;
 }
 
-/* /COPY-CODEBLOCK-ICON SVG */
-
-/* 2 courses per column on front page */
-
 .sj-page-catalog .coursebox-container {
   width: calc(50% - 24px) !important;
   margin: 0;
-}
-
-.sj-page-catalog #catalog-content #catalog-courses {
-  gap: 24px;
 }
 
 .sj-page-catalog .catalog-hero {
