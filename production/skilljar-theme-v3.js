@@ -419,8 +419,6 @@ function desktopPathCourseDetailsPageStyling() {
   bodyContainer.style.margin = '96px auto 46px auto';
   bodyContainer.style.maxWidth = 'min(1152px, 90%)';
   catalogContainer.style.marginBottom = '85px';
-
-  console.log('reached end of path func');
 }
 
 function desktopPathCatalogPageStyling() {
@@ -1286,7 +1284,6 @@ function desktopCurriculumPageNoCertificateStyling() {
 function desktopCurriculumPageYesCertificationStyling() {
   // eslint-disable-next-line no-undef
   const courseDescription = skilljarCourse.short_description;
-  console.log('courseDescription: ', courseDescription);
 
   //HEADER VARIABLES
   const headingParagraph = document.querySelector('.sj-heading-paragraph');
@@ -1645,7 +1642,6 @@ function mobileLoginPageStyling() {
 }
 
 function mobileSignUpPageStyling() {
-  console.log('SIGN UP PAGE VIEW');
   const fbBtn = document.querySelector('#facebook_login');
   const googleBtn = document.querySelector('#google_login');
   const loginContent = document.querySelector('#login-content');
@@ -2258,9 +2254,7 @@ function mobileCurriculumPageNoCertificateStyling() {
           curArr[i + 1] ? curArr[i + 1].tagName === 'DIV' : true
         );
         //styling for mobile
-        console.log('wrap ran');
         el.querySelector('.title').style.textWrap = 'wrap';
-        console.log('wrap ran DONE');
 
         newListEl.append(el);
         curContainer.append(newListEl);
@@ -2872,7 +2866,6 @@ function renderCourse() {
 //EVENT TO HANDLE FIRST/INITIAL RENDERING
 /////
 document.addEventListener('DOMContentLoaded', () => {
-  //console.log("DOM LOADED");
   renderCourse();
   initialLoadComplete = true;
 });
