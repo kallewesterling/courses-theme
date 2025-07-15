@@ -1,15 +1,16 @@
 const lessonView = {}
 let currentView = "";
-let isCatalogPage,
-  isCurriculumPage,
-  isCourseDetailsPage,
-  isPageDetailPath,
-  isPageCatalogPath,
-  isLessonsPage,
-  isLoginPage,
-  isSignUpPage;
 let initialLoadComplete = false;
 let globalCurriculumSection, globalAboutSection;
+
+const isCatalogPage = document.querySelector(".sj-page-catalog.sj-page-catalog-root") ? true : false,
+  isCurriculumPage = document.querySelector(".sj-page-curriculum") ? true : false,
+  isCourseDetailsPage = document.querySelector(".sj-page-detail.sj-page-detail-course") ? true : false,
+  isLessonsPage = document.querySelector(".sj-page-lesson") ? true : false,
+  isLoginPage = document.querySelector(".sj-page-login") ? true : false,
+  isSignUpPage = document.querySelector(".sj-page-signup") ? true : false,
+  isPageDetailPath = document.querySelector(".sj-page-detail.sj-page-detail-bundle.sj-page-detail-path") ? true : false,
+  isPageCatalogPath = document.querySelector(".sj-page-catalog.sj-page-series.sj-page-path") ? true : false;
 
 function checkWindowWidth() {
   return (
@@ -19,37 +20,6 @@ function checkWindowWidth() {
   );
 }
 
-function getCurrentPage() {
-  //THIS FUNCTION SEEMS TO JUST REWRITE THE GLOBAL VARS
-  isCatalogPage = document.querySelector(
-    ".sj-page-catalog.sj-page-catalog-root"
-  )
-    ? true
-    : false;
-  isCurriculumPage = document.querySelector(".sj-page-curriculum")
-    ? true
-    : false;
-  isCourseDetailsPage = document.querySelector(
-    ".sj-page-detail.sj-page-detail-course"
-  )
-    ? true
-    : false;
-  isLessonsPage = document.querySelector(".sj-page-lesson") ? true : false;
-  isLoginPage = document.querySelector(".sj-page-login") ? true : false;
-  isSignUpPage = document.querySelector(".sj-page-signup") ? true : false;
-
-  //PATH PAGES
-  isPageDetailPath = document.querySelector(
-    ".sj-page-detail.sj-page-detail-bundle.sj-page-detail-path"
-  )
-    ? true
-    : false;
-  isPageCatalogPath = document.querySelector(
-    ".sj-page-catalog.sj-page-series.sj-page-path"
-  )
-    ? true
-    : false;
-}
 
 function insertFooter(isLessonsPage = false) {
   const footerEl = document.getElementById("footer-container");
