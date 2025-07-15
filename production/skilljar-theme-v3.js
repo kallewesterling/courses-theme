@@ -1,3 +1,7 @@
+const debug = (msg, level = 'log') => {
+  if (location.hostname.indexOf('skilljar')) console[level](msg);
+};
+
 const lessonView = {};
 
 let initialLoadComplete = false;
@@ -94,24 +98,21 @@ function styleGroupHeading(container, variation = 'gray') {
 
 //DESKTOP VIEW STYLINGS
 function desktopCatalogPageStyling() {
-  //grab variables
-  const catalogBodyParentContainer = document.querySelector('#catalog-content');
-  const catalogContainer = document.querySelector('#catalog-courses');
-
   if (!initialLoadComplete) {
+    debug('desktopCatalogPageStyling called');
     //create container div for courses catalog list
-    const catalogContentContainer = document.createElement('div');
-    catalogContentContainer.style.maxWidth = 'min(1232px, 90%)';
-    catalogContentContainer.style.margin = '96px auto';
+    const catalogDiv = document.createElement('div');
+    catalogDiv.style.maxWidth = 'min(1232px, 90%)';
+    catalogDiv.style.margin = '96px auto';
 
     //create header for list
-    const allCoursesHeader = document.createElement('h2');
-    allCoursesHeader.textContent = 'All Courses';
-    allCoursesHeader.style.fontSize = '48px';
-    allCoursesHeader.style.marginBottom = '38px';
+    const header = document.createElement('h2');
+    header.textContent = 'All Courses';
+    header.style.fontSize = '48px';
+    header.style.marginBottom = '38px';
 
-    catalogContentContainer.append(allCoursesHeader, catalogContainer);
-    catalogBodyParentContainer.append(catalogContentContainer);
+    catalogDiv.append(header, document.querySelector('#catalog-courses'));
+    document.querySelector('#catalog-content').append(catalogDiv);
 
     initialLoadComplete = true;
   }
