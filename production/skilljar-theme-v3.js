@@ -58,17 +58,6 @@ function getWidthAndCurrentPage() {
   };
 }
 
-function makeContentVisible() {
-  const body = document.querySelector("body");
-
-  if (!body.classList.contains("sj-page-catalog")) {
-    body.setAttribute(
-      "style",
-      "visibility: visible !important; opacity: 1 !important"
-    );
-  }
-}
-
 function insertFooter(isLessonsPage = false) {
   const footerEl = document.getElementById("footer-container");
   let contentContainer;
@@ -86,12 +75,6 @@ function insertFooter(isLessonsPage = false) {
   }
 
   contentContainer.append(footerEl);
-}
-
-function removeSJFooter(isLessonsPage = false) {
-  if (!isLessonsPage) {
-    document.getElementById("ep-footer").style.display = "none";
-  }
 }
 
 //DESKTOP VIEW STYLINGS
@@ -3112,9 +3095,20 @@ function renderCourse() {
     );
   }
 
-  removeSJFooter(isLessonsPage);
+  if (!isLessonsPage) {
+    document.getElementById("ep-footer").style.display = "none";
+  }
+
   insertFooter(isLessonsPage);
-  makeContentVisible();
+  
+  //Make sure body is visible after rendering
+  const body = document.querySelector("body");
+  if (!body.classList.contains("sj-page-catalog")) {
+    body.setAttribute(
+      "style",
+      "visibility: visible !important; opacity: 1 !important"
+    );
+  }
 }
 
 /////
