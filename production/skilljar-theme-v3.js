@@ -34,7 +34,9 @@ const view = {
 
 const globalElements = {
   footer: document.querySelector('#footer-container'),
-  footerCols: document.querySelectorAll('#footer-container .global-footer-column'),
+  footerCols: document.querySelectorAll(
+    '#footer-container .global-footer-column'
+  ),
   signInBtn: document.querySelector('header .login-link'),
   logoImg: document.querySelector('header .header-center-img'),
 };
@@ -45,8 +47,10 @@ function insertFooter() {
   } else {
     globalElements.footer.style.display = 'flex';
   }
-  
-  let contentContainer = view.isLessonsPage ? document.querySelector('.sj-page-lesson') : document.querySelector('#skilljar-content');
+
+  let contentContainer = view.isLessonsPage
+    ? document.querySelector('.sj-page-lesson')
+    : document.querySelector('#skilljar-content');
 
   contentContainer.append(globalElements.footer);
 }
@@ -2841,13 +2845,12 @@ function handlePageStyling() {
 }
 
 function renderCourse() {
-  view.width = (
+  view.width =
     window.innerWidth ||
     document.documentElement.clientWidth ||
-    document.body.clientWidth
-  )
+    document.body.clientWidth;
 
-  view.viewport = view.width <= 991 ? "mobile" : "desktop";
+  view.viewport = view.width <= 991 ? 'mobile' : 'desktop';
   handlePageStyling();
 
   if (!view.isLessonsPage) {
