@@ -1,22 +1,38 @@
-const lessonView = {}
+const lessonView = {};
 let currentView = "";
 let initialLoadComplete = false;
 let globalCurriculumSection, globalAboutSection;
 
 const view = {
-  isCatalogPage: document.querySelector(".sj-page-catalog.sj-page-catalog-root") ? true : false,
-  isCurriculumPage: document.querySelector(".sj-page-curriculum") ? true : false,
-  isCourseDetailsPage: document.querySelector(".sj-page-detail.sj-page-detail-course") ? true : false,
+  isCatalogPage: document.querySelector(".sj-page-catalog.sj-page-catalog-root")
+    ? true
+    : false,
+  isCurriculumPage: document.querySelector(".sj-page-curriculum")
+    ? true
+    : false,
+  isCourseDetailsPage: document.querySelector(
+    ".sj-page-detail.sj-page-detail-course"
+  )
+    ? true
+    : false,
   isLessonsPage: document.querySelector(".sj-page-lesson") ? true : false,
   isLoginPage: document.querySelector(".sj-page-login") ? true : false,
   isSignUpPage: document.querySelector(".sj-page-signup") ? true : false,
-  isPageDetailPath: document.querySelector(".sj-page-detail.sj-page-detail-bundle.sj-page-detail-path") ? true : false,
-  isPageCatalogPath: document.querySelector(".sj-page-catalog.sj-page-series.sj-page-path") ? true : false,
-}
+  isPageDetailPath: document.querySelector(
+    ".sj-page-detail.sj-page-detail-bundle.sj-page-detail-path"
+  )
+    ? true
+    : false,
+  isPageCatalogPath: document.querySelector(
+    ".sj-page-catalog.sj-page-series.sj-page-path"
+  )
+    ? true
+    : false,
+};
 
 const globalElements = {
   footer: document.querySelector("#footer-container"),
-}
+};
 
 function checkWindowWidth() {
   return (
@@ -25,7 +41,6 @@ function checkWindowWidth() {
     document.body.clientWidth
   );
 }
-
 
 function insertFooter() {
   let contentContainer;
@@ -466,7 +481,9 @@ function desktopLessonPageStyling() {
   const lessonContentContainer = document.querySelector(
     "sjwc-lesson-content-item"
   );
-  lessonView.codeBlocks = new Array(...document.querySelectorAll("pre:has(code):not(.language-ansi)"));
+  lessonView.codeBlocks = new Array(
+    ...document.querySelectorAll("pre:has(code):not(.language-ansi)")
+  );
 
   //FOOTER VARS
   const footerContainer = document.querySelector("#footer-container");
@@ -611,60 +628,62 @@ function desktopLessonPageStyling() {
     }, 400);
   }
 
-  lessonView.codeBlocks.filter(d => !d.dataset.noCopy).forEach((el) => {
-    //WILL NEED TO CLEAN UP THE STYLING OF EL!!!!!!!!!!
-    el.style.padding = "0";
-    el.style.overflow = "visible";
-    el.style.position = "relative";
-    const codeEl = el.querySelector("code");
-    codeEl.setAttribute(
-      "style",
-      "display: inline-block; padding: 24px !important; overflow-x: scroll; width: 100%"
-    );
-    const copyText = codeEl.textContent.trim().replace(/^\$ /g,'');
+  lessonView.codeBlocks
+    .filter((d) => !d.dataset.noCopy)
+    .forEach((el) => {
+      //WILL NEED TO CLEAN UP THE STYLING OF EL!!!!!!!!!!
+      el.style.padding = "0";
+      el.style.overflow = "visible";
+      el.style.position = "relative";
+      const codeEl = el.querySelector("code");
+      codeEl.setAttribute(
+        "style",
+        "display: inline-block; padding: 24px !important; overflow-x: scroll; width: 100%"
+      );
+      const copyText = codeEl.textContent.trim().replace(/^\$ /g, "");
 
-    //CREATE PARENT CONTAINER & STYLE AS FLEX CONTAINER, COL DIR, AND ALIGN INTEMS START (OR END)
-    const container = document.createElement("div");
-    container.style.display = "flex";
-    container.style.justifyContent = "end";
-    container.style.borderBottom = "1px solid gainsboro";
-    container.style.padding = "12px 24px";
+      //CREATE PARENT CONTAINER & STYLE AS FLEX CONTAINER, COL DIR, AND ALIGN INTEMS START (OR END)
+      const container = document.createElement("div");
+      container.style.display = "flex";
+      container.style.justifyContent = "end";
+      container.style.borderBottom = "1px solid gainsboro";
+      container.style.padding = "12px 24px";
 
-    //CLONE COPYICON EL AND ADD TO CONTAINER
-    const iconClone = copyIcon.cloneNode(true);
-    iconClone.style.display = "block";
-    iconClone.style.cursor = "pointer";
-    container.append(iconClone);
+      //CLONE COPYICON EL AND ADD TO CONTAINER
+      const iconClone = copyIcon.cloneNode(true);
+      iconClone.style.display = "block";
+      iconClone.style.cursor = "pointer";
+      container.append(iconClone);
 
-    //CREATE 'COPIED' TOOLTIP
-    const tooltipContainer = document.createElement("div");
-    tooltipContainer.textContent = "Copied";
-    tooltipContainer.style.position = "absolute";
-    tooltipContainer.style.top = "-24px";
-    tooltipContainer.style.right = "10px";
-    tooltipContainer.style.textShadow = "none";
-    tooltipContainer.style.backgroundColor = "#1c1c1c";
-    tooltipContainer.style.color = "#fff";
-    tooltipContainer.style.padding = "5px 10px";
-    tooltipContainer.style.borderRadius = "4px";
-    tooltipContainer.style.opacity = "0";
-    tooltipContainer.style.transition = "opacity .2s ease-in";
+      //CREATE 'COPIED' TOOLTIP
+      const tooltipContainer = document.createElement("div");
+      tooltipContainer.textContent = "Copied";
+      tooltipContainer.style.position = "absolute";
+      tooltipContainer.style.top = "-24px";
+      tooltipContainer.style.right = "10px";
+      tooltipContainer.style.textShadow = "none";
+      tooltipContainer.style.backgroundColor = "#1c1c1c";
+      tooltipContainer.style.color = "#fff";
+      tooltipContainer.style.padding = "5px 10px";
+      tooltipContainer.style.borderRadius = "4px";
+      tooltipContainer.style.opacity = "0";
+      tooltipContainer.style.transition = "opacity .2s ease-in";
 
-    el.append(tooltipContainer);
+      el.append(tooltipContainer);
 
-    //ADD CONTAINER AS FIRST CHILD IN EL
-    el.prepend(container);
+      //ADD CONTAINER AS FIRST CHILD IN EL
+      el.prepend(container);
 
-    //ADD EVENT LISTENER TO CLONED ICON TO COPY CODE BLOCK INTO CLIPBOARD
-    iconClone.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(copyText);
-        animateCopiedTooltip(tooltipContainer);
-      } catch (err) {
-        console.error("Failed to copy codeblock to clipboard: ", err);
-      }
+      //ADD EVENT LISTENER TO CLONED ICON TO COPY CODE BLOCK INTO CLIPBOARD
+      iconClone.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(copyText);
+          animateCopiedTooltip(tooltipContainer);
+        } catch (err) {
+          console.error("Failed to copy codeblock to clipboard: ", err);
+        }
+      });
     });
-  });
 
   //Makes lesson links pop up in new tab
   lessonContentContainer.querySelectorAll("a").forEach((el) => {
@@ -1442,7 +1461,7 @@ function desktopCurriculumPageYesCertificationStyling() {
   headingParagraph.textContent = courseDescription;
   headingParagraph.style.display = "block";
   headingFloaterText.style.display = "block";
-  
+
   container.append(
     headingFloaterText,
     mainHeading,
@@ -2745,7 +2764,9 @@ function mobileLessonPageStyling() {
   const lessonContentContainer = document.querySelector(
     "sjwc-lesson-content-item"
   );
-  lessonView.codeBlocks = new Array(...document.querySelectorAll("pre:has(code):not(.language-ansi)")).filter(d => !d.dataset["no-copy"]);
+  lessonView.codeBlocks = new Array(
+    ...document.querySelectorAll("pre:has(code):not(.language-ansi)")
+  ).filter((d) => !d.dataset["no-copy"]);
 
   //FOOTER VARS
   const footerContainer = document.querySelector("#footer-container");
@@ -2907,60 +2928,62 @@ function mobileLessonPageStyling() {
     }, 400);
   }
 
-  lessonView.codeBlocks.filter(d => !d.dataset.noCopy).forEach((el) => {
-    //WILL NEED TO CLEAN UP THE STYLING OF EL!!!!!!!!!!
-    el.style.padding = "0";
-    el.style.overflow = "visible";
-    el.style.position = "relative";
-    const codeEl = el.querySelector("code");
-    codeEl.setAttribute(
-      "style",
-      "display: inline-block; padding: 24px !important; overflow-x: scroll; width: 100%"
-    );
-    const copyText = codeEl.textContent.trim().replace(/^\$ /g,'');
+  lessonView.codeBlocks
+    .filter((d) => !d.dataset.noCopy)
+    .forEach((el) => {
+      //WILL NEED TO CLEAN UP THE STYLING OF EL!!!!!!!!!!
+      el.style.padding = "0";
+      el.style.overflow = "visible";
+      el.style.position = "relative";
+      const codeEl = el.querySelector("code");
+      codeEl.setAttribute(
+        "style",
+        "display: inline-block; padding: 24px !important; overflow-x: scroll; width: 100%"
+      );
+      const copyText = codeEl.textContent.trim().replace(/^\$ /g, "");
 
-    //CREATE PARENT CONTAINER & STYLE AS FLEX CONTAINER, COL DIR, AND ALIGN INTEMS START (OR END)
-    const container = document.createElement("div");
-    container.style.display = "flex";
-    container.style.justifyContent = "end";
-    container.style.borderBottom = "1px solid gainsboro";
-    container.style.padding = "12px 24px";
+      //CREATE PARENT CONTAINER & STYLE AS FLEX CONTAINER, COL DIR, AND ALIGN INTEMS START (OR END)
+      const container = document.createElement("div");
+      container.style.display = "flex";
+      container.style.justifyContent = "end";
+      container.style.borderBottom = "1px solid gainsboro";
+      container.style.padding = "12px 24px";
 
-    //CLONE COPYICON EL AND ADD TO CONTAINER
-    const iconClone = copyIcon.cloneNode(true);
-    iconClone.style.display = "block";
-    iconClone.style.cursor = "pointer";
-    container.append(iconClone);
+      //CLONE COPYICON EL AND ADD TO CONTAINER
+      const iconClone = copyIcon.cloneNode(true);
+      iconClone.style.display = "block";
+      iconClone.style.cursor = "pointer";
+      container.append(iconClone);
 
-    //CREATE 'COPIED' TOOLTIP
-    const tooltipContainer = document.createElement("div");
-    tooltipContainer.textContent = "Copied";
-    tooltipContainer.style.position = "absolute";
-    tooltipContainer.style.top = "-24px";
-    tooltipContainer.style.right = "10px";
-    tooltipContainer.style.textShadow = "none";
-    tooltipContainer.style.backgroundColor = "#1c1c1c";
-    tooltipContainer.style.color = "#fff";
-    tooltipContainer.style.padding = "5px 10px";
-    tooltipContainer.style.borderRadius = "4px";
-    tooltipContainer.style.opacity = "0";
-    tooltipContainer.style.transition = "opacity .2s ease-in";
+      //CREATE 'COPIED' TOOLTIP
+      const tooltipContainer = document.createElement("div");
+      tooltipContainer.textContent = "Copied";
+      tooltipContainer.style.position = "absolute";
+      tooltipContainer.style.top = "-24px";
+      tooltipContainer.style.right = "10px";
+      tooltipContainer.style.textShadow = "none";
+      tooltipContainer.style.backgroundColor = "#1c1c1c";
+      tooltipContainer.style.color = "#fff";
+      tooltipContainer.style.padding = "5px 10px";
+      tooltipContainer.style.borderRadius = "4px";
+      tooltipContainer.style.opacity = "0";
+      tooltipContainer.style.transition = "opacity .2s ease-in";
 
-    el.append(tooltipContainer);
+      el.append(tooltipContainer);
 
-    //ADD CONTAINER AS FIRST CHILD IN EL
-    el.prepend(container);
+      //ADD CONTAINER AS FIRST CHILD IN EL
+      el.prepend(container);
 
-    //ADD EVENT LISTENER TO CLONED ICON TO COPY CODE BLOCK INTO CLIPBOARD
-    iconClone.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(copyText);
-        animateCopiedTooltip(tooltipContainer);
-      } catch (err) {
-        console.error("Failed to copy codeblock to clipboard: ", err);
-      }
+      //ADD EVENT LISTENER TO CLONED ICON TO COPY CODE BLOCK INTO CLIPBOARD
+      iconClone.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(copyText);
+          animateCopiedTooltip(tooltipContainer);
+        } catch (err) {
+          console.error("Failed to copy codeblock to clipboard: ", err);
+        }
+      });
     });
-  });
 
   // Makes lesson links pop up in new tab
   lessonContentContainer.querySelectorAll("a").forEach((el) => {
@@ -3030,7 +3053,7 @@ function renderCourse() {
   }
 
   insertFooter();
-  
+
   //Make sure body is visible after rendering
   const body = document.querySelector("body");
   if (!body.classList.contains("sj-page-catalog")) {
