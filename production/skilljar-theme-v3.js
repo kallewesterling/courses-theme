@@ -752,7 +752,7 @@ function desktopLoginPageStyling() {
 }
 
 function desktopSignUpPageStyling() {
-  handleAuthStyle();
+  handleAuthStyle(false);
   const orSignInWithGoogleContainer = document.querySelectorAll(
     '#login-content .row .large-6.columns'
   )[3];
@@ -1449,7 +1449,7 @@ function mobileLoginPageStyling() {
 }
 
 function mobileSignUpPageStyling() {
-  handleAuthStyle();
+  handleAuthStyle(false);
 
   const orSignInWithGoogleContainer = document.querySelectorAll(
     '#login-content .row .large-6.columns'
@@ -2545,7 +2545,9 @@ function mobileLessonPageStyling() {
 }
 
 function handlePageStyling() {
-  if (view.isCourseDetailsPage) {
+  if (view.current === 'catalog') {
+    initCatalog();
+  } else if (view.isCourseDetailsPage) {
     view.viewport === 'desktop'
       ? desktopCourseDetailsPageStyling()
       : mobileCourseDetailsPageStyling();
@@ -2578,8 +2580,6 @@ function handlePageStyling() {
     view.viewport === 'desktop'
       ? desktopLessonPageStyling()
       : mobileLessonPageStyling();
-  } else if (view.isCatalogPage) {
-    initCatalog();
   }
 }
 
@@ -2607,18 +2607,38 @@ function renderCourse() {
   }
 }
 
-/////
-//EVENT TO HANDLE FIRST/INITIAL RENDERING
-/////
 document.addEventListener('DOMContentLoaded', () => {
   renderCourse();
   view.loaded = true;
+
+  if (document.body.classList.contains('sj-page-catalog'))
+    view.current = "catalog";
+
+  if (document.body.classList.contains('sj-page-curriculum'))
+    view.current = "curriculum";
+
+  if (document.body.classList.contains('sj-page-detail-course'))
+    view.current = "courseDetails";
+
+  if (document.body.classList.contains('sj-page-lesson'))
+    view.current = "lesson";
+
+  if (document.body.classList.contains('sj-page-login'))
+    view.current = "login";
+
+  if (document.body.classList.contains('sj-page-signup'))
+    view.current = "signup";
+
+  if (document.body.classList.contains('sj-page-detail-bundle'))
+    view.current = "pathDetails";
+
+  if (document.body.classList.contains('sj-page-catalog-path'))
+    view.current = "pathCatalog";
+
+  if (document.body.classList.contains('sj-page-path'))
+    view.current = "pagePath";
 });
 
-/////
-//EVENT TO HANDLE RESIZING RENDERING
-/////
 window.addEventListener('resize', () => {
-  //BASICALLY SAME FUNCTION AS INIT!! JUST NEEDS TO MAKE SURE FUNC DOESNT GET CALLED UNNECESSARILY! SO USE THE CURRENTVIEW VAR AS REFERENCE!
   renderCourse();
 });

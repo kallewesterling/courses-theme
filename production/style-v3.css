@@ -885,7 +885,7 @@ body.sj-page-signup {
     border: 0;
   }
 
-  #tab-marker-login {
+  #tab-marker-login, #tab-marker-signup {
     display: none;
   }
 
