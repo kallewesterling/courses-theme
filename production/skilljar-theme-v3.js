@@ -1,8 +1,9 @@
 const debug = (msg, level = 'log') => {
-  if (location.hostname.indexOf('skilljar')) console[level](msg);
+  if (location.hostname.indexOf('skilljar')) {
+    if (level === "log") {
+      console[level](msg);
+    }
 };
-
-const lessonView = {};
 
 let globalCurriculumSection, globalAboutSection;
 
@@ -79,6 +80,10 @@ const pageElements = {
       'label[for="id_last_name"] span span'
     ),
   },
+
+  lesson: {
+    codeBlocks: [],
+  }
 };
 
 
@@ -486,12 +491,9 @@ function desktopLessonPageStyling() {
   const lessonContentContainer = document.querySelector(
     'sjwc-lesson-content-item'
   );
-  lessonView.codeBlocks = new Array(
+  pageElements.lesson.codeBlocks = new Array(
     ...document.querySelectorAll('pre:has(code):not(.language-ansi)')
   );
-
-  //FOOTER VARS
-  const footerContainer = document.querySelector('#footer-container');
 
   lessonInnerContainer.style.maxWidth = '712px';
   lessonInnerContainer.style.margin = '0 auto';
@@ -629,7 +631,7 @@ function desktopLessonPageStyling() {
     }, 400);
   }
 
-  lessonView.codeBlocks
+  pageElements.lesson.codeBlocks
     .filter((d) => !d.dataset.noCopy)
     .forEach((el) => {
       //WILL NEED TO CLEAN UP THE STYLING OF EL!!!!!!!!!!
@@ -698,8 +700,6 @@ function desktopLessonPageStyling() {
     prevBtn.style.color = '#14003d';
   }
 
-  //FOOTER STYLING
-  footerContainer.style.paddingRight = '40px';
 }
 
 function desktopLoginPageStyling() {
@@ -2078,7 +2078,7 @@ function mobileLessonPageStyling() {
   const lessonContentContainer = document.querySelector(
     'sjwc-lesson-content-item'
   );
-  lessonView.codeBlocks = new Array(
+  pageElements.lesson.codeBlocks = new Array(
     ...document.querySelectorAll('pre:has(code):not(.language-ansi)')
   ).filter((d) => !d.dataset['no-copy']);
 
@@ -2232,7 +2232,7 @@ function mobileLessonPageStyling() {
     }, 400);
   }
 
-  lessonView.codeBlocks
+  pageElements.lesson.codeBlocks
     .filter((d) => !d.dataset.noCopy)
     .forEach((el) => {
       //WILL NEED TO CLEAN UP THE STYLING OF EL!!!!!!!!!!
