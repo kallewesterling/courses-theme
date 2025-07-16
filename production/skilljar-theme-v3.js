@@ -38,10 +38,6 @@ const view = {
 
 const globalElements = {
   footer: document.querySelector('#footer-container'),
-  signInBtn: document.querySelector('header .login-link'),
-  logoImg: document.querySelector('header .header-center-img'),
-
-  // catalog view elements
 };
 
 const pageElements = {
@@ -85,9 +81,6 @@ const pageElements = {
   },
 };
 
-function insertFooter() {
-  
-}
 
 function styleGroupContainer(container, variation = 'gray') {
   container.style.border =
@@ -204,16 +197,6 @@ function desktopCourseDetailsPageStyling() {
   mobileBodyContent.style.display = 'none';
   if (signInHeaderText) {
     signInHeaderText.style.display = 'none';
-    globalElements.signInBtn.style.backgroundColor = 'transparent';
-    globalElements.signInBtn.style.padding = '8px 12px';
-    globalElements.signInBtn.style.marginRight = '24px';
-    globalElements.signInBtn.style.borderColor = '#3443F4';
-    globalElements.signInBtn.style.border = '2px solid #3443F4';
-    globalElements.signInBtn.style.borderRadius = '999px';
-    globalElements.signInBtn.style.fontSize = '14px';
-    globalElements.signInBtn.style.fontFamily = 'Space Mono';
-    globalElements.signInBtn.style.fontWeight = '700';
-    globalElements.signInBtn.style.lineHeight = '20px';
   }
 
   headerContainer.style.backgroundColor = '#D0CFEE';
@@ -387,16 +370,6 @@ function desktopPathCourseDetailsPageStyling() {
   backToCatalogBtn.style.display = 'none';
   if (signInHeaderText) {
     signInHeaderText.style.display = 'none';
-    globalElements.signInBtn.style.backgroundColor = 'transparent';
-    globalElements.signInBtn.style.padding = '8px 12px';
-    globalElements.signInBtn.style.marginRight = '24px';
-    globalElements.signInBtn.style.borderColor = '#3443F4';
-    globalElements.signInBtn.style.border = '2px solid #3443F4';
-    globalElements.signInBtn.style.borderRadius = '999px';
-    globalElements.signInBtn.style.fontSize = '14px';
-    globalElements.signInBtn.style.fontFamily = 'Space Mono';
-    globalElements.signInBtn.style.fontWeight = '700';
-    globalElements.signInBtn.style.lineHeight = '20px';
   }
 
   headerContainer.style.background =
@@ -726,49 +699,26 @@ function desktopLessonPageStyling() {
   }
 
   //FOOTER STYLING
-  globalElements.footer.style.paddingLeft = '40px';
   footerContainer.style.paddingRight = '40px';
 }
 
 function desktopLoginPageStyling() {
   handleAuthStyle();
   const signUpTab = document.querySelector('#login-tab-right');
-  const signUpTabText = signUpTab.querySelector('a');
-  const loginBottomBtn = document.querySelector('#button-sign-in');
 
   //STYLE THE LOGIN/SIGN UP TABS
   pageElements.auth.tabs.loginBtnText.textContent = 'Log In';
   signUpTab.querySelector('span').textContent = 'Sign Up';
-  signUpTab.style.display = 'flex';
-  signUpTab.style.alignItems = 'center';
-  signUpTab.style.padding = '8px 16px';
-  signUpTabText.style.color = 'rgba(52, 67, 244, .4)';
-  signUpTabText.style.fontWeight = '700';
-  signUpTabText.style.fontSize = '18px';
-  signUpTabText.style.lineHeight = '24px';
 
-  loginBottomBtn.textContent = 'Log In';
+  pageElements.auth.actionBtn.textContent = 'Log In';
 
-  //FOOTER STYLING
-  globalElements.footer.style.paddingLeft = '40px';
-  globalElements.footer.style.paddingRight = '40px';
 }
 
 function desktopSignUpPageStyling() {
   handleAuthStyle(false);
 
   pageElements.auth.tabs.loginBtnText.textContent = 'Log In';
-  pageElements.auth.tabs.signupBtn.style.display = 'flex';
-  pageElements.auth.tabs.signupBtn.style.alignItems = 'center';
-  pageElements.auth.tabs.signupBtn.style.padding = '8px 16px';
-  pageElements.auth.tabs.signupBtn.style.borderRadius = '100px';
   pageElements.auth.tabs.signupBtnText.textContent = 'Sign up';
-  pageElements.auth.tabs.signupBtnText.style.color = '#3443f4';
-  pageElements.auth.tabs.signupBtnText.style.textDecoration = 'underline';
-  pageElements.auth.tabs.signupBtnText.style.fontFamily = 'Space Mono';
-  pageElements.auth.tabs.signupBtnText.style.fontWeight = '700';
-  pageElements.auth.tabs.signupBtnText.style.fontSize = '18px';
-  pageElements.auth.tabs.signupBtnText.style.lineHeight = '24px';
 
   pageElements.auth.firstNameLabel.textContent = 'First Name';
   pageElements.auth.lastNameLabel.textContent = 'Last Name';
@@ -783,35 +733,13 @@ function desktopSignUpPageStyling() {
   }
   pageElements.auth.actionBtn.querySelector('span').textContent = 'Sign up';
 
-  const labels = document.querySelectorAll('label');
-  labels.forEach((label) => {
-    label.style.marginBottom = '12px';
-    label.style.fontWeight = '500';
-    label.style.fontSize = '16px';
-    label.style.fontFamily = 'Fusiona';
-    label.style.lineHeight = '20px';
+  document.querySelector("label[for='id_password1'] .input-label-text span").textContent =
+    'Password Confirm';
 
-    if (label.getAttribute('for') === 'id_password2') {
-      label.querySelector('.input-label-text span').textContent =
-        'Password Confirm';
-    }
-  });
-
-  const inputs = document.querySelectorAll('input');
-  inputs.forEach((input) => {
-    input.style.borderRadius = '4px';
-    input.style.border = '2px solid #3443f4';
-    input.style.padding = '20px 15px';
-    input.style.lineHeight = '24px';
-
-    if (input.getAttribute('id') === 'id_password2') {
-      input.setAttribute('placeholder', 'Password confirm');
-    }
-  });
-
-  //FOOTER STYLING
-  globalElements.footer.style.paddingLeft = '40px';
-  globalElements.footer.style.paddingRight = '40px';
+  document.querySelector("input#id_password1").setAttribute(
+    'placeholder',
+    'Password confirm'
+  );
 }
 
 function desktopCurriculumPageNoCertificateStyling() {
@@ -1375,22 +1303,11 @@ function handleAuthStyle(login = true) {
 //MOBILE VIEW STYLINGS
 function mobileLoginPageStyling() {
   handleAuthStyle();
-  const signInTab = document.querySelector('#login-tab-right');
-  const signInTabText = signInTab.querySelector('a');
-  const loginBottomBtn = document.querySelector('#button-sign-in');
 
-  //STYLE THE LOGIN/SIGN UP TABS
   pageElements.auth.tabs.loginBtnText.textContent = 'Log in';
-  signInTab.querySelector('span').textContent = 'Sign up';
-  signInTab.style.display = 'flex';
-  signInTab.style.alignItems = 'center';
-  signInTab.style.padding = '8px 16px';
-  signInTabText.style.color = '#8C8C8C';
-  signInTabText.style.fontWeight = '500';
-  signInTabText.style.fontSize = '16px';
-  signInTabText.style.lineHeight = '24px';
+  pageElements.auth.tabs.signupBtnText.textContent = 'Sign up';
 
-  loginBottomBtn.textContent = 'Log in';
+  pageElements.auth.actionBtn.textContent = 'Log in';
 }
 
 function mobileSignUpPageStyling() {
@@ -1400,20 +1317,7 @@ function mobileSignUpPageStyling() {
 
   //STYLE THE LOGIN/SIGN UP TABS
   pageElements.auth.tabs.loginBtnText.textContent = 'Log in';
-  pageElements.auth.tabs.loginBtnText.style.color = '#8C8C8C';
-  pageElements.auth.tabs.loginBtnText.style.fontWeight = '500';
-  pageElements.auth.tabs.loginBtnText.style.fontSize = '16px';
-  pageElements.auth.tabs.loginBtnText.style.lineHeight = '24px';
-  pageElements.auth.tabs.signupBtn.style.display = 'flex';
-  pageElements.auth.tabs.signupBtn.style.alignItems = 'center';
-  pageElements.auth.tabs.signupBtn.style.padding = '8px 16px';
-  pageElements.auth.tabs.signupBtn.style.backgroundColor = '#3443F4';
-  pageElements.auth.tabs.signupBtn.style.borderRadius = '100px';
   pageElements.auth.tabs.signupBtnText.textContent = 'Sign up';
-  pageElements.auth.tabs.signupBtnText.style.color = '#fff';
-  pageElements.auth.tabs.signupBtnText.style.fontWeight = '500';
-  pageElements.auth.tabs.signupBtnText.style.fontSize = '16px';
-  pageElements.auth.tabs.signupBtnText.style.lineHeight = '24px';
 
   pageElements.auth.firstNameLabel.textContent = 'First Name';
   pageElements.auth.lastNameLabel.textContent = 'Last Name';
@@ -1428,18 +1332,8 @@ function mobileSignUpPageStyling() {
 
   signUpBottomBtn.querySelector('span').textContent = 'Sign up';
 
-  const labels = document.querySelectorAll('label');
-  labels.forEach((label) => {
-    label.style.marginBottom = '12px';
-    label.style.fontWeight = '500';
-    label.style.fontSize = '16px';
-    label.style.lineHeight = '20px';
-
-    if (label.getAttribute('for') === 'id_password2') {
-      label.querySelector('.input-label-text span').textContent =
-        'Password confirm';
-    }
-  });
+  document.querySelector("label[for='id_password2']").textContent =
+    'Password Confirm';
 
   const inputs = document.querySelectorAll('input');
   inputs.forEach((input) => {
@@ -2246,8 +2140,6 @@ function mobileLessonPageStyling() {
 
   //SECOND PAGE OF STYLING INSTRUCTIONS FROM 1ST VERSION
   const parentEl = document.querySelector('.sj-page-lesson');
-
-  globalElements.footer.style.marginTop = '0';
 
   const openIcon = document.querySelector('.fa.fa-bars');
   const searchIcon = document.querySelector('.fa.fa-search');
