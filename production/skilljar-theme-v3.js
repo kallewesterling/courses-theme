@@ -9,9 +9,6 @@ const debug = (msg, level = 'log') => {
 let globalCurriculumSection, globalAboutSection;
 
 const view = {
-  isCatalogPage: document.querySelector('.sj-page-catalog.sj-page-catalog-root')
-    ? true
-    : false,
   isCurriculumPage: document.querySelector('.sj-page-curriculum')
     ? true
     : false,
@@ -2303,7 +2300,7 @@ function handlePageStyling() {
 
   if (view.current === 'catalog') {
     initCatalog();
-  } else if (view.isCourseDetailsPage) {
+  } else if (view.current === 'courseDetails') {
     view.viewport === 'desktop'
       ? desktopCourseDetailsPageStyling()
       : mobileCourseDetailsPageStyling();
