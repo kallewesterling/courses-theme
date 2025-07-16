@@ -1115,6 +1115,33 @@ body.sj-page-detail-course {
   .row.show-for-small {
     display: none !important;
   }
+
+  .row.hide-for-small {
+    .padded-side-bottom {
+      padding: 0;
+      max-width: 760px;
+      display: grid !important;
+
+      .columns {
+        float: none;
+        padding: 0;
+        width: 100%;
+        display: block;
+        
+        &.large-7 {
+          margin-bottom: 48px;
+        }
+
+        h3 {
+          font-weight: 600;;
+        }
+
+        .dp-curriculum {
+          margin: 0;
+        }
+      }
+    }
+  }
 }
 
 /* media mobile */

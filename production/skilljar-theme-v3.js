@@ -222,7 +222,6 @@ function desktopCourseDetailsPageStyling() {
   const secondaryBodyContainer = document.querySelector(
     '.row.hide-for-small.padded-side-bottom'
   );
-  const bodyColumns = secondaryBodyContainer.querySelectorAll('.columns');
   const curriculumListContainer = document.querySelector('.dp-curriculum'); //NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)!
   const curriculumList = curriculumListContainer.querySelectorAll('li');
 
@@ -241,29 +240,6 @@ function desktopCourseDetailsPageStyling() {
   const courseDetailsCardLink = document.querySelector(
     '.course-details-card-link'
   );
-
-
-  //RENDERING OF COURSE DETAILS PAGE TEXT HEADING ON LEFT
-
-  secondaryBodyContainer.style.padding = '0';
-  secondaryBodyContainer.style.maxWidth = '760px';
-  bodyColumns.forEach((column) => {
-    column.style.float = 'none';
-    column.style.padding = '0';
-    column.style.width = '100%';
-    column.style.display = 'block';
-
-    column.querySelector('h3').style.fontWeight = '600';
-
-    if (column.classList.contains('large-7')) {
-      column.style.marginBottom = '48px';
-    }
-
-    const innerCol = column.querySelector('.dp-curriculum');
-    if (innerCol) {
-      innerCol.style.margin = '0';
-    }
-  });
 
   //COURSE DETAILS CURRICULUM STYLING
   if (!view.loaded) {
@@ -347,10 +323,6 @@ function mobileCourseDetailsPageStyling() {
   handleCourseDetailsStyle();
 
   //BODY VARIABLES
-  const secondaryBodyContainer = document.querySelector(
-    '.row.hide-for-small.padded-side-bottom'
-  );
-  const bodyColumns = secondaryBodyContainer.querySelectorAll('.columns');
   const curriculumListContainer = document.querySelector('.dp-curriculum'); //NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)!
   const curriculumList = curriculumListContainer.querySelectorAll('li');
 
@@ -369,28 +341,6 @@ function mobileCourseDetailsPageStyling() {
   const courseDetailsCardLink = document.querySelector(
     '.course-details-card-link'
   );
-
-  secondaryBodyContainer.setAttribute(
-    'style',
-    'padding: 0; max-width: 760px; display: grid !important;'
-  );
-  bodyColumns.forEach((column) => {
-    column.style.float = 'none';
-    column.style.padding = '0';
-    column.style.width = '100%';
-    column.style.display = 'block';
-
-    column.querySelector('h3').style.fontWeight = '600';
-
-    if (column.classList.contains('large-7')) {
-      column.style.marginBottom = '48px';
-    }
-
-    const innerCol = column.querySelector('.dp-curriculum');
-    if (innerCol) {
-      innerCol.style.margin = '0';
-    }
-  });
 
   //COURSE DETAILS CURRICULUM STYLING
   if (!view.loaded) {
