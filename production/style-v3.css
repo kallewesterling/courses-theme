@@ -1031,7 +1031,6 @@ body.sj-page-detail-course {
     background-size: cover;
     mix-blend-mode: multiply;
     content: '';
-    position: absolute;
     inset: 0;
     background-color: var(--primary-light-purple-hex);
     margin: 0;
@@ -1067,6 +1066,7 @@ body.sj-page-detail-course {
         /* Course category */
         display: block;
         margin-bottom: 24px;
+        color: white;
       }
 
       h1.break-word {
@@ -1076,11 +1076,23 @@ body.sj-page-detail-course {
         font-weight: 600;
         line-height: 43.2px;
         letter-spacing: -0.02em;
+        color: white;
       }
 
       h2 {
         display: block;
         margin: 0px 0px 24px;
+        color: white;
+      }
+
+      div.purchase-button-wrapper {
+        a#purchase-button {
+          color: white;
+
+          span.purchase-button-full-text {
+            color: white;
+          }
+        }
       }
     }
   }
