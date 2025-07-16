@@ -208,22 +208,6 @@ label {
   background-color: var(--secondary-light-gray-hex);
 }
 
-.course-details-card {
-  font-family: inherit !important;
-  max-width: 368px !important;
-  margin: 20px !important;
-  margin-bottom: 50px !important;
-  border-radius: 8px !important;
-  background-color: var(--primary-white-hex) !important;
-  border: 2px solid var(--primary-blue-hex) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  color: inherit !important;
-  align-self: start !important;
-  position: sticky !important;
-  top: 100px !important;
-}
-
 .course-details-card-header {
   font-size: 16px;
   font-weight: 500;
@@ -1110,6 +1094,27 @@ body.sj-page-detail-course {
         display: none;
       }
     }
+
+    .course-details-card {
+      font-family: inherit !important;
+      max-width: 368px !important;
+      border-radius: 8px !important;
+      background-color: var(--primary-white-hex) !important;
+      border: 2px solid var(--primary-blue-hex) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      color: inherit !important;
+      align-self: start !important;
+      position: sticky !important;
+      top: 100px !important;
+      margin: 96px 0 46px 0;
+
+      /* 
+      on mobile?
+      .course-details-card margin = '0 0 46px 0';
+      .course-details-card justifySelf = 'center';
+      */
+    }
   }
 
   .row.show-for-small {
@@ -1138,6 +1143,12 @@ body.sj-page-detail-course {
       ul.dp-curriculum {
         margin: 0;
 
+        li.section,
+        li.lesson-modular {
+          /* Skilljar's built-in (we want to hide them) */
+          display: none;
+        }
+
         div.section {
           font-family: Fusiona;
           font-size: 16px;
@@ -1154,7 +1165,6 @@ body.sj-page-detail-course {
           }
         }
 
-        
         div.lesson {
           div.lesson-wrapper {
             padding: 24px;
@@ -1162,7 +1172,7 @@ body.sj-page-detail-course {
             font-weight: 400;
             line-height: 150%;
           }
-          
+
           .type-icon {
             display: none;
           }

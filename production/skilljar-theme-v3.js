@@ -103,9 +103,9 @@ function styleListItem(div, isLastChild, variation = 'gray') {
 }
 
 /*
-* Handles the styling of the catalog page.
-* This function is called when the catalog page is loaded.
-*/
+ * Handles the styling of the catalog page.
+ * This function is called when the catalog page is loaded.
+ */
 function handleCatalogStyle() {
   if (!view.loaded) {
     debug('initCatalog called');
@@ -127,9 +127,9 @@ function handleCatalogStyle() {
 }
 
 /*
-* Handles the styling of the authentication page.
-* This function is called when the authentication page is loaded.
-*/
+ * Handles the styling of the authentication page.
+ * This function is called when the authentication page is loaded.
+ */
 function handleAuthStyle(login = true) {
   debug('handleAuthStyle called with login:', login);
 
@@ -170,7 +170,8 @@ function handleAuthStyle(login = true) {
     pageElements.auth.email.setAttribute('placeholder', 'Work Email');
     pageElements.auth.password.setAttribute('placeholder', 'Password');
 
-    const signUpBottomBtnParent = pageElements.auth.actionBtn.closest('.text-center');
+    const signUpBottomBtnParent =
+      pageElements.auth.actionBtn.closest('.text-center');
     if (signUpBottomBtnParent) {
       signUpBottomBtnParent.style.textAlign = 'left';
       signUpBottomBtnParent.classList.remove('text-center');
@@ -179,11 +180,13 @@ function handleAuthStyle(login = true) {
 }
 
 pageElements.courseDetails = {
-  header: document.querySelector(".top-row-grey"),
+  header: document.querySelector('.top-row-grey'),
   courseInfo: document.querySelector('.dp-row-flex-v2'),
-}
+};
 
 function handleCourseDetailsStyle() {
+  debug('handleCourseDetailsStyle called');
+
   const mainHeadingContainer = document.querySelector('.dp-summary-wrapper');
   const headingFloaterText = document.querySelector('.sj-floater-text');
   const mainHeading = document.querySelector('.break-word');
@@ -195,44 +198,16 @@ function handleCourseDetailsStyle() {
     headingParagraph,
     registerBtn
   );
-}
-
-function desktopCourseDetailsPageStyling() {
-  handleCourseDetailsStyle();
-
-  //BODY VARIABLES
-  const secondaryBodyContainer = document.querySelector(
-    '.row.hide-for-small.padded-side-bottom'
-  );
-  const curriculumListContainer = document.querySelector('.dp-curriculum'); //NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)!
-  const curriculumList = curriculumListContainer.querySelectorAll('li');
-
-  //CARD VARIABLES
-  const courseDetailCardContainer = secondaryBodyContainer.querySelector(
-    '.course-details-card'
-  );
-  const courseDetailCardListItems =
-    document.querySelectorAll('.course-details-card li');
-  const registerBtnLink = document
-    .querySelector('#purchase-button')
-    .getAttribute('href');
-  const registerBtnText = document.querySelector(
-    '.purchase-button-full-text'
-  ).textContent;
-  const courseDetailsCardLink = document.querySelector(
-    '.course-details-card-link'
-  );
 
   //COURSE DETAILS CURRICULUM STYLING
   if (!view.loaded) {
-    // Check if course has Sections/Modules/Parts
-    const hasSections = curriculumListContainer.querySelector('.section')
-      ? true
-      : false;
-    let curContainer = document.createElement('li');
+    const ul = document.querySelectorAll('ul.dp-curriculum')[0];
 
-    if (!hasSections) {
-      styleGroupContainer(curContainer, 'blue');
+    // Check if course has Sections/Modules/Parts
+    let li = document.createElement('li');
+
+    if (!ul.querySelector('.section')) {
+      styleGroupContainer(li, 'blue');
     }
 
     function styleListItem(div, isLastChild) {
@@ -243,153 +218,76 @@ function desktopCourseDetailsPageStyling() {
       }
     }
 
-    curriculumList.forEach((curListItem, i, arr) => {
-      //first check if current item contains 'section' class
-      if (curListItem.classList.contains('section')) {
-        //Yes? push curContainer into curriculumListContainer
-        curriculumListContainer.append(curContainer);
-        //reset curContainer while pushing current 'section' in there for the next iteration
-        curContainer = document.createElement('li');
-        styleGroupContainer(curContainer);
-        const div = document.createElement('div');
-        div.innerHTML = curListItem.innerHTML;
-        div.classList.add(...["section", "blue"]);
-        const heading = div.querySelector('h3') || div;
-        heading.textContent = heading?.textContent?.trim();
-        curContainer.append(div);
-      } else {
-        // else, normal/expected behaviour
-        //transfer inner html of current list item to new created div
-        const div = document.createElement('div');
-        div.innerHTML = curListItem.innerHTML;
-        div.classList.add("lesson")
-        styleListItem(
-          div,
-          arr[i + 1] ? arr[i + 1].classList.contains('section') : true
-        );
-        curContainer.append(div);
-      }
-      curListItem.style.display = 'none';
-    });
+    document
+      .querySelectorAll('.dp-curriculum li')
+      .forEach((skilljarLi, i, arr) => {
+        const contents = skilljarLi.innerHTML;
+        if (skilljarLi.classList.contains('section')) {
+          // If it is a section, push curContainer into curriculumListContainer
+          ul.append(li);
+          //reset curContainer while pushing current 'section' in there for the next iteration
+          li = document.createElement('li');
+          styleGroupContainer(li);
+          const div = document.createElement('div');
+          div.innerHTML = contents;
+          div.classList.add(...['section', 'blue']);
+          const heading = div.querySelector('h3') || div;
+          heading.textContent = heading?.textContent?.trim();
+          li.append(div);
+        } else {
+          // else, normal/expected behaviour
+          //transfer inner html of current list item to new created div
+          const div = document.createElement('div');
+          div.innerHTML = contents;
+          div.classList.add('lesson');
+          styleListItem(
+            div,
+            arr[i + 1] ? arr[i + 1].classList.contains('section') : true
+          );
+          li.append(div);
+        }
+      });
 
     //LAST, unpushed SECTION; push it out to curriculumListContainer
-    curriculumListContainer.append(curContainer);
+    ul.append(li);
 
-    curriculumListContainer.style.padding = '0';
+    ul.style.padding = '0';
   }
 
-  //COURSE DETAILS GRID STRUCTURE STYLING - ADDING DETAILS CARD ON RIGHT SIDE
-  if (courseDetailCardContainer) {
-    const bodyContainer = document.querySelector('#dp-details');
-    bodyContainer.append(courseDetailCardContainer);
-    courseDetailCardContainer.style.margin = '0 0 46px 0';
-    courseDetailCardContainer.style.justifySelf = 'center';
-    courseDetailCardListItems.forEach((li) => {
-      const checkboxClone = document.querySelector('.checkbox-icon').cloneNode(true);
-      li.prepend(checkboxClone);
-    });
-  }
-
-  if (courseDetailsCardLink) {
-    courseDetailsCardLink.textContent = registerBtnText;
-    courseDetailsCardLink.setAttribute('href', registerBtnLink);
-  }
-}
-
-function mobileCourseDetailsPageStyling() { 
-  handleCourseDetailsStyle();
-
-  //BODY VARIABLES
-  const curriculumListContainer = document.querySelector('.dp-curriculum'); //NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)!
-  const curriculumList = curriculumListContainer.querySelectorAll('li');
-
-  //CARD VARIABLES
   const courseDetailCardContainer = document.querySelectorAll(
     '.course-details-card'
   )[0];
-  const courseDetailCardListItems =
-    courseDetailCardContainer.querySelectorAll('li');
-  const registerBtnLink = document
-    .querySelector('#purchase-button')
-    .getAttribute('href');
-  const registerBtnText = document.querySelector(
-    '.purchase-button-full-text'
-  ).textContent;
-  const courseDetailsCardLink = document.querySelector(
-    '.course-details-card-link'
-  );
 
-  //COURSE DETAILS CURRICULUM STYLING
-  if (!view.loaded) {
-    const hasSections = curriculumListContainer.querySelector('.section')
-      ? true
-      : false;
-    let curContainer = document.createElement('li');
-
-    if (!hasSections) {
-      styleGroupContainer(curContainer);
-    }
-
-    function styleListItem(div, isLastChild) {
-      const lessonItemText = div.querySelector('.lesson-wrapper');
-
-      if (!isLastChild) {
-        lessonItemText.style.borderBottom = '1px solid #DCDCDC';
-      }
-    }
-
-    curriculumList.forEach((curListItem, i, arr) => {
-      //first check if current item contains 'section' class
-      if (curListItem.classList.contains('section')) {
-        //Yes? push curContainer into curriculumListContainer
-        curriculumListContainer.append(curContainer);
-        //reset curContainer while pushing current 'section' in there for the next iteration
-        curContainer = document.createElement('li');
-        styleGroupContainer(curContainer);
-        const div = document.createElement('div');
-        div.innerHTML = curListItem.innerHTML;
-        div.textContent = div?.textContent?.trim();
-        div.classList.add("section")
-        curContainer.append(div);
-      } else {
-        // else, normal/expected behaviour
-        //transfer inner html of current list item to new created div
-        const div = document.createElement('div');
-        div.innerHTML = curListItem.innerHTML;
-        div.classList.add("lesson")
-        styleListItem(
-          div,
-          arr[i + 1] ? arr[i + 1].classList.contains('section') : true
-        );
-        curContainer.append(div);
-      }
-      curListItem.style.display = 'none';
-    });
-
-    //LAST, unpushed SECTION; push it out to curriculumListContainer
-    curriculumListContainer.append(curContainer);
-
-    curriculumListContainer.style.padding = '0';
-
-    //COURSE DETAILS CARD STYLING
-    //ADD COURSE DETAILS CARD INTO RIGHT CONTAINER
-    const bodyContainer = document.querySelector('#dp-details');
-    bodyContainer.append(courseDetailCardContainer);
-
-    courseDetailCardListItems.forEach((li) => {
-      const checkboxClone = document.querySelector('.checkbox-icon').cloneNode(true);
+  if (courseDetailCardContainer) {
+    document.querySelector('#dp-details').append(courseDetailCardContainer);
+    document.querySelectorAll('.course-details-card li').forEach((li) => {
+      const checkboxClone = document
+        .querySelector('.checkbox-icon')
+        .cloneNode(true);
       li.prepend(checkboxClone);
     });
 
-    courseDetailsCardLink.textContent = registerBtnText;
-    courseDetailsCardLink.setAttribute('href', registerBtnLink);
+    const courseDetailsCardLink = document.querySelector(
+      '.course-details-card-link'
+    );
+    if (courseDetailsCardLink) {
+      const registerBtnLink = document
+        .querySelector('#purchase-button')
+        .getAttribute('href');
+      const registerBtnText = document.querySelector(
+        '.purchase-button-full-text'
+      ).textContent;
+
+      courseDetailsCardLink.textContent = registerBtnText;
+      courseDetailsCardLink.setAttribute('href', registerBtnLink);
+    }
+    if (!view.loaded) {
+      //ADD COURSE DETAILS CARD INTO RIGHT CONTAINER
+      const bodyContainer = document.querySelector('#dp-details');
+      bodyContainer.append(courseDetailCardContainer);
+    }
   }
-
-  //COURSE DETAILS GRID STRUCTURE STYLING - ADDING DETAILS CARD ON RIGHT SIDE
-  courseDetailCardContainer.style.margin = '0 0 46px 0';
-  courseDetailCardContainer.style.justifySelf = 'center';
 }
-
 
 function pathCourseDetailsPageStyling() {
   const headerFlexContainer = document.querySelector('.row.dp-row-flex-v2');
@@ -1257,9 +1155,6 @@ function desktopCurriculumPageYesCertificationStyling() {
   });
 }
 
-
-
-
 function mobileCurriculumPageNoCertificateStyling() {
   //HEADER VARIABLES
   const headingParagraph = document.querySelector('.sj-heading-paragraph');
@@ -1999,11 +1894,9 @@ function handlePageStyling() {
   } else if (view.current === 'signup') {
     handleAuthStyle(false);
   }
-  
+
   if (view.current === 'courseDetails') {
-    view.viewport === 'desktop'
-      ? desktopCourseDetailsPageStyling()
-      : mobileCourseDetailsPageStyling();
+    handleCourseDetailsStyle();
   } else if (view.isPageDetailPath) {
     pathCourseDetailsPageStyling();
   } else if (view.isPageCatalogPath) {
