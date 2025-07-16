@@ -181,96 +181,108 @@ function handleAuthStyle(login = true) {
 
 pageElements.courseDetails = {
   header: document.querySelector('.top-row-grey'),
-  courseInfo: document.querySelector('.dp-row-flex-v2'),
+  info: {
+    container: document.querySelector('.dp-row-flex-v2'),
+    textWrapper: document.querySelector('.dp-summary-wrapper'),
+    category: document.querySelector('.sj-floater-text'),
+    name: document.querySelector('.break-word'),
+    description: document.querySelector('.sj-course-info-wrapper h2'),
+    CTA: document.querySelector('#purchase-button-wrapper-large'),
+  },
+  details: {
+    container: document.querySelector('#dp-details'),
+    card: {
+      container: document.querySelectorAll('.course-details-card')[0],
+      listItems: document.querySelectorAll('.course-details-card li'),
+      link: document.querySelector('.course-details-card-link'),
+    },
+    curriculum: {
+      container: document.querySelectorAll('ul.dp-curriculum')[0],
+      listItems: document.querySelectorAll('.dp-curriculum li'),
+    },
+  },
 };
 
 function handleCourseDetailsStyle() {
   debug('handleCourseDetailsStyle called');
 
-  const mainHeadingContainer = document.querySelector('.dp-summary-wrapper');
-  const headingFloaterText = document.querySelector('.sj-floater-text');
-  const mainHeading = document.querySelector('.break-word');
-  const headingParagraph = document.querySelector('.sj-course-info-wrapper h2');
-  const registerBtn = document.querySelector('#purchase-button-wrapper-large');
-  mainHeadingContainer.append(
-    headingFloaterText,
-    mainHeading,
-    headingParagraph,
-    registerBtn
+  pageElements.courseDetails.info.textWrapper.append(
+    pageElements.courseDetails.info.category,
+    pageElements.courseDetails.info.name,
+    pageElements.courseDetails.info.description,
+    pageElements.courseDetails.info.CTA
   );
 
   //COURSE DETAILS CURRICULUM STYLING
   if (!view.loaded) {
-    const ul = document.querySelectorAll('ul.dp-curriculum')[0];
+    debug('view.loaded is false, styling curriculum');
 
     // Check if course has Sections/Modules/Parts
     let li = document.createElement('li');
 
-    if (!ul.querySelector('.section')) {
+    if (!pageElements.details.curriculum.container.querySelector('.section')) {
       styleGroupContainer(li, 'blue');
     }
 
-    function styleListItem(div, isLastChild) {
-      const lessonItemText = div.querySelector('.lesson-wrapper');
-
-      if (!isLastChild) {
-        lessonItemText.style.borderBottom = '2px solid #3443F4';
-      }
-    }
-
-    document
-      .querySelectorAll('.dp-curriculum li')
-      .forEach((skilljarLi, i, arr) => {
+    pageElements.courseDetails.details.curriculum.listItems.forEach(
+      (skilljarLi, i, arr) => {
+        // Get the current contents
         const contents = skilljarLi.innerHTML;
+
+        // Check if the current list item is the last child
+        const isLastChild = arr[i + 1]
+          ? arr[i + 1].classList.contains('section')
+          : true;
+
         if (skilljarLi.classList.contains('section')) {
           // If it is a section, push curContainer into curriculumListContainer
-          ul.append(li);
-          //reset curContainer while pushing current 'section' in there for the next iteration
+          pageElements.details.curriculum.container.append(li);
+
+          // Reset curContainer while pushing current 'section' in there for the next iteration
           li = document.createElement('li');
-          styleGroupContainer(li);
+          // styleGroupContainer(li); // move this to style
+
+          // Create an inner div for the section
           const div = document.createElement('div');
           div.innerHTML = contents;
           div.classList.add(...['section', 'blue']);
           const heading = div.querySelector('h3') || div;
           heading.textContent = heading?.textContent?.trim();
+
           li.append(div);
         } else {
-          // else, normal/expected behaviour
-          //transfer inner html of current list item to new created div
+          // If it is a lesson, create a new div and append it to the current list item
           const div = document.createElement('div');
           div.innerHTML = contents;
           div.classList.add('lesson');
-          styleListItem(
-            div,
-            arr[i + 1] ? arr[i + 1].classList.contains('section') : true
-          );
+
+          const lessonItemText = div.querySelector('.lesson-wrapper');
+
+          if (!isLastChild) {
+            lessonItemText.style.borderBottom = '2px solid #3443F4';
+          }
+
           li.append(div);
         }
-      });
+      }
+    );
 
-    //LAST, unpushed SECTION; push it out to curriculumListContainer
-    ul.append(li);
-
-    ul.style.padding = '0';
+    // LAST, unpushed SECTION; push it out to curriculumListContainer
+    pageElements.details.curriculum.container.append(li);
   }
 
-  const courseDetailCardContainer = document.querySelectorAll(
-    '.course-details-card'
-  )[0];
-
-  if (courseDetailCardContainer) {
-    document.querySelector('#dp-details').append(courseDetailCardContainer);
-    document.querySelectorAll('.course-details-card li').forEach((li) => {
+  if (pageElements.details.card.container) {
+    pageElements.courseDetails.details.container.append(
+      pageElements.details.card.container
+    );
+    pageElements.details.curriculum.listItems.forEach((li) => {
       const checkboxClone = document
         .querySelector('.checkbox-icon')
         .cloneNode(true);
       li.prepend(checkboxClone);
     });
 
-    const courseDetailsCardLink = document.querySelector(
-      '.course-details-card-link'
-    );
-    if (courseDetailsCardLink) {
+    if (pageElements.details.card.link) {
       const registerBtnLink = document
         .querySelector('#purchase-button')
         .getAttribute('href');
@@ -278,13 +290,14 @@ function handleCourseDetailsStyle() {
         '.purchase-button-full-text'
       ).textContent;
 
-      courseDetailsCardLink.textContent = registerBtnText;
-      courseDetailsCardLink.setAttribute('href', registerBtnLink);
+      pageElements.details.card.link.textContent = registerBtnText;
+      pageElements.details.card.link.setAttribute('href', registerBtnLink);
     }
     if (!view.loaded) {
       //ADD COURSE DETAILS CARD INTO RIGHT CONTAINER
-      const bodyContainer = document.querySelector('#dp-details');
-      bodyContainer.append(courseDetailCardContainer);
+      pageElements.details.container.append(
+        pageElements.details.card.container
+      );
     }
   }
 }
