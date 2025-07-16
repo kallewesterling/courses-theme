@@ -254,15 +254,7 @@ function desktopCourseDetailsPageStyling() {
     }
 
     function styleListItem(div, isLastChild) {
-      //display none for icon w/ class 'type-icon'
-      const icon = div.querySelector('.type-icon');
-      icon.style.display = 'none';
-
       const lessonItemText = div.querySelector('.lesson-wrapper');
-      lessonItemText.style.padding = '24px';
-      lessonItemText.style.fontSize = '16px';
-      lessonItemText.style.fontWeight = '400';
-      lessonItemText.style.lineHeight = '150%';
 
       if (!isLastChild) {
         lessonItemText.style.borderBottom = '2px solid #3443F4';
@@ -277,15 +269,17 @@ function desktopCourseDetailsPageStyling() {
         //reset curContainer while pushing current 'section' in there for the next iteration
         curContainer = document.createElement('li');
         styleGroupContainer(curContainer);
-        const newGroupHeading = document.createElement('div');
-        newGroupHeading.innerHTML = curListItem.innerHTML;
-        styleGroupHeading(newGroupHeading, 'blue');
-        curContainer.append(newGroupHeading);
+        const div = document.createElement('div');
+        div.innerHTML = curListItem.innerHTML;
+        div.classList.add("section");
+        styleGroupHeading(div, 'blue');
+        curContainer.append(div);
       } else {
         // else, normal/expected behaviour
         //transfer inner html of current list item to new created div
         const div = document.createElement('div');
         div.innerHTML = curListItem.innerHTML;
+        div.classList.add("lesson")
         styleListItem(
           div,
           arr[i + 1] ? arr[i + 1].classList.contains('section') : true
@@ -354,28 +348,11 @@ function mobileCourseDetailsPageStyling() {
     }
 
     function styleListItem(div, isLastChild) {
-      //display none for icon w/ class 'type-icon'
-      const icon = div.querySelector('.type-icon');
-      icon.style.display = 'none';
-
       const lessonItemText = div.querySelector('.lesson-wrapper');
-      lessonItemText.style.padding = '24px';
-      lessonItemText.style.fontSize = '16px';
-      lessonItemText.style.fontWeight = '400';
-      lessonItemText.style.lineHeight = '150%';
 
       if (!isLastChild) {
         lessonItemText.style.borderBottom = '1px solid #DCDCDC';
       }
-    }
-
-    function styleGroupHeading(div) {
-      div.style.fontSize = '16px';
-      div.style.fontWeight = '500';
-      div.style.lineHeight = '125%';
-      div.style.letterSpacing = '-.16px';
-      div.style.padding = '24px';
-      div.style.borderBottom = '1px solid #DCDCDC';
     }
 
     curriculumList.forEach((curListItem, i, arr) => {
@@ -390,7 +367,6 @@ function mobileCourseDetailsPageStyling() {
         div.innerHTML = curListItem.innerHTML;
         div.textContent = div?.textContent?.trim();
         div.classList.add("section")
-        styleGroupHeading(div);
         curContainer.append(div);
       } else {
         // else, normal/expected behaviour
