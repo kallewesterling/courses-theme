@@ -1,6 +1,6 @@
 const debug = (msg, level = 'log') => {
   if (location.hostname.indexOf('skilljar')) {
-    if (level === "log") {
+    if (level === 'log') {
       console[level](msg);
     }
   }
@@ -53,6 +53,7 @@ const pageElements = {
     email:
       document.querySelector('input#id_login') ||
       document.querySelector('input#id_email'),
+    password: document.querySelector('input#id_password1'),
     emailLabel:
       document.querySelector('label[for="id_login"]') ||
       document.querySelector('label[for="id_email"]'),
@@ -61,6 +62,10 @@ const pageElements = {
       document.querySelector('#button-sign-up'),
     formPane: document.querySelectorAll('#login-content .large-6.columns')[0],
     buttonPane: document.querySelectorAll('#login-content .large-6.columns')[1],
+    googleLoginBtn: document.querySelector('#google_login'),
+    googleCTA:
+      document.querySelector('.sj-text-sign-in-with span') ||
+      document.querySelector('.sj-text-sign-up-with span'),
     tabs: {
       loginBtn: document.querySelector('#login-tab-left'),
       signupBtn: document.querySelector('#login-tab-right'),
@@ -77,13 +82,13 @@ const pageElements = {
     lastNameLabel: document.querySelector(
       'label[for="id_last_name"] span span'
     ),
+    passwordConfirmLabel: document.querySelector("label[for='id_password2']"),
   },
 
   lesson: {
     codeBlocks: [],
-  }
+  },
 };
-
 
 function styleGroupContainer(container, variation = 'gray') {
   container.style.border =
@@ -697,47 +702,6 @@ function desktopLessonPageStyling() {
   if (prevBtn) {
     prevBtn.style.color = '#14003d';
   }
-
-}
-
-function desktopLoginPageStyling() {
-  handleAuthStyle();
-  const signUpTab = document.querySelector('#login-tab-right');
-
-  //STYLE THE LOGIN/SIGN UP TABS
-  pageElements.auth.tabs.loginBtnText.textContent = 'Log In';
-  signUpTab.querySelector('span').textContent = 'Sign Up';
-
-  pageElements.auth.actionBtn.textContent = 'Log In';
-
-}
-
-function desktopSignUpPageStyling() {
-  handleAuthStyle(false);
-
-  pageElements.auth.tabs.loginBtnText.textContent = 'Log In';
-  pageElements.auth.tabs.signupBtnText.textContent = 'Sign up';
-
-  pageElements.auth.firstNameLabel.textContent = 'First Name';
-  pageElements.auth.lastNameLabel.textContent = 'Last Name';
-  pageElements.auth.emailLabel.textContent = 'Work Email';
-  pageElements.auth.email.setAttribute('placeholder', 'Work Email');
-
-  const signUpBottomBtnParent =
-    pageElements.auth.actionBtn?.closest('.text-center');
-  if (signUpBottomBtnParent) {
-    signUpBottomBtnParent.style.textAlign = 'left';
-    signUpBottomBtnParent.classList.remove('text-center');
-  }
-  pageElements.auth.actionBtn.querySelector('span').textContent = 'Sign up';
-
-  document.querySelector("label[for='id_password1'] .input-label-text span").textContent =
-    'Password Confirm';
-
-  document.querySelector("input#id_password1").setAttribute(
-    'placeholder',
-    'Password confirm'
-  );
 }
 
 function desktopCurriculumPageNoCertificateStyling() {
@@ -1265,16 +1229,14 @@ function desktopCurriculumPageYesCertificationStyling() {
 }
 
 function handleAuthStyle(login = true) {
-  // Set the Google login button text
-  Object.assign(document.querySelector('#google_login'), {
-    textContent: 'Continue with Google',
-  });
+  // Set the correct button texts
+  pageElements.auth.googleLoginBtn.textContent = 'Continue with Google';
+  pageElements.auth.tabs.loginBtnText.textContent = 'Log In';
+  pageElements.auth.tabs.signupBtnText.textContent = 'Sign Up';
 
   if (login) {
     // Set the correct CTA for login
-    Object.assign(document.querySelector('.sj-text-sign-in-with span'), {
-      textContent: 'Or Log In With',
-    });
+    pageElements.auth.googleCTA.textContent = 'Or Log In With';
 
     // Add the T&C text to the login form
     pageElements.auth.loginForm.append(pageElements.auth.termsAndServices);
@@ -1283,9 +1245,7 @@ function handleAuthStyle(login = true) {
     pageElements.auth.actionBtn.textContent = 'Log In';
   } else {
     // Set the correct CTA for signup
-    Object.assign(document.querySelector('.sj-text-sign-up-with span'), {
-      textContent: 'Or Sign Up With',
-    });
+    pageElements.auth.googleCTA.textContent = 'Or Sign Up With';
 
     // Add the T&C text to the signup form
     pageElements.auth.signupForm.append(pageElements.auth.termsAndServices);
@@ -1295,56 +1255,32 @@ function handleAuthStyle(login = true) {
 
     // Set Sign Up button text
     pageElements.auth.actionBtn.textContent = 'Sign Up';
-  }
-}
 
-//MOBILE VIEW STYLINGS
-function mobileLoginPageStyling() {
-  handleAuthStyle();
+    // Set text labels
+    pageElements.auth.firstNameLabel.textContent = 'First Name';
+    pageElements.auth.lastNameLabel.textContent = 'Last Name';
+    pageElements.auth.emailLabel.textContent = 'Work Email';
+    pageElements.auth.passwordConfirmLabel.textContent = 'Password Confirm';
 
-  pageElements.auth.tabs.loginBtnText.textContent = 'Log in';
-  pageElements.auth.tabs.signupBtnText.textContent = 'Sign up';
+    // Set placeholders
+    pageElements.auth.email.setAttribute('placeholder', 'Work Email');
+    pageElements.auth.password.setAttribute('placeholder', 'Password');
 
-  pageElements.auth.actionBtn.textContent = 'Log in';
-}
+    const signUpBottomBtn = document.querySelector('#button-sign-up');
 
-function mobileSignUpPageStyling() {
-  handleAuthStyle(false);
-
-  const signUpBottomBtn = document.querySelector('#button-sign-up');
-
-  //STYLE THE LOGIN/SIGN UP TABS
-  pageElements.auth.tabs.loginBtnText.textContent = 'Log in';
-  pageElements.auth.tabs.signupBtnText.textContent = 'Sign up';
-
-  pageElements.auth.firstNameLabel.textContent = 'First Name';
-  pageElements.auth.lastNameLabel.textContent = 'Last Name';
-  pageElements.auth.emailLabel.textContent = 'Work Email';
-  pageElements.auth.email.setAttribute('placeholder', 'Work Email');
-
-  const signUpBottomBtnParent = signUpBottomBtn?.closest('.text-center');
-  if (signUpBottomBtnParent) {
-    signUpBottomBtnParent.style.textAlign = 'left';
-    signUpBottomBtnParent.classList.remove('text-center');
-  }
-
-  signUpBottomBtn.querySelector('span').textContent = 'Sign up';
-
-  document.querySelector("label[for='id_password2']").textContent =
-    'Password Confirm';
-
-  const inputs = document.querySelectorAll('input');
-  inputs.forEach((input) => {
-    input.style.borderRadius = '4px';
-    input.style.borderColor = 'rgb(220, 220, 220)';
-    input.style.padding = '12px';
-    input.style.lineHeight = '24px';
-
-    if (input.getAttribute('id') === 'id_password2') {
-      input.setAttribute('placeholder', 'Password confirm');
+    const signUpBottomBtnParent = signUpBottomBtn?.closest('.text-center');
+    if (signUpBottomBtnParent) {
+      signUpBottomBtnParent.style.textAlign = 'left';
+      signUpBottomBtnParent.classList.remove('text-center');
     }
-  });
+  }
 }
+
+
+function signUpStyling() {
+  
+}
+
 
 function mobileCourseDetailsPageStyling() {
   const headerContainer = document.querySelector(
@@ -1561,7 +1497,6 @@ function mobileCourseDetailsPageStyling() {
   //COURSE DETAILS GRID STRUCTURE STYLING - ADDING DETAILS CARD ON RIGHT SIDE
   courseDetailCardContainer.style.margin = '0 0 46px 0';
   courseDetailCardContainer.style.justifySelf = 'center';
-
 }
 
 function mobileCurriculumPageNoCertificateStyling() {
@@ -1809,7 +1744,6 @@ function mobileCurriculumPageNoCertificateStyling() {
     titleEl.style.margin = '0';
     titleEl.style.transform = 'translateY(2px)';
   });
-
 }
 
 function mobileCurriculumPageYesCertificateStyling() {
@@ -2052,7 +1986,6 @@ function mobileCurriculumPageYesCertificateStyling() {
     titleEl.style.margin = '0';
     titleEl.style.transform = 'translateY(2px)';
   });
-
 }
 
 function mobileLessonPageStyling() {
@@ -2292,7 +2225,6 @@ function mobileLessonPageStyling() {
   lessonContentContainer.querySelectorAll('a').forEach((el) => {
     el.setAttribute('target', '_blank');
   });
-
 }
 
 function handlePageStyling() {
@@ -2300,6 +2232,10 @@ function handlePageStyling() {
 
   if (view.current === 'catalog') {
     initCatalog();
+  } else if (view.current === 'login') {
+    handleAuthStyle();
+  } else if (view.current === 'signup') {
+    handleAuthStyle(false);
   } else if (view.current === 'courseDetails') {
     view.viewport === 'desktop'
       ? desktopCourseDetailsPageStyling()
@@ -2308,14 +2244,6 @@ function handlePageStyling() {
     view.viewport === 'desktop' ? desktopPathCourseDetailsPageStyling() : null;
   } else if (view.isPageCatalogPath) {
     view.viewport === 'desktop' ? desktopPathCatalogPageStyling() : null;
-  } else if (view.isLoginPage) {
-    view.viewport === 'desktop'
-      ? desktopLoginPageStyling()
-      : mobileLoginPageStyling();
-  } else if (view.isSignUpPage) {
-    view.viewport === 'desktop'
-      ? desktopSignUpPageStyling()
-      : mobileSignUpPageStyling();
   } else if (view.isCurriculumPage) {
     const certificateEl = document.querySelector('.cp-certificate');
 
@@ -2395,7 +2323,7 @@ document.addEventListener('DOMContentLoaded', () => {
     view.current = 'pagePath';
 
   renderCourse();
-  
+
   view.loaded = true;
 });
 
