@@ -18,8 +18,6 @@ const view = {
     ? true
     : false,
   isLessonsPage: document.querySelector('.sj-page-lesson') ? true : false,
-  isLoginPage: document.querySelector('.sj-page-login') ? true : false,
-  isSignUpPage: document.querySelector('.sj-page-signup') ? true : false,
   isPageDetailPath: document.querySelector(
     '.sj-page-detail.sj-page-detail-bundle.sj-page-detail-path'
   )
