@@ -222,7 +222,7 @@ function handleCourseDetailsStyle() {
     let li = document.createElement('li');
 
     if (
-      !pageElements.courseDetailsdetails.curriculum.container.querySelector(
+      !pageElements.courseDetails.details.curriculum.container.querySelector(
         '.section'
       )
     ) {
@@ -241,7 +241,7 @@ function handleCourseDetailsStyle() {
 
         if (skilljarLi.classList.contains('section')) {
           // If it is a section, push curContainer into curriculumListContainer
-          pageElements.courseDetailsdetails.curriculum.container.append(li);
+          pageElements.courseDetails.details.curriculum.container.append(li);
 
           // Reset curContainer while pushing current 'section' in there for the next iteration
           li = document.createElement('li');
@@ -273,7 +273,7 @@ function handleCourseDetailsStyle() {
     );
 
     // LAST, unpushed SECTION; push it out to curriculumListContainer
-    pageElements.courseDetailsdetails.curriculum.container.append(li);
+    pageElements.courseDetails.details.curriculum.container.append(li);
   }
 
   if (pageElements.courseDetails.details.card.container) {
