@@ -1139,12 +1139,19 @@ body.sj-page-detail-course {
         margin: 0;
 
         div.section {
+          font-family: Fusiona;
           font-size: 16px;
           font-weight: 700;
           line-height: 125%;
           letter-spacing: -0.16px;
           padding: 24px;
           border-bottom: 1px solid #dcdcdc;
+          text-wrap: wrap;
+          margin: 0;
+
+          &.blue {
+            border-color: #3443f4 !important;
+          }
         }
 
         

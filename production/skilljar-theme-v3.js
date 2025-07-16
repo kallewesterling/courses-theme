@@ -102,24 +102,6 @@ function styleListItem(div, isLastChild, variation = 'gray') {
   }
 }
 
-function styleGroupHeading(container, variation = 'gray') {
-  container.style.padding = '24px';
-  container.style.borderBottom =
-    variation === 'gray' ? '1px solid #DCDCDC' : '2px solid #3443f4';
-
-  //get actual group heading
-  const heading = container.querySelector('h3') || container;
-
-  heading.textContent = heading?.textContent?.trim();
-  heading.style.fontSize = '16px';
-  heading.style.fontFamily = 'Fusiona';
-  heading.style.fontWeight = '500';
-  heading.style.lineHeight = '125%';
-  heading.style.letterSpacing = '-.16px';
-  heading.style.margin = '0';
-  heading.style.textWrap = 'wrap';
-}
-
 /*
 * Handles the styling of the catalog page.
 * This function is called when the catalog page is loaded.
@@ -271,8 +253,9 @@ function desktopCourseDetailsPageStyling() {
         styleGroupContainer(curContainer);
         const div = document.createElement('div');
         div.innerHTML = curListItem.innerHTML;
-        div.classList.add("section");
-        styleGroupHeading(div, 'blue');
+        div.classList.add(...["section", "blue"]);
+        const heading = div.querySelector('h3') || div;
+        heading.textContent = heading?.textContent?.trim();
         curContainer.append(div);
       } else {
         // else, normal/expected behaviour
@@ -972,7 +955,8 @@ function desktopCurriculumPageNoCertificateStyling() {
         groupH3Tag.textContent = el.querySelector('h3').textContent;
         newGroupHeading.append(groupH3Tag);
 
-        styleGroupHeading(newGroupHeading, 'blue');
+        // styleGroupHeading(newGroupHeading, 'blue');
+        // note: set as class instead
 
         curContainer.append(newGroupHeading);
         el.style.display = 'none';
@@ -1227,7 +1211,8 @@ function desktopCurriculumPageYesCertificationStyling() {
         groupH3Tag.textContent = el.querySelector('h3').textContent;
         newGroupHeading.append(groupH3Tag);
 
-        styleGroupHeading(newGroupHeading, 'blue');
+        // styleGroupHeading(newGroupHeading, 'blue');
+        // note: set as class instead
 
         curContainer.append(newGroupHeading);
         el.style.display = 'none';
@@ -1474,7 +1459,8 @@ function mobileCurriculumPageNoCertificateStyling() {
         groupH3Tag.textContent = el.querySelector('h3').textContent;
         newGroupHeading.append(groupH3Tag);
 
-        styleGroupHeading(newGroupHeading);
+        // styleGroupHeading(newGroupHeading);
+        // note: set as class instead
 
         curContainer.append(newGroupHeading);
         el.style.display = 'none';
@@ -1716,7 +1702,8 @@ function mobileCurriculumPageYesCertificateStyling() {
         groupH3Tag.textContent = el.querySelector('h3').textContent;
         newGroupHeading.append(groupH3Tag);
 
-        styleGroupHeading(newGroupHeading);
+        // styleGroupHeading(newGroupHeading);
+        // note: set as class instead
 
         curContainer.append(newGroupHeading);
         el.style.display = 'none';
