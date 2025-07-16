@@ -38,9 +38,6 @@ const view = {
 
 const globalElements = {
   footer: document.querySelector('#footer-container'),
-  footerCols: document.querySelectorAll(
-    '#footer-container .global-footer-column'
-  ),
   signInBtn: document.querySelector('header .login-link'),
   logoImg: document.querySelector('header .header-center-img'),
 
@@ -2515,10 +2512,6 @@ function renderCourse() {
 
   view.viewport = view.width <= 991 ? 'mobile' : 'desktop';
   handlePageStyling();
-
-  if (!view.isLessonsPage) {
-    document.querySelector('#ep-footer').style.display = 'none';
-  }
 
   insertFooter();
 
