@@ -3,6 +3,7 @@ const debug = (msg, level = 'log') => {
     if (level === "log") {
       console[level](msg);
     }
+  }
 };
 
 let globalCurriculumSection, globalAboutSection;
