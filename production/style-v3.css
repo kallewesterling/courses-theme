@@ -14,7 +14,7 @@ body {
   color: var(--primary-dark-purple-hex);
 }
 
-.ep-footer {
+#ep-footer {
   display: none !important;
 }
 
@@ -936,6 +936,8 @@ body.sj-page-signup {
   }
 
   .socialaccount_providers {
+    padding-left: 100px;
+
     h4.sj-text-sign-up-with {
       margin-bottom: 12px;
       font-weight: 500;
@@ -944,7 +946,8 @@ body.sj-page-signup {
     }
 
     ul {
-      padding: 0px 0px 0px 125px;
+      padding: 0px 0px 0px 25px;
+
       li {
         padding: 0;
       }
