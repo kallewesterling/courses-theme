@@ -177,6 +177,8 @@ function handleAuthStyle(login = true) {
       signUpBottomBtnParent.classList.remove('text-center');
     }
   }
+  
+  view.loaded = true;
 }
 
 pageElements.courseDetails = {
@@ -300,6 +302,8 @@ function handleCourseDetailsStyle() {
       );
     }
   }
+
+  view.loaded = true;
 }
 
 function pathCourseDetailsPageStyling() {
