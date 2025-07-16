@@ -70,7 +70,7 @@ label {
 
 #header {
   .header-center-img {
-    height: 24px;
+    height: 24px !important;
     .header-logo-svg {
       width: 230px !important;
     }
