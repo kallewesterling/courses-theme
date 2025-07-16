@@ -1,7 +1,7 @@
 const debug = (msg, level = 'log') => {
   if (location.hostname.indexOf('skilljar')) {
     if (level === 'log') {
-      console[level](msg);
+      console.log(msg);
     }
   }
 };
@@ -1229,6 +1229,8 @@ function desktopCurriculumPageYesCertificationStyling() {
 }
 
 function handleAuthStyle(login = true) {
+  debug('handleAuthStyle called with login:', login);
+
   // Set the correct button texts
   pageElements.auth.googleLoginBtn.textContent = 'Continue with Google';
   pageElements.auth.tabs.loginBtnText.textContent = 'Log In';
