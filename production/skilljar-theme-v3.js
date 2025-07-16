@@ -201,9 +201,24 @@ pageElements.courseDetails = {
   courseInfo: document.querySelector('.dp-row-flex-v2'),
 }
 
+function handleCourseDetailsStyle() {
+  const mainHeadingContainer = document.querySelector('.dp-summary-wrapper');
+  const headingFloaterText = document.querySelector('.sj-floater-text');
+  const mainHeading = document.querySelector('.break-word');
+  const headingParagraph = document.querySelector('.sj-course-info-wrapper h2');
+  const registerBtn = document.querySelector('#purchase-button-wrapper-large');
+  mainHeadingContainer.append(
+    headingFloaterText,
+    mainHeading,
+    headingParagraph,
+    registerBtn
+  );
+}
+
 function desktopCourseDetailsPageStyling() {
+  handleCourseDetailsStyle();
+
   //BODY VARIABLES
-  const mobileBodyContent = document.querySelector('.row.show-for-small');
   const secondaryBodyContainer = document.querySelector(
     '.row.hide-for-small.padded-side-bottom'
   );
@@ -227,20 +242,8 @@ function desktopCourseDetailsPageStyling() {
     '.course-details-card-link'
   );
 
-  mobileBodyContent.style.display = 'none';
 
   //RENDERING OF COURSE DETAILS PAGE TEXT HEADING ON LEFT
-  const mainHeadingContainer = document.querySelector('.dp-summary-wrapper');
-  const headingFloaterText = document.querySelector('.sj-floater-text');
-  const mainHeading = document.querySelector('.break-word');
-  const headingParagraph = document.querySelector('.sj-course-info-wrapper h2');
-  const registerBtn = document.querySelector('#purchase-button-wrapper-large');
-  mainHeadingContainer.append(
-    headingFloaterText,
-    mainHeading,
-    headingParagraph,
-    registerBtn
-  );
 
   secondaryBodyContainer.style.padding = '0';
   secondaryBodyContainer.style.maxWidth = '760px';
@@ -341,8 +344,9 @@ function desktopCourseDetailsPageStyling() {
 }
 
 function mobileCourseDetailsPageStyling() { 
+  handleCourseDetailsStyle();
+
   //BODY VARIABLES
-  const mobileBodyContent = document.querySelector('.row.show-for-small');
   const secondaryBodyContainer = document.querySelector(
     '.row.hide-for-small.padded-side-bottom'
   );
@@ -364,21 +368,6 @@ function mobileCourseDetailsPageStyling() {
   ).textContent;
   const courseDetailsCardLink = document.querySelector(
     '.course-details-card-link'
-  );
-
-  mobileBodyContent.setAttribute('style', 'display: none !important;');
-
-  //RENDERING OF COURSE DETAILS PAGE TEXT HEADING ON LEFT
-  const mainHeadingContainer = document.querySelector('.dp-summary-wrapper');
-  const headingFloaterText = document.querySelector('.sj-floater-text');
-  const mainHeading = document.querySelector('.break-word');
-  const headingParagraph = document.querySelector('.sj-heading-paragraph');
-  const registerBtn = document.querySelector('#purchase-button-wrapper-large');
-  mainHeadingContainer.append(
-    headingFloaterText,
-    mainHeading,
-    headingParagraph,
-    registerBtn
   );
 
   secondaryBodyContainer.setAttribute(

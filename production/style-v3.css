@@ -1104,6 +1104,16 @@ body.sj-page-detail-course {
     display: grid;
     grid-template-columns: minmax(100px, 760px) minmax(100px, 368px);
     column-gap: 24px;
+
+    .sj-curriculum-wrapper:has(ul.dp-curriculum) {
+      h3 {
+        display: none;
+      }
+    }
+  }
+
+  .row.show-for-small {
+    display: none !important;
   }
 }
 
