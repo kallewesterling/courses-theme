@@ -741,9 +741,6 @@ function desktopLessonPageStyling() {
   //FOOTER STYLING
   globalElements.footer.style.paddingLeft = '40px';
   footerContainer.style.paddingRight = '40px';
-  globalElements.footerCols.forEach((col) => {
-    col.style.width = '270px';
-  });
 }
 
 function desktopLoginPageStyling() {
@@ -768,9 +765,6 @@ function desktopLoginPageStyling() {
   //FOOTER STYLING
   globalElements.footer.style.paddingLeft = '40px';
   globalElements.footer.style.paddingRight = '40px';
-  globalElements.footerCols.forEach((col) => {
-    col.style.width = '270px';
-  });
 }
 
 function desktopSignUpPageStyling() {
@@ -845,9 +839,6 @@ function desktopSignUpPageStyling() {
   //FOOTER STYLING
   globalElements.footer.style.paddingLeft = '40px';
   globalElements.footer.style.paddingRight = '40px';
-  globalElements.footerCols.forEach((col) => {
-    col.style.width = '270px';
-  });
 }
 
 function desktopCurriculumPageNoCertificateStyling() {
@@ -1431,9 +1422,6 @@ function mobileLoginPageStyling() {
   //FOOTER STYLING
   globalElements.footer.style.paddingLeft = 0;
   globalElements.footer.style.paddingRight = 0;
-  globalElements.footerCols.forEach((col) => {
-    col.style.width = '212px';
-  });
 }
 
 function mobileSignUpPageStyling() {
@@ -1513,9 +1501,6 @@ function mobileSignUpPageStyling() {
   //FOOTER STYLING
   globalElements.footer.style.paddingLeft = 0;
   globalElements.footer.style.paddingRight = 0;
-  globalElements.footerCols.forEach((col) => {
-    col.style.width = '212px';
-  });
 }
 
 function mobileCourseDetailsPageStyling() {
@@ -1737,9 +1722,6 @@ function mobileCourseDetailsPageStyling() {
   //FOOTER STYLING
   globalElements.footer.style.paddingLeft = 0;
   globalElements.footer.style.paddingRight = 0;
-  globalElements.footerCols.forEach((col) => {
-    col.style.width = '212px';
-  });
 }
 
 function mobileCurriculumPageNoCertificateStyling() {
@@ -1991,9 +1973,6 @@ function mobileCurriculumPageNoCertificateStyling() {
   //FOOTER STYLING
   globalElements.footer.style.paddingLeft = 0;
   globalElements.footer.style.paddingRight = 0;
-  globalElements.footerCols.forEach((col) => {
-    col.style.width = '212px';
-  });
 }
 
 function mobileCurriculumPageYesCertificateStyling() {
@@ -2240,9 +2219,6 @@ function mobileCurriculumPageYesCertificateStyling() {
   //FOOTER STYLING
   globalElements.footer.style.paddingLeft = 0;
   globalElements.footer.style.paddingRight = 0;
-  globalElements.footerCols.forEach((col) => {
-    col.style.width = '212px';
-  });
 }
 
 function mobileLessonPageStyling() {
@@ -2488,9 +2464,6 @@ function mobileLessonPageStyling() {
   //FOOTER STYLING
   globalElements.footer.style.paddingLeft = 0;
   globalElements.footer.style.paddingRight = 0;
-  globalElements.footerCols.forEach((col) => {
-    col.style.width = '212px';
-  });
 }
 
 function handlePageStyling() {
