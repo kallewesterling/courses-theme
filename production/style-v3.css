@@ -14,6 +14,10 @@ body {
   color: var(--primary-dark-purple-hex);
 }
 
+.ep-footer {
+  display: none !important;
+}
+
 h1,
 .h1-style,
 h2,
@@ -959,7 +963,7 @@ body.sj-page-signup {
 
   #login-tab-container {
     padding: 45px 65px 0px 25px;
-    
+
     #tabs {
       display: flex;
 
