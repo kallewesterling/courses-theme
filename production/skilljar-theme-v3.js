@@ -39,7 +39,6 @@ const pageElements = {
   },
 
   auth: {
-    // pageElements.auth.tabs.loginBtn
     signupForm: document.querySelector('#signup_form'),
     loginForm: document.querySelector('#login_form'),
     termsAndServices: document.querySelector('#access-message'),
@@ -177,7 +176,7 @@ function handleAuthStyle(login = true) {
       signUpBottomBtnParent.classList.remove('text-center');
     }
   }
-  
+
   view.loaded = true;
 }
 
@@ -222,7 +221,11 @@ function handleCourseDetailsStyle() {
     // Check if course has Sections/Modules/Parts
     let li = document.createElement('li');
 
-    if (!pageElements.details.curriculum.container.querySelector('.section')) {
+    if (
+      !pageElements.courseDetailsdetails.curriculum.container.querySelector(
+        '.section'
+      )
+    ) {
       styleGroupContainer(li, 'blue');
     }
 
@@ -238,7 +241,7 @@ function handleCourseDetailsStyle() {
 
         if (skilljarLi.classList.contains('section')) {
           // If it is a section, push curContainer into curriculumListContainer
-          pageElements.details.curriculum.container.append(li);
+          pageElements.courseDetailsdetails.curriculum.container.append(li);
 
           // Reset curContainer while pushing current 'section' in there for the next iteration
           li = document.createElement('li');
@@ -270,21 +273,21 @@ function handleCourseDetailsStyle() {
     );
 
     // LAST, unpushed SECTION; push it out to curriculumListContainer
-    pageElements.details.curriculum.container.append(li);
+    pageElements.courseDetailsdetails.curriculum.container.append(li);
   }
 
-  if (pageElements.details.card.container) {
+  if (pageElements.courseDetails.details.card.container) {
     pageElements.courseDetails.details.container.append(
-      pageElements.details.card.container
+      pageElements.courseDetails.details.card.container
     );
-    pageElements.details.curriculum.listItems.forEach((li) => {
+    pageElements.courseDetails.details.curriculum.listItems.forEach((li) => {
       const checkboxClone = document
         .querySelector('.checkbox-icon')
         .cloneNode(true);
       li.prepend(checkboxClone);
     });
 
-    if (pageElements.details.card.link) {
+    if (pageElements.courseDetails.details.card.link) {
       const registerBtnLink = document
         .querySelector('#purchase-button')
         .getAttribute('href');
@@ -292,13 +295,17 @@ function handleCourseDetailsStyle() {
         '.purchase-button-full-text'
       ).textContent;
 
-      pageElements.details.card.link.textContent = registerBtnText;
-      pageElements.details.card.link.setAttribute('href', registerBtnLink);
+      pageElements.courseDetails.details.card.link.textContent =
+        registerBtnText;
+      pageElements.courseDetails.details.card.link.setAttribute(
+        'href',
+        registerBtnLink
+      );
     }
     if (!view.loaded) {
       //ADD COURSE DETAILS CARD INTO RIGHT CONTAINER
-      pageElements.details.container.append(
-        pageElements.details.card.container
+      pageElements.courseDetails.details.container.append(
+        pageElements.courseDetails.details.card.container
       );
     }
   }
