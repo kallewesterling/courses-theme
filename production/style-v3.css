@@ -210,16 +210,6 @@ label {
   pointer-events: none;
 }
 
-.sj-text-email,
-.sj-text-password,
-.sj-text-sign-in-with {
-  margin-bottom: 12px;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-  font-family: 'Fusiona';
-}
-
 .lesson-row {
   cursor: pointer;
 }
@@ -918,7 +908,6 @@ body.sj-page-signup {
     font-size: 16px;
     line-height: 20px;
     font-family: 'Fusiona';
-    line-height: 20px;
   }
 
   input {
@@ -954,7 +943,7 @@ body.sj-page-signup {
   .socialaccount_providers {
     padding-left: 100px;
 
-    h4.sj-text-sign-up-with {
+    h4 {
       margin-bottom: 12px;
       font-weight: 500;
       font-size: 16px;
@@ -986,7 +975,7 @@ body.sj-page-signup {
     #tabs {
       display: flex;
 
-      #login-tab-left {
+      #login-tab-left, #login-tab-right {
         border: 0;
         display: flex;
         padding: 8px 16px;
