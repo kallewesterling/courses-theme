@@ -209,9 +209,6 @@ function desktopCourseDetailsPageStyling() {
   );
   const bodyColumns = secondaryBodyContainer.querySelectorAll('.columns');
   const curriculumListContainer = document.querySelector('.dp-curriculum'); //NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)!
-  const curriculumListHeader = curriculumListContainer
-    .closest('.sj-curriculum-wrapper')
-    .querySelector('h3');
   const curriculumList = curriculumListContainer.querySelectorAll('li');
 
   //CARD VARIABLES
@@ -322,7 +319,6 @@ function desktopCourseDetailsPageStyling() {
     //LAST, unpushed SECTION; push it out to curriculumListContainer
     curriculumListContainer.append(curContainer);
 
-    curriculumListHeader.style.display = 'none';
     curriculumListContainer.style.padding = '0';
   }
 
@@ -352,9 +348,6 @@ function mobileCourseDetailsPageStyling() {
   );
   const bodyColumns = secondaryBodyContainer.querySelectorAll('.columns');
   const curriculumListContainer = document.querySelector('.dp-curriculum'); //NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)!
-  const curriculumListHeader = curriculumListContainer
-    .closest('.sj-curriculum-wrapper')
-    .querySelector('h3');
   const curriculumList = curriculumListContainer.querySelectorAll('li');
 
   //CARD VARIABLES
@@ -477,7 +470,6 @@ function mobileCourseDetailsPageStyling() {
     //LAST, unpushed SECTION; push it out to curriculumListContainer
     curriculumListContainer.append(curContainer);
 
-    curriculumListHeader.style.display = 'none';
     curriculumListContainer.style.padding = '0';
 
     //COURSE DETAILS CARD STYLING
