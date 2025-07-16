@@ -2370,9 +2370,6 @@ function renderCourse() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  renderCourse();
-  view.loaded = true;
-
   if (document.body.classList.contains('sj-page-catalog'))
     view.current = 'catalog';
 
@@ -2398,6 +2395,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (document.body.classList.contains('sj-page-path'))
     view.current = 'pagePath';
+
+  renderCourse();
+  
+  view.loaded = true;
 });
 
 window.addEventListener('resize', () => {
