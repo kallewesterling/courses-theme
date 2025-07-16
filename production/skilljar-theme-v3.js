@@ -86,17 +86,7 @@ const pageElements = {
 };
 
 function insertFooter() {
-  globalElements.footer.style.display = 'flex';
-
-  if (view.isLessonsPage && view.viewport === 'mobile') {
-    globalElements.footer.style.display = 'none';
-  }
-
-  let contentContainer = view.isLessonsPage
-    ? document.querySelector('.sj-page-lesson')
-    : document.querySelector('#skilljar-content');
-
-  contentContainer.append(globalElements.footer);
+  
 }
 
 function styleGroupContainer(container, variation = 'gray') {
@@ -766,14 +756,7 @@ function desktopLoginPageStyling() {
 
 function desktopSignUpPageStyling() {
   handleAuthStyle(false);
-  const orSignInWithGoogleContainer = document.querySelectorAll(
-    '#login-content .row .large-6.columns'
-  )[3];
-  const orSignInWithGoogleList =
-    orSignInWithGoogleContainer.querySelector('ul');
-  const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll('li');
 
-  //STYLE THE LOGIN/SIGN UP TABS
   pageElements.auth.tabs.loginBtnText.textContent = 'Log In';
   pageElements.auth.tabs.signupBtn.style.display = 'flex';
   pageElements.auth.tabs.signupBtn.style.alignItems = 'center';
@@ -786,13 +769,6 @@ function desktopSignUpPageStyling() {
   pageElements.auth.tabs.signupBtnText.style.fontWeight = '700';
   pageElements.auth.tabs.signupBtnText.style.fontSize = '18px';
   pageElements.auth.tabs.signupBtnText.style.lineHeight = '24px';
-
-  //STYLE THE SIGNUP TEXT CONTENT BOX
-  orSignInWithGoogleContainer.style.paddingLeft = '100px';
-  orSignInWithGoogleList.style.paddingLeft = '25px';
-  orSignInWithGoogleItems.forEach((li) => {
-    li.style.padding = '0';
-  });
 
   pageElements.auth.firstNameLabel.textContent = 'First Name';
   pageElements.auth.lastNameLabel.textContent = 'Last Name';
@@ -1415,21 +1391,10 @@ function mobileLoginPageStyling() {
   signInTabText.style.lineHeight = '24px';
 
   loginBottomBtn.textContent = 'Log in';
-
-  //FOOTER STYLING
-  globalElements.footer.style.paddingLeft = 0;
-  globalElements.footer.style.paddingRight = 0;
 }
 
 function mobileSignUpPageStyling() {
   handleAuthStyle(false);
-
-  const orSignInWithGoogleContainer = document.querySelectorAll(
-    '#login-content .row .large-6.columns'
-  )[3];
-  const orSignInWithGoogleList =
-    orSignInWithGoogleContainer.querySelector('ul');
-  const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll('li');
 
   const signUpBottomBtn = document.querySelector('#button-sign-up');
 
@@ -1449,13 +1414,6 @@ function mobileSignUpPageStyling() {
   pageElements.auth.tabs.signupBtnText.style.fontWeight = '500';
   pageElements.auth.tabs.signupBtnText.style.fontSize = '16px';
   pageElements.auth.tabs.signupBtnText.style.lineHeight = '24px';
-
-  //STYLE THE SIGNUP TEXT CONTENT BOX
-  orSignInWithGoogleContainer.style.padding = '0';
-  orSignInWithGoogleList.style.padding = '0';
-  orSignInWithGoogleItems.forEach((li) => {
-    li.style.padding = '0';
-  });
 
   pageElements.auth.firstNameLabel.textContent = 'First Name';
   pageElements.auth.lastNameLabel.textContent = 'Last Name';
@@ -1494,10 +1452,6 @@ function mobileSignUpPageStyling() {
       input.setAttribute('placeholder', 'Password confirm');
     }
   });
-
-  //FOOTER STYLING
-  globalElements.footer.style.paddingLeft = 0;
-  globalElements.footer.style.paddingRight = 0;
 }
 
 function mobileCourseDetailsPageStyling() {
@@ -1716,9 +1670,6 @@ function mobileCourseDetailsPageStyling() {
   courseDetailCardContainer.style.margin = '0 0 46px 0';
   courseDetailCardContainer.style.justifySelf = 'center';
 
-  //FOOTER STYLING
-  globalElements.footer.style.paddingLeft = 0;
-  globalElements.footer.style.paddingRight = 0;
 }
 
 function mobileCurriculumPageNoCertificateStyling() {
@@ -1967,9 +1918,6 @@ function mobileCurriculumPageNoCertificateStyling() {
     titleEl.style.transform = 'translateY(2px)';
   });
 
-  //FOOTER STYLING
-  globalElements.footer.style.paddingLeft = 0;
-  globalElements.footer.style.paddingRight = 0;
 }
 
 function mobileCurriculumPageYesCertificateStyling() {
@@ -2213,9 +2161,6 @@ function mobileCurriculumPageYesCertificateStyling() {
     titleEl.style.transform = 'translateY(2px)';
   });
 
-  //FOOTER STYLING
-  globalElements.footer.style.paddingLeft = 0;
-  globalElements.footer.style.paddingRight = 0;
 }
 
 function mobileLessonPageStyling() {
@@ -2458,9 +2403,6 @@ function mobileLessonPageStyling() {
     el.setAttribute('target', '_blank');
   });
 
-  //FOOTER STYLING
-  globalElements.footer.style.paddingLeft = 0;
-  globalElements.footer.style.paddingRight = 0;
 }
 
 function handlePageStyling() {
@@ -2513,9 +2455,20 @@ function renderCourse() {
   view.viewport = view.width <= 991 ? 'mobile' : 'desktop';
   handlePageStyling();
 
-  insertFooter();
+  // Insert footer
+  globalElements.footer.style.display = 'flex';
 
-  //Make sure body is visible after rendering
+  if (view.isLessonsPage && view.viewport === 'mobile') {
+    globalElements.footer.style.display = 'none';
+  }
+
+  let contentContainer = view.isLessonsPage
+    ? document.querySelector('.sj-page-lesson')
+    : document.querySelector('#skilljar-content');
+
+  contentContainer.append(globalElements.footer);
+
+  // Make sure body is visible after rendering
   if (!document.body.classList.contains('sj-page-catalog')) {
     document.body.setAttribute(
       'style',
