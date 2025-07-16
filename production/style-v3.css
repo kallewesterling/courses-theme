@@ -958,28 +958,31 @@ body.sj-page-signup {
   }
 
   #login-tab-container {
-    .row .columns {
+    padding: 45px 65px 0px 25px;
+    
+    #tabs {
       display: flex;
-    }
-    #tabs #login-tab-left {
-      border: 0;
-      display: flex;
-      padding: 8px 16px;
-      align-items: center;
-      text-decoration: underline;
-      font-family: 'Space Mono';
-      color: #3443f4;
-      font-weight: 700;
-      font-size: 18px;
-      line-height: 24px;
-      border-radius: 100px;
 
-      a {
-        color: rgba(52, 67, 244, 0.4);
+      #login-tab-left {
+        border: 0;
+        display: flex;
+        padding: 8px 16px;
+        align-items: center;
+        text-decoration: underline;
+        font-family: 'Space Mono';
+        color: #3443f4;
         font-weight: 700;
         font-size: 18px;
-        font-family: 'Space Mono';
         line-height: 24px;
+        border-radius: 100px;
+
+        a {
+          color: rgba(52, 67, 244, 0.4);
+          font-weight: 700;
+          font-size: 18px;
+          font-family: 'Space Mono';
+          line-height: 24px;
+        }
       }
     }
   }
