@@ -12,11 +12,6 @@ const view = {
   isCurriculumPage: document.querySelector('.sj-page-curriculum')
     ? true
     : false,
-  isCourseDetailsPage: document.querySelector(
-    '.sj-page-detail.sj-page-detail-course'
-  )
-    ? true
-    : false,
   isLessonsPage: document.querySelector('.sj-page-lesson') ? true : false,
   isPageDetailPath: document.querySelector(
     '.sj-page-detail.sj-page-detail-bundle.sj-page-detail-path'
@@ -125,8 +120,11 @@ function styleGroupHeading(container, variation = 'gray') {
   heading.style.textWrap = 'wrap';
 }
 
-//DESKTOP VIEW STYLINGS
-function initCatalog() {
+/*
+* Handles the styling of the catalog page.
+* This function is called when the catalog page is loaded.
+*/
+function handleCatalogStyle() {
   if (!view.loaded) {
     debug('initCatalog called');
 
@@ -143,6 +141,58 @@ function initCatalog() {
     pageElements.catalog.content.append(catalogWrapper);
 
     view.loaded = true;
+  }
+}
+
+/*
+* Handles the styling of the authentication page.
+* This function is called when the authentication page is loaded.
+*/
+function handleAuthStyle(login = true) {
+  debug('handleAuthStyle called with login:', login);
+
+  // Set the correct button texts
+  pageElements.auth.googleLoginBtn.textContent = 'Continue with Google';
+  pageElements.auth.tabs.loginBtnText.textContent = 'Log In';
+  pageElements.auth.tabs.signupBtnText.textContent = 'Sign Up';
+
+  if (login) {
+    // Set the correct CTA for login
+    pageElements.auth.googleCTA.textContent = 'Or Log In With';
+
+    // Add the T&C text to the login form
+    pageElements.auth.loginForm.append(pageElements.auth.termsAndServices);
+
+    // Set Login button text
+    pageElements.auth.actionBtn.textContent = 'Log In';
+  } else {
+    // Set the correct CTA for signup
+    pageElements.auth.googleCTA.textContent = 'Or Sign Up With';
+
+    // Add the T&C text to the signup form
+    pageElements.auth.signupForm.append(pageElements.auth.termsAndServices);
+
+    // Add Work Email to email signup
+    Object.assign(pageElements.auth.email, { placeholder: 'Work Email' });
+
+    // Set Sign Up button text
+    pageElements.auth.actionBtn.textContent = 'Sign Up';
+
+    // Set text labels
+    pageElements.auth.firstNameLabel.textContent = 'First Name';
+    pageElements.auth.lastNameLabel.textContent = 'Last Name';
+    pageElements.auth.emailLabel.textContent = 'Work Email';
+    pageElements.auth.passwordConfirmLabel.textContent = 'Password Confirm';
+
+    // Set placeholders
+    pageElements.auth.email.setAttribute('placeholder', 'Work Email');
+    pageElements.auth.password.setAttribute('placeholder', 'Password');
+
+    const signUpBottomBtnParent = pageElements.auth.actionBtn.closest('.text-center');
+    if (signUpBottomBtnParent) {
+      signUpBottomBtnParent.style.textAlign = 'left';
+      signUpBottomBtnParent.classList.remove('text-center');
+    }
   }
 }
 
@@ -349,7 +399,7 @@ function desktopCourseDetailsPageStyling() {
   }
 }
 
-function desktopPathCourseDetailsPageStyling() {
+function pathCourseDetailsPageStyling() {
   const headerContainer = document.querySelector(
     '.top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2'
   );
@@ -427,7 +477,7 @@ function desktopPathCourseDetailsPageStyling() {
   catalogContainer.style.marginBottom = '85px';
 }
 
-function desktopPathCatalogPageStyling() {
+function pathCatalogPageStyling() {
   const backArrowBtn = document.querySelector('.back-to-catalog');
 
   const mainContentContainer = document.querySelector('#catalog-content');
@@ -1226,60 +1276,7 @@ function desktopCurriculumPageYesCertificationStyling() {
   });
 }
 
-function handleAuthStyle(login = true) {
-  debug('handleAuthStyle called with login:', login);
 
-  // Set the correct button texts
-  pageElements.auth.googleLoginBtn.textContent = 'Continue with Google';
-  pageElements.auth.tabs.loginBtnText.textContent = 'Log In';
-  pageElements.auth.tabs.signupBtnText.textContent = 'Sign Up';
-
-  if (login) {
-    // Set the correct CTA for login
-    pageElements.auth.googleCTA.textContent = 'Or Log In With';
-
-    // Add the T&C text to the login form
-    pageElements.auth.loginForm.append(pageElements.auth.termsAndServices);
-
-    // Set Login button text
-    pageElements.auth.actionBtn.textContent = 'Log In';
-  } else {
-    // Set the correct CTA for signup
-    pageElements.auth.googleCTA.textContent = 'Or Sign Up With';
-
-    // Add the T&C text to the signup form
-    pageElements.auth.signupForm.append(pageElements.auth.termsAndServices);
-
-    // Add Work Email to email signup
-    Object.assign(pageElements.auth.email, { placeholder: 'Work Email' });
-
-    // Set Sign Up button text
-    pageElements.auth.actionBtn.textContent = 'Sign Up';
-
-    // Set text labels
-    pageElements.auth.firstNameLabel.textContent = 'First Name';
-    pageElements.auth.lastNameLabel.textContent = 'Last Name';
-    pageElements.auth.emailLabel.textContent = 'Work Email';
-    pageElements.auth.passwordConfirmLabel.textContent = 'Password Confirm';
-
-    // Set placeholders
-    pageElements.auth.email.setAttribute('placeholder', 'Work Email');
-    pageElements.auth.password.setAttribute('placeholder', 'Password');
-
-    const signUpBottomBtn = document.querySelector('#button-sign-up');
-
-    const signUpBottomBtnParent = signUpBottomBtn?.closest('.text-center');
-    if (signUpBottomBtnParent) {
-      signUpBottomBtnParent.style.textAlign = 'left';
-      signUpBottomBtnParent.classList.remove('text-center');
-    }
-  }
-}
-
-
-function signUpStyling() {
-  
-}
 
 
 function mobileCourseDetailsPageStyling() {
@@ -2231,19 +2228,21 @@ function handlePageStyling() {
   debug('handlePageStyling called with view.current:', view.current);
 
   if (view.current === 'catalog') {
-    initCatalog();
+    handleCatalogStyle();
   } else if (view.current === 'login') {
     handleAuthStyle();
   } else if (view.current === 'signup') {
     handleAuthStyle(false);
-  } else if (view.current === 'courseDetails') {
+  }
+  
+  if (view.current === 'courseDetails') {
     view.viewport === 'desktop'
       ? desktopCourseDetailsPageStyling()
       : mobileCourseDetailsPageStyling();
   } else if (view.isPageDetailPath) {
-    view.viewport === 'desktop' ? desktopPathCourseDetailsPageStyling() : null;
+    pathCourseDetailsPageStyling();
   } else if (view.isPageCatalogPath) {
-    view.viewport === 'desktop' ? desktopPathCatalogPageStyling() : null;
+    pathCatalogPageStyling();
   } else if (view.isCurriculumPage) {
     const certificateEl = document.querySelector('.cp-certificate');
 
