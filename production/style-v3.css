@@ -1116,29 +1116,27 @@ body.sj-page-detail-course {
     display: none !important;
   }
 
-  .row.hide-for-small {
-    .padded-side-bottom {
+  .row.hide-for-small.padded-side-bottom {
+    padding: 0;
+    max-width: 760px;
+    display: grid !important;
+
+    .columns {
+      float: none;
       padding: 0;
-      max-width: 760px;
-      display: grid !important;
+      width: 100%;
+      display: block;
 
-      .columns {
-        float: none;
-        padding: 0;
-        width: 100%;
-        display: block;
-        
-        &.large-7 {
-          margin-bottom: 48px;
-        }
+      &.large-7 {
+        margin-bottom: 48px;
+      }
 
-        h3 {
-          font-weight: 600;;
-        }
+      h3 {
+        font-weight: 600;
+      }
 
-        .dp-curriculum {
-          margin: 0;
-        }
+      .dp-curriculum {
+        margin: 0;
       }
     }
   }
