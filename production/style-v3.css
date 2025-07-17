@@ -1167,6 +1167,7 @@ body.sj-page-detail-course {
           text-wrap: wrap;
           margin: 0;
           background-color: #cdb5e454 !important;
+          border-radius: 20px 20px 0 0;
         }
 
         div.lesson {
