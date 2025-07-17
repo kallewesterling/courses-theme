@@ -875,3 +875,12 @@ sjwc-lesson-content-item pre code {
 .sj-page-catalog .sj-course-ribbon-complete {
   color: white !important;
 }
+
+#internal-course-warning {
+  padding: 18px;
+  background-image: linear-gradient(315deg, #fde1fe, #f5f6fe 72%);
+  box-shadow: 0 0 6px 6px #0000001a !important;
+  margin-bottom: 50px;
+  line-height: 1.5em;
+  font-size: 0.9em;
+}
