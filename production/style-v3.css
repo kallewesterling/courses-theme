@@ -948,7 +948,7 @@ body.sj-page-signup {
 
 body.sj-page-detail-course {
   /* courseDetails */
-  
+
   .top-row-grey {
     background-image: url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png);
     background-size: cover;
@@ -1077,6 +1077,16 @@ body.sj-page-detail-course {
           display: flex;
           align-items: start !important;
           gap: 12px;
+          
+          &::before {
+            content: ""; /* checkbox icon */
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #0000ff40;
+            transform: translateY(5px);
+          }
 
           p {
             font-size: 16px;
