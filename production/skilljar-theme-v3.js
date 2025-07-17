@@ -203,97 +203,93 @@ pageElements.courseDetails = {
   },
 };
 
+function buildCurriculum() {
+  const sections = [];
+  let currentIndex = -1;
+
+  pageElements.courseDetails.info.curriculum.items.forEach((e) => {
+    e.querySelector('svg')?.remove();
+    e.querySelector('div.type-icon')?.remove();
+    e.querySelector('span.sj-lesson-time')?.remove();
+    const text = e.textContent.trim();
+    if (e.classList.contains('section')) {
+      sections.push({ header: text, lessons: [] });
+      currentIndex++;
+    } else {
+      sections[currentIndex].lessons.push(text);
+    }
+  });
+
+  return sections;
+}
+
 function handleCourseDetailsStyle() {
   debug('handleCourseDetailsStyle called');
 
-  pageElements.courseDetails.meta.textWrapper.append(
-    pageElements.courseDetails.meta.category,
-    pageElements.courseDetails.meta.name,
-    pageElements.courseDetails.meta.description,
-    pageElements.courseDetails.meta.CTA
-  );
-
-  //COURSE DETAILS CURRICULUM STYLING
   if (!view.loaded) {
     debug('view.loaded is false, styling curriculum');
-
-    // Check if course has Sections/Modules/Parts
-    let li = document.createElement('li');
-
-    if (
-      !pageElements.courseDetails.info.curriculum.container.querySelector(
-        '.section'
-      )
-    ) {
-      styleGroupContainer(li);
-    }
-
-    pageElements.courseDetails.info.curriculum.items.forEach((skilljarLi) => {
-      // Get the current contents
-      const contents = skilljarLi.innerHTML;
-
-      if (skilljarLi.classList.contains('section')) {
-        // If it is a section, push curContainer into curriculumListContainer
-        pageElements.courseDetails.info.curriculum.container.append(li);
-
-        // Reset curContainer while pushing current 'section' in there for the next iteration
-        li = document.createElement('li');
-        // styleGroupContainer(li); // move this to style
-
-        // Create an inner div for the section
-        const div = document.createElement('div');
-        div.innerHTML = contents;
-        div.classList.add('section');
-        const heading = div.querySelector('h3') || div;
-        heading.textContent = heading?.textContent?.trim();
-
-        li.append(div);
-      } else {
-        // If it is a lesson, create a new div and append it to the current list item
-        const div = document.createElement('div');
-        div.innerHTML = contents;
-        div.classList.add('lesson');
-
-        li.append(div);
-      }
-    });
-
-    // LAST, unpushed SECTION; push it out to curriculumListContainer
-    pageElements.courseDetails.info.curriculum.container.append(li);
-  }
-
-  if (pageElements.courseDetails.card.container) {
-    pageElements.courseDetails.info.container.append(
-      pageElements.courseDetails.card.container
+    // Put meta elements in the right place
+    pageElements.courseDetails.meta.textWrapper.append(
+      pageElements.courseDetails.meta.category,
+      pageElements.courseDetails.meta.name,
+      pageElements.courseDetails.meta.description,
+      pageElements.courseDetails.meta.CTA
     );
-    pageElements.courseDetails.info.curriculum.items.forEach((li) => {
-      const checkboxClone = document
-        .querySelector('.checkbox-icon')
-        .cloneNode(true);
-      li.prepend(checkboxClone);
+  
+    // Fix Curriculum
+    const sections = buildCurriculum();
+
+    sections.forEach(section => {
+      const wrapper = document.createElement("li");
+      const headerElem = Object.assign(document.createElement('div'), {
+        textContent: section.header,
+        classList: ['section'],
+      })
+      wrapper.append(headerElem);
+      section.lessons.forEach(lesson => {
+        const lessonElem = Object.assign(document.createElement('div'), {
+          textContent: lesson,
+          classList: ['lesson'],
+        })
+        wrapper.append(lessonElem);
+      })
+      pageElements.courseDetails.info.curriculum.container.append(wrapper);
     });
-
-    if (pageElements.courseDetails.card.link) {
-      const registerBtnLink = document
-        .querySelector('#purchase-button')
-        .getAttribute('href');
-      const registerBtnText = document.querySelector(
-        '.purchase-button-full-text'
-      ).textContent;
-
-      pageElements.courseDetails.card.link.textContent = registerBtnText;
-      pageElements.courseDetails.card.link.setAttribute(
-        'href',
-        registerBtnLink
+    
+    // Fix Course Details card
+    if (pageElements.courseDetails.card.container) {
+      pageElements.courseDetails.info.container.append(
+        pageElements.courseDetails.card.container
       );
-    }
-    if (!view.loaded) {
+      pageElements.courseDetails.info.curriculum.items.forEach((li) => {
+        const checkboxClone = document
+          .querySelector('.checkbox-icon')
+          .cloneNode(true);
+        li.prepend(checkboxClone);
+      });
+  
+      if (pageElements.courseDetails.card.link) {
+        const registerBtnLink = document
+          .querySelector('#purchase-button')
+          .getAttribute('href');
+        const registerBtnText = document.querySelector(
+          '.purchase-button-full-text'
+        ).textContent;
+  
+        pageElements.courseDetails.card.link.textContent = registerBtnText;
+        pageElements.courseDetails.card.link.setAttribute(
+          'href',
+          registerBtnLink
+        );
+      }
+
       //ADD COURSE DETAILS CARD INTO RIGHT CONTAINER
       pageElements.courseDetails.info.container.append(
         pageElements.courseDetails.card.container
       );
     }
   }
+
 
   view.loaded = true;
 }

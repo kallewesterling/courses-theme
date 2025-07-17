@@ -1184,12 +1184,10 @@ body.sj-page-detail-course {
         }
 
         div.lesson {
-          div.lesson-wrapper {
-            padding: 24px;
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 150%;
-          }
+          padding: 24px;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 150%;
 
           .type-icon {
             display: none;
