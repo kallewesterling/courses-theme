@@ -208,52 +208,6 @@ label {
   background-color: var(--secondary-light-gray-hex);
 }
 
-.course-details-card-header {
-  font-size: 16px;
-  font-weight: 500;
-  font-family: 'Fusiona';
-  line-height: 20px;
-  letter-spacing: -0.01em;
-  border-bottom: 2px solid var(--primary-blue-hex) !important;
-  padding: 24px;
-}
-
-.course-details-card-list {
-  list-style: none;
-  padding: 24px 24px 0 24px;
-  margin: 0;
-  margin-bottom: 16px;
-}
-
-.course-details-card-list li {
-  margin-bottom: 8px;
-  display: flex;
-  align-items: start !important;
-  gap: 12px;
-}
-
-.course-details-card-list li p {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  margin: 0;
-}
-
-.course-details-card-link {
-  background-color: var(--primary-blue-hex) !important;
-  color: var(--primary-white-hex) !important;
-  padding: 12px 20px !important;
-  text-align: center !important;
-  text-decoration: none !important;
-  display: inline-block;
-  font-size: 16px !important;
-  font-family: 'Space Mono' !important;
-  border-radius: 999px !important;
-  cursor: pointer !important;
-  margin: 0 24px !important;
-  margin-bottom: 24px !important;
-  transition: all 0.2s !important;
-}
 
 #cp-content::before,
 #cp-content::after,
@@ -264,11 +218,6 @@ label {
 
 .checkbox-icon {
   display: none;
-}
-
-ul.course-details-card-list li .checkbox-icon {
-  display: block;
-  flex-shrink: 0;
 }
 
 .lp-color-scheme-light #lp-wrapper #lesson-body h4 {
@@ -352,17 +301,6 @@ body .lesson-page #lp-wrapper #lesson-body .lesson-top {
 
 .content-img-inner-container img {
   border-radius: 4px;
-}
-
-.course-details-card-link:visited {
-  background-color: var(--primary-blue-hex);
-  color: var(--primary-white-hex);
-}
-
-.course-details-card-link:hover,
-.course-details-card-link:active {
-  background-color: var(--primary-blue-hex);
-  color: var(--primary-white-hex);
 }
 
 .video-player.flex-video.widescreen {
@@ -1010,6 +948,7 @@ body.sj-page-signup {
 
 body.sj-page-detail-course {
   /* courseDetails */
+  
   .top-row-grey {
     background-image: url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png);
     background-size: cover;
@@ -1096,11 +1035,11 @@ body.sj-page-detail-course {
     }
 
     .course-details-card {
+      /* Course Details Card */
+
       font-family: inherit !important;
       max-width: 368px !important;
       border-radius: 8px !important;
-      background-color: var(--primary-white-hex) !important;
-      border: 2px solid var(--primary-blue-hex) !important;
       display: flex !important;
       flex-direction: column !important;
       color: inherit !important;
@@ -1108,12 +1047,77 @@ body.sj-page-detail-course {
       position: sticky !important;
       top: 100px !important;
       margin: 96px 0 46px 0;
+      box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+      background-image: linear-gradient(315deg, #fde1fe, #f5f6fe 72%);
 
       /* 
       on mobile?
       .course-details-card margin = '0 0 46px 0';
       .course-details-card justifySelf = 'center';
       */
+
+      .course-details-card-header {
+        font-size: 16px;
+        font-weight: 500;
+        font-family: 'Fusiona';
+        line-height: 20px;
+        letter-spacing: -0.01em;
+        border-bottom: 2px solid var(--primary-blue-hex) !important;
+        padding: 24px;
+      }
+
+      .course-details-card-list {
+        list-style: none;
+        padding: 24px 24px 0 24px;
+        margin: 0;
+        margin-bottom: 16px;
+        
+        li {
+          margin-bottom: 8px;
+          display: flex;
+          align-items: start !important;
+          gap: 12px;
+
+          p {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            margin: 0;
+          }
+
+          .checkbox-icon {
+            display: block;
+            flex-shrink: 0;
+          }
+        }
+
+      .course-details-card-link {
+        background-color: var(--primary-blue-hex) !important;
+        color: var(--primary-white-hex) !important;
+        padding: 12px 20px !important;
+        text-align: center !important;
+        text-decoration: none !important;
+        display: inline-block;
+        font-size: 16px !important;
+        font-family: 'Space Mono' !important;
+        border-radius: 999px !important;
+        cursor: pointer !important;
+        margin: 0 24px !important;
+        margin-bottom: 24px !important;
+        transition: all 0.2s !important;
+
+          &:visited {
+            background-color: var(--primary-blue-hex);
+            color: var(--primary-white-hex);
+          }
+
+          &:hover,
+          &:active {
+            background-color: var(--primary-blue-hex);
+            color: var(--primary-white-hex);
+          }
+        }
+      }
     }
 
     #badge-info {
