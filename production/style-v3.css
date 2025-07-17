@@ -1057,11 +1057,10 @@ body.sj-page-detail-course {
 
       .course-details-card-header {
         font-size: 16px;
-        font-weight: 500;
+        font-weight: 700;
         font-family: 'Fusiona';
         line-height: 20px;
         letter-spacing: -0.01em;
-        border-bottom: 2px solid var(--primary-blue-hex) !important;
         padding: 24px;
       }
 
