@@ -212,7 +212,10 @@ function buildCurriculum() {
     e.querySelector('div.type-icon')?.remove();
     e.querySelector('span.sj-lesson-time')?.remove();
     const text = e.textContent.trim();
-    if (e.classList.contains('section')) {
+    if (
+      e.classList.contains('section') &&
+      !sections.map((d) => d.header).includes(text)
+    ) {
       sections.push({ header: text, lessons: [] });
       currentIndex++;
     } else {
@@ -235,27 +238,27 @@ function handleCourseDetailsStyle() {
       pageElements.courseDetails.meta.description,
       pageElements.courseDetails.meta.CTA
     );
-  
+
     // Fix Curriculum
     const sections = buildCurriculum();
 
-    sections.forEach(section => {
-      const wrapper = document.createElement("li");
+    sections.forEach((section) => {
+      const wrapper = document.createElement('li');
       const headerElem = Object.assign(document.createElement('div'), {
         textContent: section.header,
         classList: ['section'],
-      })
+      });
       wrapper.append(headerElem);
-      section.lessons.forEach(lesson => {
+      section.lessons.forEach((lesson) => {
         const lessonElem = Object.assign(document.createElement('div'), {
           textContent: lesson,
           classList: ['lesson'],
-        })
+        });
         wrapper.append(lessonElem);
-      })
-      pageElements.courseDetails.info.curriculum.container.append(wrapper);
+      });
+      pageElements.courseDetails.info.curriculum.container.innerHTML = wrapper;
     });
-    
+
     // Fix Course Details card
     if (pageElements.courseDetails.card.container) {
       pageElements.courseDetails.info.container.append(
@@ -267,7 +270,7 @@ function handleCourseDetailsStyle() {
           .cloneNode(true);
         li.prepend(checkboxClone);
       });
-  
+
       if (pageElements.courseDetails.card.link) {
         const registerBtnLink = document
           .querySelector('#purchase-button')
@@ -275,7 +278,7 @@ function handleCourseDetailsStyle() {
         const registerBtnText = document.querySelector(
           '.purchase-button-full-text'
         ).textContent;
-  
+
         pageElements.courseDetails.card.link.textContent = registerBtnText;
         pageElements.courseDetails.card.link.setAttribute(
           'href',
@@ -289,7 +292,6 @@ function handleCourseDetailsStyle() {
       );
     }
   }
-
 
   view.loaded = true;
 }
