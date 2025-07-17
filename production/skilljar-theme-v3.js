@@ -200,6 +200,19 @@ pageElements.courseDetails = {
   },
 };
 
+
+/*
+
+const c = document.querySelector("div#curriculum-list");
+c.querySelectorAll(".lesson-section, .lesson-modular").forEach(d => {
+  d.classList.contains("lesson-section")
+  
+  d.querySelector('span.optional-text')?.remove();
+  return d.textContent.trim()});
+
+*/
+
+
 /*
   * Builds the curriculum section of the course details page.
   * It extracts sections and lessons from the existing curriculum list,
@@ -210,12 +223,14 @@ function buildCurriculum() {
   debug('buildCurriculum called');
 
   // Set up variables
-  let container = document.querySelector('ul.dp-curriculum'),
+  let container = document.querySelector('ul.dp-curriculum') || document.querySelector("div#curriculum-list"),
     sections = [],
     currentIndex = -1;
 
   // Build `sections`
-  container.querySelectorAll('li').forEach((e) => {
+  const selector = container.tagName === "UL" ? "li" : "div.lesson-section, div.lesson-modular";
+
+  container.querySelectorAll(selector).forEach((e) => {
     // Drop all unneeded elements
     e.querySelector('svg')?.remove();
     e.querySelector('div.type-icon')?.remove();
@@ -223,7 +238,7 @@ function buildCurriculum() {
 
     const text = e.textContent.trim(); // Extract the text content
 
-    if (e.classList.contains('section')) {
+    if (e.classList.contains('section') || e.classList.contains('lesson-section')) {
       sections.push({ header: text, lessons: [] });
       currentIndex++;
     } else {
@@ -258,7 +273,15 @@ function buildCurriculum() {
     container.append(li);
   });
 
-  return container;
+  if (container.tagName === "UL")
+    return container;
+
+  // if the container is a div, let's wrap our li in a new ul element and return it
+  return Object.assign(document.createElement('ul'), {
+    id: 'curriculum-list',
+    classList: ['dp-curriculum'],
+    innerHTML: container.innerHTML,
+  })
 }
 
 /*
