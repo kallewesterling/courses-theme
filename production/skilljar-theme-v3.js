@@ -261,12 +261,6 @@ function handleCourseDetailsStyle() {
           div.innerHTML = contents;
           div.classList.add('lesson');
 
-          const lessonItemText = div.querySelector('.lesson-wrapper');
-
-          if (!isLastChild) {
-            lessonItemText.style.borderBottom = '2px solid #3443F4';
-          }
-
           li.append(div);
         }
       }
