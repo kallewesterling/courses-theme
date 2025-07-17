@@ -206,7 +206,7 @@ function buildCurriculum() {
   // Build `sections`
   let sections = [],
     currentIndex = -1;
-  container.querySelector('li').forEach((e) => {
+  container.querySelectorAll('li').forEach((e) => {
     // Drop all unneeded elements
     e.querySelector('svg')?.remove();
     e.querySelector('div.type-icon')?.remove();
