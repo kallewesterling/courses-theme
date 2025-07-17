@@ -182,12 +182,13 @@ function handleAuthStyle(login = true) {
 pageElements.courseDetails = {
   header: document.querySelector('.top-row-grey'),
   meta: {
-    container: document.querySelector('.dp-row-flex-v2'),
+    // container: document.querySelector('.dp-row-flex-v2'),
     textWrapper: document.querySelector('.dp-summary-wrapper'),
     category: document.querySelector('.sj-floater-text'),
     name: document.querySelector('.break-word'),
     description: document.querySelector('.sj-course-info-wrapper h2'),
     CTA: document.querySelector('#purchase-button-wrapper-large'),
+    action: document.querySelector('#purchase-button'),
   },
   card: {
     container: document.querySelectorAll('.course-details-card')[0],
@@ -196,35 +197,83 @@ pageElements.courseDetails = {
   },
   info: {
     container: document.querySelector('#dp-details'),
-    curriculum: {
-      container: document.querySelectorAll('ul.dp-curriculum')[0],
-      items: document.querySelectorAll('.dp-curriculum li'),
-    },
   },
 };
 
 function buildCurriculum() {
-  const sections = [];
-  let currentIndex = -1;
+  const container = document.querySelector('ul.dp-curriculum');
 
-  pageElements.courseDetails.info.curriculum.items.forEach((e) => {
+  // Build `sections`
+  let sections = [],
+    currentIndex = -1;
+  container.querySelector('li').forEach((e) => {
+    // Drop all unneeded elements
     e.querySelector('svg')?.remove();
     e.querySelector('div.type-icon')?.remove();
     e.querySelector('span.sj-lesson-time')?.remove();
+
+    // Extract the text content
     const text = e.textContent.trim();
-    if (
-      e.classList.contains('section') &&
-      !sections.map((d) => d.header).includes(text)
-    ) {
+
+    if (e.classList.contains('section')) {
       sections.push({ header: text, lessons: [] });
       currentIndex++;
     } else {
-      sections[currentIndex].lessons.push(text);
+      if (!sections.map((d) => d.lessons).includes(text))
+        sections[currentIndex].lessons.push(text);
     }
+
+    // Remove the element from the DOM
     e.remove();
   });
 
-  return sections;
+  sections.forEach((section) => {
+    // Set up the section item
+    const li = document.createElement('li');
+
+    // Add the section header
+    const headerElem = Object.assign(document.createElement('div'), {
+      textContent: section.header,
+      classList: ['section'],
+    });
+    li.append(headerElem);
+
+    // Add lessons to section
+    section.lessons.forEach((lesson) => {
+      const lessonElem = Object.assign(document.createElement('div'), {
+        textContent: lesson,
+        classList: ['lesson'],
+      });
+      li.append(lessonElem);
+    });
+
+    // Append the section to the container
+    container.append(li);
+  });
+
+  return container;
+}
+
+function buildCourseDetailsCard() {
+  if (pageElements.courseDetails.card.container) {
+    pageElements.courseDetails.info.container.append(
+      pageElements.courseDetails.card.container
+    );
+
+    if (pageElements.courseDetails.card.link) {
+      Object.assign(pageElements.courseDetails.card.link, {
+        textContent:
+          pageElements.courseDetails.meta.action.textContent || 'Register',
+        href:
+          pageElements.courseDetails.meta.action.getAttribute('href') || '#',
+      });
+    }
+
+    //ADD COURSE DETAILS CARD INTO RIGHT CONTAINER
+    pageElements.courseDetails.info.container.append(
+      pageElements.courseDetails.card.container
+    );
+  }
 }
 
 function handleCourseDetailsStyle() {
@@ -232,6 +281,10 @@ function handleCourseDetailsStyle() {
 
   if (!view.loaded) {
     debug('view.loaded is false, styling curriculum');
+
+    // Drop the show for small content
+    document.querySelector('.row.show-for-small')?.remove();
+
     // Put meta elements in the right place
     pageElements.courseDetails.meta.textWrapper.append(
       pageElements.courseDetails.meta.category,
@@ -241,60 +294,11 @@ function handleCourseDetailsStyle() {
     );
 
     // Fix Curriculum
-    const sections = buildCurriculum();
-
-    sections.forEach((section) => {
-      const wrapper = document.createElement('li');
-      const headerElem = Object.assign(document.createElement('div'), {
-        textContent: section.header,
-        classList: ['section'],
-      });
-      wrapper.append(headerElem);
-      section.lessons.forEach((lesson) => {
-        const lessonElem = Object.assign(document.createElement('div'), {
-          textContent: lesson,
-          classList: ['lesson'],
-        });
-        wrapper.append(lessonElem);
-      });
-      pageElements.courseDetails.info.curriculum.container.append(wrapper);
-    });
+    buildCurriculum();
 
     // Fix Course Details card
-    if (pageElements.courseDetails.card.container) {
-      pageElements.courseDetails.info.container.append(
-        pageElements.courseDetails.card.container
-      );
-      pageElements.courseDetails.info.curriculum.items.forEach((li) => {
-        const checkboxClone = document
-          .querySelector('.checkbox-icon')
-          .cloneNode(true);
-        li.prepend(checkboxClone);
-      });
-
-      if (pageElements.courseDetails.card.link) {
-        const registerBtnLink = document
-          .querySelector('#purchase-button')
-          .getAttribute('href');
-        const registerBtnText = document.querySelector(
-          '.purchase-button-full-text'
-        ).textContent;
-
-        pageElements.courseDetails.card.link.textContent = registerBtnText;
-        pageElements.courseDetails.card.link.setAttribute(
-          'href',
-          registerBtnLink
-        );
-      }
-
-      //ADD COURSE DETAILS CARD INTO RIGHT CONTAINER
-      pageElements.courseDetails.info.container.append(
-        pageElements.courseDetails.card.container
-      );
-    }
+    buildCourseDetailsCard();
   }
-
-  view.loaded = true;
 }
 
 function pathCourseDetailsPageStyling() {
