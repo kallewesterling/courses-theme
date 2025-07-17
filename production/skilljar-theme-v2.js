@@ -668,6 +668,10 @@ function desktopPathCatalogPageStyling() {
 }
 
 function desktopLessonPageStyling() {
+  const internalCourseWarning = document.querySelector('#internal-course-warning');
+  if (internalCourseWarning) {
+    document.querySelector('#lesson-main').prepend(internalCourseWarning);
+  }
   const logoImg = document.querySelector(".header-center-img");
 
   const leftNav = document.getElementById("lp-left-nav");
@@ -3087,6 +3091,10 @@ function mobileCurriculumPageYesCertificateStyling() {
 }
 
 function mobileLessonPageStyling() {
+  const internalCourseWarning = document.querySelector('#internal-course-warning');
+  if (internalCourseWarning) {
+    document.querySelector('#lesson-main').prepend(internalCourseWarning);
+  }
   "left-nav-button";
 
   //MAIN NAV VARS
