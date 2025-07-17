@@ -221,6 +221,7 @@ function buildCurriculum() {
     } else {
       sections[currentIndex].lessons.push(text);
     }
+    e.remove();
   });
 
   return sections;
@@ -256,7 +257,7 @@ function handleCourseDetailsStyle() {
         });
         wrapper.append(lessonElem);
       });
-      pageElements.courseDetails.info.curriculum.container.innerHTML = wrapper;
+      pageElements.courseDetails.info.curriculum.container.append(wrapper);
     });
 
     // Fix Course Details card
