@@ -200,20 +200,28 @@ pageElements.courseDetails = {
   },
 };
 
+/*
+  * Builds the curriculum section of the course details page.
+  * It extracts sections and lessons from the existing curriculum list,
+  * cleans up unnecessary elements, and appends them to the curriculum container.
+  * @returns {HTMLElement} The updated curriculum container.
+*/
 function buildCurriculum() {
-  const container = document.querySelector('ul.dp-curriculum');
+  debug('buildCurriculum called');
+
+  // Set up variables
+  let container = document.querySelector('ul.dp-curriculum'),
+    sections = [],
+    currentIndex = -1;
 
   // Build `sections`
-  let sections = [],
-    currentIndex = -1;
   container.querySelectorAll('li').forEach((e) => {
     // Drop all unneeded elements
     e.querySelector('svg')?.remove();
     e.querySelector('div.type-icon')?.remove();
     e.querySelector('span.sj-lesson-time')?.remove();
 
-    // Extract the text content
-    const text = e.textContent.trim();
+    const text = e.textContent.trim(); // Extract the text content
 
     if (e.classList.contains('section')) {
       sections.push({ header: text, lessons: [] });
@@ -223,8 +231,7 @@ function buildCurriculum() {
         sections[currentIndex].lessons.push(text);
     }
 
-    // Remove the element from the DOM
-    e.remove();
+    e.remove(); // Remove the element from the DOM
   });
 
   sections.forEach((section) => {
@@ -254,12 +261,16 @@ function buildCurriculum() {
   return container;
 }
 
+/*
+  * Builds the course details card on the course details page.
+  * It checks if the card container exists, appends it to the course details info container,
+  * and sets the link text and href based on the action button.
+  * @returns {void}
+*/
 function buildCourseDetailsCard() {
   if (pageElements.courseDetails.card.container) {
-    pageElements.courseDetails.info.container.append(
-      pageElements.courseDetails.card.container
-    );
-
+    debug('buildCourseDetailsCard called & container exists');
+    // Set the card's link
     if (pageElements.courseDetails.card.link) {
       Object.assign(pageElements.courseDetails.card.link, {
         textContent:
@@ -269,13 +280,22 @@ function buildCourseDetailsCard() {
       });
     }
 
-    //ADD COURSE DETAILS CARD INTO RIGHT CONTAINER
+    // Add card container to the course details container
     pageElements.courseDetails.info.container.append(
       pageElements.courseDetails.card.container
     );
   }
 }
 
+/*
+  * Handles the styling of the course details page.
+  * This function is called when the course details page is loaded.
+  * It checks if the view is loaded, and if not,
+  * it styles the course details page elements,
+  * builds the curriculum section,
+  * and builds the course details card.
+  * @returns {void}
+*/
 function handleCourseDetailsStyle() {
   debug('handleCourseDetailsStyle called');
 
