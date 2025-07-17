@@ -225,7 +225,7 @@ function handleCourseDetailsStyle() {
         '.section'
       )
     ) {
-      styleGroupContainer(li, 'blue');
+      styleGroupContainer(li);
     }
 
     pageElements.courseDetails.info.curriculum.items.forEach((skilljarLi) => {
@@ -243,7 +243,7 @@ function handleCourseDetailsStyle() {
         // Create an inner div for the section
         const div = document.createElement('div');
         div.innerHTML = contents;
-        div.classList.add(...['section', 'blue']);
+        div.classList.add('section');
         const heading = div.querySelector('h3') || div;
         heading.textContent = heading?.textContent?.trim();
 
