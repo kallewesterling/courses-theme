@@ -182,7 +182,7 @@ function handleAuthStyle(login = true) {
 pageElements.courseDetails = {
   header: document.querySelector('.top-row-grey'),
   meta: {
-    // container: document.querySelector('.dp-row-flex-v2'),
+    container: document.querySelector('.dp-row-flex-v2'),
     textWrapper: document.querySelector('.dp-summary-wrapper'),
     category: document.querySelector('.sj-floater-text'),
     name: document.querySelector('.break-word'),
@@ -199,19 +199,6 @@ pageElements.courseDetails = {
     container: document.querySelector('#dp-details'),
   },
 };
-
-
-/*
-
-const c = document.querySelector("div#curriculum-list");
-c.querySelectorAll(".lesson-section, .lesson-modular").forEach(d => {
-  d.classList.contains("lesson-section")
-  
-  d.querySelector('span.optional-text')?.remove();
-  return d.textContent.trim()});
-
-*/
-
 
 /*
   * Builds the curriculum section of the course details page.
@@ -345,19 +332,10 @@ function handleCourseDetailsStyle() {
 }
 
 function pathCourseDetailsPageStyling() {
-  const headerFlexContainer = document.querySelector('.row.dp-row-flex-v2');
-  const headingFloaterText = document.querySelector('.sj-floater-text');
-  const mainHeading = document.querySelector('.break-word');
-  const registerBtn = document.querySelector('#purchase-button-wrapper-large');
-  const registerBtnAnchor = document.querySelector('#purchase-button');
-  const mainHeadingContainer = document.querySelector(
-    '.columns.text-center.large-6.dp-summary-wrapper.text-left-v2'
-  );
   const backToCatalogBtn = document.querySelector('.back-to-catalog');
   const mainInfoCardContained = document.querySelector(
     '.sj-course-info-wrapper'
   );
-  const headingParagraph = mainInfoCardContained.querySelector('h2');
 
   //SIGN IN VARIABLES (WHEN USER NOT LOGGED IN)
   const signInHeaderText = document.querySelector('.signin');
@@ -370,36 +348,36 @@ function pathCourseDetailsPageStyling() {
     signInHeaderText.style.display = 'none';
   }
 
-  headerFlexContainer.style.flexDirection = 'row-reverse';
-  headerFlexContainer.style.flexWrap = 'nowrap';
-  headerFlexContainer.style.justifyContent = 'start';
-  headerFlexContainer.style.gap = '24px';
-  headerFlexContainer.style.maxWidth = '1188px';
+  pageElements.courseDetails.meta.container.style.flexDirection = 'row-reverse';
+  pageElements.courseDetails.meta.container.style.flexWrap = 'nowrap';
+  pageElements.courseDetails.meta.container.style.justifyContent = 'start';
+  pageElements.courseDetails.meta.container.style.gap = '24px';
+  pageElements.courseDetails.meta.container.style.maxWidth = '1188px';
 
   //RENDERING OF COURSE DETAILS PAGE TEXT HEADING ON LEFT
-  mainHeadingContainer.style.border = '0';
-  mainHeadingContainer.style.maxWidth = '600px';
+  pageElements.courseDetails.meta.textWrapper.style.border = '0';
+  pageElements.courseDetails.meta.textWrapper.style.maxWidth = '600px';
   mainInfoCardContained.style.display = 'none';
-  headingFloaterText.textContent = 'Learning Path';
-  headingFloaterText.style.color = '#7AF0FE';
-  headingFloaterText.style.display = 'block';
-  headingFloaterText.style.marginBottom = '24px';
-  mainHeading.style.color = '#fff';
-  mainHeading.style.margin = '0 0 12px 0';
-  mainHeading.style.fontSize = '36px';
-  mainHeading.style.fontWeight = '600';
-  mainHeading.style.lineHeight = '43.2px';
-  mainHeading.style.letterSpacing = '-.02em';
-  headingParagraph.style.color = '#fff';
-  headingParagraph.style.display = 'block';
-  headingParagraph.style.margin = '0 0 24px 0';
-  registerBtnAnchor.style.borderColor = '#7AF0FE';
-  registerBtnAnchor.style.color = '#fff';
-  mainHeadingContainer.append(
-    headingFloaterText,
-    mainHeading,
-    headingParagraph,
-    registerBtn
+  pageElements.courseDetails.meta.category.textContent = 'Learning Path';
+  pageElements.courseDetails.meta.category.style.color = '#7AF0FE';
+  pageElements.courseDetails.meta.category.style.display = 'block';
+  pageElements.courseDetails.meta.category.style.marginBottom = '24px';
+  pageElements.courseDetails.meta.name.style.color = '#fff';
+  pageElements.courseDetails.meta.name.style.margin = '0 0 12px 0';
+  pageElements.courseDetails.meta.name.style.fontSize = '36px';
+  pageElements.courseDetails.meta.name.style.fontWeight = '600';
+  pageElements.courseDetails.meta.name.style.lineHeight = '43.2px';
+  pageElements.courseDetails.meta.name.style.letterSpacing = '-.02em';
+  pageElements.courseDetails.meta.description.style.color = '#fff';
+  pageElements.courseDetails.meta.description.style.display = 'block';
+  pageElements.courseDetails.meta.description.style.margin = '0 0 24px 0';
+  pageElements.courseDetails.meta.action.style.borderColor = '#7AF0FE';
+  pageElements.courseDetails.meta.action.style.color = '#fff';
+  pageElements.courseDetails.meta.textWrapper.append(
+    pageElements.courseDetails.meta.category,
+    pageElements.courseDetails.meta.name,
+    pageElements.courseDetails.meta.description,
+    pageElements.courseDetails.meta.CTA
   );
 
   //COURSE DETAILS PAGE BODY STYLING
@@ -685,30 +663,33 @@ function desktopLessonPageStyling() {
 }
 
 function desktopCurriculumPageNoCertificateStyling() {
+  // Fix Curriculum
+  const curriculumUl = buildCurriculum();
+  
+  const contents = document.querySelectorAll("section > .content");
+  contents[0].remove; // we can drop curriculum
+  
+  const newDiv = document.createElement("div");
+
+  newDiv.append(...[...new Array(...document.querySelector("section > .content").children), curriculumUl]);
+  document.querySelector("#cp-content").append(newDiv);
+  document.querySelector(".tabs-wrapper-v2").remove();
+
   // eslint-disable-next-line no-undef
   const courseDescription = skilljarCourse.short_description;
 
   //HEADER VARIABLES
   const headingParagraph = document.querySelector('.sj-heading-paragraph');
-  const headingFloaterText = document.querySelector('.sj-floater-text');
   const container = document.querySelector(
     '.large-8.push-4.columns.sj-summary.cp-summary-wrapper'
   ); //DUPLICATE VAR
-  const mainHeading = document.querySelector('.break-word'); //DUPLICATE VAR
   const backToCatalogLink = document.querySelector('.back-to-catalog');
 
   backToCatalogLink.style.display = 'none';
 
-  const curriculumPageHeader = document.querySelector(
-    '.top-row-grey.top-row-white-v2.padding-side.row-v2'
-  );
-  const headerTextAndImgContainer = document.querySelector(
-    '.row.dp-row-flex-v2'
-  );
   const sjHeaderTextContainer = document.querySelector(
     '.large-8.push-4.columns.sj-summary.cp-summary-wrapper'
   );
-  const sjHeaderTextHeading = document.querySelector('.break-word');
   const sjHeaderTextSubheading = document.querySelector('.cp-lessons');
   const sjHeaderTextProgressBar = document.querySelector(
     '.progress-bar.button-border-color'
@@ -746,38 +727,30 @@ function desktopCurriculumPageNoCertificateStyling() {
   }
 
   //CARD VARIABLES
-  const courseDetailsCard = document.querySelector('.course-details-card');
-  let courseDetailCardListItems;
-  if (courseDetailsCard) {
-    courseDetailCardListItems = courseDetailsCard.querySelectorAll('li');
-  }
   const checkboxIcon = document.querySelector('.checkbox-icon');
-  const courseDetailsCardLink = document.querySelector(
-    '.course-details-card-link'
-  );
 
   //STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
   bodyMainContainer.style.display = 'grid';
   bodyMainContainer.style.marginTop = '96px';
   bodyMainContainer.style.gridTemplateColumns =
     'minmax(100px, 760px) minmax(100px, 368px)';
-  if (courseDetailsCard) {
-    courseDetailsCard.style.margin = '96px 0 46px 0';
-    bodyMainContainer.append(courseDetailsCard);
+  if (pageElements.courseDetails.card.container) {
+    pageElements.courseDetails.card.container.style.margin = '96px 0 46px 0';
+    bodyMainContainer.append(pageElements.courseDetails.card.container);
 
     if (!resumeBtn) {
-      courseDetailsCardLink.style.display = 'none';
+      pageElements.courseDetails.card.link.style.display = 'none';
     }
   }
 
-  if (courseDetailsCardLink && resumeBtn) {
-    courseDetailsCardLink.textContent = btnText;
-    courseDetailsCardLink.setAttribute('href', btnHref);
+  if (pageElements.courseDetails.card.link && resumeBtn) {
+    pageElements.courseDetails.card.link.textContent = btnText;
+    pageElements.courseDetails.card.link.setAttribute('href', btnHref);
   }
 
   if (!view.loaded) {
-    if (courseDetailCardListItems) {
-      courseDetailCardListItems.forEach((li) => {
+    if (pageElements.courseDetails.card.items) {
+      pageElements.courseDetails.card.items.forEach((li) => {
         const checkboxClone = checkboxIcon.cloneNode(true);
         li.prepend(checkboxClone);
       });
@@ -788,19 +761,19 @@ function desktopCurriculumPageNoCertificateStyling() {
   InnerContentContainer.style.width = '100%';
 
   //STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-  sjHeaderTextHeading.style.fontWeight = '600';
-  sjHeaderTextHeading.style.fontSize = '36px';
-  sjHeaderTextHeading.style.lineHeight = '43.2px';
-  sjHeaderTextHeading.style.letterSpacing = '-0.5px';
-  sjHeaderTextHeading.style.marginTop = '0';
+  pageElements.courseDetails.meta.name.style.fontWeight = '600';
+  pageElements.courseDetails.meta.name.style.fontSize = '36px';
+  pageElements.courseDetails.meta.name.style.lineHeight = '43.2px';
+  pageElements.courseDetails.meta.name.style.letterSpacing = '-0.5px';
+  pageElements.courseDetails.meta.name.style.marginTop = '0';
   sjHeaderTextSubheading.style.display = 'none';
   sjHeaderTextProgressBar.style.display = 'none';
 
   //STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
-  curriculumPageHeader.style.maxWidth = 'none';
-  curriculumPageHeader.style.padding = '0';
-  curriculumPageHeader.style.backgroundColor = '#D0CFEE';
-  curriculumPageHeader.style.border = '0';
+  pageElements.courseDetails.header.style.maxWidth = 'none';
+  pageElements.courseDetails.header.style.padding = '0';
+  pageElements.courseDetails.header.style.backgroundColor = '#D0CFEE';
+  pageElements.courseDetails.header.style.border = '0';
 
   //STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
   //TEXT CONTAINER
@@ -823,25 +796,25 @@ function desktopCurriculumPageNoCertificateStyling() {
   sjHeaderImg.style.height = 'auto';
   sjHeaderImg.style.maxWidth = '100%';
   //PARENT CONTAINER
-  headerTextAndImgContainer.style.margin = '96px 0';
-  headerTextAndImgContainer.style.justifyContent = 'center';
-  headerTextAndImgContainer.style.flexWrap = 'nowrap';
-  headerTextAndImgContainer.style.gap = '24px';
+  pageElements.courseDetails.meta.container.style.margin = '96px 0';
+  pageElements.courseDetails.meta.container.style.justifyContent = 'center';
+  pageElements.courseDetails.meta.container.style.flexWrap = 'nowrap';
+  pageElements.courseDetails.meta.container.style.gap = '24px';
 
   //RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   headingParagraph.textContent = courseDescription;
   headingParagraph.style.display = 'block';
-  headingFloaterText.style.display = 'block';
+  pageElements.courseDetails.meta.category.style.display = 'block';
 
   if (resumeBtn) {
     container.append(
-      headingFloaterText,
-      mainHeading,
+      pageElements.courseDetails.meta.category,
+      pageElements.courseDetails.meta.name,
       headingParagraph,
       resumeBtn
     );
   } else {
-    container.append(headingFloaterText, mainHeading, headingParagraph);
+    container.append(pageElements.courseDetails.meta.category, pageElements.courseDetails.meta.name, headingParagraph);
   }
 
   //CURRICULUM PAGE BODY STYLING
@@ -974,25 +947,16 @@ function desktopCurriculumPageYesCertificationStyling() {
 
   //HEADER VARIABLES
   const headingParagraph = document.querySelector('.sj-heading-paragraph');
-  const headingFloaterText = document.querySelector('.sj-floater-text');
   const container = document.querySelector(
     '.large-8.push-4.columns.sj-summary.cp-summary-wrapper'
   ); //DUPLICATE VAR
-  const mainHeading = document.querySelector('.break-word'); //DUPLICATE VAR
   const backToCatalogLink = document.querySelector('.back-to-catalog');
 
   backToCatalogLink.style.display = 'none';
 
-  const curriculumPageHeader = document.querySelector(
-    '.top-row-grey.top-row-white-v2.padding-side.row-v2'
-  );
-  const headerTextAndImgContainer = document.querySelector(
-    '.row.dp-row-flex-v2'
-  );
   const sjHeaderTextContainer = document.querySelector(
     '.large-8.push-4.columns.sj-summary.cp-summary-wrapper'
   );
-  const sjHeaderTextHeading = document.querySelector('.break-word');
   const sjHeaderTextSubheading = document.querySelector('.cp-lessons');
   const sjHeaderTextProgressBar = document.querySelector(
     '.progress-bar.button-border-color'
@@ -1026,27 +990,22 @@ function desktopCurriculumPageYesCertificationStyling() {
     curriculumParentContainer.closest('.content');
 
   //CARD VARIABLES
-  const courseDetailsCard = document.querySelector('.course-details-card');
-  const courseDetailCardListItems = courseDetailsCard.querySelectorAll('li');
   const checkboxIcon = document.querySelector('.checkbox-icon');
-  const courseDetailsCardLink = document.querySelector(
-    '.course-details-card-link'
-  );
 
   //STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
   bodyMainContainer.style.display = 'grid';
   bodyMainContainer.style.marginTop = '96px';
   bodyMainContainer.style.gridTemplateColumns =
     'minmax(100px, 760px) minmax(100px, 368px)';
-  if (courseDetailsCard) {
-    courseDetailsCard.style.margin = '96px 0 46px 0';
-    bodyMainContainer.append(courseDetailsCard);
+  if (pageElements.courseDetails.card.container) {
+    pageElements.courseDetails.card.container.style.margin = '96px 0 46px 0';
+    bodyMainContainer.append(pageElements.courseDetails.card.container);
 
-    courseDetailsCardLink.style.display = 'none';
+    pageElements.courseDetails.card.link.style.display = 'none';
   }
 
   if (!view.loaded) {
-    courseDetailCardListItems.forEach((li) => {
+    pageElements.courseDetails.card.items.forEach((li) => {
       const checkboxClone = checkboxIcon.cloneNode(true);
       li.prepend(checkboxClone);
     });
@@ -1056,20 +1015,20 @@ function desktopCurriculumPageYesCertificationStyling() {
   InnerContentContainer.style.width = '100%';
 
   //STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-  sjHeaderTextHeading.style.fontWeight = '600';
-  sjHeaderTextHeading.style.fontSize = '36px';
-  sjHeaderTextHeading.style.lineHeight = '43.2px';
-  sjHeaderTextHeading.style.letterSpacing = '-0.5px';
-  sjHeaderTextHeading.style.marginTop = '0';
+  pageElements.courseDetails.meta.name.style.fontWeight = '600';
+  pageElements.courseDetails.meta.name.style.fontSize = '36px';
+  pageElements.courseDetails.meta.name.style.lineHeight = '43.2px';
+  pageElements.courseDetails.meta.name.style.letterSpacing = '-0.5px';
+  pageElements.courseDetails.meta.name.style.marginTop = '0';
   sjHeaderTextSubheading.style.display = 'none';
   sjHeaderTextProgressBar.style.display = 'none';
 
   //STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
-  curriculumPageHeader.style.maxWidth = 'none';
-  curriculumPageHeader.style.padding = '0';
-  curriculumPageHeader.style.backgroundImage =
+  pageElements.courseDetails.header.style.maxWidth = 'none';
+  pageElements.courseDetails.header.style.padding = '0';
+  pageElements.courseDetails.header.style.backgroundImage =
     'linear-gradient(315deg,#fde1fe,#f5f6fe 72%)';
-  curriculumPageHeader.style.border = '0';
+  pageElements.courseDetails.header.style.border = '0';
 
   //STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
   //TEXT CONTAINER
@@ -1088,19 +1047,19 @@ function desktopCurriculumPageYesCertificationStyling() {
   sjHeaderImg.style.height = 'auto';
   sjHeaderImg.style.maxWidth = '100%';
   //PARENT CONTAINER
-  headerTextAndImgContainer.style.margin = '96px 0';
-  headerTextAndImgContainer.style.justifyContent = 'center';
-  headerTextAndImgContainer.style.flexWrap = 'nowrap';
-  headerTextAndImgContainer.style.gap = '24px';
+  pageElements.courseDetails.meta.container.style.margin = '96px 0';
+  pageElements.courseDetails.meta.container.style.justifyContent = 'center';
+  pageElements.courseDetails.meta.container.style.flexWrap = 'nowrap';
+  pageElements.courseDetails.meta.container.style.gap = '24px';
 
   //RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   headingParagraph.textContent = courseDescription;
   headingParagraph.style.display = 'block';
-  headingFloaterText.style.display = 'block';
+  pageElements.courseDetails.meta.category.style.display = 'block';
 
   container.append(
-    headingFloaterText,
-    mainHeading,
+    pageElements.courseDetails.meta.category,
+    pageElements.courseDetails.meta.name,
     headingParagraph,
     certificateEl
   );
@@ -1213,26 +1172,17 @@ function desktopCurriculumPageYesCertificationStyling() {
 function mobileCurriculumPageNoCertificateStyling() {
   //HEADER VARIABLES
   const headingParagraph = document.querySelector('.sj-heading-paragraph');
-  const headingFloaterText = document.querySelector('.sj-floater-text');
   const container = document.querySelector(
     '.large-8.push-4.columns.sj-summary.cp-summary-wrapper'
   ); //DUPLICATE VAR
   const btn = document.querySelector('#resume-button'); //DUPLICATE VAR
-  const mainHeading = document.querySelector('.break-word'); //DUPLICATE VAR
   const backToCatalogLink = document.querySelector('.back-to-catalog');
 
   backToCatalogLink.style.display = 'none';
 
-  const curriculumPageHeader = document.querySelector(
-    '.top-row-grey.top-row-white-v2.padding-side.row-v2'
-  );
-  const headerTextAndImgContainer = document.querySelector(
-    '.row.dp-row-flex-v2'
-  );
   const sjHeaderTextContainer = document.querySelector(
     '.large-8.push-4.columns.sj-summary.cp-summary-wrapper'
   );
-  const sjHeaderTextHeading = document.querySelector('.break-word');
   const sjHeaderTextSubheading = document.querySelector('.cp-lessons');
   const sjHeaderTextProgressBar = document.querySelector(
     '.progress-bar.button-border-color'
@@ -1267,29 +1217,24 @@ function mobileCurriculumPageNoCertificateStyling() {
   }
 
   //CARD VARIABLES
-  const courseDetailsCard = document.querySelector('.course-details-card');
-  const courseDetailCardListItems = courseDetailsCard.querySelectorAll('li');
   const checkboxIcon = document.querySelector('.checkbox-icon');
-  const courseDetailsCardLink = document.querySelector(
-    '.course-details-card-link'
-  );
 
   //STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
   bodyMainContainer.style.display = 'grid';
   bodyMainContainer.style.gridTemplateColumns = '1fr';
   bodyMainContainer.style.width = '90%';
 
-  courseDetailsCard.style.margin = '32px 0 56px 0';
-  courseDetailsCard.style.justifySelf = 'center';
-  bodyMainContainer.append(courseDetailsCard);
+  pageElements.courseDetails.card.container.style.margin = '32px 0 56px 0';
+  pageElements.courseDetails.card.container.style.justifySelf = 'center';
+  bodyMainContainer.append(pageElements.courseDetails.card.container);
 
-  if (courseDetailsCardLink) {
-    courseDetailsCardLink.textContent = btnText;
-    courseDetailsCardLink.setAttribute('href', btnHref);
+  if (pageElements.courseDetails.card.link) {
+    pageElements.courseDetails.card.link.textContent = btnText;
+    pageElements.courseDetails.card.link.setAttribute('href', btnHref);
   }
 
   if (!view.loaded) {
-    courseDetailCardListItems.forEach((li) => {
+    pageElements.courseDetails.card.items.forEach((li) => {
       const checkboxClone = checkboxIcon.cloneNode(true);
       li.prepend(checkboxClone);
     });
@@ -1299,20 +1244,20 @@ function mobileCurriculumPageNoCertificateStyling() {
   InnerContentContainer.style.width = '100%';
 
   //STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-  sjHeaderTextHeading.style.fontWeight = '600';
-  sjHeaderTextHeading.style.fontSize = '36px';
-  sjHeaderTextHeading.style.lineHeight = '43.2px';
-  sjHeaderTextHeading.style.letterSpacing = '-0.5px';
-  sjHeaderTextHeading.style.marginTop = '0';
+  pageElements.courseDetails.meta.name.style.fontWeight = '600';
+  pageElements.courseDetails.meta.name.style.fontSize = '36px';
+  pageElements.courseDetails.meta.name.style.lineHeight = '43.2px';
+  pageElements.courseDetails.meta.name.style.letterSpacing = '-0.5px';
+  pageElements.courseDetails.meta.name.style.marginTop = '0';
   sjHeaderTextSubheading.style.display = 'none';
   sjHeaderTextProgressBar.style.display = 'none';
 
   //STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
-  curriculumPageHeader.style.maxWidth = 'none';
-  curriculumPageHeader.style.padding = '0';
-  curriculumPageHeader.style.backgroundImage =
+  pageElements.courseDetails.header.style.maxWidth = 'none';
+  pageElements.courseDetails.header.style.padding = '0';
+  pageElements.courseDetails.header.style.backgroundImage =
     'linear-gradient(315deg,#fde1fe,#f5f6fe 72%)';
-  curriculumPageHeader.style.border = '0';
+  pageElements.courseDetails.header.style.border = '0';
 
   //STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
   //TEXT CONTAINER
@@ -1338,14 +1283,14 @@ function mobileCurriculumPageNoCertificateStyling() {
   sjHeaderImg.style.maxWidth = '100%';
   //PARENT CONTAINER
   container.style.width = '90%';
-  headerTextAndImgContainer.style.margin = '96px 0';
-  headerTextAndImgContainer.style.justifyContent = 'center';
-  headerTextAndImgContainer.style.flexWrap = 'wrap';
-  headerTextAndImgContainer.style.gap = '24px';
+  pageElements.courseDetails.meta.container.style.margin = '96px 0';
+  pageElements.courseDetails.meta.container.style.justifyContent = 'center';
+  pageElements.courseDetails.meta.container.style.flexWrap = 'wrap';
+  pageElements.courseDetails.meta.container.style.gap = '24px';
 
   //RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   headingParagraph.style.display = 'block';
-  container.append(headingFloaterText, mainHeading, headingParagraph, btn);
+  container.append(pageElements.courseDetails.meta.category, pageElements.courseDetails.meta.name, headingParagraph, btn);
 
   //CURRICULUM PAGE BODY STYLING
   tabsContainer.append(curriculumSection);
@@ -1460,25 +1405,16 @@ function mobileCurriculumPageNoCertificateStyling() {
 function mobileCurriculumPageYesCertificateStyling() {
   //HEADER VARIABLES
   const headingParagraph = document.querySelector('.sj-heading-paragraph');
-  const headingFloaterText = document.querySelector('.sj-floater-text');
   const container = document.querySelector(
     '.large-8.push-4.columns.sj-summary.cp-summary-wrapper'
   ); //DUPLICATE VAR
-  const mainHeading = document.querySelector('.break-word'); //DUPLICATE VAR
   const backToCatalogLink = document.querySelector('.back-to-catalog');
 
   backToCatalogLink.style.display = 'none';
 
-  const curriculumPageHeader = document.querySelector(
-    '.top-row-grey.top-row-white-v2.padding-side.row-v2'
-  );
-  const headerTextAndImgContainer = document.querySelector(
-    '.row.dp-row-flex-v2'
-  );
   const sjHeaderTextContainer = document.querySelector(
     '.large-8.push-4.columns.sj-summary.cp-summary-wrapper'
   );
-  const sjHeaderTextHeading = document.querySelector('.break-word');
   const sjHeaderTextSubheading = document.querySelector('.cp-lessons');
   const sjHeaderTextProgressBar = document.querySelector(
     '.progress-bar.button-border-color'
@@ -1512,26 +1448,21 @@ function mobileCurriculumPageYesCertificateStyling() {
     curriculumParentContainer.closest('.content');
 
   //CARD VARIABLES
-  const courseDetailsCard = document.querySelector('.course-details-card');
-  const courseDetailCardListItems = courseDetailsCard.querySelectorAll('li');
   const checkboxIcon = document.querySelector('.checkbox-icon');
-  const courseDetailsCardLink = document.querySelector(
-    '.course-details-card-link'
-  );
 
   //STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
   bodyMainContainer.style.display = 'grid';
   bodyMainContainer.style.gridTemplateColumns = '1fr';
   bodyMainContainer.style.width = '90%';
 
-  courseDetailsCard.style.margin = '32px 0 56px 0';
-  courseDetailsCard.style.justifySelf = 'center';
-  bodyMainContainer.append(courseDetailsCard);
+  pageElements.courseDetails.card.container.style.margin = '32px 0 56px 0';
+  pageElements.courseDetails.card.container.style.justifySelf = 'center';
+  bodyMainContainer.append(pageElements.courseDetails.card.container);
 
-  courseDetailsCardLink.style.display = 'none';
+  pageElements.courseDetails.card.link.style.display = 'none';
 
   if (!view.loaded) {
-    courseDetailCardListItems.forEach((li) => {
+    pageElements.courseDetails.card.items.forEach((li) => {
       const checkboxClone = checkboxIcon.cloneNode(true);
       li.prepend(checkboxClone);
     });
@@ -1541,20 +1472,20 @@ function mobileCurriculumPageYesCertificateStyling() {
   InnerContentContainer.style.width = '100%';
 
   //STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-  sjHeaderTextHeading.style.fontWeight = '600';
-  sjHeaderTextHeading.style.fontSize = '36px';
-  sjHeaderTextHeading.style.lineHeight = '43.2px';
-  sjHeaderTextHeading.style.letterSpacing = '-0.5px';
-  sjHeaderTextHeading.style.marginTop = '0';
+  pageElements.courseDetails.meta.name.style.fontWeight = '600';
+  pageElements.courseDetails.meta.name.style.fontSize = '36px';
+  pageElements.courseDetails.meta.name.style.lineHeight = '43.2px';
+  pageElements.courseDetails.meta.name.style.letterSpacing = '-0.5px';
+  pageElements.courseDetails.meta.name.style.marginTop = '0';
   sjHeaderTextSubheading.style.display = 'none';
   sjHeaderTextProgressBar.style.display = 'none';
 
   //STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
-  curriculumPageHeader.style.maxWidth = 'none';
-  curriculumPageHeader.style.padding = '0';
-  curriculumPageHeader.style.backgroundImage =
+  pageElements.courseDetails.header.style.maxWidth = 'none';
+  pageElements.courseDetails.header.style.padding = '0';
+  pageElements.courseDetails.header.style.backgroundImage =
     'linear-gradient(315deg,#fde1fe,#f5f6fe 72%)';
-  curriculumPageHeader.style.border = '0';
+  pageElements.courseDetails.header.style.border = '0';
 
   //STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
   //TEXT CONTAINER
@@ -1579,17 +1510,17 @@ function mobileCurriculumPageYesCertificateStyling() {
   sjHeaderImg.style.maxWidth = '100%';
   //PARENT CONTAINER
   container.style.width = '90%';
-  headerTextAndImgContainer.style.margin = '96px 0';
-  headerTextAndImgContainer.style.justifyContent = 'center';
-  headerTextAndImgContainer.style.flexWrap = 'wrap';
-  headerTextAndImgContainer.style.gap = '24px';
+  pageElements.courseDetails.meta.container.style.margin = '96px 0';
+  pageElements.courseDetails.meta.container.style.justifyContent = 'center';
+  pageElements.courseDetails.meta.container.style.flexWrap = 'wrap';
+  pageElements.courseDetails.meta.container.style.gap = '24px';
 
   //RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   headingParagraph.style.display = 'block';
-  headingFloaterText.style.display = 'block';
+  pageElements.courseDetails.meta.category.style.display = 'block';
   container.append(
-    headingFloaterText,
-    mainHeading,
+    pageElements.courseDetails.meta.category,
+    pageElements.courseDetails.meta.name,
     headingParagraph,
     certificateEl
   );
