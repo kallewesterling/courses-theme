@@ -8,25 +8,26 @@ const debug = (msg, level = 'log') => {
 
 let globalCurriculumSection, globalAboutSection;
 
-const view = {
-  isCurriculumPage: document.querySelector('.sj-page-curriculum')
-    ? true
-    : false,
-  isLessonsPage: document.querySelector('.sj-page-lesson') ? true : false,
-  isPageDetailPath: document.querySelector(
-    '.sj-page-detail.sj-page-detail-bundle.sj-page-detail-path'
-  )
-    ? true
-    : false,
-  isPageCatalogPath: document.querySelector(
-    '.sj-page-catalog.sj-page-series.sj-page-path'
-  )
-    ? true
-    : false,
-  size: 0,
-  viewport: 'desktop',
-  loaded: false,
-};
+const sources = {},
+  view = {
+    isCurriculumPage: document.querySelector('.sj-page-curriculum')
+      ? true
+      : false,
+    isLessonsPage: document.querySelector('.sj-page-lesson') ? true : false,
+    isPageDetailPath: document.querySelector(
+      '.sj-page-detail.sj-page-detail-bundle.sj-page-detail-path'
+    )
+      ? true
+      : false,
+    isPageCatalogPath: document.querySelector(
+      '.sj-page-catalog.sj-page-series.sj-page-path'
+    )
+      ? true
+      : false,
+    size: 0,
+    viewport: 'desktop',
+    loaded: false,
+  };
 
 const elems = {
   global: {
@@ -220,9 +221,7 @@ function buildCurriculum() {
 
   // Build `sections`
   const selector =
-    container.tagName === 'UL'
-      ? 'li'
-      : 'div.lesson-section, a.lesson-modular';
+    container.tagName === 'UL' ? 'li' : 'div.lesson-section, a.lesson-modular';
 
   container.querySelectorAll(selector).forEach((e) => {
     // Drop all unneeded elements
@@ -696,6 +695,16 @@ function desktopCurriculumPageNoCertificateStyling() {
   // document.querySelector('#cp-content').append(...[aboutWrap, curriculumWrap]);
   // document.querySelector('.tabs-wrapper-v2').remove();
   // document.querySelector('div#curriculum-list').remove();
+
+  // sources
+  sources.curriculumPage = {
+    title: 'h1.break-word',
+    actionBtn: '#resume-button',
+    shortDescriptionTxt: skilljarCourse.short_description, // eslint-disable-line no-undef
+    longDescriptionHtml: skilljarCourse.long_description_html, // eslint-disable-line no-undef
+    sections: 'div.lesson-section > h3',
+    lessons: 'div.lesson-row > div.title',
+  };
 
   //HEADER VARIABLES
   const headingParagraph = document.querySelector('.sj-heading-paragraph');
