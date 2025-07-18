@@ -28,11 +28,10 @@ const view = {
   loaded: false,
 };
 
-const globalElements = {
-  footer: document.querySelector('#footer-container'),
-};
-
-const pageElements = {
+const elems = {
+  global: {
+    footer: document.querySelector('#footer-container'),
+  },
   catalog: {
     content: document.querySelector('#catalog-content'),
     courseContainer: document.querySelector('#catalog-courses'),
@@ -118,8 +117,8 @@ function handleCatalogStyle() {
     });
 
     // Append header and wrapper to the catalog content
-    catalogWrapper.append(header, pageElements.catalog.courseContainer);
-    pageElements.catalog.content.append(catalogWrapper);
+    catalogWrapper.append(header, elems.catalog.courseContainer);
+    elems.catalog.content.append(catalogWrapper);
 
     view.loaded = true;
   }
@@ -133,43 +132,43 @@ function handleAuthStyle(login = true) {
   debug('handleAuthStyle called with login:', login);
 
   // Set the correct button texts
-  pageElements.auth.googleLoginBtn.textContent = 'Continue with Google';
-  pageElements.auth.tabs.loginBtnText.textContent = 'Log In';
-  pageElements.auth.tabs.signupBtnText.textContent = 'Sign Up';
+  elems.auth.googleLoginBtn.textContent = 'Continue with Google';
+  elems.auth.tabs.loginBtnText.textContent = 'Log In';
+  elems.auth.tabs.signupBtnText.textContent = 'Sign Up';
 
   if (login) {
     // Set the correct CTA for login
-    pageElements.auth.googleCTA.textContent = 'Or Log In With';
+    elems.auth.googleCTA.textContent = 'Or Log In With';
 
     // Add the T&C text to the login form
-    pageElements.auth.loginForm.append(pageElements.auth.termsAndServices);
+    elems.auth.loginForm.append(elems.auth.termsAndServices);
 
     // Set Login button text
-    pageElements.auth.actionBtn.textContent = 'Log In';
+    elems.auth.actionBtn.textContent = 'Log In';
   } else {
     // Set the correct CTA for signup
-    pageElements.auth.googleCTA.textContent = 'Or Sign Up With';
+    elems.auth.googleCTA.textContent = 'Or Sign Up With';
 
     // Add the T&C text to the signup form
-    pageElements.auth.signupForm.append(pageElements.auth.termsAndServices);
+    elems.auth.signupForm.append(elems.auth.termsAndServices);
 
     // Add Work Email to email signup
-    Object.assign(pageElements.auth.email, { placeholder: 'Work Email' });
+    Object.assign(elems.auth.email, { placeholder: 'Work Email' });
 
     // Set Sign Up button text
-    pageElements.auth.actionBtn.textContent = 'Sign Up';
+    elems.auth.actionBtn.textContent = 'Sign Up';
 
     // Set text labels
-    pageElements.auth.firstNameLabel.textContent = 'First Name';
-    pageElements.auth.lastNameLabel.textContent = 'Last Name';
-    pageElements.auth.emailLabel.textContent = 'Work Email';
-    pageElements.auth.passwordConfirmLabel.textContent = 'Password Confirm';
+    elems.auth.firstNameLabel.textContent = 'First Name';
+    elems.auth.lastNameLabel.textContent = 'Last Name';
+    elems.auth.emailLabel.textContent = 'Work Email';
+    elems.auth.passwordConfirmLabel.textContent = 'Password Confirm';
 
     // Set placeholders
-    pageElements.auth.email.setAttribute('placeholder', 'Work Email');
-    pageElements.auth.password.setAttribute('placeholder', 'Password');
+    elems.auth.email.setAttribute('placeholder', 'Work Email');
+    elems.auth.password.setAttribute('placeholder', 'Password');
 
-    const parent = pageElements.auth.actionBtn.closest('.text-center');
+    const parent = elems.auth.actionBtn.closest('.text-center');
     if (parent) {
       parent.style.textAlign = 'left';
       parent.classList.remove('text-center');
@@ -179,7 +178,7 @@ function handleAuthStyle(login = true) {
   view.loaded = true;
 }
 
-pageElements.courseDetails = {
+elems.courseDetails = {
   header: document.querySelector('.top-row-grey'),
   meta: {
     container: document.querySelector('.dp-row-flex-v2'),
@@ -201,21 +200,26 @@ pageElements.courseDetails = {
 };
 
 /*
-  * Builds the curriculum section of the course details page.
-  * It extracts sections and lessons from the existing curriculum list,
-  * cleans up unnecessary elements, and appends them to the curriculum container.
-  * @returns {HTMLElement} The updated curriculum container.
-*/
+ * Builds the curriculum section of the course details page.
+ * It extracts sections and lessons from the existing curriculum list,
+ * cleans up unnecessary elements, and appends them to the curriculum container.
+ * @returns {HTMLElement} The updated curriculum container.
+ */
 function buildCurriculum() {
   debug('buildCurriculum called');
 
   // Set up variables
-  let container = document.querySelector('ul.dp-curriculum') || document.querySelector("div#curriculum-list"),
+  let container =
+      document.querySelector('ul.dp-curriculum') ||
+      document.querySelector('div#curriculum-list'),
     sections = [],
     currentIndex = -1;
 
   // Build `sections`
-  const selector = container.tagName === "UL" ? "li" : "div.lesson-section, div.lesson-modular";
+  const selector =
+    container.tagName === 'UL'
+      ? 'li'
+      : 'div.lesson-section, div.lesson-modular';
 
   container.querySelectorAll(selector).forEach((e) => {
     // Drop all unneeded elements
@@ -225,7 +229,10 @@ function buildCurriculum() {
 
     const text = e.textContent.trim(); // Extract the text content
 
-    if (e.classList.contains('section') || e.classList.contains('lesson-section')) {
+    if (
+      e.classList.contains('section') ||
+      e.classList.contains('lesson-section')
+    ) {
       sections.push({ header: text, lessons: [] });
       currentIndex++;
     } else {
@@ -260,52 +267,49 @@ function buildCurriculum() {
     container.append(li);
   });
 
-  if (container.tagName === "UL")
-    return container;
+  if (container.tagName === 'UL') return container;
 
   // if the container is a div, let's wrap our li in a new ul element and return it
   return Object.assign(document.createElement('ul'), {
     id: 'curriculum-list',
     classList: ['dp-curriculum'],
     innerHTML: container.innerHTML,
-  })
+  });
 }
 
 /*
-  * Builds the course details card on the course details page.
-  * It checks if the card container exists, appends it to the course details info container,
-  * and sets the link text and href based on the action button.
-  * @returns {void}
-*/
+ * Builds the course details card on the course details page.
+ * It checks if the card container exists, appends it to the course details info container,
+ * and sets the link text and href based on the action button.
+ * @returns {void}
+ */
 function buildCourseDetailsCard() {
-  if (pageElements.courseDetails.card.container) {
+  if (elems.courseDetails.card.container) {
     debug('buildCourseDetailsCard called & container exists');
     // Set the card's link
-    if (pageElements.courseDetails.card.link) {
-      Object.assign(pageElements.courseDetails.card.link, {
-        textContent:
-          pageElements.courseDetails.meta.action.textContent || 'Register',
-        href:
-          pageElements.courseDetails.meta.action.getAttribute('href') || '#',
+    if (elems.courseDetails.card.link) {
+      Object.assign(elems.courseDetails.card.link, {
+        textContent: elems.courseDetails.meta.action.textContent || 'Register',
+        href: elems.courseDetails.meta.action.getAttribute('href') || '#',
       });
     }
 
     // Add card container to the course details container
-    pageElements.courseDetails.info.container.append(
-      pageElements.courseDetails.card.container
+    elems.courseDetails.info.container.append(
+      elems.courseDetails.card.container
     );
   }
 }
 
 /*
-  * Handles the styling of the course details page.
-  * This function is called when the course details page is loaded.
-  * It checks if the view is loaded, and if not,
-  * it styles the course details page elements,
-  * builds the curriculum section,
-  * and builds the course details card.
-  * @returns {void}
-*/
+ * Handles the styling of the course details page.
+ * This function is called when the course details page is loaded.
+ * It checks if the view is loaded, and if not,
+ * it styles the course details page elements,
+ * builds the curriculum section,
+ * and builds the course details card.
+ * @returns {void}
+ */
 function handleCourseDetailsStyle() {
   debug('handleCourseDetailsStyle called');
 
@@ -316,11 +320,11 @@ function handleCourseDetailsStyle() {
     document.querySelector('.row.show-for-small')?.remove();
 
     // Put meta elements in the right place
-    pageElements.courseDetails.meta.textWrapper.append(
-      pageElements.courseDetails.meta.category,
-      pageElements.courseDetails.meta.name,
-      pageElements.courseDetails.meta.description,
-      pageElements.courseDetails.meta.CTA
+    elems.courseDetails.meta.textWrapper.append(
+      elems.courseDetails.meta.category,
+      elems.courseDetails.meta.name,
+      elems.courseDetails.meta.description,
+      elems.courseDetails.meta.CTA
     );
 
     // Fix Curriculum
@@ -348,36 +352,36 @@ function pathCourseDetailsPageStyling() {
     signInHeaderText.style.display = 'none';
   }
 
-  pageElements.courseDetails.meta.container.style.flexDirection = 'row-reverse';
-  pageElements.courseDetails.meta.container.style.flexWrap = 'nowrap';
-  pageElements.courseDetails.meta.container.style.justifyContent = 'start';
-  pageElements.courseDetails.meta.container.style.gap = '24px';
-  pageElements.courseDetails.meta.container.style.maxWidth = '1188px';
+  elems.courseDetails.meta.container.style.flexDirection = 'row-reverse';
+  elems.courseDetails.meta.container.style.flexWrap = 'nowrap';
+  elems.courseDetails.meta.container.style.justifyContent = 'start';
+  elems.courseDetails.meta.container.style.gap = '24px';
+  elems.courseDetails.meta.container.style.maxWidth = '1188px';
 
   //RENDERING OF COURSE DETAILS PAGE TEXT HEADING ON LEFT
-  pageElements.courseDetails.meta.textWrapper.style.border = '0';
-  pageElements.courseDetails.meta.textWrapper.style.maxWidth = '600px';
+  elems.courseDetails.meta.textWrapper.style.border = '0';
+  elems.courseDetails.meta.textWrapper.style.maxWidth = '600px';
   mainInfoCardContained.style.display = 'none';
-  pageElements.courseDetails.meta.category.textContent = 'Learning Path';
-  pageElements.courseDetails.meta.category.style.color = '#7AF0FE';
-  pageElements.courseDetails.meta.category.style.display = 'block';
-  pageElements.courseDetails.meta.category.style.marginBottom = '24px';
-  pageElements.courseDetails.meta.name.style.color = '#fff';
-  pageElements.courseDetails.meta.name.style.margin = '0 0 12px 0';
-  pageElements.courseDetails.meta.name.style.fontSize = '36px';
-  pageElements.courseDetails.meta.name.style.fontWeight = '600';
-  pageElements.courseDetails.meta.name.style.lineHeight = '43.2px';
-  pageElements.courseDetails.meta.name.style.letterSpacing = '-.02em';
-  pageElements.courseDetails.meta.description.style.color = '#fff';
-  pageElements.courseDetails.meta.description.style.display = 'block';
-  pageElements.courseDetails.meta.description.style.margin = '0 0 24px 0';
-  pageElements.courseDetails.meta.action.style.borderColor = '#7AF0FE';
-  pageElements.courseDetails.meta.action.style.color = '#fff';
-  pageElements.courseDetails.meta.textWrapper.append(
-    pageElements.courseDetails.meta.category,
-    pageElements.courseDetails.meta.name,
-    pageElements.courseDetails.meta.description,
-    pageElements.courseDetails.meta.CTA
+  elems.courseDetails.meta.category.textContent = 'Learning Path';
+  elems.courseDetails.meta.category.style.color = '#7AF0FE';
+  elems.courseDetails.meta.category.style.display = 'block';
+  elems.courseDetails.meta.category.style.marginBottom = '24px';
+  elems.courseDetails.meta.name.style.color = '#fff';
+  elems.courseDetails.meta.name.style.margin = '0 0 12px 0';
+  elems.courseDetails.meta.name.style.fontSize = '36px';
+  elems.courseDetails.meta.name.style.fontWeight = '600';
+  elems.courseDetails.meta.name.style.lineHeight = '43.2px';
+  elems.courseDetails.meta.name.style.letterSpacing = '-.02em';
+  elems.courseDetails.meta.description.style.color = '#fff';
+  elems.courseDetails.meta.description.style.display = 'block';
+  elems.courseDetails.meta.description.style.margin = '0 0 24px 0';
+  elems.courseDetails.meta.action.style.borderColor = '#7AF0FE';
+  elems.courseDetails.meta.action.style.color = '#fff';
+  elems.courseDetails.meta.textWrapper.append(
+    elems.courseDetails.meta.category,
+    elems.courseDetails.meta.name,
+    elems.courseDetails.meta.description,
+    elems.courseDetails.meta.CTA
   );
 
   //COURSE DETAILS PAGE BODY STYLING
@@ -452,7 +456,7 @@ function desktopLessonPageStyling() {
   const lessonContentContainer = document.querySelector(
     'sjwc-lesson-content-item'
   );
-  pageElements.lesson.codeBlocks = new Array(
+  elems.lesson.codeBlocks = new Array(
     ...document.querySelectorAll('pre:has(code):not(.language-ansi)')
   );
 
@@ -592,7 +596,7 @@ function desktopLessonPageStyling() {
     }, 400);
   }
 
-  pageElements.lesson.codeBlocks
+  elems.lesson.codeBlocks
     .filter((d) => !d.dataset.noCopy)
     .forEach((el) => {
       //WILL NEED TO CLEAN UP THE STYLING OF EL!!!!!!!!!!
@@ -665,15 +669,20 @@ function desktopLessonPageStyling() {
 function desktopCurriculumPageNoCertificateStyling() {
   // Fix Curriculum
   const curriculumUl = buildCurriculum();
-  
-  const contents = document.querySelectorAll("section > .content");
-  contents[0].remove; // we can drop curriculum
-  
-  const newDiv = document.createElement("div");
 
-  newDiv.append(...[...new Array(...document.querySelector("section > .content").children), curriculumUl]);
-  document.querySelector("#cp-content").append(newDiv);
-  document.querySelector(".tabs-wrapper-v2").remove();
+  const contents = document.querySelectorAll('section > .content');
+  contents[0].remove; // we can drop curriculum
+
+  const newDiv = document.createElement('div');
+
+  newDiv.append(
+    ...[
+      ...new Array(...document.querySelector('section > .content').children),
+      curriculumUl,
+    ]
+  );
+  document.querySelector('#cp-content').append(newDiv);
+  document.querySelector('.tabs-wrapper-v2').remove();
 
   // eslint-disable-next-line no-undef
   const courseDescription = skilljarCourse.short_description;
@@ -734,23 +743,23 @@ function desktopCurriculumPageNoCertificateStyling() {
   bodyMainContainer.style.marginTop = '96px';
   bodyMainContainer.style.gridTemplateColumns =
     'minmax(100px, 760px) minmax(100px, 368px)';
-  if (pageElements.courseDetails.card.container) {
-    pageElements.courseDetails.card.container.style.margin = '96px 0 46px 0';
-    bodyMainContainer.append(pageElements.courseDetails.card.container);
+  if (elems.courseDetails.card.container) {
+    elems.courseDetails.card.container.style.margin = '96px 0 46px 0';
+    bodyMainContainer.append(elems.courseDetails.card.container);
 
     if (!resumeBtn) {
-      pageElements.courseDetails.card.link.style.display = 'none';
+      elems.courseDetails.card.link.style.display = 'none';
     }
   }
 
-  if (pageElements.courseDetails.card.link && resumeBtn) {
-    pageElements.courseDetails.card.link.textContent = btnText;
-    pageElements.courseDetails.card.link.setAttribute('href', btnHref);
+  if (elems.courseDetails.card.link && resumeBtn) {
+    elems.courseDetails.card.link.textContent = btnText;
+    elems.courseDetails.card.link.setAttribute('href', btnHref);
   }
 
   if (!view.loaded) {
-    if (pageElements.courseDetails.card.items) {
-      pageElements.courseDetails.card.items.forEach((li) => {
+    if (elems.courseDetails.card.items) {
+      elems.courseDetails.card.items.forEach((li) => {
         const checkboxClone = checkboxIcon.cloneNode(true);
         li.prepend(checkboxClone);
       });
@@ -761,19 +770,19 @@ function desktopCurriculumPageNoCertificateStyling() {
   InnerContentContainer.style.width = '100%';
 
   //STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-  pageElements.courseDetails.meta.name.style.fontWeight = '600';
-  pageElements.courseDetails.meta.name.style.fontSize = '36px';
-  pageElements.courseDetails.meta.name.style.lineHeight = '43.2px';
-  pageElements.courseDetails.meta.name.style.letterSpacing = '-0.5px';
-  pageElements.courseDetails.meta.name.style.marginTop = '0';
+  elems.courseDetails.meta.name.style.fontWeight = '600';
+  elems.courseDetails.meta.name.style.fontSize = '36px';
+  elems.courseDetails.meta.name.style.lineHeight = '43.2px';
+  elems.courseDetails.meta.name.style.letterSpacing = '-0.5px';
+  elems.courseDetails.meta.name.style.marginTop = '0';
   sjHeaderTextSubheading.style.display = 'none';
   sjHeaderTextProgressBar.style.display = 'none';
 
   //STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
-  pageElements.courseDetails.header.style.maxWidth = 'none';
-  pageElements.courseDetails.header.style.padding = '0';
-  pageElements.courseDetails.header.style.backgroundColor = '#D0CFEE';
-  pageElements.courseDetails.header.style.border = '0';
+  elems.courseDetails.header.style.maxWidth = 'none';
+  elems.courseDetails.header.style.padding = '0';
+  elems.courseDetails.header.style.backgroundColor = '#D0CFEE';
+  elems.courseDetails.header.style.border = '0';
 
   //STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
   //TEXT CONTAINER
@@ -796,25 +805,29 @@ function desktopCurriculumPageNoCertificateStyling() {
   sjHeaderImg.style.height = 'auto';
   sjHeaderImg.style.maxWidth = '100%';
   //PARENT CONTAINER
-  pageElements.courseDetails.meta.container.style.margin = '96px 0';
-  pageElements.courseDetails.meta.container.style.justifyContent = 'center';
-  pageElements.courseDetails.meta.container.style.flexWrap = 'nowrap';
-  pageElements.courseDetails.meta.container.style.gap = '24px';
+  elems.courseDetails.meta.container.style.margin = '96px 0';
+  elems.courseDetails.meta.container.style.justifyContent = 'center';
+  elems.courseDetails.meta.container.style.flexWrap = 'nowrap';
+  elems.courseDetails.meta.container.style.gap = '24px';
 
   //RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   headingParagraph.textContent = courseDescription;
   headingParagraph.style.display = 'block';
-  pageElements.courseDetails.meta.category.style.display = 'block';
+  elems.courseDetails.meta.category.style.display = 'block';
 
   if (resumeBtn) {
     container.append(
-      pageElements.courseDetails.meta.category,
-      pageElements.courseDetails.meta.name,
+      elems.courseDetails.meta.category,
+      elems.courseDetails.meta.name,
       headingParagraph,
       resumeBtn
     );
   } else {
-    container.append(pageElements.courseDetails.meta.category, pageElements.courseDetails.meta.name, headingParagraph);
+    container.append(
+      elems.courseDetails.meta.category,
+      elems.courseDetails.meta.name,
+      headingParagraph
+    );
   }
 
   //CURRICULUM PAGE BODY STYLING
@@ -997,15 +1010,15 @@ function desktopCurriculumPageYesCertificationStyling() {
   bodyMainContainer.style.marginTop = '96px';
   bodyMainContainer.style.gridTemplateColumns =
     'minmax(100px, 760px) minmax(100px, 368px)';
-  if (pageElements.courseDetails.card.container) {
-    pageElements.courseDetails.card.container.style.margin = '96px 0 46px 0';
-    bodyMainContainer.append(pageElements.courseDetails.card.container);
+  if (elems.courseDetails.card.container) {
+    elems.courseDetails.card.container.style.margin = '96px 0 46px 0';
+    bodyMainContainer.append(elems.courseDetails.card.container);
 
-    pageElements.courseDetails.card.link.style.display = 'none';
+    elems.courseDetails.card.link.style.display = 'none';
   }
 
   if (!view.loaded) {
-    pageElements.courseDetails.card.items.forEach((li) => {
+    elems.courseDetails.card.items.forEach((li) => {
       const checkboxClone = checkboxIcon.cloneNode(true);
       li.prepend(checkboxClone);
     });
@@ -1015,20 +1028,20 @@ function desktopCurriculumPageYesCertificationStyling() {
   InnerContentContainer.style.width = '100%';
 
   //STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-  pageElements.courseDetails.meta.name.style.fontWeight = '600';
-  pageElements.courseDetails.meta.name.style.fontSize = '36px';
-  pageElements.courseDetails.meta.name.style.lineHeight = '43.2px';
-  pageElements.courseDetails.meta.name.style.letterSpacing = '-0.5px';
-  pageElements.courseDetails.meta.name.style.marginTop = '0';
+  elems.courseDetails.meta.name.style.fontWeight = '600';
+  elems.courseDetails.meta.name.style.fontSize = '36px';
+  elems.courseDetails.meta.name.style.lineHeight = '43.2px';
+  elems.courseDetails.meta.name.style.letterSpacing = '-0.5px';
+  elems.courseDetails.meta.name.style.marginTop = '0';
   sjHeaderTextSubheading.style.display = 'none';
   sjHeaderTextProgressBar.style.display = 'none';
 
   //STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
-  pageElements.courseDetails.header.style.maxWidth = 'none';
-  pageElements.courseDetails.header.style.padding = '0';
-  pageElements.courseDetails.header.style.backgroundImage =
+  elems.courseDetails.header.style.maxWidth = 'none';
+  elems.courseDetails.header.style.padding = '0';
+  elems.courseDetails.header.style.backgroundImage =
     'linear-gradient(315deg,#fde1fe,#f5f6fe 72%)';
-  pageElements.courseDetails.header.style.border = '0';
+  elems.courseDetails.header.style.border = '0';
 
   //STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
   //TEXT CONTAINER
@@ -1047,19 +1060,19 @@ function desktopCurriculumPageYesCertificationStyling() {
   sjHeaderImg.style.height = 'auto';
   sjHeaderImg.style.maxWidth = '100%';
   //PARENT CONTAINER
-  pageElements.courseDetails.meta.container.style.margin = '96px 0';
-  pageElements.courseDetails.meta.container.style.justifyContent = 'center';
-  pageElements.courseDetails.meta.container.style.flexWrap = 'nowrap';
-  pageElements.courseDetails.meta.container.style.gap = '24px';
+  elems.courseDetails.meta.container.style.margin = '96px 0';
+  elems.courseDetails.meta.container.style.justifyContent = 'center';
+  elems.courseDetails.meta.container.style.flexWrap = 'nowrap';
+  elems.courseDetails.meta.container.style.gap = '24px';
 
   //RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   headingParagraph.textContent = courseDescription;
   headingParagraph.style.display = 'block';
-  pageElements.courseDetails.meta.category.style.display = 'block';
+  elems.courseDetails.meta.category.style.display = 'block';
 
   container.append(
-    pageElements.courseDetails.meta.category,
-    pageElements.courseDetails.meta.name,
+    elems.courseDetails.meta.category,
+    elems.courseDetails.meta.name,
     headingParagraph,
     certificateEl
   );
@@ -1224,17 +1237,17 @@ function mobileCurriculumPageNoCertificateStyling() {
   bodyMainContainer.style.gridTemplateColumns = '1fr';
   bodyMainContainer.style.width = '90%';
 
-  pageElements.courseDetails.card.container.style.margin = '32px 0 56px 0';
-  pageElements.courseDetails.card.container.style.justifySelf = 'center';
-  bodyMainContainer.append(pageElements.courseDetails.card.container);
+  elems.courseDetails.card.container.style.margin = '32px 0 56px 0';
+  elems.courseDetails.card.container.style.justifySelf = 'center';
+  bodyMainContainer.append(elems.courseDetails.card.container);
 
-  if (pageElements.courseDetails.card.link) {
-    pageElements.courseDetails.card.link.textContent = btnText;
-    pageElements.courseDetails.card.link.setAttribute('href', btnHref);
+  if (elems.courseDetails.card.link) {
+    elems.courseDetails.card.link.textContent = btnText;
+    elems.courseDetails.card.link.setAttribute('href', btnHref);
   }
 
   if (!view.loaded) {
-    pageElements.courseDetails.card.items.forEach((li) => {
+    elems.courseDetails.card.items.forEach((li) => {
       const checkboxClone = checkboxIcon.cloneNode(true);
       li.prepend(checkboxClone);
     });
@@ -1244,20 +1257,20 @@ function mobileCurriculumPageNoCertificateStyling() {
   InnerContentContainer.style.width = '100%';
 
   //STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-  pageElements.courseDetails.meta.name.style.fontWeight = '600';
-  pageElements.courseDetails.meta.name.style.fontSize = '36px';
-  pageElements.courseDetails.meta.name.style.lineHeight = '43.2px';
-  pageElements.courseDetails.meta.name.style.letterSpacing = '-0.5px';
-  pageElements.courseDetails.meta.name.style.marginTop = '0';
+  elems.courseDetails.meta.name.style.fontWeight = '600';
+  elems.courseDetails.meta.name.style.fontSize = '36px';
+  elems.courseDetails.meta.name.style.lineHeight = '43.2px';
+  elems.courseDetails.meta.name.style.letterSpacing = '-0.5px';
+  elems.courseDetails.meta.name.style.marginTop = '0';
   sjHeaderTextSubheading.style.display = 'none';
   sjHeaderTextProgressBar.style.display = 'none';
 
   //STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
-  pageElements.courseDetails.header.style.maxWidth = 'none';
-  pageElements.courseDetails.header.style.padding = '0';
-  pageElements.courseDetails.header.style.backgroundImage =
+  elems.courseDetails.header.style.maxWidth = 'none';
+  elems.courseDetails.header.style.padding = '0';
+  elems.courseDetails.header.style.backgroundImage =
     'linear-gradient(315deg,#fde1fe,#f5f6fe 72%)';
-  pageElements.courseDetails.header.style.border = '0';
+  elems.courseDetails.header.style.border = '0';
 
   //STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
   //TEXT CONTAINER
@@ -1283,14 +1296,19 @@ function mobileCurriculumPageNoCertificateStyling() {
   sjHeaderImg.style.maxWidth = '100%';
   //PARENT CONTAINER
   container.style.width = '90%';
-  pageElements.courseDetails.meta.container.style.margin = '96px 0';
-  pageElements.courseDetails.meta.container.style.justifyContent = 'center';
-  pageElements.courseDetails.meta.container.style.flexWrap = 'wrap';
-  pageElements.courseDetails.meta.container.style.gap = '24px';
+  elems.courseDetails.meta.container.style.margin = '96px 0';
+  elems.courseDetails.meta.container.style.justifyContent = 'center';
+  elems.courseDetails.meta.container.style.flexWrap = 'wrap';
+  elems.courseDetails.meta.container.style.gap = '24px';
 
   //RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   headingParagraph.style.display = 'block';
-  container.append(pageElements.courseDetails.meta.category, pageElements.courseDetails.meta.name, headingParagraph, btn);
+  container.append(
+    elems.courseDetails.meta.category,
+    elems.courseDetails.meta.name,
+    headingParagraph,
+    btn
+  );
 
   //CURRICULUM PAGE BODY STYLING
   tabsContainer.append(curriculumSection);
@@ -1455,14 +1473,14 @@ function mobileCurriculumPageYesCertificateStyling() {
   bodyMainContainer.style.gridTemplateColumns = '1fr';
   bodyMainContainer.style.width = '90%';
 
-  pageElements.courseDetails.card.container.style.margin = '32px 0 56px 0';
-  pageElements.courseDetails.card.container.style.justifySelf = 'center';
-  bodyMainContainer.append(pageElements.courseDetails.card.container);
+  elems.courseDetails.card.container.style.margin = '32px 0 56px 0';
+  elems.courseDetails.card.container.style.justifySelf = 'center';
+  bodyMainContainer.append(elems.courseDetails.card.container);
 
-  pageElements.courseDetails.card.link.style.display = 'none';
+  elems.courseDetails.card.link.style.display = 'none';
 
   if (!view.loaded) {
-    pageElements.courseDetails.card.items.forEach((li) => {
+    elems.courseDetails.card.items.forEach((li) => {
       const checkboxClone = checkboxIcon.cloneNode(true);
       li.prepend(checkboxClone);
     });
@@ -1472,20 +1490,20 @@ function mobileCurriculumPageYesCertificateStyling() {
   InnerContentContainer.style.width = '100%';
 
   //STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-  pageElements.courseDetails.meta.name.style.fontWeight = '600';
-  pageElements.courseDetails.meta.name.style.fontSize = '36px';
-  pageElements.courseDetails.meta.name.style.lineHeight = '43.2px';
-  pageElements.courseDetails.meta.name.style.letterSpacing = '-0.5px';
-  pageElements.courseDetails.meta.name.style.marginTop = '0';
+  elems.courseDetails.meta.name.style.fontWeight = '600';
+  elems.courseDetails.meta.name.style.fontSize = '36px';
+  elems.courseDetails.meta.name.style.lineHeight = '43.2px';
+  elems.courseDetails.meta.name.style.letterSpacing = '-0.5px';
+  elems.courseDetails.meta.name.style.marginTop = '0';
   sjHeaderTextSubheading.style.display = 'none';
   sjHeaderTextProgressBar.style.display = 'none';
 
   //STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
-  pageElements.courseDetails.header.style.maxWidth = 'none';
-  pageElements.courseDetails.header.style.padding = '0';
-  pageElements.courseDetails.header.style.backgroundImage =
+  elems.courseDetails.header.style.maxWidth = 'none';
+  elems.courseDetails.header.style.padding = '0';
+  elems.courseDetails.header.style.backgroundImage =
     'linear-gradient(315deg,#fde1fe,#f5f6fe 72%)';
-  pageElements.courseDetails.header.style.border = '0';
+  elems.courseDetails.header.style.border = '0';
 
   //STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
   //TEXT CONTAINER
@@ -1510,17 +1528,17 @@ function mobileCurriculumPageYesCertificateStyling() {
   sjHeaderImg.style.maxWidth = '100%';
   //PARENT CONTAINER
   container.style.width = '90%';
-  pageElements.courseDetails.meta.container.style.margin = '96px 0';
-  pageElements.courseDetails.meta.container.style.justifyContent = 'center';
-  pageElements.courseDetails.meta.container.style.flexWrap = 'wrap';
-  pageElements.courseDetails.meta.container.style.gap = '24px';
+  elems.courseDetails.meta.container.style.margin = '96px 0';
+  elems.courseDetails.meta.container.style.justifyContent = 'center';
+  elems.courseDetails.meta.container.style.flexWrap = 'wrap';
+  elems.courseDetails.meta.container.style.gap = '24px';
 
   //RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   headingParagraph.style.display = 'block';
-  pageElements.courseDetails.meta.category.style.display = 'block';
+  elems.courseDetails.meta.category.style.display = 'block';
   container.append(
-    pageElements.courseDetails.meta.category,
-    pageElements.courseDetails.meta.name,
+    elems.courseDetails.meta.category,
+    elems.courseDetails.meta.name,
     headingParagraph,
     certificateEl
   );
@@ -1652,7 +1670,7 @@ function mobileLessonPageStyling() {
   const lessonContentContainer = document.querySelector(
     'sjwc-lesson-content-item'
   );
-  pageElements.lesson.codeBlocks = new Array(
+  elems.lesson.codeBlocks = new Array(
     ...document.querySelectorAll('pre:has(code):not(.language-ansi)')
   ).filter((d) => !d.dataset['no-copy']);
 
@@ -1806,7 +1824,7 @@ function mobileLessonPageStyling() {
     }, 400);
   }
 
-  pageElements.lesson.codeBlocks
+  elems.lesson.codeBlocks
     .filter((d) => !d.dataset.noCopy)
     .forEach((el) => {
       //WILL NEED TO CLEAN UP THE STYLING OF EL!!!!!!!!!!
@@ -1917,17 +1935,17 @@ function renderCourse() {
   handlePageStyling();
 
   // Insert footer
-  globalElements.footer.style.display = 'flex';
+  elems.global.footer.style.display = 'flex';
 
   if (view.isLessonsPage && view.viewport === 'mobile') {
-    globalElements.footer.style.display = 'none';
+    elems.global.footer.style.display = 'none';
   }
 
   let contentContainer = view.isLessonsPage
     ? document.querySelector('.sj-page-lesson')
     : document.querySelector('#skilljar-content');
 
-  contentContainer.append(globalElements.footer);
+  contentContainer.append(elems.global.footer);
 
   // Make sure body is visible after rendering
   if (!document.body.classList.contains('sj-page-catalog')) {
