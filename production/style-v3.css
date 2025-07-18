@@ -979,7 +979,8 @@ body.sj-page-curriculum {
     gap: 24px;
     max-width: 1188px;
 
-    .dp-summary-wrapper {
+    .dp-summary-wrapper,
+    .cp-summary-wrapper {
       /* Course information text content */
       border: 0px;
       max-width: 564px;
@@ -1020,7 +1021,8 @@ body.sj-page-curriculum {
     }
   }
 
-  #dp-details {
+  #dp-details,
+  #cp-content {
     padding: 0px;
     margin: 96px auto 46px auto;
     max-width: min(1152px, 90%);
