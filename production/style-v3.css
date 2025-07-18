@@ -945,7 +945,8 @@ body.sj-page-signup {
   }
 }
 
-body.sj-page-detail-course {
+body.sj-page-detail-course,
+body.sj-page-curriculum {
   /* courseDetails */
 
   .top-row-grey {
