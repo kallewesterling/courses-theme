@@ -222,7 +222,7 @@ function buildCurriculum() {
   const selector =
     container.tagName === 'UL'
       ? 'li'
-      : 'div.lesson-section, div.lesson-modular';
+      : 'div.lesson-section, a.lesson-modular';
 
   container.querySelectorAll(selector).forEach((e) => {
     // Drop all unneeded elements
