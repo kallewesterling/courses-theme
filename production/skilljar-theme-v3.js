@@ -243,7 +243,7 @@ function buildCurriculum() {
         sections[currentIndex].lessons.push(text);
     }
 
-    e.remove(); // Remove the element from the DOM
+    // e.remove(); // Remove the element from the DOM
   });
 
   elems.courseDetails.curriculumRaw = sections;
