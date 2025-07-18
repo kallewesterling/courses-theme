@@ -198,6 +198,8 @@ elems.courseDetails = {
   info: {
     container: document.querySelector('#dp-details'),
   },
+  curriculumRaw: [],
+  curriculumRawHTML: [],
 };
 
 /*
@@ -244,6 +246,8 @@ function buildCurriculum() {
     e.remove(); // Remove the element from the DOM
   });
 
+  elems.courseDetails.curriculumRaw = sections;
+
   sections.forEach((section) => {
     // Set up the section item
     const li = document.createElement('li');
@@ -268,14 +272,16 @@ function buildCurriculum() {
     container.append(li);
   });
 
-  if (container.tagName === 'UL') return container;
+  let return_val = container;
+  if (container.tagName !== 'UL')
+    return_val = Object.assign(document.createElement('ul'), {
+      id: 'curriculum-list',
+      classList: ['dp-curriculum'],
+      innerHTML: container.innerHTML,
+    });
 
-  // if the container is a div, let's wrap our li in a new ul element and return it
-  return Object.assign(document.createElement('ul'), {
-    id: 'curriculum-list',
-    classList: ['dp-curriculum'],
-    innerHTML: container.innerHTML,
-  });
+  elems.courseDetails.curriculumRawHTML = return_val;
+  return return_val;
 }
 
 /*
@@ -696,13 +702,19 @@ function desktopCurriculumPageNoCertificateStyling() {
   const container = document.querySelector('.cp-summary-wrapper'); //DUPLICATE VAR
 
   const sjHeaderTextContainer = document.querySelector('.cp-summary-wrapper');
-  const sjHeaderImgContainer = document.querySelector('.cp-promo-image-wrapper');
+  const sjHeaderImgContainer = document.querySelector(
+    '.cp-promo-image-wrapper'
+  );
   const sjHeaderImgDirectContainer = document.querySelector('.cp-promo-image');
   const sjHeaderImg = document.querySelector('.cp-promo-image img');
   const resumeBtn = document.querySelector('#resume-button');
-  
-  const btnText = resumeBtn ? resumeBtn.querySelector('.button span').textContent : 'Resume';
-  const btnHref = resumeBtn ? resumeBtn.querySelector('.button').getAttribute('href') : '#';
+
+  const btnText = resumeBtn
+    ? resumeBtn.querySelector('.button span').textContent
+    : 'Resume';
+  const btnHref = resumeBtn
+    ? resumeBtn.querySelector('.button').getAttribute('href')
+    : '#';
 
   //BODY VARIABLES
   const bodyMainContainer = document.querySelector('#cp-content');
