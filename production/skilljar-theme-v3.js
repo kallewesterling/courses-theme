@@ -698,13 +698,14 @@ function desktopCurriculumPageNoCertificateStyling() {
 
   // sources
   sources.curriculumPage = {
-    title: 'h1.break-word',
+    titleTxt: 'h1.break-word',
     actionBtn: '#resume-button',
-    shortDescriptionTxt: skilljarCourse.short_description, // eslint-disable-line no-undef
-    longDescriptionHtml: skilljarCourse.long_description_html, // eslint-disable-line no-undef
-    sections: 'div.lesson-section > h3',
-    lessons: 'div.lesson-row > div.title',
+    shortDescriptionRawTxt: skilljarCourse.short_description, // eslint-disable-line no-undef
+    longDescriptionRawHtml: skilljarCourse.long_description_html, // eslint-disable-line no-undef
+    getSections: 'div.lesson-section > h3',
+    getLessons: 'div.lesson-row > div.title',
   };
+  
 
   //HEADER VARIABLES
   const headingParagraph = document.querySelector('.sj-heading-paragraph');
