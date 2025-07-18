@@ -1031,7 +1031,7 @@ body.sj-page-curriculum {
     column-gap: 24px;
 
     .sj-curriculum-wrapper:has(ul.dp-curriculum) {
-      h3 {
+      h2, h3 {
         display: none;
       }
     }

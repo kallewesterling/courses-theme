@@ -32,6 +32,7 @@ const elems = {
   global: {
     footer: document.querySelector('#footer-container'),
   },
+
   catalog: {
     content: document.querySelector('#catalog-content'),
     courseContainer: document.querySelector('#catalog-courses'),
@@ -673,28 +674,22 @@ function desktopCurriculumPageNoCertificateStyling() {
   const contents = document.querySelectorAll('section > .content');
   contents[0].remove; // we can drop curriculum
 
-  const newDiv = document.createElement('div');
+  const curriculumWrap = Object.assign(document.createElement('div'), {classList: 'columns sj-curriculum-wrapper large-4'});
+  
+  curriculumWrap.append(curriculumUl)
+  
+  const aboutWrap = Object.assign(document.createElement('div'), {classList: 'columns large-7'});
+  aboutWrap.append(...new Array(...document.querySelector('section > .content').children));
 
-  newDiv.append(
-    ...[
-      ...new Array(...document.querySelector('section > .content').children),
-      curriculumUl,
-    ]
-  );
-  document.querySelector('#cp-content').append(newDiv);
+  document.querySelector('#cp-content').append(...[aboutWrap, curriculumWrap]);
   document.querySelector('.tabs-wrapper-v2').remove();
-
-  // eslint-disable-next-line no-undef
-  const courseDescription = skilljarCourse.short_description;
+  document.querySelector('div#curriculum-list').remove();
 
   //HEADER VARIABLES
   const headingParagraph = document.querySelector('.sj-heading-paragraph');
   const container = document.querySelector(
     '.large-8.push-4.columns.sj-summary.cp-summary-wrapper'
   ); //DUPLICATE VAR
-  const backToCatalogLink = document.querySelector('.back-to-catalog');
-
-  backToCatalogLink.style.display = 'none';
 
   const sjHeaderTextContainer = document.querySelector(
     '.large-8.push-4.columns.sj-summary.cp-summary-wrapper'
@@ -811,7 +806,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   elems.courseDetails.meta.container.style.gap = '24px';
 
   //RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-  headingParagraph.textContent = courseDescription;
+  headingParagraph.textContent = skilljarCourse.short_description; // eslint-disable-line no-undef
   headingParagraph.style.display = 'block';
   elems.courseDetails.meta.category.style.display = 'block';
 
@@ -1189,9 +1184,6 @@ function mobileCurriculumPageNoCertificateStyling() {
     '.large-8.push-4.columns.sj-summary.cp-summary-wrapper'
   ); //DUPLICATE VAR
   const btn = document.querySelector('#resume-button'); //DUPLICATE VAR
-  const backToCatalogLink = document.querySelector('.back-to-catalog');
-
-  backToCatalogLink.style.display = 'none';
 
   const sjHeaderTextContainer = document.querySelector(
     '.large-8.push-4.columns.sj-summary.cp-summary-wrapper'
