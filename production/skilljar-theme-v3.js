@@ -676,57 +676,65 @@ function desktopLessonPageStyling() {
 function setupValues(selector) {
   // get correct source object
   const s = sources[selector];
-  
+
   // now return an array of key-value pairs
-  return Object.keys(s).map((k) => {
+  const entries = Object.keys(s).map((k) => {
     if (k.toLowerCase().includes('raw')) return [k, s[k]];
 
     if (k.slice(0, 11) === 'getChildren') {
-      const res = document
-            .querySelector(s[k][0])
-            .querySelectorAll(s[k][1]);
+      const res = document.querySelector(s[k][0]).querySelectorAll(s[k][1]);
 
       if (k.slice(0, 14) === 'getChildrenTxt') {
         return [
           k,
           new Array(...res).map((el) => {
-          el.querySelectorAll(s[k][2].join(', ')).forEach(
-            (d) => d.remove()
-          );
-          return [
-            s[k][3][el.tagName] || el.tagName,
-            el.textContent.trim(),
-          ];
-        })]
+            el.querySelectorAll(s[k][2].join(', ')).forEach((d) => d.remove());
+            return [s[k][3][el.tagName] || el.tagName, el.textContent.trim()];
+          }),
+        ];
       } else {
-        return [k, res]
+        return [k, res];
       }
     }
 
-    if (k.slice(0, 6) === 'getAll')
+    if (k.slice(0, 6) === 'getAll') {
       return [k, document.querySelectorAll(s[k])];
+    }
 
-    if (k.slice(k.length - 3, k.length).toLowerCase() === 'btn')
+    if (k.slice(k.length - 3, k.length).toLowerCase() === 'btn') {
+      const elem = document.querySelector(s[k]);
+      let link;
+      if (!elem.tagName === 'a') {
+        console.warn(
+          `Expected an anchor tag for ${k}, but found ${elem.tagName}. Will search for link inside.`
+        );
+        link = elem.querySelector('a');
+        if (!link) {
+          console.warn(
+            `No link found inside ${elem.tagName} for ${k}. Returning undefined.`
+          );
+          link = undefined;
+        }
+      } else {
+        link = elem;
+      }
       return [
         k,
         {
-          textContent: document
-            .querySelector(s[k])
-            .textContent.trim(),
-          href: document
-            .querySelector(s[k])
-            .getAttribute('href'),
+          textContent: elem.textContent.trim(),
+          href: link?.getAttribute('href'),
         },
       ];
+    }
 
-    if (k.slice(k.length - 3, k.length).toLowerCase() === 'txt')
-      return [
-        k,
-        document.querySelector(s[k]).textContent.trim(),
-      ];
+    if (k.slice(k.length - 3, k.length).toLowerCase() === 'txt') {
+      return [k, document.querySelector(s[k]).textContent.trim()];
+    }
 
     return [k, undefined];
   });
+
+  return Object.fromEntries(entries);
 }
 
 function desktopCurriculumPageNoCertificateStyling() {
