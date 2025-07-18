@@ -8,7 +8,8 @@ const debug = (msg, level = 'log') => {
 
 let globalCurriculumSection, globalAboutSection;
 
-const sources = {},
+const values = {},
+  sources = {},
   view = {
     isCurriculumPage: document.querySelector('.sj-page-curriculum')
       ? true
@@ -672,6 +673,62 @@ function desktopLessonPageStyling() {
   }
 }
 
+function setupValues(selector) {
+  // get correct source object
+  const s = sources[selector];
+  
+  // now return an array of key-value pairs
+  return Object.keys(s).map((k) => {
+    if (k.toLowerCase().includes('raw')) return [k, s[k]];
+
+    if (k.slice(0, 11) === 'getChildren') {
+      const res = document
+            .querySelector(s[k][0])
+            .querySelectorAll(s[k][1]);
+
+      if (k.slice(0, 14) === 'getChildrenTxt') {
+        return [
+          k,
+          new Array(...res).map((el) => {
+          el.querySelectorAll(s[k][2].join(', ')).forEach(
+            (d) => d.remove()
+          );
+          return [
+            s[k][3][el.tagName] || el.tagName,
+            el.textContent.trim(),
+          ];
+        })]
+      } else {
+        return [k, res]
+      }
+    }
+
+    if (k.slice(0, 6) === 'getAll')
+      return [k, document.querySelectorAll(s[k])];
+
+    if (k.slice(k.length - 3, k.length).toLowerCase() === 'btn')
+      return [
+        k,
+        {
+          textContent: document
+            .querySelector(s[k])
+            .textContent.trim(),
+          href: document
+            .querySelector(s[k])
+            .getAttribute('href'),
+        },
+      ];
+
+    if (k.slice(k.length - 3, k.length).toLowerCase() === 'txt')
+      return [
+        k,
+        document.querySelector(s[k]).textContent.trim(),
+      ];
+
+    return [k, undefined];
+  });
+}
+
 function desktopCurriculumPageNoCertificateStyling() {
   // Fix Curriculum
   const curriculumUl = buildCurriculum();
@@ -702,10 +759,19 @@ function desktopCurriculumPageNoCertificateStyling() {
     actionBtn: '#resume-button',
     shortDescriptionRawTxt: skilljarCourse.short_description, // eslint-disable-line no-undef
     longDescriptionRawHtml: skilljarCourse.long_description_html, // eslint-disable-line no-undef
-    getSections: 'div.lesson-section > h3',
-    getLessons: 'div.lesson-row > div.title',
+    getSections: 'div.lesson-section h3',
+    getAllLessons: 'div.lesson-row > div.title',
+
+    // first is parent, second is any children (sep by comma), third is elements to remove from children, fourth is mapping of elements's tags to new tag names (non-existent = tag name)
+    getChildrenTxt: [
+      'div#curriculum-list',
+      'div.lesson-section > h3, a.lesson-modular > div.lesson-row > div.title',
+      ['span.optional-text'],
+      { H3: 'section', DIV: 'lesson' },
+    ],
   };
-  
+
+  values.curriculumPage = setupValues('curriculumPage');
 
   //HEADER VARIABLES
   const headingParagraph = document.querySelector('.sj-heading-paragraph');
