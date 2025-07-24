@@ -1282,3 +1282,70 @@ body.sj-page-curriculum {
     max-height: 300px !important;
     width: auto !important;
 }
+
+/* CG callouts */
+.callout {
+    border-radius: 5px;
+    box-shadow: 2px 1px 3px #bbb;
+    width: 90%;
+    margin: 2em auto 2em auto;
+    font-size: 90% !important;
+    opacity: 0.8;
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+
+    .callout-header {
+        padding: 10px 20px 10px 20px;
+        border-radius: 5px 5px 0 0;
+        font-size: 1.2em !important;
+        font-weight: bold;
+
+        i { /* icon */
+            padding-right: 0.5em;
+        }
+    }
+
+    .callout-body {
+        padding: 10px 20px 10px 20px;
+    }
+}
+
+.callout:hover {
+    opacity: 1;
+}
+
+.callout[data-type="success"] {
+    background-color: #f0fff0;
+    color: #004d00;
+    border-color: #004d00;
+}
+
+.callout[data-type="info"] {
+    background-color: aliceblue;
+    color: darkblue;
+    border-color: darkblue;
+
+    .callout-header {
+        background-color: #d2d2fb;
+    }
+}
+
+.callout[data-type="warning"] {
+    background-color: #fefee9;
+    color: darkred;
+    border-color: darkred;
+
+    .callout-header {
+        background-color: #ffcca6;
+    }
+    
+}
+
+.callout[data-type="error"] {
+    background-color: #faf4f4;
+    color: #bf1717;
+    border-color: #bf1717;
+}
