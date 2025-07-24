@@ -1260,6 +1260,7 @@ body.sj-page-curriculum {
 }
 
 /* CG memes */
+/* formerly in adjustments.css */
 .content-img-outer-container {
     display: flex !important;
     align-items: center !important;
@@ -1284,6 +1285,7 @@ body.sj-page-curriculum {
 }
 
 /* CG callouts */
+/* formerly inline in course content */
 .callout {
     border-radius: 5px;
     box-shadow: 2px 1px 3px #bbb;
@@ -1351,6 +1353,7 @@ body.sj-page-curriculum {
 }
 
 /* Inline code blocks */
+/* formerly in adjustments.css */
 code:not([class*="language-"]) {
     font-weight: bold;
     padding: 6px 5px 5px 5px;
@@ -1358,4 +1361,37 @@ code:not([class*="language-"]) {
     margin: 0px 3px 0px 3px;
     background-color: #0000000f;
     color: #643fca !important;
+}
+
+/* adjusting font size + spacing for lessons */
+/* formerly in adjustments.css */
+sjwc-lesson-content-item p,
+sjwc-lesson-content-item li {
+    font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 1.2em !important;
+}
+
+sjwc-lesson-content-item p.lead {
+    font-size: 1.6em !important;
+}
+
+sjwc-lesson-content-item h2 {
+    margin-top: 1.4em !important;
+}
+
+sjwc-lesson-content-item h3 {
+    margin-top: 1.4em !important;
+}
+
+sjwc-lesson-content-item h4 {
+    margin-top: 1.4em;
+}
+
+#lp-footer {
+    padding-top: 5em;
+}
+
+sjwc-lesson-content-item img {
+    display: block !important;
+    margin: auto !important;
 }
