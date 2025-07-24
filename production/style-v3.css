@@ -1258,3 +1258,27 @@ body.sj-page-curriculum {
     }
   }
 }
+
+/* CG memes */
+.content-img-outer-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-image: linear-gradient(315deg, rgb(253, 225, 254), rgb(245, 246, 254) 72%) !important;
+    border-radius: 8px !important;
+    margin-top: 48px !important;
+    margin-bottom: 48px !important;
+}
+
+.content-img-inner-container {
+    background-color: #fff !important;
+    padding: 24px !important;
+    margin: 64px !important;
+    border-radius: 8px !important;
+}
+
+.content-img-inner-container img {
+    border-radius: 4px !important;
+    max-height: 300px !important;
+    width: auto !important;
+}
