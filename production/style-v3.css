@@ -320,6 +320,8 @@ body .lesson-page #lp-wrapper #lesson-body .lesson-top {
 
 pre[class*='language-'] {
   background: none;
+  background-color: #f7f7f7; /* TEMP: to be removed */
+  border-radius: 5px 5px 24px 24px; /* TEMP: to be removed */
 }
 
 .lp-color-scheme-light .lp-left-nav .course-title,
