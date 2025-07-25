@@ -873,7 +873,7 @@ function desktopLessonPageStyling() {
       "style",
       "display: inline-block; padding: 24px !important; overflow-x: scroll; width: 100%"
     );
-    const copyText = codeEl.textContent.trim().replace(/^\$ /g,'');
+    const copyText = codeEl.textContent.trim().replace(/\r?\n\$ /g,' && ').replace(/^\$ /g,'');
 
     //CREATE PARENT CONTAINER & STYLE AS FLEX CONTAINER, COL DIR, AND ALIGN INTEMS START (OR END)
     const container = document.createElement("div");
@@ -3316,7 +3316,7 @@ function mobileLessonPageStyling() {
       "style",
       "display: inline-block; padding: 24px !important; overflow-x: scroll; width: 100%"
     );
-    const copyText = codeEl.textContent.trim().replace(/^\$ /g,'');
+    const copyText = codeEl.textContent.trim().replace(/\r?\n\$ /g,' && ').replace(/^\$ /g,'');
 
     //CREATE PARENT CONTAINER & STYLE AS FLEX CONTAINER, COL DIR, AND ALIGN INTEMS START (OR END)
     const container = document.createElement("div");
