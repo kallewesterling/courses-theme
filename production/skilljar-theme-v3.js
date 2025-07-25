@@ -769,13 +769,11 @@ function desktopCurriculumPageNoCertificateStyling() {
     longDescriptionRawHtml: skilljarCourse.long_description_html, // eslint-disable-line no-undef
     getSections: 'div.lesson-section h3',
     getAllLessons: 'div.lesson-row > div.title',
-
-    // first is parent, second is any children (sep by comma), third is elements to remove from children, fourth is mapping of elements's tags to new tag names (non-existent = tag name)
     getChildrenTxt: [
-      'div#curriculum-list',
-      'div.lesson-section > h3, a.lesson-modular > div.lesson-row > div.title',
-      ['span.optional-text'],
-      { H3: 'section', DIV: 'lesson' },
+      'div#curriculum-list', // first is parent element
+      'div.lesson-section > h3, a.lesson-modular > div.lesson-row > div.title', // second is any children (sep by comma)
+      ['span.optional-text'], // third is elements to remove from children
+      { H3: 'section', DIV: 'lesson' }, // fourth is mapping of elements's tags to new tag names (non-existent = tag name)
     ],
   };
 
