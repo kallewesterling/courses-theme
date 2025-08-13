@@ -558,10 +558,7 @@ function desktopLessonPageStyling() {
     ".toggle-fullscreen.focus-link-v2 "
   );
   // LESSON BODY VARS
-  const lessonInnerContainer = document.querySelector("#lesson-main-inner");
-  const quizPage = document.querySelector(
-    ".course-scrollable-content.course-text-content.quiz"
-  );
+  const lessonInnerContainer = document.querySelector("#lesson-main-inner");;
   const copyIcon = document.querySelector(".copy-icon");
   const lessonContentContainer = document.querySelector(
     "sjwc-lesson-content-item"
@@ -2971,9 +2968,6 @@ function mobileLessonPageStyling() {
   );
   // LESSON BODY VARS
   const lessonInnerContainer = document.querySelector("#lesson-main-inner");
-  const quizPage = document.querySelector(
-    ".course-scrollable-content.course-text-content.quiz"
-  );
   const copyIcon = document.querySelector(".copy-icon");
   const lessonContentContainer = document.querySelector(
     "sjwc-lesson-content-item"
