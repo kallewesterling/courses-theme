@@ -148,9 +148,7 @@ function desktopCourseDetailsPageStyling() {
   const headingFloaterText = document.querySelector(".sj-floater-text");
   const mainHeading = document.querySelector(".break-word");
   const registerBtn = document.querySelector("#purchase-button-wrapper-large");
-  const mainHeadingContainer = document.querySelector(
-    ".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"
-  );
+  const mainHeadingContainer = document.querySelector(".dp-summary-wrapper");
   const backToCatalogBtn = document.querySelector(".back-to-catalog");
   const videoContainer = document.querySelector(".video-max");
   const mainInfoCardContained = document.querySelector(
@@ -404,9 +402,7 @@ function desktopPathCourseDetailsPageStyling() {
   const mainHeading = document.querySelector(".break-word");
   const registerBtn = document.querySelector("#purchase-button-wrapper-large");
   const registerBtnAnchor = document.querySelector("#purchase-button");
-  const mainHeadingContainer = document.querySelector(
-    ".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"
-  );
+  const mainHeadingContainer = document.querySelector(".dp-summary-wrapper");
   const backToCatalogBtn = document.querySelector(".back-to-catalog");
   const mainInfoCardContained = document.querySelector(
     ".sj-course-info-wrapper"
@@ -1103,9 +1099,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   // HEADER VARIABLES
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
   const headingFloaterText = document.querySelector(".sj-floater-text");
-  const container = document.querySelector(
-    ".large-8.push-4.columns.sj-summary.cp-summary-wrapper"
-  ); // DUPLICATE VAR
+  const container = document.querySelector(".cp-summary-wrapper"); // DUPLICATE VAR
   const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR
   const backToCatalogLink = document.querySelector(".back-to-catalog");
 
@@ -1117,9 +1111,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   const headerTextAndImgContainer = document.querySelector(
     ".row.dp-row-flex-v2"
   );
-  const sjHeaderTextContainer = document.querySelector(
-    ".large-8.push-4.columns.sj-summary.cp-summary-wrapper"
-  );
+  const sjHeaderTextContainer = document.querySelector(".cp-summary-wrapper");
   const sjHeaderTextHeading = document.querySelector(".break-word");
   const sjHeaderTextSubheading = document.querySelector(".cp-lessons");
   const sjHeaderTextProgressBar = document.querySelector(
@@ -1448,9 +1440,7 @@ function desktopCurriculumPageYesCertificationStyling() {
   // HEADER VARIABLES
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
   const headingFloaterText = document.querySelector(".sj-floater-text");
-  const container = document.querySelector(
-    ".large-8.push-4.columns.sj-summary.cp-summary-wrapper"
-  ); // DUPLICATE VAR
+  const container = document.querySelector(".cp-summary-wrapper"); // DUPLICATE VAR
   const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR
   const backToCatalogLink = document.querySelector(".back-to-catalog");
 
@@ -1462,9 +1452,7 @@ function desktopCurriculumPageYesCertificationStyling() {
   const headerTextAndImgContainer = document.querySelector(
     ".row.dp-row-flex-v2"
   );
-  const sjHeaderTextContainer = document.querySelector(
-    ".large-8.push-4.columns.sj-summary.cp-summary-wrapper"
-  );
+  const sjHeaderTextContainer = document.querySelector(".cp-summary-wrapper");
   const sjHeaderTextHeading = document.querySelector(".break-word");
   const sjHeaderTextSubheading = document.querySelector(".cp-lessons");
   const sjHeaderTextProgressBar = document.querySelector(
@@ -2041,9 +2029,7 @@ function mobileCourseDetailsPageStyling() {
   const mainHeading = document.querySelector(".break-word");
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
   const registerBtn = document.querySelector("#purchase-button-wrapper-large");
-  const mainHeadingContainer = document.querySelector(
-    ".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"
-  );
+  const mainHeadingContainer = document.querySelector(".dp-summary-wrapper");
   const mainVideoContainer = document.querySelector(
     ".columns.large-6.text-center.dp-promo-image-wrapper"
   );
@@ -2122,8 +2108,7 @@ function mobileCourseDetailsPageStyling() {
   mainHeadingContainer.style.border = "0";
   mainHeadingContainer.style.maxWidth = "none";
   mainHeadingContainer.style.width = "100%";
-  mainHeadingContainer.querySelector(".sj-course-info-wrapper").style.display =
-    "none";
+  hide(mainHeadingContainer.querySelector(".sj-course-info-wrapper"));
   headingFloaterText.style.display = "block";
   headingFloaterText.style.marginBottom = "24px";
   mainHeading.style.margin = "0 0 12px 0";
@@ -2310,9 +2295,7 @@ function mobileCurriculumPageNoCertificateStyling() {
   // HEADER VARIABLES
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
   const headingFloaterText = document.querySelector(".sj-floater-text");
-  const container = document.querySelector(
-    ".large-8.push-4.columns.sj-summary.cp-summary-wrapper"
-  ); // DUPLICATE VAR
+  const container = document.querySelector(".cp-summary-wrapper"); // DUPLICATE VAR
   const btn = document.querySelector("#resume-button"); // DUPLICATE VAR
   const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR
   const backToCatalogLink = document.querySelector(".back-to-catalog");
@@ -2325,9 +2308,7 @@ function mobileCurriculumPageNoCertificateStyling() {
   const headerTextAndImgContainer = document.querySelector(
     ".row.dp-row-flex-v2"
   );
-  const sjHeaderTextContainer = document.querySelector(
-    ".large-8.push-4.columns.sj-summary.cp-summary-wrapper"
-  );
+  const sjHeaderTextContainer = document.querySelector(".cp-summary-wrapper");
   const sjHeaderTextHeading = document.querySelector(".break-word");
   const sjHeaderTextSubheading = document.querySelector(".cp-lessons");
   const sjHeaderTextProgressBar = document.querySelector(
@@ -2633,9 +2614,7 @@ function mobileCurriculumPageYesCertificateStyling() {
   // HEADER VARIABLES
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
   const headingFloaterText = document.querySelector(".sj-floater-text");
-  const container = document.querySelector(
-    ".large-8.push-4.columns.sj-summary.cp-summary-wrapper"
-  ); // DUPLICATE VAR
+  const container = document.querySelector(".cp-summary-wrapper"); // DUPLICATE VAR
   const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR
   const backToCatalogLink = document.querySelector(".back-to-catalog");
 
@@ -2647,9 +2626,7 @@ function mobileCurriculumPageYesCertificateStyling() {
   const headerTextAndImgContainer = document.querySelector(
     ".row.dp-row-flex-v2"
   );
-  const sjHeaderTextContainer = document.querySelector(
-    ".large-8.push-4.columns.sj-summary.cp-summary-wrapper"
-  );
+  const sjHeaderTextContainer = document.querySelector(".cp-summary-wrapper");
   const sjHeaderTextHeading = document.querySelector(".break-word");
   const sjHeaderTextSubheading = document.querySelector(".cp-lessons");
   const sjHeaderTextProgressBar = document.querySelector(
@@ -3279,7 +3256,7 @@ function renderCourse() {
 */
 document.addEventListener("DOMContentLoaded", () => {
   getCurrentPage();
-  
+
   renderCourse();
   initialLoadComplete = true;
 });
