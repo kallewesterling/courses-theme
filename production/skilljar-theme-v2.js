@@ -130,9 +130,6 @@ function desktopCourseDetailsPageStyling() {
   const mainHeadingContainer = document.querySelector(
     ".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"
   );
-  const mainVideoContainer = document.querySelector(
-    ".columns.large-6.text-center.dp-promo-image-wrapper"
-  );
   const backToCatalogBtn = document.querySelector(".back-to-catalog");
   const videoContainer = document.querySelector(".video-max");
   const mainInfoCardContained = document.querySelector(
@@ -262,7 +259,6 @@ function desktopCourseDetailsPageStyling() {
 
   //COURSE DETAILS CURRICULUM STYLING
   if (!initialLoadComplete) {
-    let groupIsOpen = false;
     // Check if course has Sections/Modules/Parts
     const hasSections = curriculumListContainer.querySelector(".section")
       ? true
@@ -684,7 +680,6 @@ function desktopLessonPageStyling() {
   const navOpenIcon = document.getElementById("left-nav-button");
   const hamburgerIcon = navOpenIcon.querySelector(".fa.fa-bars");
   const xIcon = navOpenIcon.querySelector(".fa.fa-times");
-  const leftNavMobileOverlay = document.getElementById("lpLeftNavBackground");
 
   const fullScreenBtn = document.querySelector(
     ".toggle-fullscreen.focus-link-v2 "
@@ -764,9 +759,6 @@ function desktopLessonPageStyling() {
 
   /////////QUIZ PAGE STYLING
   if (quizPage) {
-    const quizInitCheckboxIcon = document.querySelector(
-      ".fa.fa-check-square-o.quiz-icon"
-    );
     //quizInitCheckboxIcon.style.display = "none";
     //console.log("quizPage", quizPage);
   }
@@ -956,7 +948,6 @@ function desktopLoginPageStyling() {
   const orGoogleSignInInnerContainerListItems =
     orGoogleSignInInnerContainer.querySelectorAll("li");
   const signUpSignInContainer = document.querySelector(".large-12.columns");
-  const tabsContainer = document.getElementById("tabs");
   const loginTab = document.getElementById("login-tab-left");
   const signInTab = document.getElementById("login-tab-right");
   const signInTabText = signInTab.querySelector("a");
@@ -993,10 +984,6 @@ function desktopLoginPageStyling() {
 
   //////STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = "flex";
-  // tabs.style.backgroundColor = "#F3F3F3";
-  tabs.style.borderRadius = "100px";
-  tabs.style.display = "flex";
-  tabs.style.padding = "4px";
   loginTab.querySelector("span span").textContent = "Log In";
   loginTab.style.border = "0";
   loginTab.style.display = "flex";
@@ -1095,13 +1082,11 @@ function desktopSignUpPageStyling() {
     orSignInWithGoogleContainer.querySelector("ul");
   const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll("li");
   const signUpSignInContainer = document.querySelector(".large-12.columns");
-  const tabsContainer = document.getElementById("tabs");
   const loginTab = document.getElementById("login-tab-left");
   loginTab;
   const loginTabText = loginTab.querySelector("a");
   const signInTab = document.getElementById("login-tab-right");
   const signInTabText = signInTab.querySelector("span");
-  const longInNote = document.querySelector(".loginNote.sj-text-login-note");
   const orSignInWithContainer = document.querySelector(
     ".socialaccount_providers li"
   );
@@ -1120,9 +1105,6 @@ function desktopSignUpPageStyling() {
   const passwordInput = document.getElementById("id_password1");
   const passwordInput2 = document.getElementById("id_password2");
   const signUpBottomBtn = document.getElementById("button-sign-up");
-  const forgotPasswordText = document.querySelector(
-    ".forgot-password.sj-text-forgot-password.focus-link-v2"
-  );
   const signUpForm = document.getElementById("signup_form");
 
   //FOOTER VARS
@@ -1139,10 +1121,6 @@ function desktopSignUpPageStyling() {
 
   //////STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = "flex";
-  // tabs.style.backgroundColor = "#F3F3F3";
-  tabs.style.borderRadius = "100px";
-  tabs.style.display = "flex";
-  tabs.style.padding = "4px";
   loginTabText.querySelector("span").textContent = "Log In";
   loginTab.style.border = "0";
   loginTab.style.display = "flex";
@@ -1263,7 +1241,7 @@ function desktopSignUpPageStyling() {
 }
 
 function desktopCurriculumPageNoCertificateStyling() {
-  const courseDescription = skilljarCourse.short_description;
+  const courseDescription = skilljarCourse.short_description;  // eslint-disable-line no-undef
 
   const logoImg = document.querySelector(".header-center-img");
 
@@ -1273,7 +1251,6 @@ function desktopCurriculumPageNoCertificateStyling() {
   const container = document.querySelector(
     ".large-8.push-4.columns.sj-summary.cp-summary-wrapper"
   ); //DUPLICATE VAR
-  const btn = document.getElementById("resume-button"); //DUPLICATE VAR
   const mainHeading = document.querySelector(".break-word"); //DUPLICATE VAR
   const backToCatalogLink = document.querySelector(".back-to-catalog");
 
@@ -1462,7 +1439,6 @@ function desktopCurriculumPageNoCertificateStyling() {
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
 
-    let groupIsOpen = false;
     // Check if course has Sections/Modules/Parts
     const hasSections = curriculumParentContainer.querySelector("h3")
       ? true
@@ -1599,7 +1575,7 @@ function desktopCurriculumPageNoCertificateStyling() {
 }
 
 function desktopCurriculumPageYesCertificationStyling() {
-  const courseDescription = skilljarCourse.short_description;
+  const courseDescription = skilljarCourse.short_description; // eslint-disable-line no-undef
   console.log("courseDescription: ", courseDescription);
 
   const logoImg = document.querySelector(".header-center-img");
@@ -1636,9 +1612,6 @@ function desktopCurriculumPageYesCertificationStyling() {
   );
   const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image");
   const sjHeaderImg = document.querySelector(".cp-promo-image img");
-  const resumeBtn = document.getElementById("resume-button");
-  //      const btnText = resumeBtn.querySelector('.button span').textContent;
-  //      const btnHref = resumeBtn.querySelector('.button').getAttribute("href");
 
   //BODY VARIABLES
   const bodyMainContainer = document.getElementById("cp-content");
@@ -1781,7 +1754,6 @@ function desktopCurriculumPageYesCertificationStyling() {
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
 
-    let groupIsOpen = false;
     const hasSections = curriculumParentContainer.querySelector("h3")
       ? true
       : false;
@@ -1918,7 +1890,6 @@ function mobileLoginPageStyling() {
   const orGoogleSignInInnerContainerListItems =
     orGoogleSignInInnerContainer.querySelectorAll("li");
   const signUpSignInContainer = document.querySelector(".large-12.columns");
-  const tabsContainer = document.getElementById("tabs");
   const loginTab = document.getElementById("login-tab-left");
   const signInTab = document.getElementById("login-tab-right");
   const signInTabText = signInTab.querySelector("a");
@@ -1955,10 +1926,6 @@ function mobileLoginPageStyling() {
 
   //////STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = "flex";
-  tabs.style.backgroundColor = "#F3F3F3";
-  tabs.style.borderRadius = "100px";
-  tabs.style.display = "flex";
-  tabs.style.padding = "4px";
   loginTab.querySelector("span span").textContent = "Log in";
   loginTab.style.border = "0";
   loginTab.style.display = "flex";
@@ -2046,13 +2013,11 @@ function mobileSignUpPageStyling() {
   const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll("li");
 
   const signUpSignInContainer = document.querySelector(".large-12.columns");
-  const tabsContainer = document.getElementById("tabs");
   const loginTab = document.getElementById("login-tab-left");
   loginTab;
   const loginTabText = loginTab.querySelector("a");
   const signInTab = document.getElementById("login-tab-right");
   const signInTabText = signInTab.querySelector("span");
-  const longInNote = document.querySelector(".loginNote.sj-text-login-note");
   const orSignInWithContainer = document.querySelector(
     ".socialaccount_providers li"
   );
@@ -2071,9 +2036,6 @@ function mobileSignUpPageStyling() {
   const passwordInput = document.getElementById("id_password1");
   const passwordInput2 = document.getElementById("id_password2");
   const signUpBottomBtn = document.getElementById("button-sign-up");
-  const forgotPasswordText = document.querySelector(
-    ".forgot-password.sj-text-forgot-password.focus-link-v2"
-  );
   const signUpForm = document.getElementById("signup_form");
 
   //FOOTER VARS
@@ -2090,10 +2052,6 @@ function mobileSignUpPageStyling() {
 
   //////STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = "flex";
-  tabs.style.backgroundColor = "#F3F3F3";
-  tabs.style.borderRadius = "100px";
-  tabs.style.display = "flex";
-  tabs.style.padding = "4px";
   loginTabText.querySelector("span").textContent = "Log in";
   loginTab.style.border = "0";
   loginTab.style.display = "flex";
@@ -2360,7 +2318,6 @@ function mobileCourseDetailsPageStyling() {
 
   //COURSE DETAILS CURRICULUM STYLING
   if (!initialLoadComplete) {
-    let groupIsOpen = false;
     const hasSections = curriculumListContainer.querySelector(".section")
       ? true
       : false;
@@ -2649,7 +2606,6 @@ function mobileCurriculumPageNoCertificateStyling() {
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
 
-    let groupIsOpen = false;
     const hasSections = curriculumParentContainer.querySelector("h3")
       ? true
       : false;
@@ -2962,7 +2918,6 @@ function mobileCurriculumPageYesCertificateStyling() {
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
 
-    let groupIsOpen = false;
     const hasSections = curriculumParentContainer.querySelector("h3")
       ? true
       : false;
@@ -3195,9 +3150,6 @@ function mobileLessonPageStyling() {
 
   /////////QUIZ PAGE STYLING
   if (quizPage) {
-    const quizInitCheckboxIcon = document.querySelector(
-      ".fa.fa-check-square-o.quiz-icon"
-    );
     //quizInitCheckboxIcon.style.display = "none";
     //console.log("quizPage", quizPage);
   }
@@ -3240,7 +3192,7 @@ function mobileLessonPageStyling() {
     e.target.style.display = "none";
     openIcon.style.display = "inline-block";
   });
-  leftNavMobileOverlay.addEventListener("click", (e) => {
+  leftNavMobileOverlay.addEventListener("click", () => {
     closeIcon.style.display = "none";
     openIcon.style.display = "inline-block";
   });
