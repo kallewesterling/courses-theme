@@ -11,6 +11,9 @@ let isCatalogPage,
 let initialLoadComplete = false;
 let globalCurriculumSection, globalAboutSection;
 
+/**
+  * This function returns the current window width.
+  */
 function checkWindowWidth() {
   return (
     window.innerWidth ||
@@ -19,8 +22,10 @@ function checkWindowWidth() {
   );
 }
 
+/**
+  * This function checks the current page and sets the global variables accordingly.
+  */
 function getCurrentPage() {
-  // THIS FUNCTION SEEMS TO JUST REWRITE THE GLOBAL VARS
   isCatalogPage = document.querySelector(
     ".sj-page-catalog.sj-page-catalog-root"
   )
@@ -51,6 +56,9 @@ function getCurrentPage() {
     : false;
 }
 
+/**
+  * This function returns the current window width and the current page state.
+  */
 function getWidthAndCurrentPage() {
   return {
     width: checkWindowWidth(),
@@ -58,6 +66,9 @@ function getWidthAndCurrentPage() {
   };
 }
 
+/**
+  * This function sets the body style to visible and opacity to 1.
+  */
 function makeContentVisible() {
   const body = document.querySelector("body");
 
@@ -69,6 +80,9 @@ function makeContentVisible() {
   }
 }
 
+/**
+  * This function inserts the footer into the page.
+  */
 function insertFooter(isLessonsPage = false) {
   const footerEl = document.getElementById("footer-container");
   let contentContainer;
@@ -88,24 +102,29 @@ function insertFooter(isLessonsPage = false) {
   contentContainer.append(footerEl);
 }
 
+/**
+  * This function removes the Skilljar footer from the page.
+  */
 function removeSJFooter(isLessonsPage = false) {
   if (!isLessonsPage) {
     document.getElementById("ep-footer").style.display = "none";
   }
 }
 
-// DESKTOP VIEW STYLINGS
+/**
+  * This function applies desktop-specific styling to the catalog page.
+  */
 function desktopCatalogPageStyling() {
   const catalogBodyParentContainer = document.getElementById("catalog-content");
   const catalogContainer = document.getElementById("catalog-courses");
 
   if (!initialLoadComplete) {
-    // create container div for courses catalog list
+    // Create a container div for courses catalog list
     const catalogContentContainer = document.createElement("div");
     catalogContentContainer.style.maxWidth = "min(1232px, 90%)";
     catalogContentContainer.style.margin = "96px auto";
 
-    // create header for list
+    // Create header for list
     const allCoursesHeader = document.createElement("h2");
     allCoursesHeader.textContent = "All Courses";
     allCoursesHeader.style.fontSize = "48px";
@@ -118,6 +137,9 @@ function desktopCatalogPageStyling() {
   }
 }
 
+/**
+  * This function applies desktop-specific styling to the course details page.
+  */
 function desktopCourseDetailsPageStyling() {
   const headerContainer = document.querySelector(
     ".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"
@@ -268,6 +290,11 @@ function desktopCourseDetailsPageStyling() {
       styleGroupContainer(curContainer);
     }
 
+    /**
+      * This function styles the group container for curriculum sections.
+      * It sets the border, border radius, margin, and padding.
+      * @param {HTMLElement} container - The container element to style.
+      */
     function styleGroupContainer(container) {
       container.style.border = "2px solid #3443F4";
       container.style.borderRadius = "8px";
@@ -275,6 +302,13 @@ function desktopCourseDetailsPageStyling() {
       container.style.padding = "0";
     }
 
+    /**
+      * This function styles the list item for lessons.
+      * It hides the type icon, sets padding, font size, font weight, and line height.
+      * If the item is not the last child, it adds a bottom border.
+      * @param {HTMLElement} lessonItem - The list item element to style.
+      * @param {boolean} isLastChild - Indicates if the item is the last child.
+      */
     function styleListItem(lessonItem, isLastChild) {
       const icon = lessonItem.querySelector(".type-icon");
       icon.style.display = "none";
@@ -290,6 +324,11 @@ function desktopCourseDetailsPageStyling() {
       }
     }
 
+    /**
+      * This function styles the group heading for curriculum sections.
+      * It sets the text content, font size, font weight, line height, font family, padding, and border.
+      * @param {HTMLElement} groupHeading - The group heading element to style.
+      */
     function styleGroupHeading(groupHeading) {
       groupHeading.textContent = groupHeading?.textContent?.trim();
       groupHeading.style.fontSize = "16px";
@@ -302,11 +341,11 @@ function desktopCourseDetailsPageStyling() {
     }
 
     curriculumList.forEach((curListItem, i, arr) => {
-      // first check if current item contains 'section' class
+      // First check if current item contains 'section' class
       if (curListItem.classList.contains("section")) {
         // Yes? push curContainer into curriculumListContainer
         curriculumListContainer.append(curContainer);
-        // reset curContainer while pushing current 'section' in there for the next iteration
+        // Reset curContainer while pushing current 'section' in there for the next iteration
         curContainer = document.createElement("li");
         styleGroupContainer(curContainer);
         const newGroupHeading = document.createElement("div");
@@ -314,8 +353,8 @@ function desktopCourseDetailsPageStyling() {
         styleGroupHeading(newGroupHeading);
         curContainer.append(newGroupHeading);
       } else {
-        // else, normal/expected behaviour
-        // transfer inner html of current list item to new created div
+        // Else, normal/expected behaviour
+        // Transfer inner html of current list item to new created div
         const newListItem = document.createElement("div");
         newListItem.innerHTML = curListItem.innerHTML;
         styleListItem(
@@ -353,6 +392,9 @@ function desktopCourseDetailsPageStyling() {
   }
 }
 
+/**
+  * This function applies desktop-specific styling to the path course details page.
+  */
 function desktopPathCourseDetailsPageStyling() {
   const headerContainer = document.querySelector(
     ".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"
@@ -444,6 +486,9 @@ function desktopPathCourseDetailsPageStyling() {
   catalogContainer.style.marginBottom = "85px";
 }
 
+/**
+  * This function applies desktop-specific styling to the path catalog page.
+  */
 function desktopPathCatalogPageStyling() {
   const backArrowBtn = document.querySelector(".back-to-catalog");
 
@@ -488,6 +533,9 @@ function desktopPathCatalogPageStyling() {
   topContentContainer.style.display = "none";
 }
 
+/**
+  * This function applies desktop-specific styling to the lesson page.
+  */
 function desktopLessonPageStyling() {
   const internalCourseWarning = document.querySelector('#internal-course-warning');
   if (internalCourseWarning) {
@@ -654,6 +702,11 @@ function desktopLessonPageStyling() {
 
   // HANDLE CODE BLOCK CUSTOM STYLING
 
+  /**
+    * This function animates the tooltip that appears when code is copied.
+    * It sets the opacity to 1, waits for 400ms, and then sets the opacity to 0.
+    * @param {HTMLElement} tooltipEl - The tooltip element to animate.
+    */
   function animateCopiedTooltip(tooltipEl) {
     tooltipEl.style.opacity = "1";
 
@@ -739,6 +792,9 @@ function desktopLessonPageStyling() {
   });
 }
 
+/**
+  * This function applies desktop-specific styling to the login page.
+  */
 function desktopLoginPageStyling() {
   const logoImg = document.querySelector(".header-center-img");
 
@@ -867,6 +923,9 @@ function desktopLoginPageStyling() {
   });
 }
 
+/**
+  * This function applies desktop-specific styling to the sign-up page.
+  */
 function desktopSignUpPageStyling() {
   const logoImg = document.querySelector(".header-center-img");
   const fbBtn = document.getElementById("facebook_login");
@@ -1035,6 +1094,10 @@ function desktopSignUpPageStyling() {
   });
 }
 
+/**
+  * This function applies desktop-specific styling to the curriculum page when no certificate is available.
+  * It modifies the layout and appearance of various elements on the page.
+  */
 function desktopCurriculumPageNoCertificateStyling() {
   const courseDescription = skilljarCourse.short_description;  // eslint-disable-line no-undef
 
@@ -1242,6 +1305,11 @@ function desktopCurriculumPageNoCertificateStyling() {
       styleGroupContainer(curContainer);
     }
 
+    /**
+      * This function styles the group container for curriculum items.
+      * It sets the border, border radius, margin, and padding.
+      * @param {HTMLElement} container - The container element to style.
+      */
     function styleGroupContainer(container) {
       container.style.border = "2px solid #3443f4";
       container.style.borderRadius = "8px";
@@ -1249,6 +1317,12 @@ function desktopCurriculumPageNoCertificateStyling() {
       container.style.padding = "0";
     }
 
+    /**
+      * This function styles each lesson item in the curriculum.
+      * It sets padding, font size, font weight, line height, and border bottom if not the last child.
+      * @param {HTMLElement} lessonEl - The lesson element to style.
+      * @param {boolean} isLastChild - Indicates if the lesson is the last child.
+      */
     function styleListItem(lessonEl, isLastChild) {
       lessonEl.style.padding = "24px";
       lessonEl.style.fontSize = "16px";
@@ -1259,6 +1333,11 @@ function desktopCurriculumPageNoCertificateStyling() {
       }
     }
 
+    /**
+      * This function styles the group heading container.
+      * It sets padding, border bottom, and styles the actual group heading.
+      * @param {HTMLElement} groupHeadingContainer - The group heading container to style.
+      */
     function styleGroupHeading(groupHeadingContainer) {
       groupHeadingContainer.style.padding = "24px";
       groupHeadingContainer.style.borderBottom = "2px solid #3443f4";
@@ -1289,7 +1368,7 @@ function desktopCurriculumPageNoCertificateStyling() {
       if (el.tagName === "DIV") {
         // Yes? push curContainer into parent container
         curriculumParentContainer.append(curContainer);
-        // reset curContainer while pushing current new heading & icon in there for the next iteration
+        // Reset curContainer while pushing current new heading & icon in there for the next iteration
         curContainer = document.createElement("div");
         styleGroupContainer(curContainer);
 
@@ -1306,8 +1385,8 @@ function desktopCurriculumPageNoCertificateStyling() {
         curContainer.append(newGroupHeading);
         el.style.display = "none";
       } else {
-        // else, normal/expected behaviour
-        // transfer inner html of current list item to new created div
+        // Else, normal/expected behaviour
+        // Transfer inner html of current list item to new created div
         const newListEl = document.createElement("div");
         styleListItem(
           newListEl,
@@ -1360,8 +1439,12 @@ function desktopCurriculumPageNoCertificateStyling() {
   aboutSection.setAttribute("style", "padding: 0 !important");
 }
 
+/**
+  * This function applies desktop-specific styling to the curriculum page when a certificate is available.
+  * It modifies the layout and appearance of various elements on the page.
+  */
 function desktopCurriculumPageYesCertificationStyling() {
-  const courseDescription = skilljarCourse.short_description; // eslint-disable-line no-undef
+  const courseDescription = skilljarCourse.short_description;  // eslint-disable-line no-undef
 
   const logoImg = document.querySelector(".header-center-img");
 
@@ -1525,7 +1608,7 @@ function desktopCurriculumPageYesCertificationStyling() {
   ------------------------------
   */
   if (!initialLoadComplete) {
-    // set global curriculum and about section vars
+    // Set global curriculum and about section vars
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
 
@@ -1538,6 +1621,11 @@ function desktopCurriculumPageYesCertificationStyling() {
       styleGroupContainer(curContainer);
     }
 
+    /**
+      * This function styles the group container for curriculum items.
+      * It sets the border, border radius, margin, and padding.
+      * @param {HTMLElement} container - The container element to style.
+      */
     function styleGroupContainer(container) {
       container.style.border = "2px solid #3443f4";
       container.style.borderRadius = "8px";
@@ -1545,6 +1633,12 @@ function desktopCurriculumPageYesCertificationStyling() {
       container.style.padding = "0";
     }
 
+    /**
+      * This function styles each lesson item in the curriculum.
+      * It sets padding, font size, font weight, line height, and border bottom if not the last child.
+      * @param {HTMLElement} lessonEl - The lesson element to style.
+      * @param {boolean} isLastChild - Indicates if the lesson is the last child.
+      */
     function styleListItem(lessonEl, isLastChild) {
       lessonEl.style.padding = "24px";
       lessonEl.style.fontSize = "16px";
@@ -1555,11 +1649,16 @@ function desktopCurriculumPageYesCertificationStyling() {
       }
     }
 
+    /**
+      * This function styles the group heading container.
+      * It sets padding, border bottom, and styles the actual group heading.
+      * @param {HTMLElement} groupHeadingContainer - The group heading container to style.
+      */
     function styleGroupHeading(groupHeadingContainer) {
       groupHeadingContainer.style.padding = "24px";
       groupHeadingContainer.style.borderBottom = "2px solid #3443f4";
 
-      // get actual group heading
+      // Get actual group heading
       const groupHeading =
         groupHeadingContainer.querySelector("h3") || groupHeadingContainer;
 
@@ -1584,7 +1683,7 @@ function desktopCurriculumPageYesCertificationStyling() {
       if (el.tagName === "DIV") {
         // Yes? push curContainer into parent container
         curriculumParentContainer.append(curContainer);
-        // reset curContainer while pushing current new heading & icon in there for the next iteration
+        // Reset curContainer while pushing current new heading & icon in there for the next iteration
         curContainer = document.createElement("div");
         styleGroupContainer(curContainer);
 
@@ -1601,8 +1700,8 @@ function desktopCurriculumPageYesCertificationStyling() {
         curContainer.append(newGroupHeading);
         el.style.display = "none";
       } else {
-        // else, normal/expected behaviour
-        // transfer inner html of current list item to new created div
+        // Else, normal/expected behaviour
+        // Transfer inner html of current list item to new created div
         const newListEl = document.createElement("div");
         styleListItem(
           newListEl,
@@ -1623,6 +1722,7 @@ function desktopCurriculumPageYesCertificationStyling() {
   pageIcons.forEach((pageIcon) => {
     pageIcon.setAttribute("style", "display:none !important");
   });
+
   lessonListItems.forEach((item) => {
     const titleEl = item.querySelector(".title");
     item.style.display = "flex";
@@ -1640,7 +1740,10 @@ function desktopCurriculumPageYesCertificationStyling() {
   });
 }
 
-// MOBILE VIEW STYLINGS
+/**
+  * This function applies mobile-specific styling to the login page.
+  * It modifies the layout and appearance of various elements on the page.
+  */
 function mobileLoginPageStyling() {
   // NAV VARS
   const logoImg = document.querySelector(".header-center-img");
@@ -1761,6 +1864,10 @@ function mobileLoginPageStyling() {
   });
 }
 
+/**
+  * This function applies mobile-specific styling to the sign-up page.
+  * It modifies the layout and appearance of various elements on the page.
+  */
 function mobileSignUpPageStyling() {
   const logoImg = document.querySelector(".header-center-img");
   const fbBtn = document.getElementById("facebook_login");
@@ -1922,6 +2029,10 @@ function mobileSignUpPageStyling() {
   });
 }
 
+/**
+  * This function applies mobile-specific styling to the course details page.
+  * It modifies the layout and appearance of various elements on the page.
+  */
 function mobileCourseDetailsPageStyling() {
   // NAV VARS
   const navLogoImg = document.querySelector(".header-center-img");
@@ -2082,6 +2193,11 @@ function mobileCourseDetailsPageStyling() {
       styleGroupContainer(curContainer);
     }
 
+    /**
+      * This function styles the group container for curriculum items.
+      * It sets the border, border radius, margin, and padding.
+      * @param {HTMLElement} container - The container element to style.
+      */
     function styleGroupContainer(container) {
       container.style.border = "1px solid #DCDCDC";
       container.style.borderRadius = "8px";
@@ -2089,8 +2205,14 @@ function mobileCourseDetailsPageStyling() {
       container.style.padding = "0";
     }
 
+    /**
+      * This function styles each lesson item in the curriculum.
+      * It sets padding, font size, font weight, line height, and border bottom if not the last child.
+      * @param {HTMLElement} lessonItem - The lesson item element to style.
+      * @param {boolean} isLastChild - Indicates if the lesson item is the last child.
+      */
     function styleListItem(lessonItem, isLastChild) {
-      // display none for icon w/ class 'type-icon'
+      // Display none for icon w/ class 'type-icon'
       const icon = lessonItem.querySelector(".type-icon");
       icon.style.display = "none";
 
@@ -2105,6 +2227,12 @@ function mobileCourseDetailsPageStyling() {
       }
     }
 
+    /**
+      * This function styles the group heading for curriculum items.
+      * It sets the text content, font size, font weight, line height, letter spacing,
+      * padding, and border bottom.
+      * @param {HTMLElement} groupHeading - The group heading element to style.
+      */
     function styleGroupHeading(groupHeading) {
       groupHeading.textContent = groupHeading?.textContent?.trim();
       groupHeading.style.fontSize = "16px";
@@ -2117,11 +2245,11 @@ function mobileCourseDetailsPageStyling() {
     }
 
     curriculumList.forEach((curListItem, i, arr) => {
-      // first check if current item contains 'section' class
+      // First check if current item contains 'section' class
       if (curListItem.classList.contains("section")) {
         // Yes? push curContainer into curriculumListContainer
         curriculumListContainer.append(curContainer);
-        // reset curContainer while pushing current 'section' in there for the next iteration
+        // Reset curContainer while pushing current 'section' in there for the next iteration
         curContainer = document.createElement("li");
         styleGroupContainer(curContainer);
         const newGroupHeading = document.createElement("div");
@@ -2129,8 +2257,8 @@ function mobileCourseDetailsPageStyling() {
         styleGroupHeading(newGroupHeading);
         curContainer.append(newGroupHeading);
       } else {
-        // else, normal/expected behaviour
-        // transfer inner html of current list item to new created div
+        // Else, normal/expected behaviour
+        // Transfer inner html of current list item to new created div
         const newListItem = document.createElement("div");
         newListItem.innerHTML = curListItem.innerHTML;
         styleListItem(
@@ -2175,9 +2303,11 @@ function mobileCourseDetailsPageStyling() {
   });
 }
 
+/**
+  * This function applies mobile-specific styling to the curriculum page when no certificate is present.
+  * It modifies the layout and appearance of various elements on the page.
+  */
 function mobileCurriculumPageNoCertificateStyling() {
-  "textWrap";
-
   // NAV VARS
   const navLogoImg = document.querySelector(".header-center-img");
 
@@ -2353,7 +2483,7 @@ function mobileCurriculumPageNoCertificateStyling() {
   ------------------------------
   */
   if (!initialLoadComplete) {
-    // set global curriculum and about section vars
+    // Set global curriculum and about section vars
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
 
@@ -2366,6 +2496,11 @@ function mobileCurriculumPageNoCertificateStyling() {
       styleGroupContainer(curContainer);
     }
 
+    /**
+      * This function styles the group container for curriculum items.
+      * It sets the border, border radius, margin, and padding.
+      * @param {HTMLElement} container - The container element to style.
+      */
     function styleGroupContainer(container) {
       container.style.border = "1px solid #DCDCDC";
       container.style.borderRadius = "8px";
@@ -2373,6 +2508,12 @@ function mobileCurriculumPageNoCertificateStyling() {
       container.style.padding = "0";
     }
 
+    /**
+      * This function styles each lesson item in the curriculum.
+      * It sets padding, font size, font weight, line height, and border bottom if not the last child.
+      * @param {HTMLElement} lessonEl - The lesson element to style.
+      * @param {boolean} isLastChild - Indicates if the lesson item is the last child.
+      */
     function styleListItem(lessonEl, isLastChild) {
       lessonEl.style.padding = "24px";
       lessonEl.style.fontSize = "16px";
@@ -2383,11 +2524,17 @@ function mobileCurriculumPageNoCertificateStyling() {
       }
     }
 
+    /**
+      * This function styles the group heading for curriculum items.
+      * It sets the text content, font size, font weight, line height, letter spacing,
+      * padding, and border bottom.
+      * @param {HTMLElement} groupHeadingContainer - The group heading element to style.
+      */
     function styleGroupHeading(groupHeadingContainer) {
       groupHeadingContainer.style.padding = "24px";
       groupHeadingContainer.style.borderBottom = "1px solid #DCDCDC";
 
-      // get actual group heading
+      // Get actual group heading
       const groupHeading =
         groupHeadingContainer.querySelector("h3") || groupHeadingContainer;
 
@@ -2413,7 +2560,7 @@ function mobileCurriculumPageNoCertificateStyling() {
       if (el.tagName === "DIV") {
         // Yes? push curContainer into parent container
         curriculumParentContainer.append(curContainer);
-        // reset curContainer while pushing current new heading & icon in there for the next iteration
+        // Reset curContainer while pushing current new heading & icon in there for the next iteration
         curContainer = document.createElement("div");
         styleGroupContainer(curContainer);
 
@@ -2430,14 +2577,14 @@ function mobileCurriculumPageNoCertificateStyling() {
         curContainer.append(newGroupHeading);
         el.style.display = "none";
       } else {
-        // else, normal/expected behaviour
-        // transfer inner html of current list item to new created div
+        // Else, normal/expected behaviour
+        // Transfer inner html of current list item to new created div
         const newListEl = document.createElement("div");
         styleListItem(
           newListEl,
           curArr[i + 1] ? curArr[i + 1].tagName === "DIV" : true
         );
-        // styling for mobile
+        // Styling for mobile
         el.querySelector(".title").style.textWrap = "wrap";
 
         newListEl.append(el);
@@ -2479,6 +2626,10 @@ function mobileCurriculumPageNoCertificateStyling() {
   });
 }
 
+/**
+  * This function applies mobile-specific styling to the curriculum page when a certificate is present.
+  * It modifies the layout and appearance of various elements on the page.
+  */
 function mobileCurriculumPageYesCertificateStyling() {
   // NAV VARS
   const navLogoImg = document.querySelector(".header-center-img");
@@ -2648,7 +2799,7 @@ function mobileCurriculumPageYesCertificateStyling() {
   ------------------------------
   */
   if (!initialLoadComplete) {
-    // set global curriculum and about section vars
+    // Set global curriculum and about section vars
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
 
@@ -2661,6 +2812,11 @@ function mobileCurriculumPageYesCertificateStyling() {
       styleGroupContainer(curContainer);
     }
 
+    /**
+      * This function styles the group container for curriculum items.
+      * It sets the border, border radius, margin, and padding.
+      * @param {HTMLElement} container - The container element to style.
+      */
     function styleGroupContainer(container) {
       container.style.border = "1px solid #DCDCDC";
       container.style.borderRadius = "8px";
@@ -2668,6 +2824,12 @@ function mobileCurriculumPageYesCertificateStyling() {
       container.style.padding = "0";
     }
 
+    /**
+      * This function styles each lesson item in the curriculum.
+      * It sets padding, font size, font weight, line height, and border bottom if not the last child.
+      * @param {HTMLElement} lessonEl - The lesson element to style.
+      * @param {boolean} isLastChild - Indicates if the lesson item is the last child.
+      */
     function styleListItem(lessonEl, isLastChild) {
       lessonEl.style.padding = "24px";
       lessonEl.style.fontSize = "16px";
@@ -2678,11 +2840,17 @@ function mobileCurriculumPageYesCertificateStyling() {
       }
     }
 
+    /**
+      * This function styles the group heading for curriculum items.
+      * It sets the text content, font size, font weight, line height, letter spacing,
+      * padding, and border bottom.
+      * @param {HTMLElement} groupHeadingContainer - The group heading element to style.
+      */
     function styleGroupHeading(groupHeadingContainer) {
       groupHeadingContainer.style.padding = "24px";
       groupHeadingContainer.style.borderBottom = "1px solid #DCDCDC";
 
-      // get actual group heading
+      // Get actual group heading
       const groupHeading =
         groupHeadingContainer.querySelector("h3") || groupHeadingContainer;
 
@@ -2708,7 +2876,7 @@ function mobileCurriculumPageYesCertificateStyling() {
       if (el.tagName === "DIV") {
         // Yes? push curContainer into parent container
         curriculumParentContainer.append(curContainer);
-        // reset curContainer while pushing current new heading & icon in there for the next iteration
+        // Reset curContainer while pushing current new heading & icon in there for the next iteration
         curContainer = document.createElement("div");
         styleGroupContainer(curContainer);
 
@@ -2725,14 +2893,14 @@ function mobileCurriculumPageYesCertificateStyling() {
         curContainer.append(newGroupHeading);
         el.style.display = "none";
       } else {
-        // else, normal/expected behaviour
-        // transfer inner html of current list item to new created div
+        // Else, normal/expected behaviour
+        // Transfer inner html of current list item to new created div
         const newListEl = document.createElement("div");
         styleListItem(
           newListEl,
           curArr[i + 1] ? curArr[i + 1].tagName === "DIV" : true
         );
-        // styling for mobile
+        // Styling for mobile
         el.querySelector(".title").style.textWrap = "wrap";
 
         newListEl.append(el);
@@ -2774,12 +2942,16 @@ function mobileCurriculumPageYesCertificateStyling() {
   });
 }
 
+/**
+  * This function applies mobile-specific styling to the lesson page.
+  * It modifies the layout and appearance of various elements on the page.
+  * It also handles the positioning of the internal course warning.
+  */
 function mobileLessonPageStyling() {
   const internalCourseWarning = document.querySelector('#internal-course-warning');
   if (internalCourseWarning) {
     document.querySelector('#lesson-main').prepend(internalCourseWarning);
   }
-  "left-nav-button";
 
   // MAIN NAV VARS
   const navLogoImg = document.querySelector(".header-center-img");
@@ -2959,6 +3131,12 @@ function mobileLessonPageStyling() {
 
   // HANDLE CODE BLOCK CUSTOM STYLING
 
+  /**
+    * This function animates the tooltip that appears when code is copied.
+    * It sets the opacity to 1, waits for a specified duration, and then sets
+    * the opacity back to 0 to fade it out.
+    * @param {HTMLElement} tooltipEl - The tooltip element to animate.
+    */
   function animateCopiedTooltip(tooltipEl) {
     tooltipEl.style.opacity = "1";
 
@@ -3038,6 +3216,13 @@ function mobileLessonPageStyling() {
   });
 }
 
+/**
+  * This function handles the styling of various pages based on the current view (desktop or mobile).
+  * It applies specific styles to different page types such as course details, catalog, login,
+  * sign-up, curriculum, and lessons pages.
+  * @param {Object} pageInfo - An object containing boolean flags for different page types.
+  * @param {string} currentView - The current view type, either "desktop" or "mobile".
+  */
 function handlePageStyling(
   {
     isCatalogPage,
@@ -3089,6 +3274,10 @@ function handlePageStyling(
   }
 }
 
+/**
+  * This function renders the course page based on the current view (desktop or mobile).
+  * It checks the window width and applies appropriate styles for different page types.
+  */
 function renderCourse() {
   const { width } = getWidthAndCurrentPage();
 
@@ -3131,7 +3320,7 @@ function renderCourse() {
   makeContentVisible();
 }
 
-/*
+/**
   This event is fired when the DOM is fully loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading.
   It is a good place to run scripts that need to manipulate the DOM or set up event listeners.
 */
