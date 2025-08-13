@@ -84,7 +84,7 @@ function makeContentVisible() {
   * This function inserts the footer into the page.
   */
 function insertFooter(isLessonsPage = false) {
-  const footerEl = document.getElementById("footer-container");
+  const footerEl = document.querySelector("#footer-container");
   let contentContainer;
 
   if (isLessonsPage) {
@@ -95,7 +95,7 @@ function insertFooter(isLessonsPage = false) {
       footerEl.style.display = "flex";
     }
   } else {
-    contentContainer = document.getElementById("skilljar-content");
+    contentContainer = document.querySelector("#skilljar-content");
     footerEl.style.display = "flex";
   }
 
@@ -107,7 +107,7 @@ function insertFooter(isLessonsPage = false) {
   */
 function removeSJFooter(isLessonsPage = false) {
   if (!isLessonsPage) {
-    document.getElementById("ep-footer").style.display = "none";
+    document.querySelector("#ep-footer").style.display = "none";
   }
 }
 
@@ -115,8 +115,8 @@ function removeSJFooter(isLessonsPage = false) {
   * This function applies desktop-specific styling to the catalog page.
   */
 function desktopCatalogPageStyling() {
-  const catalogBodyParentContainer = document.getElementById("catalog-content");
-  const catalogContainer = document.getElementById("catalog-courses");
+  const catalogBodyParentContainer = document.querySelector("#catalog-content");
+  const catalogContainer = document.querySelector("#catalog-courses");
 
   if (!initialLoadComplete) {
     // Create a container div for courses catalog list
@@ -147,7 +147,7 @@ function desktopCourseDetailsPageStyling() {
   const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2");
   const headingFloaterText = document.querySelector(".sj-floater-text");
   const mainHeading = document.querySelector(".break-word");
-  const registerBtn = document.getElementById("purchase-button-wrapper-large");
+  const registerBtn = document.querySelector("#purchase-button-wrapper-large");
   const mainHeadingContainer = document.querySelector(
     ".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"
   );
@@ -164,7 +164,7 @@ function desktopCourseDetailsPageStyling() {
     ".header-link.login-link.sj-text-sign-in.focus-link-v2"
   );
   // BODY VARIABLES
-  const bodyContainer = document.getElementById("dp-details");
+  const bodyContainer = document.querySelector("#dp-details");
   const mobileBodyContent = document.querySelector(".row.show-for-small");
   const secondaryBodyContainer = document.querySelector(
     ".row.hide-for-small.padded-side-bottom"
@@ -187,7 +187,7 @@ function desktopCourseDetailsPageStyling() {
   }
   const checkboxIcon = document.querySelector(".checkbox-icon");
   const registerBtnLink = document
-    .getElementById("purchase-button")
+    .querySelector("#purchase-button")
     .getAttribute("href");
   const registerBtnText = document.querySelector(
     ".purchase-button-full-text"
@@ -402,8 +402,8 @@ function desktopPathCourseDetailsPageStyling() {
   const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2");
   const headingFloaterText = document.querySelector(".sj-floater-text");
   const mainHeading = document.querySelector(".break-word");
-  const registerBtn = document.getElementById("purchase-button-wrapper-large");
-  const registerBtnAnchor = document.getElementById("purchase-button");
+  const registerBtn = document.querySelector("#purchase-button-wrapper-large");
+  const registerBtnAnchor = document.querySelector("#purchase-button");
   const mainHeadingContainer = document.querySelector(
     ".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"
   );
@@ -419,8 +419,8 @@ function desktopPathCourseDetailsPageStyling() {
     ".header-link.login-link.sj-text-sign-in.focus-link-v2"
   );
   // BODY VARIABLES
-  const bodyContainer = document.getElementById("dp-details-bundle");
-  const catalogContainer = document.getElementById("catalog-courses");
+  const bodyContainer = document.querySelector("#dp-details-bundle");
+  const catalogContainer = document.querySelector("#catalog-courses");
 
   backToCatalogBtn.style.display = "none";
   if (signInHeaderText) {
@@ -492,12 +492,12 @@ function desktopPathCourseDetailsPageStyling() {
 function desktopPathCatalogPageStyling() {
   const backArrowBtn = document.querySelector(".back-to-catalog");
 
-  const mainContentContainer = document.getElementById("catalog-content");
+  const mainContentContainer = document.querySelector("#catalog-content");
   const topContentContainer = mainContentContainer.querySelector(
     ".path-curriculum-resume-wrapper"
   );
   const coursesList = document
-    .getElementById("catalog-courses")
+    .querySelector("#catalog-courses")
     .querySelectorAll(".coursebox-container");
 
   coursesList.forEach((course) => {
@@ -543,14 +543,14 @@ function desktopLessonPageStyling() {
   }
   const logoImg = document.querySelector(".header-center-img");
 
-  const leftNav = document.getElementById("lp-left-nav");
-  const mainLessonContentContainer = document.getElementById("lp-wrapper");
-  const mainLessonContentSubContainer = document.getElementById("lp-content");
-  const mainLessonInnerContainer = document.getElementById("lesson-body");
-  const mainLessonMainContainer = document.getElementById("lesson-main");
+  const leftNav = document.querySelector("#lp-left-nav");
+  const mainLessonContentContainer = document.querySelector("#lp-wrapper");
+  const mainLessonContentSubContainer = document.querySelector("#lp-content");
+  const mainLessonInnerContainer = document.querySelector("#lesson-body");
+  const mainLessonMainContainer = document.querySelector("#lesson-main");
 
-  const lessonFooter = document.getElementById("lp-footer");
-  const navOpenIcon = document.getElementById("left-nav-button");
+  const lessonFooter = document.querySelector("#lp-footer");
+  const navOpenIcon = document.querySelector("#left-nav-button");
   const hamburgerIcon = navOpenIcon.querySelector(".fa.fa-bars");
   const xIcon = navOpenIcon.querySelector(".fa.fa-times");
 
@@ -558,7 +558,7 @@ function desktopLessonPageStyling() {
     ".toggle-fullscreen.focus-link-v2 "
   );
   // LESSON BODY VARS
-  const lessonInnerContainer = document.getElementById("lesson-main-inner");
+  const lessonInnerContainer = document.querySelector("#lesson-main-inner");
   const quizPage = document.querySelector(
     ".course-scrollable-content.course-text-content.quiz"
   );
@@ -569,7 +569,7 @@ function desktopLessonPageStyling() {
   lessonView.codeBlocks = new Array(...document.querySelectorAll("pre:has(code):not(.language-ansi)"));
 
   // FOOTER VARS
-  const footerContainer = document.getElementById("footer-container");
+  const footerContainer = document.querySelector("#footer-container");
   const footerCols = footerContainer.querySelectorAll(".global-footer-column");
 
   // STYLE LOGO
@@ -656,8 +656,8 @@ function desktopLessonPageStyling() {
   });
 
   // STYLING OF THE LEFT NAV LINKS
-  const lessonNavLinksContainer = document.getElementById("curriculum-list-2");
-  const backToCurriculumEl = document.getElementById("left-nav-return-text");
+  const lessonNavLinksContainer = document.querySelector("#curriculum-list-2");
+  const backToCurriculumEl = document.querySelector("#left-nav-return-text");
   const links = lessonNavLinksContainer.querySelectorAll("a");
   const sectionTitles =
     lessonNavLinksContainer.querySelectorAll(".section-title");
@@ -798,11 +798,11 @@ function desktopLessonPageStyling() {
 function desktopLoginPageStyling() {
   const logoImg = document.querySelector(".header-center-img");
 
-  const fbBtn = document.getElementById("facebook_login");
-  const googleBtn = document.getElementById("google_login");
-  const loginContent = document.getElementById("login-content");
-  const tabArrow = document.getElementById("tab-marker-login");
-  const termsAndServicesText = document.getElementById("access-message");
+  const fbBtn = document.querySelector("#facebook_login");
+  const googleBtn = document.querySelector("#google_login");
+  const loginContent = document.querySelector("#login-content");
+  const tabArrow = document.querySelector("#tab-marker-login");
+  const termsAndServicesText = document.querySelector("#access-message");
   const loginContentContainer = document.querySelector(".large-6.columns");
   const orGoogleSignInContainer =
     loginContent.querySelectorAll(".large-6.columns")[1];
@@ -811,8 +811,8 @@ function desktopLoginPageStyling() {
   const orGoogleSignInInnerContainerListItems =
     orGoogleSignInInnerContainer.querySelectorAll("li");
   const signUpSignInContainer = document.querySelector(".large-12.columns");
-  const loginTab = document.getElementById("login-tab-left");
-  const signInTab = document.getElementById("login-tab-right");
+  const loginTab = document.querySelector("#login-tab-left");
+  const signInTab = document.querySelector("#login-tab-right");
   const signInTabText = signInTab.querySelector("a");
   const longInNote = document.querySelector(".loginNote.sj-text-login-note");
   const orSignInWithContainer = document.querySelector(
@@ -821,19 +821,19 @@ function desktopLoginPageStyling() {
   const orSignInWithTextEl = orSignInWithContainer.querySelector(
     ".sj-text-sign-in-with span"
   );
-  const loginInput = document.getElementById("id_login");
-  const passwordInput = document.getElementById("id_password");
-  const loginBottomBtn = document.getElementById("button-sign-in");
+  const loginInput = document.querySelector("#id_login");
+  const passwordInput = document.querySelector("#id_password");
+  const loginBottomBtn = document.querySelector("#button-sign-in");
   const forgotPasswordText = document.querySelector(
     ".forgot-password.sj-text-forgot-password.focus-link-v2"
   );
   const loginBottomBtnAndForgotPassBtn =
     loginBottomBtn.closest(".large-12.columns");
 
-  const loginForm = document.getElementById("login_form");
+  const loginForm = document.querySelector("#login_form");
 
   // FOOTER VARS
-  const footerContainer = document.getElementById("footer-container");
+  const footerContainer = document.querySelector("#footer-container");
   const footerCols = footerContainer.querySelectorAll(".global-footer-column");
 
   // STYLE LOGO
@@ -928,11 +928,11 @@ function desktopLoginPageStyling() {
   */
 function desktopSignUpPageStyling() {
   const logoImg = document.querySelector(".header-center-img");
-  const fbBtn = document.getElementById("facebook_login");
-  const googleBtn = document.getElementById("google_login");
-  const loginContent = document.getElementById("login-content");
-  const tabArrow = document.getElementById("tab-marker-signup");
-  const termsAndServicesText = document.getElementById("access-message");
+  const fbBtn = document.querySelector("#facebook_login");
+  const googleBtn = document.querySelector("#google_login");
+  const loginContent = document.querySelector("#login-content");
+  const tabArrow = document.querySelector("#tab-marker-signup");
+  const termsAndServicesText = document.querySelector("#access-message");
   const loginContentContainer = document.querySelector(".large-6.columns");
   const orSignInWithGoogleContainer = loginContent.querySelectorAll(
     ".row .large-6.columns"
@@ -941,10 +941,10 @@ function desktopSignUpPageStyling() {
     orSignInWithGoogleContainer.querySelector("ul");
   const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll("li");
   const signUpSignInContainer = document.querySelector(".large-12.columns");
-  const loginTab = document.getElementById("login-tab-left");
+  const loginTab = document.querySelector("#login-tab-left");
   loginTab;
   const loginTabText = loginTab.querySelector("a");
-  const signInTab = document.getElementById("login-tab-right");
+  const signInTab = document.querySelector("#login-tab-right");
   const signInTabText = signInTab.querySelector("span");
   const orSignInWithContainer = document.querySelector(
     ".socialaccount_providers li"
@@ -960,14 +960,14 @@ function desktopSignUpPageStyling() {
   );
 
   const loginLabel = document.querySelector('label[for="id_email"]');
-  const loginInput = document.getElementById("id_email");
-  const passwordInput = document.getElementById("id_password1");
-  const passwordInput2 = document.getElementById("id_password2");
-  const signUpBottomBtn = document.getElementById("button-sign-up");
-  const signUpForm = document.getElementById("signup_form");
+  const loginInput = document.querySelector("#id_email");
+  const passwordInput = document.querySelector("#id_password1");
+  const passwordInput2 = document.querySelector("#id_password2");
+  const signUpBottomBtn = document.querySelector("#button-sign-up");
+  const signUpForm = document.querySelector("#signup_form");
 
   // FOOTER VARS
-  const footerContainer = document.getElementById("footer-container");
+  const footerContainer = document.querySelector("#footer-container");
   const footerCols = footerContainer.querySelectorAll(".global-footer-column");
 
   termsAndServicesText.style.maxWidth = "368px";
@@ -1133,7 +1133,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   );
   const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image");
   const sjHeaderImg = document.querySelector(".cp-promo-image img");
-  const resumeBtn = document.getElementById("resume-button");
+  const resumeBtn = document.querySelector("#resume-button");
   let btnText, btnHref;
   if (resumeBtn) {
     btnText = resumeBtn.querySelector(".button span").textContent;
@@ -1141,14 +1141,14 @@ function desktopCurriculumPageNoCertificateStyling() {
   }
 
   // BODY VARIABLES
-  const bodyMainContainer = document.getElementById("cp-content");
+  const bodyMainContainer = document.querySelector("#cp-content");
   const InnerContentContainer = bodyMainContainer.querySelector(".columns");
   const tabsContainer = document.querySelector(".section-container.tabs");
   let [curriculumSection, aboutSection] =
     tabsContainer.querySelectorAll("section");
   const pageIcons = document.querySelectorAll(".type-icon.hide-for-small");
   const lessonListItems = document.querySelectorAll(".lesson-row");
-  const curriculumParentContainer = document.getElementById("curriculum-list");
+  const curriculumParentContainer = document.querySelector("#curriculum-list");
   const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
   const curriculumOutsideContainer =
     curriculumParentContainer.closest(".content");
@@ -1481,7 +1481,7 @@ function desktopCurriculumPageYesCertificationStyling() {
   const sjHeaderImg = document.querySelector(".cp-promo-image img");
 
   // BODY VARIABLES
-  const bodyMainContainer = document.getElementById("cp-content");
+  const bodyMainContainer = document.querySelector("#cp-content");
   const InnerContentContainer = bodyMainContainer.querySelector(".columns");
   const tabsContainer = document.querySelector(".section-container.tabs");
   let [curriculumSection, aboutSection] =
@@ -1499,7 +1499,7 @@ function desktopCurriculumPageYesCertificationStyling() {
 
   const pageIcons = document.querySelectorAll(".type-icon.hide-for-small");
   const lessonListItems = document.querySelectorAll(".lesson-row");
-  const curriculumParentContainer = document.getElementById("curriculum-list");
+  const curriculumParentContainer = document.querySelector("#curriculum-list");
   const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
   const curriculumOutsideContainer =
     curriculumParentContainer.closest(".content");
@@ -1748,11 +1748,11 @@ function mobileLoginPageStyling() {
   // NAV VARS
   const logoImg = document.querySelector(".header-center-img");
 
-  const fbBtn = document.getElementById("facebook_login");
-  const googleBtn = document.getElementById("google_login");
-  const loginContent = document.getElementById("login-content");
-  const tabArrow = document.getElementById("tab-marker-login");
-  const termsAndServicesText = document.getElementById("access-message");
+  const fbBtn = document.querySelector("#facebook_login");
+  const googleBtn = document.querySelector("#google_login");
+  const loginContent = document.querySelector("#login-content");
+  const tabArrow = document.querySelector("#tab-marker-login");
+  const termsAndServicesText = document.querySelector("#access-message");
   const loginContentContainer = document.querySelector(".large-6.columns");
   const orGoogleSignInContainer =
     loginContent.querySelectorAll(".large-6.columns")[1];
@@ -1761,8 +1761,8 @@ function mobileLoginPageStyling() {
   const orGoogleSignInInnerContainerListItems =
     orGoogleSignInInnerContainer.querySelectorAll("li");
   const signUpSignInContainer = document.querySelector(".large-12.columns");
-  const loginTab = document.getElementById("login-tab-left");
-  const signInTab = document.getElementById("login-tab-right");
+  const loginTab = document.querySelector("#login-tab-left");
+  const signInTab = document.querySelector("#login-tab-right");
   const signInTabText = signInTab.querySelector("a");
   const longInNote = document.querySelector(".loginNote.sj-text-login-note");
   const orSignInWithContainer = document.querySelector(
@@ -1771,19 +1771,19 @@ function mobileLoginPageStyling() {
   const orSignInWithTextEl = orSignInWithContainer.querySelector(
     ".sj-text-sign-in-with span"
   );
-  const loginInput = document.getElementById("id_login");
-  const passwordInput = document.getElementById("id_password");
-  const loginBottomBtn = document.getElementById("button-sign-in");
+  const loginInput = document.querySelector("#id_login");
+  const passwordInput = document.querySelector("#id_password");
+  const loginBottomBtn = document.querySelector("#button-sign-in");
   const forgotPasswordText = document.querySelector(
     ".forgot-password.sj-text-forgot-password.focus-link-v2"
   );
   const loginBottomBtnAndForgotPassBtn =
     loginBottomBtn.closest(".large-12.columns");
 
-  const loginForm = document.getElementById("login_form");
+  const loginForm = document.querySelector("#login_form");
 
   // FOOTER VARS
-  const footerContainer = document.getElementById("footer-container");
+  const footerContainer = document.querySelector("#footer-container");
   const footerCols = footerContainer.querySelectorAll(".global-footer-column");
 
   // NAV STYLING
@@ -1870,11 +1870,11 @@ function mobileLoginPageStyling() {
   */
 function mobileSignUpPageStyling() {
   const logoImg = document.querySelector(".header-center-img");
-  const fbBtn = document.getElementById("facebook_login");
-  const googleBtn = document.getElementById("google_login");
-  const loginContent = document.getElementById("login-content");
-  const tabArrow = document.getElementById("tab-marker-signup");
-  const termsAndServicesText = document.getElementById("access-message");
+  const fbBtn = document.querySelector("#facebook_login");
+  const googleBtn = document.querySelector("#google_login");
+  const loginContent = document.querySelector("#login-content");
+  const tabArrow = document.querySelector("#tab-marker-signup");
+  const termsAndServicesText = document.querySelector("#access-message");
   const loginContentContainer = document.querySelector(".large-6.columns");
   const orSignInWithGoogleContainer = loginContent.querySelectorAll(
     ".row .large-6.columns"
@@ -1884,10 +1884,9 @@ function mobileSignUpPageStyling() {
   const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll("li");
 
   const signUpSignInContainer = document.querySelector(".large-12.columns");
-  const loginTab = document.getElementById("login-tab-left");
-  loginTab;
+  const loginTab = document.querySelector("#login-tab-left");
   const loginTabText = loginTab.querySelector("a");
-  const signInTab = document.getElementById("login-tab-right");
+  const signInTab = document.querySelector("#login-tab-right");
   const signInTabText = signInTab.querySelector("span");
   const orSignInWithContainer = document.querySelector(
     ".socialaccount_providers li"
@@ -1903,14 +1902,14 @@ function mobileSignUpPageStyling() {
   );
 
   const loginLabel = document.querySelector('label[for="id_email"]');
-  const loginInput = document.getElementById("id_email");
-  const passwordInput = document.getElementById("id_password1");
-  const passwordInput2 = document.getElementById("id_password2");
-  const signUpBottomBtn = document.getElementById("button-sign-up");
-  const signUpForm = document.getElementById("signup_form");
+  const loginInput = document.querySelector("#id_email");
+  const passwordInput = document.querySelector("#id_password1");
+  const passwordInput2 = document.querySelector("#id_password2");
+  const signUpBottomBtn = document.querySelector("#button-sign-up");
+  const signUpForm = document.querySelector("#signup_form");
 
   // FOOTER VARS
-  const footerContainer = document.getElementById("footer-container");
+  const footerContainer = document.querySelector("#footer-container");
   const footerCols = footerContainer.querySelectorAll(".global-footer-column");
 
   termsAndServicesText.style.maxWidth = "368px";
@@ -2044,7 +2043,7 @@ function mobileCourseDetailsPageStyling() {
   const headingFloaterText = document.querySelector(".sj-floater-text");
   const mainHeading = document.querySelector(".break-word");
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
-  const registerBtn = document.getElementById("purchase-button-wrapper-large");
+  const registerBtn = document.querySelector("#purchase-button-wrapper-large");
   const mainHeadingContainer = document.querySelector(
     ".columns.text-center.large-6.dp-summary-wrapper.text-left-v2"
   );
@@ -2059,7 +2058,7 @@ function mobileCourseDetailsPageStyling() {
     ".header-link.login-link.sj-text-sign-in.focus-link-v2"
   );
   // BODY VARIABLES
-  const bodyContainer = document.getElementById("dp-details");
+  const bodyContainer = document.querySelector("#dp-details");
   const mobileBodyContent = document.querySelector(".row.show-for-small");
   const secondaryBodyContainer = document.querySelector(
     ".row.hide-for-small.padded-side-bottom"
@@ -2079,7 +2078,7 @@ function mobileCourseDetailsPageStyling() {
     courseDetailCardContainer.querySelectorAll("li");
   const checkboxIcon = document.querySelector(".checkbox-icon");
   const registerBtnLink = document
-    .getElementById("purchase-button")
+    .querySelector("#purchase-button")
     .getAttribute("href");
   const registerBtnText = document.querySelector(
     ".purchase-button-full-text"
@@ -2089,7 +2088,7 @@ function mobileCourseDetailsPageStyling() {
   );
 
   // FOOTER VARS
-  const footerContainer = document.getElementById("footer-container");
+  const footerContainer = document.querySelector("#footer-container");
   const footerCols = footerContainer.querySelectorAll(".global-footer-column");
 
   backToCatalogBtn.style.display = "none";
@@ -2317,7 +2316,7 @@ function mobileCurriculumPageNoCertificateStyling() {
   const container = document.querySelector(
     ".large-8.push-4.columns.sj-summary.cp-summary-wrapper"
   ); // DUPLICATE VAR
-  const btn = document.getElementById("resume-button"); // DUPLICATE VAR
+  const btn = document.querySelector("#resume-button"); // DUPLICATE VAR
   const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR
   const backToCatalogLink = document.querySelector(".back-to-catalog");
 
@@ -2342,19 +2341,19 @@ function mobileCurriculumPageNoCertificateStyling() {
   );
   const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image");
   const sjHeaderImg = document.querySelector(".cp-promo-image img");
-  const resumeBtn = document.getElementById("resume-button");
+  const resumeBtn = document.querySelector("#resume-button");
   const btnText = resumeBtn.querySelector(".button span").textContent;
   const btnHref = resumeBtn.querySelector(".button").getAttribute("href");
 
   // BODY VARIABLES
-  const bodyMainContainer = document.getElementById("cp-content");
+  const bodyMainContainer = document.querySelector("#cp-content");
   const InnerContentContainer = bodyMainContainer.querySelector(".columns");
   const tabsContainer = document.querySelector(".section-container.tabs");
   let [curriculumSection, aboutSection] =
     tabsContainer.querySelectorAll("section");
   const pageIcons = document.querySelectorAll(".type-icon.hide-for-small");
   const lessonListItems = document.querySelectorAll(".lesson-row");
-  const curriculumParentContainer = document.getElementById("curriculum-list");
+  const curriculumParentContainer = document.querySelector("#curriculum-list");
   const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
   const curriculumOutsideContainer =
     curriculumParentContainer.closest(".content");
@@ -2375,7 +2374,7 @@ function mobileCurriculumPageNoCertificateStyling() {
   );
 
   // FOOTER VARS
-  const footerContainer = document.getElementById("footer-container");
+  const footerContainer = document.querySelector("#footer-container");
   const footerCols = footerContainer.querySelectorAll(".global-footer-column");
 
   // NAV STYLING
@@ -2667,7 +2666,7 @@ function mobileCurriculumPageYesCertificateStyling() {
   const sjHeaderImg = document.querySelector(".cp-promo-image img");
 
   // BODY VARIABLES
-  const bodyMainContainer = document.getElementById("cp-content");
+  const bodyMainContainer = document.querySelector("#cp-content");
   const InnerContentContainer = bodyMainContainer.querySelector(".columns");
   const tabsContainer = document.querySelector(".section-container.tabs");
   let [curriculumSection, aboutSection] =
@@ -2682,7 +2681,7 @@ function mobileCurriculumPageYesCertificateStyling() {
 
   const pageIcons = document.querySelectorAll(".type-icon.hide-for-small");
   const lessonListItems = document.querySelectorAll(".lesson-row");
-  const curriculumParentContainer = document.getElementById("curriculum-list");
+  const curriculumParentContainer = document.querySelector("#curriculum-list");
   const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
   const curriculumOutsideContainer =
     curriculumParentContainer.closest(".content");
@@ -2696,7 +2695,7 @@ function mobileCurriculumPageYesCertificateStyling() {
   );
 
   // FOOTER VARS
-  const footerContainer = document.getElementById("footer-container");
+  const footerContainer = document.querySelector("#footer-container");
   const footerCols = footerContainer.querySelectorAll(".global-footer-column");
 
   // NAV STYLING
@@ -2956,22 +2955,22 @@ function mobileLessonPageStyling() {
   // MAIN NAV VARS
   const navLogoImg = document.querySelector(".header-center-img");
 
-  const leftNav = document.getElementById("lp-left-nav");
-  const mainLessonContentContainer = document.getElementById("lp-wrapper");
-  const mainLessonContentSubContainer = document.getElementById("lp-content");
-  const mainLessonInnerContainer = document.getElementById("lesson-body");
-  const mainLessonMainContainer = document.getElementById("lesson-main");
+  const leftNav = document.querySelector("#lp-left-nav");
+  const mainLessonContentContainer = document.querySelector("#lp-wrapper");
+  const mainLessonContentSubContainer = document.querySelector("#lp-content");
+  const mainLessonInnerContainer = document.querySelector("#lesson-body");
+  const mainLessonMainContainer = document.querySelector("#lesson-main");
 
-  const lessonFooter = document.getElementById("lp-footer");
-  const navOpenIcon = document.getElementById("left-nav-button");
+  const lessonFooter = document.querySelector("#lp-footer");
+  const navOpenIcon = document.querySelector("#left-nav-button");
   const hamburgerIcon = navOpenIcon.querySelector(".fa.fa-bars");
   const xIcon = navOpenIcon.querySelector(".fa.fa-times");
-  const leftNavMobileOverlay = document.getElementById("lpLeftNavBackground");
+  const leftNavMobileOverlay = document.querySelector("#lpLeftNavBackground");
   const fullScreenBtn = document.querySelector(
     ".toggle-fullscreen.focus-link-v2 "
   );
   // LESSON BODY VARS
-  const lessonInnerContainer = document.getElementById("lesson-main-inner");
+  const lessonInnerContainer = document.querySelector("#lesson-main-inner");
   const quizPage = document.querySelector(
     ".course-scrollable-content.course-text-content.quiz"
   );
@@ -2982,7 +2981,7 @@ function mobileLessonPageStyling() {
   lessonView.codeBlocks = new Array(...document.querySelectorAll("pre:has(code):not(.language-ansi)")).filter(d => !d.dataset["no-copy"]);
 
   // FOOTER VARS
-  const footerContainer = document.getElementById("footer-container");
+  const footerContainer = document.querySelector("#footer-container");
   const footerCols = footerContainer.querySelectorAll(".global-footer-column");
 
   // MAIN NAV STYLING
@@ -3084,8 +3083,8 @@ function mobileLessonPageStyling() {
   });
 
   // STYLING OF THE LEFT NAV LINKS
-  const lessonNavLinksContainer = document.getElementById("curriculum-list-2");
-  const backToCurriculumEl = document.getElementById("left-nav-return-text");
+  const lessonNavLinksContainer = document.querySelector("#curriculum-list-2");
+  const backToCurriculumEl = document.querySelector("#left-nav-return-text");
   const links = lessonNavLinksContainer.querySelectorAll("a");
   const sectionTitles =
     lessonNavLinksContainer.querySelectorAll(".section-title");
