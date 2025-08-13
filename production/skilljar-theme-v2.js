@@ -859,9 +859,9 @@ function desktopLessonPageStyling() {
     }, 400);
   }
 
-  lessonView.codeBlocks.filter(d => !d.dataset.noCopy).forEach((el) => {
+  lessonView.codeBlocks.filter(d => !d.dataset.noCopy && !d.dataset.copyAdded).forEach((el) => {
     //console.log(el);
-
+    
     //WILL NEED TO CLEAN UP THE STYLING OF EL!!!!!!!!!!
     el.style.padding = "0";
     el.style.overflow = "visible";
@@ -917,6 +917,8 @@ function desktopLessonPageStyling() {
         console.error("Failed to copy codeblock to clipboard: ", err);
       }
     });
+
+    el.dataset.copyAdded = "true"; // Mark that copy icon was added to this code block
   });
 
   // Makes lesson links pop up in new tab
@@ -3302,7 +3304,7 @@ function mobileLessonPageStyling() {
     }, 400);
   }
 
-  lessonView.codeBlocks.filter(d => !d.dataset.noCopy).forEach((el) => {
+  lessonView.codeBlocks.filter(d => !d.dataset.noCopy && !d.dataset.copyAdded).forEach((el) => {
     //console.log(el);
 
     //WILL NEED TO CLEAN UP THE STYLING OF EL!!!!!!!!!!
@@ -3360,6 +3362,8 @@ function mobileLessonPageStyling() {
         console.error("Failed to copy codeblock to clipboard: ", err);
       }
     });
+
+    el.dataset.copyAdded = "true"; // Mark that copy icon was added to this code block
   });
 
   // Makes lesson links pop up in new tab
