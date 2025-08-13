@@ -67,16 +67,6 @@ function getCurrentPage() {
 }
 
 /**
-  * This function returns the current window width and the current page state.
-  */
-function getWidthAndCurrentPage() {
-  return {
-    width: checkWindowWidth(),
-    currentPage: getCurrentPage(),
-  };
-}
-
-/**
   * This function sets the body style to visible and opacity to 1.
   */
 function makeContentVisible() {
@@ -3013,7 +3003,7 @@ function mobileLessonPageStyling() {
   mainLessonMainContainer.style.paddingTop = "0";
 
   navOpenIcon.style.position = "sticky";
-  const { width } = getWidthAndCurrentPage();
+  const width = checkWindowWidth();
   if (width >= 767) {
     navOpenIcon.style.top = "24px";
   } else {
@@ -3223,22 +3213,8 @@ function mobileLessonPageStyling() {
   * This function handles the styling of various pages based on the current view (desktop or mobile).
   * It applies specific styles to different page types such as course details, catalog, login,
   * sign-up, curriculum, and lessons pages.
-  * @param {Object} pageInfo - An object containing boolean flags for different page types.
-  * @param {string} currentView - The current view type, either "desktop" or "mobile".
   */
-function handlePageStyling(
-  {
-    isCatalogPage,
-    isCourseDetailsPage,
-    isPageDetailPath,
-    isPageCatalogPath,
-    isLoginPage,
-    isSignUpPage,
-    isCurriculumPage,
-    isLessonsPage,
-  },
-  currentView
-) {
+function handlePageStyling() {
   if (isCourseDetailsPage) {
     currentView === "desktop"
       ? desktopCourseDetailsPageStyling()
@@ -3282,42 +3258,16 @@ function handlePageStyling(
   * It checks the window width and applies appropriate styles for different page types.
   */
 function renderCourse() {
-  const { width } = getWidthAndCurrentPage();
+  const width = checkWindowWidth();
 
   if (width <= 991 && !(currentView === "mobile")) {
     currentView = "mobile";
-
-    handlePageStyling(
-      {
-        isCatalogPage,
-        isCourseDetailsPage,
-        isPageDetailPath,
-        isPageCatalogPath,
-        isLoginPage,
-        isSignUpPage,
-        isCurriculumPage,
-        isLessonsPage,
-      },
-      currentView
-    );
   } else if (width > 991 && !(currentView === "desktop")) {
     currentView = "desktop";
-
-    handlePageStyling(
-      {
-        isCatalogPage,
-        isCourseDetailsPage,
-        isPageDetailPath,
-        isPageCatalogPath,
-        isLoginPage,
-        isSignUpPage,
-        isCurriculumPage,
-        isLessonsPage,
-      },
-      currentView
-    );
   }
-
+  
+  handlePageStyling();
+  
   removeSJFooter(isLessonsPage);
   insertFooter(isLessonsPage);
   makeContentVisible();
@@ -3328,6 +3278,8 @@ function renderCourse() {
   It is a good place to run scripts that need to manipulate the DOM or set up event listeners.
 */
 document.addEventListener("DOMContentLoaded", () => {
+  getCurrentPage();
+  
   renderCourse();
   initialLoadComplete = true;
 });
