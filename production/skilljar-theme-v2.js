@@ -76,6 +76,24 @@ function styleListItem(lessonItem, isLastChild, hideIcon = true, border = "b") {
 }
 
 /**
+ * This function styles the group heading container.
+ * It sets padding, border bottom, and styles the actual group heading.
+ * @param {HTMLElement} groupHeadingContainer - The group heading container to style.
+ */
+function styleGroupHeading(groupHeadingContainer, border = "b") {
+  Object.assign(groupHeadingContainer.style, {
+    padding: "24px",
+    borderBottom: border === "b" ? "2px solid #3443f4" : "1px solid #DCDCDC",
+    fontSize: "16px",
+    fontFamily: "Fusiona",
+    fontWeight: "500",
+    lineHeight: "125%",
+    letterSpacing: "-.16px",
+    margin: "0",
+  });
+}
+
+/**
  * This function returns the current window width.
  */
 function checkWindowWidth() {
@@ -340,21 +358,6 @@ function desktopCourseDetailsPageStyling() {
       styleGroupContainer(curContainer);
     }
 
-    /**
-     * This function styles the group heading for curriculum sections.
-     * It sets the text content, font size, font weight, line height, font family, padding, and border.
-     * @param {HTMLElement} groupHeading - The group heading element to style.
-     */
-    function styleGroupHeading(groupHeading) {
-      groupHeading.style.fontSize = "16px";
-      groupHeading.style.fontWeight = "500";
-      groupHeading.style.lineHeight = "125%";
-      groupHeading.style.fontFamily = "Fusiona";
-      groupHeading.style.padding = "24px";
-      groupHeading.style.borderBottom = "2px solid #3443F4";
-      groupHeading.textContent = groupHeading?.textContent?.trim();
-    }
-
     curriculumList.forEach((curListItem, i, arr) => {
       // First check if current item contains 'section' class
       if (curListItem.classList.contains("section")) {
@@ -363,9 +366,13 @@ function desktopCourseDetailsPageStyling() {
         // Reset curContainer while pushing current 'section' in there for the next iteration
         curContainer = document.createElement("li");
         styleGroupContainer(curContainer);
+        
         const newGroupHeading = document.createElement("div");
+        
         newGroupHeading.innerHTML = curListItem.innerHTML;
+        
         styleGroupHeading(newGroupHeading);
+
         curContainer.append(newGroupHeading);
       } else {
         // Else, normal/expected behaviour
@@ -1305,41 +1312,6 @@ function desktopCurriculumPageNoCertificateStyling() {
       styleGroupContainer(curContainer);
     }
 
-    /**
-     * This function styles the group heading container.
-     * It sets padding, border bottom, and styles the actual group heading.
-     * @param {HTMLElement} groupHeadingContainer - The group heading container to style.
-     */
-    function styleGroupHeading(groupHeadingContainer) {
-      console.info("Running new styleGroupHeading");
-
-      Object.assign(groupHeadingContainer.style, {
-        padding: "24px",
-        borderBottom: "2px solid #3443f4",
-        fontSize: "16px",
-        fontFamily: "Fusiona",
-        fontWeight: "500",
-        lineHeight: "125%",
-        letterSpacing: "-.16px",
-        margin: "0",
-      });
-
-      // groupHeadingContainer.style.padding = "24px";
-      // groupHeadingContainer.style.borderBottom = "2px solid #3443f4";
-
-      // Get actual group heading
-      // const groupHeading =
-      //   groupHeadingContainer.querySelector("h3") || groupHeadingContainer;
-
-      // groupHeading.textContent = groupHeading?.textContent?.trim();
-      // groupHeading.style.fontSize = "16px";
-      // groupHeading.style.fontFamily = "Fusiona";
-      // groupHeading.style.fontWeight = "500";
-      // groupHeading.style.lineHeight = "125%";
-      // groupHeading.style.letterSpacing = "-.16px";
-      // groupHeading.style.margin = "0";
-    }
-
     curriculumItemsListLIVE.forEach((el) => {
       if (el?.tagName) {
         el.classList.add("curriculumItem");
@@ -1596,27 +1568,6 @@ function desktopCurriculumPageYesCertificationStyling() {
 
     if (!hasSections) {
       styleGroupContainer(curContainer);
-    }
-
-    /**
-     * This function styles the group heading container.
-     * It sets padding, border bottom, and styles the actual group heading.
-     * @param {HTMLElement} groupHeadingContainer - The group heading container to style.
-     */
-    function styleGroupHeading(groupHeadingContainer) {
-      groupHeadingContainer.style.padding = "24px";
-      groupHeadingContainer.style.borderBottom = "2px solid #3443f4";
-
-      // Get actual group heading
-      const groupHeading =
-        groupHeadingContainer.querySelector("h3") || groupHeadingContainer;
-
-      groupHeading.textContent = groupHeading?.textContent?.trim();
-      groupHeading.style.fontSize = "16px";
-      groupHeading.style.fontWeight = "500";
-      groupHeading.style.lineHeight = "125%";
-      groupHeading.style.letterSpacing = "-.16px";
-      groupHeading.style.margin = "0";
     }
 
     curriculumItemsListLIVE.forEach((el) => {
@@ -2135,22 +2086,6 @@ function mobileCourseDetailsPageStyling() {
       styleGroupContainer(curContainer, "g");
     }
 
-    /**
-     * This function styles the group heading for curriculum items.
-     * It sets the text content, font size, font weight, line height, letter spacing,
-     * padding, and border bottom.
-     * @param {HTMLElement} groupHeading - The group heading element to style.
-     */
-    function styleGroupHeading(groupHeading) {
-      groupHeading.textContent = groupHeading?.textContent?.trim();
-      groupHeading.style.fontSize = "16px";
-      groupHeading.style.fontWeight = "500";
-      groupHeading.style.lineHeight = "125%";
-      groupHeading.style.letterSpacing = "-.16px";
-      groupHeading.style.padding = "24px";
-      groupHeading.style.borderBottom = "1px solid #DCDCDC";
-    }
-
     curriculumList.forEach((curListItem, i, arr) => {
       // First check if current item contains 'section' class
       if (curListItem.classList.contains("section")) {
@@ -2159,9 +2094,13 @@ function mobileCourseDetailsPageStyling() {
         // Reset curContainer while pushing current 'section' in there for the next iteration
         curContainer = document.createElement("li");
         styleGroupContainer(curContainer);
+        
         const newGroupHeading = document.createElement("div");
+        
         newGroupHeading.innerHTML = curListItem.innerHTML;
-        styleGroupHeading(newGroupHeading);
+
+        styleGroupHeading(newGroupHeading, "c");
+
         curContainer.append(newGroupHeading);
       } else {
         // Else, normal/expected behaviour
@@ -2398,29 +2337,6 @@ function mobileCurriculumPageNoCertificateStyling() {
       styleGroupContainer(curContainer, "g");
     }
 
-    /**
-     * This function styles the group heading for curriculum items.
-     * It sets the text content, font size, font weight, line height, letter spacing,
-     * padding, and border bottom.
-     * @param {HTMLElement} groupHeadingContainer - The group heading element to style.
-     */
-    function styleGroupHeading(groupHeadingContainer) {
-      groupHeadingContainer.style.padding = "24px";
-      groupHeadingContainer.style.borderBottom = "1px solid #DCDCDC";
-
-      // Get actual group heading
-      const groupHeading =
-        groupHeadingContainer.querySelector("h3") || groupHeadingContainer;
-
-      groupHeading.textContent = groupHeading?.textContent?.trim();
-      groupHeading.style.fontSize = "16px";
-      groupHeading.style.fontWeight = "500";
-      groupHeading.style.lineHeight = "125%";
-      groupHeading.style.letterSpacing = "-.16px";
-      groupHeading.style.margin = "0";
-      groupHeading.style.textWrap = "wrap";
-    }
-
     curriculumItemsListLIVE.forEach((el) => {
       if (el?.tagName) {
         el.classList.add("curriculumItem");
@@ -2444,7 +2360,7 @@ function mobileCurriculumPageNoCertificateStyling() {
         
         newGroupHeading.textContent = el.querySelector("h3")?.textContent?.trim() || "Module";
 
-        styleGroupHeading(newGroupHeading);
+        styleGroupHeading(newGroupHeading, "c");
 
         curContainer.append(newGroupHeading);
         hide(el);
@@ -2679,29 +2595,6 @@ function mobileCurriculumPageYesCertificateStyling() {
       styleGroupContainer(curContainer, "g");
     }
 
-    /**
-     * This function styles the group heading for curriculum items.
-     * It sets the text content, font size, font weight, line height, letter spacing,
-     * padding, and border bottom.
-     * @param {HTMLElement} groupHeadingContainer - The group heading element to style.
-     */
-    function styleGroupHeading(groupHeadingContainer) {
-      groupHeadingContainer.style.padding = "24px";
-      groupHeadingContainer.style.borderBottom = "1px solid #DCDCDC";
-
-      // Get actual group heading
-      const groupHeading =
-        groupHeadingContainer.querySelector("h3") || groupHeadingContainer;
-
-      groupHeading.textContent = groupHeading?.textContent?.trim();
-      groupHeading.style.fontSize = "16px";
-      groupHeading.style.fontWeight = "500";
-      groupHeading.style.lineHeight = "125%";
-      groupHeading.style.letterSpacing = "-.16px";
-      groupHeading.style.margin = "0";
-      groupHeading.style.textWrap = "wrap";
-    }
-
     curriculumItemsListLIVE.forEach((el) => {
       if (el?.tagName) {
         el.classList.add("curriculumItem");
@@ -2725,7 +2618,7 @@ function mobileCurriculumPageYesCertificateStyling() {
         
         newGroupHeading.textContent = el.querySelector("h3")?.textContent?.trim() || "Module";
 
-        styleGroupHeading(newGroupHeading);
+        styleGroupHeading(newGroupHeading, "c");
 
         curContainer.append(newGroupHeading);
         hide(el);
