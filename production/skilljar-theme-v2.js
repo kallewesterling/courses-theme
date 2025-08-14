@@ -188,19 +188,12 @@ function makeContentVisible() {
  */
 function insertFooter(isLessonsPage = false) {
   const footerEl = document.querySelector("#footer-container");
-  let contentContainer;
+  const contentContainer = isLessonsPage ? document.querySelector(".sj-page-lesson") : document.querySelector("#skilljar-content");
 
-  if (isLessonsPage) {
-    contentContainer = document.querySelector(".sj-page-lesson");
-    if (currentView === "mobile") {
-      hide(footerEl);
-    } else {
-      footerEl.style.display = "flex";
-    }
-  } else {
-    contentContainer = document.querySelector("#skilljar-content");
-    footerEl.style.display = "flex";
-  }
+  setStyle(footerEl, { display: "flex" });
+
+  if (isLessonsPage && currentView === "mobile")
+    hide(footerEl);
 
   contentContainer.append(footerEl);
 }
