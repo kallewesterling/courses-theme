@@ -652,7 +652,7 @@ function desktopPathCatalogPageStyling() {
  * This function applies desktop-specific styling to the lesson page.
  */
 function desktopLessonPageStyling() {
-  console.info("Running desktopLessonPageStyling");
+  console.info("Running desktopLessonPageStyling with setStyle");
 
   // adding optional internal course warning
   const internalCourseWarning = document.querySelector(
@@ -1028,7 +1028,7 @@ function desktopLessonPageStyling() {
 
   footerCols.forEach((col) => {
     setStyle(col, { width: "270px" });
-    
+
     // col.style.width = "270px";
   });
 }
