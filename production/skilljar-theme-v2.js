@@ -22,6 +22,19 @@ function hide(element) {
 }
 
 /**
+ * This function animates the tooltip that appears when code is copied.
+ * It sets the opacity to 1, waits for 400ms, and then sets the opacity to 0.
+ * @param {HTMLElement} tooltipEl - The tooltip element to animate.
+ */
+function animateCopiedTooltip(tooltipEl) {
+  tooltipEl.style.opacity = "1";
+
+  setTimeout(() => {
+    tooltipEl.style.opacity = "0";
+  }, 400);
+}
+
+/**
  * This function styles the group container for curriculum sections.
  * It sets the border, border radius, margin, and padding.
  * @param {HTMLElement} container - The container element to style.
@@ -29,7 +42,8 @@ function hide(element) {
  * @return {void}
  */
 function styleGroupContainer(container, border = "b") {
-  container.style.border = border === "b" ? "2px solid #3443F4" : "1px solid #DCDCDC";
+  container.style.border =
+    border === "b" ? "2px solid #3443F4" : "1px solid #DCDCDC";
   container.style.borderRadius = "8px";
   container.style.marginBottom = "48px";
   container.style.padding = "0";
@@ -56,10 +70,10 @@ function styleListItem(lessonItem, isLastChild, hideIcon = true, border = "b") {
   lessonItem.style.lineHeight = "150%";
 
   if (!isLastChild) {
-    lessonItem.style.borderBottom = border === "b" ? "2px solid #3443F4" : "1px solid #DCDCDC";
+    lessonItem.style.borderBottom =
+      border === "b" ? "2px solid #3443F4" : "1px solid #DCDCDC";
   }
 }
-
 
 /**
  * This function returns the current window width.
@@ -697,19 +711,6 @@ function desktopLessonPageStyling() {
   });
 
   // HANDLE CODE BLOCK CUSTOM STYLING
-
-  /**
-   * This function animates the tooltip that appears when code is copied.
-   * It sets the opacity to 1, waits for 400ms, and then sets the opacity to 0.
-   * @param {HTMLElement} tooltipEl - The tooltip element to animate.
-   */
-  function animateCopiedTooltip(tooltipEl) {
-    tooltipEl.style.opacity = "1";
-
-    setTimeout(() => {
-      tooltipEl.style.opacity = "0";
-    }, 400);
-  }
 
   lessonView.codeBlocks
     .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
@@ -2952,20 +2953,6 @@ function mobileLessonPageStyling() {
   });
 
   // HANDLE CODE BLOCK CUSTOM STYLING
-
-  /**
-   * This function animates the tooltip that appears when code is copied.
-   * It sets the opacity to 1, waits for a specified duration, and then sets
-   * the opacity back to 0 to fade it out.
-   * @param {HTMLElement} tooltipEl - The tooltip element to animate.
-   */
-  function animateCopiedTooltip(tooltipEl) {
-    tooltipEl.style.opacity = "1";
-
-    setTimeout(() => {
-      tooltipEl.style.opacity = "0";
-    }, 400);
-  }
 
   lessonView.codeBlocks
     .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
