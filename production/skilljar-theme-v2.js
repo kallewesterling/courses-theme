@@ -1360,10 +1360,11 @@ function desktopCurriculumPageNoCertificateStyling() {
         const newGroupHeading = document.createElement("div");
         newGroupHeading.style.display = "flex";
         newGroupHeading.style.gap = "12px";
-        const groupH3Tag = document.createElement("h3");
-
-        groupH3Tag.textContent = el.querySelector("h3").textContent;
-        newGroupHeading.append(groupH3Tag);
+        
+        const headingContent = document.createElement("span");
+        headingContent.textContent = el.querySelector("h3").textContent;
+        
+        newGroupHeading.append(headingContent);
 
         styleGroupHeading(newGroupHeading);
 
@@ -1641,10 +1642,11 @@ function desktopCurriculumPageYesCertificationStyling() {
         const newGroupHeading = document.createElement("div");
         newGroupHeading.style.display = "flex";
         newGroupHeading.style.gap = "12px";
-        const groupH3Tag = document.createElement("h3");
-
-        groupH3Tag.textContent = el.querySelector("h3").textContent;
-        newGroupHeading.append(groupH3Tag);
+        
+        const headingContent = document.createElement("span");
+        headingContent.textContent = el.querySelector("h3").textContent;
+        
+        newGroupHeading.append(headingContent);
 
         styleGroupHeading(newGroupHeading);
 
@@ -2445,10 +2447,11 @@ function mobileCurriculumPageNoCertificateStyling() {
         const newGroupHeading = document.createElement("div");
         newGroupHeading.style.display = "flex";
         newGroupHeading.style.gap = "12px";
-        const groupH3Tag = document.createElement("h3");
-
-        groupH3Tag.textContent = el.querySelector("h3").textContent;
-        newGroupHeading.append(groupH3Tag);
+        
+        const headingContent = document.createElement("span");
+        headingContent.textContent = el.querySelector("h3").textContent;
+        
+        newGroupHeading.append(headingContent);
 
         styleGroupHeading(newGroupHeading);
 
@@ -2728,10 +2731,11 @@ function mobileCurriculumPageYesCertificateStyling() {
         const newGroupHeading = document.createElement("div");
         newGroupHeading.style.display = "flex";
         newGroupHeading.style.gap = "12px";
-        const groupH3Tag = document.createElement("h3");
-
-        groupH3Tag.textContent = el.querySelector("h3").textContent;
-        newGroupHeading.append(groupH3Tag);
+        
+        const headingContent = document.createElement("span");
+        headingContent.textContent = el.querySelector("h3").textContent;
+        
+        newGroupHeading.append(headingContent);
 
         styleGroupHeading(newGroupHeading);
 
