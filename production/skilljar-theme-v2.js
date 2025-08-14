@@ -596,7 +596,7 @@ function desktopPathCourseDetailsPageStyling() {
  * This function applies desktop-specific styling to the path catalog page.
  */
 function desktopPathCatalogPageStyling() {
-  console.info("Running desktopPathCatalogPageStyling");
+  console.info("Running desktopPathCatalogPageStyling with setStyle");
   const backArrowBtn = document.querySelector(".back-to-catalog");
 
   const mainContentContainer = document.querySelector("#catalog-content");
@@ -604,40 +604,34 @@ function desktopPathCatalogPageStyling() {
     ".path-curriculum-resume-wrapper"
   );
   const coursesList = document
-    .querySelector("#catalog-courses")
-    .querySelectorAll(".coursebox-container");
+    .querySelectorAll("#catalog-courses .coursebox-container");
 
   coursesList.forEach((course) => {
-    // Outer border
-    course.style.border = "2px solid #D0CFEE";
-    course.style.borderRadius = "20px";
-
-    // Inner border
     const innerContainer = course.querySelector(".course-overview");
-    if (innerContainer) {
-      innerContainer.style.borderTop = "2px solid #D0CFEE";
-    }
+    
+    setStyle(course, {
+      border: "2px solid #D0CFEE",
+      borderRadius: "20px",
+    })
+
+    setStyle(innerContainer, { borderTop: "2px solid #D0CFEE" });
 
     course.addEventListener("mouseover", () => {
-      course.style.borderColor = "#3443f4";
-      if (innerContainer) {
-        innerContainer.style.borderColor = "#3443f4";
-      }
+      setStyle(course, { borderColor: "#3443f4" });
+      setStyle(innerContainer, { borderColor: "#3443f4" });
     });
 
     course.addEventListener("mouseout", () => {
-      course.style.borderColor = "#D0CFEE";
-      if (innerContainer) {
-        innerContainer.style.borderColor = "#D0CFEE";
-      }
+      setStyle(course, { borderColor: "#D0CFEE" });
+      setStyle(innerContainer, { borderColor: "#D0CFEE" });
     });
   });
 
-  // PAGE NAV STYLING
-  hide(backArrowBtn);
-
   // MAIN CONTENT STYLING
-  mainContentContainer.style.margin = "96px auto";
+  setStyle(mainContentContainer, { margin: "96px auto" });
+
+  // hide elements
+  hide(backArrowBtn);
   hide(topContentContainer);
 }
 
