@@ -2996,8 +2996,8 @@ function handlePageStyling() {
  * This function renders the course page based on the current view (desktop or mobile).
  * It checks the window width and applies appropriate styles for different page types.
  */
-function renderCourse() {
-  console.info("Running renderCourse");
+function render() {
+  console.info("Running render");
   const width = checkWindowWidth();
 
   if (width <= 991 && !(currentView === "mobile")) {
@@ -3020,7 +3020,7 @@ function renderCourse() {
 document.addEventListener("DOMContentLoaded", () => {
   getCurrentPage();
 
-  renderCourse();
+  render();
   initialLoadComplete = true;
 });
 
@@ -3029,5 +3029,5 @@ document.addEventListener("DOMContentLoaded", () => {
   It is a good place to run scripts that need to ensure all resources are available before executing.
 */
 window.addEventListener("resize", () => {
-  renderCourse();
+  render();
 });
