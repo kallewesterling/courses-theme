@@ -652,15 +652,11 @@ function desktopPathCatalogPageStyling() {
  * This function applies desktop-specific styling to the lesson page.
  */
 function desktopLessonPageStyling() {
-  console.info("Running desktopLessonPageStyling with setStyle");
+  console.info("Running desktopLessonPageStyling with setStyle [cleaned up]");
 
-  // adding optional internal course warning
   const internalCourseWarning = document.querySelector(
     "#internal-course-warning"
   );
-  if (internalCourseWarning) {
-    document.querySelector("#lesson-main").prepend(internalCourseWarning);
-  }
 
   const logoImg = document.querySelector(".header-center-img");
 
@@ -699,28 +695,19 @@ function desktopLessonPageStyling() {
     ...document.querySelectorAll("pre:has(code):not(.language-ansi)")
   );
 
-  // FOOTER VARS
   const footerContainer = document.querySelector("#footer-container");
   const footerCols = footerContainer.querySelectorAll(".global-footer-column");
 
-  // STYLE LOGO
+  const prevBtn = document.querySelector(".button-prev-title span");
+
   setStyle(logoImg, {
     height: "24px",
   });
-
-  // logoImg.style.height = "24px";
 
   setStyle(lessonInnerContainer, {
     maxWidth: "712px",
     margin: "0 auto",
   });
-
-  // lessonInnerContainer.style.maxWidth = "712px";
-  // lessonInnerContainer.style.margin = "0 auto";
-
-  // move elements
-  mainLessonContentContainer.append(lessonFooter);
-  mainLessonInnerContainer.prepend(navOpenIcon);
 
   // STYLING TO ALIGN NAV ICON TO LEFT CORNER AND STICKY
   setStyle(mainLessonContentContainer, {
@@ -730,24 +717,14 @@ function desktopLessonPageStyling() {
     justifyContent: "space-between",
   });
 
-  // mainLessonContentContainer.style.position = "relative";
-  // mainLessonContentContainer.style.display = "flex";
-  // mainLessonContentContainer.style.flexDirection = "column";
-  // mainLessonContentContainer.style.justifyContent = "space-between";
-
   setStyle(mainLessonContentSubContainer, {
     height: "auto",
   });
-
-  // mainLessonContentSubContainer.style.height = "auto";
 
   setStyle(mainLessonInnerContainer, {
     margin: "0",
     maxWidth: "none",
   });
-
-  // mainLessonInnerContainer.style.margin = "0";
-  // mainLessonInnerContainer.style.maxWidth = "none";
 
   setStyle(mainLessonMainContainer, {
     position: "relative",
@@ -755,21 +732,12 @@ function desktopLessonPageStyling() {
     paddingTop: "0",
   });
 
-  // mainLessonMainContainer.style.position = "relative";
-  // mainLessonMainContainer.style.zIndex = "0";
-  // mainLessonMainContainer.style.paddingTop = "0";
-
   setStyle(navOpenIcon, {
     position: "sticky",
     top: "12px",
     zIndex: "1",
     float: "none",
   });
-
-  // navOpenIcon.style.position = "sticky";
-  // navOpenIcon.style.top = "12px";
-  // navOpenIcon.style.zIndex = "1";
-  // navOpenIcon.style.float = "none";
 
   [hamburgerIcon, xIcon].forEach((el) => {
     setStyle(el, {
@@ -779,12 +747,6 @@ function desktopLessonPageStyling() {
       background: "rgba(255, 255, 255, .8)",
       backdropFilter: "blur(1.5px)",
     });
-
-    // el.style.padding = "12px";
-    // el.style.border = "none";
-    // el.style.borderRadius = "8px";
-    // el.style.background = "rgba(255, 255, 255, .8)";
-    // el.style.backdropFilter = "blur(1.5px)";
   });
 
   /*-------------------*/
@@ -795,10 +757,6 @@ function desktopLessonPageStyling() {
     backgroundColor: "transparent",
   });
 
-  // lessonFooter.style.position = "relative";
-  // lessonFooter.style.border = "0";
-  // lessonFooter.style.backgroundColor = "transparent";
-
   setStyle(leftNav, {
     position: "absolute",
     backgroundColor: "#f9f9f9",
@@ -806,20 +764,18 @@ function desktopLessonPageStyling() {
     marginBottom: "0px",
   });
 
-  // leftNav.style.position = "absolute";
-  // leftNav.style.backgroundColor = "#f9f9f9";
-  // leftNav.style.width = "320px";
-  // leftNav.style.marginBottom = "0px";
-
   setStyle(mainLessonContentContainer, {
     height: "100vh",
     overflowY: "auto",
     paddingBottom: "0",
   });
 
-  // mainLessonContentContainer.style.height = "100vh";
-  // mainLessonContentContainer.style.overflowY = "auto";
-  // mainLessonContentContainer.style.paddingBottom = "0";
+  // move elements
+  mainLessonContentContainer.append(lessonFooter);
+  mainLessonInnerContainer.prepend(navOpenIcon);
+  if (internalCourseWarning) {
+    document.querySelector("#lesson-main").prepend(internalCourseWarning);
+  }
 
   // hide elements
   hide(fullScreenBtn);
@@ -837,12 +793,11 @@ function desktopLessonPageStyling() {
   openIcon.addEventListener("click", (e) => {
     hide(e.target);
     setStyle(closeIcon, { display: "inline-block" });
-    // closeIcon.style.display = "inline-block";
   });
+
   closeIcon.addEventListener("click", (e) => {
     hide(e.target);
     setStyle(openIcon, { display: "inline-block" });
-    // openIcon.style.display = "inline-block";
   });
 
   // STYLING OF THE LEFT NAV LINKS
@@ -850,23 +805,28 @@ function desktopLessonPageStyling() {
     backToCurriculumEl.textContent = "Back to Course Overview";
   }
 
-  lessonNavLinksContainer.style.paddingBottom = "32px";
+  setStyle(lessonNavLinksContainer, { paddingBottom: "32px" });
 
   // STYLE EACH OF THE LESSON LINKS
   links.forEach((link) => {
     const pageIcon = link.querySelector(".type-icon");
     const lessonLinkContainer = link.querySelector(".lesson-row");
 
-    link.style.color = "#14003d";
-    link.style.cursor = "pointer";
-    lessonLinkContainer.style.display = "flex";
-    lessonLinkContainer.style.flexDirection = "row-reverse";
-    lessonLinkContainer.style.justifyContent = "space-between";
-    lessonLinkContainer.style.margin = "0 12px";
-    lessonLinkContainer.style.paddingLeft = "12px";
-    lessonLinkContainer.style.paddingRight = "12px";
-    lessonLinkContainer.style.fontSize = "14px";
-    lessonLinkContainer.style.lineHeight = "20px";
+    setStyle(link, {
+      color: "#14003d",
+      cursor: "pointer",
+    });
+
+    setStyle(lessonLinkContainer, {
+      display: "flex",
+      flexDirection: "row-reverse",
+      justifyContent: "space-between",
+      margin: "0 12px",
+      paddingLeft: "12px",
+      paddingRight: "12px",
+      fontSize: "14px",
+      lineHeight: "20px",
+    });
 
     hide(pageIcon);
   });
@@ -885,17 +845,6 @@ function desktopLessonPageStyling() {
       fontSize: "16px",
       fontWeight: "700",
     });
-
-    // title.style.backgroundColor = "transparent";
-    // title.style.padding = "12px";
-    // title.style.paddingLeft = "24px";
-    // title.style.paddingRight = "24px";
-    // title.style.marginTop = "12px";
-    // title.style.marginBottom = "12px";
-    // title.style.border = "0";
-    // title.style.fontFamily = "Fusiona";
-    // title.style.fontSize = "16px";
-    // title.style.fontWeight = "700";
   });
 
   // HANDLE CODE BLOCK CUSTOM STYLING
@@ -906,16 +855,11 @@ function desktopLessonPageStyling() {
       const codeEl = el.querySelector("code");
       const iconClone = copyIcon.cloneNode(true);
 
-      // WILL NEED TO CLEAN UP THE STYLING OF EL!!!!!!!!!!
       setStyle(el, {
         padding: "0",
         overflow: "visible",
         position: "relative",
       });
-
-      // el.style.padding = "0";
-      // el.style.overflow = "visible";
-      // el.style.position = "relative";
 
       setStyle(codeEl, {
         display: "inline-block",
@@ -924,18 +868,13 @@ function desktopLessonPageStyling() {
         width: "100%",
       });
 
-      // codeEl.setAttribute(
-      //   "style",
-      //   "display: inline-block; padding: 24px !important; overflow-x: scroll; width: 100%"
-      // );
-
       const copyText = codeEl.textContent
         .trim()
         .replace(/\r?\n\$ /g, " && ")
         .replace(/^\$ /g, "");
 
-      // CREATE PARENT CONTAINER & STYLE AS FLEX CONTAINER, COL DIR, AND ALIGN INTEMS START (OR END)
       const container = document.createElement("div");
+
       setStyle(container, {
         display: "flex",
         justifyContent: "end",
@@ -943,18 +882,10 @@ function desktopLessonPageStyling() {
         padding: "12px 24px",
       });
 
-      // container.style.display = "flex";
-      // container.style.justifyContent = "end";
-      // container.style.borderBottom = "1px solid gainsboro";
-      // container.style.padding = "12px 24px";
-
       setStyle(iconClone, {
         display: "block",
         cursor: "pointer",
       });
-
-      // iconClone.style.display = "block";
-      // iconClone.style.cursor = "pointer";
 
       // CREATE 'COPIED' TOOLTIP
       const tooltipContainer = document.createElement("div");
@@ -973,31 +904,16 @@ function desktopLessonPageStyling() {
         transition: "opacity .2s ease-in",
       });
 
-      // tooltipContainer.style.position = "absolute";
-      // tooltipContainer.style.top = "-24px";
-      // tooltipContainer.style.right = "10px";
-      // tooltipContainer.style.textShadow = "none";
-      // tooltipContainer.style.backgroundColor = "#1c1c1c";
-      // tooltipContainer.style.color = "#fff";
-      // tooltipContainer.style.padding = "5px 10px";
-      // tooltipContainer.style.borderRadius = "4px";
-      // tooltipContainer.style.opacity = "0";
-      // tooltipContainer.style.transition = "opacity .2s ease-in";
-
       // add elements
       container.append(iconClone);
       el.append(tooltipContainer);
       el.prepend(container);
 
-      // ADD EVENT LISTENER TO CLONED ICON TO COPY CODE BLOCK INTO CLIPBOARD
-      iconClone.addEventListener("click", async () => {
-        try {
-          await navigator.clipboard.writeText(copyText);
-          animateCopiedTooltip(tooltipContainer);
-        } catch (err) {
-          console.error("Failed to copy codeblock to clipboard: ", err);
-        }
-      });
+      // add event listener to cloned icon to copy block into clipboard
+      iconClone.addEventListener(
+        "click",
+        toClipboard(copyText, tooltipContainer)
+      );
 
       el.dataset.copyAdded = "true"; // Mark that copy icon was added to this code block
     });
@@ -1007,30 +923,29 @@ function desktopLessonPageStyling() {
     .querySelectorAll("a")
     .forEach((el) => (el.target = "_blank"));
 
-  // LESSON CONTENT FOOTER
-  const prevBtn = document.querySelector(".button-prev-title span");
   setStyle(prevBtn, {
     color: "#14003d",
   });
 
-  // if (prevBtn) {
-  //   prevBtn.style.color = "#14003d";
-  // }
-
-  // FOOTER STYLING
   setStyle(footerContainer, {
     paddingLeft: "40px",
     paddingRight: "40px",
   });
 
-  // footerContainer.style.paddingLeft = "40px";
-  // footerContainer.style.paddingRight = "40px";
-
   footerCols.forEach((col) => {
     setStyle(col, { width: "270px" });
-
-    // col.style.width = "270px";
   });
+
+  function toClipboard(copyText, tooltipContainer) {
+    return async () => {
+      try {
+        await navigator.clipboard.writeText(copyText);
+        animateCopiedTooltip(tooltipContainer);
+      } catch (err) {
+        console.error("Failed to copy codeblock to clipboard: ", err);
+      }
+    };
+  }
 }
 
 /**
