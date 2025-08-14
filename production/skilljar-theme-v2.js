@@ -653,12 +653,15 @@ function desktopPathCatalogPageStyling() {
  */
 function desktopLessonPageStyling() {
   console.info("Running desktopLessonPageStyling");
+
+  // adding optional internal course warning
   const internalCourseWarning = document.querySelector(
     "#internal-course-warning"
   );
   if (internalCourseWarning) {
     document.querySelector("#lesson-main").prepend(internalCourseWarning);
   }
+
   const logoImg = document.querySelector(".header-center-img");
 
   const leftNav = document.querySelector("#lp-left-nav");
@@ -672,15 +675,26 @@ function desktopLessonPageStyling() {
   const hamburgerIcon = navOpenIcon.querySelector(".fa.fa-bars");
   const xIcon = navOpenIcon.querySelector(".fa.fa-times");
 
-  const fullScreenBtn = document.querySelector(
-    ".toggle-fullscreen.focus-link-v2 "
-  );
-  // LESSON BODY VARS
+  const fullScreenBtn = document.querySelector(".toggle-fullscreen");
+
   const lessonInnerContainer = document.querySelector("#lesson-main-inner");
   const copyIcon = document.querySelector(".copy-icon");
   const lessonContentContainer = document.querySelector(
     "sjwc-lesson-content-item"
   );
+  const parentEl = document.querySelector(".sj-page-lesson");
+
+  const openIcon = document.querySelector(".fa.fa-bars");
+  const searchIcon = document.querySelector(".fa.fa-search");
+  const closeIcon = document.querySelector(".fa.fa-times");
+  const navText = document.querySelector(".burger-text.sj-text-lessons");
+
+  const lessonNavLinksContainer = document.querySelector("#curriculum-list-2");
+  const backToCurriculumEl = document.querySelector("#left-nav-return-text");
+  const links = lessonNavLinksContainer.querySelectorAll("a");
+  const sectionTitles =
+    lessonNavLinksContainer.querySelectorAll(".section-title");
+
   lessonView.codeBlocks = new Array(
     ...document.querySelectorAll("pre:has(code):not(.language-ansi)")
   );
@@ -690,66 +704,125 @@ function desktopLessonPageStyling() {
   const footerCols = footerContainer.querySelectorAll(".global-footer-column");
 
   // STYLE LOGO
-  logoImg.style.height = "24px";
+  setStyle(logoImg, {
+    height: "24px",
+  });
 
-  lessonInnerContainer.style.maxWidth = "712px";
-  lessonInnerContainer.style.margin = "0 auto";
+  // logoImg.style.height = "24px";
 
+  setStyle(lessonInnerContainer, {
+    maxWidth: "712px",
+    margin: "0 auto",
+  });
+
+  // lessonInnerContainer.style.maxWidth = "712px";
+  // lessonInnerContainer.style.margin = "0 auto";
+
+  // move elements
   mainLessonContentContainer.append(lessonFooter);
   mainLessonInnerContainer.prepend(navOpenIcon);
 
   // STYLING TO ALIGN NAV ICON TO LEFT CORNER AND STICKY
-  mainLessonContentContainer.style.position = "relative";
-  mainLessonContentContainer.style.display = "flex";
-  mainLessonContentContainer.style.flexDirection = "column";
-  mainLessonContentContainer.style.justifyContent = "space-between";
+  setStyle(mainLessonContentContainer, {
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+  });
 
-  mainLessonContentSubContainer.style.height = "auto";
+  // mainLessonContentContainer.style.position = "relative";
+  // mainLessonContentContainer.style.display = "flex";
+  // mainLessonContentContainer.style.flexDirection = "column";
+  // mainLessonContentContainer.style.justifyContent = "space-between";
 
-  mainLessonInnerContainer.style.margin = "0";
-  mainLessonInnerContainer.style.maxWidth = "none";
-  mainLessonMainContainer.style.position = "relative";
-  mainLessonMainContainer.style.zIndex = "0";
-  mainLessonMainContainer.style.paddingTop = "0";
+  setStyle(mainLessonContentSubContainer, {
+    height: "auto",
+  });
 
-  navOpenIcon.style.position = "sticky";
-  navOpenIcon.style.top = "12px";
-  navOpenIcon.style.zIndex = "1";
-  navOpenIcon.style.float = "none";
+  // mainLessonContentSubContainer.style.height = "auto";
+
+  setStyle(mainLessonInnerContainer, {
+    margin: "0",
+    maxWidth: "none",
+  });
+
+  // mainLessonInnerContainer.style.margin = "0";
+  // mainLessonInnerContainer.style.maxWidth = "none";
+
+  setStyle(mainLessonMainContainer, {
+    position: "relative",
+    zIndex: "0",
+    paddingTop: "0",
+  });
+
+  // mainLessonMainContainer.style.position = "relative";
+  // mainLessonMainContainer.style.zIndex = "0";
+  // mainLessonMainContainer.style.paddingTop = "0";
+
+  setStyle(navOpenIcon, {
+    position: "sticky",
+    top: "12px",
+    zIndex: "1",
+    float: "none",
+  });
+
+  // navOpenIcon.style.position = "sticky";
+  // navOpenIcon.style.top = "12px";
+  // navOpenIcon.style.zIndex = "1";
+  // navOpenIcon.style.float = "none";
 
   [hamburgerIcon, xIcon].forEach((el) => {
-    el.style.padding = "12px";
-    el.style.border = "none";
-    el.style.borderRadius = "8px";
-    el.style.background = "rgba(255, 255, 255, .8)";
-    el.style.backdropFilter = "blur(1.5px)";
+    setStyle(el, {
+      padding: "12px",
+      border: "none",
+      borderRadius: "8px",
+      background: "rgba(255, 255, 255, .8)",
+      backdropFilter: "blur(1.5px)",
+    });
+
+    // el.style.padding = "12px";
+    // el.style.border = "none";
+    // el.style.borderRadius = "8px";
+    // el.style.background = "rgba(255, 255, 255, .8)";
+    // el.style.backdropFilter = "blur(1.5px)";
   });
 
   /*-------------------*/
 
-  lessonFooter.style.position = "relative";
-  lessonFooter.style.border = "0";
-  lessonFooter.style.backgroundColor = "transparent";
+  setStyle(lessonFooter, {
+    position: "relative",
+    border: "0",
+    backgroundColor: "transparent",
+  });
 
-  leftNav.style.position = "absolute";
-  leftNav.style.backgroundColor = "#f9f9f9";
-  leftNav.style.width = "320px";
-  leftNav.style.marginBottom = "0px";
-  mainLessonContentContainer.style.height = "100vh";
-  mainLessonContentContainer.style.overflowY = "auto";
-  mainLessonContentContainer.style.paddingBottom = "0";
+  // lessonFooter.style.position = "relative";
+  // lessonFooter.style.border = "0";
+  // lessonFooter.style.backgroundColor = "transparent";
 
-  // HIDE FULL SCREEN BUTTON
+  setStyle(leftNav, {
+    position: "absolute",
+    backgroundColor: "#f9f9f9",
+    width: "320px",
+    marginBottom: "0px",
+  });
+
+  // leftNav.style.position = "absolute";
+  // leftNav.style.backgroundColor = "#f9f9f9";
+  // leftNav.style.width = "320px";
+  // leftNav.style.marginBottom = "0px";
+
+  setStyle(mainLessonContentContainer, {
+    height: "100vh",
+    overflowY: "auto",
+    paddingBottom: "0",
+  });
+
+  // mainLessonContentContainer.style.height = "100vh";
+  // mainLessonContentContainer.style.overflowY = "auto";
+  // mainLessonContentContainer.style.paddingBottom = "0";
+
+  // hide elements
   hide(fullScreenBtn);
-
-  // SECOND PAGE OF STYLING INSTRUCTIONS FROM 1ST VERSION
-  const parentEl = document.querySelector(".sj-page-lesson");
-
-  const openIcon = document.querySelector(".fa.fa-bars");
-  const searchIcon = document.querySelector(".fa.fa-search");
-  const closeIcon = document.querySelector(".fa.fa-times");
-  const navText = document.querySelector(".burger-text.sj-text-lessons");
-
   hide(searchIcon);
   hide(navText);
 
@@ -763,20 +836,16 @@ function desktopLessonPageStyling() {
   // HANDLE CLICKS
   openIcon.addEventListener("click", (e) => {
     hide(e.target);
-    closeIcon.style.display = "inline-block";
+    setStyle(closeIcon, { display: "inline-block" });
+    // closeIcon.style.display = "inline-block";
   });
   closeIcon.addEventListener("click", (e) => {
     hide(e.target);
-    openIcon.style.display = "inline-block";
+    setStyle(openIcon, { display: "inline-block" });
+    // openIcon.style.display = "inline-block";
   });
 
   // STYLING OF THE LEFT NAV LINKS
-  const lessonNavLinksContainer = document.querySelector("#curriculum-list-2");
-  const backToCurriculumEl = document.querySelector("#left-nav-return-text");
-  const links = lessonNavLinksContainer.querySelectorAll("a");
-  const sectionTitles =
-    lessonNavLinksContainer.querySelectorAll(".section-title");
-
   if (backToCurriculumEl) {
     backToCurriculumEl.textContent = "Back to Course Overview";
   }
@@ -790,7 +859,6 @@ function desktopLessonPageStyling() {
 
     link.style.color = "#14003d";
     link.style.cursor = "pointer";
-    hide(pageIcon);
     lessonLinkContainer.style.display = "flex";
     lessonLinkContainer.style.flexDirection = "row-reverse";
     lessonLinkContainer.style.justifyContent = "space-between";
@@ -799,20 +867,35 @@ function desktopLessonPageStyling() {
     lessonLinkContainer.style.paddingRight = "12px";
     lessonLinkContainer.style.fontSize = "14px";
     lessonLinkContainer.style.lineHeight = "20px";
+
+    hide(pageIcon);
   });
 
   // STYLE EACH OF THE LESSON LINK HEADER (THE MODULE NAMES)
   sectionTitles.forEach((title) => {
-    title.style.backgroundColor = "transparent";
-    title.style.padding = "12px";
-    title.style.paddingLeft = "24px";
-    title.style.paddingRight = "24px";
-    title.style.marginTop = "12px";
-    title.style.marginBottom = "12px";
-    title.style.border = "0";
-    title.style.fontFamily = "Fusiona";
-    title.style.fontSize = "16px";
-    title.style.fontWeight = "700";
+    setStyle(title, {
+      backgroundColor: "transparent",
+      padding: "12px",
+      paddingLeft: "24px",
+      paddingRight: "24px",
+      marginTop: "12px",
+      marginBottom: "12px",
+      border: "0",
+      fontFamily: "Fusiona",
+      fontSize: "16px",
+      fontWeight: "700",
+    });
+
+    // title.style.backgroundColor = "transparent";
+    // title.style.padding = "12px";
+    // title.style.paddingLeft = "24px";
+    // title.style.paddingRight = "24px";
+    // title.style.marginTop = "12px";
+    // title.style.marginBottom = "12px";
+    // title.style.border = "0";
+    // title.style.fontFamily = "Fusiona";
+    // title.style.fontSize = "16px";
+    // title.style.fontWeight = "700";
   });
 
   // HANDLE CODE BLOCK CUSTOM STYLING
@@ -820,16 +903,32 @@ function desktopLessonPageStyling() {
   lessonView.codeBlocks
     .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
     .forEach((el) => {
-      // WILL NEED TO CLEAN UP THE STYLING OF EL!!!!!!!!!!
-      el.style.padding = "0";
-      el.style.overflow = "visible";
-      el.style.position = "relative";
-
       const codeEl = el.querySelector("code");
-      codeEl.setAttribute(
-        "style",
-        "display: inline-block; padding: 24px !important; overflow-x: scroll; width: 100%"
-      );
+      const iconClone = copyIcon.cloneNode(true);
+
+      // WILL NEED TO CLEAN UP THE STYLING OF EL!!!!!!!!!!
+      setStyle(el, {
+        padding: "0",
+        overflow: "visible",
+        position: "relative",
+      });
+
+      // el.style.padding = "0";
+      // el.style.overflow = "visible";
+      // el.style.position = "relative";
+
+      setStyle(codeEl, {
+        display: "inline-block",
+        padding: "24px !important",
+        overflowX: "scroll",
+        width: "100%",
+      });
+
+      // codeEl.setAttribute(
+      //   "style",
+      //   "display: inline-block; padding: 24px !important; overflow-x: scroll; width: 100%"
+      // );
+
       const copyText = codeEl.textContent
         .trim()
         .replace(/\r?\n\$ /g, " && ")
@@ -837,34 +936,57 @@ function desktopLessonPageStyling() {
 
       // CREATE PARENT CONTAINER & STYLE AS FLEX CONTAINER, COL DIR, AND ALIGN INTEMS START (OR END)
       const container = document.createElement("div");
-      container.style.display = "flex";
-      container.style.justifyContent = "end";
-      container.style.borderBottom = "1px solid gainsboro";
-      container.style.padding = "12px 24px";
+      setStyle(container, {
+        display: "flex",
+        justifyContent: "end",
+        borderBottom: "1px solid gainsboro",
+        padding: "12px 24px",
+      });
 
-      // CLONE COPYICON EL AND ADD TO CONTAINER
-      const iconClone = copyIcon.cloneNode(true);
-      iconClone.style.display = "block";
-      iconClone.style.cursor = "pointer";
-      container.append(iconClone);
+      // container.style.display = "flex";
+      // container.style.justifyContent = "end";
+      // container.style.borderBottom = "1px solid gainsboro";
+      // container.style.padding = "12px 24px";
+
+      setStyle(iconClone, {
+        display: "block",
+        cursor: "pointer",
+      });
+
+      // iconClone.style.display = "block";
+      // iconClone.style.cursor = "pointer";
 
       // CREATE 'COPIED' TOOLTIP
       const tooltipContainer = document.createElement("div");
       tooltipContainer.textContent = "Copied";
-      tooltipContainer.style.position = "absolute";
-      tooltipContainer.style.top = "-24px";
-      tooltipContainer.style.right = "10px";
-      tooltipContainer.style.textShadow = "none";
-      tooltipContainer.style.backgroundColor = "#1c1c1c";
-      tooltipContainer.style.color = "#fff";
-      tooltipContainer.style.padding = "5px 10px";
-      tooltipContainer.style.borderRadius = "4px";
-      tooltipContainer.style.opacity = "0";
-      tooltipContainer.style.transition = "opacity .2s ease-in";
 
+      setStyle(tooltipContainer, {
+        position: "absolute",
+        top: "-24px",
+        right: "10px",
+        textShadow: "none",
+        backgroundColor: "#1c1c1c",
+        color: "#fff",
+        padding: "5px 10px",
+        borderRadius: "4px",
+        opacity: "0",
+        transition: "opacity .2s ease-in",
+      });
+
+      // tooltipContainer.style.position = "absolute";
+      // tooltipContainer.style.top = "-24px";
+      // tooltipContainer.style.right = "10px";
+      // tooltipContainer.style.textShadow = "none";
+      // tooltipContainer.style.backgroundColor = "#1c1c1c";
+      // tooltipContainer.style.color = "#fff";
+      // tooltipContainer.style.padding = "5px 10px";
+      // tooltipContainer.style.borderRadius = "4px";
+      // tooltipContainer.style.opacity = "0";
+      // tooltipContainer.style.transition = "opacity .2s ease-in";
+
+      // add elements
+      container.append(iconClone);
       el.append(tooltipContainer);
-
-      // ADD CONTAINER AS FIRST CHILD IN EL
       el.prepend(container);
 
       // ADD EVENT LISTENER TO CLONED ICON TO COPY CODE BLOCK INTO CLIPBOARD
@@ -881,21 +1003,33 @@ function desktopLessonPageStyling() {
     });
 
   // Makes lesson links pop up in new tab
-  lessonContentContainer.querySelectorAll("a").forEach((el) => {
-    el.setAttribute("target", "_blank");
-  });
+  lessonContentContainer
+    .querySelectorAll("a")
+    .forEach((el) => (el.target = "_blank"));
 
   // LESSON CONTENT FOOTER
   const prevBtn = document.querySelector(".button-prev-title span");
-  if (prevBtn) {
-    prevBtn.style.color = "#14003d";
-  }
+  setStyle(prevBtn, {
+    color: "#14003d",
+  });
+
+  // if (prevBtn) {
+  //   prevBtn.style.color = "#14003d";
+  // }
 
   // FOOTER STYLING
-  footerContainer.style.paddingLeft = "40px";
-  footerContainer.style.paddingRight = "40px";
+  setStyle(footerContainer, {
+    paddingLeft: "40px",
+    paddingRight: "40px",
+  });
+
+  // footerContainer.style.paddingLeft = "40px";
+  // footerContainer.style.paddingRight = "40px";
+
   footerCols.forEach((col) => {
-    col.style.width = "270px";
+    setStyle(col, { width: "270px" });
+    
+    // col.style.width = "270px";
   });
 }
 
