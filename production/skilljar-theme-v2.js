@@ -351,7 +351,6 @@ function desktopCourseDetailsPageStyling() {
       groupHeading.style.padding = "24px";
       groupHeading.style.borderBottom = "2px solid #3443F4";
       groupHeading.textContent = groupHeading?.textContent?.trim();
-      curContainer.append(groupHeading);
     }
 
     curriculumList.forEach((curListItem, i, arr) => {
@@ -2129,7 +2128,6 @@ function mobileCourseDetailsPageStyling() {
       groupHeading.style.letterSpacing = "-.16px";
       groupHeading.style.padding = "24px";
       groupHeading.style.borderBottom = "1px solid #DCDCDC";
-      curContainer.append(groupHeading);
     }
 
     curriculumList.forEach((curListItem, i, arr) => {
