@@ -1361,10 +1361,7 @@ function desktopCurriculumPageNoCertificateStyling() {
         newGroupHeading.style.display = "flex";
         newGroupHeading.style.gap = "12px";
         
-        const headingContent = document.createElement("span");
-        headingContent.textContent = el.querySelector("h3")?.textContent?.trim() || "Module";
-        
-        newGroupHeading.append(headingContent);
+        newGroupHeading.textContent = el.querySelector("h3")?.textContent?.trim() || "Module";
 
         styleGroupHeading(newGroupHeading);
 
@@ -1642,11 +1639,8 @@ function desktopCurriculumPageYesCertificationStyling() {
         const newGroupHeading = document.createElement("div");
         newGroupHeading.style.display = "flex";
         newGroupHeading.style.gap = "12px";
-        
-        const headingContent = document.createElement("span");
-        headingContent.textContent = el.querySelector("h3")?.textContent?.trim() || "Module";
-        
-        newGroupHeading.append(headingContent);
+
+        newGroupHeading.textContent = el.querySelector("h3")?.textContent?.trim() || "Module";
 
         styleGroupHeading(newGroupHeading);
 
@@ -2448,10 +2442,7 @@ function mobileCurriculumPageNoCertificateStyling() {
         newGroupHeading.style.display = "flex";
         newGroupHeading.style.gap = "12px";
         
-        const headingContent = document.createElement("span");
-        headingContent.textContent = el.querySelector("h3")?.textContent?.trim() || "Module";
-        
-        newGroupHeading.append(headingContent);
+        newGroupHeading.textContent = el.querySelector("h3")?.textContent?.trim() || "Module";
 
         styleGroupHeading(newGroupHeading);
 
@@ -2732,10 +2723,7 @@ function mobileCurriculumPageYesCertificateStyling() {
         newGroupHeading.style.display = "flex";
         newGroupHeading.style.gap = "12px";
         
-        const headingContent = document.createElement("span");
-        headingContent.textContent = el.querySelector("h3")?.textContent?.trim() || "Module";
-        
-        newGroupHeading.append(headingContent);
+        newGroupHeading.textContent = el.querySelector("h3")?.textContent?.trim() || "Module";
 
         styleGroupHeading(newGroupHeading);
 
