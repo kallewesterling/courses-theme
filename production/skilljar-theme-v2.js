@@ -169,6 +169,7 @@ function removeSJFooter(isLessonsPage = false) {
  * This function applies desktop-specific styling to the catalog page.
  */
 function desktopCatalogPageStyling() {
+  console.info("Running desktopCatalogPageStyling");
   const catalogBodyParentContainer = document.querySelector("#catalog-content");
   const catalogContainer = document.querySelector("#catalog-courses");
 
@@ -195,6 +196,7 @@ function desktopCatalogPageStyling() {
  * This function applies desktop-specific styling to the course details page.
  */
 function desktopCourseDetailsPageStyling() {
+  console.info("Running desktopCourseDetailsPageStyling");
   const headerContainer = document.querySelector(".top-row-grey");
   const headerFlexContainer = document.querySelector(".dp-row-flex-v2");
   const headingFloaterText = document.querySelector(".sj-floater-text");
@@ -409,6 +411,7 @@ function desktopCourseDetailsPageStyling() {
  * This function applies desktop-specific styling to the path course details page.
  */
 function desktopPathCourseDetailsPageStyling() {
+  console.info("Running desktopPathCourseDetailsPageStyling");
   const headerContainer = document.querySelector(".top-row-grey");
   const headerFlexContainer = document.querySelector(".dp-row-flex-v2");
   const headingFloaterText = document.querySelector(".sj-floater-text");
@@ -499,6 +502,7 @@ function desktopPathCourseDetailsPageStyling() {
  * This function applies desktop-specific styling to the path catalog page.
  */
 function desktopPathCatalogPageStyling() {
+  console.info("Running desktopPathCatalogPageStyling");
   const backArrowBtn = document.querySelector(".back-to-catalog");
 
   const mainContentContainer = document.querySelector("#catalog-content");
@@ -547,6 +551,7 @@ function desktopPathCatalogPageStyling() {
  * This function applies desktop-specific styling to the lesson page.
  */
 function desktopLessonPageStyling() {
+  console.info("Running desktopLessonPageStyling");
   const internalCourseWarning = document.querySelector(
     "#internal-course-warning"
   );
@@ -797,6 +802,7 @@ function desktopLessonPageStyling() {
  * This function applies desktop-specific styling to the login page.
  */
 function desktopLoginPageStyling() {
+  console.info("Running desktopLoginPageStyling");
   const logoImg = document.querySelector(".header-center-img");
 
   const fbBtn = document.querySelector("#facebook_login");
@@ -928,6 +934,7 @@ function desktopLoginPageStyling() {
  * This function applies desktop-specific styling to the sign-up page.
  */
 function desktopSignUpPageStyling() {
+  console.info("Running desktopSignUpPageStyling");
   const logoImg = document.querySelector(".header-center-img");
   const fbBtn = document.querySelector("#facebook_login");
   const googleBtn = document.querySelector("#google_login");
@@ -1099,6 +1106,7 @@ function desktopSignUpPageStyling() {
  * It modifies the layout and appearance of various elements on the page.
  */
 function desktopCurriculumPageNoCertificateStyling() {
+  console.info("Running desktopCurriculumPageNoCertificateStyling");
   const courseDescription = skilljarCourse.short_description; // eslint-disable-line no-undef
 
   const logoImg = document.querySelector(".header-center-img");
@@ -1409,6 +1417,7 @@ function desktopCurriculumPageNoCertificateStyling() {
  * It modifies the layout and appearance of various elements on the page.
  */
 function desktopCurriculumPageYesCertificationStyling() {
+  console.info("Running desktopCurriculumPageYesCertificationStyling");
   const courseDescription = skilljarCourse.short_description; // eslint-disable-line no-undef
 
   const logoImg = document.querySelector(".header-center-img");
@@ -1675,6 +1684,7 @@ function desktopCurriculumPageYesCertificationStyling() {
  * It modifies the layout and appearance of various elements on the page.
  */
 function mobileLoginPageStyling() {
+  console.info("Running mobileLoginPageStyling");
   // NAV VARS
   const logoImg = document.querySelector(".header-center-img");
 
@@ -1799,6 +1809,7 @@ function mobileLoginPageStyling() {
  * It modifies the layout and appearance of various elements on the page.
  */
 function mobileSignUpPageStyling() {
+  console.info("Running mobileSignUpPageStyling");
   const logoImg = document.querySelector(".header-center-img");
   const fbBtn = document.querySelector("#facebook_login");
   const googleBtn = document.querySelector("#google_login");
@@ -1962,6 +1973,7 @@ function mobileSignUpPageStyling() {
  * It modifies the layout and appearance of various elements on the page.
  */
 function mobileCourseDetailsPageStyling() {
+  console.info("Running mobileCourseDetailsPageStyling");
   // NAV VARS
   const navLogoImg = document.querySelector(".header-center-img");
 
@@ -2196,6 +2208,7 @@ function mobileCourseDetailsPageStyling() {
  * It modifies the layout and appearance of various elements on the page.
  */
 function mobileCurriculumPageNoCertificateStyling() {
+  console.info("Running mobileCurriculumPageNoCertificateStyling");
   // NAV VARS
   const navLogoImg = document.querySelector(".header-center-img");
 
@@ -2485,6 +2498,7 @@ function mobileCurriculumPageNoCertificateStyling() {
  * It modifies the layout and appearance of various elements on the page.
  */
 function mobileCurriculumPageYesCertificateStyling() {
+  console.info("Running mobileCurriculumPageYesCertificateStyling");
   // NAV VARS
   const navLogoImg = document.querySelector(".header-center-img");
 
@@ -2768,6 +2782,7 @@ function mobileCurriculumPageYesCertificateStyling() {
  * It also handles the positioning of the internal course warning.
  */
 function mobileLessonPageStyling() {
+  console.info("Running mobileLessonPageStyling");
   const internalCourseWarning = document.querySelector(
     "#internal-course-warning"
   );
@@ -3034,6 +3049,7 @@ function mobileLessonPageStyling() {
  * sign-up, curriculum, and lessons pages.
  */
 function handlePageStyling() {
+  console.info("Running handlePageStyling");
   if (isCourseDetailsPage) {
     currentView === "desktop"
       ? desktopCourseDetailsPageStyling()
@@ -3077,6 +3093,7 @@ function handlePageStyling() {
  * It checks the window width and applies appropriate styles for different page types.
  */
 function renderCourse() {
+  console.info("Running renderCourse");
   const width = checkWindowWidth();
 
   if (width <= 991 && !(currentView === "mobile")) {
