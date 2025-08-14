@@ -36,6 +36,32 @@ function styleGroupContainer(container, border = "b") {
 }
 
 /**
+ * This function styles the list item for lessons.
+ * It hides the type icon, sets padding, font size, font weight, and line height.
+ * If the item is not the last child, it adds a bottom border.
+ * @param {HTMLElement} lessonItem - The list item element to style.
+ * @param {boolean} isLastChild - Indicates if the item is the last child.
+ * @param {boolean} hideIcon - Whether to hide the type icon. Default is true.
+ * @param {string} border - The border style to apply. Default is "b" for blue.
+ * @return {void}
+ */
+function styleListItem(lessonItem, isLastChild, hideIcon = true, border = "b") {
+  if (hideIcon) {
+    hide(lessonItem.querySelector(".type-icon"));
+  }
+
+  lessonItem.style.padding = "24px";
+  lessonItem.style.fontSize = "16px";
+  lessonItem.style.fontWeight = "400";
+  lessonItem.style.lineHeight = "150%";
+
+  if (!isLastChild) {
+    lessonItem.style.borderBottom = border === "b" ? "2px solid #3443F4" : "1px solid #DCDCDC";
+  }
+}
+
+
+/**
  * This function returns the current window width.
  */
 function checkWindowWidth() {
@@ -296,28 +322,6 @@ function desktopCourseDetailsPageStyling() {
 
     if (!hasSections) {
       styleGroupContainer(curContainer);
-    }
-
-    /**
-     * This function styles the list item for lessons.
-     * It hides the type icon, sets padding, font size, font weight, and line height.
-     * If the item is not the last child, it adds a bottom border.
-     * @param {HTMLElement} lessonItem - The list item element to style.
-     * @param {boolean} isLastChild - Indicates if the item is the last child.
-     */
-    function styleListItem(lessonItem, isLastChild) {
-      const icon = lessonItem.querySelector(".type-icon");
-      hide(icon);
-
-      const lessonItemText = lessonItem.querySelector(".lesson-wrapper");
-      lessonItemText.style.padding = "24px";
-      lessonItemText.style.fontSize = "16px";
-      lessonItemText.style.fontWeight = "400";
-      lessonItemText.style.lineHeight = "150%";
-
-      if (!isLastChild) {
-        lessonItemText.style.borderBottom = "2px solid #3443F4";
-      }
     }
 
     /**
@@ -1294,22 +1298,6 @@ function desktopCurriculumPageNoCertificateStyling() {
     }
 
     /**
-     * This function styles each lesson item in the curriculum.
-     * It sets padding, font size, font weight, line height, and border bottom if not the last child.
-     * @param {HTMLElement} lessonEl - The lesson element to style.
-     * @param {boolean} isLastChild - Indicates if the lesson is the last child.
-     */
-    function styleListItem(lessonEl, isLastChild) {
-      lessonEl.style.padding = "24px";
-      lessonEl.style.fontSize = "16px";
-      lessonEl.style.fontWeight = "400";
-      lessonEl.style.lineHeight = "150%";
-      if (!isLastChild) {
-        lessonEl.style.borderBottom = "2px solid #3443f4";
-      }
-    }
-
-    /**
      * This function styles the group heading container.
      * It sets padding, border bottom, and styles the actual group heading.
      * @param {HTMLElement} groupHeadingContainer - The group heading container to style.
@@ -1366,7 +1354,8 @@ function desktopCurriculumPageNoCertificateStyling() {
         const newListEl = document.createElement("div");
         styleListItem(
           newListEl,
-          curArr[i + 1] ? curArr[i + 1].tagName === "DIV" : true
+          curArr[i + 1] ? curArr[i + 1].tagName === "DIV" : true,
+          false
         );
 
         el.querySelector(".title").style.textWrap = "wrap";
@@ -1590,22 +1579,6 @@ function desktopCurriculumPageYesCertificationStyling() {
     }
 
     /**
-     * This function styles each lesson item in the curriculum.
-     * It sets padding, font size, font weight, line height, and border bottom if not the last child.
-     * @param {HTMLElement} lessonEl - The lesson element to style.
-     * @param {boolean} isLastChild - Indicates if the lesson is the last child.
-     */
-    function styleListItem(lessonEl, isLastChild) {
-      lessonEl.style.padding = "24px";
-      lessonEl.style.fontSize = "16px";
-      lessonEl.style.fontWeight = "400";
-      lessonEl.style.lineHeight = "150%";
-      if (!isLastChild) {
-        lessonEl.style.borderBottom = "2px solid #3443f4";
-      }
-    }
-
-    /**
      * This function styles the group heading container.
      * It sets padding, border bottom, and styles the actual group heading.
      * @param {HTMLElement} groupHeadingContainer - The group heading container to style.
@@ -1661,7 +1634,8 @@ function desktopCurriculumPageYesCertificationStyling() {
         const newListEl = document.createElement("div");
         styleListItem(
           newListEl,
-          curArr[i + 1] ? curArr[i + 1].tagName === "DIV" : true
+          curArr[i + 1] ? curArr[i + 1].tagName === "DIV" : true,
+          false
         );
         newListEl.append(el);
         curContainer.append(newListEl);
@@ -2141,28 +2115,6 @@ function mobileCourseDetailsPageStyling() {
     }
 
     /**
-     * This function styles each lesson item in the curriculum.
-     * It sets padding, font size, font weight, line height, and border bottom if not the last child.
-     * @param {HTMLElement} lessonItem - The lesson item element to style.
-     * @param {boolean} isLastChild - Indicates if the lesson item is the last child.
-     */
-    function styleListItem(lessonItem, isLastChild) {
-      // Display none for icon w/ class 'type-icon'
-      const icon = lessonItem.querySelector(".type-icon");
-      hide(icon);
-
-      const lessonItemText = lessonItem.querySelector(".lesson-wrapper");
-      lessonItemText.style.padding = "24px";
-      lessonItemText.style.fontSize = "16px";
-      lessonItemText.style.fontWeight = "400";
-      lessonItemText.style.lineHeight = "150%";
-
-      if (!isLastChild) {
-        lessonItemText.style.borderBottom = "1px solid #DCDCDC";
-      }
-    }
-
-    /**
      * This function styles the group heading for curriculum items.
      * It sets the text content, font size, font weight, line height, letter spacing,
      * padding, and border bottom.
@@ -2198,7 +2150,9 @@ function mobileCourseDetailsPageStyling() {
         newListItem.innerHTML = curListItem.innerHTML;
         styleListItem(
           newListItem,
-          arr[i + 1] ? arr[i + 1].classList.contains("section") : true
+          arr[i + 1] ? arr[i + 1].classList.contains("section") : true,
+          true,
+          "g"
         );
         curContainer.append(newListItem);
       }
@@ -2424,22 +2378,6 @@ function mobileCurriculumPageNoCertificateStyling() {
     }
 
     /**
-     * This function styles each lesson item in the curriculum.
-     * It sets padding, font size, font weight, line height, and border bottom if not the last child.
-     * @param {HTMLElement} lessonEl - The lesson element to style.
-     * @param {boolean} isLastChild - Indicates if the lesson item is the last child.
-     */
-    function styleListItem(lessonEl, isLastChild) {
-      lessonEl.style.padding = "24px";
-      lessonEl.style.fontSize = "16px";
-      lessonEl.style.fontWeight = "400";
-      lessonEl.style.lineHeight = "150%";
-      if (!isLastChild) {
-        lessonEl.style.borderBottom = "1px solid #DCDCDC";
-      }
-    }
-
-    /**
      * This function styles the group heading for curriculum items.
      * It sets the text content, font size, font weight, line height, letter spacing,
      * padding, and border bottom.
@@ -2497,7 +2435,9 @@ function mobileCurriculumPageNoCertificateStyling() {
         const newListEl = document.createElement("div");
         styleListItem(
           newListEl,
-          curArr[i + 1] ? curArr[i + 1].tagName === "DIV" : true
+          curArr[i + 1] ? curArr[i + 1].tagName === "DIV" : true,
+          false,
+          "g"
         );
         // Styling for mobile
         el.querySelector(".title").style.textWrap = "wrap";
@@ -2720,22 +2660,6 @@ function mobileCurriculumPageYesCertificateStyling() {
     }
 
     /**
-     * This function styles each lesson item in the curriculum.
-     * It sets padding, font size, font weight, line height, and border bottom if not the last child.
-     * @param {HTMLElement} lessonEl - The lesson element to style.
-     * @param {boolean} isLastChild - Indicates if the lesson item is the last child.
-     */
-    function styleListItem(lessonEl, isLastChild) {
-      lessonEl.style.padding = "24px";
-      lessonEl.style.fontSize = "16px";
-      lessonEl.style.fontWeight = "400";
-      lessonEl.style.lineHeight = "150%";
-      if (!isLastChild) {
-        lessonEl.style.borderBottom = "1px solid #DCDCDC";
-      }
-    }
-
-    /**
      * This function styles the group heading for curriculum items.
      * It sets the text content, font size, font weight, line height, letter spacing,
      * padding, and border bottom.
@@ -2793,7 +2717,9 @@ function mobileCurriculumPageYesCertificateStyling() {
         const newListEl = document.createElement("div");
         styleListItem(
           newListEl,
-          curArr[i + 1] ? curArr[i + 1].tagName === "DIV" : true
+          curArr[i + 1] ? curArr[i + 1].tagName === "DIV" : true,
+          false,
+          "g"
         );
         // Styling for mobile
         el.querySelector(".title").style.textWrap = "wrap";
