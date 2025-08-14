@@ -1324,7 +1324,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   const pageIcons = document.querySelectorAll(".type-icon.hide-for-small");
   const lessonListItems = document.querySelectorAll(".lesson-row");
   const curriculumParentContainer = document.querySelector("#curriculum-list");
-  const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
+  const curriculumItemsListLIVE = new Array(...curriculumParentContainer.childNodes);
 
   const curriculumOutsideContainer =
     curriculumParentContainer.closest(".content");
@@ -1463,7 +1463,7 @@ function desktopCurriculumPageNoCertificateStyling() {
       : false;
 
     curriculumItemsListLIVE
-      .map((el) => el?.tagName)
+      .filter((el) => el?.tagName)
       .forEach((el) => el.classList.add("curriculumItem"));
 
     // Create a starting container
