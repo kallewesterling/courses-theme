@@ -22,6 +22,20 @@ function hide(element) {
 }
 
 /**
+ * This function styles the group container for curriculum sections.
+ * It sets the border, border radius, margin, and padding.
+ * @param {HTMLElement} container - The container element to style.
+ * @param {string} border - The border style to apply. Default is "b" for blue.
+ * @return {void}
+ */
+function styleGroupContainer(container, border = "b") {
+  container.style.border = border === "b" ? "2px solid #3443F4" : "1px solid #DCDCDC";
+  container.style.borderRadius = "8px";
+  container.style.marginBottom = "48px";
+  container.style.padding = "0";
+}
+
+/**
  * This function returns the current window width.
  */
 function checkWindowWidth() {
@@ -282,18 +296,6 @@ function desktopCourseDetailsPageStyling() {
 
     if (!hasSections) {
       styleGroupContainer(curContainer);
-    }
-
-    /**
-     * This function styles the group container for curriculum sections.
-     * It sets the border, border radius, margin, and padding.
-     * @param {HTMLElement} container - The container element to style.
-     */
-    function styleGroupContainer(container) {
-      container.style.border = "2px solid #3443F4";
-      container.style.borderRadius = "8px";
-      container.style.marginBottom = "48px";
-      container.style.padding = "0";
     }
 
     /**
@@ -1292,18 +1294,6 @@ function desktopCurriculumPageNoCertificateStyling() {
     }
 
     /**
-     * This function styles the group container for curriculum items.
-     * It sets the border, border radius, margin, and padding.
-     * @param {HTMLElement} container - The container element to style.
-     */
-    function styleGroupContainer(container) {
-      container.style.border = "2px solid #3443f4";
-      container.style.borderRadius = "8px";
-      container.style.marginBottom = "48px";
-      container.style.padding = "0";
-    }
-
-    /**
      * This function styles each lesson item in the curriculum.
      * It sets padding, font size, font weight, line height, and border bottom if not the last child.
      * @param {HTMLElement} lessonEl - The lesson element to style.
@@ -1597,18 +1587,6 @@ function desktopCurriculumPageYesCertificationStyling() {
 
     if (!hasSections) {
       styleGroupContainer(curContainer);
-    }
-
-    /**
-     * This function styles the group container for curriculum items.
-     * It sets the border, border radius, margin, and padding.
-     * @param {HTMLElement} container - The container element to style.
-     */
-    function styleGroupContainer(container) {
-      container.style.border = "2px solid #3443f4";
-      container.style.borderRadius = "8px";
-      container.style.marginBottom = "48px";
-      container.style.padding = "0";
     }
 
     /**
@@ -2159,19 +2137,7 @@ function mobileCourseDetailsPageStyling() {
     let curContainer = document.createElement("li");
 
     if (!hasSections) {
-      styleGroupContainer(curContainer);
-    }
-
-    /**
-     * This function styles the group container for curriculum items.
-     * It sets the border, border radius, margin, and padding.
-     * @param {HTMLElement} container - The container element to style.
-     */
-    function styleGroupContainer(container) {
-      container.style.border = "1px solid #DCDCDC";
-      container.style.borderRadius = "8px";
-      container.style.marginBottom = "48px";
-      container.style.padding = "0";
+      styleGroupContainer(curContainer, "g");
     }
 
     /**
@@ -2454,19 +2420,7 @@ function mobileCurriculumPageNoCertificateStyling() {
     let curContainer = document.createElement("div");
 
     if (!hasSections) {
-      styleGroupContainer(curContainer);
-    }
-
-    /**
-     * This function styles the group container for curriculum items.
-     * It sets the border, border radius, margin, and padding.
-     * @param {HTMLElement} container - The container element to style.
-     */
-    function styleGroupContainer(container) {
-      container.style.border = "1px solid #DCDCDC";
-      container.style.borderRadius = "8px";
-      container.style.marginBottom = "48px";
-      container.style.padding = "0";
+      styleGroupContainer(curContainer, "g");
     }
 
     /**
@@ -2762,19 +2716,7 @@ function mobileCurriculumPageYesCertificateStyling() {
     let curContainer = document.createElement("div");
 
     if (!hasSections) {
-      styleGroupContainer(curContainer);
-    }
-
-    /**
-     * This function styles the group container for curriculum items.
-     * It sets the border, border radius, margin, and padding.
-     * @param {HTMLElement} container - The container element to style.
-     */
-    function styleGroupContainer(container) {
-      container.style.border = "1px solid #DCDCDC";
-      container.style.borderRadius = "8px";
-      container.style.marginBottom = "48px";
-      container.style.padding = "0";
+      styleGroupContainer(curContainer, "g");
     }
 
     /**
