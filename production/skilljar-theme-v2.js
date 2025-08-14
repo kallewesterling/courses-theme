@@ -1328,10 +1328,10 @@ function desktopCurriculumPageNoCertificateStyling() {
       // groupHeadingContainer.style.borderBottom = "2px solid #3443f4";
 
       // Get actual group heading
-      const groupHeading =
-        groupHeadingContainer.querySelector("h3") || groupHeadingContainer;
+      // const groupHeading =
+      //   groupHeadingContainer.querySelector("h3") || groupHeadingContainer;
 
-      groupHeading.textContent = groupHeading?.textContent?.trim();
+      // groupHeading.textContent = groupHeading?.textContent?.trim();
       // groupHeading.style.fontSize = "16px";
       // groupHeading.style.fontFamily = "Fusiona";
       // groupHeading.style.fontWeight = "500";
@@ -1362,7 +1362,7 @@ function desktopCurriculumPageNoCertificateStyling() {
         newGroupHeading.style.gap = "12px";
         
         const headingContent = document.createElement("span");
-        headingContent.textContent = el.querySelector("h3").textContent;
+        headingContent.textContent = el.querySelector("h3")?.textContent?.trim() || "Module";
         
         newGroupHeading.append(headingContent);
 
@@ -1644,7 +1644,7 @@ function desktopCurriculumPageYesCertificationStyling() {
         newGroupHeading.style.gap = "12px";
         
         const headingContent = document.createElement("span");
-        headingContent.textContent = el.querySelector("h3").textContent;
+        headingContent.textContent = el.querySelector("h3")?.textContent?.trim() || "Module";
         
         newGroupHeading.append(headingContent);
 
@@ -2449,7 +2449,7 @@ function mobileCurriculumPageNoCertificateStyling() {
         newGroupHeading.style.gap = "12px";
         
         const headingContent = document.createElement("span");
-        headingContent.textContent = el.querySelector("h3").textContent;
+        headingContent.textContent = el.querySelector("h3")?.textContent?.trim() || "Module";
         
         newGroupHeading.append(headingContent);
 
@@ -2733,7 +2733,7 @@ function mobileCurriculumPageYesCertificateStyling() {
         newGroupHeading.style.gap = "12px";
         
         const headingContent = document.createElement("span");
-        headingContent.textContent = el.querySelector("h3").textContent;
+        headingContent.textContent = el.querySelector("h3")?.textContent?.trim() || "Module";
         
         newGroupHeading.append(headingContent);
 
