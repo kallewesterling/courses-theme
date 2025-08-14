@@ -227,11 +227,11 @@ function desktopCatalogPageStyling() {
   if (!initialLoadComplete) {
     // Create a container div for courses catalog list
     const catalogContentContainer = document.createElement("div");
-    
+
     // Create header for list
     const allCoursesHeader = document.createElement("h2");
     allCoursesHeader.textContent = "All Courses";
-    
+
     // handle styling
     setStyle(allCoursesHeader, {
       fontSize: "48px",
@@ -241,12 +241,7 @@ function desktopCatalogPageStyling() {
     setStyle(catalogContentContainer, {
       maxWidth: "min(1232px, 90%)",
       margin: "96px auto",
-    })
-    
-    // catalogContentContainer.style.maxWidth = "min(1232px, 90%)";
-    // catalogContentContainer.style.margin = "96px auto";
-    // allCoursesHeader.style.fontSize = "48px";
-    // allCoursesHeader.style.marginBottom = "38px";
+    });
 
     catalogContentContainer.append(allCoursesHeader, catalogContainer);
     catalogBodyParentContainer.append(catalogContentContainer);
@@ -259,7 +254,7 @@ function desktopCatalogPageStyling() {
  * This function applies desktop-specific styling to the course details page.
  */
 function desktopCourseDetailsPageStyling() {
-  console.info("Running desktopCourseDetailsPageStyling");
+  console.info("Running desktopCourseDetailsPageStyling with setStyle");
   const headerContainer = document.querySelector(".top-row-grey");
   const headerFlexContainer = document.querySelector(".dp-row-flex-v2");
   const headingFloaterText = document.querySelector(".sj-floater-text");
@@ -309,47 +304,102 @@ function desktopCourseDetailsPageStyling() {
     ".course-details-card-link"
   );
 
-  hide(backToCatalogBtn);
-  hide(mobileBodyContent);
   if (signInHeaderText) {
     hide(signInHeaderText);
-    signInBtn.style.backgroundColor = "transparent";
-    signInBtn.style.padding = "8px 12px";
-    signInBtn.style.marginRight = "24px";
-    signInBtn.style.borderColor = "#3443F4";
-    signInBtn.style.border = "2px solid #3443F4";
-    signInBtn.style.borderRadius = "999px";
-    signInBtn.style.fontSize = "14px";
-    signInBtn.style.fontFamily = "Space Mono";
-    signInBtn.style.fontWeight = "700";
-    signInBtn.style.lineHeight = "20px";
+    // Style the sign-in button
+    setStyle(signInBtn, {
+      backgroundColor: "transparent",
+      padding: "8px 12px",
+      marginRight: "24px",
+      borderColor: "#3443F4",
+      border: "2px solid #3443F4",
+      borderRadius: "999px",
+      fontSize: "14px",
+      fontFamily: "Space Mono",
+      fontWeight: "700",
+      lineHeight: "20px",
+    });
+    // signInBtn.style.backgroundColor = "transparent";
+    // signInBtn.style.padding = "8px 12px";
+    // signInBtn.style.marginRight = "24px";
+    // signInBtn.style.borderColor = "#3443F4";
+    // signInBtn.style.border = "2px solid #3443F4";
+    // signInBtn.style.borderRadius = "999px";
+    // signInBtn.style.fontSize = "14px";
+    // signInBtn.style.fontFamily = "Space Mono";
+    // signInBtn.style.fontWeight = "700";
+    // signInBtn.style.lineHeight = "20px";
   }
 
-  headerContainer.style.backgroundColor = "#D0CFEE";
-  headerContainer.style.margin = "0";
-  headerContainer.style.maxWidth = "none";
-  headerContainer.style.paddingTop = "96px";
-  headerContainer.style.paddingBottom = "96px";
-  headerContainer.style.border = "0";
-  headerFlexContainer.style.flexDirection = "row-reverse";
-  headerFlexContainer.style.flexWrap = "nowrap";
-  headerFlexContainer.style.justifyContent = "start";
-  headerFlexContainer.style.gap = "24px";
-  headerFlexContainer.style.maxWidth = "1188px";
+  setStyle(headerContainer, {
+    backgroundColor: "#D0CFEE",
+    margin: "0",
+    maxWidth: "none",
+    paddingTop: "96px",
+    paddingBottom: "96px",
+    border: "0",
+  });
+
+  // headerContainer.style.backgroundColor = "#D0CFEE";
+  // headerContainer.style.margin = "0";
+  // headerContainer.style.maxWidth = "none";
+  // headerContainer.style.paddingTop = "96px";
+  // headerContainer.style.paddingBottom = "96px";
+  // headerContainer.style.border = "0";
+
+  setStyle(headerFlexContainer, {
+    flexDirection: "row-reverse",
+    flexWrap: "nowrap",
+    justifyContent: "start",
+    gap: "24px",
+    maxWidth: "1188px",
+  });
+
+  // headerFlexContainer.style.flexDirection = "row-reverse";
+  // headerFlexContainer.style.flexWrap = "nowrap";
+  // headerFlexContainer.style.justifyContent = "start";
+  // headerFlexContainer.style.gap = "24px";
+  // headerFlexContainer.style.maxWidth = "1188px";
 
   // RENDERING OF COURSE DETAILS PAGE TEXT HEADING ON LEFT
-  mainHeadingContainer.style.border = "0";
-  mainHeadingContainer.style.maxWidth = "564px";
-  hide(mainInfoCardContained);
-  headingFloaterText.style.display = "block";
-  headingFloaterText.style.marginBottom = "24px";
-  mainHeading.style.margin = "0 0 12px 0";
-  mainHeading.style.fontSize = "36px";
-  mainHeading.style.fontWeight = "600";
-  mainHeading.style.lineHeight = "43.2px";
-  mainHeading.style.letterSpacing = "-.02em";
-  headingParagraph.style.display = "block";
-  headingParagraph.style.margin = "0 0 24px 0";
+  setStyle(mainHeadingContainer, {
+    border: "0",
+    maxWidth: "564px",
+  });
+  // mainHeadingContainer.style.border = "0";
+  // mainHeadingContainer.style.maxWidth = "564px";
+
+  setStyle(headingFloaterText, {
+    display: "block",
+    marginBottom: "24px",
+  });
+
+  // headingFloaterText.style.display = "block";
+  // headingFloaterText.style.marginBottom = "24px";
+
+  setStyle(mainHeading, {
+    margin: "0 0 12px 0",
+    fontSize: "36px",
+    fontWeight: "600",
+    lineHeight: "43.2px",
+    letterSpacing: "-.02em",
+  });
+
+  // mainHeading.style.margin = "0 0 12px 0";
+  // mainHeading.style.fontSize = "36px";
+  // mainHeading.style.fontWeight = "600";
+  // mainHeading.style.lineHeight = "43.2px";
+  // mainHeading.style.letterSpacing = "-.02em";
+
+  setStyle(headingParagraph, {
+    display: "block",
+    margin: "0 0 24px 0",
+  });
+
+  // headingParagraph.style.display = "block";
+  // headingParagraph.style.margin = "0 0 24px 0";
+
+  // move elements
   mainHeadingContainer.append(
     headingFloaterText,
     mainHeading,
@@ -357,38 +407,66 @@ function desktopCourseDetailsPageStyling() {
     registerBtn
   );
 
+  // hide elements
+  hide(mainInfoCardContained);
+  hide(backToCatalogBtn);
+  hide(mobileBodyContent);
+
   // VIDEO STYLING
-  if (videoContainer && videoContainer.style) {
-    videoContainer.style.maxWidth = "none";
-  }
+  setStyle(videoContainer, {
+    maxWidth: "none",
+  });
+  // videoContainer.style.maxWidth = "none";
 
   // COURSE DETAILS PAGE BODY STYLING
-  bodyContainer.style.padding = "0";
-  bodyContainer.style.margin = "96px auto 46px auto";
-  bodyContainer.style.maxWidth = "min(1152px, 90%)";
-  bodyContainer.style.display = "grid";
-  bodyContainer.style.gridTemplateColumns =
-    "minmax(100px, 760px) minmax(100px, 368px)";
-  bodyContainer.style.columnGap = "24px";
+  setStyle(bodyContainer, {
+    padding: "0",
+    margin: "96px auto 46px auto",
+    maxWidth: "min(1152px, 90%)",
+    display: "grid",
+    gridTemplateColumns: "minmax(100px, 760px) minmax(100px, 368px)",
+    columnGap: "24px",
+  });
 
-  secondaryBodyContainer.style.padding = "0";
-  secondaryBodyContainer.style.maxWidth = "760px";
+  // bodyContainer.style.padding = "0";
+  // bodyContainer.style.margin = "96px auto 46px auto";
+  // bodyContainer.style.maxWidth = "min(1152px, 90%)";
+  // bodyContainer.style.display = "grid";
+  // bodyContainer.style.gridTemplateColumns = "minmax(100px, 760px) minmax(100px, 368px)";
+  // bodyContainer.style.columnGap = "24px";
+
+  setStyle(secondaryBodyContainer, {
+    padding: "0",
+    maxWidth: "760px",
+  });
+
+  // secondaryBodyContainer.style.padding = "0";
+  // secondaryBodyContainer.style.maxWidth = "760px";
+
   bodyColumns.forEach((column) => {
-    column.style.float = "none";
-    column.style.padding = "0";
-    column.style.width = "100%";
-    column.style.display = "block";
+    setStyle(column, {
+      float: "none",
+      padding: "0",
+      width: "100%",
+      display: "block",
+      marginBottom: column.classList.contains("large-7") ? "48px" : "0",
+    });
 
-    column.querySelector("h3").style.fontWeight = "600";
+    // column.style.float = "none";
+    // column.style.padding = "0";
+    // column.style.width = "100%";
+    // column.style.display = "block";
 
-    if (column.classList.contains("large-7")) {
-      column.style.marginBottom = "48px";
-    }
+    setStyle(column.querySelector("h3"), { fontWeight: "600" });
 
-    const innerCol = column.querySelector(".dp-curriculum");
-    if (innerCol) {
-      innerCol.style.margin = "0";
-    }
+    // if (column.classList.contains("large-7")) {
+    //   setStyle(column, {
+    //     marginBottom: "48px",
+    //   });
+      // column.style.marginBottom = "48px";
+    // }
+
+    setStyle(column.querySelector(".dp-curriculum"), { margin: "0" });
   });
 
   // COURSE DETAILS CURRICULUM STYLING
@@ -437,18 +515,26 @@ function desktopCourseDetailsPageStyling() {
     curriculumListContainer.append(curContainer);
 
     hide(curriculumListHeader);
-    curriculumListContainer.style.padding = "0";
+    setStyle(curriculumListContainer, { padding: "0" });
   }
 
   // COURSE DETAILS GRID STRUCTURE STYLING - ADDING DETAILS CARD ON RIGHT SIDE
   if (courseDetailCardContainer) {
     bodyContainer.append(courseDetailCardContainer);
-    courseDetailCardContainer.style.margin = "0 0 46px 0";
-    courseDetailCardContainer.style.justifySelf = "center";
+    setStyle(courseDetailCardContainer, {
+      margin: "0 0 46px 0",
+      justifySelf: "center",
+    });
+    // courseDetailCardContainer.style.margin = "0 0 46px 0";
+    // courseDetailCardContainer.style.justifySelf = "center";
     courseDetailCardListItems.forEach((li) => {
       const iconClone = checkboxIcon.cloneNode(true);
-      iconClone.style.display = "block";
-      iconClone.style.flexShrink = "0";
+      setStyle(iconClone, {
+        display: "block",
+        flexShrink: "0",
+      });
+      // iconClone.style.display = "block";
+      // iconClone.style.flexShrink = "0";
       li.prepend(iconClone);
     });
   }
