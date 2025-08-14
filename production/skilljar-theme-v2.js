@@ -52,10 +52,10 @@ function hide(element) {
  * @param {HTMLElement} tooltipEl - The tooltip element to animate.
  */
 function animateCopiedTooltip(tooltipEl) {
-  tooltipEl.style.opacity = "1";
+  setStyle(tooltipEl, { opacity: "1" });
 
   setTimeout(() => {
-    tooltipEl.style.opacity = "0";
+    setStyle(tooltipEl, { opacity: "0" });
   }, 400);
 }
 
@@ -268,7 +268,7 @@ function desktopCourseDetailsPageStyling() {
 
   // SIGN IN VARIABLES (WHEN USER NOT LOGGED IN)
   const signInHeaderText = document.querySelector(".signin");
-  
+
   // BODY VARIABLES
   const bodyContainer = document.querySelector("#dp-details");
   const mobileBodyContent = document.querySelector(".show-for-small");
@@ -305,7 +305,7 @@ function desktopCourseDetailsPageStyling() {
     const signInBtn = document.querySelector(
       ".header-link.login-link.sj-text-sign-in.focus-link-v2"
     );
-    
+
     setStyle(signInBtn, {
       backgroundColor: "transparent",
       padding: "8px 12px",
