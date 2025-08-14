@@ -141,10 +141,8 @@ function desktopCatalogPageStyling() {
  * This function applies desktop-specific styling to the course details page.
  */
 function desktopCourseDetailsPageStyling() {
-  const headerContainer = document.querySelector(
-    ".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"
-  );
-  const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2");
+  const headerContainer = document.querySelector(".top-row-grey");
+  const headerFlexContainer = document.querySelector(".dp-row-flex-v2");
   const headingFloaterText = document.querySelector(".sj-floater-text");
   const mainHeading = document.querySelector(".break-word");
   const registerBtn = document.querySelector("#purchase-button-wrapper-large");
@@ -163,10 +161,8 @@ function desktopCourseDetailsPageStyling() {
   );
   // BODY VARIABLES
   const bodyContainer = document.querySelector("#dp-details");
-  const mobileBodyContent = document.querySelector(".row.show-for-small");
-  const secondaryBodyContainer = document.querySelector(
-    ".row.hide-for-small.padded-side-bottom"
-  );
+  const mobileBodyContent = document.querySelector(".show-for-small");
+  const secondaryBodyContainer = document.querySelector(".hide-for-small");
   const bodyColumns = secondaryBodyContainer.querySelectorAll(".columns");
   const curriculumListContainer = document.querySelector(".dp-curriculum"); // NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)!
   const curriculumListHeader = curriculumListContainer
@@ -328,13 +324,13 @@ function desktopCourseDetailsPageStyling() {
      * @param {HTMLElement} groupHeading - The group heading element to style.
      */
     function styleGroupHeading(groupHeading) {
-      groupHeading.textContent = groupHeading?.textContent?.trim();
       groupHeading.style.fontSize = "16px";
       groupHeading.style.fontWeight = "500";
       groupHeading.style.lineHeight = "125%";
       groupHeading.style.fontFamily = "Fusiona";
       groupHeading.style.padding = "24px";
       groupHeading.style.borderBottom = "2px solid #3443F4";
+      groupHeading.textContent = groupHeading?.textContent?.trim();
       curContainer.append(groupHeading);
     }
 
@@ -394,10 +390,8 @@ function desktopCourseDetailsPageStyling() {
  * This function applies desktop-specific styling to the path course details page.
  */
 function desktopPathCourseDetailsPageStyling() {
-  const headerContainer = document.querySelector(
-    ".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"
-  );
-  const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2");
+  const headerContainer = document.querySelector(".top-row-grey");
+  const headerFlexContainer = document.querySelector(".dp-row-flex-v2");
   const headingFloaterText = document.querySelector(".sj-floater-text");
   const mainHeading = document.querySelector(".break-word");
   const registerBtn = document.querySelector("#purchase-button-wrapper-large");
@@ -513,6 +507,7 @@ function desktopPathCatalogPageStyling() {
         innerContainer.style.borderColor = "#3443f4";
       }
     });
+
     course.addEventListener("mouseout", () => {
       course.style.borderColor = "#D0CFEE";
       if (innerContainer) {
@@ -595,11 +590,9 @@ function desktopLessonPageStyling() {
   navOpenIcon.style.position = "sticky";
   navOpenIcon.style.top = "12px";
   navOpenIcon.style.zIndex = "1";
-  hamburgerIcon.style.padding = "12px";
-  xIcon.style.padding = "12px";
   navOpenIcon.style.float = "none";
+
   [hamburgerIcon, xIcon].forEach((el) => {
-    xIcon.style.padding = "12px";
     el.style.padding = "12px";
     el.style.border = "none";
     el.style.borderRadius = "8px";
@@ -859,12 +852,12 @@ function desktopLoginPageStyling() {
   loginTab.style.fontWeight = "700";
   loginTab.style.fontSize = "18px";
   loginTab.style.lineHeight = "24px";
+  loginTab.style.fontFamily = "Space Mono";
   signInTab.querySelector("span").textContent = "Sign Up";
   signInTab.style.display = "flex";
   signInTab.style.alignItems = "center";
   signInTab.style.padding = "8px 16px";
   signInTabText.style.color = "rgba(52, 67, 244, .4)";
-  loginTab.style.fontFamily = "Space Mono";
   signInTabText.style.fontWeight = "700";
   signInTabText.style.fontSize = "18px";
   signInTabText.style.lineHeight = "24px";
@@ -944,7 +937,6 @@ function desktopSignUpPageStyling() {
   const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll("li");
   const signUpSignInContainer = document.querySelector(".large-12.columns");
   const loginTab = document.querySelector("#login-tab-left");
-  loginTab;
   const loginTabText = loginTab.querySelector("a");
   const signInTab = document.querySelector("#login-tab-right");
   const signInTabText = signInTab.querySelector("span");
@@ -982,17 +974,17 @@ function desktopSignUpPageStyling() {
 
   // STYLE THE LOGIN/SIGN UP TABS
   signUpSignInContainer.style.display = "flex";
-  loginTabText.querySelector("span").textContent = "Log In";
   loginTab.style.border = "0";
   loginTab.style.display = "flex";
   loginTab.style.padding = "8px 16px";
   loginTab.style.alignItems = "center";
+  loginTab.style.borderRadius = "100px";
   loginTabText.style.color = "rgba(52, 67, 244, .4)";
   loginTabText.style.fontWeight = "700";
   loginTabText.style.fontSize = "18px";
   loginTabText.style.fontFamily = "Space Mono";
   loginTabText.style.lineHeight = "24px";
-  loginTab.style.borderRadius = "100px";
+  loginTabText.querySelector("span").textContent = "Log In";
   signInTab.style.display = "flex";
   signInTab.style.alignItems = "center";
   signInTab.style.padding = "8px 16px";
@@ -1114,12 +1106,8 @@ function desktopCurriculumPageNoCertificateStyling() {
 
   hide(backToCatalogLink);
 
-  const curriculumPageHeader = document.querySelector(
-    ".top-row-grey.top-row-white-v2.padding-side.row-v2"
-  );
-  const headerTextAndImgContainer = document.querySelector(
-    ".row.dp-row-flex-v2"
-  );
+  const curriculumPageHeader = document.querySelector(".top-row-grey");
+  const headerTextAndImgContainer = document.querySelector(".dp-row-flex-v2");
   const sjHeaderTextContainer = document.querySelector(".cp-summary-wrapper");
   const sjHeaderTextHeading = document.querySelector(".break-word");
   const sjHeaderTextSubheading = document.querySelector(".cp-lessons");
@@ -1140,7 +1128,7 @@ function desktopCurriculumPageNoCertificateStyling() {
 
   // BODY VARIABLES
   const bodyMainContainer = document.querySelector("#cp-content");
-  const InnerContentContainer = bodyMainContainer.querySelector(".columns");
+  const innerContentContainer = bodyMainContainer.querySelector(".columns");
   const tabsContainer = document.querySelector(".section-container.tabs");
   let [curriculumSection, aboutSection] =
     tabsContainer.querySelectorAll("section");
@@ -1203,7 +1191,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   }
 
   bodyMainContainer.style.columnGap = "24px";
-  InnerContentContainer.style.width = "100%";
+  innerContentContainer.style.width = "100%";
 
   // STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   sjHeaderTextHeading.style.fontWeight = "600";
@@ -1455,12 +1443,8 @@ function desktopCurriculumPageYesCertificationStyling() {
 
   hide(backToCatalogLink);
 
-  const curriculumPageHeader = document.querySelector(
-    ".top-row-grey.top-row-white-v2.padding-side.row-v2"
-  );
-  const headerTextAndImgContainer = document.querySelector(
-    ".row.dp-row-flex-v2"
-  );
+  const curriculumPageHeader = document.querySelector(".top-row-grey");
+  const headerTextAndImgContainer = document.querySelector(".dp-row-flex-v2");
   const sjHeaderTextContainer = document.querySelector(".cp-summary-wrapper");
   const sjHeaderTextHeading = document.querySelector(".break-word");
   const sjHeaderTextSubheading = document.querySelector(".cp-lessons");
@@ -1476,7 +1460,7 @@ function desktopCurriculumPageYesCertificationStyling() {
 
   // BODY VARIABLES
   const bodyMainContainer = document.querySelector("#cp-content");
-  const InnerContentContainer = bodyMainContainer.querySelector(".columns");
+  const innerContentContainer = bodyMainContainer.querySelector(".columns");
   const tabsContainer = document.querySelector(".section-container.tabs");
   let [curriculumSection, aboutSection] =
     tabsContainer.querySelectorAll("section");
@@ -1528,7 +1512,7 @@ function desktopCurriculumPageYesCertificationStyling() {
   }
 
   bodyMainContainer.style.columnGap = "24px";
-  InnerContentContainer.style.width = "100%";
+  innerContentContainer.style.width = "100%";
 
   // STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   sjHeaderTextHeading.style.fontWeight = "600";
@@ -1876,7 +1860,6 @@ function mobileSignUpPageStyling() {
   const orSignInWithGoogleList =
     orSignInWithGoogleContainer.querySelector("ul");
   const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll("li");
-
   const signUpSignInContainer = document.querySelector(".large-12.columns");
   const loginTab = document.querySelector("#login-tab-left");
   const loginTabText = loginTab.querySelector("a");
@@ -1921,11 +1904,11 @@ function mobileSignUpPageStyling() {
   loginTab.style.display = "flex";
   loginTab.style.padding = "8px 16px";
   loginTab.style.alignItems = "center";
+  loginTab.style.borderRadius = "100px";
   loginTabText.style.color = "#8C8C8C";
   loginTabText.style.fontWeight = "500";
   loginTabText.style.fontSize = "16px";
   loginTabText.style.lineHeight = "24px";
-  loginTab.style.borderRadius = "100px";
   signInTab.style.display = "flex";
   signInTab.style.alignItems = "center";
   signInTab.style.padding = "8px 16px";
@@ -2030,10 +2013,8 @@ function mobileCourseDetailsPageStyling() {
   // NAV VARS
   const navLogoImg = document.querySelector(".header-center-img");
 
-  const headerContainer = document.querySelector(
-    ".top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2"
-  );
-  const headerFlexContainer = document.querySelector(".row.dp-row-flex-v2");
+  const headerContainer = document.querySelector(".top-row-grey");
+  const headerFlexContainer = document.querySelector(".dp-row-flex-v2");
   const headingFloaterText = document.querySelector(".sj-floater-text");
   const mainHeading = document.querySelector(".break-word");
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
@@ -2051,10 +2032,8 @@ function mobileCourseDetailsPageStyling() {
   );
   // BODY VARIABLES
   const bodyContainer = document.querySelector("#dp-details");
-  const mobileBodyContent = document.querySelector(".row.show-for-small");
-  const secondaryBodyContainer = document.querySelector(
-    ".row.hide-for-small.padded-side-bottom"
-  );
+  const mobileBodyContent = document.querySelector(".show-for-small");
+  const secondaryBodyContainer = document.querySelector(".hide-for-small");
   const bodyColumns = secondaryBodyContainer.querySelectorAll(".columns");
   const curriculumListContainer = document.querySelector(".dp-curriculum"); // NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)!
   const curriculumListHeader = curriculumListContainer
@@ -2311,12 +2290,8 @@ function mobileCurriculumPageNoCertificateStyling() {
 
   hide(backToCatalogLink);
 
-  const curriculumPageHeader = document.querySelector(
-    ".top-row-grey.top-row-white-v2.padding-side.row-v2"
-  );
-  const headerTextAndImgContainer = document.querySelector(
-    ".row.dp-row-flex-v2"
-  );
+  const curriculumPageHeader = document.querySelector(".top-row-grey");
+  const headerTextAndImgContainer = document.querySelector(".dp-row-flex-v2");
   const sjHeaderTextContainer = document.querySelector(".cp-summary-wrapper");
   const sjHeaderTextHeading = document.querySelector(".break-word");
   const sjHeaderTextSubheading = document.querySelector(".cp-lessons");
@@ -2334,7 +2309,7 @@ function mobileCurriculumPageNoCertificateStyling() {
 
   // BODY VARIABLES
   const bodyMainContainer = document.querySelector("#cp-content");
-  const InnerContentContainer = bodyMainContainer.querySelector(".columns");
+  const innerContentContainer = bodyMainContainer.querySelector(".columns");
   const tabsContainer = document.querySelector(".section-container.tabs");
   let [curriculumSection, aboutSection] =
     tabsContainer.querySelectorAll("section");
@@ -2371,6 +2346,7 @@ function mobileCurriculumPageNoCertificateStyling() {
   bodyMainContainer.style.display = "grid";
   bodyMainContainer.style.gridTemplateColumns = "1fr";
   bodyMainContainer.style.width = "90%";
+  bodyMainContainer.style.columnGap = "24px";
 
   courseDetailsCard.style.margin = "32px 0 56px 0";
   courseDetailsCard.style.justifySelf = "center";
@@ -2390,8 +2366,7 @@ function mobileCurriculumPageNoCertificateStyling() {
     });
   }
 
-  bodyMainContainer.style.columnGap = "24px";
-  InnerContentContainer.style.width = "100%";
+  innerContentContainer.style.width = "100%";
 
   // STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   sjHeaderTextHeading.style.fontWeight = "600";
@@ -2629,12 +2604,8 @@ function mobileCurriculumPageYesCertificateStyling() {
 
   hide(backToCatalogLink);
 
-  const curriculumPageHeader = document.querySelector(
-    ".top-row-grey.top-row-white-v2.padding-side.row-v2"
-  );
-  const headerTextAndImgContainer = document.querySelector(
-    ".row.dp-row-flex-v2"
-  );
+  const curriculumPageHeader = document.querySelector(".top-row-grey");
+  const headerTextAndImgContainer = document.querySelector(".dp-row-flex-v2");
   const sjHeaderTextContainer = document.querySelector(".cp-summary-wrapper");
   const sjHeaderTextHeading = document.querySelector(".break-word");
   const sjHeaderTextSubheading = document.querySelector(".cp-lessons");
@@ -2650,7 +2621,7 @@ function mobileCurriculumPageYesCertificateStyling() {
 
   // BODY VARIABLES
   const bodyMainContainer = document.querySelector("#cp-content");
-  const InnerContentContainer = bodyMainContainer.querySelector(".columns");
+  const innerContentContainer = bodyMainContainer.querySelector(".columns");
   const tabsContainer = document.querySelector(".section-container.tabs");
   let [curriculumSection, aboutSection] =
     tabsContainer.querySelectorAll("section");
@@ -2688,6 +2659,7 @@ function mobileCurriculumPageYesCertificateStyling() {
   bodyMainContainer.style.display = "grid";
   bodyMainContainer.style.gridTemplateColumns = "1fr";
   bodyMainContainer.style.width = "90%";
+  bodyMainContainer.style.columnGap = "24px";
 
   courseDetailsCard.style.margin = "32px 0 56px 0";
   courseDetailsCard.style.justifySelf = "center";
@@ -2704,8 +2676,7 @@ function mobileCurriculumPageYesCertificateStyling() {
     });
   }
 
-  bodyMainContainer.style.columnGap = "24px";
-  InnerContentContainer.style.width = "100%";
+  innerContentContainer.style.width = "100%";
 
   // STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
   sjHeaderTextHeading.style.fontWeight = "600";
