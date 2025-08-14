@@ -484,7 +484,7 @@ function desktopCourseDetailsPageStyling() {
  * This function applies desktop-specific styling to the path course details page.
  */
 function desktopPathCourseDetailsPageStyling() {
-  console.info("Running desktopPathCourseDetailsPageStyling");
+  console.info("Running desktopPathCourseDetailsPageStyling with setStyle");
   const headerContainer = document.querySelector(".top-row-grey");
   const headerFlexContainer = document.querySelector(".dp-row-flex-v2");
   const headingFloaterText = document.querySelector(".sj-floater-text");
@@ -507,56 +507,125 @@ function desktopPathCourseDetailsPageStyling() {
   const bodyContainer = document.querySelector("#dp-details-bundle");
   const catalogContainer = document.querySelector("#catalog-courses");
 
-  hide(backToCatalogBtn);
-  if (signInHeaderText) {
-    hide(signInHeaderText);
-    signInBtn.style.backgroundColor = "transparent";
-    signInBtn.style.padding = "8px 12px";
-    signInBtn.style.marginRight = "24px";
-    signInBtn.style.borderColor = "#3443F4";
-    signInBtn.style.border = "2px solid #3443F4";
-    signInBtn.style.borderRadius = "999px";
-    signInBtn.style.fontSize = "14px";
-    signInBtn.style.fontFamily = "Space Mono";
-    signInBtn.style.fontWeight = "700";
-    signInBtn.style.lineHeight = "20px";
-  }
+  // set content
+  headingFloaterText.textContent = "Learning Path";
 
-  headerContainer.style.background =
-    "url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png)";
-  headerContainer.style.backgroundSize = "cover";
-  headerContainer.style.backgroundPosition = "center";
-  headerContainer.style.backgroundRepeat = "no-repeat";
-  headerContainer.style.margin = "0";
-  headerContainer.style.maxWidth = "none";
-  headerContainer.style.paddingTop = "96px";
-  headerContainer.style.paddingBottom = "96px";
-  headerContainer.style.border = "0";
-  headerFlexContainer.style.flexDirection = "row-reverse";
-  headerFlexContainer.style.flexWrap = "nowrap";
-  headerFlexContainer.style.justifyContent = "start";
-  headerFlexContainer.style.gap = "24px";
-  headerFlexContainer.style.maxWidth = "1188px";
+  setStyle(signInBtn, {
+    backgroundColor: "transparent",
+    padding: "8px 12px",
+    marginRight: "24px",
+    borderColor: "#3443F4",
+    border: "2px solid #3443F4",
+    borderRadius: "999px",
+    fontSize: "14px",
+    fontFamily: "Space Mono",
+    fontWeight: "700",
+    lineHeight: "20px",
+  });
+
+  // if (signInHeaderText) {
+  //   signInBtn.style.backgroundColor = "transparent";
+  //   signInBtn.style.padding = "8px 12px";
+  //   signInBtn.style.marginRight = "24px";
+  //   signInBtn.style.borderColor = "#3443F4";
+  //   signInBtn.style.border = "2px solid #3443F4";
+  //   signInBtn.style.borderRadius = "999px";
+  //   signInBtn.style.fontSize = "14px";
+  //   signInBtn.style.fontFamily = "Space Mono";
+  //   signInBtn.style.fontWeight = "700";
+  //   signInBtn.style.lineHeight = "20px";
+  // }
+
+  setStyle(headerContainer, {
+    background: "url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png)",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    margin: "0",
+    maxWidth: "none",
+    paddingTop: "96px",
+    paddingBottom: "96px",
+    border: "0",
+  });
+
+  // headerContainer.style.background =
+  //   "url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png)";
+  // headerContainer.style.backgroundSize = "cover";
+  // headerContainer.style.backgroundPosition = "center";
+  // headerContainer.style.backgroundRepeat = "no-repeat";
+  // headerContainer.style.margin = "0";
+  // headerContainer.style.maxWidth = "none";
+  // headerContainer.style.paddingTop = "96px";
+  // headerContainer.style.paddingBottom = "96px";
+  // headerContainer.style.border = "0";
+
+  setStyle(headerFlexContainer, {
+    flexDirection: "row-reverse",
+    flexWrap: "nowrap",
+    justifyContent: "start",
+    gap: "24px",
+    maxWidth: "1188px",
+  });
+
+  // headerFlexContainer.style.flexDirection = "row-reverse";
+  // headerFlexContainer.style.flexWrap = "nowrap";
+  // headerFlexContainer.style.justifyContent = "start";
+  // headerFlexContainer.style.gap = "24px";
+  // headerFlexContainer.style.maxWidth = "1188px";
 
   // RENDERING OF COURSE DETAILS PAGE TEXT HEADING ON LEFT
-  mainHeadingContainer.style.border = "0";
-  mainHeadingContainer.style.maxWidth = "600px";
-  hide(mainInfoCardContained);
-  headingFloaterText.textContent = "Learning Path";
-  headingFloaterText.style.color = "#7AF0FE";
-  headingFloaterText.style.display = "block";
-  headingFloaterText.style.marginBottom = "24px";
-  mainHeading.style.color = "#fff";
-  mainHeading.style.margin = "0 0 12px 0";
-  mainHeading.style.fontSize = "36px";
-  mainHeading.style.fontWeight = "600";
-  mainHeading.style.lineHeight = "43.2px";
-  mainHeading.style.letterSpacing = "-.02em";
-  headingParagraph.style.color = "#fff";
-  headingParagraph.style.display = "block";
-  headingParagraph.style.margin = "0 0 24px 0";
-  registerBtnAnchor.style.borderColor = "#7AF0FE";
-  registerBtnAnchor.style.color = "#fff";
+  setStyle(mainHeadingContainer, {
+    border: "0",
+    maxWidth: "600px",
+  });
+  // mainHeadingContainer.style.border = "0";
+  // mainHeadingContainer.style.maxWidth = "600px";
+  
+  setStyle(headingFloaterText, {
+    color: "#7AF0FE",
+    display: "block",
+    marginBottom: "24px",
+  });
+
+  // headingFloaterText.style.color = "#7AF0FE";
+  // headingFloaterText.style.display = "block";
+  // headingFloaterText.style.marginBottom = "24px";
+  
+  setStyle(mainHeading, {
+    color: "#fff",
+    margin: "0 0 12px 0",
+    fontSize: "36px",
+    fontWeight: "600",
+    lineHeight: "43.2px",
+    letterSpacing: "-.02em",
+  });
+
+  // mainHeading.style.color = "#fff";
+  // mainHeading.style.margin = "0 0 12px 0";
+  // mainHeading.style.fontSize = "36px";
+  // mainHeading.style.fontWeight = "600";
+  // mainHeading.style.lineHeight = "43.2px";
+  // mainHeading.style.letterSpacing = "-.02em";
+
+  setStyle(headingParagraph, {
+    color: "#fff",
+    display: "block",
+    margin: "0 0 24px 0",
+  });
+  
+  // headingParagraph.style.color = "#fff";
+  // headingParagraph.style.display = "block";
+  // headingParagraph.style.margin = "0 0 24px 0";
+  
+  setStyle(registerBtnAnchor, {
+    borderColor: "#7AF0FE",
+    color: "#fff",
+  });
+
+  // registerBtnAnchor.style.borderColor = "#7AF0FE";
+  // registerBtnAnchor.style.color = "#fff";
+  
+  // move elements
   mainHeadingContainer.append(
     headingFloaterText,
     mainHeading,
@@ -565,10 +634,26 @@ function desktopPathCourseDetailsPageStyling() {
   );
 
   // COURSE DETAILS PAGE BODY STYLING
-  bodyContainer.style.padding = "0";
-  bodyContainer.style.margin = "96px auto 46px auto";
-  bodyContainer.style.maxWidth = "min(1152px, 90%)";
-  catalogContainer.style.marginBottom = "85px";
+  setStyle(bodyContainer, {
+    padding: "0",
+    margin: "96px auto 46px auto",
+    maxWidth: "min(1152px, 90%)",
+  });
+
+  // bodyContainer.style.padding = "0";
+  // bodyContainer.style.margin = "96px auto 46px auto";
+  // bodyContainer.style.maxWidth = "min(1152px, 90%)";
+  
+  setStyle(catalogContainer, {
+    marginBottom: "85px",
+  });
+
+  // catalogContainer.style.marginBottom = "85px";
+
+  // hide elements
+  hide(backToCatalogBtn);
+  hide(signInHeaderText);
+  hide(mainInfoCardContained);
 }
 
 /**
