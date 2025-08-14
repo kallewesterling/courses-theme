@@ -1461,45 +1461,42 @@ function desktopCurriculumPageNoCertificateStyling() {
     const hasSections = curriculumParentContainer.querySelector("h3")
       ? true
       : false;
-    let curContainer = document.createElement("div");
 
+    curriculumItemsListLIVE
+      .map((el) => el?.tagName)
+      .forEach((el) => el.classList.add("curriculumItem"));
+
+    // Create a starting container
+    let currentContainer = document.createElement("div");
     if (!hasSections) {
-      styleGroupContainer(curContainer);
+      styleGroupContainer(currentContainer);
     }
-
-    curriculumItemsListLIVE.forEach((el) => {
-      if (el?.tagName) {
-        el.classList.add("curriculumItem");
-      }
-    });
 
     curriculumParentContainer
       .querySelectorAll(".curriculumItem")
       .forEach((el, i, curArr) => {
         if (el.tagName === "DIV") {
-          const h3 = el.querySelector("h3");
+          // Handle creating a new module/section
 
-          // Yes? push curContainer into parent container
-          curriculumParentContainer.append(curContainer);
+          // Start by resetting the current container
+          curriculumParentContainer.append(currentContainer);
+          currentContainer = document.createElement("div");
 
-          // Reset curContainer while pushing current new heading & icon in there for the next iteration
-          curContainer = document.createElement("div");
-          styleGroupContainer(curContainer);
+          styleGroupContainer(currentContainer);
 
-          const newGroupHeading = document.createElement("div");
+          const sectionHeading = Object.assign(document.createElement("div"), {
+            style: "display: flex; align-items: center;",
+            textContent:
+              el.querySelector("h3")?.textContent?.trim() || "Module",
+          });
 
-          setStyle(newGroupHeading, { display: "flex", gap: "12px" });
+          styleGroupHeading(sectionHeading);
 
-          newGroupHeading.textContent = h3?.textContent?.trim() || "Module";
-
-          styleGroupHeading(newGroupHeading);
-
-          curContainer.append(newGroupHeading);
+          currentContainer.append(sectionHeading);
 
           hide(el);
         } else {
-          // Else, normal/expected behaviour
-          // Transfer inner html of current list item to new created div
+          // Handle appending to current module/section
           const isLastChild = curArr[i + 1]
             ? curArr[i + 1].tagName === "DIV"
             : true;
@@ -1511,29 +1508,18 @@ function desktopCurriculumPageNoCertificateStyling() {
           setStyle(el.querySelector(".title"), { textWrap: "wrap" });
 
           newListEl.append(el);
-          curContainer.append(newListEl);
+          currentContainer.append(newListEl);
         }
       });
 
-    setStyle(globalCurriculumSection, {
-      padding: "0 !important",
-      marginTop: "48px !important",
-    });
-
-    setStyle(globalAboutSection, { padding: "0 !important" });
-
     // move elements
-    curriculumParentContainer.append(curContainer);
-    if (resumeBtn) {
-      container.append(
-        headingFloaterText,
-        mainHeading,
-        headingParagraph,
-        resumeBtn
-      );
-    } else {
-      container.append(headingFloaterText, mainHeading, headingParagraph);
-    }
+    container.append(
+      headingFloaterText,
+      mainHeading,
+      headingParagraph,
+      ...(resumeBtn ? [resumeBtn] : [])
+    );
+    curriculumParentContainer.append(currentContainer);
     tabsContainer.append(curriculumSection);
 
     // hide elements
@@ -1542,14 +1528,13 @@ function desktopCurriculumPageNoCertificateStyling() {
   }
 
   // CURRICULUM ITSELF STYLING
-  pageIcons.forEach((pageIcon) => {
-    setStyle(pageIcon, { display: "none !important" });
-
-    // pageIcon.setAttribute("style", "display:none !important");
-  });
+  pageIcons.forEach((pageIcon) =>
+    setStyle(pageIcon, { display: "none !important" })
+  );
 
   lessonListItems.forEach((item) => {
-    const titleEl = item.querySelector(".title");
+    const title = item.querySelector(".title");
+    const bullet = item.querySelector(".bullet");
 
     setStyle(item, {
       display: "flex",
@@ -1557,15 +1542,9 @@ function desktopCurriculumPageNoCertificateStyling() {
       gap: "12px",
     });
 
-    // item.style.display = "flex";
-    // item.style.alignItems = "center";
-    // item.style.gap = "12px";
+    setStyle(bullet, { position: "static" });
 
-    setStyle(item.querySelector(".bullet"), { position: "static" });
-
-    // item.querySelector(".bullet").style.position = "static";
-
-    setStyle(titleEl, {
+    setStyle(title, {
       position: "static",
       color: "#1C1C1C",
       display: "flex",
@@ -1573,28 +1552,18 @@ function desktopCurriculumPageNoCertificateStyling() {
       margin: "0",
       transform: "translateY(2px)",
     });
-
-    // titleEl.style.position = "static";
-    // titleEl.style.color = "#1C1C1C";
-    // titleEl.style.display = "flex";
-    // titleEl.style.alignItems = "center";
-    // titleEl.style.margin = "0";
-    // titleEl.style.transform = "translateY(2px)";
   });
 
-  setStyle(curriculumSection, {
-    padding: "0 !important",
-    marginTop: "48px !important",
-  });
+  [
+    aboutSection,
+    curriculumSection,
+    globalAboutSection,
+    globalCurriculumSection,
+  ].forEach((el) => setStyle(el, { padding: "0 !important" }));
 
-  // curriculumSection.setAttribute(
-  //   "style",
-  //   "padding: 0 !important; margin-top: 48px !important;"
-  // );
-
-  setStyle(aboutSection, { padding: "0 !important" });
-
-  // aboutSection.setAttribute("style", "padding: 0 !important");
+  [curriculumSection, globalCurriculumSection].forEach((el) =>
+    setStyle(el, { marginTop: "48px !important" })
+  );
 
   // hide elements
   hide(backToCatalogLink);
