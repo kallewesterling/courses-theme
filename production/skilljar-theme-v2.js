@@ -1325,8 +1325,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   const lessonListItems = document.querySelectorAll(".lesson-row");
   const curriculumParentContainer = document.querySelector("#curriculum-list");
   const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
-  const curriculumItemsListNonLive =
-    curriculumParentContainer.querySelectorAll(".curriculumItem");
+
   const curriculumOutsideContainer =
     curriculumParentContainer.closest(".content");
   const checkboxIcon = document.querySelector(".checkbox-icon");
@@ -1474,45 +1473,47 @@ function desktopCurriculumPageNoCertificateStyling() {
       }
     });
 
-    curriculumItemsListNonLive.forEach((el, i, curArr) => {
-      if (el.tagName === "DIV") {
-        const h3 = el.querySelector("h3");
+    curriculumParentContainer
+      .querySelectorAll(".curriculumItem")
+      .forEach((el, i, curArr) => {
+        if (el.tagName === "DIV") {
+          const h3 = el.querySelector("h3");
 
-        // Yes? push curContainer into parent container
-        curriculumParentContainer.append(curContainer);
+          // Yes? push curContainer into parent container
+          curriculumParentContainer.append(curContainer);
 
-        // Reset curContainer while pushing current new heading & icon in there for the next iteration
-        curContainer = document.createElement("div");
-        styleGroupContainer(curContainer);
+          // Reset curContainer while pushing current new heading & icon in there for the next iteration
+          curContainer = document.createElement("div");
+          styleGroupContainer(curContainer);
 
-        const newGroupHeading = document.createElement("div");
+          const newGroupHeading = document.createElement("div");
 
-        setStyle(newGroupHeading, { display: "flex", gap: "12px" });
+          setStyle(newGroupHeading, { display: "flex", gap: "12px" });
 
-        newGroupHeading.textContent = h3?.textContent?.trim() || "Module";
+          newGroupHeading.textContent = h3?.textContent?.trim() || "Module";
 
-        styleGroupHeading(newGroupHeading);
+          styleGroupHeading(newGroupHeading);
 
-        curContainer.append(newGroupHeading);
+          curContainer.append(newGroupHeading);
 
-        hide(el);
-      } else {
-        // Else, normal/expected behaviour
-        // Transfer inner html of current list item to new created div
-        const isLastChild = curArr[i + 1]
-          ? curArr[i + 1].tagName === "DIV"
-          : true;
+          hide(el);
+        } else {
+          // Else, normal/expected behaviour
+          // Transfer inner html of current list item to new created div
+          const isLastChild = curArr[i + 1]
+            ? curArr[i + 1].tagName === "DIV"
+            : true;
 
-        const newListEl = document.createElement("div");
-        styleListItem(newListEl, isLastChild, false);
+          const newListEl = document.createElement("div");
+          styleListItem(newListEl, isLastChild, false);
 
-        // Styling for mobile
-        setStyle(el.querySelector(".title"), { textWrap: "wrap" });
+          // Styling for mobile
+          setStyle(el.querySelector(".title"), { textWrap: "wrap" });
 
-        newListEl.append(el);
-        curContainer.append(newListEl);
-      }
-    });
+          newListEl.append(el);
+          curContainer.append(newListEl);
+        }
+      });
 
     setStyle(globalCurriculumSection, {
       padding: "0 !important",
