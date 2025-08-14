@@ -186,7 +186,7 @@ function makeContentVisible() {
 /**
  * This function inserts the footer into the page.
  */
-function insertFooter(isLessonsPage = false) {
+function insertFooter() {
   const footerEl = document.querySelector("#footer-container");
   const contentContainer = isLessonsPage ? document.querySelector(".sj-page-lesson") : document.querySelector("#skilljar-content");
 
@@ -201,7 +201,7 @@ function insertFooter(isLessonsPage = false) {
 /**
  * This function removes the Skilljar footer from the page.
  */
-function removeSJFooter(isLessonsPage = false) {
+function removeSJFooter() {
   if (!isLessonsPage) {
     hide(document.querySelector("#ep-footer"));
   }
@@ -3158,8 +3158,8 @@ function render() {
 
   handlePageStyling();
 
-  removeSJFooter(isLessonsPage);
-  insertFooter(isLessonsPage);
+  removeSJFooter();
+  insertFooter();
   makeContentVisible();
 }
 
