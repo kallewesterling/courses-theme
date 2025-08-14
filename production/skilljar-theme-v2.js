@@ -1134,6 +1134,7 @@ function desktopSignUpPageStyling() {
   const signUpBottomBtnParent = signUpBottomBtn?.closest(".text-center");
   const labels = document.querySelectorAll("label");
   const inputs = document.querySelectorAll("input");
+  const passwordConfirmText = document.querySelector("label[for=id_password2] .input-label-text span")
 
   // edit content
   loginTabTextSpan.textContent = "Log In";
@@ -1144,6 +1145,7 @@ function desktopSignUpPageStyling() {
   firstNameLabel.textContent = "First Name";
   lastNameLabel.textContent = "Last Name";
   loginLabel.textContent = "Work Email";
+  passwordConfirmText.textContent = "Password Confirm";
   loginInput.placeholder = "Work Email";
   passwordInput2.placeholder = "Password confirm";
 
@@ -1154,18 +1156,9 @@ function desktopSignUpPageStyling() {
     transform: "translateX(-13px)",
   });
 
-  // termsAndServicesText.style.maxWidth = "368px";
-  // termsAndServicesText.style.color = "#545454";
-  // termsAndServicesText.style.fontSize = "14px";
-  // termsAndServicesText.style.transform = "translateX(-13px)";
-
   setStyle(logoImg, { height: "24px" });
 
-  // logoImg.style.height = "24px";
-
   setStyle(signUpSignInContainer, { display: "flex" });
-
-  // signUpSignInContainer.style.display = "flex";
 
   setStyle(loginTab, {
     border: "0",
@@ -1175,12 +1168,6 @@ function desktopSignUpPageStyling() {
     borderRadius: "100px",
   });
 
-  // loginTab.style.border = "0";
-  // loginTab.style.display = "flex";
-  // loginTab.style.padding = "8px 16px";
-  // loginTab.style.alignItems = "center";
-  // loginTab.style.borderRadius = "100px";
-
   setStyle(loginTabText, {
     color: "rgba(52, 67, 244, .4)",
     fontWeight: "700",
@@ -1189,23 +1176,12 @@ function desktopSignUpPageStyling() {
     lineHeight: "24px",
   });
 
-  // loginTabText.style.color = "rgba(52, 67, 244, .4)";
-  // loginTabText.style.fontWeight = "700";
-  // loginTabText.style.fontSize = "18px";
-  // loginTabText.style.fontFamily = "Space Mono";
-  // loginTabText.style.lineHeight = "24px";
-
   setStyle(signInTab, {
     display: "flex",
     padding: "8px 16px",
     alignItems: "center",
     borderRadius: "100px",
   });
-
-  // signInTab.style.display = "flex";
-  // signInTab.style.alignItems = "center";
-  // signInTab.style.padding = "8px 16px";
-  // signInTab.style.borderRadius = "100px";
 
   setStyle(signInTabText, {
     color: "#3443f4",
@@ -1216,33 +1192,17 @@ function desktopSignUpPageStyling() {
     lineHeight: "24px",
   });
 
-  // signInTabText.style.color = "#3443f4";
-  // signInTabText.style.textDecoration = "underline";
-  // signInTabText.style.fontFamily = "Space Mono";
-  // signInTabText.style.fontWeight = "700";
-  // signInTabText.style.fontSize = "18px";
-  // signInTabText.style.lineHeight = "24px";
-
   [loginContentContainer, orSignInWithGoogleContainer].forEach((el) =>
     setStyle(el, { width: "50%" })
   );
 
-  // loginContentContainer.style.width = "50%";
-
   setStyle(orSignInWithGoogleContainer, { paddingLeft: "100px" });
 
-  // orSignInWithGoogleContainer.style.width = "50%";
-  // orSignInWithGoogleContainer.style.paddingLeft = "100px";
-
   setStyle(orSignInWithGoogleList, { paddingLeft: "25px" });
-
-  // orSignInWithGoogleList.style.paddingLeft = "25px";
 
   orSignInWithGoogleItems.forEach((li) => setStyle(li, { padding: "0" }));
 
   setStyle(orSignInWithContainer, { paddingBottom: "0" });
-
-  // orSignInWithContainer.style.paddingBottom = "0";
 
   setStyle(orSignInWithText, {
     marginBottom: "12px",
@@ -1250,11 +1210,6 @@ function desktopSignUpPageStyling() {
     fontSize: "16px",
     lineHeight: "20px",
   });
-
-  // orSignInWithText.style.marginBottom = "12px";
-  // orSignInWithText.style.fontWeight = "500";
-  // orSignInWithText.style.fontSize = "16px";
-  // orSignInWithText.style.lineHeight = "20px";
 
   [loginInput, passwordInput].forEach((el) =>
     setStyle(el, {
@@ -1265,19 +1220,7 @@ function desktopSignUpPageStyling() {
     })
   );
 
-  // loginInput.style.borderRadius = "4px";
-  // loginInput.style.borderColor = "#DCDCDC";
-  // loginInput.style.padding = "12px";
-  // loginInput.style.lineHeight = "24px";
-
-  // passwordInput.style.borderRadius = "4px";
-  // passwordInput.style.borderColor = "#DCDCDC";
-  // passwordInput.style.padding = "12px";
-  // passwordInput.style.lineHeight = "24px";
-
   setStyle(passwordInput2, { marginBottom: "24px" });
-
-  // passwordInput2.style.marginBottom = "24px";
 
   setStyle(signUpBottomBtn, {
     width: "368px",
@@ -1290,18 +1233,7 @@ function desktopSignUpPageStyling() {
     borderRadius: "999px",
   });
 
-  // signUpBottomBtn.style.width = "368px";
-  // signUpBottomBtn.style.height = "48px";
-  // signUpBottomBtn.style.fontSize = "16px";
-  // signUpBottomBtn.style.fontFamily = "Space Mono";
-  // signUpBottomBtn.style.color = "#14003d";
-  // signUpBottomBtn.style.backgroundColor = "transparent";
-  // signUpBottomBtn.style.border = "2px solid #3443f4";
-  // signUpBottomBtn.style.borderRadius = "999px";
-
   setStyle(signUpBottomBtnParent, { textAlign: "left" });
-
-  // signUpBottomBtnParent.style.textAlign = "left";
 
   signUpBottomBtnParent?.classList.remove("text-center");
 
@@ -1311,29 +1243,17 @@ function desktopSignUpPageStyling() {
     textAlign: "center",
   });
 
-  // googleBtn.style.background =
-  // "linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%)";
-  // googleBtn.style.width = "auto";
-  // googleBtn.style.textAlign = "center";
-
   setStyle(loginContent, { border: "0" });
 
-  // loginContent.style.border = "0";
-
-  labels.forEach((label) => {
+  labels.forEach((label) =>
     setStyle(label, {
       marginBottom: "12px",
       fontWeight: "500",
       fontSize: "16px",
       fontFamily: "Fusiona",
       lineHeight: "20px",
-    });
-
-    if (label.getAttribute("for") === "id_password2") {
-      label.querySelector(".input-label-text span").textContent =
-        "Password Confirm";
-    }
-  });
+    })
+  );
 
   inputs.forEach((input) =>
     setStyle(input, {
