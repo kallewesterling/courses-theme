@@ -220,21 +220,33 @@ function removeSJFooter(isLessonsPage = false) {
  * This function applies desktop-specific styling to the catalog page.
  */
 function desktopCatalogPageStyling() {
-  console.info("Running desktopCatalogPageStyling");
+  console.info("Running desktopCatalogPageStyling with setStyle");
   const catalogBodyParentContainer = document.querySelector("#catalog-content");
   const catalogContainer = document.querySelector("#catalog-courses");
 
   if (!initialLoadComplete) {
     // Create a container div for courses catalog list
     const catalogContentContainer = document.createElement("div");
-    catalogContentContainer.style.maxWidth = "min(1232px, 90%)";
-    catalogContentContainer.style.margin = "96px auto";
-
+    
     // Create header for list
     const allCoursesHeader = document.createElement("h2");
     allCoursesHeader.textContent = "All Courses";
-    allCoursesHeader.style.fontSize = "48px";
-    allCoursesHeader.style.marginBottom = "38px";
+    
+    // handle styling
+    setStyle(allCoursesHeader, {
+      fontSize: "48px",
+      marginBottom: "38px",
+    });
+
+    setStyle(catalogContentContainer, {
+      maxWidth: "min(1232px, 90%)",
+      margin: "96px auto",
+    })
+    
+    // catalogContentContainer.style.maxWidth = "min(1232px, 90%)";
+    // catalogContentContainer.style.margin = "96px auto";
+    // allCoursesHeader.style.fontSize = "48px";
+    // allCoursesHeader.style.marginBottom = "38px";
 
     catalogContentContainer.append(allCoursesHeader, catalogContainer);
     catalogBodyParentContainer.append(catalogContentContainer);
