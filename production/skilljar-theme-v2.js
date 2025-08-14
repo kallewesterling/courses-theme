@@ -523,21 +523,9 @@ function desktopPathCourseDetailsPageStyling() {
     lineHeight: "20px",
   });
 
-  // if (signInHeaderText) {
-  //   signInBtn.style.backgroundColor = "transparent";
-  //   signInBtn.style.padding = "8px 12px";
-  //   signInBtn.style.marginRight = "24px";
-  //   signInBtn.style.borderColor = "#3443F4";
-  //   signInBtn.style.border = "2px solid #3443F4";
-  //   signInBtn.style.borderRadius = "999px";
-  //   signInBtn.style.fontSize = "14px";
-  //   signInBtn.style.fontFamily = "Space Mono";
-  //   signInBtn.style.fontWeight = "700";
-  //   signInBtn.style.lineHeight = "20px";
-  // }
-
   setStyle(headerContainer, {
-    background: "url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png)",
+    background:
+      "url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png)",
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
@@ -548,17 +536,6 @@ function desktopPathCourseDetailsPageStyling() {
     border: "0",
   });
 
-  // headerContainer.style.background =
-  //   "url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png)";
-  // headerContainer.style.backgroundSize = "cover";
-  // headerContainer.style.backgroundPosition = "center";
-  // headerContainer.style.backgroundRepeat = "no-repeat";
-  // headerContainer.style.margin = "0";
-  // headerContainer.style.maxWidth = "none";
-  // headerContainer.style.paddingTop = "96px";
-  // headerContainer.style.paddingBottom = "96px";
-  // headerContainer.style.border = "0";
-
   setStyle(headerFlexContainer, {
     flexDirection: "row-reverse",
     flexWrap: "nowrap",
@@ -567,30 +544,17 @@ function desktopPathCourseDetailsPageStyling() {
     maxWidth: "1188px",
   });
 
-  // headerFlexContainer.style.flexDirection = "row-reverse";
-  // headerFlexContainer.style.flexWrap = "nowrap";
-  // headerFlexContainer.style.justifyContent = "start";
-  // headerFlexContainer.style.gap = "24px";
-  // headerFlexContainer.style.maxWidth = "1188px";
-
-  // RENDERING OF COURSE DETAILS PAGE TEXT HEADING ON LEFT
   setStyle(mainHeadingContainer, {
     border: "0",
     maxWidth: "600px",
   });
-  // mainHeadingContainer.style.border = "0";
-  // mainHeadingContainer.style.maxWidth = "600px";
-  
+
   setStyle(headingFloaterText, {
     color: "#7AF0FE",
     display: "block",
     marginBottom: "24px",
   });
 
-  // headingFloaterText.style.color = "#7AF0FE";
-  // headingFloaterText.style.display = "block";
-  // headingFloaterText.style.marginBottom = "24px";
-  
   setStyle(mainHeading, {
     color: "#fff",
     margin: "0 0 12px 0",
@@ -600,31 +564,27 @@ function desktopPathCourseDetailsPageStyling() {
     letterSpacing: "-.02em",
   });
 
-  // mainHeading.style.color = "#fff";
-  // mainHeading.style.margin = "0 0 12px 0";
-  // mainHeading.style.fontSize = "36px";
-  // mainHeading.style.fontWeight = "600";
-  // mainHeading.style.lineHeight = "43.2px";
-  // mainHeading.style.letterSpacing = "-.02em";
-
   setStyle(headingParagraph, {
     color: "#fff",
     display: "block",
     margin: "0 0 24px 0",
   });
-  
-  // headingParagraph.style.color = "#fff";
-  // headingParagraph.style.display = "block";
-  // headingParagraph.style.margin = "0 0 24px 0";
-  
+
   setStyle(registerBtnAnchor, {
     borderColor: "#7AF0FE",
     color: "#fff",
   });
 
-  // registerBtnAnchor.style.borderColor = "#7AF0FE";
-  // registerBtnAnchor.style.color = "#fff";
-  
+  setStyle(bodyContainer, {
+    padding: "0",
+    margin: "96px auto 46px auto",
+    maxWidth: "min(1152px, 90%)",
+  });
+
+  setStyle(catalogContainer, {
+    marginBottom: "85px",
+  });
+
   // move elements
   mainHeadingContainer.append(
     headingFloaterText,
@@ -632,23 +592,6 @@ function desktopPathCourseDetailsPageStyling() {
     headingParagraph,
     registerBtn
   );
-
-  // COURSE DETAILS PAGE BODY STYLING
-  setStyle(bodyContainer, {
-    padding: "0",
-    margin: "96px auto 46px auto",
-    maxWidth: "min(1152px, 90%)",
-  });
-
-  // bodyContainer.style.padding = "0";
-  // bodyContainer.style.margin = "96px auto 46px auto";
-  // bodyContainer.style.maxWidth = "min(1152px, 90%)";
-  
-  setStyle(catalogContainer, {
-    marginBottom: "85px",
-  });
-
-  // catalogContainer.style.marginBottom = "85px";
 
   // hide elements
   hide(backToCatalogBtn);
