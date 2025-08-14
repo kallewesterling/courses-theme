@@ -1311,20 +1311,33 @@ function desktopCurriculumPageNoCertificateStyling() {
      * @param {HTMLElement} groupHeadingContainer - The group heading container to style.
      */
     function styleGroupHeading(groupHeadingContainer) {
-      groupHeadingContainer.style.padding = "24px";
-      groupHeadingContainer.style.borderBottom = "2px solid #3443f4";
+      console.info("Running new styleGroupHeading");
+
+      Object.assign(groupHeadingContainer.style, {
+        padding: "24px",
+        borderBottom: "2px solid #3443f4",
+        fontSize: "16px",
+        fontFamily: "Fusiona",
+        fontWeight: "500",
+        lineHeight: "125%",
+        letterSpacing: "-.16px",
+        margin: "0",
+      });
+
+      // groupHeadingContainer.style.padding = "24px";
+      // groupHeadingContainer.style.borderBottom = "2px solid #3443f4";
 
       // Get actual group heading
       const groupHeading =
         groupHeadingContainer.querySelector("h3") || groupHeadingContainer;
 
       groupHeading.textContent = groupHeading?.textContent?.trim();
-      groupHeading.style.fontSize = "16px";
-      groupHeading.style.fontFamily = "Fusiona";
-      groupHeading.style.fontWeight = "500";
-      groupHeading.style.lineHeight = "125%";
-      groupHeading.style.letterSpacing = "-.16px";
-      groupHeading.style.margin = "0";
+      // groupHeading.style.fontSize = "16px";
+      // groupHeading.style.fontFamily = "Fusiona";
+      // groupHeading.style.fontWeight = "500";
+      // groupHeading.style.lineHeight = "125%";
+      // groupHeading.style.letterSpacing = "-.16px";
+      // groupHeading.style.margin = "0";
     }
 
     curriculumItemsListLIVE.forEach((el) => {
