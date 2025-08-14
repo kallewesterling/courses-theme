@@ -12,6 +12,33 @@ let initialLoadComplete = false;
 let globalCurriculumSection, globalAboutSection;
 
 /**
+ * Sets the style of a given element.
+ * @param {HTMLElement|string} element - The element to style, or a selector string to find the element.
+ * @param {Object} style - An object containing CSS properties and values to apply to the element.
+ * @returns {HTMLElement|null}
+ */
+function setStyle(element, style) {
+  if (typeof element === "string") element = document.querySelector(element);
+  if (!element) return null;
+
+  const toKebab = (p) =>
+    p.startsWith("--") ? p : p.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase());
+
+  for (const [prop, raw] of Object.entries(style)) {
+    let value = String(raw);
+    let priority = "";
+    if (/\s*!important\s*$/i.test(value)) {
+      priority = "important";
+      value = value.replace(/\s*!important\s*$/i, "");
+    }
+    if (value.trim()) {
+      element.style.setProperty(toKebab(prop), value.trim(), priority);
+    }
+  }
+  return element;
+}
+
+/**
  * This function hides the given element by setting its display style to "none".
  * @param {HTMLElement} element - The element to hide.
  */
@@ -42,11 +69,13 @@ function animateCopiedTooltip(tooltipEl) {
  * @return {void}
  */
 function styleGroupContainer(container, border = "b") {
-  container.style.border =
-    border === "b" ? "2px solid #3443F4" : "1px solid #DCDCDC";
-  container.style.borderRadius = "8px";
-  container.style.marginBottom = "48px";
-  container.style.padding = "0";
+  console.info("Running styleGroupContainer with setStyle");
+  setStyle(container, {
+    border: border === "b" ? "2px solid #3443F4" : "1px solid #DCDCDC",
+    borderRadius: "8px",
+    marginBottom: "48px",
+    padding: "0",
+  });
 }
 
 /**
@@ -60,19 +89,22 @@ function styleGroupContainer(container, border = "b") {
  * @return {void}
  */
 function styleListItem(lessonItem, isLastChild, hideIcon = true, border = "b") {
+  console.info("Running styleListItem with setStyle");
   if (hideIcon) {
     hide(lessonItem.querySelector(".type-icon"));
   }
 
-  lessonItem.style.padding = "24px";
-  lessonItem.style.fontSize = "16px";
-  lessonItem.style.fontWeight = "400";
-  lessonItem.style.lineHeight = "150%";
-
-  if (!isLastChild) {
-    lessonItem.style.borderBottom =
-      border === "b" ? "2px solid #3443F4" : "1px solid #DCDCDC";
-  }
+  setStyle(lessonItem, {
+    padding: "24px",
+    fontSize: "16px",
+    fontWeight: "400",
+    lineHeight: "150%",
+    borderBottom: isLastChild
+      ? "none"
+      : border === "b"
+      ? "2px solid #3443F4"
+      : "1px solid #DCDCDC",
+  });
 }
 
 /**
@@ -81,15 +113,16 @@ function styleListItem(lessonItem, isLastChild, hideIcon = true, border = "b") {
  * @param {HTMLElement} groupHeadingContainer - The group heading container to style.
  */
 function styleGroupHeading(groupHeadingContainer, border = "b") {
-  Object.assign(groupHeadingContainer.style, {
+  console.info("Running styleGroupHeading with setStyle");
+  setStyle(groupHeadingContainer, {
     padding: "24px",
-    borderBottom: border === "b" ? "2px solid #3443f4" : "1px solid #DCDCDC",
-    fontSize: "16px",
+    margin: "0",
     fontFamily: "Fusiona",
+    fontSize: "16px",
     fontWeight: "500",
     lineHeight: "125%",
     letterSpacing: "-.16px",
-    margin: "0",
+    borderBottom: border === "b" ? "2px solid #3443f4" : "1px solid #DCDCDC",
   });
 }
 
