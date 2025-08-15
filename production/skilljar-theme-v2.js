@@ -946,7 +946,7 @@ function desktopLoginPageStyling() {
     },
 
     loginTab: document.querySelector("#login-tab-left"),
-    signUpTab: document.querySelector("#login-tab-right"),
+    signupTab: document.querySelector("#login-tab-right"),
 
     // login specific
     forgotPassword: document.querySelector(".sj-text-forgot-password"),
@@ -977,7 +977,7 @@ function desktopLoginPageStyling() {
 
   // set content
   v.loginSignup.loginText.textContent = "Log In";
-  v.loginSignup.signUpTabSpan.textContent = "Sign Up";
+  v.loginSignup.signupTabSpan.textContent = "Sign Up";
   v.loginSignup.altMethod.textContent = "Or Log In With";
   v.loginSignup.loginBtn.textContent = "Log In";
   v.loginSignup.googleBtn.textContent = "Continue with Google";
@@ -991,7 +991,7 @@ function desktopLoginPageStyling() {
 
   setStyle(v.loginSignup.tabContainer, { display: "flex" });
 
-  [v.loginSignup.loginTab, v.loginSignup.signUpTab].forEach((el) =>
+  [v.loginSignup.loginTab, v.loginSignup.signupTab].forEach((el) =>
     setStyle(el, { display: "flex", padding: "8px 16px", alignItems: "center" })
   );
 
@@ -1005,7 +1005,7 @@ function desktopLoginPageStyling() {
     lineHeight: "24px",
   });
 
-  setStyle(v.loginSignup.signUpTabText, {
+  setStyle(v.loginSignup.signupTabText, {
     color: "rgba(52, 67, 244, .4)",
     fontWeight: "700",
     fontSize: "18px",
@@ -1117,7 +1117,7 @@ function desktopSignUpPageStyling() {
     },
 
     loginTab: document.querySelector("#login-tab-left"),
-    signUpTab: document.querySelector("#login-tab-right"),
+    signupTab: document.querySelector("#login-tab-right"),
 
     // login specific
     forgotPassword: document.querySelector(".sj-text-forgot-password"),
@@ -1151,7 +1151,7 @@ function desktopSignUpPageStyling() {
   v.loginSignup.signupBtnText.textContent = "Sign up";
   v.loginSignup.altMethod.textContent = "Or Sign Up With";
   v.loginSignup.googleBtn.textContent = "Continue with Google";
-  v.loginSignup.signUpTabText.textContent = "Sign up";
+  v.loginSignup.signupTabText.textContent = "Sign up";
   v.loginSignup.fNameLabel.textContent = "First Name";
   v.loginSignup.lNameLabel.textContent = "Last Name";
   v.loginSignup.loginLabel.textContent = "Work Email";
@@ -1186,14 +1186,14 @@ function desktopSignUpPageStyling() {
     lineHeight: "24px",
   });
 
-  setStyle(v.loginSignup.signUpTab, {
+  setStyle(v.loginSignup.signupTab, {
     display: "flex",
     padding: "8px 16px",
     alignItems: "center",
     borderRadius: "100px",
   });
 
-  setStyle(v.loginSignup.signUpTabText, {
+  setStyle(v.loginSignup.signupTabText, {
     color: "#3443f4",
     textDecoration: "underline",
     fontFamily: "Space Mono",
@@ -1862,7 +1862,7 @@ function mobileLoginPageStyling() {
     },
 
     loginTab: document.querySelector("#login-tab-left"),
-    signUpTab: document.querySelector("#login-tab-right"),
+    signupTab: document.querySelector("#login-tab-right"),
 
     // login specific
     forgotPassword: document.querySelector(".sj-text-forgot-password"),
@@ -1921,7 +1921,7 @@ function mobileLoginPageStyling() {
     borderRadius: "100px",
   });
 
-  setStyle(v.loginSignup.signUpTab, {
+  setStyle(v.loginSignup.signupTab, {
     display: "flex",
     padding: "8px 16px",
     alignItems: "center",
@@ -2036,7 +2036,7 @@ function mobileSignUpPageStyling() {
     },
 
     loginTab: document.querySelector("#login-tab-left"),
-    signUpTab: document.querySelector("#login-tab-right"),
+    signupTab: document.querySelector("#login-tab-right"),
 
     // login specific
     forgotPassword: document.querySelector(".sj-text-forgot-password"),
@@ -2104,7 +2104,7 @@ function mobileSignUpPageStyling() {
     lineHeight: "24px",
   });
 
-  setStyle(v.loginSignup.signUpTab, {
+  setStyle(v.loginSignup.signupTab, {
     display: "flex",
     alignItems: "center",
     padding: "8px 16px",
@@ -2112,7 +2112,7 @@ function mobileSignUpPageStyling() {
     borderRadius: "100px",
   });
 
-  setStyle(v.loginSignup.signUpTabText, {
+  setStyle(v.loginSignup.signupTabText, {
     color: "#fff",
     fontWeight: "500",
     fontSize: "16px",
