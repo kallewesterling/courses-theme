@@ -45,14 +45,18 @@ function toClipboard(copyText, tooltipContainer) {
 function setStyle(target, style) {
   // Normalize target
   if (typeof target === "string") {
-    target = document.querySelector(target); // keep existing behavior
+    target = document.querySelector(target);
   }
 
   const toKebab = (p) =>
     p.startsWith("--") ? p : p.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase());
 
   const apply = (el) => {
-    if (!el) return null;
+    if (!el) {
+      console.warn("setStyle: element is not a valid element for styling", el);
+      return null;
+    }
+
     for (const [prop, raw] of Object.entries(style)) {
       let value = String(raw);
       let priority = "";
