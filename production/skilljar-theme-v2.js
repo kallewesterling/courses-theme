@@ -258,7 +258,8 @@ function desktopCourseDetailsPageStyling() {
   const headerFlexContainer = document.querySelector(".dp-row-flex-v2");
   const headingFloaterText = document.querySelector(".sj-floater-text");
   const mainHeading = document.querySelector(".break-word");
-  const registerBtn = document.querySelector("#purchase-button-wrapper-large");
+  const registerBtnWrapper = document.querySelector("#purchase-button-wrapper-large");
+  const registerBtn = registerBtnWrapper.querySelector("a");
   const mainHeadingContainer = document.querySelector(".dp-summary-wrapper");
   const backToCatalogBtn = document.querySelector(".back-to-catalog");
   const videoContainer = document.querySelector(".video-max");
@@ -447,8 +448,8 @@ function desktopCourseDetailsPageStyling() {
   });
 
   if (registerBtn && card.link) {
-    const btnText = registerBtn.textContent;
-    const btnHref = registerBtn.getAttribute("href");
+    const btnText = registerBtn.textContent || "Register";
+    const btnHref = registerBtn.href || "#";
     card.link.textContent = btnText;
     card.link.setAttribute("href", btnHref);
   }
@@ -461,7 +462,7 @@ function desktopCourseDetailsPageStyling() {
     headingFloaterText,
     mainHeading,
     headingParagraph,
-    registerBtn
+    registerBtnWrapper
   );
 
   // hide elements
