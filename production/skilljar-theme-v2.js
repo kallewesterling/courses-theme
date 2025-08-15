@@ -43,7 +43,7 @@ function setStyle(element, style) {
  * @param {HTMLElement} element - The element to hide.
  */
 function hide(element) {
-  setStyle(element, { display: "none" });
+  setStyle(element, { display: "none !important" });
 }
 
 /**
