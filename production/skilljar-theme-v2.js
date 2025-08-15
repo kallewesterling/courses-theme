@@ -12,6 +12,23 @@ let initialLoadComplete = false;
 let globalCurriculumSection, globalAboutSection;
 
 /**
+ * This function copies the given text to the clipboard and animates a tooltip indicating success.
+ * @param {string} copyText - The text to copy to the clipboard.
+ * @param {HTMLElement} tooltipContainer - The element to animate as a tooltip.
+ * @return {Function} - A function that, when called, will copy the text and animate the tooltip.
+ */
+function toClipboard(copyText, tooltipContainer) {
+  return async () => {
+    try {
+      await navigator.clipboard.writeText(copyText);
+      animateCopiedTooltip(tooltipContainer);
+    } catch (err) {
+      console.error("Failed to copy codeblock to clipboard: ", err);
+    }
+  };
+}
+
+/**
  * Sets the style of a given element.
  * @param {HTMLElement|string} element - The element to style, or a selector string to find the element.
  * @param {Object} style - An object containing CSS properties and values to apply to the element.
@@ -2431,7 +2448,9 @@ function mobileCourseDetailsPageStyling() {
  * It modifies the layout and appearance of various elements on the page.
  */
 function mobileCurriculumPageNoCertificateStyling() {
-  console.info("Running mobileCurriculumPageNoCertificateStyling using setStyle [cleaned up]");
+  console.info(
+    "Running mobileCurriculumPageNoCertificateStyling using setStyle [cleaned up]"
+  );
 
   const navLogoImg = document.querySelector(".header-center-img");
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
@@ -2650,8 +2669,6 @@ function mobileCurriculumPageNoCertificateStyling() {
           // Styling for mobile
           setStyle(el.querySelector(".title"), { textWrap: "wrap" });
 
-          // el.querySelector(".title").style.textWrap = "wrap";
-
           newListEl.append(el);
           currentContainer.append(newListEl);
         }
@@ -2714,11 +2731,9 @@ function mobileCurriculumPageNoCertificateStyling() {
  * It modifies the layout and appearance of various elements on the page.
  */
 function mobileCurriculumPageYesCertificateStyling() {
+  // TODO: Clean up this function
   console.info("Running mobileCurriculumPageYesCertificateStyling");
-  // NAV VARS
   const navLogoImg = document.querySelector(".header-center-img");
-
-  // HEADER VARIABLES
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
   const headingFloaterText = document.querySelector(".sj-floater-text");
   const container = document.querySelector(".cp-summary-wrapper"); // DUPLICATE VAR
@@ -2974,15 +2989,12 @@ function mobileCurriculumPageYesCertificateStyling() {
  * It also handles the positioning of the internal course warning.
  */
 function mobileLessonPageStyling() {
-  console.info("Running mobileLessonPageStyling");
+  console.info("Running mobileLessonPageStyling with setStyle");
+
   const internalCourseWarning = document.querySelector(
     "#internal-course-warning"
   );
-  if (internalCourseWarning) {
-    document.querySelector("#lesson-main").prepend(internalCourseWarning);
-  }
 
-  // MAIN NAV VARS
   const navLogoImg = document.querySelector(".header-center-img");
 
   const leftNav = document.querySelector("#lp-left-nav");
@@ -2996,91 +3008,168 @@ function mobileLessonPageStyling() {
   const hamburgerIcon = navOpenIcon.querySelector(".fa.fa-bars");
   const xIcon = navOpenIcon.querySelector(".fa.fa-times");
   const leftNavMobileOverlay = document.querySelector("#lpLeftNavBackground");
-  const fullScreenBtn = document.querySelector(
-    ".toggle-fullscreen.focus-link-v2 "
-  );
-  // LESSON BODY VARS
+  const fullScreenBtn = document.querySelector(".toggle-fullscreen");
+
   const lessonInnerContainer = document.querySelector("#lesson-main-inner");
   const copyIcon = document.querySelector(".copy-icon");
   const lessonContentContainer = document.querySelector(
     "sjwc-lesson-content-item"
   );
-  lessonView.codeBlocks = new Array(
-    ...document.querySelectorAll("pre:has(code):not(.language-ansi)")
-  ).filter((d) => !d.dataset["no-copy"]);
-
-  // FOOTER VARS
-  const footerContainer = document.querySelector("#footer-container");
-  const footerCols = footerContainer.querySelectorAll(".global-footer-column");
-
-  // MAIN NAV STYLING
-  navLogoImg.style.maxHeight = "48px";
-
-  lessonInnerContainer.style.maxWidth = "712px";
-  lessonInnerContainer.style.margin = "0 auto";
-
-  mainLessonContentContainer.append(lessonFooter);
-  mainLessonInnerContainer.prepend(navOpenIcon);
-
-  // STYLING TO ALIGN NAV ICON TO RIGHT CORNER AND STICKY
-  mainLessonContentContainer.style.position = "relative";
-  mainLessonContentContainer.style.display = "flex";
-  mainLessonContentContainer.style.flexDirection = "column";
-  mainLessonContentContainer.style.justifyContent = "space-between";
-
-  mainLessonContentSubContainer.style.height = "auto";
-
-  mainLessonInnerContainer.style.margin = "0";
-  mainLessonInnerContainer.style.maxWidth = "none";
-  mainLessonInnerContainer.style.overflowX = "clip";
-  mainLessonMainContainer.style.position = "relative";
-  mainLessonMainContainer.style.zIndex = "0";
-  mainLessonMainContainer.style.paddingTop = "0";
-
-  navOpenIcon.style.position = "sticky";
-  const width = checkWindowWidth();
-  if (width >= 767) {
-    navOpenIcon.style.top = "24px";
-  } else {
-    navOpenIcon.style.top = "56px";
-  }
-  navOpenIcon.style.zIndex = "1";
-  navOpenIcon.style.paddingRight = "12px";
-  navOpenIcon.style.float = "right";
-  [hamburgerIcon, xIcon].forEach((el) => {
-    el.style.padding = "12px";
-    el.style.border = "1px solid gainsboro";
-    el.style.borderRadius = "8px";
-    el.style.background = "rgba(255, 255, 255, .8)";
-    el.style.padding = "6px";
-    el.style.backdropFilter = "blur(1.5px)";
-  });
-
-  lessonFooter.style.position = "relative";
-  lessonFooter.style.border = "0";
-  lessonFooter.style.backgroundColor = "transparent";
-
-  leftNav.style.position = "fixed";
-  leftNav.style.backgroundColor = "#f9f9f9";
-  leftNav.style.width = "320px";
-  leftNav.style.height = "100%";
-  leftNav.style.paddingBottom = "40px";
-  mainLessonContentContainer.style.height = "100vh";
-  mainLessonContentContainer.style.paddingBottom = "0";
-
-  // HIDE FULL SCREEN BUTTON
-  hide(fullScreenBtn);
-
-  // SECOND PAGE OF STYLING INSTRUCTIONS FROM 1ST VERSION
   const parentEl = document.querySelector(".sj-page-lesson");
-
-  footerContainer.style.marginTop = "0";
 
   const openIcon = document.querySelector(".fa.fa-bars");
   const searchIcon = document.querySelector(".fa.fa-search");
   const closeIcon = document.querySelector(".fa.fa-times");
   const navText = document.querySelector(".burger-text.sj-text-lessons");
 
+  const lessonNavLinksContainer = document.querySelector("#curriculum-list-2");
+  const backToCurriculumEl = document.querySelector("#left-nav-return-text");
+  const links = lessonNavLinksContainer.querySelectorAll("a");
+  const sectionTitles =
+    lessonNavLinksContainer.querySelectorAll(".section-title");
+
+  lessonView.codeBlocks = new Array(
+    ...document.querySelectorAll("pre:has(code):not(.language-ansi)")
+  );
+
+  const footerContainer = document.querySelector("#footer-container");
+  const footerCols = footerContainer.querySelectorAll(".global-footer-column");
+
+  setStyle(navLogoImg, {
+    height: "48px",
+  });
+
+  // navLogoImg.style.maxHeight = "48px";
+
+  setStyle(lessonInnerContainer, {
+    maxWidth: "712px",
+    margin: "0 auto",
+  });
+
+  // lessonInnerContainer.style.maxWidth = "712px";
+  // lessonInnerContainer.style.margin = "0 auto";
+
+  setStyle(mainLessonContentContainer, {
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+  });
+
+  // mainLessonContentContainer.style.position = "relative";
+  // mainLessonContentContainer.style.display = "flex";
+  // mainLessonContentContainer.style.flexDirection = "column";
+  // mainLessonContentContainer.style.justifyContent = "space-between";
+
+  setStyle(mainLessonContentSubContainer, {
+    height: "auto",
+  });
+
+  // mainLessonContentSubContainer.style.height = "auto";
+
+  setStyle(mainLessonInnerContainer, {
+    margin: "0",
+    maxWidth: "none",
+    overflowX: "clip",
+  });
+
+  // mainLessonInnerContainer.style.margin = "0";
+  // mainLessonInnerContainer.style.maxWidth = "none";
+  // mainLessonInnerContainer.style.overflowX = "clip";
+
+  setStyle(mainLessonMainContainer, {
+    position: "relative",
+    zIndex: "0",
+    paddingTop: "0",
+  });
+
+  // mainLessonMainContainer.style.position = "relative";
+  // mainLessonMainContainer.style.zIndex = "0";
+  // mainLessonMainContainer.style.paddingTop = "0";
+
+  const width = checkWindowWidth();
+
+  setStyle(navOpenIcon, {
+    position: "sticky",
+    top: width >= 767 ? "24px" : "56px",
+    zIndex: "1",
+    paddingRight: "12px",
+    float: "right",
+  });
+
+  // navOpenIcon.style.position = "sticky";
+  // if (width >= 767) {
+  //   navOpenIcon.style.top = "24px";
+  // } else {
+  //   navOpenIcon.style.top = "56px";
+  // }
+  // navOpenIcon.style.zIndex = "1";
+  // navOpenIcon.style.paddingRight = "12px";
+  // navOpenIcon.style.float = "right";
+
+  [hamburgerIcon, xIcon].forEach((el) => {
+    setStyle(el, {
+      padding: "12px",
+      border: "1px solid gainsboro",
+      borderRadius: "8px",
+      background: "rgba(255, 255, 255, .8)",
+      backdropFilter: "blur(1.5px)",
+    });
+
+    // el.style.padding = "12px";
+    // el.style.border = "1px solid gainsboro";
+    // el.style.borderRadius = "8px";
+    // el.style.background = "rgba(255, 255, 255, .8)";
+    // el.style.padding = "6px";
+    // el.style.backdropFilter = "blur(1.5px)";
+  });
+
+  setStyle(lessonFooter, {
+    position: "relative",
+    border: "0",
+    backgroundColor: "transparent",
+  });
+
+  // lessonFooter.style.position = "relative";
+  // lessonFooter.style.border = "0";
+  // lessonFooter.style.backgroundColor = "transparent";
+
+  setStyle(leftNav, {
+    position: "fixed",
+    backgroundColor: "#f9f9f9",
+    width: "320px",
+    height: "100%",
+    paddingBottom: "40px",
+  });
+
+  // leftNav.style.position = "fixed";
+  // leftNav.style.backgroundColor = "#f9f9f9";
+  // leftNav.style.width = "320px";
+  // leftNav.style.height = "100%";
+  // leftNav.style.paddingBottom = "40px";
+
+  setStyle(mainLessonContentContainer, {
+    height: "100vh",
+    paddingBottom: "0",
+  });
+
+  // mainLessonContentContainer.style.height = "100vh";
+  // mainLessonContentContainer.style.paddingBottom = "0";
+
+  setStyle(footerContainer, {
+    marginTop: "0",
+  });
+  // footerContainer.style.marginTop = "0";
+
+  // move elements
+  mainLessonContentContainer.append(lessonFooter);
+  mainLessonInnerContainer.prepend(navOpenIcon);
+  if (internalCourseWarning) {
+    document.querySelector("#lesson-main").prepend(internalCourseWarning);
+  }
+
+  // hide elements
+  hide(fullScreenBtn);
   hide(searchIcon);
   hide(navText);
 
@@ -3100,38 +3189,43 @@ function mobileLessonPageStyling() {
   // HANDLE CLICKS
   openIcon.addEventListener("click", (e) => {
     hide(e.target);
-    closeIcon.style.display = "inline-block";
-  });
-  closeIcon.addEventListener("click", (e) => {
-    hide(e.target);
-    openIcon.style.display = "inline-block";
-  });
-  leftNavMobileOverlay.addEventListener("click", () => {
-    hide(closeIcon);
-    openIcon.style.display = "inline-block";
+    setStyle(closeIcon, { display: "inline-block" });
+    // closeIcon.style.display = "inline-block";
   });
 
-  // STYLING OF THE LEFT NAV LINKS
-  const lessonNavLinksContainer = document.querySelector("#curriculum-list-2");
-  const backToCurriculumEl = document.querySelector("#left-nav-return-text");
-  const links = lessonNavLinksContainer.querySelectorAll("a");
-  const sectionTitles =
-    lessonNavLinksContainer.querySelectorAll(".section-title");
+  closeIcon.addEventListener("click", (e) => {
+    hide(e.target);
+    setStyle(openIcon, { display: "inline-block" });
+    // openIcon.style.display = "inline-block";
+  });
+
+  leftNavMobileOverlay.addEventListener("click", () => {
+    hide(closeIcon);
+    setStyle(openIcon, { display: "inline-block" });
+    // openIcon.style.display = "inline-block";
+  });
 
   if (backToCurriculumEl) {
     backToCurriculumEl.textContent = "Back to Course Overview";
   }
 
-  lessonNavLinksContainer.style.paddingBottom = "32px";
+  setStyle(lessonNavLinksContainer, { paddingBottom: "32px" });
+
+  // lessonNavLinksContainer.style.paddingBottom = "32px";
 
   // STYLE EACH OF THE LESSON LINKS
   links.forEach((link) => {
     const pageIcon = link.querySelector(".type-icon");
     const lessonLinkContainer = link.querySelector(".lesson-row");
 
-    link.style.color = "#1C1C1C";
-    link.style.cursor = "pointer";
-    hide(pageIcon);
+    setStyle(link, {
+      color: "#1C1C1C",
+      cursor: "pointer",
+    });
+
+    // link.style.color = "#1C1C1C";
+    // link.style.cursor = "pointer";
+
     lessonLinkContainer.style.display = "flex";
     lessonLinkContainer.style.flexDirection = "row-reverse";
     lessonLinkContainer.style.justifyContent = "space-between";
@@ -3140,21 +3234,48 @@ function mobileLessonPageStyling() {
     lessonLinkContainer.style.paddingRight = "12px";
     lessonLinkContainer.style.fontSize = "14px";
     lessonLinkContainer.style.lineHeight = "20px";
+
+    setStyle(lessonLinkContainer, {
+      display: "flex",
+      flexDirection: "row-reverse",
+      justifyContent: "space-between",
+      margin: "0 12px",
+      paddingLeft: "12px",
+      paddingRight: "12px",
+      fontSize: "14px",
+      lineHeight: "20px",
+    });
+
+    hide(pageIcon);
   });
 
   // STYLE EACH OF THE LESSON LINK HEADER (THE MODULE NAMES)
   sectionTitles.forEach((title) => {
-    title.style.backgroundColor = "transparent";
-    title.style.padding = "12px";
-    title.style.paddingLeft = "24px";
-    title.style.paddingRight = "24px";
-    title.style.marginTop = "12px";
-    title.style.marginBottom = "12px";
-    title.style.border = "0";
-    title.style.fontFamily = "Space Mono";
-    title.style.fontSize = "12px";
-    title.style.textTransform = "uppercase";
-    title.style.letterSpacing = ".05em";
+    setStyle(title, {
+      backgroundColor: "transparent",
+      padding: "12px",
+      paddingLeft: "24px",
+      paddingRight: "24px",
+      marginTop: "12px",
+      marginBottom: "12px",
+      border: "0",
+      fontFamily: "Space Mono",
+      fontSize: "12px",
+      textTransform: "uppercase",
+      letterSpacing: ".05em",
+    });
+
+    // title.style.backgroundColor = "transparent";
+    // title.style.padding = "12px";
+    // title.style.paddingLeft = "24px";
+    // title.style.paddingRight = "24px";
+    // title.style.marginTop = "12px";
+    // title.style.marginBottom = "12px";
+    // title.style.border = "0";
+    // title.style.fontFamily = "Space Mono";
+    // title.style.fontSize = "12px";
+    // title.style.textTransform = "uppercase";
+    // title.style.letterSpacing = ".05em";
   });
 
   // HANDLE CODE BLOCK CUSTOM STYLING
@@ -3162,16 +3283,31 @@ function mobileLessonPageStyling() {
   lessonView.codeBlocks
     .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
     .forEach((el) => {
-      // WILL NEED TO CLEAN UP THE STYLING OF EL!!!!!!!!!!
-      el.style.padding = "0";
-      el.style.overflow = "visible";
-      el.style.position = "relative";
-
       const codeEl = el.querySelector("code");
-      codeEl.setAttribute(
-        "style",
-        "display: inline-block; padding: 24px !important; overflow-x: scroll; width: 100%"
-      );
+      const iconClone = copyIcon.cloneNode(true);
+
+      setStyle(el, {
+        padding: "0",
+        overflow: "visible",
+        position: "relative",
+      });
+
+      // el.style.padding = "0";
+      // el.style.overflow = "visible";
+      // el.style.position = "relative";
+
+      setStyle(codeEl, {
+        display: "inline-block",
+        padding: "24px !important",
+        overflowX: "scroll",
+        width: "100%",
+      });
+
+      // codeEl.setAttribute(
+      //   "style",
+      //   "display: inline-block; padding: 24px !important; overflow-x: scroll; width: 100%"
+      // );
+
       const copyText = codeEl.textContent
         .trim()
         .replace(/\r?\n\$ /g, " && ")
@@ -3179,59 +3315,85 @@ function mobileLessonPageStyling() {
 
       // CREATE PARENT CONTAINER & STYLE AS FLEX CONTAINER, COL DIR, AND ALIGN INTEMS START (OR END)
       const container = document.createElement("div");
-      container.style.display = "flex";
-      container.style.justifyContent = "end";
-      container.style.borderBottom = "1px solid gainsboro";
-      container.style.padding = "12px 24px";
 
-      // CLONE COPYICON EL AND ADD TO CONTAINER
-      const iconClone = copyIcon.cloneNode(true);
-      iconClone.style.display = "block";
-      iconClone.style.cursor = "pointer";
+      setStyle(container, {
+        display: "flex",
+        justifyContent: "end",
+        borderBottom: "1px solid gainsboro",
+        padding: "12px 24px",
+      });
+
+      // container.style.display = "flex";
+      // container.style.justifyContent = "end";
+      // container.style.borderBottom = "1px solid gainsboro";
+      // container.style.padding = "12px 24px";
+
+      setStyle(iconClone, {
+        display: "block",
+        cursor: "pointer",
+      });
+
+      // iconClone.style.display = "block";
+      // iconClone.style.cursor = "pointer";
+
       container.append(iconClone);
 
       // CREATE 'COPIED' TOOLTIP
       const tooltipContainer = document.createElement("div");
       tooltipContainer.textContent = "Copied";
-      tooltipContainer.style.position = "absolute";
-      tooltipContainer.style.top = "-24px";
-      tooltipContainer.style.right = "10px";
-      tooltipContainer.style.textShadow = "none";
-      tooltipContainer.style.backgroundColor = "#1c1c1c";
-      tooltipContainer.style.color = "#fff";
-      tooltipContainer.style.padding = "5px 10px";
-      tooltipContainer.style.borderRadius = "4px";
-      tooltipContainer.style.opacity = "0";
-      tooltipContainer.style.transition = "opacity .2s ease-in";
 
+      setStyle(tooltipContainer, {
+        position: "absolute",
+        top: "-24px",
+        right: "10px",
+        textShadow: "none",
+        backgroundColor: "#1c1c1c",
+        color: "#fff",
+        padding: "5px 10px",
+        borderRadius: "4px",
+        opacity: "0",
+        transition: "opacity .2s ease-in",
+      });
+
+      // tooltipContainer.style.position = "absolute";
+      // tooltipContainer.style.top = "-24px";
+      // tooltipContainer.style.right = "10px";
+      // tooltipContainer.style.textShadow = "none";
+      // tooltipContainer.style.backgroundColor = "#1c1c1c";
+      // tooltipContainer.style.color = "#fff";
+      // tooltipContainer.style.padding = "5px 10px";
+      // tooltipContainer.style.borderRadius = "4px";
+      // tooltipContainer.style.opacity = "0";
+      // tooltipContainer.style.transition = "opacity .2s ease-in";
+
+      // add elements
       el.append(tooltipContainer);
-
-      // ADD CONTAINER AS FIRST CHILD IN EL
       el.prepend(container);
 
-      // ADD EVENT LISTENER TO CLONED ICON TO COPY CODE BLOCK INTO CLIPBOARD
-      iconClone.addEventListener("click", async () => {
-        try {
-          await navigator.clipboard.writeText(copyText);
-          animateCopiedTooltip(tooltipContainer);
-        } catch (err) {
-          console.error("Failed to copy codeblock to clipboard: ", err);
-        }
-      });
+      // add event listener to cloned icon to copy block into clipboard
+      iconClone.addEventListener(
+        "click",
+        toClipboard(copyText, tooltipContainer)
+      );
 
       el.dataset.copyAdded = "true"; // Mark that copy icon was added to this code block
     });
 
   // Makes lesson links pop up in new tab
-  lessonContentContainer.querySelectorAll("a").forEach((el) => {
-    el.setAttribute("target", "_blank");
-  });
+  lessonContentContainer
+    .querySelectorAll("a")
+    .forEach((el) => (el.target = "_blank"));
 
-  // FOOTER STYLING
-  footerContainer.style.paddingLeft = 0;
-  footerContainer.style.paddingRight = 0;
+  setStyle(footerContainer, {
+    paddingLeft: "0",
+    paddingRight: "0",
+  });
+  
+  // footerContainer.style.paddingLeft = 0;
+  // footerContainer.style.paddingRight = 0;
+  
   footerCols.forEach((col) => {
-    col.style.width = "212px";
+    setStyle(col, { width: "270px" });
   });
 }
 
