@@ -1028,7 +1028,7 @@ function desktopLoginPageStyling() {
 
   setStyle(v.loginSignup.altMethodContainer, { paddingBottom: "0" });
 
-  [v.loginSignup.inputs.login, v.loginSignup.inputs.password1].forEach((el) =>
+  [v.loginSignup.inputs.login, v.loginSignup.inputs.password].forEach((el) =>
     setStyle(el, {
       borderRadius: "4px",
       border: "2px solid #3443f4",
@@ -1952,7 +1952,7 @@ function mobileLoginPageStyling() {
 
   setStyle(v.loginSignup.altMethodContainer, { paddingBottom: "0" });
 
-  [v.loginSignup.inputs.login, v.loginSignup.inputs.password1].forEach((el) =>
+  [v.loginSignup.inputs.login, v.loginSignup.inputs.password].forEach((el) =>
     setStyle(el, {
       borderRadius: "4px",
       borderColor: "#DCDCDC",
@@ -1961,7 +1961,7 @@ function mobileLoginPageStyling() {
     })
   );
 
-  setStyle(v.loginSignup.inputs.password1, { marginBottom: "24px" });
+  setStyle(v.loginSignup.inputs.password, { marginBottom: "24px" });
 
   setStyle(v.loginSignup.loginBtn, {
     width: "100%",
