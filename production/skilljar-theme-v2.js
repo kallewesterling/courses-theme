@@ -38,25 +38,18 @@ function toClipboard(copyText, tooltipContainer) {
 
 /**
  * Sets the style of an element or a list of elements.
- * @param {HTMLElement|Iterable<HTMLElement>|string} target
- * @param {Object} style - CSS properties and values (camelCase or kebab-case; supports !important).
+ * Accepts: HTMLElement, NodeList/HTMLCollection/Array of HTMLElements, or selector string.
+ * Skips non-element values found in iterables (e.g., strings, nulls, Documents).
  * @returns {HTMLElement|HTMLElement[]|null}
  */
 function setStyle(target, style) {
-  // Normalize target
-  if (typeof target === "string") {
-    target = document.querySelector(target);
-  }
-
   const toKebab = (p) =>
     p.startsWith("--") ? p : p.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase());
 
-  const apply = (el) => {
-    if (!el) {
-      console.warn("setStyle: element is not a valid element for styling", el);
-      return null;
-    }
+  const isElement = (n) =>
+    !!n && typeof n === "object" && n.nodeType === 1 && typeof n.style?.setProperty === "function";
 
+  const apply = (el) => {
     for (const [prop, raw] of Object.entries(style)) {
       let value = String(raw);
       let priority = "";
@@ -64,46 +57,32 @@ function setStyle(target, style) {
         priority = "important";
         value = value.replace(/\s*!important\s*$/i, "");
       }
-      if (value.trim()) {
-        try { 
-          el.style.setProperty(toKebab(prop), value.trim(), priority);
-        } catch (e) {
-          console.error(
-            `setStyle: Failed to set style for ${el.tagName} on property "${prop}" (${target}):`,
-            e
-          );
-        }
-      }
+      if (value.trim()) el.style.setProperty(toKebab(prop), value.trim(), priority);
     }
     return el;
   };
 
-  const isElement = (n) =>
-    !!n &&
-    typeof n === "object" &&
-    n.nodeType === 1 &&
-    typeof n.style?.setProperty === "function";
-  
-  // If it's an iterable of elements (e.g., NodeList, HTMLCollection, Array, Set)
-  const isIterable =
-    target &&
-    typeof target !== "string" &&
-    typeof target[Symbol.iterator] === "function" &&
-    !(target instanceof Element);
+  // selector string → first match
+  if (typeof target === "string") {
+    const el = document.querySelector(target);
+    return el ? apply(el) : null;
+  }
 
-  if (isIterable) {
+  // Iterable? (NodeList, HTMLCollection, Array, Set, etc.)
+  const isIterable =
+    target && typeof target !== "string" && typeof target[Symbol.iterator] === "function";
+
+  if (isIterable && !(target instanceof Element)) {
     const elements = Array.from(target).filter(isElement);
+    // Optional: warn if we dropped items (useful during dev)
+    // if (elements.length !== Array.from(target).length) console.warn("setStyle: skipped non-element items in iterable");
+    if (elements.length === 0) return null;
     elements.forEach(apply);
     return elements;
   }
 
   // Single element
-  if (target instanceof Element) {
-    const el = document.querySelector(target);
-    return el ? apply(el) : null;
-  }
-
-  console.warn("setStyle: target is not a valid element or iterable", target);
+  if (isElement(target)) return apply(target);
 
   return null;
 }
