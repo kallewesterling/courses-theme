@@ -253,7 +253,7 @@ function desktopCatalogPageStyling() {
  * This function applies desktop-specific styling to the course details page.
  */
 function desktopCourseDetailsPageStyling() {
-  console.info("Running desktopCourseDetailsPageStyling with setStyle");
+  console.info("Running desktopCourseDetailsPageStyling with setStyle [cleaned up]");
   const headerContainer = document.querySelector(".top-row-grey");
   const headerFlexContainer = document.querySelector(".dp-row-flex-v2");
   const headingFloaterText = document.querySelector(".sj-floater-text");
@@ -282,31 +282,19 @@ function desktopCourseDetailsPageStyling() {
   const curriculumList = curriculumListContainer.querySelectorAll("li");
 
   // CARD VARIABLES
-  const courseDetailCardContainer = secondaryBodyContainer.querySelector(
-    ".course-details-card"
-  );
-  let courseDetailCardListItems;
-  if (courseDetailCardContainer) {
-    courseDetailCardListItems =
-      courseDetailCardContainer.querySelectorAll("li");
-  }
+  const card = {
+    details: document.querySelector(".course-details-card"),
+    detailItems: document.querySelectorAll(".course-details-card li"),
+    link: document.querySelector(".course-details-card-link"),
+  };
+
   const checkboxIcon = document.querySelector(".checkbox-icon");
-  const registerBtnLink = document
-    .querySelector("#purchase-button")
-    .getAttribute("href");
-  const registerBtnText = document.querySelector(
-    ".purchase-button-full-text"
-  ).textContent;
-  const courseDetailsCardLink = document.querySelector(
-    ".course-details-card-link"
+
+  const signInBtn = document.querySelector(
+    ".header-link.login-link.sj-text-sign-in.focus-link-v2"
   );
 
   if (signInHeaderText) {
-    // Style the sign-in button
-    const signInBtn = document.querySelector(
-      ".header-link.login-link.sj-text-sign-in.focus-link-v2"
-    );
-
     setStyle(signInBtn, {
       backgroundColor: "transparent",
       padding: "8px 12px",
@@ -338,7 +326,6 @@ function desktopCourseDetailsPageStyling() {
     maxWidth: "1188px",
   });
 
-  // RENDERING OF COURSE DETAILS PAGE TEXT HEADING ON LEFT
   setStyle(mainHeadingContainer, {
     border: "0",
     maxWidth: "564px",
@@ -394,21 +381,6 @@ function desktopCourseDetailsPageStyling() {
     setStyle(column.querySelector(".dp-curriculum"), { margin: "0" });
   });
 
-  // move elements
-  mainHeadingContainer.append(
-    headingFloaterText,
-    mainHeading,
-    headingParagraph,
-    registerBtn
-  );
-
-  // hide elements
-  hide(mainInfoCardContained);
-  hide(backToCatalogBtn);
-  hide(mobileBodyContent);
-  hide(signInHeaderText);
-  hide(curriculumListHeader);
-
   // COURSE DETAILS CURRICULUM STYLING
   if (!initialLoadComplete) {
     // Check if course has Sections/Modules/Parts
@@ -458,27 +430,46 @@ function desktopCourseDetailsPageStyling() {
   }
 
   // COURSE DETAILS GRID STRUCTURE STYLING - ADDING DETAILS CARD ON RIGHT SIDE
-  if (courseDetailCardContainer) {
-    bodyContainer.append(courseDetailCardContainer);
-    setStyle(courseDetailCardContainer, {
-      margin: "0 0 46px 0",
-      justifySelf: "center",
-    });
+  setStyle(card.details, {
+    margin: "0 0 46px 0",
+    justifySelf: "center",
+  });
 
-    courseDetailCardListItems.forEach((li) => {
-      const iconClone = checkboxIcon.cloneNode(true);
-      setStyle(iconClone, {
-        display: "block",
-        flexShrink: "0",
-      });
-      li.prepend(iconClone);
+  card.detailItems.forEach((li) => {
+    const iconClone = checkboxIcon.cloneNode(true);
+
+    setStyle(iconClone, {
+      display: "block",
+      flexShrink: "0",
     });
+    
+    li.prepend(iconClone);
+  });
+
+  if (registerBtn && card.link) {
+    const btnText = registerBtn.textContent;
+    const btnHref = registerBtn.getAttribute("href");
+    card.link.textContent = btnText;
+    card.link.setAttribute("href", btnHref);
   }
 
-  if (courseDetailsCardLink) {
-    courseDetailsCardLink.textContent = registerBtnText;
-    courseDetailsCardLink.setAttribute("href", registerBtnLink);
+  // move elements
+  if (card.details) {
+    bodyContainer.append(card.details);
   }
+  mainHeadingContainer.append(
+    headingFloaterText,
+    mainHeading,
+    headingParagraph,
+    registerBtn
+  );
+
+  // hide elements
+  hide(mainInfoCardContained);
+  hide(backToCatalogBtn);
+  hide(mobileBodyContent);
+  hide(signInHeaderText);
+  hide(curriculumListHeader);
 }
 
 /**
