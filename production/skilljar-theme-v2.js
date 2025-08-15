@@ -85,6 +85,8 @@ function setStyle(target, style) {
     return apply(target);
   }
 
+  console.warn("setStyle: target is not a valid element or iterable", target);
+
   return null;
 }
 
