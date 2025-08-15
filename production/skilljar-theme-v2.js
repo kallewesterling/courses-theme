@@ -24,8 +24,10 @@ function createCurriculum(
   i,
   curArr,
   curriculumParentContainer,
-  currentContainer
+  curContainer
 ) {
+  let currentContainer = curContainer || document.createElement("div");
+
   if (el.tagName === "DIV") {
     // Handle creating a new module/section
 
