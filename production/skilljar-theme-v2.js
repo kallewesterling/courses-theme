@@ -78,6 +78,12 @@ function setStyle(target, style) {
     return el;
   };
 
+  const isElement = (n) =>
+    !!n &&
+    typeof n === "object" &&
+    n.nodeType === 1 &&
+    typeof n.style?.setProperty === "function";
+  
   // If it's an iterable of elements (e.g., NodeList, HTMLCollection, Array, Set)
   const isIterable =
     target &&
@@ -86,14 +92,15 @@ function setStyle(target, style) {
     !(target instanceof Element);
 
   if (isIterable) {
-    const elements = Array.from(target).filter(Boolean);
+    const elements = Array.from(target).filter(isElement);
     elements.forEach(apply);
     return elements;
   }
 
   // Single element
   if (target instanceof Element) {
-    return apply(target);
+    const el = document.querySelector(target);
+    return el ? apply(el) : null;
   }
 
   console.warn("setStyle: target is not a valid element or iterable", target);
