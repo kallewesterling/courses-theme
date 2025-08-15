@@ -2545,7 +2545,7 @@ function mobileCurriculumPageNoCertificateStyling() {
   const pageIcons = document.querySelectorAll(".type-icon.hide-for-small");
   const lessonListItems = document.querySelectorAll(".lesson-row");
   const curriculumParentContainer = document.querySelector("#curriculum-list");
-  const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
+  const curriculumItemsListLIVE = new Array(...curriculumParentContainer.childNodes);
   const curriculumOutsideContainer =
     curriculumParentContainer.closest(".content");
   const checkboxIcon = document.querySelector(".checkbox-icon");
