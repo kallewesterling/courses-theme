@@ -3229,7 +3229,7 @@ function handlePageStyling() {
       ? desktopLessonPageStyling()
       : mobileLessonPageStyling();
   } else if (isCatalogPage) {
-    currentView === "desktop" ? desktopCatalogPageStyling() : null;
+    desktopCatalogPageStyling();
   }
 }
 
