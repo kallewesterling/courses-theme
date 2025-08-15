@@ -940,17 +940,6 @@ function desktopLessonPageStyling() {
   footerCols.forEach((col) => {
     setStyle(col, { width: "270px" });
   });
-
-  function toClipboard(copyText, tooltipContainer) {
-    return async () => {
-      try {
-        await navigator.clipboard.writeText(copyText);
-        animateCopiedTooltip(tooltipContainer);
-      } catch (err) {
-        console.error("Failed to copy codeblock to clipboard: ", err);
-      }
-    };
-  }
 }
 
 /**
