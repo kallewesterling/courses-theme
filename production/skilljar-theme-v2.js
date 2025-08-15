@@ -68,7 +68,10 @@ function setStyle(target, style) {
         try { 
           el.style.setProperty(toKebab(prop), value.trim(), priority);
         } catch (e) {
-          console.error(`setStyle: Failed to set style for ${el.tagName} on property "${prop}":`, e);
+          console.error(
+            `setStyle: Failed to set style for ${el.tagName} on property "${prop}" (${target}):`,
+            e
+          );
         }
       }
     }
