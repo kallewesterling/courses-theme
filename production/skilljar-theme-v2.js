@@ -943,6 +943,7 @@ function desktopLoginPageStyling() {
       password: document.querySelector("#id_password"), // login
       password1: document.querySelector("#id_password1"), // signup
       password2: document.querySelector("#id_password2"), // signup
+      email: document.querySelector("#id_email"), // signup
     },
 
     loginTab: document.querySelector("#login-tab-left"),
@@ -970,6 +971,7 @@ function desktopLoginPageStyling() {
     loginLabel: document.querySelector('label[for="id_email"]'),
     fNameLabel: document.querySelector('label[for="id_first_name"] span span'),
     lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
+    emailLabel: document.querySelector('label[for="id_email"]'),
     signupBtn: document.querySelector("#button-sign-up"),
     signupBtnText: document.querySelector("#button-sign-up span"),
     signupBtnWrapper: document.querySelector("#signup_form .text-center"),
@@ -1114,6 +1116,7 @@ function desktopSignUpPageStyling() {
       password: document.querySelector("#id_password"), // login
       password1: document.querySelector("#id_password1"), // signup
       password2: document.querySelector("#id_password2"), // signup
+      email: document.querySelector("#id_email"), // signup
     },
 
     loginTab: document.querySelector("#login-tab-left"),
@@ -1141,6 +1144,7 @@ function desktopSignUpPageStyling() {
     loginLabel: document.querySelector('label[for="id_email"]'),
     fNameLabel: document.querySelector('label[for="id_first_name"] span span'),
     lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
+    emailLabel: document.querySelector('label[for="id_email"]'),
     signupBtn: document.querySelector("#button-sign-up"),
     signupBtnText: document.querySelector("#button-sign-up span"),
     signupBtnWrapper: document.querySelector("#signup_form .text-center"),
@@ -1154,9 +1158,9 @@ function desktopSignUpPageStyling() {
   v.loginSignup.signupTabText.textContent = "Sign up";
   v.loginSignup.fNameLabel.textContent = "First Name";
   v.loginSignup.lNameLabel.textContent = "Last Name";
-  v.loginSignup.loginLabel.textContent = "Work Email";
+  v.loginSignup.emailLabel.textContent = "Work Email";
   v.loginSignup.passwordConfirm.textContent = "Password Confirm";
-  v.loginSignup.inputs.login.placeholder = "Work Email";
+  v.loginSignup.inputs.email.placeholder = "Work Email";
   v.loginSignup.inputs.password2.placeholder = "Password confirm";
 
   setStyle(v.loginSignup.termsAndServices, {
@@ -1859,6 +1863,7 @@ function mobileLoginPageStyling() {
       password: document.querySelector("#id_password"), // login
       password1: document.querySelector("#id_password1"), // signup
       password2: document.querySelector("#id_password2"), // signup
+      email: document.querySelector("#id_email"), // signup
     },
 
     loginTab: document.querySelector("#login-tab-left"),
@@ -1886,6 +1891,7 @@ function mobileLoginPageStyling() {
     loginLabel: document.querySelector('label[for="id_email"]'),
     fNameLabel: document.querySelector('label[for="id_first_name"] span span'),
     lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
+    emailLabel: document.querySelector('label[for="id_email"]'),
     signupBtn: document.querySelector("#button-sign-up"),
     signupBtnText: document.querySelector("#button-sign-up span"),
     signupBtnWrapper: document.querySelector("#signup_form .text-center"),
@@ -2033,6 +2039,7 @@ function mobileSignUpPageStyling() {
       password: document.querySelector("#id_password"), // login
       password1: document.querySelector("#id_password1"), // signup
       password2: document.querySelector("#id_password2"), // signup
+      email: document.querySelector("#id_email"), // signup
     },
 
     loginTab: document.querySelector("#login-tab-left"),
@@ -2060,6 +2067,7 @@ function mobileSignUpPageStyling() {
     loginLabel: document.querySelector('label[for="id_email"]'),
     fNameLabel: document.querySelector('label[for="id_first_name"] span span'),
     lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
+    emailLabel: document.querySelector('label[for="id_email"]'),
     signupBtn: document.querySelector("#button-sign-up"),
     signupBtnText: document.querySelector("#button-sign-up span"),
     signupBtnWrapper: document.querySelector("#signup_form .text-center"),
