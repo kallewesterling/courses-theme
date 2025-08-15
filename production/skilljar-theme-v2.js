@@ -193,15 +193,6 @@ function insertFooter() {
 }
 
 /**
- * This function removes the Skilljar footer from the page.
- */
-function removeSJFooter() {
-  if (!isLessonsPage) {
-    hide(document.querySelector("#ep-footer"));
-  }
-}
-
-/**
  * This function applies desktop-specific styling to the catalog page.
  */
 function desktopCatalogPageStyling() {
@@ -3292,7 +3283,9 @@ function render() {
 
   handlePageStyling();
 
-  removeSJFooter();
+  if (!isLessonsPage) {
+    hide(document.querySelector("#ep-footer"));
+  }
   insertFooter();
 }
 
