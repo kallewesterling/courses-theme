@@ -143,17 +143,6 @@ function styleGroupHeading(groupHeadingContainer, border = "b") {
 }
 
 /**
- * This function returns the current window width.
- */
-function checkWindowWidth() {
-  return (
-    window.innerWidth ||
-    document.documentElement.clientWidth ||
-    document.body.clientWidth
-  );
-}
-
-/**
  * This function checks the current page and sets the global variables accordingly.
  */
 function getCurrentPage() {
@@ -2943,7 +2932,7 @@ function mobileCurriculumPageYesCertificateStyling() {
 
   // CURRICULUM ITSELF STYLING
   pageIcons.forEach((pageIcon) => hide(pageIcon));
-  
+
   lessonListItems.forEach((item) => {
     const titleEl = item.querySelector(".title");
     item.style.display = "flex";
@@ -3310,7 +3299,10 @@ function handlePageStyling() {
  */
 function render() {
   console.info("Running render");
-  width = checkWindowWidth();
+  width =
+    window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth;
 
   if (width <= 991 && !(currentView === "mobile")) {
     currentView = "mobile";
