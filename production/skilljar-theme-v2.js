@@ -1548,9 +1548,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   }
 
   // CURRICULUM ITSELF STYLING
-  pageIcons.forEach((pageIcon) =>
-    setStyle(pageIcon, { display: "none !important" })
-  );
+  pageIcons.forEach((pageIcon) => hide(pageIcon));
 
   lessonListItems.forEach((item) => {
     const title = item.querySelector(".title");
@@ -1824,9 +1822,7 @@ function desktopCurriculumPageYesCertificationStyling() {
   }
 
   // CURRICULUM ITSELF STYLING
-  pageIcons.forEach((pageIcon) => {
-    pageIcon.setAttribute("style", "display:none !important");
-  });
+  pageIcons.forEach((pageIcon) => hide(pageIcon));
 
   lessonListItems.forEach((item) => {
     const titleEl = item.querySelector(".title");
@@ -2957,9 +2953,8 @@ function mobileCurriculumPageYesCertificateStyling() {
   }
 
   // CURRICULUM ITSELF STYLING
-  pageIcons.forEach((pageIcon) => {
-    pageIcon.setAttribute("style", "display:none !important");
-  });
+  pageIcons.forEach((pageIcon) => hide(pageIcon));
+  
   lessonListItems.forEach((item) => {
     const titleEl = item.querySelector(".title");
     item.style.display = "flex";
