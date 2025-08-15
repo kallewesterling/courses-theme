@@ -1233,15 +1233,15 @@ function desktopSignUpPageStyling() {
     lineHeight: "24px",
   });
 
-  [v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol].forEach(
-    (el) => setStyle(el, { width: "50%" })
-  );
+  setStyle([v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol], {
+    width: "50%",
+  });
 
   setStyle(v.loginSignup.altMethodCol, { paddingLeft: "100px" });
 
   setStyle(v.loginSignup.altMethodUl, { paddingLeft: "25px" });
 
-  v.loginSignup.altMethodLi.forEach((li) => setStyle(li, { padding: "0" }));
+  setStyle(v.loginSignup.altMethodLi, { padding: "0" });
 
   setStyle(v.loginSignup.altMethodContainer, { paddingBottom: "0" });
 
@@ -1252,14 +1252,12 @@ function desktopSignUpPageStyling() {
     lineHeight: "20px",
   });
 
-  [v.loginSignup.inputs.login, v.loginSignup.inputs.password1].forEach((el) =>
-    setStyle(el, {
-      borderRadius: "4px",
-      borderColor: "#DCDCDC",
-      padding: "12px",
-      lineHeight: "24px",
-    })
-  );
+  setStyle([v.loginSignup.inputs.login, v.loginSignup.inputs.password1], {
+    borderRadius: "4px",
+    borderColor: "#DCDCDC",
+    padding: "12px",
+    lineHeight: "24px",
+  });
 
   setStyle(v.loginSignup.inputs.password2, { marginBottom: "24px" });
 
@@ -1284,38 +1282,33 @@ function desktopSignUpPageStyling() {
 
   setStyle(v.loginSignup.loginContent, { border: "0" });
 
-  v.loginSignup.allLabels.forEach((label) =>
-    setStyle(label, {
-      marginBottom: "12px",
-      fontWeight: "500",
-      fontSize: "16px",
-      fontFamily: "Fusiona",
-      lineHeight: "20px",
-    })
-  );
+  setStyle(v.loginSignup.allLabels, {
+    marginBottom: "12px",
+    fontWeight: "500",
+    fontSize: "16px",
+    fontFamily: "Fusiona",
+    lineHeight: "20px",
+  });
 
-  v.loginSignup.allInputs.forEach((input) =>
-    setStyle(input, {
-      borderRadius: "4px",
-      border: "2px solid #3443f4",
-      padding: "20px 15px",
-      lineHeight: "24px",
-    })
-  );
+  setStyle(v.loginSignup.allInputs, {
+    borderRadius: "4px",
+    border: "2px solid #3443f4",
+    padding: "20px 15px",
+    lineHeight: "24px",
+  });
 
   setStyle(v.footerContainer, {
     paddingLeft: "40px",
     paddingRight: "40px",
   });
 
-  v.footerCols.forEach((col) => setStyle(col, { width: "270px" }));
+  setStyle(v.footerCols, { width: "270px" });
 
   // move elements
   v.loginSignup.signupForm.append(v.loginSignup.termsAndServices);
 
   // hide elements
-  hide(v.loginSignup.fbBtn);
-  hide(v.loginSignup.tabArrow);
+  hide([v.loginSignup.fbBtn, v.loginSignup.tabArrow]);
 }
 
 /**
@@ -1971,26 +1964,20 @@ function mobileLoginPageStyling() {
     lineHeight: "24px",
   });
 
-  [v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol].forEach(
-    (el) => setStyle(el, { width: "100%" })
-  );
+  setStyle([v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol], {
+    width: "100%",
+  });
 
   setStyle(v.loginSignup.altMethodUl, { padding: "0" });
 
-  v.loginSignup.altMethodLi.forEach((li) => {
-    setStyle(li, { padding: "0" });
-  });
-
   setStyle(v.loginSignup.altMethodContainer, { paddingBottom: "0" });
 
-  [v.loginSignup.inputs.login, v.loginSignup.inputs.password].forEach((el) =>
-    setStyle(el, {
-      borderRadius: "4px",
-      borderColor: "#DCDCDC",
-      padding: "12px",
-      lineHeight: "24px",
-    })
-  );
+  setStyle([v.loginSignup.inputs.login, v.loginSignup.inputs.password], {
+    borderRadius: "4px",
+    borderColor: "#DCDCDC",
+    padding: "12px",
+    lineHeight: "24px",
+  });
 
   setStyle(v.loginSignup.inputs.password, { marginBottom: "24px" });
 
@@ -2023,15 +2010,13 @@ function mobileLoginPageStyling() {
     paddingRight: "0",
   });
 
-  v.footerCols.forEach((col) => setStyle(col, { width: "212px" }));
+  setStyle(v.footerCols, { width: "212px" });
 
   // move elements
   v.loginSignup.loginForm.append(v.loginSignup.termsAndServices);
 
   // hide elements
-  hide(v.loginSignup.fbBtn);
-  hide(v.loginSignup.tabArrow);
-  hide(v.loginSignup.loginNote);
+  hide([v.loginSignup.fbBtn, v.loginSignup.tabArrow, v.loginSignup.loginNote]);
 }
 
 /**
@@ -2162,15 +2147,15 @@ function mobileSignUpPageStyling() {
     lineHeight: "24px",
   });
 
-  [v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol].forEach(
-    (el) => setStyle(el, { width: "100%" })
-  );
+  setStyle([v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol], {
+    width: "100%",
+  });
 
-  [v.loginSignup.altMethodUl, v.loginSignup.altMethodCol].forEach((el) =>
-    setStyle(el, { padding: "0" })
-  );
+  setStyle([v.loginSignup.altMethodUl, v.loginSignup.altMethodCol], {
+    padding: "0",
+  });
 
-  v.loginSignup.altMethodLi.forEach((li) => setStyle(li, { padding: "0" }));
+  setStyle(v.loginSignup.altMethodLi, { padding: "0" });
 
   setStyle(v.loginSignup.altMethodContainer, { paddingBottom: "0" });
 
@@ -2181,14 +2166,12 @@ function mobileSignUpPageStyling() {
     lineHeight: "20px",
   });
 
-  [v.loginSignup.inputs.login, v.loginSignup.inputs.password1].forEach((el) =>
-    setStyle(el, {
-      borderRadius: "4px",
-      borderColor: "#DCDCDC",
-      padding: "12px",
-      lineHeight: "24px",
-    })
-  );
+  setStyle([v.loginSignup.inputs.login, v.loginSignup.inputs.password1], {
+    borderRadius: "4px",
+    borderColor: "#DCDCDC",
+    padding: "12px",
+    lineHeight: "24px",
+  });
 
   setStyle(v.loginSignup.inputs.password2, {
     marginBottom: "24px",
@@ -2214,37 +2197,32 @@ function mobileSignUpPageStyling() {
     border: "0",
   });
 
-  v.loginSignup.allLabels.forEach((label) =>
-    setStyle(label, {
-      marginBottom: "12px",
-      fontWeight: "500",
-      fontSize: "16px",
-      lineHeight: "20px",
-    })
-  );
+  setStyle(v.loginSignup.allLabels, {
+    marginBottom: "12px",
+    fontWeight: "500",
+    fontSize: "16px",
+    lineHeight: "20px",
+  });
 
-  v.loginSignup.allInputs.forEach((input) =>
-    setStyle(input, {
-      borderRadius: "4px",
-      borderColor: "rgb(220, 220, 220)",
-      padding: "12px",
-      lineHeight: "24px",
-    })
-  );
+  setStyle(v.loginSignup.allInputs, {
+    borderRadius: "4px",
+    borderColor: "rgb(220, 220, 220)",
+    padding: "12px",
+    lineHeight: "24px",
+  });
 
   setStyle(v.footerContainer, {
     paddingLeft: "0",
     paddingRight: "0",
   });
 
-  v.footerCols.forEach((col) => setStyle(col, { width: "212px" }));
+  setStyle(v.footerCols, { width: "212px" });
 
   // move elements
   v.loginSignup.signupForm.append(v.loginSignup.termsAndServices);
 
   // hide elements
-  hide(v.loginSignup.fbBtn);
-  hide(v.loginSignup.tabArrow);
+  hide([v.loginSignup.fbBtn, v.loginSignup.tabArrow]);
 }
 
 /**
