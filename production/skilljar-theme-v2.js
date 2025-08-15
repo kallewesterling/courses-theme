@@ -2181,7 +2181,6 @@ function mobileCourseDetailsPageStyling() {
   // TODO: we need to clean this up but we are currently not using this view...
   // only on the staging site: https://chainguard-test.skilljar.com/secure-or-sorry-understanding-software-vulnerabilities
   console.info("Running mobileCourseDetailsPageStyling using setStyle");
-  // NAV VARS
   const navLogoImg = document.querySelector(".header-center-img");
 
   const headerContainer = document.querySelector(".top-row-grey");
@@ -2196,12 +2195,10 @@ function mobileCourseDetailsPageStyling() {
   );
   const backToCatalogBtn = document.querySelector(".back-to-catalog");
   const videoContainer = document.querySelector(".video-max");
-  // SIGN IN VARIABLES (WHEN USER NOT LOGGED IN)
   const signInHeaderText = document.querySelector(".signin");
   const signInBtn = document.querySelector(
     ".header-link.login-link.sj-text-sign-in.focus-link-v2"
   );
-  // BODY VARIABLES
   const bodyContainer = document.querySelector("#dp-details");
   const mobileBodyContent = document.querySelector(".show-for-small");
   const secondaryBodyContainer = document.querySelector(".hide-for-small");
@@ -2211,8 +2208,6 @@ function mobileCourseDetailsPageStyling() {
     .closest(".sj-curriculum-wrapper")
     .querySelector("h3");
   const curriculumList = curriculumListContainer.querySelectorAll("li");
-
-  // CARD VARIABLES
   const courseDetailCardContainer = document.querySelectorAll(
     ".course-details-card"
   )[0];
@@ -2228,14 +2223,11 @@ function mobileCourseDetailsPageStyling() {
   const courseDetailsCardLink = document.querySelector(
     ".course-details-card-link"
   );
-
-  // FOOTER VARS
   const footerContainer = document.querySelector("#footer-container");
   const footerCols = footerContainer.querySelectorAll(".global-footer-column");
+  
+  // mobileBodyContent.setAttribute("style", "display: none !important;");
 
-  mobileBodyContent.setAttribute("style", "display: none !important;");
-
-  // NAV STYLING
   setStyle(navLogoImg, { maxHeight: "48px" });
   
   // navLogoImg.style.maxHeight = "48px";
@@ -2307,6 +2299,7 @@ function mobileCourseDetailsPageStyling() {
     display: "block",
     marginBottom: "24px"
   })
+
   // headingFloaterText.style.display = "block";
   // headingFloaterText.style.marginBottom = "24px";
   
@@ -2328,15 +2321,9 @@ function mobileCourseDetailsPageStyling() {
     display: "block",
     margin: "0 0 24px 0",
   })
+
   // headingParagraph.style.display = "block";
   // headingParagraph.style.margin = "0 0 24px 0";
-  
-  mainHeadingContainer.append(
-    headingFloaterText,
-    mainHeading,
-    headingParagraph,
-    registerBtn
-  );
 
   setStyle(mainVideoContainer, {
     padding: "0",
@@ -2506,11 +2493,20 @@ function mobileCourseDetailsPageStyling() {
   //   col.style.width = "212px";
   // });
 
+  // move elements
+  mainHeadingContainer.append(
+    headingFloaterText,
+    mainHeading,
+    headingParagraph,
+    registerBtn
+  );
+
   // hide elements
   hide(backToCatalogBtn);
   hide(signInHeaderText);
   hide(mainHeadingContainer.querySelector(".sj-course-info-wrapper"));
   hide(curriculumListHeader);
+  hide(mobileBodyContent);
 }
 
 /**
