@@ -37,30 +37,55 @@ function toClipboard(copyText, tooltipContainer) {
 }
 
 /**
- * Sets the style of a given element.
- * @param {HTMLElement|string} element - The element to style, or a selector string to find the element.
- * @param {Object} style - An object containing CSS properties and values to apply to the element.
- * @returns {HTMLElement|null}
+ * Sets the style of an element or a list of elements.
+ * @param {HTMLElement|Iterable<HTMLElement>|string} target
+ * @param {Object} style - CSS properties and values (camelCase or kebab-case; supports !important).
+ * @returns {HTMLElement|HTMLElement[]|null}
  */
-function setStyle(element, style) {
-  if (typeof element === "string") element = document.querySelector(element);
-  if (!element) return null;
+function setStyle(target, style) {
+  // Normalize target
+  if (typeof target === "string") {
+    target = document.querySelector(target); // keep existing behavior
+  }
 
   const toKebab = (p) =>
     p.startsWith("--") ? p : p.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase());
 
-  for (const [prop, raw] of Object.entries(style)) {
-    let value = String(raw);
-    let priority = "";
-    if (/\s*!important\s*$/i.test(value)) {
-      priority = "important";
-      value = value.replace(/\s*!important\s*$/i, "");
+  const apply = (el) => {
+    if (!el) return null;
+    for (const [prop, raw] of Object.entries(style)) {
+      let value = String(raw);
+      let priority = "";
+      if (/\s*!important\s*$/i.test(value)) {
+        priority = "important";
+        value = value.replace(/\s*!important\s*$/i, "");
+      }
+      if (value.trim()) {
+        el.style.setProperty(toKebab(prop), value.trim(), priority);
+      }
     }
-    if (value.trim()) {
-      element.style.setProperty(toKebab(prop), value.trim(), priority);
-    }
+    return el;
+  };
+
+  // If it's an iterable of elements (e.g., NodeList, HTMLCollection, Array, Set)
+  const isIterable =
+    target &&
+    typeof target !== "string" &&
+    typeof target[Symbol.iterator] === "function" &&
+    !(target instanceof Element);
+
+  if (isIterable) {
+    const elements = Array.from(target).filter(Boolean);
+    elements.forEach(apply);
+    return elements;
   }
-  return element;
+
+  // Single element
+  if (target instanceof Element) {
+    return apply(target);
+  }
+
+  return null;
 }
 
 /**
@@ -957,13 +982,17 @@ function desktopLoginPageStyling() {
     loginTabText: document.querySelector("#login-tab-left a"),
     loginTabTextSpan: document.querySelector("#login-tab-left a span"),
     loginText: document.querySelector("#login-tab-left span span"),
-    loginForgetWrapper:  document.querySelector(".large-12.columns:has(#button-sign-in)"),
+    loginForgetWrapper: document.querySelector(
+      ".large-12.columns:has(#button-sign-in)"
+    ),
 
     // signup-specific
     allInputs: document.querySelectorAll("input"),
     allLabels: document.querySelectorAll("label"),
     signupForm: document.querySelector("#signup_form"),
-    signupTabText: document.querySelector("#login-tab-right a") || document.querySelector("#login-tab-right span"),
+    signupTabText:
+      document.querySelector("#login-tab-right a") ||
+      document.querySelector("#login-tab-right span"),
     signupTabSpan: document.querySelector("#login-tab-right span"),
     passwordConfirm: document.querySelector(
       "label[for=id_password2] .input-label-text span"
@@ -1014,17 +1043,15 @@ function desktopLoginPageStyling() {
     lineHeight: "24px",
   });
 
-  [v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol].forEach((el) =>
-    setStyle(el, { width: "50%" })
+  [v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol].forEach(
+    (el) => setStyle(el, { width: "50%" })
   );
 
   setStyle(v.loginSignup.altMethodUl, {
     paddingLeft: "125px",
   });
 
-  v.loginSignup.altMethodLi.forEach((li) =>
-    setStyle(li, { padding: "0" })
-  );
+  v.loginSignup.altMethodLi.forEach((li) => setStyle(li, { padding: "0" }));
 
   setStyle(v.loginSignup.altMethodContainer, { paddingBottom: "0" });
 
@@ -1130,13 +1157,17 @@ function desktopSignUpPageStyling() {
     loginTabText: document.querySelector("#login-tab-left a"),
     loginTabTextSpan: document.querySelector("#login-tab-left a span"),
     loginText: document.querySelector("#login-tab-left span span"),
-    loginForgetWrapper:  document.querySelector(".large-12.columns:has(#button-sign-in)"),
+    loginForgetWrapper: document.querySelector(
+      ".large-12.columns:has(#button-sign-in)"
+    ),
 
     // signup-specific
     allInputs: document.querySelectorAll("input"),
     allLabels: document.querySelectorAll("label"),
     signupForm: document.querySelector("#signup_form"),
-    signupTabText: document.querySelector("#login-tab-right a") || document.querySelector("#login-tab-right span"),
+    signupTabText:
+      document.querySelector("#login-tab-right a") ||
+      document.querySelector("#login-tab-right span"),
     signupTabSpan: document.querySelector("#login-tab-right span"),
     passwordConfirm: document.querySelector(
       "label[for=id_password2] .input-label-text span"
@@ -1877,13 +1908,17 @@ function mobileLoginPageStyling() {
     loginTabText: document.querySelector("#login-tab-left a"),
     loginTabTextSpan: document.querySelector("#login-tab-left a span"),
     loginText: document.querySelector("#login-tab-left span span"),
-    loginForgetWrapper:  document.querySelector(".large-12.columns:has(#button-sign-in)"),
+    loginForgetWrapper: document.querySelector(
+      ".large-12.columns:has(#button-sign-in)"
+    ),
 
     // signup-specific
     allInputs: document.querySelectorAll("input"),
     allLabels: document.querySelectorAll("label"),
     signupForm: document.querySelector("#signup_form"),
-    signupTabText: document.querySelector("#login-tab-right a") || document.querySelector("#login-tab-right span"),
+    signupTabText:
+      document.querySelector("#login-tab-right a") ||
+      document.querySelector("#login-tab-right span"),
     signupTabSpan: document.querySelector("#login-tab-right span"),
     passwordConfirm: document.querySelector(
       "label[for=id_password2] .input-label-text span"
@@ -1940,8 +1975,8 @@ function mobileLoginPageStyling() {
     lineHeight: "24px",
   });
 
-  [v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol].forEach((el) =>
-    setStyle(el, { width: "100%" })
+  [v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol].forEach(
+    (el) => setStyle(el, { width: "100%" })
   );
 
   setStyle(v.loginSignup.altMethodUl, { padding: "0" });
@@ -2053,13 +2088,17 @@ function mobileSignUpPageStyling() {
     loginTabText: document.querySelector("#login-tab-left a"),
     loginTabTextSpan: document.querySelector("#login-tab-left a span"),
     loginText: document.querySelector("#login-tab-left span span"),
-    loginForgetWrapper:  document.querySelector(".large-12.columns:has(#button-sign-in)"),
+    loginForgetWrapper: document.querySelector(
+      ".large-12.columns:has(#button-sign-in)"
+    ),
 
     // signup-specific
     allInputs: document.querySelectorAll("input"),
     allLabels: document.querySelectorAll("label"),
     signupForm: document.querySelector("#signup_form"),
-    signupTabText: document.querySelector("#login-tab-right a") || document.querySelector("#login-tab-right span"),
+    signupTabText:
+      document.querySelector("#login-tab-right a") ||
+      document.querySelector("#login-tab-right span"),
     signupTabSpan: document.querySelector("#login-tab-right span"),
     passwordConfirm: document.querySelector(
       "label[for=id_password2] .input-label-text span"
@@ -2127,8 +2166,8 @@ function mobileSignUpPageStyling() {
     lineHeight: "24px",
   });
 
-  [v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol].forEach((el) =>
-    setStyle(el, { width: "100%" })
+  [v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol].forEach(
+    (el) => setStyle(el, { width: "100%" })
   );
 
   [v.loginSignup.altMethodUl, v.loginSignup.altMethodCol].forEach((el) =>
