@@ -737,14 +737,12 @@ function desktopLessonPageStyling() {
     float: "none",
   });
 
-  [hamburgerIcon, xIcon].forEach((el) => {
-    setStyle(el, {
-      padding: "12px",
-      border: "none",
-      borderRadius: "8px",
-      background: "rgba(255, 255, 255, .8)",
-      backdropFilter: "blur(1.5px)",
-    });
+  setStyle([hamburgerIcon, xIcon], {
+    padding: "12px",
+    border: "none",
+    borderRadius: "8px",
+    background: "rgba(255, 255, 255, .8)",
+    backdropFilter: "blur(1.5px)",
   });
 
   setStyle(lessonFooter, {
@@ -1464,21 +1462,15 @@ function desktopCurriculumPageNoCertificateStyling() {
     gap: "24px",
   });
 
-  [headingParagraph, headingFloaterText].forEach((el) =>
-    setStyle(el, { display: "block" })
-  );
+  setStyle([headingParagraph, headingFloaterText], { display: "block" });
 
   setStyle(tabsContainer, { margin: "0 0 46px 0" });
 
   setStyle(curriculumSection, { marginTop: "48px" });
 
-  [aboutHeader, curriculumHeader].forEach((el) =>
-    setStyle(el, { fontWeight: "600" })
-  );
+  setStyle([aboutHeader, curriculumHeader], { fontWeight: "600" });
 
-  [aboutContent, curriculumContent].forEach((el) =>
-    setStyle(el, { border: "0", padding: "0" })
-  );
+  setStyle([aboutContent, curriculumContent], { border: "0", padding: "0" });
 
   if (!initialLoadComplete) {
     // Add vars to global
@@ -1551,13 +1543,13 @@ function desktopCurriculumPageNoCertificateStyling() {
     tabsContainer.append(curriculumSection);
 
     // hide elements
-    hide(curriculumOutsideContainer.querySelector("h2"));
-    hide(curriculumOutsideContainer.querySelector("hr"));
+    hide([
+      curriculumOutsideContainer.querySelector("h2"),
+      curriculumOutsideContainer.querySelector("hr"),
+    ]);
   }
 
   // CURRICULUM ITSELF STYLING
-  pageIcons.forEach((pageIcon) => hide(pageIcon));
-
   lessonListItems.forEach((item) => {
     const title = item.querySelector(".title");
     const bullet = item.querySelector(".bullet");
@@ -1580,26 +1572,30 @@ function desktopCurriculumPageNoCertificateStyling() {
     });
   });
 
-  [
-    aboutSection,
-    curriculumSection,
-    globalAboutSection,
-    globalCurriculumSection,
-  ].forEach((el) => setStyle(el, { padding: "0 !important" }));
-
-  [curriculumSection, globalCurriculumSection].forEach((el) =>
-    setStyle(el, { marginTop: "48px !important" })
+  setStyle(
+    [
+      aboutSection,
+      curriculumSection,
+      globalAboutSection,
+      globalCurriculumSection,
+    ],
+    { padding: "0 !important" }
   );
 
-  // hide elements
-  hide(backToCatalogLink);
-  hide(sjHeaderTextSubheading);
-  hide(sjHeaderTextProgressBar);
-  hide(aboutSection.querySelector(".title"));
-  hide(curriculumSection.querySelector(".title"));
+  setStyle([curriculumSection, globalCurriculumSection], {
+    marginTop: "48px !important",
+  });
 
-  // Hide resume button if it doesn't exist
-  !resumeBtn ? hide(card.link) : null;
+  // hide elements
+  hide([
+    pageIcons,
+    backToCatalogLink,
+    sjHeaderTextSubheading,
+    sjHeaderTextProgressBar,
+    aboutSection.querySelector(".title"),
+    curriculumSection.querySelector(".title"),
+    !resumeBtn ? card.link : null // Hide resume button if it doesn't exist
+  ]);  
 }
 
 /**
@@ -2625,9 +2621,7 @@ function mobileCurriculumPageNoCertificateStyling() {
     gap: "24px",
   });
 
-  [headingParagraph, headingFloaterText].forEach((el) =>
-    setStyle(el, { display: "block" })
-  );
+  setStyle([headingParagraph, headingFloaterText], { display: "block" });
 
   setStyle(tabsContainer, { margin: "96px 0 46px 0" });
 
@@ -2635,13 +2629,9 @@ function mobileCurriculumPageNoCertificateStyling() {
 
   setStyle(curriculumSection, { marginTop: "48px" });
 
-  [aboutHeader, curriculumHeader].forEach((el) =>
-    setStyle(el, { fontWeight: "600" })
-  );
+  setStyle([aboutHeader, curriculumHeader], { fontWeight: "600" });
 
-  [aboutContent, curriculumContent].forEach((el) =>
-    setStyle(el, { border: "0", padding: "0" })
-  );
+  setStyle([aboutContent, curriculumContent], { border: "0", padding: "0" });
 
   if (!initialLoadComplete) {
     // Add vars to global
@@ -2730,7 +2720,7 @@ function mobileCurriculumPageNoCertificateStyling() {
 
   setStyle(v.footerContainer, { paddingLeft: "0", paddingRight: "0" });
 
-  v.footerCols.forEach((col) => setStyle(col, { width: "212px" }));
+  setStyle(v.footerCols, { width: "212px" });
 
   // move elements
   if (card.details) {
@@ -2745,7 +2735,7 @@ function mobileCurriculumPageNoCertificateStyling() {
   tabsContainer.append(curriculumSection);
 
   // hide elements
-  pageIcons.forEach((pageIcon) => hide(pageIcon));
+  hide(pageIcons);
   hide(backToCatalogLink);
   hide(sjHeaderTextSubheading);
   hide(sjHeaderTextProgressBar);
@@ -3090,15 +3080,13 @@ function mobileLessonPageStyling() {
     float: "right",
   });
 
-  [hamburgerIcon, xIcon].forEach((el) =>
-    setStyle(el, {
-      padding: "12px",
-      border: "1px solid gainsboro",
-      borderRadius: "8px",
-      background: "rgba(255, 255, 255, .8)",
-      backdropFilter: "blur(1.5px)",
-    })
-  );
+  setStyle([hamburgerIcon, xIcon], {
+    padding: "12px",
+    border: "1px solid gainsboro",
+    borderRadius: "8px",
+    background: "rgba(255, 255, 255, .8)",
+    backdropFilter: "blur(1.5px)",
+  });
 
   setStyle(lessonFooter, {
     position: "relative",
