@@ -47,7 +47,10 @@ function setStyle(target, style) {
     p.startsWith("--") ? p : p.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase());
 
   const isElement = (n) =>
-    !!n && typeof n === "object" && n.nodeType === 1 && typeof n.style?.setProperty === "function";
+    !!n &&
+    typeof n === "object" &&
+    n.nodeType === 1 &&
+    typeof n.style?.setProperty === "function";
 
   const apply = (el) => {
     for (const [prop, raw] of Object.entries(style)) {
@@ -57,7 +60,8 @@ function setStyle(target, style) {
         priority = "important";
         value = value.replace(/\s*!important\s*$/i, "");
       }
-      if (value.trim()) el.style.setProperty(toKebab(prop), value.trim(), priority);
+      if (value.trim())
+        el.style.setProperty(toKebab(prop), value.trim(), priority);
     }
     return el;
   };
@@ -70,7 +74,9 @@ function setStyle(target, style) {
 
   // Iterable? (NodeList, HTMLCollection, Array, Set, etc.)
   const isIterable =
-    target && typeof target !== "string" && typeof target[Symbol.iterator] === "function";
+    target &&
+    typeof target !== "string" &&
+    typeof target[Symbol.iterator] === "function";
 
   if (isIterable && !(target instanceof Element)) {
     const elements = Array.from(target).filter(isElement);
@@ -1348,6 +1354,8 @@ function desktopCurriculumPageNoCertificateStyling() {
 
   const pageIcons = document.querySelectorAll(".type-icon.hide-for-small");
   const lessonListItems = document.querySelectorAll(".lesson-row");
+  const lessonListTitles = document.querySelectorAll(".lesson-row .title");
+  const lessonListBullets = document.querySelectorAll(".lesson-row .bullet");
   const curriculumParentContainer = document.querySelector("#curriculum-list");
   const curriculumItemsListLIVE = new Array(
     ...curriculumParentContainer.childNodes
@@ -1531,45 +1539,26 @@ function desktopCurriculumPageNoCertificateStyling() {
         }
       });
 
-    // move elements
-    container.append(
-      ...(headingFloaterText ? [headingFloaterText] : []),
-      ...(mainHeading ? [mainHeading] : []),
-      ...(headingParagraph ? [headingParagraph] : []),
-      ...(resumeBtn ? [resumeBtn] : [])
-    );
     curriculumParentContainer.append(currentContainer);
-    tabsContainer.append(curriculumSection);
-
-    // hide elements
-    hide([
-      curriculumOutsideContainer.querySelector("h2"),
-      curriculumOutsideContainer.querySelector("hr"),
-    ]);
   }
 
   // CURRICULUM ITSELF STYLING
-  lessonListItems.forEach((item) => {
-    const title = item.querySelector(".title");
-    const bullet = item.querySelector(".bullet");
-
-    setStyle(item, {
-      display: "flex",
-      alignItems: "center",
-      gap: "12px",
-    });
-
-    setStyle(bullet, { position: "static" });
-
-    setStyle(title, {
-      position: "static",
-      color: "#1C1C1C",
-      display: "flex",
-      alignItems: "center",
-      margin: "0",
-      transform: "translateY(2px)",
-    });
+  setStyle(lessonListItems, {
+    display: "flex",
+    alignItems: "center",
+    gap: "12px",
   });
+
+  setStyle(lessonListTitles, {
+    position: "static",
+    color: "#1C1C1C",
+    display: "flex",
+    alignItems: "center",
+    margin: "0",
+    transform: "translateY(2px)",
+  });
+
+  setStyle(lessonListBullets, { position: "static" });
 
   setStyle(
     [
@@ -1591,10 +1580,21 @@ function desktopCurriculumPageNoCertificateStyling() {
     backToCatalogLink,
     sjHeaderTextSubheading,
     sjHeaderTextProgressBar,
+    curriculumOutsideContainer.querySelector("h2"),
+    curriculumOutsideContainer.querySelector("hr"),
     aboutSection.querySelector(".title"),
     curriculumSection.querySelector(".title"),
     !resumeBtn ? card.link : null, // Hide resume button if it doesn't exist
-  ]);  
+  ]);
+
+  // move elements
+  container.append(
+    ...(headingFloaterText ? [headingFloaterText] : []),
+    ...(mainHeading ? [mainHeading] : []),
+    ...(headingParagraph ? [headingParagraph] : []),
+    ...(resumeBtn ? [resumeBtn] : [])
+  );
+  tabsContainer.append(curriculumSection);
 }
 
 /**
@@ -2505,6 +2505,8 @@ function mobileCurriculumPageNoCertificateStyling() {
   const curriculumContent = curriculumSection.querySelector(".content");
   const pageIcons = document.querySelectorAll(".type-icon.hide-for-small");
   const lessonListItems = document.querySelectorAll(".lesson-row");
+  const lessonListTitles = document.querySelectorAll(".lesson-row .title");
+  const lessonListBullets = document.querySelectorAll(".lesson-row .bullet");
   const curriculumParentContainer = document.querySelector("#curriculum-list");
   const curriculumItemsListLIVE = new Array(
     ...curriculumParentContainer.childNodes
@@ -2695,27 +2697,22 @@ function mobileCurriculumPageNoCertificateStyling() {
     curriculumParentContainer.append(currentContainer);
   }
 
-  lessonListItems.forEach((item) => {
-    const title = item.querySelector(".title");
-    const bullet = item.querySelector(".bullet");
-
-    setStyle(item, {
-      display: "flex",
-      alignItems: "center",
-      gap: "12px",
-    });
-
-    setStyle(bullet, { position: "static" });
-
-    setStyle(title, {
-      position: "static",
-      color: "#1C1C1C",
-      display: "flex",
-      alignItems: "center",
-      margin: "0",
-      transform: "translateY(2px)",
-    });
+  setStyle(lessonListItems, {
+    display: "flex",
+    alignItems: "center",
+    gap: "12px",
   });
+
+  setStyle(lessonListTitles, {
+    position: "static",
+    color: "#1C1C1C",
+    display: "flex",
+    alignItems: "center",
+    margin: "0",
+    transform: "translateY(2px)",
+  });
+
+  setStyle(lessonListBullets, { position: "static" });
 
   setStyle(v.footerContainer, { paddingLeft: "0", paddingRight: "0" });
 
