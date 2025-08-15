@@ -915,6 +915,8 @@ function desktopLoginPageStyling() {
   console.info("Running desktopLoginPageStyling with setStyle");
 
   v.loginSignup = {
+    fbBtn: document.querySelector("#facebook_login"),
+    googleBtn: document.querySelector("#google_login"),
     tabArrow:
       document.querySelector("#tab-marker-login") ||
       document.querySelector("#tab-marker-signup"),
@@ -1084,6 +1086,8 @@ function desktopSignUpPageStyling() {
   console.info("Running desktopSignUpPageStyling with setStyle");
 
   v.loginSignup = {
+    fbBtn: document.querySelector("#facebook_login"),
+    googleBtn: document.querySelector("#google_login"),
     tabArrow:
       document.querySelector("#tab-marker-login") ||
       document.querySelector("#tab-marker-signup"),
@@ -1142,7 +1146,7 @@ function desktopSignUpPageStyling() {
     signupBtnWrapper: document.querySelector("#signup_form .text-center"),
   };
 
-  // edit content
+  // set content
   v.loginSignup.loginTabTextSpan.textContent = "Log In";
   v.loginSignup.signupBtnText.textContent = "Sign up";
   v.loginSignup.altMethod.textContent = "Or Sign Up With";
@@ -1827,6 +1831,8 @@ function mobileLoginPageStyling() {
   console.info("Running mobileLoginPageStyling with setStyle [cleaned up]");
 
   v.loginSignup = {
+    fbBtn: document.querySelector("#facebook_login"),
+    googleBtn: document.querySelector("#google_login"),
     tabArrow:
       document.querySelector("#tab-marker-login") ||
       document.querySelector("#tab-marker-signup"),
@@ -2059,6 +2065,7 @@ function mobileSignUpPageStyling() {
     signupBtnWrapper: document.querySelector("#signup_form .text-center"),
   };
 
+  // set content
   v.loginSignup.loginTabTextSpan.textContent = "Log in";
   v.loginSignup.signupTabText.textContent = "Sign up";
   v.loginSignup.fNameLabel.textContent = "First name";
