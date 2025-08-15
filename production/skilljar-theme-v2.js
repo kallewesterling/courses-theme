@@ -1022,9 +1022,11 @@ function desktopLoginPageStyling() {
 
   setStyle(v.loginSignup.tabContainer, { display: "flex" });
 
-  [v.loginSignup.loginTab, v.loginSignup.signupTab].forEach((el) =>
-    setStyle(el, { display: "flex", padding: "8px 16px", alignItems: "center" })
-  );
+  setStyle([v.loginSignup.loginTab, v.loginSignup.signupTab], {
+    display: "flex",
+    padding: "8px 16px",
+    alignItems: "center",
+  });
 
   setStyle(v.loginSignup.loginTab, {
     border: "0",
@@ -1043,35 +1045,31 @@ function desktopLoginPageStyling() {
     lineHeight: "24px",
   });
 
-  [v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol].forEach(
-    (el) => setStyle(el, { width: "50%" })
-  );
+  setStyle([v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol], {
+    width: "50%",
+  });
 
   setStyle(v.loginSignup.altMethodUl, {
     paddingLeft: "125px",
   });
 
-  v.loginSignup.altMethodLi.forEach((li) => setStyle(li, { padding: "0" }));
+  setStyle(v.loginSignup.altMethodLi, { padding: "0" });
 
   setStyle(v.loginSignup.altMethodContainer, { paddingBottom: "0" });
 
-  [v.loginSignup.inputs.login, v.loginSignup.inputs.password].forEach((el) =>
-    setStyle(el, {
-      borderRadius: "4px",
-      border: "2px solid #3443f4",
-      padding: "20px 15px",
-      fontSize: "14px",
-      lineHeight: "24px",
-    })
-  );
+  setStyle([v.loginSignup.inputs.login, v.loginSignup.inputs.password], {
+    borderRadius: "4px",
+    border: "2px solid #3443f4",
+    padding: "20px 15px",
+    fontSize: "14px",
+    lineHeight: "24px",
+  });
 
-  [v.loginSignup.loginBtn, v.loginSignup.forgotPassword].forEach((el) =>
-    setStyle(el, {
-      fontSize: "16px",
-      fontFamily: "Space Mono",
-      marginBottom: "2px",
-    })
-  );
+  setStyle([v.loginSignup.loginBtn, v.loginSignup.forgotPassword], {
+    fontSize: "16px",
+    fontFamily: "Space Mono",
+    marginBottom: "2px",
+  });
 
   setStyle(v.loginSignup.loginBtn, {
     color: "#14003d",
@@ -1097,15 +1095,13 @@ function desktopLoginPageStyling() {
     paddingRight: "40px",
   });
 
-  v.footerCols.forEach((col) => setStyle(col, { width: "270px" }));
+  setStyle(v.footerCols, { width: "270px" });
 
   // move elements
   v.loginSignup.loginForm.append(v.loginSignup.termsAndServices);
 
   // hide elements
-  hide(v.loginSignup.loginNote);
-  hide(v.loginSignup.fbBtn);
-  hide(v.loginSignup.tabArrow);
+  hide([v.loginSignup.tabArrow, v.loginSignup.fbBtn, v.loginSignup.loginNote]);
 }
 
 /**
