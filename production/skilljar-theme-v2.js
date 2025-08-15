@@ -436,16 +436,18 @@ function desktopCourseDetailsPageStyling() {
     justifySelf: "center",
   });
 
-  card.detailItems.forEach((li) => {
-    const iconClone = checkboxIcon.cloneNode(true);
+  if (!initialLoadComplete) {
+    card.detailItems.forEach((li) => {
+      const iconClone = checkboxIcon.cloneNode(true);
 
-    setStyle(iconClone, {
-      display: "block",
-      flexShrink: "0",
+      setStyle(iconClone, {
+        display: "block",
+        flexShrink: "0",
+      });
+      
+      li.prepend(iconClone);
     });
-    
-    li.prepend(iconClone);
-  });
+  }
 
   if (registerBtn && card.link) {
     const btnText = registerBtn.textContent || "Register";
