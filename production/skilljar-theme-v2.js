@@ -177,20 +177,6 @@ function getCurrentPage() {
 }
 
 /**
- * This function sets the body style to visible and opacity to 1.
- */
-function makeContentVisible() {
-  const body = document.querySelector("body");
-
-  if (!body.classList.contains("sj-page-catalog")) {
-    body.setAttribute(
-      "style",
-      "visibility: visible !important; opacity: 1 !important"
-    );
-  }
-}
-
-/**
  * This function inserts the footer into the page.
  */
 function insertFooter() {
@@ -3308,7 +3294,6 @@ function render() {
 
   removeSJFooter();
   insertFooter();
-  makeContentVisible();
 }
 
 /**
