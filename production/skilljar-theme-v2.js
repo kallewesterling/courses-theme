@@ -65,7 +65,11 @@ function setStyle(target, style) {
         value = value.replace(/\s*!important\s*$/i, "");
       }
       if (value.trim()) {
-        el.style.setProperty(toKebab(prop), value.trim(), priority);
+        try { 
+          el.style.setProperty(toKebab(prop), value.trim(), priority);
+        } catch (e) {
+          console.error(`setStyle: Failed to set style for ${el.tagName} on property "${prop}":`, e);
+        }
       }
     }
     return el;
