@@ -1152,16 +1152,16 @@ function desktopSignUpPageStyling() {
 
   // set content
   v.loginSignup.loginTabTextSpan.textContent = "Log In";
-  v.loginSignup.signupBtnText.textContent = "Sign up";
+  v.loginSignup.signupBtnText.textContent = "Sign Up";
   v.loginSignup.altMethod.textContent = "Or Sign Up With";
   v.loginSignup.googleBtn.textContent = "Continue with Google";
-  v.loginSignup.signupTabText.textContent = "Sign up";
+  v.loginSignup.signupTabText.textContent = "Sign Up";
   v.loginSignup.fNameLabel.textContent = "First Name";
   v.loginSignup.lNameLabel.textContent = "Last Name";
   v.loginSignup.emailLabel.textContent = "Work Email";
   v.loginSignup.passwordConfirm.textContent = "Password Confirm";
   v.loginSignup.inputs.email.placeholder = "Work Email";
-  v.loginSignup.inputs.password2.placeholder = "Password confirm";
+  v.loginSignup.inputs.password2.placeholder = "Password Confirm";
 
   setStyle(v.loginSignup.termsAndServices, {
     maxWidth: "368px",
@@ -1898,10 +1898,10 @@ function mobileLoginPageStyling() {
   };
 
   // set content
-  v.loginSignup.loginText.textContent = "Log in";
-  v.loginSignup.signupTabSpan.textContent = "Sign up";
-  v.loginSignup.altMethod.textContent = "or log in with";
-  v.loginSignup.loginBtn.textContent = "Log in";
+  v.loginSignup.loginText.textContent = "Log In";
+  v.loginSignup.signupTabSpan.textContent = "Sign Up";
+  v.loginSignup.altMethod.textContent = "Or Log In With";
+  v.loginSignup.loginBtn.textContent = "Log In";
   v.loginSignup.googleBtn.textContent = "Continue with Google";
 
   setStyle(v.logo, { maxHeight: "48px" });
@@ -2074,17 +2074,17 @@ function mobileSignUpPageStyling() {
   };
 
   // set content
-  v.loginSignup.loginTabTextSpan.textContent = "Log in";
-  v.loginSignup.signupTabText.textContent = "Sign up";
-  v.loginSignup.fNameLabel.textContent = "First name";
-  v.loginSignup.lNameLabel.textContent = "Last name";
-  v.loginSignup.loginLabel.textContent = "Work email";
-  v.loginSignup.altMethod.textContent = "or sign up with";
+  v.loginSignup.loginTabTextSpan.textContent = "Log In";
+  v.loginSignup.signupTabText.textContent = "Sign Up";
+  v.loginSignup.fNameLabel.textContent = "First Name";
+  v.loginSignup.lNameLabel.textContent = "Last Name";
+  v.loginSignup.emailLabel.textContent = "Work Email";
+  v.loginSignup.altMethod.textContent = "Or Sign Up With";
   v.loginSignup.googleBtn.textContent = "Continue with Google";
   v.loginSignup.passwordConfirm.textContent = "Password Confirm";
-  v.loginSignup.signupBtnText.textContent = "Sign up";
-  v.loginSignup.inputs.login.setAttribute("placeholder", "Work email");
-  v.loginSignup.inputs.password2.placeholder = "Password confirm";
+  v.loginSignup.signupBtnText.textContent = "Sign Up";
+  v.loginSignup.inputs.email.placeholder = "Work Email";
+  v.loginSignup.inputs.password2.placeholder = "Password Confirm";
 
   setStyle(v.loginSignup.termsAndServices, {
     maxWidth: "368px",
