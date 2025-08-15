@@ -1832,10 +1832,8 @@ function desktopCurriculumPageYesCertificationStyling() {
  * It modifies the layout and appearance of various elements on the page.
  */
 function mobileLoginPageStyling() {
-  console.info("Running mobileLoginPageStyling");
-  // NAV VARS
+  console.info("Running mobileLoginPageStyling with setStyle");
   const logoImg = document.querySelector(".header-center-img");
-
   const fbBtn = document.querySelector("#facebook_login");
   const googleBtn = document.querySelector("#google_login");
   const loginContent = document.querySelector("#login-content");
@@ -1850,8 +1848,10 @@ function mobileLoginPageStyling() {
     orGoogleSignInInnerContainer.querySelectorAll("li");
   const signUpSignInContainer = document.querySelector(".large-12.columns");
   const loginTab = document.querySelector("#login-tab-left");
+  const loginText = loginTab.querySelector("span span");
   const signInTab = document.querySelector("#login-tab-right");
   const signInTabText = signInTab.querySelector("a");
+  const signInTabSpan = signInTab.querySelector("span");
   const loginNote = document.querySelector(".loginNote.sj-text-login-note");
   const orSignInWithContainer = document.querySelector(
     ".socialaccount_providers li"
@@ -1869,87 +1869,173 @@ function mobileLoginPageStyling() {
     loginBottomBtn.closest(".large-12.columns");
 
   const loginForm = document.querySelector("#login_form");
-
-  // FOOTER VARS
   const footerContainer = document.querySelector("#footer-container");
   const footerCols = footerContainer.querySelectorAll(".global-footer-column");
 
-  // NAV STYLING
-  logoImg.style.maxHeight = "48px";
-
-  termsAndServicesText.style.maxWidth = "368px";
-  termsAndServicesText.style.color = "#545454";
-  termsAndServicesText.style.fontSize = "14px";
-
-  loginForm.append(termsAndServicesText);
-
-  // STYLE THE LOGIN/SIGN UP TABS
-  signUpSignInContainer.style.display = "flex";
-  loginTab.querySelector("span span").textContent = "Log in";
-  loginTab.style.border = "0";
-  loginTab.style.display = "flex";
-  loginTab.style.padding = "8px 16px";
-  loginTab.style.alignItems = "center";
-  loginTab.style.backgroundColor = "#3443F4";
-  loginTab.style.color = "#fff";
-  loginTab.style.fontWeight = "500";
-  loginTab.style.fontSize = "16px";
-  loginTab.style.lineHeight = "24px";
-  loginTab.style.borderRadius = "100px";
-  signInTab.querySelector("span").textContent = "Sign up";
-  signInTab.style.display = "flex";
-  signInTab.style.alignItems = "center";
-  signInTab.style.padding = "8px 16px";
-  signInTabText.style.color = "#8C8C8C";
-  signInTabText.style.fontWeight = "500";
-  signInTabText.style.fontSize = "16px";
-  signInTabText.style.lineHeight = "24px";
-
-  // STYLE THE LOGIN TEXT CONTENT BOX
-  loginContentContainer.style.width = "100%";
-  orGoogleSignInContainer.style.width = "100%";
-  orGoogleSignInInnerContainer.style.padding = "0";
-  orGoogleSignInInnerContainerListItems.forEach((li) => {
-    li.style.padding = "0";
-  });
-
-  hide(loginNote);
-  orSignInWithContainer.style.paddingBottom = "0";
-  loginInput.style.borderRadius = "4px";
-  loginInput.style.borderColor = "#DCDCDC";
-  loginInput.style.padding = "12px";
-  loginInput.style.lineHeight = "24px";
-  passwordInput.style.borderRadius = "4px";
-  passwordInput.style.borderColor = "#DCDCDC";
-  passwordInput.style.padding = "12px";
-  passwordInput.style.lineHeight = "24px";
-  passwordInput.style.marginBottom = "24px";
+  // edit content
+  loginText.textContent = "Log in";
+  signInTabSpan.textContent = "Sign up";
   loginBottomBtn.textContent = "Log in";
-  loginBottomBtn.style.width = "100%";
-  loginBottomBtn.style.height = "48px";
-  loginBottomBtn.style.fontSize = "16px";
-  loginBottomBtn.style.marginBottom = "12px";
-  forgotPasswordText.style.fontSize = "16px";
-  forgotPasswordText.style.marginBottom = "2px";
-  loginBottomBtnAndForgotPassBtn.style.marginBottom = "24px";
-
-  // STYLING OF SIDE 'SIGN IN W/' GOOGLE ELS
   orSignInWithTextEl.textContent = "or log in with";
   googleBtn.textContent = "Continue with Google";
 
-  hide(fbBtn);
-  googleBtn.style.backgroundColor = "#3443F4";
-  googleBtn.style.width = "100%";
-  googleBtn.style.textAlign = "center";
-  loginContent.style.border = "0";
-  hide(tabArrow);
+  setStyle(logoImg, { maxHeight: "48px" });
 
-  // FOOTER STYLING
-  footerContainer.style.paddingLeft = 0;
-  footerContainer.style.paddingRight = 0;
-  footerCols.forEach((col) => {
-    col.style.width = "212px";
+  // logoImg.style.maxHeight = "48px";
+
+  setStyle(termsAndServicesText, {
+    maxWidth: "368px",
+    color: "#545454",
+    fontSize: "14px",
   });
+  
+  // termsAndServicesText.style.maxWidth = "368px";
+  // termsAndServicesText.style.color = "#545454";
+  // termsAndServicesText.style.fontSize = "14px";
+
+  setStyle(signUpSignInContainer, { display: "flex" });
+
+  // signUpSignInContainer.style.display = "flex";
+  
+  setStyle(loginTab, {
+    border: "0",
+    display: "flex",
+    padding: "8px 16px",
+    alignItems: "center",
+    backgroundColor: "#3443F4",
+    color: "#fff",
+    fontWeight: "500",
+    fontSize: "16px",
+    lineHeight: "24px",
+    borderRadius: "100px",
+  });
+  
+  // loginTab.style.border = "0";
+  // loginTab.style.display = "flex";
+  // loginTab.style.padding = "8px 16px";
+  // loginTab.style.alignItems = "center";
+  // loginTab.style.backgroundColor = "#3443F4";
+  // loginTab.style.color = "#fff";
+  // loginTab.style.fontWeight = "500";
+  // loginTab.style.fontSize = "16px";
+  // loginTab.style.lineHeight = "24px";
+  // loginTab.style.borderRadius = "100px";
+  
+  setStyle(signInTab, {
+    display: "flex",
+    padding: "8px 16px",
+    alignItems: "center",
+  });
+  
+  // signInTab.style.display = "flex";
+  // signInTab.style.alignItems = "center";
+  // signInTab.style.padding = "8px 16px";
+  
+  setStyle(signInTabText, {
+    color: "#8C8C8C",
+    fontWeight: "500",
+    fontSize: "16px",
+    lineHeight: "24px",
+  });
+  
+  // signInTabText.style.color = "#8C8C8C";
+  // signInTabText.style.fontWeight = "500";
+  // signInTabText.style.fontSize = "16px";
+  // signInTabText.style.lineHeight = "24px";
+
+  [orGoogleSignInContainer, loginContentContainer].forEach(el => setStyle(el, { width: "100%" }));
+
+  // loginContentContainer.style.width = "100%";
+  
+  // orGoogleSignInContainer.style.width = "100%";
+  
+  setStyle(orGoogleSignInInnerContainer, { padding: "0" });
+
+  // orGoogleSignInInnerContainer.style.padding = "0";
+
+  orGoogleSignInInnerContainerListItems.forEach((li) => { setStyle(li, { padding: "0" }); });
+
+  setStyle(orSignInWithContainer, { paddingBottom: "0" });
+
+  // orSignInWithContainer.style.paddingBottom = "0";
+  
+  [loginInput, passwordInput].forEach(el => setStyle(el, {
+    borderRadius: "4px",
+    borderColor: "#DCDCDC",
+    padding: "12px",
+    lineHeight: "24px",
+  }));
+  
+  // loginInput.style.borderRadius = "4px";
+  // loginInput.style.borderColor = "#DCDCDC";
+  // loginInput.style.padding = "12px";
+  // loginInput.style.lineHeight = "24px";
+  
+  setStyle(passwordInput, { marginBottom: "24px" });
+  
+  // passwordInput.style.borderRadius = "4px";
+  // passwordInput.style.borderColor = "#DCDCDC";
+  // passwordInput.style.padding = "12px";
+  // passwordInput.style.lineHeight = "24px";
+  // passwordInput.style.marginBottom = "24px";
+  
+  setStyle(loginBottomBtn, {
+    width: "100%",
+    height: "48px",
+    fontSize: "16px",
+    marginBottom: "12px",
+  });
+  
+  // loginBottomBtn.style.width = "100%";
+  // loginBottomBtn.style.height = "48px";
+  // loginBottomBtn.style.fontSize = "16px";
+  // loginBottomBtn.style.marginBottom = "12px";
+  
+  setStyle(forgotPasswordText, {
+    fontSize: "16px",
+    marginBottom: "2px",
+  });
+  
+  // forgotPasswordText.style.fontSize = "16px";
+  // forgotPasswordText.style.marginBottom = "2px";
+  
+  setStyle(loginBottomBtnAndForgotPassBtn, { marginBottom: "24px" });
+
+  // loginBottomBtnAndForgotPassBtn.style.marginBottom = "24px";
+  
+  setStyle(googleBtn, {
+    backgroundColor: "#7545FB",
+    width: "100%",
+    textAlign: "center",
+  });
+  
+  // googleBtn.style.backgroundColor = "#3443F4";
+  // googleBtn.style.width = "100%";
+  // googleBtn.style.textAlign = "center";
+  
+  setStyle(loginContent, {
+    border: "0",
+  });
+  
+  // loginContent.style.border = "0";
+  
+  setStyle(footerContainer, {
+    paddingLeft: "0",
+    paddingRight: "0",
+  });
+  
+  // footerContainer.style.paddingLeft = 0;
+  // footerContainer.style.paddingRight = 0;
+
+  footerCols.forEach((col) => setStyle(col, { width: "212px" }));
+
+  // move elements
+  loginForm.append(termsAndServicesText);
+
+  // hide elements
+  hide(fbBtn);
+  hide(tabArrow);
+  hide(loginNote);
 }
 
 /**
