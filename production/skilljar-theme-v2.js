@@ -2499,9 +2499,12 @@ function mobileCurriculumPageNoCertificateStyling() {
     justifySelf: "center",
   });
 
-  if (card.link) {
-    const btnText = resumeBtn.querySelector(".button span").textContent;
-    const btnHref = resumeBtn.querySelector(".button").getAttribute("href");
+  // update resume button text and href (with auto-value fallback)
+  if (resumeBtn && card.link) {
+    const btnText =
+      resumeBtn.querySelector(".button span")?.textContent || "Resume";
+    const btnHref =
+      resumeBtn.querySelector(".button").getAttribute("href") || "resume";
 
     card.link.textContent = btnText;
     card.link.href = btnHref;
