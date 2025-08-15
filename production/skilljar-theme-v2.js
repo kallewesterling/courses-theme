@@ -26,6 +26,7 @@ function createCurriculum(
   curriculumParentContainer,
   curContainer
 ) {
+  console.debug("createCurriculum called with: ", { el, i, curArr, curriculumParentContainer, curContainer });
   let currentContainer = curContainer || document.createElement("div");
 
   if (el.tagName === "DIV") {
