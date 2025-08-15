@@ -10,6 +10,7 @@ let isCatalogPage,
   isSignUpPage;
 let initialLoadComplete = false;
 let globalCurriculumSection, globalAboutSection;
+let width;
 
 /**
  * This function copies the given text to the clipboard and animates a tooltip indicating success.
@@ -2989,7 +2990,7 @@ function mobileCurriculumPageYesCertificateStyling() {
  * It also handles the positioning of the internal course warning.
  */
 function mobileLessonPageStyling() {
-  console.info("Running mobileLessonPageStyling with setStyle");
+  console.info("Running mobileLessonPageStyling with setStyle [cleaned up]");
 
   const internalCourseWarning = document.querySelector(
     "#internal-course-warning"
@@ -3035,19 +3036,12 @@ function mobileLessonPageStyling() {
   const footerContainer = document.querySelector("#footer-container");
   const footerCols = footerContainer.querySelectorAll(".global-footer-column");
 
-  setStyle(navLogoImg, {
-    height: "48px",
-  });
-
-  // navLogoImg.style.maxHeight = "48px";
+  setStyle(navLogoImg, { height: "48px" });
 
   setStyle(lessonInnerContainer, {
     maxWidth: "712px",
     margin: "0 auto",
   });
-
-  // lessonInnerContainer.style.maxWidth = "712px";
-  // lessonInnerContainer.style.margin = "0 auto";
 
   setStyle(mainLessonContentContainer, {
     position: "relative",
@@ -3056,16 +3050,7 @@ function mobileLessonPageStyling() {
     justifyContent: "space-between",
   });
 
-  // mainLessonContentContainer.style.position = "relative";
-  // mainLessonContentContainer.style.display = "flex";
-  // mainLessonContentContainer.style.flexDirection = "column";
-  // mainLessonContentContainer.style.justifyContent = "space-between";
-
-  setStyle(mainLessonContentSubContainer, {
-    height: "auto",
-  });
-
-  // mainLessonContentSubContainer.style.height = "auto";
+  setStyle(mainLessonContentSubContainer, { height: "auto" });
 
   setStyle(mainLessonInnerContainer, {
     margin: "0",
@@ -3073,21 +3058,11 @@ function mobileLessonPageStyling() {
     overflowX: "clip",
   });
 
-  // mainLessonInnerContainer.style.margin = "0";
-  // mainLessonInnerContainer.style.maxWidth = "none";
-  // mainLessonInnerContainer.style.overflowX = "clip";
-
   setStyle(mainLessonMainContainer, {
     position: "relative",
     zIndex: "0",
     paddingTop: "0",
   });
-
-  // mainLessonMainContainer.style.position = "relative";
-  // mainLessonMainContainer.style.zIndex = "0";
-  // mainLessonMainContainer.style.paddingTop = "0";
-
-  const width = checkWindowWidth();
 
   setStyle(navOpenIcon, {
     position: "sticky",
@@ -3097,42 +3072,21 @@ function mobileLessonPageStyling() {
     float: "right",
   });
 
-  // navOpenIcon.style.position = "sticky";
-  // if (width >= 767) {
-  //   navOpenIcon.style.top = "24px";
-  // } else {
-  //   navOpenIcon.style.top = "56px";
-  // }
-  // navOpenIcon.style.zIndex = "1";
-  // navOpenIcon.style.paddingRight = "12px";
-  // navOpenIcon.style.float = "right";
-
-  [hamburgerIcon, xIcon].forEach((el) => {
+  [hamburgerIcon, xIcon].forEach((el) =>
     setStyle(el, {
       padding: "12px",
       border: "1px solid gainsboro",
       borderRadius: "8px",
       background: "rgba(255, 255, 255, .8)",
       backdropFilter: "blur(1.5px)",
-    });
-
-    // el.style.padding = "12px";
-    // el.style.border = "1px solid gainsboro";
-    // el.style.borderRadius = "8px";
-    // el.style.background = "rgba(255, 255, 255, .8)";
-    // el.style.padding = "6px";
-    // el.style.backdropFilter = "blur(1.5px)";
-  });
+    })
+  );
 
   setStyle(lessonFooter, {
     position: "relative",
     border: "0",
     backgroundColor: "transparent",
   });
-
-  // lessonFooter.style.position = "relative";
-  // lessonFooter.style.border = "0";
-  // lessonFooter.style.backgroundColor = "transparent";
 
   setStyle(leftNav, {
     position: "fixed",
@@ -3142,24 +3096,12 @@ function mobileLessonPageStyling() {
     paddingBottom: "40px",
   });
 
-  // leftNav.style.position = "fixed";
-  // leftNav.style.backgroundColor = "#f9f9f9";
-  // leftNav.style.width = "320px";
-  // leftNav.style.height = "100%";
-  // leftNav.style.paddingBottom = "40px";
-
   setStyle(mainLessonContentContainer, {
     height: "100vh",
     paddingBottom: "0",
   });
 
-  // mainLessonContentContainer.style.height = "100vh";
-  // mainLessonContentContainer.style.paddingBottom = "0";
-
-  setStyle(footerContainer, {
-    marginTop: "0",
-  });
-  // footerContainer.style.marginTop = "0";
+  setStyle(footerContainer, { marginTop: "0" });
 
   // move elements
   mainLessonContentContainer.append(lessonFooter);
@@ -3190,19 +3132,16 @@ function mobileLessonPageStyling() {
   openIcon.addEventListener("click", (e) => {
     hide(e.target);
     setStyle(closeIcon, { display: "inline-block" });
-    // closeIcon.style.display = "inline-block";
   });
 
   closeIcon.addEventListener("click", (e) => {
     hide(e.target);
     setStyle(openIcon, { display: "inline-block" });
-    // openIcon.style.display = "inline-block";
   });
 
   leftNavMobileOverlay.addEventListener("click", () => {
     hide(closeIcon);
     setStyle(openIcon, { display: "inline-block" });
-    // openIcon.style.display = "inline-block";
   });
 
   if (backToCurriculumEl) {
@@ -3210,8 +3149,6 @@ function mobileLessonPageStyling() {
   }
 
   setStyle(lessonNavLinksContainer, { paddingBottom: "32px" });
-
-  // lessonNavLinksContainer.style.paddingBottom = "32px";
 
   // STYLE EACH OF THE LESSON LINKS
   links.forEach((link) => {
@@ -3222,18 +3159,6 @@ function mobileLessonPageStyling() {
       color: "#1C1C1C",
       cursor: "pointer",
     });
-
-    // link.style.color = "#1C1C1C";
-    // link.style.cursor = "pointer";
-
-    lessonLinkContainer.style.display = "flex";
-    lessonLinkContainer.style.flexDirection = "row-reverse";
-    lessonLinkContainer.style.justifyContent = "space-between";
-    lessonLinkContainer.style.margin = "0 12px";
-    lessonLinkContainer.style.paddingLeft = "12px";
-    lessonLinkContainer.style.paddingRight = "12px";
-    lessonLinkContainer.style.fontSize = "14px";
-    lessonLinkContainer.style.lineHeight = "20px";
 
     setStyle(lessonLinkContainer, {
       display: "flex",
@@ -3250,7 +3175,7 @@ function mobileLessonPageStyling() {
   });
 
   // STYLE EACH OF THE LESSON LINK HEADER (THE MODULE NAMES)
-  sectionTitles.forEach((title) => {
+  sectionTitles.forEach((title) =>
     setStyle(title, {
       backgroundColor: "transparent",
       padding: "12px",
@@ -3263,20 +3188,8 @@ function mobileLessonPageStyling() {
       fontSize: "12px",
       textTransform: "uppercase",
       letterSpacing: ".05em",
-    });
-
-    // title.style.backgroundColor = "transparent";
-    // title.style.padding = "12px";
-    // title.style.paddingLeft = "24px";
-    // title.style.paddingRight = "24px";
-    // title.style.marginTop = "12px";
-    // title.style.marginBottom = "12px";
-    // title.style.border = "0";
-    // title.style.fontFamily = "Space Mono";
-    // title.style.fontSize = "12px";
-    // title.style.textTransform = "uppercase";
-    // title.style.letterSpacing = ".05em";
-  });
+    })
+  );
 
   // HANDLE CODE BLOCK CUSTOM STYLING
 
@@ -3292,10 +3205,6 @@ function mobileLessonPageStyling() {
         position: "relative",
       });
 
-      // el.style.padding = "0";
-      // el.style.overflow = "visible";
-      // el.style.position = "relative";
-
       setStyle(codeEl, {
         display: "inline-block",
         padding: "24px !important",
@@ -3303,17 +3212,11 @@ function mobileLessonPageStyling() {
         width: "100%",
       });
 
-      // codeEl.setAttribute(
-      //   "style",
-      //   "display: inline-block; padding: 24px !important; overflow-x: scroll; width: 100%"
-      // );
-
       const copyText = codeEl.textContent
         .trim()
         .replace(/\r?\n\$ /g, " && ")
         .replace(/^\$ /g, "");
 
-      // CREATE PARENT CONTAINER & STYLE AS FLEX CONTAINER, COL DIR, AND ALIGN INTEMS START (OR END)
       const container = document.createElement("div");
 
       setStyle(container, {
@@ -3323,18 +3226,10 @@ function mobileLessonPageStyling() {
         padding: "12px 24px",
       });
 
-      // container.style.display = "flex";
-      // container.style.justifyContent = "end";
-      // container.style.borderBottom = "1px solid gainsboro";
-      // container.style.padding = "12px 24px";
-
       setStyle(iconClone, {
         display: "block",
         cursor: "pointer",
       });
-
-      // iconClone.style.display = "block";
-      // iconClone.style.cursor = "pointer";
 
       container.append(iconClone);
 
@@ -3355,17 +3250,6 @@ function mobileLessonPageStyling() {
         transition: "opacity .2s ease-in",
       });
 
-      // tooltipContainer.style.position = "absolute";
-      // tooltipContainer.style.top = "-24px";
-      // tooltipContainer.style.right = "10px";
-      // tooltipContainer.style.textShadow = "none";
-      // tooltipContainer.style.backgroundColor = "#1c1c1c";
-      // tooltipContainer.style.color = "#fff";
-      // tooltipContainer.style.padding = "5px 10px";
-      // tooltipContainer.style.borderRadius = "4px";
-      // tooltipContainer.style.opacity = "0";
-      // tooltipContainer.style.transition = "opacity .2s ease-in";
-
       // add elements
       el.append(tooltipContainer);
       el.prepend(container);
@@ -3384,14 +3268,8 @@ function mobileLessonPageStyling() {
     .querySelectorAll("a")
     .forEach((el) => (el.target = "_blank"));
 
-  setStyle(footerContainer, {
-    paddingLeft: "0",
-    paddingRight: "0",
-  });
-  
-  // footerContainer.style.paddingLeft = 0;
-  // footerContainer.style.paddingRight = 0;
-  
+  setStyle(footerContainer, { paddingLeft: "0", paddingRight: "0" });
+
   footerCols.forEach((col) => {
     setStyle(col, { width: "270px" });
   });
@@ -3448,7 +3326,7 @@ function handlePageStyling() {
  */
 function render() {
   console.info("Running render");
-  const width = checkWindowWidth();
+  width = checkWindowWidth();
 
   if (width <= 991 && !(currentView === "mobile")) {
     currentView = "mobile";
