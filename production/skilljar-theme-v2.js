@@ -19,6 +19,47 @@ let v = {
   ),
 };
 
+function createCurriculum(
+  el,
+  i,
+  curArr,
+  curriculumParentContainer,
+  currentContainer
+) {
+  if (el.tagName === "DIV") {
+    // Handle creating a new module/section
+
+    // Start by resetting the current container
+    curriculumParentContainer.append(currentContainer);
+    currentContainer = document.createElement("div");
+
+    styleGroupContainer(currentContainer);
+
+    const sectionHeading = Object.assign(document.createElement("div"), {
+      style: "display: flex; align-items: center;",
+      textContent: el.querySelector("h3")?.textContent?.trim() || "Module",
+    });
+
+    styleGroupHeading(sectionHeading);
+
+    currentContainer.append(sectionHeading);
+
+    hide(el);
+  } else {
+    // Handle appending to current module/section
+    const isLastChild = curArr[i + 1] ? curArr[i + 1].tagName === "DIV" : true;
+
+    const newListEl = document.createElement("div");
+    styleListItem(newListEl, isLastChild, false);
+
+    // Styling for mobile
+    setStyle(el.querySelector(".title"), { textWrap: "wrap" });
+
+    newListEl.append(el);
+    currentContainer.append(newListEl);
+  }
+}
+
 /**
  * This function copies the given text to the clipboard and animates a tooltip indicating success.
  * @param {string} copyText - The text to copy to the clipboard.
@@ -1501,43 +1542,15 @@ function desktopCurriculumPageNoCertificateStyling() {
 
     curriculumParentContainer
       .querySelectorAll(".curriculumItem")
-      .forEach((el, i, curArr) => {
-        if (el.tagName === "DIV") {
-          // Handle creating a new module/section
-
-          // Start by resetting the current container
-          curriculumParentContainer.append(currentContainer);
-          currentContainer = document.createElement("div");
-
-          styleGroupContainer(currentContainer);
-
-          const sectionHeading = Object.assign(document.createElement("div"), {
-            style: "display: flex; align-items: center;",
-            textContent:
-              el.querySelector("h3")?.textContent?.trim() || "Module",
-          });
-
-          styleGroupHeading(sectionHeading);
-
-          currentContainer.append(sectionHeading);
-
-          hide(el);
-        } else {
-          // Handle appending to current module/section
-          const isLastChild = curArr[i + 1]
-            ? curArr[i + 1].tagName === "DIV"
-            : true;
-
-          const newListEl = document.createElement("div");
-          styleListItem(newListEl, isLastChild, false);
-
-          // Styling for mobile
-          setStyle(el.querySelector(".title"), { textWrap: "wrap" });
-
-          newListEl.append(el);
-          currentContainer.append(newListEl);
-        }
-      });
+      .forEach((el, i, curArr) =>
+        createCurriculum(
+          el,
+          i,
+          curArr,
+          curriculumParentContainer,
+          currentContainer
+        )
+      );
 
     curriculumParentContainer.append(currentContainer);
   }
@@ -1782,39 +1795,9 @@ function desktopCurriculumPageYesCertificationStyling() {
     const curriculumItemsListNonLive =
       curriculumParentContainer.querySelectorAll(".curriculumItem");
 
-    curriculumItemsListNonLive.forEach((el, i, curArr) => {
-      if (el.tagName === "DIV") {
-        // Yes? push curContainer into parent container
-        curriculumParentContainer.append(curContainer);
-        // Reset curContainer while pushing current new heading & icon in there for the next iteration
-        curContainer = document.createElement("div");
-        styleGroupContainer(curContainer);
-
-        const newGroupHeading = document.createElement("div");
-        newGroupHeading.style.display = "flex";
-        newGroupHeading.style.gap = "12px";
-
-        newGroupHeading.textContent =
-          el.querySelector("h3")?.textContent?.trim() || "Module";
-
-        styleGroupHeading(newGroupHeading);
-
-        curContainer.append(newGroupHeading);
-        hide(el);
-      } else {
-        // Else, normal/expected behaviour
-        // Transfer inner html of current list item to new created div
-        const isLastChild = curArr[i + 1]
-          ? curArr[i + 1].tagName === "DIV"
-          : true;
-
-        const newListEl = document.createElement("div");
-        styleListItem(newListEl, isLastChild, false);
-
-        newListEl.append(el);
-        curContainer.append(newListEl);
-      }
-    });
+    curriculumItemsListNonLive.forEach((el, i, curArr) =>
+      createCurriculum(el, i, curArr, curriculumParentContainer, curContainer)
+    );
 
     curriculumParentContainer.append(curContainer);
 
@@ -2656,43 +2639,15 @@ function mobileCurriculumPageNoCertificateStyling() {
 
     curriculumParentContainer
       .querySelectorAll(".curriculumItem")
-      .forEach((el, i, curArr) => {
-        if (el.tagName === "DIV") {
-          // Handle creating a new module/section
-
-          // Start by resetting the current container
-          curriculumParentContainer.append(currentContainer);
-          currentContainer = document.createElement("div");
-
-          styleGroupContainer(currentContainer);
-
-          const sectionHeading = Object.assign(document.createElement("div"), {
-            style: "display: flex; gap: 12px;",
-            textContent:
-              el.querySelector("h3")?.textContent?.trim() || "Module",
-          });
-
-          styleGroupHeading(sectionHeading, "c");
-
-          currentContainer.append(sectionHeading);
-
-          hide(el);
-        } else {
-          // Handle appending to current module/section
-          const isLastChild = curArr[i + 1]
-            ? curArr[i + 1].tagName === "DIV"
-            : true;
-
-          const newListEl = document.createElement("div");
-          styleListItem(newListEl, isLastChild, false, "g");
-
-          // Styling for mobile
-          setStyle(el.querySelector(".title"), { textWrap: "wrap" });
-
-          newListEl.append(el);
-          currentContainer.append(newListEl);
-        }
-      });
+      .forEach((el, i, curArr) =>
+        createCurriculum(
+          el,
+          i,
+          curArr,
+          curriculumParentContainer,
+          currentContainer
+        )
+      );
 
     curriculumParentContainer.append(currentContainer);
   }
@@ -2925,42 +2880,9 @@ function mobileCurriculumPageYesCertificateStyling() {
     const curriculumItemsListNonLive =
       curriculumParentContainer.querySelectorAll(".curriculumItem");
 
-    curriculumItemsListNonLive.forEach((el, i, curArr) => {
-      if (el.tagName === "DIV") {
-        // Yes? push curContainer into parent container
-        curriculumParentContainer.append(curContainer);
-        // Reset curContainer while pushing current new heading & icon in there for the next iteration
-        curContainer = document.createElement("div");
-        styleGroupContainer(curContainer);
-
-        const newGroupHeading = document.createElement("div");
-        newGroupHeading.style.display = "flex";
-        newGroupHeading.style.gap = "12px";
-
-        newGroupHeading.textContent =
-          el.querySelector("h3")?.textContent?.trim() || "Module";
-
-        styleGroupHeading(newGroupHeading, "c");
-
-        curContainer.append(newGroupHeading);
-        hide(el);
-      } else {
-        // Else, normal/expected behaviour
-        // Transfer inner html of current list item to new created div
-        const isLastChild = curArr[i + 1]
-          ? curArr[i + 1].tagName === "DIV"
-          : true;
-
-        const newListEl = document.createElement("div");
-        styleListItem(newListEl, isLastChild, false, "g");
-
-        // Styling for mobile
-        el.querySelector(".title").style.textWrap = "wrap";
-
-        newListEl.append(el);
-        curContainer.append(newListEl);
-      }
-    });
+    curriculumItemsListNonLive.forEach((el, i, curArr) =>
+      createCurriculum(el, i, curArr, curriculumParentContainer, curContainer)
+    );
 
     curriculumParentContainer.append(curContainer);
 
