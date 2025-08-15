@@ -230,12 +230,16 @@ function desktopCatalogPageStyling() {
  * This function applies desktop-specific styling to the course details page.
  */
 function desktopCourseDetailsPageStyling() {
-  console.info("Running desktopCourseDetailsPageStyling with setStyle [cleaned up]");
+  console.info(
+    "Running desktopCourseDetailsPageStyling with setStyle [cleaned up]"
+  );
   const headerContainer = document.querySelector(".top-row-grey");
   const headerFlexContainer = document.querySelector(".dp-row-flex-v2");
   const headingFloaterText = document.querySelector(".sj-floater-text");
   const mainHeading = document.querySelector(".break-word");
-  const registerBtnWrapper = document.querySelector("#purchase-button-wrapper-large");
+  const registerBtnWrapper = document.querySelector(
+    "#purchase-button-wrapper-large"
+  );
   const registerBtn = registerBtnWrapper.querySelector("a");
   const mainHeadingContainer = document.querySelector(".dp-summary-wrapper");
   const backToCatalogBtn = document.querySelector(".back-to-catalog");
@@ -421,7 +425,7 @@ function desktopCourseDetailsPageStyling() {
         display: "block",
         flexShrink: "0",
       });
-      
+
       li.prepend(iconClone);
     });
   }
@@ -438,10 +442,10 @@ function desktopCourseDetailsPageStyling() {
     bodyContainer.append(card.details);
   }
   mainHeadingContainer.append(
-    headingFloaterText,
-    mainHeading,
-    headingParagraph,
-    registerBtnWrapper
+    ...(headingFloaterText ? [headingFloaterText] : []),
+    ...(mainHeading ? [mainHeading] : []),
+    ...(headingParagraph ? [headingParagraph] : []),
+    ...(registerBtnWrapper ? [registerBtnWrapper] : [])
   );
 
   // hide elements
@@ -559,10 +563,10 @@ function desktopPathCourseDetailsPageStyling() {
 
   // move elements
   mainHeadingContainer.append(
-    headingFloaterText,
-    mainHeading,
-    headingParagraph,
-    registerBtn
+    ...(headingFloaterText ? [headingFloaterText] : []),
+    ...(mainHeading ? [mainHeading] : []),
+    ...(headingParagraph ? [headingParagraph] : []),
+    ...(registerBtn ? [registerBtn] : [])
   );
 
   // hide elements
@@ -1312,9 +1316,7 @@ function desktopCurriculumPageNoCertificateStyling() {
     tabsContainer.append(curriculumSection, aboutSection);
   }
 
-  if (card.details) {
-    bodyMainContainer.append(card.details);
-  }
+  bodyMainContainer.append(...(card.details ? [card.details] : []));
 
   // update resume button text and href (with auto-value fallback)
   if (resumeBtn && card.link) {
@@ -1483,9 +1485,9 @@ function desktopCurriculumPageNoCertificateStyling() {
 
     // move elements
     container.append(
-      headingFloaterText,
-      mainHeading,
-      headingParagraph,
+      ...(headingFloaterText ? [headingFloaterText] : []),
+      ...(mainHeading ? [mainHeading] : []),
+      ...(headingParagraph ? [headingParagraph] : []),
       ...(resumeBtn ? [resumeBtn] : [])
     );
     curriculumParentContainer.append(currentContainer);
@@ -1617,12 +1619,12 @@ function desktopCurriculumPageYesCertificationStyling() {
   bodyMainContainer.style.marginTop = "96px";
   bodyMainContainer.style.gridTemplateColumns =
     "minmax(100px, 760px) minmax(100px, 368px)";
-  if (courseDetailsCard) {
-    courseDetailsCard.style.margin = "96px 0 46px 0";
-    bodyMainContainer.append(courseDetailsCard);
 
-    hide(courseDetailsCardLink);
-  }
+  bodyMainContainer.append(...(courseDetailsCard ? [courseDetailsCard] : []));
+
+  courseDetailsCard.style.margin = "96px 0 46px 0";
+
+  hide(courseDetailsCardLink);
 
   if (!initialLoadComplete) {
     courseDetailCardListItems.forEach((li) => {
@@ -1679,10 +1681,10 @@ function desktopCurriculumPageYesCertificationStyling() {
   headingParagraph.style.display = "block";
   headingFloaterText.style.display = "block";
   container.append(
-    headingFloaterText,
-    mainHeading,
-    headingParagraph,
-    certificateEl
+    ...(headingFloaterText ? [headingFloaterText] : []),
+    ...(mainHeading ? [mainHeading] : []),
+    ...(headingParagraph ? [headingParagraph] : []),
+    ...(certificateEl ? [certificateEl] : [])
   );
 
   // CURRICULUM PAGE BODY STYLING
