@@ -11,6 +11,13 @@ let isCatalogPage,
 let initialLoadComplete = false;
 let globalCurriculumSection, globalAboutSection;
 let width;
+let v = {
+  logo: document.querySelector(".header-center-img"),
+  footerContainer: document.querySelector("#footer-container"),
+  footerCols: document.querySelectorAll(
+    "#footer-container .global-footer-column"
+  ),
+};
 
 /**
  * This function copies the given text to the clipboard and animates a tooltip indicating success.
@@ -629,8 +636,6 @@ function desktopLessonPageStyling() {
     "#internal-course-warning"
   );
 
-  const logoImg = document.querySelector(".header-center-img");
-
   const leftNav = document.querySelector("#lp-left-nav");
   const mainLessonContentContainer = document.querySelector("#lp-wrapper");
   const mainLessonContentSubContainer = document.querySelector("#lp-content");
@@ -666,12 +671,9 @@ function desktopLessonPageStyling() {
     ...document.querySelectorAll("pre:has(code):not(.language-ansi)")
   );
 
-  const footerContainer = document.querySelector("#footer-container");
-  const footerCols = footerContainer.querySelectorAll(".global-footer-column");
-
   const prevBtn = document.querySelector(".button-prev-title span");
 
-  setStyle(logoImg, {
+  setStyle(v.logo, {
     height: "24px",
   });
 
@@ -896,12 +898,12 @@ function desktopLessonPageStyling() {
     color: "#14003d",
   });
 
-  setStyle(footerContainer, {
+  setStyle(v.footerContainer, {
     paddingLeft: "40px",
     paddingRight: "40px",
   });
 
-  footerCols.forEach((col) => {
+  v.footerCols.forEach((col) => {
     setStyle(col, { width: "270px" });
   });
 }
@@ -911,66 +913,87 @@ function desktopLessonPageStyling() {
  */
 function desktopLoginPageStyling() {
   console.info("Running desktopLoginPageStyling with setStyle");
-  const logoImg = document.querySelector(".header-center-img");
 
-  const fbBtn = document.querySelector("#facebook_login");
-  const googleBtn = document.querySelector("#google_login");
-  const loginContent = document.querySelector("#login-content");
-  const tabArrow = document.querySelector("#tab-marker-login");
-  const termsAndServicesText = document.querySelector("#access-message");
-  const loginContentContainer = document.querySelector(".large-6.columns");
-  const orGoogleSignInContainer =
-    loginContent.querySelectorAll(".large-6.columns")[1];
-  const orGoogleSignInInnerContainer =
-    orGoogleSignInContainer.querySelector("ul");
-  const orGoogleSignInInnerContainerListItems =
-    orGoogleSignInInnerContainer.querySelectorAll("li");
-  const signUpSignInContainer = document.querySelector(".large-12.columns");
-  const loginTab = document.querySelector("#login-tab-left");
-  const loginText = loginTab.querySelector("span span");
-  const signInTab = document.querySelector("#login-tab-right");
-  const signInTabText = signInTab.querySelector("a");
-  const signInText = signInTab.querySelector("span");
-  const loginNote = document.querySelector(".loginNote.sj-text-login-note");
-  const orSignInWithContainer = document.querySelector(
-    ".socialaccount_providers li"
-  );
-  const orSignInWithTextEl = orSignInWithContainer.querySelector(
-    ".sj-text-sign-in-with span"
-  );
-  const loginInput = document.querySelector("#id_login");
-  const passwordInput = document.querySelector("#id_password");
-  const loginBottomBtn = document.querySelector("#button-sign-in");
-  const forgotPasswordText = document.querySelector(".sj-text-forgot-password");
-  const loginBottomBtnAndForgotPassBtn =
-    loginBottomBtn.closest(".large-12.columns");
+  v.loginSignup = {
+    tabArrow:
+      document.querySelector("#tab-marker-login") ||
+      document.querySelector("#tab-marker-signup"),
+    loginContent: document.querySelector("#login-content"),
+    loginContentContainer: document.querySelector(".large-6.columns"),
+    termsAndServices: document.querySelector("#access-message"),
+    tabContainer: document.querySelector(".large-12.columns"),
+    altMethod:
+      document.querySelector(".sj-text-sign-in-with span") ||
+      document.querySelector(".sj-text-sign-up-with span"),
+    altMethodContainer: document.querySelector(".socialaccount_providers li"),
+    altMethodCol: document.querySelector(
+      ".large-6.columns:has(.socialaccount_providers)"
+    ),
+    altMethodUl: document.querySelector(
+      ".large-6.columns:has(.socialaccount_providers) ul"
+    ),
+    altMethodLi: document.querySelectorAll(
+      ".large-6.columns:has(.socialaccount_providers) li"
+    ),
 
-  const loginForm = document.querySelector("#login_form");
+    inputs: {
+      login: document.querySelector("#id_login"), // login
+      password: document.querySelector("#id_password"), // login
+      password1: document.querySelector("#id_password1"), // signup
+      password2: document.querySelector("#id_password2"), // signup
+    },
 
-  const footerContainer = document.querySelector("#footer-container");
-  const footerCols = footerContainer.querySelectorAll(".global-footer-column");
+    loginTab: document.querySelector("#login-tab-left"),
+    signUpTab: document.querySelector("#login-tab-right"),
+
+    // login specific
+    forgotPassword: document.querySelector(".sj-text-forgot-password"),
+    loginBtn: document.querySelector("#button-sign-in"),
+    loginForm: document.querySelector("#login_form"),
+    loginNote: document.querySelector(".loginNote.sj-text-login-note"),
+    loginTabText: document.querySelector("#login-tab-left a"),
+    loginTabTextSpan: document.querySelector("#login-tab-left a span"),
+    loginText: document.querySelector("#login-tab-left span span"),
+    loginForgetWrapper:  document.querySelector(".large-12.columns:has(#button-sign-in)"),
+
+    // signup-specific
+    allInputs: document.querySelectorAll("input"),
+    allLabels: document.querySelectorAll("label"),
+    signupForm: document.querySelector("#signup_form"),
+    signupTabText: document.querySelector("#login-tab-right a") || document.querySelector("#login-tab-right span"),
+    signupTabSpan: document.querySelector("#login-tab-right span"),
+    passwordConfirm: document.querySelector(
+      "label[for=id_password2] .input-label-text span"
+    ),
+    loginLabel: document.querySelector('label[for="id_email"]'),
+    fNameLabel: document.querySelector('label[for="id_first_name"] span span'),
+    lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
+    signupBtn: document.querySelector("#button-sign-up"),
+    signupBtnText: document.querySelector("#button-sign-up span"),
+    signupBtnWrapper: document.querySelector("#signup_form .text-center"),
+  };
 
   // set content
-  loginText.textContent = "Log In";
-  signInText.textContent = "Sign Up";
-  orSignInWithTextEl.textContent = "Or Log In With";
-  googleBtn.textContent = "Continue with Google";
-  loginBottomBtn.textContent = "Log In";
+  v.loginSignup.loginText.textContent = "Log In";
+  v.loginSignup.signUpTabSpan.textContent = "Sign Up";
+  v.loginSignup.altMethod.textContent = "Or Log In With";
+  v.loginSignup.loginBtn.textContent = "Log In";
+  v.loginSignup.googleBtn.textContent = "Continue with Google";
 
-  setStyle(logoImg, { height: "24px" });
+  setStyle(v.logo, { height: "24px" });
 
-  setStyle(termsAndServicesText, {
+  setStyle(v.loginSignup.termsAndServices, {
     maxWidth: "368px",
     fontSize: "14px",
   });
 
-  setStyle(signUpSignInContainer, { display: "flex" });
+  setStyle(v.loginSignup.tabContainer, { display: "flex" });
 
-  [loginTab, signInTab].forEach((el) =>
+  [v.loginSignup.loginTab, v.loginSignup.signUpTab].forEach((el) =>
     setStyle(el, { display: "flex", padding: "8px 16px", alignItems: "center" })
   );
 
-  setStyle(loginTab, {
+  setStyle(v.loginSignup.loginTab, {
     border: "0",
     textDecoration: "underline",
     fontFamily: "Space Mono",
@@ -980,28 +1003,28 @@ function desktopLoginPageStyling() {
     lineHeight: "24px",
   });
 
-  setStyle(signInTabText, {
+  setStyle(v.loginSignup.signUpTabText, {
     color: "rgba(52, 67, 244, .4)",
     fontWeight: "700",
     fontSize: "18px",
     lineHeight: "24px",
   });
 
-  [loginContentContainer, orGoogleSignInContainer].forEach((el) =>
+  [v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol].forEach((el) =>
     setStyle(el, { width: "50%" })
   );
 
-  setStyle(orGoogleSignInInnerContainer, {
+  setStyle(v.loginSignup.altMethodUl, {
     paddingLeft: "125px",
   });
 
-  orGoogleSignInInnerContainerListItems.forEach((li) =>
+  v.loginSignup.altMethodLi.forEach((li) =>
     setStyle(li, { padding: "0" })
   );
 
-  setStyle(orSignInWithContainer, { paddingBottom: "0" });
+  setStyle(v.loginSignup.altMethodContainer, { paddingBottom: "0" });
 
-  [loginInput, passwordInput].forEach((el) =>
+  [v.loginSignup.inputs.login, v.loginSignup.inputs.password1].forEach((el) =>
     setStyle(el, {
       borderRadius: "4px",
       border: "2px solid #3443f4",
@@ -1011,7 +1034,7 @@ function desktopLoginPageStyling() {
     })
   );
 
-  [loginBottomBtn, forgotPasswordText].forEach((el) =>
+  [v.loginSignup.loginBtn, v.loginSignup.forgotPassword].forEach((el) =>
     setStyle(el, {
       fontSize: "16px",
       fontFamily: "Space Mono",
@@ -1019,7 +1042,7 @@ function desktopLoginPageStyling() {
     })
   );
 
-  setStyle(loginBottomBtn, {
+  setStyle(v.loginSignup.loginBtn, {
     color: "#14003d",
     width: "368px",
     height: "48px",
@@ -1028,30 +1051,30 @@ function desktopLoginPageStyling() {
     borderRadius: "999px",
   });
 
-  setStyle(loginBottomBtnAndForgotPassBtn, { marginBottom: "24px" });
+  setStyle(v.loginSignup.loginForgetWrapper, { marginBottom: "24px" });
 
-  setStyle(googleBtn, {
+  setStyle(v.loginSignup.googleBtn, {
     background: "linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%)",
     width: "auto",
     textAlign: "center",
   });
 
-  setStyle(loginContent, { border: "0" });
+  setStyle(v.loginSignup.loginContent, { border: "0" });
 
-  setStyle(footerContainer, {
+  setStyle(v.footerContainer, {
     paddingLeft: "40px",
     paddingRight: "40px",
   });
 
-  footerCols.forEach((col) => setStyle(col, { width: "270px" }));
+  v.footerCols.forEach((col) => setStyle(col, { width: "270px" }));
 
   // move elements
-  loginForm.append(termsAndServicesText);
+  v.loginSignup.loginForm.append(v.loginSignup.termsAndServices);
 
   // hide elements
-  hide(loginNote);
-  hide(fbBtn);
-  hide(tabArrow);
+  hide(v.loginSignup.loginNote);
+  hide(v.loginSignup.fbBtn);
+  hide(v.loginSignup.tabArrow);
 }
 
 /**
@@ -1059,81 +1082,91 @@ function desktopLoginPageStyling() {
  */
 function desktopSignUpPageStyling() {
   console.info("Running desktopSignUpPageStyling with setStyle");
-  const logoImg = document.querySelector(".header-center-img");
-  const fbBtn = document.querySelector("#facebook_login");
-  const googleBtn = document.querySelector("#google_login");
-  const loginContent = document.querySelector("#login-content");
-  const tabArrow = document.querySelector("#tab-marker-signup");
-  const termsAndServicesText = document.querySelector("#access-message");
-  const loginContentContainer = document.querySelector(".large-6.columns");
-  const orSignInWithGoogleContainer = loginContent.querySelectorAll(
-    ".row .large-6.columns"
-  )[3];
-  const orSignInWithGoogleList =
-    orSignInWithGoogleContainer.querySelector("ul");
-  const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll("li");
-  const signUpSignInContainer = document.querySelector(".large-12.columns");
-  const loginTab = document.querySelector("#login-tab-left");
-  const loginTabText = loginTab.querySelector("a");
-  const loginTabTextSpan = loginTabText.querySelector("span");
-  const signInTab = document.querySelector("#login-tab-right");
-  const signInTabText = signInTab.querySelector("span");
-  const orSignInWithContainer = document.querySelector(
-    ".socialaccount_providers li"
-  );
-  const orSignInWithText = document.querySelector(".sj-text-sign-up-with");
-  const orSignInWithTextSpan = orSignInWithText.querySelector("span");
 
-  const firstNameLabel = document.querySelector(
-    'label[for="id_first_name"] span span'
-  );
-  const lastNameLabel = document.querySelector(
-    'label[for="id_last_name"] span span'
-  );
+  v.loginSignup = {
+    tabArrow:
+      document.querySelector("#tab-marker-login") ||
+      document.querySelector("#tab-marker-signup"),
+    loginContent: document.querySelector("#login-content"),
+    loginContentContainer: document.querySelector(".large-6.columns"),
+    termsAndServices: document.querySelector("#access-message"),
+    tabContainer: document.querySelector(".large-12.columns"),
+    altMethod:
+      document.querySelector(".sj-text-sign-in-with span") ||
+      document.querySelector(".sj-text-sign-up-with span"),
+    altMethodContainer: document.querySelector(".socialaccount_providers li"),
+    altMethodCol: document.querySelector(
+      ".large-6.columns:has(.socialaccount_providers)"
+    ),
+    altMethodUl: document.querySelector(
+      ".large-6.columns:has(.socialaccount_providers) ul"
+    ),
+    altMethodLi: document.querySelectorAll(
+      ".large-6.columns:has(.socialaccount_providers) li"
+    ),
 
-  const loginLabel = document.querySelector('label[for="id_email"]');
-  const loginInput = document.querySelector("#id_email");
-  const passwordInput = document.querySelector("#id_password1");
-  const passwordInput2 = document.querySelector("#id_password2");
-  const signUpBottomBtn = document.querySelector("#button-sign-up");
-  const signUpBottomBtnText = signUpBottomBtn.querySelector("span");
-  const signUpForm = document.querySelector("#signup_form");
+    inputs: {
+      login: document.querySelector("#id_login"), // login
+      password: document.querySelector("#id_password"), // login
+      password1: document.querySelector("#id_password1"), // signup
+      password2: document.querySelector("#id_password2"), // signup
+    },
 
-  const footerContainer = document.querySelector("#footer-container");
-  const footerCols = footerContainer.querySelectorAll(".global-footer-column");
+    loginTab: document.querySelector("#login-tab-left"),
+    signUpTab: document.querySelector("#login-tab-right"),
 
-  const signUpBottomBtnParent = signUpBottomBtn?.closest(".text-center");
-  const labels = document.querySelectorAll("label");
-  const inputs = document.querySelectorAll("input");
-  const passwordConfirmText = document.querySelector(
-    "label[for=id_password2] .input-label-text span"
-  );
+    // login specific
+    forgotPassword: document.querySelector(".sj-text-forgot-password"),
+    loginBtn: document.querySelector("#button-sign-in"),
+    loginForm: document.querySelector("#login_form"),
+    loginNote: document.querySelector(".loginNote.sj-text-login-note"),
+    loginTabText: document.querySelector("#login-tab-left a"),
+    loginTabTextSpan: document.querySelector("#login-tab-left a span"),
+    loginText: document.querySelector("#login-tab-left span span"),
+    loginForgetWrapper:  document.querySelector(".large-12.columns:has(#button-sign-in)"),
+
+    // signup-specific
+    allInputs: document.querySelectorAll("input"),
+    allLabels: document.querySelectorAll("label"),
+    signupForm: document.querySelector("#signup_form"),
+    signupTabText: document.querySelector("#login-tab-right a") || document.querySelector("#login-tab-right span"),
+    signupTabSpan: document.querySelector("#login-tab-right span"),
+    passwordConfirm: document.querySelector(
+      "label[for=id_password2] .input-label-text span"
+    ),
+    loginLabel: document.querySelector('label[for="id_email"]'),
+    fNameLabel: document.querySelector('label[for="id_first_name"] span span'),
+    lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
+    signupBtn: document.querySelector("#button-sign-up"),
+    signupBtnText: document.querySelector("#button-sign-up span"),
+    signupBtnWrapper: document.querySelector("#signup_form .text-center"),
+  };
 
   // edit content
-  loginTabTextSpan.textContent = "Log In";
-  signUpBottomBtnText.textContent = "Sign up";
-  orSignInWithTextSpan.textContent = "Or Sign Up With";
-  googleBtn.textContent = "Continue with Google";
-  signInTabText.textContent = "Sign up";
-  firstNameLabel.textContent = "First Name";
-  lastNameLabel.textContent = "Last Name";
-  loginLabel.textContent = "Work Email";
-  passwordConfirmText.textContent = "Password Confirm";
-  loginInput.placeholder = "Work Email";
-  passwordInput2.placeholder = "Password confirm";
+  v.loginSignup.loginTabTextSpan.textContent = "Log In";
+  v.loginSignup.signupBtnText.textContent = "Sign up";
+  v.loginSignup.altMethod.textContent = "Or Sign Up With";
+  v.loginSignup.googleBtn.textContent = "Continue with Google";
+  v.loginSignup.signUpTabText.textContent = "Sign up";
+  v.loginSignup.fNameLabel.textContent = "First Name";
+  v.loginSignup.lNameLabel.textContent = "Last Name";
+  v.loginSignup.loginLabel.textContent = "Work Email";
+  v.loginSignup.passwordConfirm.textContent = "Password Confirm";
+  v.loginSignup.inputs.login.placeholder = "Work Email";
+  v.loginSignup.inputs.password2.placeholder = "Password confirm";
 
-  setStyle(termsAndServicesText, {
+  setStyle(v.loginSignup.termsAndServices, {
     maxWidth: "368px",
     color: "#545454",
     fontSize: "14px",
     transform: "translateX(-13px)",
   });
 
-  setStyle(logoImg, { height: "24px" });
+  setStyle(v.logo, { height: "24px" });
 
-  setStyle(signUpSignInContainer, { display: "flex" });
+  setStyle(v.loginSignup.tabContainer, { display: "flex" });
 
-  setStyle(loginTab, {
+  setStyle(v.loginSignup.loginTab, {
     border: "0",
     display: "flex",
     padding: "8px 16px",
@@ -1141,7 +1174,7 @@ function desktopSignUpPageStyling() {
     borderRadius: "100px",
   });
 
-  setStyle(loginTabText, {
+  setStyle(v.loginSignup.loginTabText, {
     color: "rgba(52, 67, 244, .4)",
     fontWeight: "700",
     fontSize: "18px",
@@ -1149,14 +1182,14 @@ function desktopSignUpPageStyling() {
     lineHeight: "24px",
   });
 
-  setStyle(signInTab, {
+  setStyle(v.loginSignup.signUpTab, {
     display: "flex",
     padding: "8px 16px",
     alignItems: "center",
     borderRadius: "100px",
   });
 
-  setStyle(signInTabText, {
+  setStyle(v.loginSignup.signUpTabText, {
     color: "#3443f4",
     textDecoration: "underline",
     fontFamily: "Space Mono",
@@ -1165,26 +1198,26 @@ function desktopSignUpPageStyling() {
     lineHeight: "24px",
   });
 
-  [loginContentContainer, orSignInWithGoogleContainer].forEach((el) =>
-    setStyle(el, { width: "50%" })
+  [v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol].forEach(
+    (el) => setStyle(el, { width: "50%" })
   );
 
-  setStyle(orSignInWithGoogleContainer, { paddingLeft: "100px" });
+  setStyle(v.loginSignup.altMethodCol, { paddingLeft: "100px" });
 
-  setStyle(orSignInWithGoogleList, { paddingLeft: "25px" });
+  setStyle(v.loginSignup.altMethodUl, { paddingLeft: "25px" });
 
-  orSignInWithGoogleItems.forEach((li) => setStyle(li, { padding: "0" }));
+  v.loginSignup.altMethodLi.forEach((li) => setStyle(li, { padding: "0" }));
 
-  setStyle(orSignInWithContainer, { paddingBottom: "0" });
+  setStyle(v.loginSignup.altMethodContainer, { paddingBottom: "0" });
 
-  setStyle(orSignInWithText, {
+  setStyle(v.loginSignup.altMethod, {
     marginBottom: "12px",
     fontWeight: "500",
     fontSize: "16px",
     lineHeight: "20px",
   });
 
-  [loginInput, passwordInput].forEach((el) =>
+  [v.loginSignup.inputs.login, v.loginSignup.inputs.password1].forEach((el) =>
     setStyle(el, {
       borderRadius: "4px",
       borderColor: "#DCDCDC",
@@ -1193,9 +1226,9 @@ function desktopSignUpPageStyling() {
     })
   );
 
-  setStyle(passwordInput2, { marginBottom: "24px" });
+  setStyle(v.loginSignup.inputs.password2, { marginBottom: "24px" });
 
-  setStyle(signUpBottomBtn, {
+  setStyle(v.loginSignup.signupBtn, {
     width: "368px",
     height: "48px",
     fontSize: "16px",
@@ -1206,19 +1239,17 @@ function desktopSignUpPageStyling() {
     borderRadius: "999px",
   });
 
-  setStyle(signUpBottomBtnParent, { textAlign: "left" });
+  setStyle(v.loginSignup.signupBtnWrapper, { textAlign: "left !important" });
 
-  signUpBottomBtnParent?.classList.remove("text-center");
-
-  setStyle(googleBtn, {
+  setStyle(v.loginSignup.googleBtn, {
     background: "linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%)",
     width: "auto",
     textAlign: "center",
   });
 
-  setStyle(loginContent, { border: "0" });
+  setStyle(v.loginSignup.loginContent, { border: "0" });
 
-  labels.forEach((label) =>
+  v.loginSignup.allLabels.forEach((label) =>
     setStyle(label, {
       marginBottom: "12px",
       fontWeight: "500",
@@ -1228,7 +1259,7 @@ function desktopSignUpPageStyling() {
     })
   );
 
-  inputs.forEach((input) =>
+  v.loginSignup.allInputs.forEach((input) =>
     setStyle(input, {
       borderRadius: "4px",
       border: "2px solid #3443f4",
@@ -1237,19 +1268,19 @@ function desktopSignUpPageStyling() {
     })
   );
 
-  setStyle(footerContainer, {
+  setStyle(v.footerContainer, {
     paddingLeft: "40px",
     paddingRight: "40px",
   });
 
-  footerCols.forEach((col) => setStyle(col, { width: "270px" }));
+  v.footerCols.forEach((col) => setStyle(col, { width: "270px" }));
 
   // move elements
-  signUpForm.append(termsAndServicesText);
+  v.loginSignup.signupForm.append(v.loginSignup.termsAndServices);
 
   // hide elements
-  hide(fbBtn);
-  hide(tabArrow);
+  hide(v.loginSignup.fbBtn);
+  hide(v.loginSignup.tabArrow);
 }
 
 /**
@@ -1261,8 +1292,6 @@ function desktopCurriculumPageNoCertificateStyling() {
     "Running desktopCurriculumPageNoCertificateStyling with setStyle [cleaned up]"
   );
   const courseDescription = skilljarCourse.short_description; // eslint-disable-line no-undef
-
-  const logoImg = document.querySelector(".header-center-img");
 
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
   const headingFloaterText = document.querySelector(".sj-floater-text");
@@ -1345,7 +1374,7 @@ function desktopCurriculumPageNoCertificateStyling() {
   // update about section to be active
   aboutSection?.classList.add("active");
 
-  setStyle(logoImg, { height: "24px" });
+  setStyle(v.logo, { height: "24px" });
 
   setStyle(bodyMainContainer, {
     display: "grid",
@@ -1554,8 +1583,6 @@ function desktopCurriculumPageYesCertificationStyling() {
   console.info("Running desktopCurriculumPageYesCertificationStyling");
   const courseDescription = skilljarCourse.short_description; // eslint-disable-line no-undef
 
-  const logoImg = document.querySelector(".header-center-img");
-
   // HEADER VARIABLES
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
   const headingFloaterText = document.querySelector(".sj-floater-text");
@@ -1588,7 +1615,7 @@ function desktopCurriculumPageYesCertificationStyling() {
     tabsContainer.querySelectorAll("section");
 
   // STYLE LOGO
-  logoImg.style.height = "24px";
+  v.logo.style.height = "24px";
 
   // TEST
   if (initialLoadComplete) {
@@ -1798,63 +1825,84 @@ function desktopCurriculumPageYesCertificationStyling() {
  */
 function mobileLoginPageStyling() {
   console.info("Running mobileLoginPageStyling with setStyle [cleaned up]");
-  const logoImg = document.querySelector(".header-center-img");
-  const fbBtn = document.querySelector("#facebook_login");
-  const googleBtn = document.querySelector("#google_login");
-  const loginContent = document.querySelector("#login-content");
-  const tabArrow = document.querySelector("#tab-marker-login");
-  const termsAndServicesText = document.querySelector("#access-message");
-  const loginContentContainer = document.querySelector(".large-6.columns");
-  const orGoogleSignInContainer =
-    loginContent.querySelectorAll(".large-6.columns")[1];
-  const orGoogleSignInInnerContainer =
-    orGoogleSignInContainer.querySelector("ul");
-  const orGoogleSignInInnerContainerListItems =
-    orGoogleSignInInnerContainer.querySelectorAll("li");
-  const signUpSignInContainer = document.querySelector(".large-12.columns");
-  const loginTab = document.querySelector("#login-tab-left");
-  const loginText = loginTab.querySelector("span span");
-  const signInTab = document.querySelector("#login-tab-right");
-  const signInTabText = signInTab.querySelector("a");
-  const signInTabSpan = signInTab.querySelector("span");
-  const loginNote = document.querySelector(".loginNote.sj-text-login-note");
-  const orSignInWithContainer = document.querySelector(
-    ".socialaccount_providers li"
-  );
-  const orSignInWithTextEl = orSignInWithContainer.querySelector(
-    ".sj-text-sign-in-with span"
-  );
-  const loginInput = document.querySelector("#id_login");
-  const passwordInput = document.querySelector("#id_password");
-  const loginBottomBtn = document.querySelector("#button-sign-in");
-  const forgotPasswordText = document.querySelector(
-    ".forgot-password.sj-text-forgot-password.focus-link-v2"
-  );
-  const loginBottomBtnAndForgotPassBtn =
-    loginBottomBtn.closest(".large-12.columns");
 
-  const loginForm = document.querySelector("#login_form");
-  const footerContainer = document.querySelector("#footer-container");
-  const footerCols = footerContainer.querySelectorAll(".global-footer-column");
+  v.loginSignup = {
+    tabArrow:
+      document.querySelector("#tab-marker-login") ||
+      document.querySelector("#tab-marker-signup"),
+    loginContent: document.querySelector("#login-content"),
+    loginContentContainer: document.querySelector(".large-6.columns"),
+    termsAndServices: document.querySelector("#access-message"),
+    tabContainer: document.querySelector(".large-12.columns"),
+    altMethod:
+      document.querySelector(".sj-text-sign-in-with span") ||
+      document.querySelector(".sj-text-sign-up-with span"),
+    altMethodContainer: document.querySelector(".socialaccount_providers li"),
+    altMethodCol: document.querySelector(
+      ".large-6.columns:has(.socialaccount_providers)"
+    ),
+    altMethodUl: document.querySelector(
+      ".large-6.columns:has(.socialaccount_providers) ul"
+    ),
+    altMethodLi: document.querySelectorAll(
+      ".large-6.columns:has(.socialaccount_providers) li"
+    ),
 
-  // edit content
-  loginText.textContent = "Log in";
-  signInTabSpan.textContent = "Sign up";
-  loginBottomBtn.textContent = "Log in";
-  orSignInWithTextEl.textContent = "or log in with";
-  googleBtn.textContent = "Continue with Google";
+    inputs: {
+      login: document.querySelector("#id_login"), // login
+      password: document.querySelector("#id_password"), // login
+      password1: document.querySelector("#id_password1"), // signup
+      password2: document.querySelector("#id_password2"), // signup
+    },
 
-  setStyle(logoImg, { maxHeight: "48px" });
+    loginTab: document.querySelector("#login-tab-left"),
+    signUpTab: document.querySelector("#login-tab-right"),
 
-  setStyle(termsAndServicesText, {
+    // login specific
+    forgotPassword: document.querySelector(".sj-text-forgot-password"),
+    loginBtn: document.querySelector("#button-sign-in"),
+    loginForm: document.querySelector("#login_form"),
+    loginNote: document.querySelector(".loginNote.sj-text-login-note"),
+    loginTabText: document.querySelector("#login-tab-left a"),
+    loginTabTextSpan: document.querySelector("#login-tab-left a span"),
+    loginText: document.querySelector("#login-tab-left span span"),
+    loginForgetWrapper:  document.querySelector(".large-12.columns:has(#button-sign-in)"),
+
+    // signup-specific
+    allInputs: document.querySelectorAll("input"),
+    allLabels: document.querySelectorAll("label"),
+    signupForm: document.querySelector("#signup_form"),
+    signupTabText: document.querySelector("#login-tab-right a") || document.querySelector("#login-tab-right span"),
+    signupTabSpan: document.querySelector("#login-tab-right span"),
+    passwordConfirm: document.querySelector(
+      "label[for=id_password2] .input-label-text span"
+    ),
+    loginLabel: document.querySelector('label[for="id_email"]'),
+    fNameLabel: document.querySelector('label[for="id_first_name"] span span'),
+    lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
+    signupBtn: document.querySelector("#button-sign-up"),
+    signupBtnText: document.querySelector("#button-sign-up span"),
+    signupBtnWrapper: document.querySelector("#signup_form .text-center"),
+  };
+
+  // set content
+  v.loginSignup.loginText.textContent = "Log in";
+  v.loginSignup.signupTabSpan.textContent = "Sign up";
+  v.loginSignup.altMethod.textContent = "or log in with";
+  v.loginSignup.loginBtn.textContent = "Log in";
+  v.loginSignup.googleBtn.textContent = "Continue with Google";
+
+  setStyle(v.logo, { maxHeight: "48px" });
+
+  setStyle(v.loginSignup.termsAndServices, {
     maxWidth: "368px",
     color: "#545454",
     fontSize: "14px",
   });
 
-  setStyle(signUpSignInContainer, { display: "flex" });
+  setStyle(v.loginSignup.tabContainer, { display: "flex" });
 
-  setStyle(loginTab, {
+  setStyle(v.loginSignup.loginTab, {
     border: "0",
     display: "flex",
     padding: "8px 16px",
@@ -1867,32 +1915,32 @@ function mobileLoginPageStyling() {
     borderRadius: "100px",
   });
 
-  setStyle(signInTab, {
+  setStyle(v.loginSignup.signUpTab, {
     display: "flex",
     padding: "8px 16px",
     alignItems: "center",
   });
 
-  setStyle(signInTabText, {
+  setStyle(v.loginSignup.signupTabText, {
     color: "#8C8C8C",
     fontWeight: "500",
     fontSize: "16px",
     lineHeight: "24px",
   });
 
-  [orGoogleSignInContainer, loginContentContainer].forEach((el) =>
+  [v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol].forEach((el) =>
     setStyle(el, { width: "100%" })
   );
 
-  setStyle(orGoogleSignInInnerContainer, { padding: "0" });
+  setStyle(v.loginSignup.altMethodUl, { padding: "0" });
 
-  orGoogleSignInInnerContainerListItems.forEach((li) => {
+  v.loginSignup.altMethodLi.forEach((li) => {
     setStyle(li, { padding: "0" });
   });
 
-  setStyle(orSignInWithContainer, { paddingBottom: "0" });
+  setStyle(v.loginSignup.altMethodContainer, { paddingBottom: "0" });
 
-  [loginInput, passwordInput].forEach((el) =>
+  [v.loginSignup.inputs.login, v.loginSignup.inputs.password1].forEach((el) =>
     setStyle(el, {
       borderRadius: "4px",
       borderColor: "#DCDCDC",
@@ -1901,46 +1949,46 @@ function mobileLoginPageStyling() {
     })
   );
 
-  setStyle(passwordInput, { marginBottom: "24px" });
+  setStyle(v.loginSignup.inputs.password1, { marginBottom: "24px" });
 
-  setStyle(loginBottomBtn, {
+  setStyle(v.loginSignup.loginBtn, {
     width: "100%",
     height: "48px",
     fontSize: "16px",
     marginBottom: "12px",
   });
 
-  setStyle(forgotPasswordText, {
+  setStyle(v.loginSignup.forgotPassword, {
     fontSize: "16px",
     marginBottom: "2px",
   });
 
-  setStyle(loginBottomBtnAndForgotPassBtn, { marginBottom: "24px" });
+  setStyle(v.loginSignup.loginForgetWrapper, { marginBottom: "24px" });
 
-  setStyle(googleBtn, {
+  setStyle(v.loginSignup.googleBtn, {
     backgroundColor: "#3443F4",
     width: "100%",
     textAlign: "center",
   });
 
-  setStyle(loginContent, {
+  setStyle(v.loginSignup.loginContent, {
     border: "0",
   });
 
-  setStyle(footerContainer, {
+  setStyle(v.footerContainer, {
     paddingLeft: "0",
     paddingRight: "0",
   });
 
-  footerCols.forEach((col) => setStyle(col, { width: "212px" }));
+  v.footerCols.forEach((col) => setStyle(col, { width: "212px" }));
 
   // move elements
-  loginForm.append(termsAndServicesText);
+  v.loginSignup.loginForm.append(v.loginSignup.termsAndServices);
 
   // hide elements
-  hide(fbBtn);
-  hide(tabArrow);
-  hide(loginNote);
+  hide(v.loginSignup.fbBtn);
+  hide(v.loginSignup.tabArrow);
+  hide(v.loginSignup.loginNote);
 }
 
 /**
@@ -1949,79 +1997,92 @@ function mobileLoginPageStyling() {
  */
 function mobileSignUpPageStyling() {
   console.info("Running mobileSignUpPageStyling with setStyle");
-  const logoImg = document.querySelector(".header-center-img");
-  const fbBtn = document.querySelector("#facebook_login");
-  const googleBtn = document.querySelector("#google_login");
-  const loginContent = document.querySelector("#login-content");
-  const tabArrow = document.querySelector("#tab-marker-signup");
-  const termsAndServicesText = document.querySelector("#access-message");
-  const loginContentContainer = document.querySelector(".large-6.columns");
-  const orSignInWithGoogleContainer = loginContent.querySelectorAll(
-    ".row .large-6.columns"
-  )[3];
-  const orSignInWithGoogleList =
-    orSignInWithGoogleContainer.querySelector("ul");
-  const orSignInWithGoogleItems = orSignInWithGoogleList.querySelectorAll("li");
-  const signUpSignInContainer = document.querySelector(".large-12.columns");
-  const loginTab = document.querySelector("#login-tab-left");
-  const loginTabText = loginTab.querySelector("a");
-  const loginTabTextSpan = loginTabText.querySelector("span");
-  const signInTab = document.querySelector("#login-tab-right");
-  const signInTabText = signInTab.querySelector("span");
-  const orSignInWithContainer = document.querySelector(
-    ".socialaccount_providers li"
-  );
-  const orSignInWithText = document.querySelector(".sj-text-sign-up-with");
-  const orSignInWithTextSpan = orSignInWithText.querySelector("span");
 
-  const firstNameLabel = document.querySelector(
-    'label[for="id_first_name"] span span'
-  );
-  const lastNameLabel = document.querySelector(
-    'label[for="id_last_name"] span span'
-  );
+  v.loginSignup = {
+    fbBtn: document.querySelector("#facebook_login"),
+    googleBtn: document.querySelector("#google_login"),
+    tabArrow:
+      document.querySelector("#tab-marker-login") ||
+      document.querySelector("#tab-marker-signup"),
+    loginContent: document.querySelector("#login-content"),
+    loginContentContainer: document.querySelector(".large-6.columns"),
+    termsAndServices: document.querySelector("#access-message"),
+    tabContainer: document.querySelector(".large-12.columns"),
+    altMethod:
+      document.querySelector(".sj-text-sign-in-with span") ||
+      document.querySelector(".sj-text-sign-up-with span"),
+    altMethodContainer: document.querySelector(".socialaccount_providers li"),
+    altMethodCol: document.querySelector(
+      ".large-6.columns:has(.socialaccount_providers)"
+    ),
+    altMethodUl: document.querySelector(
+      ".large-6.columns:has(.socialaccount_providers) ul"
+    ),
+    altMethodLi: document.querySelectorAll(
+      ".large-6.columns:has(.socialaccount_providers) li"
+    ),
 
-  const loginLabel = document.querySelector('label[for="id_email"]');
-  const loginInput = document.querySelector("#id_email");
-  const passwordInput = document.querySelector("#id_password1");
-  const passwordInput2 = document.querySelector("#id_password2");
-  const signUpBottomBtn = document.querySelector("#button-sign-up");
-  const signUpBottomBtnText = signUpBottomBtn.querySelector("span");
-  const signUpForm = document.querySelector("#signup_form");
+    inputs: {
+      login: document.querySelector("#id_login"), // login
+      password: document.querySelector("#id_password"), // login
+      password1: document.querySelector("#id_password1"), // signup
+      password2: document.querySelector("#id_password2"), // signup
+    },
 
-  const footerContainer = document.querySelector("#footer-container");
-  const footerCols = footerContainer.querySelectorAll(".global-footer-column");
-  const signUpBottomBtnParent = signUpBottomBtn?.closest(".text-center");
-  const labels = document.querySelectorAll("label");
-  const inputs = document.querySelectorAll("input");
-  const passwordConfirmText = document.querySelector(
-    "label[for=id_password2] .input-label-text span"
-  );
+    loginTab: document.querySelector("#login-tab-left"),
+    signUpTab: document.querySelector("#login-tab-right"),
 
-  loginTabTextSpan.textContent = "Log in";
-  signInTabText.textContent = "Sign up";
-  firstNameLabel.textContent = "First name";
-  lastNameLabel.textContent = "Last name";
-  loginLabel.textContent = "Work email";
-  orSignInWithTextSpan.textContent = "or sign up with";
-  googleBtn.textContent = "Continue with Google";
-  passwordConfirmText.textContent = "Password Confirm";
-  signUpBottomBtnText.textContent = "Sign up";
-  loginInput.setAttribute("placeholder", "Work email");
-  passwordInput2.placeholder = "Password confirm";
+    // login specific
+    forgotPassword: document.querySelector(".sj-text-forgot-password"),
+    loginBtn: document.querySelector("#button-sign-in"),
+    loginForm: document.querySelector("#login_form"),
+    loginNote: document.querySelector(".loginNote.sj-text-login-note"),
+    loginTabText: document.querySelector("#login-tab-left a"),
+    loginTabTextSpan: document.querySelector("#login-tab-left a span"),
+    loginText: document.querySelector("#login-tab-left span span"),
+    loginForgetWrapper:  document.querySelector(".large-12.columns:has(#button-sign-in)"),
 
-  setStyle(termsAndServicesText, {
+    // signup-specific
+    allInputs: document.querySelectorAll("input"),
+    allLabels: document.querySelectorAll("label"),
+    signupForm: document.querySelector("#signup_form"),
+    signupTabText: document.querySelector("#login-tab-right a") || document.querySelector("#login-tab-right span"),
+    signupTabSpan: document.querySelector("#login-tab-right span"),
+    passwordConfirm: document.querySelector(
+      "label[for=id_password2] .input-label-text span"
+    ),
+    loginLabel: document.querySelector('label[for="id_email"]'),
+    fNameLabel: document.querySelector('label[for="id_first_name"] span span'),
+    lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
+    signupBtn: document.querySelector("#button-sign-up"),
+    signupBtnText: document.querySelector("#button-sign-up span"),
+    signupBtnWrapper: document.querySelector("#signup_form .text-center"),
+  };
+
+  v.loginSignup.loginTabTextSpan.textContent = "Log in";
+  v.loginSignup.signupTabText.textContent = "Sign up";
+  v.loginSignup.fNameLabel.textContent = "First name";
+  v.loginSignup.lNameLabel.textContent = "Last name";
+  v.loginSignup.loginLabel.textContent = "Work email";
+  v.loginSignup.altMethod.textContent = "or sign up with";
+  v.loginSignup.googleBtn.textContent = "Continue with Google";
+  v.loginSignup.passwordConfirm.textContent = "Password Confirm";
+  v.loginSignup.signupBtnText.textContent = "Sign up";
+  v.loginSignup.inputs.login.setAttribute("placeholder", "Work email");
+  v.loginSignup.inputs.password2.placeholder = "Password confirm";
+
+  setStyle(v.loginSignup.termsAndServices, {
     maxWidth: "368px",
     color: "#545454",
     fontSize: "14px",
     transform: "translateX(-13px)",
   });
 
-  setStyle(logoImg, { maxHeight: "48px" });
+  setStyle(v.logo, { maxHeight: "48px" });
 
-  setStyle(signUpSignInContainer, { display: "flex" });
+  setStyle(v.loginSignup.tabContainer, { display: "flex" });
 
-  setStyle(loginTab, {
+  setStyle(v.loginSignup.loginTab, {
     border: "0",
     display: "flex",
     padding: "8px 16px",
@@ -2029,14 +2090,14 @@ function mobileSignUpPageStyling() {
     borderRadius: "100px",
   });
 
-  setStyle(loginTabText, {
+  setStyle(v.loginSignup.loginTabText, {
     color: "8C8C8C",
     fontWeight: "500",
     fontSize: "16px",
     lineHeight: "24px",
   });
 
-  setStyle(signInTab, {
+  setStyle(v.loginSignup.signUpTab, {
     display: "flex",
     alignItems: "center",
     padding: "8px 16px",
@@ -2044,33 +2105,33 @@ function mobileSignUpPageStyling() {
     borderRadius: "100px",
   });
 
-  setStyle(signInTabText, {
+  setStyle(v.loginSignup.signUpTabText, {
     color: "#fff",
     fontWeight: "500",
     fontSize: "16px",
     lineHeight: "24px",
   });
 
-  [loginContentContainer, orSignInWithGoogleContainer].forEach((el) =>
+  [v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol].forEach((el) =>
     setStyle(el, { width: "100%" })
   );
 
-  [orSignInWithGoogleList, orSignInWithGoogleContainer].forEach((el) =>
+  [v.loginSignup.altMethodUl, v.loginSignup.altMethodCol].forEach((el) =>
     setStyle(el, { padding: "0" })
   );
 
-  orSignInWithGoogleItems.forEach((li) => setStyle(li, { padding: "0" }));
+  v.loginSignup.altMethodLi.forEach((li) => setStyle(li, { padding: "0" }));
 
-  setStyle(orSignInWithContainer, { paddingBottom: "0" });
+  setStyle(v.loginSignup.altMethodContainer, { paddingBottom: "0" });
 
-  setStyle(orSignInWithText, {
+  setStyle(v.loginSignup.altMethod, {
     marginBottom: "12px",
     fontWeight: "500",
     fontSize: "16px",
     lineHeight: "20px",
   });
 
-  [loginInput, passwordInput].forEach((el) =>
+  [v.loginSignup.inputs.login, v.loginSignup.inputs.password1].forEach((el) =>
     setStyle(el, {
       borderRadius: "4px",
       borderColor: "#DCDCDC",
@@ -2079,33 +2140,31 @@ function mobileSignUpPageStyling() {
     })
   );
 
-  setStyle(passwordInput2, {
+  setStyle(v.loginSignup.inputs.password2, {
     marginBottom: "24px",
   });
 
-  setStyle(signUpBottomBtn, {
+  setStyle(v.loginSignup.signupBtn, {
     width: "100%",
     height: "48px",
     fontSize: "16px",
   });
 
-  setStyle(signUpBottomBtnParent, {
-    textAlign: "left",
+  setStyle(v.loginSignup.signupBtnWrapper, {
+    textAlign: "left !important",
   });
 
-  signUpBottomBtnParent?.classList.remove("text-center");
-
-  setStyle(googleBtn, {
+  setStyle(v.loginSignup.googleBtn, {
     backgroundColor: "#3443F4",
     width: "100%",
     textAlign: "center",
   });
 
-  setStyle(loginContent, {
+  setStyle(v.loginSignup.loginContent, {
     border: "0",
   });
 
-  labels.forEach((label) =>
+  v.loginSignup.allLabels.forEach((label) =>
     setStyle(label, {
       marginBottom: "12px",
       fontWeight: "500",
@@ -2114,7 +2173,7 @@ function mobileSignUpPageStyling() {
     })
   );
 
-  inputs.forEach((input) =>
+  v.loginSignup.allInputs.forEach((input) =>
     setStyle(input, {
       borderRadius: "4px",
       borderColor: "rgb(220, 220, 220)",
@@ -2123,19 +2182,19 @@ function mobileSignUpPageStyling() {
     })
   );
 
-  setStyle(footerContainer, {
+  setStyle(v.footerContainer, {
     paddingLeft: "0",
     paddingRight: "0",
   });
 
-  footerCols.forEach((col) => setStyle(col, { width: "212px" }));
+  v.footerCols.forEach((col) => setStyle(col, { width: "212px" }));
 
   // move elements
-  signUpForm.append(termsAndServicesText);
+  v.loginSignup.signupForm.append(v.loginSignup.termsAndServices);
 
   // hide elements
-  hide(fbBtn);
-  hide(tabArrow);
+  hide(v.loginSignup.fbBtn);
+  hide(v.loginSignup.tabArrow);
 }
 
 /**
@@ -2146,7 +2205,6 @@ function mobileCourseDetailsPageStyling() {
   // TODO: we need to clean this up but we are currently not using this view...
   // only on the staging site: https://chainguard-test.skilljar.com/secure-or-sorry-understanding-software-vulnerabilities
   console.info("Running mobileCourseDetailsPageStyling using setStyle");
-  const navLogoImg = document.querySelector(".header-center-img");
 
   const headerContainer = document.querySelector(".top-row-grey");
   const headerFlexContainer = document.querySelector(".dp-row-flex-v2");
@@ -2188,10 +2246,8 @@ function mobileCourseDetailsPageStyling() {
   const courseDetailsCardLink = document.querySelector(
     ".course-details-card-link"
   );
-  const footerContainer = document.querySelector("#footer-container");
-  const footerCols = footerContainer.querySelectorAll(".global-footer-column");
 
-  setStyle(navLogoImg, { maxHeight: "48px" });
+  setStyle(v.logo, { maxHeight: "48px" });
 
   if (signInHeaderText) {
     setStyle(signInBtn, {
@@ -2361,7 +2417,7 @@ function mobileCourseDetailsPageStyling() {
   // courseDetailCardContainer.style.margin = "0 0 46px 0";
   // courseDetailCardContainer.style.justifySelf = "center";
 
-  setStyle(footerContainer, {
+  setStyle(v.footerContainer, {
     paddingLeft: "0",
     paddingRight: "0",
   });
@@ -2369,7 +2425,7 @@ function mobileCourseDetailsPageStyling() {
   // footerContainer.style.paddingLeft = 0;
   // footerContainer.style.paddingRight = 0;
 
-  footerCols.forEach((col) => setStyle(col, { width: "212px" }));
+  v.footerCols.forEach((col) => setStyle(col, { width: "212px" }));
 
   // footerCols.forEach((col) => {
   //   col.style.width = "212px";
@@ -2400,7 +2456,6 @@ function mobileCurriculumPageNoCertificateStyling() {
     "Running mobileCurriculumPageNoCertificateStyling using setStyle [cleaned up]"
   );
 
-  const navLogoImg = document.querySelector(".header-center-img");
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
   const headingFloaterText = document.querySelector(".sj-floater-text");
   const container = document.querySelector(".cp-summary-wrapper");
@@ -2434,8 +2489,6 @@ function mobileCurriculumPageNoCertificateStyling() {
   const curriculumOutsideContainer =
     curriculumParentContainer.closest(".content");
   const checkboxIcon = document.querySelector(".checkbox-icon");
-  const footerContainer = document.querySelector("#footer-container");
-  const footerCols = footerContainer.querySelectorAll(".global-footer-column");
 
   const card = {
     details: document.querySelector(".course-details-card"),
@@ -2452,7 +2505,7 @@ function mobileCurriculumPageNoCertificateStyling() {
 
   aboutSection.classList.add("active");
 
-  setStyle(navLogoImg, { maxHeight: "48px" });
+  setStyle(v.logo, { maxHeight: "48px" });
 
   setStyle(bodyMainContainer, {
     display: "grid",
@@ -2647,9 +2700,9 @@ function mobileCurriculumPageNoCertificateStyling() {
     });
   });
 
-  setStyle(footerContainer, { paddingLeft: "0", paddingRight: "0" });
+  setStyle(v.footerContainer, { paddingLeft: "0", paddingRight: "0" });
 
-  footerCols.forEach((col) => setStyle(col, { width: "212px" }));
+  v.footerCols.forEach((col) => setStyle(col, { width: "212px" }));
 
   // move elements
   if (card.details) {
@@ -2681,7 +2734,7 @@ function mobileCurriculumPageNoCertificateStyling() {
 function mobileCurriculumPageYesCertificateStyling() {
   // TODO: Clean up this function
   console.info("Running mobileCurriculumPageYesCertificateStyling");
-  const navLogoImg = document.querySelector(".header-center-img");
+
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
   const headingFloaterText = document.querySelector(".sj-floater-text");
   const container = document.querySelector(".cp-summary-wrapper"); // DUPLICATE VAR
@@ -2734,12 +2787,8 @@ function mobileCurriculumPageYesCertificateStyling() {
     ".course-details-card-link"
   );
 
-  // FOOTER VARS
-  const footerContainer = document.querySelector("#footer-container");
-  const footerCols = footerContainer.querySelectorAll(".global-footer-column");
-
   // NAV STYLING
-  navLogoImg.style.maxHeight = "48px";
+  v.logo.style.maxHeight = "48px";
 
   // STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
   bodyMainContainer.style.display = "grid";
@@ -2923,9 +2972,9 @@ function mobileCurriculumPageYesCertificateStyling() {
   });
 
   // FOOTER STYLING
-  footerContainer.style.paddingLeft = 0;
-  footerContainer.style.paddingRight = 0;
-  footerCols.forEach((col) => {
+  v.footerContainer.style.paddingLeft = 0;
+  v.footerContainer.style.paddingRight = 0;
+  v.footerCols.forEach((col) => {
     col.style.width = "212px";
   });
 }
@@ -2941,8 +2990,6 @@ function mobileLessonPageStyling() {
   const internalCourseWarning = document.querySelector(
     "#internal-course-warning"
   );
-
-  const navLogoImg = document.querySelector(".header-center-img");
 
   const leftNav = document.querySelector("#lp-left-nav");
   const mainLessonContentContainer = document.querySelector("#lp-wrapper");
@@ -2979,10 +3026,7 @@ function mobileLessonPageStyling() {
     ...document.querySelectorAll("pre:has(code):not(.language-ansi)")
   );
 
-  const footerContainer = document.querySelector("#footer-container");
-  const footerCols = footerContainer.querySelectorAll(".global-footer-column");
-
-  setStyle(navLogoImg, { height: "48px" });
+  setStyle(v.logo, { height: "48px" });
 
   setStyle(lessonInnerContainer, {
     maxWidth: "712px",
@@ -3047,7 +3091,7 @@ function mobileLessonPageStyling() {
     paddingBottom: "0",
   });
 
-  setStyle(footerContainer, { marginTop: "0" });
+  setStyle(v.footerContainer, { marginTop: "0" });
 
   // move elements
   mainLessonContentContainer.append(lessonFooter);
@@ -3214,9 +3258,9 @@ function mobileLessonPageStyling() {
     .querySelectorAll("a")
     .forEach((el) => (el.target = "_blank"));
 
-  setStyle(footerContainer, { paddingLeft: "0", paddingRight: "0" });
+  setStyle(v.footerContainer, { paddingLeft: "0", paddingRight: "0" });
 
-  footerCols.forEach((col) => {
+  v.footerCols.forEach((col) => {
     setStyle(col, { width: "270px" });
   });
 }
