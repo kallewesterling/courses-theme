@@ -2004,7 +2004,7 @@ function mobileLoginPageStyling() {
   // loginBottomBtnAndForgotPassBtn.style.marginBottom = "24px";
   
   setStyle(googleBtn, {
-    backgroundColor: "#7545FB",
+    backgroundColor: "#3443F4",
     width: "100%",
     textAlign: "center",
   });
