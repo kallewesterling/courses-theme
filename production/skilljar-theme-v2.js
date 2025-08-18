@@ -47,7 +47,7 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
       links: content
         .filter((d) => !d[1] && d[0] === i + 1)
         .map((d) => d[3]),
-      bullets: content.filter((d) => d[1] && d[0] === i + 1),
+      bullets: content.filter((d) => !d[1] && d[0] === i + 1)[0][4],
     }))
     .map((section) => {
       const wrapper = Object.assign(document.createElement("div"), {
@@ -76,7 +76,7 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
           href: section.links[ix] || "#",
         });
 
-        a.prepend(section.bullets[ix][0][4]);
+        a.prepend(section.bullets[ix]);
         
         return a;
       });
