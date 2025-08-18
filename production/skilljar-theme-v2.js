@@ -21,23 +21,26 @@ let v = {
 
 function getCurriculumElements(curriculumParentContainer, border = "b") {
   let currentSection = 0,
+    elements = Array.from(
+      curriculumParentContainer.querySelectorAll("[class^='lesson-']")
+    ),
     a;
 
-  const content = Array.from(
-    curriculumParentContainer.querySelectorAll("[class^='lesson-']")
-  ).map((elem) => {
-    const isHeader = elem.classList.contains("lesson-section");
+  const content = elements
+    .filter((e) => !e.classList.contains("lesson-row"))
+    .map((elem) => {
+      const isHeader = elem.classList.contains("lesson-section");
 
-    currentSection += isHeader ? 1 : 0;
+      currentSection += isHeader ? 1 : 0;
 
-    return [
-      currentSection,
-      isHeader,
-      elem.textContent.replace("optional", "").trim(),
-      elem.getAttribute("href") || null,
-      elem.querySelector(".bullet i"),
-    ];
-  });
+      return [
+        currentSection,
+        isHeader,
+        elem.textContent.replace("optional", "").trim(),
+        elem.getAttribute("href") || null,
+        elem.querySelector(".bullet i"),
+      ];
+    });
 
   if (!currentSection) {
     // we have no sections, only a list of lessons
