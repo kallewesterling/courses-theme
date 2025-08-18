@@ -34,59 +34,73 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
       isHeader,
       elem.textContent.replace("optional", "").trim(),
       elem.getAttribute("href") || null,
-      elem.querySelector(".bullet i")
+      elem.querySelector(".bullet i"),
     ];
   });
 
-  return new Array(currentSection)
-    .fill(0)
-    .map((_, i) => ({
+  let a;
+
+  if (!currentSection) {
+    // we have no sections, only a list of lessons
+    a = [
+      {
+        section: 1,
+        heading: "Lessons",
+        lessons: content.map((d) => d[2]),
+        links: content.map((d) => d[3]),
+        bullets: content.map((d) => d[4]),
+      },
+    ];
+  } else {
+    a = new Array(currentSection).fill(0).map((_, i) => ({
       section: i + 1,
       heading: content.filter((d) => d[1] && d[0] === i + 1)[0][2],
       lessons: content.filter((d) => !d[1] && d[0] === i + 1).map((d) => d[2]),
-      links: content
-        .filter((d) => !d[1] && d[0] === i + 1)
-        .map((d) => d[3]),
-      bullets: content.filter((d) => !d[1] && d[0] === i + 1).map(d => d[4]),
-    }))
-    .map((section) => {
-      const wrapper = Object.assign(document.createElement("div"), {
-        style: `border-radius: 8px; margin-bottom: 48px; padding: 0; border: ${
-          border === "b" ? "2px solid #3443F4" : "1px solid #DCDCDC"
-        };`,
-      });
+      links: content.filter((d) => !d[1] && d[0] === i + 1).map((d) => d[3]),
+      bullets: content.filter((d) => !d[1] && d[0] === i + 1).map((d) => d[4]),
+    }));
+  }
 
-      const header = Object.assign(document.createElement("div"), {
-        class: "curriculum-header",
-        style: `display: flex; align-items: center; padding: 24px; margin: 0; font-family: "Fusiona"; font-size: 16px; font-weight: 500; line-height: 125%; letter-spacing: "-.16px"; border-bottom: 2px solid #3443f4;`,
-        textContent: section.heading,
-      });
-
-      const lessons = section.lessons.map((lesson, ix) => {
-        const a = Object.assign(document.createElement("a"), {
-          class: "curriculum-lesson lesson-row",
-          style: `display: block; color: black; padding: 24px; font-size: 16px; font-weight: 400; line-height: 150%; border-bottom: ${
-            ix !== section.lessons.length - 1
-              ? border === "b"
-                ? "2px solid #3443F4"
-                : "1px solid #DCDCDC"
-              : "none"
-          };`,
-          textContent: lesson,
-          href: section.links[ix] || "#",
-        });
-
-        a.prepend(Object.assign(section.bullets[ix], {
-          style: `display: inline-block; font-size: 1.5em; transform: translateY(3px); padding-right: 5px; color: #3443f4;`
-        }));
-        
-        return a;
-      });
-
-      wrapper.append(header, ...lessons);
-
-      return wrapper;
+  return a.map((section) => {
+    const wrapper = Object.assign(document.createElement("div"), {
+      style: `border-radius: 8px; margin-bottom: 48px; padding: 0; border: ${
+        border === "b" ? "2px solid #3443F4" : "1px solid #DCDCDC"
+      };`,
     });
+
+    const header = Object.assign(document.createElement("div"), {
+      class: "curriculum-header",
+      style: `display: flex; align-items: center; padding: 24px; margin: 0; font-family: "Fusiona"; font-size: 16px; font-weight: 500; line-height: 125%; letter-spacing: "-.16px"; border-bottom: 2px solid #3443f4;`,
+      textContent: section.heading,
+    });
+
+    const lessons = section.lessons.map((lesson, ix) => {
+      const a = Object.assign(document.createElement("a"), {
+        class: "curriculum-lesson lesson-row",
+        style: `display: block; color: black; padding: 24px; font-size: 16px; font-weight: 400; line-height: 150%; border-bottom: ${
+          ix !== section.lessons.length - 1
+            ? border === "b"
+              ? "2px solid #3443F4"
+              : "1px solid #DCDCDC"
+            : "none"
+        };`,
+        textContent: lesson,
+        href: section.links[ix] || "#",
+      });
+
+      a.prepend(
+        Object.assign(section.bullets[ix], {
+          style: `display: inline-block; font-size: 1.5em; transform: translateY(3px); padding-right: 5px; color: #3443f4;`,
+        })
+      );
+
+      return a;
+    });
+
+    wrapper.append(header, ...lessons);
+
+    return wrapper;
+  });
 }
 
 /**
