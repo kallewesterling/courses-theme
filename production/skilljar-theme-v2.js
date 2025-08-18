@@ -19,35 +19,57 @@ let v = {
   ),
 };
 
-function getCurriculumElements(curriculumParentContainer, border = "b") {	
-	const content = Array.from(
-	  curriculumParentContainer.querySelectorAll(".curriculumItem")
-	).map((elem) => [
-	  elem.classList.contains("lesson-section"),
-	  elem.textContent.replace("optional", "").trim(),
-	]);
-	
-	return content.map(([isHeader, textContent], ix) => {
-	  if (isHeader) {
-		return Object.assign(document.createElement("div"), {
-		  style: `display: flex; align-items: center; padding: 24px; margin: 0; font-family: "Fusiona"; font-size: 16px; font-weight: 500; line-height: 125%; letter-spacing: "-.16px"; border-bottom: 2px solid #3443f4;`,
-		  textContent,
-		});
-	  } else {
-		const isLastChild = content[ix + 1] ? content[ix + 1][0] === true : false;
-	
-		const borderBottom = isLastChild
-		  ? "none"
-		  : border === "b"
-		  ? "2px solid #3443F4"
-		  : "1px solid #DCDCDC";
-	
-		return Object.assign(document.createElement("div"), {
-		  style: `padding: 24px; font-size: 16px; font-weight: 400; line-height: 150%; border-bottom: ${borderBottom};`,
-		  textContent,
-		});
-	  }
-	});
+function getCurriculumElements(curriculumParentContainer, border = "b") {
+  let currentSection = 0;
+
+  const content = Array.from(
+    curriculumParentContainer.querySelectorAll(".curriculumItem")
+  ).map((elem) => {
+    const isHeader = elem.classList.contains("lesson-section");
+
+    currentSection += isHeader ? 1 : 0;
+
+    return [
+      currentSection,
+      isHeader,
+      elem.textContent.replace("optional", "").trim(),
+    ];
+  });
+
+  return new Array(currentSection)
+    .fill(0)
+    .map((_, i) => ({
+      section: i + 1,
+      heading: content.filter((d) => d[1] && d[0] === i + 1)[0][2],
+      lessons: content.filter((d) => !d[1] && d[0] === i + 1).map((d) => d[2]),
+    }))
+    .map((section) => {
+      const wrapper = Object.assign(document.createElement("div"), {
+        style: `border-radius: 8px; margin-bottom: 48px; padding: 0; border: ${
+          border === "b" ? "2px solid #3443F4" : "1px solid #DCDCDC"
+        };`,
+      });
+
+      const header = Object.assign(document.createElement("div"), {
+        class: "curriculum-header",
+        style: `display: flex; align-items: center; padding: 24px; margin: 0; font-family: "Fusiona"; font-size: 16px; font-weight: 500; line-height: 125%; letter-spacing: "-.16px"; border-bottom: 2px solid #3443f4;`,
+        textContent: section.heading,
+      });
+
+      const lessons = section.lessons.map((lesson) => {
+        return Object.assign(document.createElement("div"), {
+          class: "curriculum-lesson",
+          style: `padding: 24px; font-size: 16px; font-weight: 400; line-height: 150%; border-bottom: ${
+            border === "b" ? "2px solid #3443F4" : "1px solid #DCDCDC"
+          };`,
+          textContent: lesson,
+        });
+      });
+
+      wrapper.append(header, ...lessons);
+
+      return wrapper;
+    });
 }
 
 /**
@@ -1531,49 +1553,9 @@ function desktopCurriculumPageNoCertificateStyling() {
     }
 
     const curriculumElements = getCurriculumElements(curriculumParentContainer);
-    
-    curriculumParentContainer
-      .querySelectorAll(".curriculumItem")
-      .forEach((el, i, curArr) => {
-        if (el.tagName === "DIV") {
-          // Handle creating a new module/section
 
-          // Start by resetting the current container
-          curriculumParentContainer.append(currentContainer);
-          currentContainer = document.createElement("div");
-
-          styleGroupContainer(currentContainer);
-
-          const sectionHeading = Object.assign(document.createElement("div"), {
-            style: "display: flex; align-items: center;",
-            textContent:
-              el.querySelector("h3")?.textContent?.trim() || "Module",
-          });
-
-          styleGroupHeading(sectionHeading);
-
-          currentContainer.append(sectionHeading);
-
-          hide(el);
-        } else {
-          // Handle appending to current module/section
-          const isLastChild = curArr[i + 1]
-            ? curArr[i + 1].tagName === "DIV"
-            : true;
-
-          const newListEl = document.createElement("div");
-          styleListItem(newListEl, isLastChild, false);
-
-          // Styling for mobile
-          setStyle(el.querySelector(".title"), { textWrap: "wrap" });
-
-          newListEl.append(el);
-          currentContainer.append(newListEl);
-        }
-      });
-
-    curriculumParentContainer.append(currentContainer);
-  }
+    curriculumParentContainer.innerHTML = ""; // Clear the container
+    curriculumParentContainer.append(...curriculumElements);
 
   // CURRICULUM ITSELF STYLING
   setStyle(lessonListItems, {
