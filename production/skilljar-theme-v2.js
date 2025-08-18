@@ -33,6 +33,7 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
       currentSection,
       isHeader,
       elem.textContent.replace("optional", "").trim(),
+      elem.getAttribute("href") || null,
     ];
   });
 
@@ -42,6 +43,9 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
       section: i + 1,
       heading: content.filter((d) => d[1] && d[0] === i + 1)[0][2],
       lessons: content.filter((d) => !d[1] && d[0] === i + 1).map((d) => d[2]),
+      links: content
+        .filter((d) => !d[1] && d[0] === i + 1)
+        .map((d) => d[3]),
     }))
     .map((section) => {
       const wrapper = Object.assign(document.createElement("div"), {
@@ -57,9 +61,9 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
       });
 
       const lessons = section.lessons.map((lesson, ix) => {
-        return Object.assign(document.createElement("div"), {
+        return Object.assign(document.createElement("a"), {
           class: "curriculum-lesson",
-          style: `padding: 24px; font-size: 16px; font-weight: 400; line-height: 150%; border-bottom: ${
+          style: `display: block; color: black; padding: 24px; font-size: 16px; font-weight: 400; line-height: 150%; border-bottom: ${
             ix !== section.lessons.length - 1
               ? border === "b"
                 ? "2px solid #3443F4"
@@ -67,6 +71,7 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
               : "none"
           };`,
           textContent: lesson,
+          href: section.links[ix] || "#",
         });
       });
 
