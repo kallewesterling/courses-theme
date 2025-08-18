@@ -34,6 +34,7 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
       isHeader,
       elem.textContent.replace("optional", "").trim(),
       elem.getAttribute("href") || null,
+      elem.querySelector(".bullet i")
     ];
   });
 
@@ -46,6 +47,7 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
       links: content
         .filter((d) => !d[1] && d[0] === i + 1)
         .map((d) => d[3]),
+      bullets: content.filter((d) => d[1] && d[0] === i + 1)[0][4],
     }))
     .map((section) => {
       const wrapper = Object.assign(document.createElement("div"), {
@@ -61,7 +63,7 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
       });
 
       const lessons = section.lessons.map((lesson, ix) => {
-        return Object.assign(document.createElement("a"), {
+        const a = Object.assign(document.createElement("a"), {
           class: "curriculum-lesson",
           style: `display: block; color: black; padding: 24px; font-size: 16px; font-weight: 400; line-height: 150%; border-bottom: ${
             ix !== section.lessons.length - 1
@@ -73,6 +75,10 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
           textContent: lesson,
           href: section.links[ix] || "#",
         });
+
+        a.prepend(section.bullets[ix]);
+        
+        return a;
       });
 
       wrapper.append(header, ...lessons);
