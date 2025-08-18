@@ -76,12 +76,10 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
           href: section.links[ix] || "#",
         });
 
-        const bulletDiv = Object.assign(document.createElement("div"), {
-          class: "bullet",
-        });
-        bulletDiv.append(section.bullets[ix]);
-        a.prepend(bulletDiv);
-
+        a.prepend(Object.assign(section.bullets[ix], {
+          style: `display: inline-block; font-size: 1.5em; transform: translateY(3px); padding-right: 5px; color: #3443f4;`
+        }));
+        
         return a;
       });
 
