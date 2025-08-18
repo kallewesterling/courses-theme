@@ -24,7 +24,7 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
     a;
 
   const content = Array.from(
-    curriculumParentContainer.querySelectorAll(".curriculumItem")
+    curriculumParentContainer.querySelectorAll("[class^='lesson-']")
   ).map((elem) => {
     const isHeader = elem.classList.contains("lesson-section");
 
@@ -486,14 +486,14 @@ function desktopCourseDetailsPageStyling() {
   // COURSE DETAILS CURRICULUM STYLING
   if (!initialLoadComplete) {
     // Check if course has Sections/Modules/Parts
-    const hasSections = curriculumListContainer.querySelector(".section")
-      ? true
-      : false;
-    let curContainer = document.createElement("li");
+    // const hasSections = curriculumListContainer.querySelector(".section")
+    //   ? true
+    //   : false;
+    // let curContainer = document.createElement("li");
 
-    if (!hasSections) {
-      styleGroupContainer(curContainer);
-    }
+    // if (!hasSections) {
+    //   styleGroupContainer(curContainer);
+    // }
 
     const curriculumElements = getCurriculumElements(curriculumListContainer);
 
@@ -1574,19 +1574,19 @@ function desktopCurriculumPageNoCertificateStyling() {
     globalAboutSection = aboutSection;
 
     // Check if course has Sections/Modules/Parts
-    const hasSections = curriculumParentContainer.querySelector("h3")
-      ? true
-      : false;
+    // const hasSections = curriculumParentContainer.querySelector("h3")
+    //   ? true
+    //   : false;
 
-    curriculumItemsListLIVE
-      .filter((el) => el?.tagName)
-      .forEach((el) => el.classList.add("curriculumItem"));
+    // curriculumItemsListLIVE
+    //   .filter((el) => el?.tagName)
+    //   .forEach((el) => el.classList.add("curriculumItem"));
 
     // Create a starting container
-    let currentContainer = document.createElement("div");
-    if (!hasSections) {
-      styleGroupContainer(currentContainer);
-    }
+    // let currentContainer = document.createElement("div");
+    // if (!hasSections) {
+    //   styleGroupContainer(currentContainer);
+    // }
 
     const curriculumElements = getCurriculumElements(curriculumParentContainer);
 
