@@ -1556,6 +1556,7 @@ function desktopCurriculumPageNoCertificateStyling() {
 
     curriculumParentContainer.innerHTML = ""; // Clear the container
     curriculumParentContainer.append(...curriculumElements);
+  }
 
   // CURRICULUM ITSELF STYLING
   setStyle(lessonListItems, {
