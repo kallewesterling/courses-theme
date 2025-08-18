@@ -64,7 +64,7 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
 
       const lessons = section.lessons.map((lesson, ix) => {
         const a = Object.assign(document.createElement("a"), {
-          class: "curriculum-lesson",
+          class: "curriculum-lesson lesson-row",
           style: `display: block; color: black; padding: 24px; font-size: 16px; font-weight: 400; line-height: 150%; border-bottom: ${
             ix !== section.lessons.length - 1
               ? border === "b"
@@ -76,8 +76,12 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
           href: section.links[ix] || "#",
         });
 
-        a.prepend(section.bullets[ix]);
-        
+        const bulletDiv = Object.assign(document.createElement("div"), {
+          class: "bullet",
+        });
+        bulletDiv.append(section.bullets[ix]);
+        a.prepend(bulletDiv);
+
         return a;
       });
 
