@@ -56,11 +56,15 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
         textContent: section.heading,
       });
 
-      const lessons = section.lessons.map((lesson) => {
+      const lessons = section.lessons.map((lesson, ix) => {
         return Object.assign(document.createElement("div"), {
           class: "curriculum-lesson",
           style: `padding: 24px; font-size: 16px; font-weight: 400; line-height: 150%; border-bottom: ${
-            border === "b" ? "2px solid #3443F4" : "1px solid #DCDCDC"
+            ix !== section.lessons.length - 1
+              ? border === "b"
+                ? "2px solid #3443F4"
+                : "1px solid #DCDCDC"
+              : "none"
           };`,
           textContent: lesson,
         });
