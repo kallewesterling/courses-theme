@@ -20,7 +20,8 @@ let v = {
 };
 
 function getCurriculumElements(curriculumParentContainer, border = "b") {
-  let currentSection = 0;
+  let currentSection = 0,
+    a;
 
   const content = Array.from(
     curriculumParentContainer.querySelectorAll(".curriculumItem")
@@ -37,8 +38,6 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
       elem.querySelector(".bullet i"),
     ];
   });
-
-  let a;
 
   if (!currentSection) {
     // we have no sections, only a list of lessons
@@ -496,41 +495,47 @@ function desktopCourseDetailsPageStyling() {
       styleGroupContainer(curContainer);
     }
 
-    curriculumList.forEach((curListItem, i, arr) => {
-      // First check if current item contains 'section' class
-      if (curListItem.classList.contains("section")) {
-        // Yes? push curContainer into curriculumListContainer
-        curriculumListContainer.append(curContainer);
-        // Reset curContainer while pushing current 'section' in there for the next iteration
-        curContainer = document.createElement("li");
-        styleGroupContainer(curContainer);
+    const curriculumElements = getCurriculumElements(curriculumListContainer);
 
-        const newGroupHeading = document.createElement("div");
+    curriculumListContainer.innerHTML = ""; // Clear the container
+    curriculumListContainer.append(...curriculumElements);
 
-        newGroupHeading.innerHTML = curListItem.innerHTML;
-
-        styleGroupHeading(newGroupHeading);
-
-        curContainer.append(newGroupHeading);
-      } else {
-        // Else, normal/expected behaviour
-        // Transfer inner html of current list item to new created div
-        const newListItem = document.createElement("div");
-        newListItem.innerHTML = curListItem.innerHTML;
-        styleListItem(
-          newListItem,
-          arr[i + 1] ? arr[i + 1].classList.contains("section") : true
-        );
-        curContainer.append(newListItem);
-      }
-      hide(curListItem);
-    });
-
-    // LAST, unpushed SECTION; push it out to curriculumListContainer
-    curriculumListContainer.append(curContainer);
-
-    setStyle(curriculumListContainer, { padding: "0" });
   }
+  //   curriculumList.forEach((curListItem, i, arr) => {
+  //     // First check if current item contains 'section' class
+  //     if (curListItem.classList.contains("section")) {
+  //       // Yes? push curContainer into curriculumListContainer
+  //       curriculumListContainer.append(curContainer);
+  //       // Reset curContainer while pushing current 'section' in there for the next iteration
+  //       curContainer = document.createElement("li");
+  //       styleGroupContainer(curContainer);
+
+  //       const newGroupHeading = document.createElement("div");
+
+  //       newGroupHeading.innerHTML = curListItem.innerHTML;
+
+  //       styleGroupHeading(newGroupHeading);
+
+  //       curContainer.append(newGroupHeading);
+  //     } else {
+  //       // Else, normal/expected behaviour
+  //       // Transfer inner html of current list item to new created div
+  //       const newListItem = document.createElement("div");
+  //       newListItem.innerHTML = curListItem.innerHTML;
+  //       styleListItem(
+  //         newListItem,
+  //         arr[i + 1] ? arr[i + 1].classList.contains("section") : true
+  //       );
+  //       curContainer.append(newListItem);
+  //     }
+  //     hide(curListItem);
+  //   });
+
+  //   // LAST, unpushed SECTION; push it out to curriculumListContainer
+  //   curriculumListContainer.append(curContainer);
+
+  //   setStyle(curriculumListContainer, { padding: "0" });
+  // }
 
   // COURSE DETAILS GRID STRUCTURE STYLING - ADDING DETAILS CARD ON RIGHT SIDE
   setStyle(card.details, {
