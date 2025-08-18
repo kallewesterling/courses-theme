@@ -87,11 +87,12 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
         href: section.links[ix] || "#",
       });
 
-      a.prepend(
-        Object.assign(section.bullets[ix], {
-          style: `display: inline-block; font-size: 1.5em; transform: translateY(3px); padding-right: 5px; color: #3443f4;`,
-        })
-      );
+      if (section.bullets[ix])
+        a.prepend(
+          Object.assign(section.bullets[ix], {
+            style: `display: inline-block; font-size: 1.5em; transform: translateY(3px); padding-right: 5px; color: #3443f4;`,
+          })
+        );
 
       return a;
     });
@@ -499,7 +500,6 @@ function desktopCourseDetailsPageStyling() {
 
     curriculumListContainer.innerHTML = ""; // Clear the container
     curriculumListContainer.append(...curriculumElements);
-
   }
   //   curriculumList.forEach((curListItem, i, arr) => {
   //     // First check if current item contains 'section' class
