@@ -290,7 +290,7 @@ function insertFooter() {
 /**
  * This function applies desktop-specific styling to the catalog page.
  */
-function desktopCatalogPageStyling() {
+function styleCatalog() {
   console.info("Running desktopCatalogPageStyling with setStyle");
   const catalogBodyParentContainer = document.querySelector("#catalog-content");
   const catalogContainer = document.querySelector("#catalog-courses");
@@ -323,7 +323,7 @@ function desktopCatalogPageStyling() {
 /**
  * This function applies desktop-specific styling to the course details page.
  */
-function desktopCourseDetailsPageStyling() {
+function styleCourseDetailsDesktop() {
   console.info(
     "Running desktopCourseDetailsPageStyling with setStyle [cleaned up]"
   );
@@ -512,7 +512,7 @@ function desktopCourseDetailsPageStyling() {
 /**
  * This function applies desktop-specific styling to the path course details page.
  */
-function desktopPathCourseDetailsPageStyling() {
+function stylePathCourseDetailsDesktop() {
   console.info("Running desktopPathCourseDetailsPageStyling with setStyle");
   const headerContainer = document.querySelector(".top-row-grey");
   const headerFlexContainer = document.querySelector(".dp-row-flex-v2");
@@ -629,7 +629,7 @@ function desktopPathCourseDetailsPageStyling() {
 /**
  * This function applies desktop-specific styling to the path catalog page.
  */
-function desktopPathCatalogPageStyling() {
+function stylePathCatalogPageStylingDesktop() {
   console.info("Running desktopPathCatalogPageStyling with setStyle");
   const backArrowBtn = document.querySelector(".back-to-catalog");
 
@@ -673,7 +673,7 @@ function desktopPathCatalogPageStyling() {
 /**
  * This function applies desktop-specific styling to the lesson page.
  */
-function desktopLessonPageStyling() {
+function styleLessonDesktop() {
   console.info("Running desktopLessonPageStyling with setStyle [cleaned up]");
 
   const internalCourseWarning = document.querySelector(
@@ -954,7 +954,7 @@ function desktopLessonPageStyling() {
 /**
  * This function applies desktop-specific styling to the login page.
  */
-function desktopLoginPageStyling() {
+function styleLoginDesktop() {
   console.info("Running desktopLoginPageStyling with setStyle");
 
   v.loginSignup = {
@@ -1125,7 +1125,7 @@ function desktopLoginPageStyling() {
 /**
  * This function applies desktop-specific styling to the sign-up page.
  */
-function desktopSignUpPageStyling() {
+function styleSignupDesktop() {
   console.info("Running desktopSignUpPageStyling with setStyle");
 
   v.loginSignup = {
@@ -1333,7 +1333,7 @@ function desktopSignUpPageStyling() {
  * This function applies desktop-specific styling to the curriculum page when no certificate is available.
  * It modifies the layout and appearance of various elements on the page.
  */
-function desktopCurriculumPageNoCertificateStyling() {
+function styleCurriculumPageNoCertificateDesktop() {
   console.info(
     "Running desktopCurriculumPageNoCertificateStyling with setStyle [cleaned up]"
   );
@@ -1561,7 +1561,7 @@ function desktopCurriculumPageNoCertificateStyling() {
  * This function applies desktop-specific styling to the curriculum page when a certificate is available.
  * It modifies the layout and appearance of various elements on the page.
  */
-function desktopCurriculumPageYesCertificationStyling() {
+function styleCurriculumPageHasCertificationDesktop() {
   // TODO: Clean up this function
   console.info("Running desktopCurriculumPageYesCertificationStyling");
   const courseDescription = skilljarCourse.short_description; // eslint-disable-line no-undef
@@ -1806,7 +1806,7 @@ function desktopCurriculumPageYesCertificationStyling() {
  * This function applies mobile-specific styling to the login page.
  * It modifies the layout and appearance of various elements on the page.
  */
-function mobileLoginPageStyling() {
+function styleLoginMobile() {
   console.info("Running mobileLoginPageStyling");
 
   v.loginSignup = {
@@ -1978,7 +1978,7 @@ function mobileLoginPageStyling() {
  * This function applies mobile-specific styling to the sign-up page.
  * It modifies the layout and appearance of various elements on the page.
  */
-function mobileSignUpPageStyling() {
+function styleSignupMobile() {
   console.info("Running mobileSignUpPageStyling");
 
   v.loginSignup = {
@@ -2184,7 +2184,7 @@ function mobileSignUpPageStyling() {
  * This function applies mobile-specific styling to the course details page.
  * It modifies the layout and appearance of various elements on the page.
  */
-function mobileCourseDetailsPageStyling() {
+function styleCourseDetailsMobile() {
   console.info("Running mobileCourseDetailsPageStyling");
 
   const headerContainer = document.querySelector(".top-row-grey");
@@ -2379,7 +2379,7 @@ function mobileCourseDetailsPageStyling() {
  * This function applies mobile-specific styling to the curriculum page when no certificate is present.
  * It modifies the layout and appearance of various elements on the page.
  */
-function mobileCurriculumPageNoCertificateStyling() {
+function styleCurriculumPageNoCertificateMobile() {
   console.info("Running mobileCurriculumPageNoCertificateStyling");
 
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
@@ -2595,7 +2595,7 @@ function mobileCurriculumPageNoCertificateStyling() {
  * This function applies mobile-specific styling to the curriculum page when a certificate is present.
  * It modifies the layout and appearance of various elements on the page.
  */
-function mobileCurriculumPageYesCertificateStyling() {
+function styleCurriculumPageHasCertificateMobile() {
   // TODO: Clean up this function
   console.info("Running mobileCurriculumPageYesCertificateStyling");
 
@@ -2848,7 +2848,7 @@ function mobileCurriculumPageYesCertificateStyling() {
  * It modifies the layout and appearance of various elements on the page.
  * It also handles the positioning of the internal course warning.
  */
-function mobileLessonPageStyling() {
+function styleLessonMobile() {
   console.info("Running mobileLessonPageStyling with setStyle");
 
   const internalCourseWarning = document.querySelector(
@@ -3135,39 +3135,35 @@ function mobileLessonPageStyling() {
 function handlePageStyling() {
   if (currentPage.isCourseDetails) {
     currentView === "desktop"
-      ? desktopCourseDetailsPageStyling()
-      : mobileCourseDetailsPageStyling();
+      ? styleCourseDetailsDesktop()
+      : styleCourseDetailsMobile();
   } else if (currentPage.isPageDetail) {
-    currentView === "desktop" ? desktopPathCourseDetailsPageStyling() : null;
+    currentView === "desktop" ? stylePathCourseDetailsDesktop() : null;
   } else if (currentPage.isPageCatalog) {
-    currentView === "desktop" ? desktopPathCatalogPageStyling() : null;
+    currentView === "desktop" ? stylePathCatalogPageStylingDesktop() : null;
   } else if (currentPage.isLogin) {
-    currentView === "desktop"
-      ? desktopLoginPageStyling()
-      : mobileLoginPageStyling();
+    currentView === "desktop" ? styleLoginDesktop() : styleLoginMobile();
   } else if (currentPage.isSignup) {
+    currentView === "desktop" ? styleSignupDesktop() : styleSignupMobile();
+  } else if (
+    currentPage.isCurriculum &&
+    !document.querySelector(".cp-certificate")
+  ) {
     currentView === "desktop"
-      ? desktopSignUpPageStyling()
-      : mobileSignUpPageStyling();
-  } else if (currentPage.isCurriculum) {
-    const certificateEl = document.querySelector(".cp-certificate");
-
-    if (!certificateEl) {
-      currentView === "desktop"
-        ? desktopCurriculumPageNoCertificateStyling()
-        : mobileCurriculumPageNoCertificateStyling();
-    } else {
-      // CURRICULUM PAGE W COMPLETED CERTIFICATION GOES HERE [YESSS CERTIFICATION] <<<<<<<<<<< [CHECK TO MAKE SURE THIS WORKS; NOT TESTED]
-      currentView === "desktop"
-        ? desktopCurriculumPageYesCertificationStyling()
-        : mobileCurriculumPageYesCertificateStyling();
-    }
+      ? styleCurriculumPageNoCertificateDesktop()
+      : styleCurriculumPageNoCertificateMobile();
+  } else if (
+    currentPage.isCurriculum &&
+    document.querySelector(".cp-certificate")
+  ) {
+    // CURRICULUM PAGE W COMPLETED CERTIFICATION GOES HERE [YESSS CERTIFICATION] <<<<<<<<<<< [CHECK TO MAKE SURE THIS WORKS; NOT TESTED]
+    currentView === "desktop"
+      ? styleCurriculumPageHasCertificationDesktop()
+      : styleCurriculumPageHasCertificateMobile();
   } else if (currentPage.isLesson) {
-    currentView === "desktop"
-      ? desktopLessonPageStyling()
-      : mobileLessonPageStyling();
+    currentView === "desktop" ? styleLessonDesktop() : styleLessonMobile();
   } else if (currentPage.isCatalog) {
-    desktopCatalogPageStyling();
+    styleCatalog();
   }
 }
 
