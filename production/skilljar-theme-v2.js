@@ -2694,62 +2694,67 @@ function mobileCurriculumPageNoCertificateStyling() {
     globalCurriculumSection = curriculumSection;
     globalAboutSection = aboutSection;
 
+    const curriculumElements = getCurriculumElements(curriculumParentContainer);
+
+    curriculumParentContainer.innerHTML = ""; // Clear the container
+    curriculumParentContainer.append(...curriculumElements);
+
     // Check if course has Sections/Modules/Parts
-    const hasSections = curriculumParentContainer.querySelector("h3")
-      ? true
-      : false;
+    // const hasSections = curriculumParentContainer.querySelector("h3")
+    //   ? true
+    //   : false;
 
-    curriculumItemsListLIVE
-      .filter((el) => el?.tagName)
-      .forEach((el) => el.classList.add("curriculumItem"));
+    // curriculumItemsListLIVE
+    //   .filter((el) => el?.tagName)
+    //   .forEach((el) => el.classList.add("curriculumItem"));
 
-    // Create a starting container
-    let currentContainer = document.createElement("div");
-    if (!hasSections) {
-      styleGroupContainer(currentContainer, "g");
-    }
+    // // Create a starting container
+    // let currentContainer = document.createElement("div");
+    // if (!hasSections) {
+    //   styleGroupContainer(currentContainer, "g");
+    // }
 
-    curriculumParentContainer
-      .querySelectorAll(".curriculumItem")
-      .forEach((el, i, curArr) => {
-        if (el.tagName === "DIV") {
-          // Handle creating a new module/section
+    // curriculumParentContainer
+    //   .querySelectorAll(".curriculumItem")
+    //   .forEach((el, i, curArr) => {
+    //     if (el.tagName === "DIV") {
+    //       // Handle creating a new module/section
 
-          // Start by resetting the current container
-          curriculumParentContainer.append(currentContainer);
-          currentContainer = document.createElement("div");
+    //       // Start by resetting the current container
+    //       curriculumParentContainer.append(currentContainer);
+    //       currentContainer = document.createElement("div");
 
-          styleGroupContainer(currentContainer);
+    //       styleGroupContainer(currentContainer);
 
-          const sectionHeading = Object.assign(document.createElement("div"), {
-            style: "display: flex; gap: 12px;",
-            textContent:
-              el.querySelector("h3")?.textContent?.trim() || "Module",
-          });
+    //       const sectionHeading = Object.assign(document.createElement("div"), {
+    //         style: "display: flex; gap: 12px;",
+    //         textContent:
+    //           el.querySelector("h3")?.textContent?.trim() || "Module",
+    //       });
 
-          styleGroupHeading(sectionHeading, "c");
+    //       styleGroupHeading(sectionHeading, "c");
 
-          currentContainer.append(sectionHeading);
+    //       currentContainer.append(sectionHeading);
 
-          hide(el);
-        } else {
-          // Handle appending to current module/section
-          const isLastChild = curArr[i + 1]
-            ? curArr[i + 1].tagName === "DIV"
-            : true;
+    //       hide(el);
+    //     } else {
+    //       // Handle appending to current module/section
+    //       const isLastChild = curArr[i + 1]
+    //         ? curArr[i + 1].tagName === "DIV"
+    //         : true;
 
-          const newListEl = document.createElement("div");
-          styleListItem(newListEl, isLastChild, false, "g");
+    //       const newListEl = document.createElement("div");
+    //       styleListItem(newListEl, isLastChild, false, "g");
 
-          // Styling for mobile
-          setStyle(el.querySelector(".title"), { textWrap: "wrap" });
+    //       // Styling for mobile
+    //       setStyle(el.querySelector(".title"), { textWrap: "wrap" });
 
-          newListEl.append(el);
-          currentContainer.append(newListEl);
-        }
-      });
+    //       newListEl.append(el);
+    //       currentContainer.append(newListEl);
+    //     }
+    //   });
 
-    curriculumParentContainer.append(currentContainer);
+    // curriculumParentContainer.append(currentContainer);
   }
 
   setStyle(lessonListItems, {
