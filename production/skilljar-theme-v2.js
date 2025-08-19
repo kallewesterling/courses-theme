@@ -1,13 +1,5 @@
 const lessonView = {};
 let currentView = "";
-let isCatalogPage,
-  isCurriculumPage,
-  isCourseDetailsPage,
-  isPageDetailPath,
-  isPageCatalogPath,
-  isLessonsPage,
-  isLoginPage,
-  isSignUpPage;
 let initialLoadComplete = false;
 let globalCurriculumSection, globalAboutSection;
 let width;
@@ -18,6 +10,19 @@ let v = {
     "#footer-container .global-footer-column"
   ),
 };
+
+const c = (selector) => (document.querySelector(selector) ? true : false);
+  
+const currentPage = {
+  isCatalog: c(".sj-page-catalog-root"),
+  isCurriculum: c(".sj-page-curriculum"),
+  isCourseDetails: c(".sj-page-detail-course"),
+  isLesson: c(".sj-page-lesson"),
+  isLogin: c(".sj-page-login"),
+  isSignup: c(".sj-page-signup"),
+  isPageDetail: c(".sj-page-detail-bundle.sj-page-detail-path"),
+  isPageCatalog: c(".sj-page-series.sj-page-path"),
+}
 
 function getCurriculumElements(curriculumParentContainer, border = "b") {
   let currentSection = 0,
@@ -267,33 +272,17 @@ function styleGroupHeading(groupHeadingContainer, border = "b") {
 }
 
 /**
- * This function checks the current page and sets the global variables accordingly.
- */
-function getCurrentPage() {
-  const c = (selector) => (document.querySelector(selector) ? true : false);
-  
-  isCatalogPage = c(".sj-page-catalog-root");
-  isCurriculumPage = c(".sj-page-curriculum");
-  isCourseDetailsPage = c(".sj-page-detail-course");
-  isLessonsPage = c(".sj-page-lesson");
-  isLoginPage = c(".sj-page-login");
-  isSignUpPage = c(".sj-page-signup");
-  isPageDetailPath = c(".sj-page-detail-bundle.sj-page-detail-path");
-  isPageCatalogPath = c(".sj-page-series.sj-page-path");
-}
-
-/**
  * This function inserts the footer into the page.
  */
 function insertFooter() {
   const footerEl = document.querySelector("#footer-container");
-  const contentContainer = isLessonsPage
+  const contentContainer = currentPage.isLesson
     ? document.querySelector(".sj-page-lesson")
     : document.querySelector("#skilljar-content");
 
   setStyle(footerEl, { display: "flex" });
 
-  if (isLessonsPage && currentView === "mobile") hide(footerEl);
+  if (currentPage.isLesson && currentView === "mobile") hide(footerEl);
 
   contentContainer.append(footerEl);
 }
@@ -3151,23 +3140,23 @@ function mobileLessonPageStyling() {
  */
 function handlePageStyling() {
   console.info("Running handlePageStyling");
-  if (isCourseDetailsPage) {
+  if (currentPage.isCourseDetails) {
     currentView === "desktop"
       ? desktopCourseDetailsPageStyling()
       : mobileCourseDetailsPageStyling();
-  } else if (isPageDetailPath) {
+  } else if (currentPage.isPageDetail) {
     currentView === "desktop" ? desktopPathCourseDetailsPageStyling() : null;
-  } else if (isPageCatalogPath) {
+  } else if (currentPage.isPageCatalog) {
     currentView === "desktop" ? desktopPathCatalogPageStyling() : null;
-  } else if (isLoginPage) {
+  } else if (currentPage.isLogin) {
     currentView === "desktop"
       ? desktopLoginPageStyling()
       : mobileLoginPageStyling();
-  } else if (isSignUpPage) {
+  } else if (currentPage.isSignup) {
     currentView === "desktop"
       ? desktopSignUpPageStyling()
       : mobileSignUpPageStyling();
-  } else if (isCurriculumPage) {
+  } else if (currentPage.isCurriculum) {
     const certificateEl = document.querySelector(".cp-certificate");
 
     if (!certificateEl) {
@@ -3180,11 +3169,11 @@ function handlePageStyling() {
         ? desktopCurriculumPageYesCertificationStyling()
         : mobileCurriculumPageYesCertificateStyling();
     }
-  } else if (isLessonsPage) {
+  } else if (currentPage.isLesson) {
     currentView === "desktop"
       ? desktopLessonPageStyling()
       : mobileLessonPageStyling();
-  } else if (isCatalogPage) {
+  } else if (currentPage.isCatalog) {
     desktopCatalogPageStyling();
   }
 }
@@ -3208,7 +3197,7 @@ function render() {
 
   handlePageStyling();
 
-  if (!isLessonsPage) {
+  if (!currentPage.isLesson) {
     hide(document.querySelector("#ep-footer"));
   }
   insertFooter();
@@ -3219,8 +3208,6 @@ function render() {
   It is a good place to run scripts that need to manipulate the DOM or set up event listeners.
 */
 document.addEventListener("DOMContentLoaded", () => {
-  getCurrentPage();
-
   render();
   initialLoadComplete = true;
 });
