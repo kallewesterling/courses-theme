@@ -379,62 +379,40 @@ function styleCourseDetailsDesktop() {
 
   styleCourseDetails();
 
-  const headerContainer = document.querySelector(".top-row-grey"); // v.local.header.container
-  const headerFlexContainer = document.querySelector(".dp-row-flex-v2"); // v.local.header.flexContainer
-  const headingFloaterText = document.querySelector(".sj-floater-text"); // v.local.header.floaterText
-  const mainHeading = document.querySelector(".break-word"); // v.local.header.mainHeading
-  const registerBtnWrapper = document.querySelector(
-    "#purchase-button-wrapper-large"
-  ); // v.local.header.registerBtnWrapper
-  const registerBtn = registerBtnWrapper.querySelector("a"); // v.local.header.registerBtn
-  const mainHeadingContainer = document.querySelector(".dp-summary-wrapper"); // v.local.header.mainHeadingContainer
-  const backToCatalogBtn = document.querySelector(".back-to-catalog"); // v.local.header.backToCatalogBtn
-  const videoContainer = document.querySelector(".video-max"); // v.local.header.videoContainer
-  const mainInfoCardContained = document.querySelector(
-    ".sj-course-info-wrapper"
-  ); // v.local.header.headingParagraphContainer
-  const headingParagraph = mainInfoCardContained.querySelector("h2"); // v.local.header.headingParagraph
+  const headerContainer = v.local.header.container;
+  const headerFlexContainer = v.local.header.flexContainer;
+  const headingFloaterText = v.local.header.floaterText;
+  const mainHeading = v.local.header.mainHeading;
+  const registerBtnWrapper = v.local.header.registerBtnWrapper;
+  const registerBtn = v.local.header.registerBtn;
+  const mainHeadingContainer = v.local.header.mainHeadingContainer;
+  const backToCatalogBtn = v.local.header.backToCatalogBtn;
+  const videoContainer = v.local.header.videoContainer;
+  const mainInfoCardContained = v.local.header.headingParagraphContainer;
+  const headingParagraph = v.local.header.headingParagraph;
+  const signInHeaderText = v.local.signinText;
+  const bodyContainer = v.local.body.container;
+  const mobileBodyContent = v.local.body.mobile;
+  const secondaryBodyContainer = v.local.body.secondary;
+  const bodyColumns = v.local.body.columns;
+  const curriculumListContainer = v.local.curriculum.container;
+  const curriculumListHeader = v.local.curriculum.header;
+  const card = v.local.card;
+  const checkboxIcon = v.local.checkboxIcon;
+  const signInBtn = v.local.signinBtn;
 
-  // SIGN IN VARIABLES (WHEN USER NOT LOGGED IN)
-  const signInHeaderText = document.querySelector(".signin"); // v.local.signinText
-
-  // BODY VARIABLES
-  const bodyContainer = document.querySelector("#dp-details"); // v.local.body.container
-  const mobileBodyContent = document.querySelector(".show-for-small"); // v.local.body.mobile
-  const secondaryBodyContainer = document.querySelector(".hide-for-small"); // v.local.body.secondary
-  const bodyColumns = secondaryBodyContainer.querySelectorAll(".columns"); // v.local.body.columns
-  const curriculumListContainer = document.querySelector(".dp-curriculum"); // v.local.curriculum.container
-  const curriculumListHeader = curriculumListContainer
-    .closest(".sj-curriculum-wrapper")
-    .querySelector("h3"); // v.local.curriculum.header
-
-  // CARD VARIABLES
-  const card = {
-    details: document.querySelector(".course-details-card"),
-    detailItems: document.querySelectorAll(".course-details-card li"),
-    link: document.querySelector(".course-details-card-link"),
-  }; // v.local.card
-
-  const checkboxIcon = document.querySelector(".checkbox-icon"); // v.local.checkboxIcon
-
-  const signInBtn = document.querySelector(
-    ".header-link.login-link.sj-text-sign-in.focus-link-v2"
-  ); // v.local.signinBtn
-
-  if (signInHeaderText) {
-    setStyle(signInBtn, {
-      backgroundColor: "transparent",
-      padding: "8px 12px",
-      marginRight: "24px",
-      borderColor: "#3443F4",
-      border: "2px solid #3443F4",
-      borderRadius: "999px",
-      fontSize: "14px",
-      fontFamily: "Space Mono",
-      fontWeight: "700",
-      lineHeight: "20px",
-    });
-  }
+  setStyle(signInBtn, {
+    backgroundColor: "transparent",
+    padding: "8px 12px",
+    marginRight: "24px",
+    borderColor: "#3443F4",
+    border: "2px solid #3443F4",
+    borderRadius: "999px",
+    fontSize: "14px",
+    fontFamily: "Space Mono",
+    fontWeight: "700",
+    lineHeight: "20px",
+  });
 
   setStyle(headerContainer, {
     backgroundColor: "#D0CFEE",
@@ -508,21 +486,12 @@ function styleCourseDetailsDesktop() {
     setStyle(column.querySelector(".dp-curriculum"), { margin: "0" });
   });
 
-  // COURSE DETAILS CURRICULUM STYLING
   if (!initialLoadComplete) {
     const curriculumElements = getCurriculumElements(curriculumListContainer);
 
     curriculumListContainer.innerHTML = ""; // Clear the container
     curriculumListContainer.append(...curriculumElements);
-  }
 
-  // COURSE DETAILS GRID STRUCTURE STYLING - ADDING DETAILS CARD ON RIGHT SIDE
-  setStyle(card.details, {
-    margin: "0 0 46px 0",
-    justifySelf: "center",
-  });
-
-  if (!initialLoadComplete) {
     card.detailItems.forEach((li) => {
       const iconClone = checkboxIcon.cloneNode(true);
 
@@ -535,6 +504,12 @@ function styleCourseDetailsDesktop() {
     });
   }
 
+  // COURSE DETAILS GRID STRUCTURE STYLING - ADDING DETAILS CARD ON RIGHT SIDE
+  setStyle(card.details, {
+    margin: "0 0 46px 0",
+    justifySelf: "center",
+  });
+
   if (registerBtn && card.link) {
     const btnText = registerBtn.textContent || "Register";
     const btnHref = registerBtn.href || "#";
@@ -543,9 +518,7 @@ function styleCourseDetailsDesktop() {
   }
 
   // move elements
-  if (card.details) {
-    bodyContainer.append(card.details);
-  }
+  bodyContainer.append(...(card.details ? [card.details] : []));
   mainHeadingContainer.append(
     ...(headingFloaterText ? [headingFloaterText] : []),
     ...(mainHeading ? [mainHeading] : []),
@@ -2237,39 +2210,31 @@ function styleSignupMobile() {
 function styleCourseDetailsMobile() {
   console.info("Running styleCourseDetailsMobile");
 
-  const headerContainer = document.querySelector(".top-row-grey"); // v.local.header.container
-  const headerFlexContainer = document.querySelector(".dp-row-flex-v2"); // v.local.header.flexContainer
-  const headingFloaterText = document.querySelector(".sj-floater-text"); // v.local.header.floaterText
-  const mainHeading = document.querySelector(".break-word"); // v.local.header.mainHeading
-  const headingParagraph = document.querySelector(".sj-heading-paragraph"); // v.local.header.headingParagraphMobile
-  const registerBtn = document.querySelector("#purchase-button-wrapper-large"); // v.local.header.registerBtnWrapper
-  const mainHeadingContainer = document.querySelector(".dp-summary-wrapper"); // v.local.header.mainHeadingContainer
-  const mainVideoContainer = document.querySelector(
-    ".columns.large-6.text-center.dp-promo-image-wrapper"
-  ); // v.local.header.image
-  const backToCatalogBtn = document.querySelector(".back-to-catalog"); // v.local.header.backToCatalogBtn
-  const videoContainer = document.querySelector(".video-max"); // v.local.header.videoContainer
-  const signInHeaderText = document.querySelector(".signin"); // v.local.signinText
-  const signInBtn = document.querySelector(
-    ".header-link.login-link.sj-text-sign-in.focus-link-v2"
-  ); // v.local.signinBtn
-  const bodyContainer = document.querySelector("#dp-details"); // v.local.body.container
-  const mobileBodyContent = document.querySelector(".show-for-small"); // v.local.body.mobile
-  const secondaryBodyContainer = document.querySelector(".hide-for-small"); // v.local.body.secondary
-  const bodyColumns = secondaryBodyContainer.querySelectorAll(".columns"); // v.local.body.columns
-  const curriculumListContainer = document.querySelector(".dp-curriculum"); // v.local.curriculum.container
-  const curriculumListHeader = curriculumListContainer
-    .closest(".sj-curriculum-wrapper")
-    .querySelector("h3"); // v.local.curriculum.header
-  const courseDetailCardContainer = document.querySelectorAll(
-    ".course-details-card"
-  )[0]; // v.local.card.details
-  const courseDetailCardListItems =
-    courseDetailCardContainer.querySelectorAll("li"); // v.local.card.detailItems
-  const courseDetailsCardLink = document.querySelector(
-    ".course-details-card-link"
-  ); // v.local.card.link
-  const checkboxIcon = document.querySelector(".checkbox-icon"); // v.local.checkboxIcon
+  const headerContainer = v.local.header.container;
+  const headerFlexContainer = v.local.header.flexContainer;
+  const headingFloaterText = v.local.header.floaterText;
+  const mainHeading = v.local.header.mainHeading;
+  const headingParagraph = v.local.header.headingParagraphMobile;
+  const registerBtn = v.local.header.registerBtnWrapper;
+  const mainHeadingContainer = v.local.header.mainHeadingContainer;
+  const mainVideoContainer = v.local.header.image;
+  const backToCatalogBtn = v.local.header.backToCatalogBtn;
+  const videoContainer = v.local.header.videoContainer;
+  const signInHeaderText = v.local.signinText;
+  const signInBtn = v.local.signinBtn;
+  const bodyContainer = v.local.body.container;
+  const mobileBodyContent = v.local.body.mobile;
+  const secondaryBodyContainer = v.local.body.secondary;
+  const bodyColumns = v.local.body.columns;
+  const curriculumListContainer = v.local.curriculum.container;
+  const curriculumListHeader = v.local.curriculum.header;
+  const card = v.local.card;
+  const courseDetailCardContainer = v.local.card.details;
+  const courseDetailCardListItems = v.local.card.detailItems;
+  const courseDetailsCardLink = v.local.card.link;
+  const checkboxIcon = v.local.checkboxIcon;
+
+  // TODO: below
   const registerBtnLink = document
     .querySelector("#purchase-button")
     .getAttribute("href");
@@ -2382,7 +2347,6 @@ function styleCourseDetailsMobile() {
     curriculumListContainer.append(...curriculumElements);
 
     setStyle(curriculumListContainer, { padding: "0" });
-    bodyContainer.append(courseDetailCardContainer);
 
     courseDetailCardListItems.forEach((li) => {
       const iconClone = checkboxIcon.cloneNode(true);
@@ -2410,6 +2374,7 @@ function styleCourseDetailsMobile() {
   v.footerCols.forEach((col) => setStyle(col, { width: "212px" }));
 
   // move elements
+  bodyContainer.append(...(card.details ? [card.details] : []));
   mainHeadingContainer.append(
     headingFloaterText,
     mainHeading,
@@ -2420,8 +2385,8 @@ function styleCourseDetailsMobile() {
   // hide elements
   hide(backToCatalogBtn);
   hide(signInHeaderText);
-  hide(mainHeadingContainer.querySelector(".sj-course-info-wrapper"));
   hide(curriculumListHeader);
+  hide(v.local.header.headingParagraphContainer); //mainHeadingContainer.querySelector(".sj-course-info-wrapper")
   hide(mobileBodyContent);
 }
 
