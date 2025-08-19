@@ -654,14 +654,16 @@ function stylePathCourseDetails() {
   });
 
   // move elements
-  v.local.header.mainHeadingContainer.append(
-    ...[
-      v.local.header.floaterText,
-      v.local.header.mainHeading,
-      v.local.header.courseInfo,
-      v.local.header.ctaBtnWrapper,
-    ].filter((element, index) => exists(element, index))
-  );
+  if (!initialLoadComplete) {
+    v.local.header.mainHeadingContainer.append(
+      ...[
+        v.local.header.floaterText,
+        v.local.header.mainHeading,
+        v.local.header.courseInfo,
+        v.local.header.ctaBtnWrapper,
+      ].filter((element, index) => exists(element, index))
+    );
+  }
 
   // hide elements
   hide([
