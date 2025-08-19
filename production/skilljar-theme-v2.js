@@ -386,7 +386,7 @@ function styleCourseDetails() {
   });
 
   setStyle(v.local.header.container, {
-    backgroundColor: "#D0CFEE",
+    background: "url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png)",
     margin: "0",
     maxWidth: "none",
     paddingTop: currentView === "desktop" ? "96px" : "48px",
