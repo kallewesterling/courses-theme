@@ -2424,49 +2424,54 @@ function mobileCourseDetailsPageStyling() {
   });
 
   if (!initialLoadComplete) {
-    const hasSections = curriculumListContainer.querySelector(".section")
-      ? true
-      : false;
-    let curContainer = document.createElement("li");
+    const curriculumElements = getCurriculumElements(curriculumListContainer);
 
-    if (!hasSections) {
-      styleGroupContainer(curContainer, "g");
-    }
+    curriculumListContainer.innerHTML = ""; // Clear the container
+    curriculumListContainer.append(...curriculumElements);
 
-    curriculumList.forEach((curListItem, i, arr) => {
-      // First check if current item contains 'section' class
-      if (curListItem.classList.contains("section")) {
-        // Yes? push curContainer into curriculumListContainer
-        curriculumListContainer.append(curContainer);
-        // Reset curContainer while pushing current 'section' in there for the next iteration
-        curContainer = document.createElement("li");
-        styleGroupContainer(curContainer);
+    // const hasSections = curriculumListContainer.querySelector(".section")
+    //   ? true
+    //   : false;
+    // let curContainer = document.createElement("li");
 
-        const newGroupHeading = document.createElement("div");
+    // if (!hasSections) {
+    //   styleGroupContainer(curContainer, "g");
+    // }
 
-        newGroupHeading.innerHTML = curListItem.innerHTML;
+    // curriculumList.forEach((curListItem, i, arr) => {
+    //   // First check if current item contains 'section' class
+    //   if (curListItem.classList.contains("section")) {
+    //     // Yes? push curContainer into curriculumListContainer
+    //     curriculumListContainer.append(curContainer);
+    //     // Reset curContainer while pushing current 'section' in there for the next iteration
+    //     curContainer = document.createElement("li");
+    //     styleGroupContainer(curContainer);
 
-        styleGroupHeading(newGroupHeading, "c");
+    //     const newGroupHeading = document.createElement("div");
 
-        curContainer.append(newGroupHeading);
-      } else {
-        // Else, normal/expected behaviour
-        // Transfer inner html of current list item to new created div
-        const newListItem = document.createElement("div");
-        newListItem.innerHTML = curListItem.innerHTML;
-        styleListItem(
-          newListItem,
-          arr[i + 1] ? arr[i + 1].classList.contains("section") : true,
-          true,
-          "g"
-        );
-        curContainer.append(newListItem);
-      }
-      hide(curListItem);
-    });
+    //     newGroupHeading.innerHTML = curListItem.innerHTML;
 
-    // LAST, unpushed SECTION; push it out to curriculumListContainer
-    curriculumListContainer.append(curContainer);
+    //     styleGroupHeading(newGroupHeading, "c");
+
+    //     curContainer.append(newGroupHeading);
+    //   } else {
+    //     // Else, normal/expected behaviour
+    //     // Transfer inner html of current list item to new created div
+    //     const newListItem = document.createElement("div");
+    //     newListItem.innerHTML = curListItem.innerHTML;
+    //     styleListItem(
+    //       newListItem,
+    //       arr[i + 1] ? arr[i + 1].classList.contains("section") : true,
+    //       true,
+    //       "g"
+    //     );
+    //     curContainer.append(newListItem);
+    //   }
+    //   hide(curListItem);
+    // });
+
+    // // LAST, unpushed SECTION; push it out to curriculumListContainer
+    // curriculumListContainer.append(curContainer);
 
     setStyle(curriculumListContainer, { padding: "0" });
     bodyContainer.append(courseDetailCardContainer);
