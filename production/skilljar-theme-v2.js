@@ -989,175 +989,213 @@ function styleLessonDesktop() {
   });
 }
 
-/**
- * This function applies desktop-specific styling to the login page.
- */
-function styleLoginDesktop() {
-  console.info("Running styleLoginDesktop");
+const getLoginSignupSelectors = () => ({
+  fbBtn: document.querySelector("#facebook_login"),
+  googleBtn: document.querySelector("#google_login"),
+  tabArrow:
+    document.querySelector("#tab-marker-login") ||
+    document.querySelector("#tab-marker-signup"),
+  loginContent: document.querySelector("#login-content"),
+  loginContentContainer: document.querySelector(".large-6.columns"),
+  termsAndServices: document.querySelector("#access-message"),
+  tabContainer: document.querySelector(".large-12.columns"),
+  altMethod:
+    document.querySelector(".sj-text-sign-in-with span") ||
+    document.querySelector(".sj-text-sign-up-with span"),
+  altMethodContainer: document.querySelector(".socialaccount_providers li"),
+  altMethodCol: document.querySelector(
+    ".large-6.columns:has(.socialaccount_providers)"
+  ),
+  altMethodUl: document.querySelector(
+    ".large-6.columns:has(.socialaccount_providers) ul"
+  ),
+  altMethodLi: document.querySelectorAll(
+    ".large-6.columns:has(.socialaccount_providers) li"
+  ),
 
-  v.loginSignup = {
-    fbBtn: document.querySelector("#facebook_login"),
-    googleBtn: document.querySelector("#google_login"),
-    tabArrow:
-      document.querySelector("#tab-marker-login") ||
-      document.querySelector("#tab-marker-signup"),
-    loginContent: document.querySelector("#login-content"),
-    loginContentContainer: document.querySelector(".large-6.columns"),
-    termsAndServices: document.querySelector("#access-message"),
-    tabContainer: document.querySelector(".large-12.columns"),
-    altMethod:
-      document.querySelector(".sj-text-sign-in-with span") ||
-      document.querySelector(".sj-text-sign-up-with span"),
-    altMethodContainer: document.querySelector(".socialaccount_providers li"),
-    altMethodCol: document.querySelector(
-      ".large-6.columns:has(.socialaccount_providers)"
-    ),
-    altMethodUl: document.querySelector(
-      ".large-6.columns:has(.socialaccount_providers) ul"
-    ),
-    altMethodLi: document.querySelectorAll(
-      ".large-6.columns:has(.socialaccount_providers) li"
-    ),
+  inputs: {
+    login: document.querySelector("#id_login"), // login
+    password: document.querySelector("#id_password"), // login
+    password1: document.querySelector("#id_password1"), // signup
+    password2: document.querySelector("#id_password2"), // signup
+    email: document.querySelector("#id_email"), // signup
+  },
 
-    inputs: {
-      login: document.querySelector("#id_login"), // login
-      password: document.querySelector("#id_password"), // login
-      password1: document.querySelector("#id_password1"), // signup
-      password2: document.querySelector("#id_password2"), // signup
-      email: document.querySelector("#id_email"), // signup
-    },
+  loginTab: document.querySelector("#login-tab-left"),
+  signupTab: document.querySelector("#login-tab-right"),
 
-    loginTab: document.querySelector("#login-tab-left"),
-    signupTab: document.querySelector("#login-tab-right"),
+  // login specific
+  forgotPassword: document.querySelector(".sj-text-forgot-password"),
+  loginBtn: document.querySelector("#button-sign-in"),
+  loginForm: document.querySelector("#login_form"),
+  loginNote: document.querySelector(".loginNote.sj-text-login-note"),
+  loginTabText: document.querySelector("#login-tab-left a"),
+  loginTabTextSpan: document.querySelector("#login-tab-left a span"),
+  loginText: document.querySelector("#login-tab-left span span"),
+  loginForgetWrapper: document.querySelector(
+    ".large-12.columns:has(#button-sign-in)"
+  ),
 
-    // login specific
-    forgotPassword: document.querySelector(".sj-text-forgot-password"),
-    loginBtn: document.querySelector("#button-sign-in"),
-    loginForm: document.querySelector("#login_form"),
-    loginNote: document.querySelector(".loginNote.sj-text-login-note"),
-    loginTabText: document.querySelector("#login-tab-left a"),
-    loginTabTextSpan: document.querySelector("#login-tab-left a span"),
-    loginText: document.querySelector("#login-tab-left span span"),
-    loginForgetWrapper: document.querySelector(
-      ".large-12.columns:has(#button-sign-in)"
-    ),
+  // signup-specific
+  allInputs: document.querySelectorAll("input"),
+  allLabels: document.querySelectorAll("label"),
+  signupForm: document.querySelector("#signup_form"),
+  signupTabText:
+    document.querySelector("#login-tab-right a") ||
+    document.querySelector("#login-tab-right span"),
+  signupTabSpan: document.querySelector("#login-tab-right span"),
+  passwordConfirm: document.querySelector(
+    "label[for=id_password2] .input-label-text span"
+  ),
+  loginLabel: document.querySelector('label[for="id_email"]'),
+  fNameLabel: document.querySelector('label[for="id_first_name"] span span'),
+  lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
+  emailLabel: document.querySelector('label[for="id_email"]'),
+  signupBtn: document.querySelector("#button-sign-up"),
+  signupBtnText: document.querySelector("#button-sign-up span"),
+  signupBtnWrapper: document.querySelector("#signup_form .text-center"),
+});
 
-    // signup-specific
-    allInputs: document.querySelectorAll("input"),
-    allLabels: document.querySelectorAll("label"),
-    signupForm: document.querySelector("#signup_form"),
-    signupTabText:
-      document.querySelector("#login-tab-right a") ||
-      document.querySelector("#login-tab-right span"),
-    signupTabSpan: document.querySelector("#login-tab-right span"),
-    passwordConfirm: document.querySelector(
-      "label[for=id_password2] .input-label-text span"
-    ),
-    loginLabel: document.querySelector('label[for="id_email"]'),
-    fNameLabel: document.querySelector('label[for="id_first_name"] span span'),
-    lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
-    emailLabel: document.querySelector('label[for="id_email"]'),
-    signupBtn: document.querySelector("#button-sign-up"),
-    signupBtnText: document.querySelector("#button-sign-up span"),
-    signupBtnWrapper: document.querySelector("#signup_form .text-center"),
-  };
+function styleLogin() {
+  console.info("Running styleLogin");
 
-  // set content
-  v.loginSignup.loginText.textContent = "Log In";
-  v.loginSignup.signupTabSpan.textContent = "Sign Up";
-  v.loginSignup.altMethod.textContent = "Or Log In With";
-  v.loginSignup.loginBtn.textContent = "Log In";
-  v.loginSignup.googleBtn.textContent = "Continue with Google";
+  v.local = getLoginSignupSelectors();
 
-  setStyle(v.logo, { height: "24px" });
+  v.local.loginText.textContent = "Log In";
+  v.local.signupTabSpan.textContent = "Sign Up";
+  v.local.altMethod.textContent = "Or Log In With";
+  v.local.loginBtn.textContent = "Log In";
+  v.local.googleBtn.textContent = "Continue with Google";
 
-  setStyle(v.loginSignup.termsAndServices, {
+  setStyle(v.local.termsAndServices, {
     maxWidth: "368px",
     fontSize: "14px",
+    color: "#545454",
   });
 
-  setStyle(v.loginSignup.tabContainer, { display: "flex" });
+  setStyle(v.local.tabContainer, { display: "flex" });
 
-  setStyle([v.loginSignup.loginTab, v.loginSignup.signupTab], {
+  setStyle([v.local.loginTab, v.local.signupTab], {
     display: "flex",
     padding: "8px 16px",
     alignItems: "center",
   });
 
-  setStyle(v.loginSignup.loginTab, {
-    border: "0",
-    textDecoration: "underline",
-    fontFamily: "Space Mono",
-    color: "#3443f4",
-    fontWeight: "700",
-    fontSize: "18px",
-    lineHeight: "24px",
+  currentView === "desktop"
+    ? setStyle(v.local.loginTab, {
+        border: "0",
+        textDecoration: "underline",
+        fontFamily: "Space Mono",
+        color: "#3443f4",
+        fontWeight: "700",
+        fontSize: "18px",
+        lineHeight: "24px",
+      })
+    : setStyle(v.local.loginTab, {
+        border: "0",
+        backgroundColor: "#3443F4",
+        color: "#fff",
+        fontWeight: "500",
+        fontSize: "16px",
+        lineHeight: "24px",
+        borderRadius: "100px",
+      });
+
+  currentView === "desktop"
+    ? setStyle(v.local.signupTabText, {
+        color: "rgba(52, 67, 244, .4)",
+        fontWeight: "700",
+        fontSize: "18px",
+        lineHeight: "24px",
+      })
+    : setStyle(v.local.signupTabText, {
+        color: "#8C8C8C",
+        fontWeight: "500",
+        fontSize: "16px",
+        lineHeight: "24px",
+      });
+
+  setStyle([v.local.loginContentContainer, v.local.altMethodCol], {
+    width: currentView === "desktop" ? "50%" : "100%",
   });
 
-  setStyle(v.loginSignup.signupTabText, {
-    color: "rgba(52, 67, 244, .4)",
-    fontWeight: "700",
-    fontSize: "18px",
-    lineHeight: "24px",
+  setStyle(v.local.altMethodContainer, { paddingBottom: "0" });
+
+  setStyle(v.local.altMethodUl, {
+    padding: currentView === "desktop" ? "0 0 0 125px;" : "0",
   });
 
-  setStyle([v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol], {
-    width: "50%",
-  });
+  currentView === "desktop"
+    ? setStyle(v.local.altMethodLi, { padding: "0" })
+    : null;
 
-  setStyle(v.loginSignup.altMethodUl, {
-    paddingLeft: "125px",
-  });
-
-  setStyle(v.loginSignup.altMethodLi, { padding: "0" });
-
-  setStyle(v.loginSignup.altMethodContainer, { paddingBottom: "0" });
-
-  setStyle([v.loginSignup.inputs.login, v.loginSignup.inputs.password], {
+  setStyle([v.local.inputs.login, v.local.inputs.password], {
     borderRadius: "4px",
-    border: "2px solid #3443f4",
-    padding: "20px 15px",
+    border: `2px solid ${currentView === "desktop" ? "#3443f4" : "#DCDCDC"}`,
+    padding: currentView === "desktop" ? "20px 15px" : "12px",
     fontSize: "14px",
     lineHeight: "24px",
   });
 
-  setStyle([v.loginSignup.loginBtn, v.loginSignup.forgotPassword], {
-    fontSize: "16px",
-    fontFamily: "Space Mono",
-    marginBottom: "2px",
-  });
+  currentView === "mobile"
+    ? setStyle(v.local.inputs.password, { marginBottom: "24px" })
+    : null;
 
-  setStyle(v.loginSignup.loginBtn, {
-    color: "#14003d",
-    width: "368px",
-    height: "48px",
-    backgroundColor: "transparent",
-    border: "2px solid #3443f4",
-    borderRadius: "999px",
-  });
+  currentView === "desktop"
+    ? setStyle([v.local.loginBtn, v.local.forgotPassword], {
+        fontSize: "16px",
+        fontFamily: "Space Mono",
+        marginBottom: "2px",
+      })
+    : null;
 
-  setStyle(v.loginSignup.loginForgetWrapper, { marginBottom: "24px" });
+  currentView === "mobile"
+    ? setStyle(v.local.forgotPassword, {
+        fontSize: "16px",
+        marginBottom: "2px",
+      })
+    : null;
 
-  setStyle(v.loginSignup.googleBtn, {
+  currentView === "desktop"
+    ? setStyle(v.local.loginBtn, {
+        width: "368px",
+        height: "48px",
+        color: "#14003d",
+        backgroundColor: "transparent",
+        border: "2px solid #3443f4",
+        borderRadius: "999px",
+      })
+    : setStyle(v.local.loginBtn, {
+        width: "100%",
+        height: "48px",
+        fontSize: "16px",
+        marginBottom: "12px",
+      });
+
+  setStyle(v.local.loginForgetWrapper, { marginBottom: "24px" });
+
+  setStyle(v.local.googleBtn, {
     background: "linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%)",
     width: "auto",
     textAlign: "center",
   });
 
-  setStyle(v.loginSignup.loginContent, { border: "0" });
+  setStyle(v.local.loginContent, { border: "0" });
 
   setStyle(v.footerContainer, {
-    paddingLeft: "40px",
-    paddingRight: "40px",
+    paddingLeft: currentView === "desktop" ? "40px" : "0",
+    paddingRight: currentView === "desktop" ? "40px" : "0",
   });
 
-  setStyle(v.footerCols, { width: "270px" });
+  setStyle(v.footerCols, {
+    width: currentView === "desktop" ? "270px" : "212px",
+  });
 
   // move elements
-  v.loginSignup.loginForm.append(v.loginSignup.termsAndServices);
+  v.local.loginForm.append(v.local.termsAndServices);
 
   // hide elements
-  hide([v.loginSignup.tabArrow, v.loginSignup.fbBtn, v.loginSignup.loginNote]);
+  hide([v.local.tabArrow, v.local.fbBtn, v.local.loginNote]);
 }
 
 /**
@@ -1166,7 +1204,7 @@ function styleLoginDesktop() {
 function styleSignupDesktop() {
   console.info("Running styleSignupDesktop");
 
-  v.loginSignup = {
+  v.local = {
     fbBtn: document.querySelector("#facebook_login"),
     googleBtn: document.querySelector("#google_login"),
     tabArrow:
@@ -1234,19 +1272,19 @@ function styleSignupDesktop() {
   };
 
   // set content
-  v.loginSignup.loginTabTextSpan.textContent = "Log In";
-  v.loginSignup.signupBtnText.textContent = "Sign Up";
-  v.loginSignup.altMethod.textContent = "Or Sign Up With";
-  v.loginSignup.googleBtn.textContent = "Continue with Google";
-  v.loginSignup.signupTabText.textContent = "Sign Up";
-  v.loginSignup.fNameLabel.textContent = "First Name";
-  v.loginSignup.lNameLabel.textContent = "Last Name";
-  v.loginSignup.emailLabel.textContent = "Work Email";
-  v.loginSignup.passwordConfirm.textContent = "Password Confirm";
-  v.loginSignup.inputs.email.placeholder = "Work Email";
-  v.loginSignup.inputs.password2.placeholder = "Password Confirm";
+  v.local.loginTabTextSpan.textContent = "Log In";
+  v.local.signupBtnText.textContent = "Sign Up";
+  v.local.altMethod.textContent = "Or Sign Up With";
+  v.local.googleBtn.textContent = "Continue with Google";
+  v.local.signupTabText.textContent = "Sign Up";
+  v.local.fNameLabel.textContent = "First Name";
+  v.local.lNameLabel.textContent = "Last Name";
+  v.local.emailLabel.textContent = "Work Email";
+  v.local.passwordConfirm.textContent = "Password Confirm";
+  v.local.inputs.email.placeholder = "Work Email";
+  v.local.inputs.password2.placeholder = "Password Confirm";
 
-  setStyle(v.loginSignup.termsAndServices, {
+  setStyle(v.local.termsAndServices, {
     maxWidth: "368px",
     color: "#545454",
     fontSize: "14px",
@@ -1255,9 +1293,9 @@ function styleSignupDesktop() {
 
   setStyle(v.logo, { height: "24px" });
 
-  setStyle(v.loginSignup.tabContainer, { display: "flex" });
+  setStyle(v.local.tabContainer, { display: "flex" });
 
-  setStyle(v.loginSignup.loginTab, {
+  setStyle(v.local.loginTab, {
     border: "0",
     display: "flex",
     padding: "8px 16px",
@@ -1265,7 +1303,7 @@ function styleSignupDesktop() {
     borderRadius: "100px",
   });
 
-  setStyle(v.loginSignup.loginTabText, {
+  setStyle(v.local.loginTabText, {
     color: "rgba(52, 67, 244, .4)",
     fontWeight: "700",
     fontSize: "18px",
@@ -1273,14 +1311,14 @@ function styleSignupDesktop() {
     lineHeight: "24px",
   });
 
-  setStyle(v.loginSignup.signupTab, {
+  setStyle(v.local.signupTab, {
     display: "flex",
     padding: "8px 16px",
     alignItems: "center",
     borderRadius: "100px",
   });
 
-  setStyle(v.loginSignup.signupTabText, {
+  setStyle(v.local.signupTabText, {
     color: "#3443f4",
     textDecoration: "underline",
     fontFamily: "Space Mono",
@@ -1289,35 +1327,35 @@ function styleSignupDesktop() {
     lineHeight: "24px",
   });
 
-  setStyle([v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol], {
+  setStyle([v.local.loginContentContainer, v.local.altMethodCol], {
     width: "50%",
   });
 
-  setStyle(v.loginSignup.altMethodCol, { paddingLeft: "100px" });
+  setStyle(v.local.altMethodCol, { paddingLeft: "100px" });
 
-  setStyle(v.loginSignup.altMethodUl, { paddingLeft: "25px" });
+  setStyle(v.local.altMethodUl, { paddingLeft: "25px" });
 
-  setStyle(v.loginSignup.altMethodLi, { padding: "0" });
+  setStyle(v.local.altMethodLi, { padding: "0" });
 
-  setStyle(v.loginSignup.altMethodContainer, { paddingBottom: "0" });
+  setStyle(v.local.altMethodContainer, { paddingBottom: "0" });
 
-  setStyle(v.loginSignup.altMethod, {
+  setStyle(v.local.altMethod, {
     marginBottom: "12px",
     fontWeight: "500",
     fontSize: "16px",
     lineHeight: "20px",
   });
 
-  setStyle([v.loginSignup.inputs.login, v.loginSignup.inputs.password1], {
+  setStyle([v.local.inputs.login, v.local.inputs.password1], {
     borderRadius: "4px",
     borderColor: "#DCDCDC",
     padding: "12px",
     lineHeight: "24px",
   });
 
-  setStyle(v.loginSignup.inputs.password2, { marginBottom: "24px" });
+  setStyle(v.local.inputs.password2, { marginBottom: "24px" });
 
-  setStyle(v.loginSignup.signupBtn, {
+  setStyle(v.local.signupBtn, {
     width: "368px",
     height: "48px",
     fontSize: "16px",
@@ -1328,17 +1366,17 @@ function styleSignupDesktop() {
     borderRadius: "999px",
   });
 
-  setStyle(v.loginSignup.signupBtnWrapper, { textAlign: "left !important" });
+  setStyle(v.local.signupBtnWrapper, { textAlign: "left !important" });
 
-  setStyle(v.loginSignup.googleBtn, {
+  setStyle(v.local.googleBtn, {
     background: "linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%)",
     width: "auto",
     textAlign: "center",
   });
 
-  setStyle(v.loginSignup.loginContent, { border: "0" });
+  setStyle(v.local.loginContent, { border: "0" });
 
-  setStyle(v.loginSignup.allLabels, {
+  setStyle(v.local.allLabels, {
     marginBottom: "12px",
     fontWeight: "500",
     fontSize: "16px",
@@ -1346,7 +1384,7 @@ function styleSignupDesktop() {
     lineHeight: "20px",
   });
 
-  setStyle(v.loginSignup.allInputs, {
+  setStyle(v.local.allInputs, {
     borderRadius: "4px",
     border: "2px solid #3443f4",
     padding: "20px 15px",
@@ -1361,10 +1399,10 @@ function styleSignupDesktop() {
   setStyle(v.footerCols, { width: "270px" });
 
   // move elements
-  v.loginSignup.signupForm.append(v.loginSignup.termsAndServices);
+  v.local.signupForm.append(v.local.termsAndServices);
 
   // hide elements
-  hide([v.loginSignup.fbBtn, v.loginSignup.tabArrow]);
+  hide([v.local.fbBtn, v.local.tabArrow]);
 }
 
 /**
@@ -1839,185 +1877,13 @@ function styleCurriculumPageHasCertificationDesktop() {
 }
 
 /**
- * This function applies mobile-specific styling to the login page.
- * It modifies the layout and appearance of various elements on the page.
- */
-function styleLoginMobile() {
-  console.info("Running styleLoginMobile");
-
-  v.loginSignup = {
-    fbBtn: document.querySelector("#facebook_login"),
-    googleBtn: document.querySelector("#google_login"),
-    tabArrow:
-      document.querySelector("#tab-marker-login") ||
-      document.querySelector("#tab-marker-signup"),
-    loginContent: document.querySelector("#login-content"),
-    loginContentContainer: document.querySelector(".large-6.columns"),
-    termsAndServices: document.querySelector("#access-message"),
-    tabContainer: document.querySelector(".large-12.columns"),
-    altMethod:
-      document.querySelector(".sj-text-sign-in-with span") ||
-      document.querySelector(".sj-text-sign-up-with span"),
-    altMethodContainer: document.querySelector(".socialaccount_providers li"),
-    altMethodCol: document.querySelector(
-      ".large-6.columns:has(.socialaccount_providers)"
-    ),
-    altMethodUl: document.querySelector(
-      ".large-6.columns:has(.socialaccount_providers) ul"
-    ),
-    altMethodLi: document.querySelectorAll(
-      ".large-6.columns:has(.socialaccount_providers) li"
-    ),
-
-    inputs: {
-      login: document.querySelector("#id_login"), // login
-      password: document.querySelector("#id_password"), // login
-      password1: document.querySelector("#id_password1"), // signup
-      password2: document.querySelector("#id_password2"), // signup
-      email: document.querySelector("#id_email"), // signup
-    },
-
-    loginTab: document.querySelector("#login-tab-left"),
-    signupTab: document.querySelector("#login-tab-right"),
-
-    // login specific
-    forgotPassword: document.querySelector(".sj-text-forgot-password"),
-    loginBtn: document.querySelector("#button-sign-in"),
-    loginForm: document.querySelector("#login_form"),
-    loginNote: document.querySelector(".loginNote.sj-text-login-note"),
-    loginTabText: document.querySelector("#login-tab-left a"),
-    loginTabTextSpan: document.querySelector("#login-tab-left a span"),
-    loginText: document.querySelector("#login-tab-left span span"),
-    loginForgetWrapper: document.querySelector(
-      ".large-12.columns:has(#button-sign-in)"
-    ),
-
-    // signup-specific
-    allInputs: document.querySelectorAll("input"),
-    allLabels: document.querySelectorAll("label"),
-    signupForm: document.querySelector("#signup_form"),
-    signupTabText:
-      document.querySelector("#login-tab-right a") ||
-      document.querySelector("#login-tab-right span"),
-    signupTabSpan: document.querySelector("#login-tab-right span"),
-    passwordConfirm: document.querySelector(
-      "label[for=id_password2] .input-label-text span"
-    ),
-    loginLabel: document.querySelector('label[for="id_email"]'),
-    fNameLabel: document.querySelector('label[for="id_first_name"] span span'),
-    lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
-    emailLabel: document.querySelector('label[for="id_email"]'),
-    signupBtn: document.querySelector("#button-sign-up"),
-    signupBtnText: document.querySelector("#button-sign-up span"),
-    signupBtnWrapper: document.querySelector("#signup_form .text-center"),
-  };
-
-  // set content
-  v.loginSignup.loginText.textContent = "Log In";
-  v.loginSignup.signupTabSpan.textContent = "Sign Up";
-  v.loginSignup.altMethod.textContent = "Or Log In With";
-  v.loginSignup.loginBtn.textContent = "Log In";
-  v.loginSignup.googleBtn.textContent = "Continue with Google";
-
-  setStyle(v.logo, { maxHeight: "48px" });
-
-  setStyle(v.loginSignup.termsAndServices, {
-    maxWidth: "368px",
-    color: "#545454",
-    fontSize: "14px",
-  });
-
-  setStyle(v.loginSignup.tabContainer, { display: "flex" });
-
-  setStyle(v.loginSignup.loginTab, {
-    border: "0",
-    display: "flex",
-    padding: "8px 16px",
-    alignItems: "center",
-    backgroundColor: "#3443F4",
-    color: "#fff",
-    fontWeight: "500",
-    fontSize: "16px",
-    lineHeight: "24px",
-    borderRadius: "100px",
-  });
-
-  setStyle(v.loginSignup.signupTab, {
-    display: "flex",
-    padding: "8px 16px",
-    alignItems: "center",
-  });
-
-  setStyle(v.loginSignup.signupTabText, {
-    color: "#8C8C8C",
-    fontWeight: "500",
-    fontSize: "16px",
-    lineHeight: "24px",
-  });
-
-  setStyle([v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol], {
-    width: "100%",
-  });
-
-  setStyle(v.loginSignup.altMethodUl, { padding: "0" });
-
-  setStyle(v.loginSignup.altMethodContainer, { paddingBottom: "0" });
-
-  setStyle([v.loginSignup.inputs.login, v.loginSignup.inputs.password], {
-    borderRadius: "4px",
-    borderColor: "#DCDCDC",
-    padding: "12px",
-    lineHeight: "24px",
-  });
-
-  setStyle(v.loginSignup.inputs.password, { marginBottom: "24px" });
-
-  setStyle(v.loginSignup.loginBtn, {
-    width: "100%",
-    height: "48px",
-    fontSize: "16px",
-    marginBottom: "12px",
-  });
-
-  setStyle(v.loginSignup.forgotPassword, {
-    fontSize: "16px",
-    marginBottom: "2px",
-  });
-
-  setStyle(v.loginSignup.loginForgetWrapper, { marginBottom: "24px" });
-
-  setStyle(v.loginSignup.googleBtn, {
-    backgroundColor: "#3443F4",
-    width: "100%",
-    textAlign: "center",
-  });
-
-  setStyle(v.loginSignup.loginContent, {
-    border: "0",
-  });
-
-  setStyle(v.footerContainer, {
-    paddingLeft: "0",
-    paddingRight: "0",
-  });
-
-  setStyle(v.footerCols, { width: "212px" });
-
-  // move elements
-  v.loginSignup.loginForm.append(v.loginSignup.termsAndServices);
-
-  // hide elements
-  hide([v.loginSignup.fbBtn, v.loginSignup.tabArrow, v.loginSignup.loginNote]);
-}
-
-/**
  * This function applies mobile-specific styling to the sign-up page.
  * It modifies the layout and appearance of various elements on the page.
  */
 function styleSignupMobile() {
   console.info("Running styleSignupMobile");
 
-  v.loginSignup = {
+  v.local = {
     fbBtn: document.querySelector("#facebook_login"),
     googleBtn: document.querySelector("#google_login"),
     tabArrow:
@@ -2085,19 +1951,19 @@ function styleSignupMobile() {
   };
 
   // set content
-  v.loginSignup.loginTabTextSpan.textContent = "Log In";
-  v.loginSignup.signupTabText.textContent = "Sign Up";
-  v.loginSignup.fNameLabel.textContent = "First Name";
-  v.loginSignup.lNameLabel.textContent = "Last Name";
-  v.loginSignup.emailLabel.textContent = "Work Email";
-  v.loginSignup.altMethod.textContent = "Or Sign Up With";
-  v.loginSignup.googleBtn.textContent = "Continue with Google";
-  v.loginSignup.passwordConfirm.textContent = "Password Confirm";
-  v.loginSignup.signupBtnText.textContent = "Sign Up";
-  v.loginSignup.inputs.email.placeholder = "Work Email";
-  v.loginSignup.inputs.password2.placeholder = "Password Confirm";
+  v.local.loginTabTextSpan.textContent = "Log In";
+  v.local.signupTabText.textContent = "Sign Up";
+  v.local.fNameLabel.textContent = "First Name";
+  v.local.lNameLabel.textContent = "Last Name";
+  v.local.emailLabel.textContent = "Work Email";
+  v.local.altMethod.textContent = "Or Sign Up With";
+  v.local.googleBtn.textContent = "Continue with Google";
+  v.local.passwordConfirm.textContent = "Password Confirm";
+  v.local.signupBtnText.textContent = "Sign Up";
+  v.local.inputs.email.placeholder = "Work Email";
+  v.local.inputs.password2.placeholder = "Password Confirm";
 
-  setStyle(v.loginSignup.termsAndServices, {
+  setStyle(v.local.termsAndServices, {
     maxWidth: "368px",
     color: "#545454",
     fontSize: "14px",
@@ -2106,9 +1972,9 @@ function styleSignupMobile() {
 
   setStyle(v.logo, { maxHeight: "48px" });
 
-  setStyle(v.loginSignup.tabContainer, { display: "flex" });
+  setStyle(v.local.tabContainer, { display: "flex" });
 
-  setStyle(v.loginSignup.loginTab, {
+  setStyle(v.local.loginTab, {
     border: "0",
     display: "flex",
     padding: "8px 16px",
@@ -2116,14 +1982,14 @@ function styleSignupMobile() {
     borderRadius: "100px",
   });
 
-  setStyle(v.loginSignup.loginTabText, {
+  setStyle(v.local.loginTabText, {
     color: "8C8C8C",
     fontWeight: "500",
     fontSize: "16px",
     lineHeight: "24px",
   });
 
-  setStyle(v.loginSignup.signupTab, {
+  setStyle(v.local.signupTab, {
     display: "flex",
     alignItems: "center",
     padding: "8px 16px",
@@ -2131,71 +1997,71 @@ function styleSignupMobile() {
     borderRadius: "100px",
   });
 
-  setStyle(v.loginSignup.signupTabText, {
+  setStyle(v.local.signupTabText, {
     color: "#fff",
     fontWeight: "500",
     fontSize: "16px",
     lineHeight: "24px",
   });
 
-  setStyle([v.loginSignup.loginContentContainer, v.loginSignup.altMethodCol], {
+  setStyle([v.local.loginContentContainer, v.local.altMethodCol], {
     width: "100%",
   });
 
-  setStyle([v.loginSignup.altMethodUl, v.loginSignup.altMethodCol], {
+  setStyle([v.local.altMethodUl, v.local.altMethodCol], {
     padding: "0",
   });
 
-  setStyle(v.loginSignup.altMethodLi, { padding: "0" });
+  setStyle(v.local.altMethodLi, { padding: "0" });
 
-  setStyle(v.loginSignup.altMethodContainer, { paddingBottom: "0" });
+  setStyle(v.local.altMethodContainer, { paddingBottom: "0" });
 
-  setStyle(v.loginSignup.altMethod, {
+  setStyle(v.local.altMethod, {
     marginBottom: "12px",
     fontWeight: "500",
     fontSize: "16px",
     lineHeight: "20px",
   });
 
-  setStyle([v.loginSignup.inputs.login, v.loginSignup.inputs.password1], {
+  setStyle([v.local.inputs.login, v.local.inputs.password1], {
     borderRadius: "4px",
     borderColor: "#DCDCDC",
     padding: "12px",
     lineHeight: "24px",
   });
 
-  setStyle(v.loginSignup.inputs.password2, {
+  setStyle(v.local.inputs.password2, {
     marginBottom: "24px",
   });
 
-  setStyle(v.loginSignup.signupBtn, {
+  setStyle(v.local.signupBtn, {
     width: "100%",
     height: "48px",
     fontSize: "16px",
   });
 
-  setStyle(v.loginSignup.signupBtnWrapper, {
+  setStyle(v.local.signupBtnWrapper, {
     textAlign: "left !important",
   });
 
-  setStyle(v.loginSignup.googleBtn, {
+  setStyle(v.local.googleBtn, {
     backgroundColor: "#3443F4",
     width: "100%",
     textAlign: "center",
   });
 
-  setStyle(v.loginSignup.loginContent, {
+  setStyle(v.local.loginContent, {
     border: "0",
   });
 
-  setStyle(v.loginSignup.allLabels, {
+  setStyle(v.local.allLabels, {
     marginBottom: "12px",
     fontWeight: "500",
     fontSize: "16px",
     lineHeight: "20px",
   });
 
-  setStyle(v.loginSignup.allInputs, {
+  setStyle(v.local.allInputs, {
     borderRadius: "4px",
     borderColor: "rgb(220, 220, 220)",
     padding: "12px",
@@ -2210,10 +2076,10 @@ function styleSignupMobile() {
   setStyle(v.footerCols, { width: "212px" });
 
   // move elements
-  v.loginSignup.signupForm.append(v.loginSignup.termsAndServices);
+  v.local.signupForm.append(v.local.termsAndServices);
 
   // hide elements
-  hide([v.loginSignup.fbBtn, v.loginSignup.tabArrow]);
+  hide([v.local.fbBtn, v.local.tabArrow]);
 }
 
 /**
@@ -2981,7 +2847,7 @@ function handlePageStyling() {
   } else if (currentPage.isPageCatalog) {
     currentView === "desktop" ? stylePathCatalogPageStylingDesktop() : null;
   } else if (currentPage.isLogin) {
-    currentView === "desktop" ? styleLoginDesktop() : styleLoginMobile();
+    styleLogin();
   } else if (currentPage.isSignup) {
     currentView === "desktop" ? styleSignupDesktop() : styleSignupMobile();
   } else if (
