@@ -655,7 +655,7 @@ function stylePathCourseDetails() {
 
   // move elements
   v.local.header.mainHeadingContainer.append(
-    [
+    ...[
       v.local.header.floaterText,
       v.local.header.mainHeading,
       v.local.header.courseInfo,
