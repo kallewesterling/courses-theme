@@ -12,7 +12,7 @@ let v = {
 };
 
 const c = (selector) => (document.querySelector(selector) ? true : false);
-  
+
 const currentPage = {
   isCatalog: c(".sj-page-catalog-root"),
   isCurriculum: c(".sj-page-curriculum"),
@@ -22,7 +22,7 @@ const currentPage = {
   isSignup: c(".sj-page-signup"),
   isPageDetail: c(".sj-page-detail-bundle.sj-page-detail-path"),
   isPageCatalog: c(".sj-page-series.sj-page-path"),
-}
+};
 
 function getCurriculumElements(curriculumParentContainer, border = "b") {
   let currentSection = 0,
@@ -1807,7 +1807,7 @@ function desktopCurriculumPageYesCertificationStyling() {
  * It modifies the layout and appearance of various elements on the page.
  */
 function mobileLoginPageStyling() {
-  console.info("Running mobileLoginPageStyling with setStyle [cleaned up]");
+  console.info("Running mobileLoginPageStyling");
 
   v.loginSignup = {
     fbBtn: document.querySelector("#facebook_login"),
@@ -1979,7 +1979,7 @@ function mobileLoginPageStyling() {
  * It modifies the layout and appearance of various elements on the page.
  */
 function mobileSignUpPageStyling() {
-  console.info("Running mobileSignUpPageStyling with setStyle");
+  console.info("Running mobileSignUpPageStyling");
 
   v.loginSignup = {
     fbBtn: document.querySelector("#facebook_login"),
@@ -2185,9 +2185,7 @@ function mobileSignUpPageStyling() {
  * It modifies the layout and appearance of various elements on the page.
  */
 function mobileCourseDetailsPageStyling() {
-  // TODO: we need to clean this up but we are currently not using this view...
-  // only on the staging site: https://chainguard-test.skilljar.com/secure-or-sorry-understanding-software-vulnerabilities
-  console.info("Running mobileCourseDetailsPageStyling using setStyle");
+  console.info("Running mobileCourseDetailsPageStyling");
 
   const headerContainer = document.querySelector(".top-row-grey");
   const headerFlexContainer = document.querySelector(".dp-row-flex-v2");
@@ -2382,9 +2380,7 @@ function mobileCourseDetailsPageStyling() {
  * It modifies the layout and appearance of various elements on the page.
  */
 function mobileCurriculumPageNoCertificateStyling() {
-  console.info(
-    "Running mobileCurriculumPageNoCertificateStyling using setStyle [cleaned up]"
-  );
+  console.info("Running mobileCurriculumPageNoCertificateStyling");
 
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
   const headingFloaterText = document.querySelector(".sj-floater-text");
@@ -2853,7 +2849,7 @@ function mobileCurriculumPageYesCertificateStyling() {
  * It also handles the positioning of the internal course warning.
  */
 function mobileLessonPageStyling() {
-  console.info("Running mobileLessonPageStyling with setStyle [cleaned up]");
+  console.info("Running mobileLessonPageStyling with setStyle");
 
   const internalCourseWarning = document.querySelector(
     "#internal-course-warning"
@@ -3137,7 +3133,6 @@ function mobileLessonPageStyling() {
  * sign-up, curriculum, and lessons pages.
  */
 function handlePageStyling() {
-  console.info("Running handlePageStyling");
   if (currentPage.isCourseDetails) {
     currentView === "desktop"
       ? desktopCourseDetailsPageStyling()
@@ -3181,7 +3176,6 @@ function handlePageStyling() {
  * It checks the window width and applies appropriate styles for different page types.
  */
 function render() {
-  console.info("Running render");
   width =
     window.innerWidth ||
     document.documentElement.clientWidth ||
