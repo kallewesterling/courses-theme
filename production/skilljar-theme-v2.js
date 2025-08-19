@@ -548,7 +548,7 @@ function styleCourseDetails() {
 }
 
 /**
- * This function applies desktop-specific styling to the path course details page.
+ * This function applies general styling to the path course details page.
  */
 function stylePathCourseDetails() {
   console.info("Running stylePathCourseDetails");
