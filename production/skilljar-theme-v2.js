@@ -270,34 +270,16 @@ function styleGroupHeading(groupHeadingContainer, border = "b") {
  * This function checks the current page and sets the global variables accordingly.
  */
 function getCurrentPage() {
-  isCatalogPage = document.querySelector(
-    ".sj-page-catalog.sj-page-catalog-root"
-  )
-    ? true
-    : false;
-  isCurriculumPage = document.querySelector(".sj-page-curriculum")
-    ? true
-    : false;
-  isCourseDetailsPage = document.querySelector(
-    ".sj-page-detail.sj-page-detail-course"
-  )
-    ? true
-    : false;
-  isLessonsPage = document.querySelector(".sj-page-lesson") ? true : false;
-  isLoginPage = document.querySelector(".sj-page-login") ? true : false;
-  isSignUpPage = document.querySelector(".sj-page-signup") ? true : false;
-
-  // PATH PAGES
-  isPageDetailPath = document.querySelector(
-    ".sj-page-detail.sj-page-detail-bundle.sj-page-detail-path"
-  )
-    ? true
-    : false;
-  isPageCatalogPath = document.querySelector(
-    ".sj-page-catalog.sj-page-series.sj-page-path"
-  )
-    ? true
-    : false;
+  const c = (selector) => (document.querySelector(selector) ? true : false);
+  
+  isCatalogPage = c(".sj-page-catalog-root");
+  isCurriculumPage = c(".sj-page-curriculum");
+  isCourseDetailsPage = c(".sj-page-detail-course");
+  isLessonsPage = c(".sj-page-lesson");
+  isLoginPage = c(".sj-page-login");
+  isSignUpPage = c(".sj-page-signup");
+  isPageDetailPath = c(".sj-page-detail-bundle.sj-page-detail-path");
+  isPageCatalogPath = c(".sj-page-series.sj-page-path");
 }
 
 /**
