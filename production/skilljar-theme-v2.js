@@ -314,6 +314,19 @@ function styleCatalog() {
   }
 }
 
+// debug function (can be replaced with a simple `Boolean`)
+function exists(element, index) {
+  if (element !== null && element !== undefined) {
+    return true;
+  } else {
+    console.warn(
+      `setStyle: skipped non-element item ${index} in header append`,
+      element
+    );
+    return false;
+  }
+}
+
 /**
  * This function applies general styling to the course details page.
  */
@@ -529,17 +542,7 @@ function styleCourseDetails() {
         v.local.header.mainHeading,
         v.local.header.courseInfo,
         v.local.header.ctaBtnWrapper,
-      ].filter((d, ix) => {
-        if (d !== null && d !== undefined) {
-          return true;
-        } else {
-          console.warn(
-            `setStyle: skipped non-element item ${ix} in header append`,
-            d
-          );
-          return false;
-        }
-      })
+      ].filter((d, ix) => exists(d, ix))
     );
   }
 }
