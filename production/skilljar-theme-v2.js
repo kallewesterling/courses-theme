@@ -275,16 +275,15 @@ function styleGroupHeading(groupHeadingContainer, border = "b") {
  * This function inserts the footer into the page.
  */
 function insertFooter() {
-  const footerEl = document.querySelector("#footer-container");
   const contentContainer = currentPage.isLesson
     ? document.querySelector(".sj-page-lesson")
     : document.querySelector("#skilljar-content");
 
-  setStyle(footerEl, { display: "flex" });
+  setStyle(v.footerContainer, { display: "flex" });
 
-  if (currentPage.isLesson && currentView === "mobile") hide(footerEl);
+  if (currentPage.isLesson && currentView === "mobile") hide(v.footerContainer);
 
-  contentContainer.append(footerEl);
+  contentContainer.append(v.footerContainer);
 }
 
 /**
