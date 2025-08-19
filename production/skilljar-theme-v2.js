@@ -317,8 +317,6 @@ function desktopCatalogPageStyling() {
 
     catalogContentContainer.append(allCoursesHeader, catalogContainer);
     catalogBodyParentContainer.append(catalogContentContainer);
-
-    initialLoadComplete = true;
   }
 }
 
