@@ -533,20 +533,18 @@ function styleCourseDetails() {
 
   // move elements
   !initialLoadComplete
-    ? v.local.body.container.append(
-        ...(v.local.card.details ? [v.local.card.details] : [])
-      )
+    ? v.local.body.container.append(...[v.local.card.details].filter(Boolean))
     : null; // append card
-  v.local.header.mainHeadingContainer.append(
-    ...(v.local.header.floaterText ? [v.local.header.floaterText] : []),
-    ...(v.local.header.mainHeading ? [v.local.header.mainHeading] : []),
-    ...(v.local.header.headingParagraph
-      ? [v.local.header.headingParagraph]
-      : []),
-    ...(v.local.header.registerBtnWrapper
-      ? [v.local.header.registerBtnWrapper]
-      : [])
-  ); // append elements to header
+  !initialLoadComplete
+    ? v.local.header.mainHeadingContainer.append(
+        ...[
+          v.local.header.floaterText,
+          v.local.header.mainHeading,
+          v.local.header.headingParagraph,
+          v.local.header.registerBtnWrapper,
+        ].filter(Boolean)
+      )
+    : null; // append elements to header
 }
 
 /**
