@@ -531,9 +531,11 @@ function styleCourseDetails() {
   ]);
 
   // move elements
-  v.local.body.container.append(
-    ...(v.local.card.details ? [v.local.card.details] : [])
-  ); // append card
+  !initialLoadComplete
+    ? v.local.body.container.append(
+        ...(v.local.card.details ? [v.local.card.details] : [])
+      )
+    : null; // append card
   v.local.header.mainHeadingContainer.append(
     ...(v.local.header.floaterText ? [v.local.header.floaterText] : []),
     ...(v.local.header.mainHeading ? [v.local.header.mainHeading] : []),
