@@ -325,6 +325,23 @@ function styleCatalog() {
  */
 function styleCourseDetails() {
   console.info("Running styleCourseDetails");
+
+  v.local = {
+    header: {
+      container: document.querySelector(".top-row-grey"),
+      flexContainer: document.querySelector(".dp-row-flex-v2"),
+      floaterText: document.querySelector(".sj-floater-text"),
+      mainHeading: document.querySelector(".break-word"),
+      registerBtnWrapper: document.querySelector(
+        "#purchase-button-wrapper-large"
+      ),
+      registerBtn: document.querySelector("#purchase-button-wrapper-large a"),
+      mainHeadingContainer: document.querySelector(".dp-summary-wrapper"),
+      backToCatalogBtn: document.querySelector(".back-to-catalog"),
+      videoContainer: document.querySelector(".video-max"),
+      headingParagraph: document.querySelector(".sj-course-info-wrapper h2"),
+    },
+  };
 }
 
 /**
@@ -332,6 +349,9 @@ function styleCourseDetails() {
  */
 function styleCourseDetailsDesktop() {
   console.info("Running styleCourseDetailsDesktop");
+
+  styleCourseDetails();
+  
   const headerContainer = document.querySelector(".top-row-grey");
   const headerFlexContainer = document.querySelector(".dp-row-flex-v2");
   const headingFloaterText = document.querySelector(".sj-floater-text");
