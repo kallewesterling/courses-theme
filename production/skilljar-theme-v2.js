@@ -342,11 +342,7 @@ function styleCourseDetails() {
       headingParagraphContainer: document.querySelector(
         ".sj-course-info-wrapper"
       ),
-      headingParagraph:
-        currentView === "desktop"
-          ? document.querySelector(".sj-course-info-wrapper h2") ||
-            document.querySelector(".sj-heading-paragraph")
-          : document.querySelector(".sj-heading-paragraph"),
+      headingParagraph: document.querySelector(".sj-heading-paragraph"),
       image: document.querySelector(".dp-promo-image-wrapper"),
     },
     body: {
@@ -535,7 +531,7 @@ function styleCourseDetails() {
   if (!initialLoadComplete) {
     // append card
     v.local.body.container.append(...[v.local.card.details].filter(Boolean));
-    
+
     // append elements to header
     v.local.header.mainHeadingContainer.append(
       ...[
@@ -543,7 +539,17 @@ function styleCourseDetails() {
         v.local.header.mainHeading,
         v.local.header.headingParagraph,
         v.local.header.registerBtnWrapper,
-      ].filter(Boolean)
+      ].filter((d, ix) => {
+        if (d !== null && d !== undefined) {
+          return true;
+        } else {
+          console.warn(
+            `setStyle: skipped non-element item ${ix} in header append`,
+            d
+          );
+          return false;
+        }
+      })
     );
   }
 }
