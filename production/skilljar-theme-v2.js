@@ -326,17 +326,13 @@ function styleCourseDetails() {
       flexContainer: document.querySelector(".dp-row-flex-v2"),
       floaterText: document.querySelector(".sj-floater-text"),
       mainHeading: document.querySelector(".break-word"),
-      registerBtnWrapper: document.querySelector(
-        "#purchase-button-wrapper-large"
-      ),
+      ctaBtnWrapper: document.querySelector("#purchase-button-wrapper-large"),
       registerBtn: document.querySelector("#purchase-button-wrapper-large a"),
       mainHeadingContainer: document.querySelector(".dp-summary-wrapper"),
       backToCatalogBtn: document.querySelector(".back-to-catalog"),
       videoContainer: document.querySelector(".video-max"),
-      headingParagraphContainer: document.querySelector(
-        ".sj-course-info-wrapper"
-      ),
-      headingParagraph: document.querySelector(".sj-heading-paragraph"),
+      courseInfoWrapper: document.querySelector(".sj-course-info-wrapper"),
+      courseInfo: document.querySelector(".sj-heading-paragraph"),
       image: document.querySelector(".dp-promo-image-wrapper"),
     },
     body: {
@@ -418,7 +414,7 @@ function styleCourseDetails() {
     paddingRight: currentView === "desktop" ? "0px" : "15px",
   });
 
-  setStyle(v.local.header.headingParagraph, {
+  setStyle(v.local.header.courseInfo, {
     display: "block",
     margin: "0 0 24px 0",
   });
@@ -514,7 +510,7 @@ function styleCourseDetails() {
 
   // hide elements
   hide([
-    v.local.header.headingParagraphContainer,
+    v.local.header.courseInfoWrapper,
     v.local.body.mobile,
     v.local.header.backToCatalogBtn,
     v.local.signinText,
@@ -531,8 +527,8 @@ function styleCourseDetails() {
       ...[
         v.local.header.floaterText,
         v.local.header.mainHeading,
-        v.local.header.headingParagraph,
-        v.local.header.registerBtnWrapper,
+        v.local.header.courseInfo,
+        v.local.header.ctaBtnWrapper,
       ].filter((d, ix) => {
         if (d !== null && d !== undefined) {
           return true;
