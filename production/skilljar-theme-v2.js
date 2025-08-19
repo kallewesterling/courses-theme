@@ -291,7 +291,7 @@ function insertFooter() {
  * This function applies desktop-specific styling to the catalog page.
  */
 function styleCatalog() {
-  console.info("Running desktopCatalogPageStyling with setStyle");
+  console.info("Running styleCatalog");
   const catalogBodyParentContainer = document.querySelector("#catalog-content");
   const catalogContainer = document.querySelector("#catalog-courses");
 
@@ -321,12 +321,17 @@ function styleCatalog() {
 }
 
 /**
+ * This function applies general styling to the course details page.
+ */
+function styleCourseDetails() {
+  console.info("Running styleCourseDetails");
+}
+
+/**
  * This function applies desktop-specific styling to the course details page.
  */
 function styleCourseDetailsDesktop() {
-  console.info(
-    "Running desktopCourseDetailsPageStyling with setStyle [cleaned up]"
-  );
+  console.info("Running styleCourseDetailsDesktop");
   const headerContainer = document.querySelector(".top-row-grey");
   const headerFlexContainer = document.querySelector(".dp-row-flex-v2");
   const headingFloaterText = document.querySelector(".sj-floater-text");
@@ -513,7 +518,7 @@ function styleCourseDetailsDesktop() {
  * This function applies desktop-specific styling to the path course details page.
  */
 function stylePathCourseDetailsDesktop() {
-  console.info("Running desktopPathCourseDetailsPageStyling with setStyle");
+  console.info("Running stylePathCourseDetailsDesktop");
   const headerContainer = document.querySelector(".top-row-grey");
   const headerFlexContainer = document.querySelector(".dp-row-flex-v2");
   const headingFloaterText = document.querySelector(".sj-floater-text");
@@ -630,7 +635,7 @@ function stylePathCourseDetailsDesktop() {
  * This function applies desktop-specific styling to the path catalog page.
  */
 function stylePathCatalogPageStylingDesktop() {
-  console.info("Running desktopPathCatalogPageStyling with setStyle");
+  console.info("Running stylePathCatalogPageStylingDesktop");
   const backArrowBtn = document.querySelector(".back-to-catalog");
 
   const mainContentContainer = document.querySelector("#catalog-content");
@@ -674,7 +679,7 @@ function stylePathCatalogPageStylingDesktop() {
  * This function applies desktop-specific styling to the lesson page.
  */
 function styleLessonDesktop() {
-  console.info("Running desktopLessonPageStyling with setStyle [cleaned up]");
+  console.info("Running styleLessonDesktop");
 
   const internalCourseWarning = document.querySelector(
     "#internal-course-warning"
@@ -955,7 +960,7 @@ function styleLessonDesktop() {
  * This function applies desktop-specific styling to the login page.
  */
 function styleLoginDesktop() {
-  console.info("Running desktopLoginPageStyling with setStyle");
+  console.info("Running styleLoginDesktop");
 
   v.loginSignup = {
     fbBtn: document.querySelector("#facebook_login"),
@@ -1126,7 +1131,7 @@ function styleLoginDesktop() {
  * This function applies desktop-specific styling to the sign-up page.
  */
 function styleSignupDesktop() {
-  console.info("Running desktopSignUpPageStyling with setStyle");
+  console.info("Running styleSignupDesktop");
 
   v.loginSignup = {
     fbBtn: document.querySelector("#facebook_login"),
@@ -1334,9 +1339,7 @@ function styleSignupDesktop() {
  * It modifies the layout and appearance of various elements on the page.
  */
 function styleCurriculumPageNoCertificateDesktop() {
-  console.info(
-    "Running desktopCurriculumPageNoCertificateStyling with setStyle [cleaned up]"
-  );
+  console.info("Running styleCurriculumPageNoCertificateDesktop");
   const courseDescription = skilljarCourse.short_description; // eslint-disable-line no-undef
 
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
@@ -1563,7 +1566,7 @@ function styleCurriculumPageNoCertificateDesktop() {
  */
 function styleCurriculumPageHasCertificationDesktop() {
   // TODO: Clean up this function
-  console.info("Running desktopCurriculumPageYesCertificationStyling");
+  console.info("Running styleCurriculumPageHasCertificationDesktop");
   const courseDescription = skilljarCourse.short_description; // eslint-disable-line no-undef
 
   // HEADER VARIABLES
@@ -1807,7 +1810,7 @@ function styleCurriculumPageHasCertificationDesktop() {
  * It modifies the layout and appearance of various elements on the page.
  */
 function styleLoginMobile() {
-  console.info("Running mobileLoginPageStyling");
+  console.info("Running styleLoginMobile");
 
   v.loginSignup = {
     fbBtn: document.querySelector("#facebook_login"),
@@ -1979,7 +1982,7 @@ function styleLoginMobile() {
  * It modifies the layout and appearance of various elements on the page.
  */
 function styleSignupMobile() {
-  console.info("Running mobileSignUpPageStyling");
+  console.info("Running styleSignupMobile");
 
   v.loginSignup = {
     fbBtn: document.querySelector("#facebook_login"),
@@ -2185,7 +2188,7 @@ function styleSignupMobile() {
  * It modifies the layout and appearance of various elements on the page.
  */
 function styleCourseDetailsMobile() {
-  console.info("Running mobileCourseDetailsPageStyling");
+  console.info("Running styleCourseDetailsMobile");
 
   const headerContainer = document.querySelector(".top-row-grey");
   const headerFlexContainer = document.querySelector(".dp-row-flex-v2");
@@ -2380,7 +2383,7 @@ function styleCourseDetailsMobile() {
  * It modifies the layout and appearance of various elements on the page.
  */
 function styleCurriculumPageNoCertificateMobile() {
-  console.info("Running mobileCurriculumPageNoCertificateStyling");
+  console.info("Running styleCurriculumPageNoCertificateMobile");
 
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
   const headingFloaterText = document.querySelector(".sj-floater-text");
@@ -2597,7 +2600,7 @@ function styleCurriculumPageNoCertificateMobile() {
  */
 function styleCurriculumPageHasCertificateMobile() {
   // TODO: Clean up this function
-  console.info("Running mobileCurriculumPageYesCertificateStyling");
+  console.info("Running styleCurriculumPageHasCertificateMobile");
 
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
   const headingFloaterText = document.querySelector(".sj-floater-text");
@@ -2849,7 +2852,7 @@ function styleCurriculumPageHasCertificateMobile() {
  * It also handles the positioning of the internal course warning.
  */
 function styleLessonMobile() {
-  console.info("Running mobileLessonPageStyling with setStyle");
+  console.info("Running styleLessonMobile with setStyle");
 
   const internalCourseWarning = document.querySelector(
     "#internal-course-warning"
