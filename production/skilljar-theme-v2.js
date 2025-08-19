@@ -344,7 +344,8 @@ function styleCourseDetails() {
       ),
       headingParagraph:
         currentView === "desktop"
-          ? document.querySelector(".sj-course-info-wrapper h2")
+          ? document.querySelector(".sj-course-info-wrapper h2") ||
+            document.querySelector(".sj-heading-paragraph")
           : document.querySelector(".sj-heading-paragraph"),
       image: document.querySelector(".dp-promo-image-wrapper"),
     },
