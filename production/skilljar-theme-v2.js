@@ -550,32 +550,35 @@ function styleCourseDetails() {
 /**
  * This function applies desktop-specific styling to the path course details page.
  */
-function stylePathCourseDetailsDesktop() {
-  console.info("Running stylePathCourseDetailsDesktop");
-  const headerContainer = document.querySelector(".top-row-grey");
-  const headerFlexContainer = document.querySelector(".dp-row-flex-v2");
-  const headingFloaterText = document.querySelector(".sj-floater-text");
-  const mainHeading = document.querySelector(".break-word");
-  const registerBtn = document.querySelector("#purchase-button-wrapper-large");
-  const registerBtnAnchor = document.querySelector("#purchase-button");
-  const mainHeadingContainer = document.querySelector(".dp-summary-wrapper");
-  const backToCatalogBtn = document.querySelector(".back-to-catalog");
-  const mainInfoCardContained = document.querySelector(
-    ".sj-course-info-wrapper"
-  );
-  const headingParagraph = mainInfoCardContained.querySelector("h2");
+function stylePathCourseDetails() {
+  console.info("Running stylePathCourseDetails");
 
-  // SIGN IN VARIABLES (WHEN USER NOT LOGGED IN)
-  const signInHeaderText = document.querySelector(".signin");
-  const signInBtn = document.querySelector(".sj-text-sign-in");
-  // BODY VARIABLES
-  const bodyContainer = document.querySelector("#dp-details-bundle");
-  const catalogContainer = document.querySelector("#catalog-courses");
+  v.local = {
+    header: {
+      container: document.querySelector(".top-row-grey"),
+      flexContainer: document.querySelector(".dp-row-flex-v2"),
+      floaterText: document.querySelector(".sj-floater-text"),
+      mainHeading: document.querySelector(".break-word"),
+      ctaBtnWrapper: document.querySelector("#purchase-button-wrapper-large"),
+      registerBtn: document.querySelector("#purchase-button-wrapper-large a"),
+      mainHeadingContainer: document.querySelector(".dp-summary-wrapper"),
+      backToCatalogBtn: document.querySelector(".back-to-catalog"),
+      courseInfoWrapper: document.querySelector(".sj-course-info-wrapper"),
+      courseInfo: document.querySelector(".sj-heading-paragraph"),
+    },
+    body: {
+      container: document.querySelector("#dp-details-bundle"),
+      catalogContainer: document.querySelector("#catalog-courses"),
+    },
+    signinText: document.querySelector(".signin"),
+    signinBtn: document.querySelector(".sj-text-sign-in"),
+    checkboxIcon: document.querySelector(".checkbox-icon"),
+  };
 
   // set content
-  headingFloaterText.textContent = "Learning Path";
+  v.local.header.floaterText.textContent = "Learning Path";
 
-  setStyle(signInBtn, {
+  setStyle(v.local.signinBtn, {
     backgroundColor: "transparent",
     padding: "8px 12px",
     marginRight: "24px",
@@ -588,7 +591,7 @@ function stylePathCourseDetailsDesktop() {
     lineHeight: "20px",
   });
 
-  setStyle(headerContainer, {
+  setStyle(v.local.header.container, {
     background:
       "url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png)",
     backgroundSize: "cover",
@@ -601,7 +604,7 @@ function stylePathCourseDetailsDesktop() {
     border: "0",
   });
 
-  setStyle(headerFlexContainer, {
+  setStyle(v.local.header.flexContainer, {
     flexDirection: "row-reverse",
     flexWrap: "nowrap",
     justifyContent: "start",
@@ -609,18 +612,18 @@ function stylePathCourseDetailsDesktop() {
     maxWidth: "1188px",
   });
 
-  setStyle(mainHeadingContainer, {
+  setStyle(v.local.header.mainHeadingContainer, {
     border: "0",
     maxWidth: "600px",
   });
 
-  setStyle(headingFloaterText, {
+  setStyle(v.local.header.floaterText, {
     color: "#7AF0FE",
     display: "block",
     marginBottom: "24px",
   });
 
-  setStyle(mainHeading, {
+  setStyle(v.local.header.mainHeading, {
     color: "#fff",
     margin: "0 0 12px 0",
     fontSize: "36px",
@@ -629,39 +632,43 @@ function stylePathCourseDetailsDesktop() {
     letterSpacing: "-.02em",
   });
 
-  setStyle(headingParagraph, {
+  setStyle(v.local.header.courseInfo, {
     color: "#fff",
     display: "block",
     margin: "0 0 24px 0",
   });
 
-  setStyle(registerBtnAnchor, {
+  setStyle(v.local.header.registerBtn, {
     borderColor: "#7AF0FE",
     color: "#fff",
   });
 
-  setStyle(bodyContainer, {
+  setStyle(v.local.body.container, {
     padding: "0",
     margin: "96px auto 46px auto",
     maxWidth: "min(1152px, 90%)",
   });
 
-  setStyle(catalogContainer, {
+  setStyle(v.local.body.catalogContainer, {
     marginBottom: "85px",
   });
 
   // move elements
-  mainHeadingContainer.append(
-    ...(headingFloaterText ? [headingFloaterText] : []),
-    ...(mainHeading ? [mainHeading] : []),
-    ...(headingParagraph ? [headingParagraph] : []),
-    ...(registerBtn ? [registerBtn] : [])
+  v.local.header.mainHeadingContainer.append(
+    [
+      v.local.header.floaterText,
+      v.local.header.mainHeading,
+      v.local.header.courseInfo,
+      v.local.header.ctaBtnWrapper,
+    ].filter((element, index) => exists(element, index))
   );
 
   // hide elements
-  hide(backToCatalogBtn);
-  hide(signInHeaderText);
-  hide(mainInfoCardContained);
+  hide([
+    v.local.header.backToCatalogBtn,
+    v.local.signinText,
+    v.local.header.courseInfoWrapper,
+  ]);
 }
 
 /**
@@ -2580,7 +2587,7 @@ function handlePageStyling() {
   if (currentPage.isCourseDetails) {
     styleCourseDetails();
   } else if (currentPage.isPageDetail) {
-    currentView === "desktop" ? stylePathCourseDetailsDesktop() : null;
+    stylePathCourseDetails();
   } else if (currentPage.isPageCatalog) {
     currentView === "desktop" ? stylePathCatalogPageStylingDesktop() : null;
   } else if (currentPage.isLogin) {
