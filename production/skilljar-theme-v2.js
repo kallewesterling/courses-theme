@@ -292,31 +292,26 @@ function insertFooter() {
  */
 function styleCatalog() {
   console.info("Running styleCatalog");
-  const catalogBodyParentContainer = document.querySelector("#catalog-content");
-  const catalogContainer = document.querySelector("#catalog-courses");
+  v.local = {
+    catalogBodyParentContainer: document.querySelector("#catalog-content"),
+    catalogContainer: document.querySelector("#catalog-courses"),
+  };
 
   if (!initialLoadComplete) {
     // Create a container div for courses catalog list
-    const catalogContentContainer = document.createElement("div");
+    const catalogContentContainer = Object.assign(
+      document.createElement("div"),
+      { style: `max-width: min(1232px, 90%); margin: 96px auto;` }
+    );
 
     // Create header for list
     const allCoursesHeader = Object.assign(document.createElement("h2"), {
       textContent: "All Courses",
+      style: `font-size: 48px; margin-bottom: 38px;`,
     });
 
-    // handle styling
-    setStyle(allCoursesHeader, {
-      fontSize: "48px",
-      marginBottom: "38px",
-    });
-
-    setStyle(catalogContentContainer, {
-      maxWidth: "min(1232px, 90%)",
-      margin: "96px auto",
-    });
-
-    catalogContentContainer.append(allCoursesHeader, catalogContainer);
-    catalogBodyParentContainer.append(catalogContentContainer);
+    catalogContentContainer.append(allCoursesHeader, v.local.catalogContainer);
+    v.local.catalogBodyParentContainer.append(catalogContentContainer);
   }
 }
 
