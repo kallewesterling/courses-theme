@@ -532,19 +532,20 @@ function styleCourseDetails() {
   ]);
 
   // move elements
-  !initialLoadComplete
-    ? v.local.body.container.append(...[v.local.card.details].filter(Boolean))
-    : null; // append card
-  !initialLoadComplete
-    ? v.local.header.mainHeadingContainer.append(
-        ...[
-          v.local.header.floaterText,
-          v.local.header.mainHeading,
-          v.local.header.headingParagraph,
-          v.local.header.registerBtnWrapper,
-        ].filter(Boolean)
-      )
-    : null; // append elements to header
+  if (!initialLoadComplete) {
+    // append card
+    v.local.body.container.append(...[v.local.card.details].filter(Boolean));
+    
+    // append elements to header
+    v.local.header.mainHeadingContainer.append(
+      ...[
+        v.local.header.floaterText,
+        v.local.header.mainHeading,
+        v.local.header.headingParagraph,
+        v.local.header.registerBtnWrapper,
+      ].filter(Boolean)
+    );
+  }
 }
 
 /**
