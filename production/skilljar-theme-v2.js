@@ -339,8 +339,33 @@ function styleCourseDetails() {
       mainHeadingContainer: document.querySelector(".dp-summary-wrapper"),
       backToCatalogBtn: document.querySelector(".back-to-catalog"),
       videoContainer: document.querySelector(".video-max"),
+      headingParagraphContainer: document.querySelector(
+        ".sj-course-info-wrapper"
+      ),
       headingParagraph: document.querySelector(".sj-course-info-wrapper h2"),
     },
+    body: {
+      container: document.querySelector("#dp-details"),
+      mobile: document.querySelector(".show-for-small"),
+      secondary: document.querySelector(".hide-for-small"),
+      columns: document.querySelectorAll(".hide-for-small .columns"),
+    },
+    curriculum: {
+      // NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)!
+      container: document.querySelector(".dp-curriculum"),
+      header: document
+        .querySelector(".dp-curriculum")
+        .closest(".sj-curriculum-wrapper")
+        .querySelector("h3"),
+    },
+    card: {
+      details: document.querySelector(".course-details-card"),
+      detailItems: document.querySelectorAll(".course-details-card li"),
+      link: document.querySelector(".course-details-card-link"),
+    },
+    signinText: document.querySelector(".signin"),
+    signinBtn: document.querySelector(".sj-text-sign-in"),
+    checkboxIcon: document.querySelector(".checkbox-icon"),
   };
 }
 
@@ -351,48 +376,48 @@ function styleCourseDetailsDesktop() {
   console.info("Running styleCourseDetailsDesktop");
 
   styleCourseDetails();
-  
-  const headerContainer = document.querySelector(".top-row-grey");
-  const headerFlexContainer = document.querySelector(".dp-row-flex-v2");
-  const headingFloaterText = document.querySelector(".sj-floater-text");
-  const mainHeading = document.querySelector(".break-word");
+
+  const headerContainer = document.querySelector(".top-row-grey"); // v.local.header.container
+  const headerFlexContainer = document.querySelector(".dp-row-flex-v2"); // v.local.header.flexContainer
+  const headingFloaterText = document.querySelector(".sj-floater-text"); // v.local.header.floaterText
+  const mainHeading = document.querySelector(".break-word"); // v.local.header.mainHeading
   const registerBtnWrapper = document.querySelector(
     "#purchase-button-wrapper-large"
-  );
-  const registerBtn = registerBtnWrapper.querySelector("a");
-  const mainHeadingContainer = document.querySelector(".dp-summary-wrapper");
-  const backToCatalogBtn = document.querySelector(".back-to-catalog");
-  const videoContainer = document.querySelector(".video-max");
+  ); // v.local.header.registerBtnWrapper
+  const registerBtn = registerBtnWrapper.querySelector("a"); // v.local.header.registerBtn
+  const mainHeadingContainer = document.querySelector(".dp-summary-wrapper"); // v.local.header.mainHeadingContainer
+  const backToCatalogBtn = document.querySelector(".back-to-catalog"); // v.local.header.backToCatalogBtn
+  const videoContainer = document.querySelector(".video-max"); // v.local.header.videoContainer
   const mainInfoCardContained = document.querySelector(
     ".sj-course-info-wrapper"
-  );
-  const headingParagraph = mainInfoCardContained.querySelector("h2");
+  ); // v.local.header.headingParagraphContainer
+  const headingParagraph = mainInfoCardContained.querySelector("h2"); // v.local.header.headingParagraph
 
   // SIGN IN VARIABLES (WHEN USER NOT LOGGED IN)
-  const signInHeaderText = document.querySelector(".signin");
+  const signInHeaderText = document.querySelector(".signin"); // v.local.signinText
 
   // BODY VARIABLES
-  const bodyContainer = document.querySelector("#dp-details");
-  const mobileBodyContent = document.querySelector(".show-for-small");
-  const secondaryBodyContainer = document.querySelector(".hide-for-small");
-  const bodyColumns = secondaryBodyContainer.querySelectorAll(".columns");
-  const curriculumListContainer = document.querySelector(".dp-curriculum"); // NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)!
+  const bodyContainer = document.querySelector("#dp-details"); // v.local.body.container
+  const mobileBodyContent = document.querySelector(".show-for-small"); // v.local.body.mobile
+  const secondaryBodyContainer = document.querySelector(".hide-for-small"); // v.local.body.secondary
+  const bodyColumns = secondaryBodyContainer.querySelectorAll(".columns"); // v.local.body.columns
+  const curriculumListContainer = document.querySelector(".dp-curriculum"); // v.local.curriculum.container
   const curriculumListHeader = curriculumListContainer
     .closest(".sj-curriculum-wrapper")
-    .querySelector("h3");
+    .querySelector("h3"); // v.local.curriculum.header
 
   // CARD VARIABLES
   const card = {
     details: document.querySelector(".course-details-card"),
     detailItems: document.querySelectorAll(".course-details-card li"),
     link: document.querySelector(".course-details-card-link"),
-  };
+  }; // v.local.card
 
-  const checkboxIcon = document.querySelector(".checkbox-icon");
+  const checkboxIcon = document.querySelector(".checkbox-icon"); // v.local.checkboxIcon
 
   const signInBtn = document.querySelector(
     ".header-link.login-link.sj-text-sign-in.focus-link-v2"
-  );
+  ); // v.local.signinBtn
 
   if (signInHeaderText) {
     setStyle(signInBtn, {
