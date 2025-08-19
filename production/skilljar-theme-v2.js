@@ -343,6 +343,8 @@ function styleCourseDetails() {
         ".sj-course-info-wrapper"
       ),
       headingParagraph: document.querySelector(".sj-course-info-wrapper h2"),
+      headingParagraphMobile: document.querySelector(".sj-heading-paragraph"),
+      image: document.querySelector(".dp-promo-image-wrapper"),
     },
     body: {
       container: document.querySelector("#dp-details"),
@@ -2235,45 +2237,45 @@ function styleSignupMobile() {
 function styleCourseDetailsMobile() {
   console.info("Running styleCourseDetailsMobile");
 
-  const headerContainer = document.querySelector(".top-row-grey");
-  const headerFlexContainer = document.querySelector(".dp-row-flex-v2");
-  const headingFloaterText = document.querySelector(".sj-floater-text");
-  const mainHeading = document.querySelector(".break-word");
-  const headingParagraph = document.querySelector(".sj-heading-paragraph");
-  const registerBtn = document.querySelector("#purchase-button-wrapper-large");
-  const mainHeadingContainer = document.querySelector(".dp-summary-wrapper");
+  const headerContainer = document.querySelector(".top-row-grey"); // v.local.header.container
+  const headerFlexContainer = document.querySelector(".dp-row-flex-v2"); // v.local.header.flexContainer
+  const headingFloaterText = document.querySelector(".sj-floater-text"); // v.local.header.floaterText
+  const mainHeading = document.querySelector(".break-word"); // v.local.header.mainHeading
+  const headingParagraph = document.querySelector(".sj-heading-paragraph"); // v.local.header.headingParagraphMobile
+  const registerBtn = document.querySelector("#purchase-button-wrapper-large"); // v.local.header.registerBtnWrapper
+  const mainHeadingContainer = document.querySelector(".dp-summary-wrapper"); // v.local.header.mainHeadingContainer
   const mainVideoContainer = document.querySelector(
     ".columns.large-6.text-center.dp-promo-image-wrapper"
-  );
-  const backToCatalogBtn = document.querySelector(".back-to-catalog");
-  const videoContainer = document.querySelector(".video-max");
-  const signInHeaderText = document.querySelector(".signin");
+  ); // v.local.header.image
+  const backToCatalogBtn = document.querySelector(".back-to-catalog"); // v.local.header.backToCatalogBtn
+  const videoContainer = document.querySelector(".video-max"); // v.local.header.videoContainer
+  const signInHeaderText = document.querySelector(".signin"); // v.local.signinText
   const signInBtn = document.querySelector(
     ".header-link.login-link.sj-text-sign-in.focus-link-v2"
-  );
-  const bodyContainer = document.querySelector("#dp-details");
-  const mobileBodyContent = document.querySelector(".show-for-small");
-  const secondaryBodyContainer = document.querySelector(".hide-for-small");
-  const bodyColumns = secondaryBodyContainer.querySelectorAll(".columns");
-  const curriculumListContainer = document.querySelector(".dp-curriculum"); // NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)!
+  ); // v.local.signinBtn
+  const bodyContainer = document.querySelector("#dp-details"); // v.local.body.container
+  const mobileBodyContent = document.querySelector(".show-for-small"); // v.local.body.mobile
+  const secondaryBodyContainer = document.querySelector(".hide-for-small"); // v.local.body.secondary
+  const bodyColumns = secondaryBodyContainer.querySelectorAll(".columns"); // v.local.body.columns
+  const curriculumListContainer = document.querySelector(".dp-curriculum"); // v.local.curriculum.container
   const curriculumListHeader = curriculumListContainer
     .closest(".sj-curriculum-wrapper")
-    .querySelector("h3");
+    .querySelector("h3"); // v.local.curriculum.header
   const courseDetailCardContainer = document.querySelectorAll(
     ".course-details-card"
-  )[0];
+  )[0]; // v.local.card.details
   const courseDetailCardListItems =
-    courseDetailCardContainer.querySelectorAll("li");
-  const checkboxIcon = document.querySelector(".checkbox-icon");
+    courseDetailCardContainer.querySelectorAll("li"); // v.local.card.detailItems
+  const courseDetailsCardLink = document.querySelector(
+    ".course-details-card-link"
+  ); // v.local.card.link
+  const checkboxIcon = document.querySelector(".checkbox-icon"); // v.local.checkboxIcon
   const registerBtnLink = document
     .querySelector("#purchase-button")
     .getAttribute("href");
   const registerBtnText = document.querySelector(
     ".purchase-button-full-text"
   ).textContent;
-  const courseDetailsCardLink = document.querySelector(
-    ".course-details-card-link"
-  );
 
   setStyle(v.logo, { maxHeight: "48px" });
 
