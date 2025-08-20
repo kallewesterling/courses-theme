@@ -858,7 +858,7 @@ function styleLessonDesktop() {
   }
 
   // HANDLE CLICKS
-  v.local.nav.openIcon.addEventListener("click", () => {
+  v.local.nav.toggleWrapper.addEventListener("click", () => {
     hide(v.local.icons.openIcon);
     setStyle(v.local.icons.closeIcon, { display: "inline-block" });
   });
@@ -2174,7 +2174,7 @@ function styleLessonMobile() {
     paddingTop: "0",
   });
 
-  setStyle(v.local.nav.openIcon, {
+  setStyle(v.local.nav.toggleWrapper, {
     position: "sticky",
     top: width >= 767 ? "24px" : "56px", // mobile
     zIndex: "1",
@@ -2213,7 +2213,7 @@ function styleLessonMobile() {
 
   // move elements
   v.local.body.mainContainer.append(v.local.footer.container);
-  v.local.body.innerContainer.prepend(v.local.nav.openIcon);
+  v.local.body.innerContainer.prepend(v.local.nav.toggleWrapper);
   document
     .querySelector("#lesson-main")
     .prepend(
@@ -2227,7 +2227,7 @@ function styleLessonMobile() {
 
   // HANDLE FIRST RENDER CASE WHEN EITHER NAV IS OPEN OR CLOSED
   if (document.querySelector("body").classList.contains("cbp-spmenu-open")) {
-    hide(v.local.nav.openIcon);
+    hide(v.local.icons.openIcon);
   } else {
     hide(v.local.icons.closeIcon);
   }
@@ -2235,23 +2235,23 @@ function styleLessonMobile() {
   // DEFAULT LEFT-NAV TO BE CLOSED ON OPEN
   document.querySelector("body").classList.remove("cbp-spmenu-open");
   v.local.body.leftNav.classList.remove("cbp-spmenu-open");
-  setStyle(v.local.nav.openIcon, { display: "inline-block" });
+  setStyle(v.local.icons.openIcon, { display: "inline-block" });
   hide(v.local.icons.closeIcon);
 
   // HANDLE CLICKS
-  v.local.nav.openIcon.addEventListener("click", (e) => {
+  v.local.icons.openIcon.addEventListener("click", (e) => {
     hide(e.target);
     setStyle(v.local.icons.closeIcon, { display: "inline-block" });
   });
 
   v.local.icons.closeIcon.addEventListener("click", (e) => {
     hide(e.target);
-    setStyle(v.local.nav.openIcon, { display: "inline-block" });
+    setStyle(v.local.icons.openIcon, { display: "inline-block" });
   });
 
   v.local.footer.navMobileOverlay.addEventListener("click", () => {
     hide(v.local.icons.closeIcon);
-    setStyle(v.local.nav.openIcon, { display: "inline-block" });
+    setStyle(v.local.icons.openIcon, { display: "inline-block" });
   });
 
   if (v.local.nav.backToCurriculumText) {
