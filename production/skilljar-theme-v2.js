@@ -1394,7 +1394,7 @@ function styleCurriculumPageNoCertificate() {
     },
     curriculum: {
       container: document.querySelector("#curriculum-list"),
-      outsideContaier: document.querySelector("#curriculum-list")?.closest(".content"),
+      outsideContainer: document.querySelector("#curriculum-list")?.closest(".content"),
       icons: document.querySelectorAll(".type-icon.hide-for-small"),
       lessonListItems: document.querySelectorAll(".lesson-row"),
       lessonListTitles: document.querySelectorAll(".lesson-row .title"),
