@@ -1385,16 +1385,30 @@ function styleCurriculumPageNoCertificate() {
     },
     tabs: {
       container: document.querySelector(".section-container.tabs"),
-      curriculumSection: document.querySelector(".section-container.tabs section:nth-child(1)"),
-      aboutSection: document.querySelector(".section-container.tabs section:nth-child(2)"),
-      aboutHeader: document.querySelector(".section-container.tabs section:nth-child(2) h3"),
-      curriculumHeader: document.querySelector(".section-container.tabs section:nth-child(1) h2"),
-      aboutContent: document.querySelector(".section-container.tabs section:nth-child(2) .content"),
-      curriculumContent: document.querySelector(".section-container.tabs section:nth-child(1) .content"),
+      curriculumSection: document.querySelector(
+        ".section-container.tabs section:nth-child(1)"
+      ),
+      aboutSection: document.querySelector(
+        ".section-container.tabs section:nth-child(2)"
+      ),
+      aboutHeader: document.querySelector(
+        ".section-container.tabs section:nth-child(2) h3"
+      ),
+      curriculumHeader: document.querySelector(
+        ".section-container.tabs section:nth-child(1) h2"
+      ),
+      aboutContent: document.querySelector(
+        ".section-container.tabs section:nth-child(2) .content"
+      ),
+      curriculumContent: document.querySelector(
+        ".section-container.tabs section:nth-child(1) .content"
+      ),
     },
     curriculum: {
       container: document.querySelector("#curriculum-list"),
-      outsideContainer: document.querySelector("#curriculum-list")?.closest(".content"),
+      outsideContainer: document
+        .querySelector("#curriculum-list")
+        ?.closest(".content"),
       icons: document.querySelectorAll(".type-icon.hide-for-small"),
       lessonListItems: document.querySelectorAll(".lesson-row"),
       lessonListTitles: document.querySelectorAll(".lesson-row .title"),
@@ -1406,34 +1420,28 @@ function styleCurriculumPageNoCertificate() {
       link: document.querySelector(".course-details-card-link"),
     },
     checkboxIcon: document.querySelector(".checkbox-icon"),
-  }
-}
+  };
 
-/**
- * This function applies desktop-specific styling to the curriculum page when no certificate is available.
- * It modifies the layout and appearance of various elements on the page.
- */
-function styleCurriculumPageNoCertificateDesktop() {
-  console.info("Running styleCurriculumPageNoCertificateDesktop");
-  const courseDescription = skilljarCourse.short_description; // eslint-disable-line no-undef
-
-  styleCurriculumPageNoCertificate();
-
-  // TEST
   if (initialLoadComplete) {
     v.local.tabs.curriculumSection = globalCurriculumSection;
     v.local.tabs.aboutSection = globalAboutSection;
-    v.local.tabs.container.append(v.local.tabs.curriculumSection, v.local.tabs.aboutSection);
+    v.local.tabs.container.append(
+      v.local.tabs.curriculumSection,
+      v.local.tabs.aboutSection
+    );
   }
 
-  v.local.body.mainContainer.append(...(v.local.card.details ? [v.local.card.details] : []));
+  v.local.tabs.aboutSection?.classList.add("active");
 
   // update resume button text and href (with auto-value fallback)
   if (v.local.header.ctaBtnWrapper && v.local.card.link) {
     const btnText =
-      v.local.header.ctaBtnWrapper.querySelector(".button span")?.textContent || "Resume";
+      v.local.header.ctaBtnWrapper.querySelector(".button span")?.textContent ||
+      "Resume";
     const btnHref =
-      v.local.header.ctaBtnWrapper.querySelector(".button").getAttribute("href") || "resume";
+      v.local.header.ctaBtnWrapper
+        .querySelector(".button")
+        .getAttribute("href") || "resume";
 
     v.local.card.link.textContent = btnText;
     v.local.card.link.href = btnHref;
@@ -1447,28 +1455,20 @@ function styleCurriculumPageNoCertificateDesktop() {
 
       li.prepend(iconClone);
     });
+
+    // Add vars to global
+    globalCurriculumSection = v.local.tabs.curriculumSection;
+    globalAboutSection = v.local.tabs.aboutSection;
+
+    const curriculumElements = getCurriculumElements(
+      v.local.curriculum.container
+    );
+
+    v.local.curriculum.container.innerHTML = ""; // Clear the container
+    v.local.curriculum.container.append(...curriculumElements);
   }
 
-  // content
-  v.local.header.courseInfo.textContent = courseDescription;
-
-  // update about section to be active
-  v.local.tabs.aboutSection?.classList.add("active");
-
-  setStyle(v.logo, { height: "24px" });
-
-  setStyle(v.local.body.mainContainer, {
-    display: "grid",
-    marginTop: "96px",
-    gridTemplateColumns: "minmax(100px, 760px) minmax(100px, 368px)",
-    columnGap: "24px",
-    paddingTop: "0",
-    paddingBottom: "0",
-  });
-
   setStyle(v.local.body.wrapper, { width: "100%" });
-
-  setStyle(v.local.card.details, { margin: "96px 0 46px 0" });
 
   setStyle(v.local.header.mainHeading, {
     fontWeight: "600",
@@ -1481,24 +1481,24 @@ function styleCurriculumPageNoCertificateDesktop() {
   setStyle(v.local.header.container, {
     maxWidth: "none",
     padding: "0",
-    backgroundColor: "#D0CFEE",
     border: "0",
   });
 
-  setStyle(v.local.header.mainHeadingContainer, {
-    position: "static",
-    padding: "0",
-    maxWidth: "564px",
-    border: "0",
-    textAlign: "left",
-  });
+  currentView === "desktop"
+    ? setStyle(v.local.header.container, {
+        backgroundColor: "#D0CFEE",
+        backgroundImage: "none",
+      })
+    : setStyle(v.local.header.container, {
+        backgroundImage: "linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%)",
+      });
 
   setStyle(v.local.header.ctaBtnWrapper, { marginLeft: "0", marginRight: "0" });
 
   setStyle(v.local.header.imageWrapper, {
     position: "static",
     padding: "0",
-    width: "564px",
+    width: currentView === "desktop" ? "564px" : "90%",
     height: "auto",
   });
 
@@ -1510,35 +1510,6 @@ function styleCurriculumPageNoCertificateDesktop() {
     maxWidth: "100%",
   });
 
-  setStyle(v.local.header.flexContainer, {
-    margin: "96px 0",
-    justifyContent: "center",
-    flexWrap: "nowrap",
-    gap: "24px",
-  });
-
-  setStyle([v.local.header.courseInfo, v.local.header.floaterText], { display: "block" });
-
-  setStyle(v.local.tabs.container, { margin: "0 0 46px 0" });
-
-  setStyle(v.local.tabs.curriculumSection, { marginTop: "48px" });
-
-  setStyle([v.local.tabs.aboutHeader, v.local.tabs.curriculumHeader], { fontWeight: "600" });
-
-  setStyle([v.local.tabs.aboutContent, v.local.tabs.curriculumContent], { border: "0", padding: "0" });
-
-  if (!initialLoadComplete) {
-    // Add vars to global
-    globalCurriculumSection = v.local.tabs.curriculumSection;
-    globalAboutSection = v.local.tabs.aboutSection;
-
-    const curriculumElements = getCurriculumElements(v.local.curriculum.container);
-
-    v.local.curriculum.container.innerHTML = ""; // Clear the container
-    v.local.curriculum.container.append(...curriculumElements);
-  }
-
-  // CURRICULUM ITSELF STYLING
   setStyle(v.local.curriculum.lessonListItems, {
     display: "flex",
     alignItems: "center",
@@ -1556,7 +1527,79 @@ function styleCurriculumPageNoCertificateDesktop() {
 
   setStyle(v.local.curriculum.lessonListBullets, { position: "static" });
 
-  setStyle(
+  setStyle([v.local.header.courseInfo, v.local.header.floaterText], {
+    display: "block",
+  });
+
+  setStyle(v.local.tabs.curriculumSection, { marginTop: "48px" });
+
+  setStyle([v.local.tabs.aboutHeader, v.local.tabs.curriculumHeader], {
+    fontWeight: "600",
+  });
+
+  setStyle([v.local.tabs.aboutContent, v.local.tabs.curriculumContent], {
+    border: "0",
+    padding: "0",
+  });
+
+  setStyle(v.local.tabs.container, {
+    margin: currentView === "desktop" ? "0 0 46px 0" : "96px 0 46px 0",
+  });
+
+  setStyle(v.local.header.flexContainer, {
+    margin: "96px 0",
+    justifyContent: "center",
+    flexWrap: currentView === "desktop" ? "nowrap" : "wrap",
+    gap: "24px",
+  });
+
+  currentView === "desktop"
+    ? setStyle(v.local.body.mainContainer, {
+        display: "grid",
+        marginTop: "96px",
+        gridTemplateColumns: "minmax(100px, 760px) minmax(100px, 368px)",
+        columnGap: "24px",
+        paddingTop: "0",
+        paddingBottom: "0",
+      })
+    : setStyle(v.local.body.mainContainer, {
+        display: "grid",
+        gridTemplateColumns: "1fr",
+        width: "90%",
+        columnGap: "24px",
+        paddingTop: "0",
+        paddingBottom: "0",
+      });
+
+  currentView === "desktop"
+    ? setStyle(v.local.card.details, { margin: "96px 0 46px 0" })
+    : setStyle(v.local.card.details, {
+        margin: "32px 0 56px 0",
+        justifySelf: "center",
+      });
+
+  setStyle(v.local.header.mainHeadingContainer, {
+    position: "static",
+    padding: "0",
+    maxWidth: currentView === "desktop" ? "564px" : "none",
+    border: "0",
+    textAlign: "left",
+  });
+
+  if (currentView === "mobile") {
+    setStyle(v.local.header.mainHeadingContainer, {
+      width: "90%",
+      marginBottom: "32px",
+    });
+
+    setStyle(v.footerContainer, { paddingLeft: "0", paddingRight: "0" });
+
+    setStyle(v.footerCols, { width: "212px" });
+  } else {
+    // content (TODO: should this be for all viewports?)
+    v.local.header.courseInfo.textContent = skilljarCourse.short_description; // eslint-disable-line no-undef
+
+    setStyle(
     [
       v.local.tabs.aboutSection,
       v.local.tabs.curriculumSection,
@@ -1565,10 +1608,21 @@ function styleCurriculumPageNoCertificateDesktop() {
     ],
     { padding: "0 !important" }
   );
+  }
 
-  setStyle([v.local.tabs.curriculumSection, globalCurriculumSection], {
-    marginTop: "48px !important",
-  });
+  // move elements
+  v.local.body.mainContainer.append(
+    [v.local.card.details].filter((element, index) => exists(element, index))
+  );
+  v.local.header.mainHeadingContainer.append(
+    ...[
+      v.local.header.floaterText,
+      v.local.header.mainHeading,
+      v.local.header.courseInfo,
+      v.local.header.ctaBtnWrapper,
+    ].filter((element, index) => exists(element, index))
+  );
+  v.local.tabs.container.append(v.local.tabs.curriculumSection);
 
   // hide elements
   hide([
@@ -1582,15 +1636,6 @@ function styleCurriculumPageNoCertificateDesktop() {
     v.local.tabs.curriculumSection.querySelector(".title"),
     !v.local.header.ctaBtnWrapper ? v.local.card.link : null, // Hide resume button if it doesn't exist
   ]);
-
-  // move elements
-  v.local.header.mainHeadingContainer.append(
-    ...(v.local.header.floaterText ? [v.local.header.floaterText] : []),
-    ...(v.local.header.mainHeading ? [v.local.header.mainHeading] : []),
-    ...(v.local.header.courseInfo ? [v.local.header.courseInfo] : []),
-    ...(v.local.header.ctaBtnWrapper ? [v.local.header.ctaBtnWrapper] : [])
-  );
-  v.local.tabs.container.append(v.local.tabs.curriculumSection);
 }
 
 /**
@@ -1836,185 +1881,6 @@ function styleCurriculumPageHasCertificationDesktop() {
     titleEl.style.margin = "0";
     titleEl.style.transform = "translateY(2px)";
   });
-}
-
-/**
- * This function applies mobile-specific styling to the curriculum page when no certificate is present.
- * It modifies the layout and appearance of various elements on the page.
- */
-function styleCurriculumPageNoCertificateMobile() {
-  console.info("Running styleCurriculumPageNoCertificateMobile");
-
-  styleCurriculumPageNoCertificate();
-
-  // TEST
-  if (initialLoadComplete) {
-    v.local.tabs.curriculumSection = globalCurriculumSection;
-    v.local.tabs.aboutSection = globalAboutSection;
-    v.local.tabs.container.append(v.local.tabs.curriculumSection, v.local.tabs.aboutSection);
-  }
-
-  v.local.tabs.aboutSection.classList.add("active");
-
-  setStyle(v.logo, { maxHeight: "48px" });
-
-  setStyle(v.local.body.mainContainer, {
-    display: "grid",
-    gridTemplateColumns: "1fr",
-    width: "90%",
-    columnGap: "24px",
-  });
-
-  setStyle(v.local.card.details, {
-    margin: "32px 0 56px 0",
-    justifySelf: "center",
-  });
-
-  // update resume button text and href (with auto-value fallback)
-  if (v.local.header.ctaBtnWrapper && v.local.card.link) {
-    const btnText =
-      v.local.header.ctaBtnWrapper.querySelector(".button span")?.textContent || "Resume";
-    const btnHref =
-      v.local.header.ctaBtnWrapper.querySelector(".button").getAttribute("href") || "resume";
-
-    v.local.card.link.textContent = btnText;
-    v.local.card.link.href = btnHref;
-  }
-
-  if (!initialLoadComplete) {
-    v.local.card.detailItems.forEach((li) => {
-      const iconClone = v.local.checkboxIcon.cloneNode(true);
-
-      setStyle(iconClone, { display: "block", flexShrink: "0" });
-
-      li.prepend(iconClone);
-    });
-  }
-
-  setStyle(v.local.body.wrapper, { width: "100%" });
-
-  setStyle(v.local.header.mainHeading, {
-    fontWeight: "600",
-    fontSize: "36px",
-    lineHeight: "43.2px",
-    letterSpacing: "-0.5px",
-    marginTop: "0",
-  });
-
-  setStyle(v.local.header.container, {
-    maxWidth: "none",
-    padding: "0",
-    backgroundImage: "linear-gradient(315deg,#fde1fe,#f5f6fe 72%)",
-    border: "0",
-  });
-
-  setStyle(v.local.header.mainHeadingContainer, {
-    position: "static",
-    padding: "0",
-    maxWidth: "none",
-    width: "100%",
-    marginBottom: "32px",
-    border: "0",
-    textAlign: "left",
-  });
-
-  setStyle(v.local.header.ctaBtnWrapper, {
-    marginLeft: "0",
-    marginRight: "0",
-  });
-
-  setStyle(v.local.header.imageWrapper, {
-    position: "static",
-    padding: "0",
-    width: "90%",
-    maxWidth: "564px",
-    height: "auto",
-  });
-
-  setStyle(v.local.header.imageContainer, { maxHeight: "none" });
-
-  setStyle(v.local.header.image, {
-    maxHeight: "none",
-    height: "auto",
-    maxWidth: "100%",
-  });
-
-  setStyle(v.local.header.mainHeadingContainer, { width: "90%" });
-
-  setStyle(v.local.header.flexContainer, {
-    margin: "96px 0",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    gap: "24px",
-  });
-
-  setStyle([v.local.header.courseInfo, v.local.header.floaterText], { display: "block" });
-
-  setStyle(v.local.tabs.container, { margin: "96px 0 46px 0" });
-
-  setStyle(v.local.body.mainContainer, { paddingTop: "0", paddingBottom: "0" });
-
-  setStyle(v.local.tabs.curriculumSection, { marginTop: "48px" });
-
-  setStyle([v.local.tabs.aboutHeader, v.local.tabs.curriculumHeader], { fontWeight: "600" });
-
-  setStyle([v.local.tabs.aboutContent, v.local.tabs.curriculumContent], { border: "0", padding: "0" });
-
-  if (!initialLoadComplete) {
-    // Add vars to global
-    globalCurriculumSection = v.local.tabs.curriculumSection;
-    globalAboutSection = v.local.tabs.aboutSection;
-
-    const curriculumElements = getCurriculumElements(v.local.curriculum.container);
-
-    v.local.curriculum.container.innerHTML = ""; // Clear the container
-    v.local.curriculum.container.append(...curriculumElements);
-  }
-
-  setStyle(v.local.curriculum.lessonListItems, {
-    display: "flex",
-    alignItems: "center",
-    gap: "12px",
-  });
-
-  setStyle(v.local.curriculum.lessonListTitles, {
-    position: "static",
-    color: "#1C1C1C",
-    display: "flex",
-    alignItems: "center",
-    margin: "0",
-    transform: "translateY(2px)",
-  });
-
-  setStyle(v.local.curriculum.lessonListBullets, { position: "static" });
-
-  setStyle(v.footerContainer, { paddingLeft: "0", paddingRight: "0" });
-
-  setStyle(v.footerCols, { width: "212px" });
-
-  // move elements
-  if (v.local.card.details) {
-    v.local.body.mainContainer.append(v.local.card.details);
-  }
-  v.local.header.mainHeadingContainer.append(
-    v.local.header.floaterText,
-    v.local.header.mainHeading,
-    v.local.header.courseInfo,
-    v.local.header.ctaBtnWrapper
-  );
-  v.local.tabs.container.append(v.local.tabs.curriculumSection);
-
-  // hide elements
-  hide([
-    ...v.local.curriculum.icons,
-    v.local.header.backToCatalogLink,
-    v.local.header.lessons,
-    v.local.header.progressBar,
-    v.local.tabs.aboutSection.querySelector(".title"),
-    v.local.tabs.curriculumSection.querySelector(".title"),
-    v.local.curriculum.outsideContainer.querySelector("h2"),
-    v.local.curriculum.outsideContainer.querySelector("hr"),
-  ]);
 }
 
 /**
@@ -2573,9 +2439,7 @@ function handlePageStyling() {
     currentPage.isCurriculum &&
     !document.querySelector(".cp-certificate")
   ) {
-    currentView === "desktop"
-      ? styleCurriculumPageNoCertificateDesktop()
-      : styleCurriculumPageNoCertificateMobile();
+    styleCurriculumPageNoCertificate();
   } else if (
     currentPage.isCurriculum &&
     document.querySelector(".cp-certificate")
