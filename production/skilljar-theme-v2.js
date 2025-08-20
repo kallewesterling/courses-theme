@@ -3,6 +3,7 @@ let initialLoadComplete = false;
 let globalCurriculumSection, globalAboutSection;
 let width;
 let v = {
+  body: document.querySelector("body"),
   logo: document.querySelector(".header-center-img"),
   footerContainer: document.querySelector("#footer-container"),
   footerCols: document.querySelectorAll(
@@ -737,6 +738,7 @@ function styleLesson() {
         internalCourseWarning: document.querySelector(
           "#internal-course-warning"
         ),
+        links: document.querySelectorAll("sjwc-lesson-content-item a"),
       },
     },
     nav: {
@@ -749,6 +751,8 @@ function styleLesson() {
       container: document.querySelector("#curriculum-list-2"),
       backToCurriculumText: document.querySelector("#left-nav-return-text"),
       links: document.querySelectorAll("#curriculum-list-2 a"),
+      linkIcons: document.querySelectorAll("#curriculum-list-2 a .type-icon"),
+      lessonRows: document.querySelectorAll("#curriculum-list-2 .lesson-row"),
       sectionTitles: document.querySelectorAll(
         "#curriculum-list-2 .section-title"
       ),
@@ -764,22 +768,17 @@ function styleLesson() {
       navMobileOverlay: document.querySelector("#lpLeftNavBackground"),
     },
   };
-}
 
-/**
- * This function applies desktop-specific styling to the lesson page.
- */
-function styleLessonDesktop() {
-  console.info("Running styleLessonDesktop");
-
-  styleLesson();
+  // content
+  v.local.nav.backToCurriculumText
+    ? (v.local.nav.backToCurriculumText.textContent = "Back to Course Overview")
+    : null;
 
   setStyle(v.local.lesson.innerContainer, {
     maxWidth: "712px",
     margin: "0 auto",
   });
 
-  // STYLING TO ALIGN NAV ICON TO LEFT CORNER AND STICKY
   setStyle(v.local.body.mainContainer, {
     position: "relative",
     display: "flex",
@@ -794,6 +793,25 @@ function styleLessonDesktop() {
     maxWidth: "none",
   });
 
+  currentView === "desktop"
+    ? setStyle(v.local.body.leftNav, {
+        backgroundColor: "#f9f9f9",
+        width: "320px",
+        position: "absolute",
+        marginBottom: "0px",
+      })
+    : setStyle(v.local.body.leftNav, {
+        backgroundColor: "#f9f9f9",
+        width: "320px",
+        position: "fixed",
+        height: "100%",
+        paddingBottom: "40px",
+      });
+
+  currentView === "mobile"
+    ? setStyle(v.local.nav.toggleWrapper, { overflowX: "clip" })
+    : null;
+
   setStyle(v.local.lesson.mainContainer, {
     position: "relative",
     zIndex: "0",
@@ -802,14 +820,21 @@ function styleLessonDesktop() {
 
   setStyle(v.local.nav.toggleWrapper, {
     position: "sticky",
-    top: "12px",
     zIndex: "1",
-    float: "none",
+    top: currentView === "desktop" ? "12px" : width >= 767 ? "24px" : "56px",
+    float: currentView === "desktop" ? "none" : "right",
   });
+  currentView === "mobile"
+    ? setStyle(v.local.nav.toggleWrapper, { paddingRight: "12px" })
+    : null;
+
+  currentView === "desktop"
+    ? setStyle(v.local.body.mainContainer, { overflowY: "auto" })
+    : null;
 
   setStyle([v.local.icons.openIcon, v.local.icons.closeIcon], {
     padding: "12px",
-    border: "none",
+    border: currentView === "desktop" ? "none" : "1px solid gainsboro",
     borderRadius: "8px",
     background: "rgba(255, 255, 255, .8)",
     backdropFilter: "blur(1.5px)",
@@ -821,20 +846,70 @@ function styleLessonDesktop() {
     backgroundColor: "transparent",
   });
 
-  setStyle(v.local.body.leftNav, {
-    position: "absolute",
-    backgroundColor: "#f9f9f9",
-    width: "320px",
-    marginBottom: "0px", // desktop
-  });
+  setStyle(v.local.nav.container, { paddingBottom: "32px" });
 
   setStyle(v.local.body.mainContainer, {
     height: "100vh",
     paddingBottom: "0",
-    overflowY: "auto", // desktop
   });
 
-  setStyle(v.local.nav.container, { paddingBottom: "32px" });
+  setStyle(v.local.lesson.content.lessonRows, {
+    display: "flex",
+    flexDirection: "row-reverse",
+    justifyContent: "space-between",
+    margin: "0 12px",
+    paddingLeft: "12px",
+    paddingRight: "12px",
+    fontSize: "14px",
+    lineHeight: "20px",
+  });
+
+  setStyle(v.local.nav.links, {
+    color: currentView === "desktop" ? "#14003d" : "#1c1c1c",
+    cursor: "pointer",
+  });
+
+  setStyle(v.local.nav.sectionTitles, {
+    backgroundColor: "transparent",
+    padding: "12px",
+    paddingLeft: "24px",
+    paddingRight: "24px",
+    marginTop: "12px",
+    marginBottom: "12px",
+    border: "0",
+    fontFamily: currentView === "desktop" ? "Fusiona" : "Space Mono",
+    fontSize: currentView === "desktop" ? "16px" : "12px",
+    fontWeight: "700",
+  });
+
+  currentView === "desktop"
+    ? setStyle(v.local.nav.sectionTitles, {
+        textTransform: "uppercase",
+        letterSpacing: ".05em",
+      })
+    : null;
+
+  currentView === "desktop"
+    ? setStyle(v.local.footer.prevBtn, {
+        color: "#14003d",
+      })
+    : null;
+
+  currentView === "mobile"
+    ? setStyle(v.footerContainer, {
+        marginTop: "0", // mobile
+        paddingLeft: "0", // mobile
+        paddingRight: "0", // mobile
+      })
+    : setStyle(v.footerContainer, {
+        paddingLeft: "40px",
+        paddingRight: "40px",
+      });
+
+  setStyle(v.footerCols, { width: "270px" });
+
+  // Makes lesson links pop up in new tab
+  v.local.lesson.content.links.forEach((el) => (el.target = "_blank"));
 
   // move elements
   v.local.body.mainContainer.append(v.local.footer.container);
@@ -842,81 +917,44 @@ function styleLessonDesktop() {
   document
     .querySelector("#lesson-main")
     .prepend(
-      ...[v.local.lesson.content.internalCourseWarning].filter((element, index) =>
-        exists(element, index)
+      ...[v.local.lesson.content.internalCourseWarning].filter(
+        (element, index) => exists(element, index)
       )
     );
 
   // hide elements
-  hide([v.local.nav.fullScreenBtn, v.local.icons.searchIcon, v.local.nav.navText]);
+  hide([
+    v.local.nav.fullScreenBtn,
+    v.local.icons.searchIcon,
+    v.local.nav.navText,
+    ...v.local.lesson.content.linkIcons,
+    v.body.classList.contains("cbp-spmenu-open")
+      ? v.local.icons.openIcon
+      : v.local.icons.closeIcon,
+  ]);
 
-  // HANDLE FIRST RENDER CASE WHEN EITHER NAV IS OPEN OR CLOSED
-  if (document.querySelector("body").classList.contains("cbp-spmenu-open")) {
-    hide(v.local.icons.openIcon);
-  } else {
-    hide(v.local.icons.closeIcon);
-  }
+  v.body.classList.remove("cbp-spmenu-open");
+  v.local.body.leftNav.classList.remove("cbp-spmenu-open");
+  toggle("close")();
 
-  // HANDLE CLICKS
-  v.local.nav.toggleWrapper.addEventListener("click", () => {
-    hide(v.local.icons.openIcon);
-    setStyle(v.local.icons.closeIcon, { display: "inline-block" });
-  });
+  // handle clicks
+  v.local.nav.openIcon.addEventListener("click", toggle("open"));
 
-  v.local.icons.closeIcon.addEventListener("click", () => {
-    hide(v.local.icons.closeIcon);
-    setStyle(v.local.icons.openIcon, { display: "inline-block" });
-  });
+  v.local.icons.closeIcon.addEventListener("click", toggle("close"));
 
-  // STYLING OF THE LEFT NAV LINKS
-  if (v.local.nav.backToCurriculumText) {
-    v.local.nav.backToCurriculumText.textContent = "Back to Course Overview";
-  }
+  v.local.footer.navMobileOverlay.addEventListener("click", toggle("close"));
 
-  // STYLE EACH OF THE LESSON LINKS
-  v.local.nav.links.forEach((link) => {
-    const pageIcon = link.querySelector(".type-icon");
-    const lessonLinkContainer = link.querySelector(".lesson-row");
+  processCodeBlocks(v.local.lesson.content.codeBlocks);
+}
 
-    setStyle(link, {
-      color: "#14003d",
-      cursor: "pointer",
-    });
-
-    setStyle(lessonLinkContainer, {
-      display: "flex",
-      flexDirection: "row-reverse",
-      justifyContent: "space-between",
-      margin: "0 12px",
-      paddingLeft: "12px",
-      paddingRight: "12px",
-      fontSize: "14px",
-      lineHeight: "20px",
-    });
-
-    hide(pageIcon);
-  });
-
-  v.local.nav.sectionTitles.forEach((title) => {
-    setStyle(title, {
-      backgroundColor: "transparent",
-      padding: "12px",
-      paddingLeft: "24px",
-      paddingRight: "24px",
-      marginTop: "12px",
-      marginBottom: "12px",
-      border: "0",
-      fontFamily: "Fusiona",
-      fontSize: "16px",
-      fontWeight: "700",
-    });
-  });
-
-  v.local.lesson.content.codeBlocks
+function processCodeBlocks(codeBlocks) {
+  return codeBlocks
     .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
     .forEach((el) => {
       const codeEl = el.querySelector("code");
-      const iconClone = v.local.nav.copyIcon.cloneNode(true);
+      const iconClone = Object.assign(v.local.nav.copyIcon.cloneNode(true), {
+        style: `display: block; cursor: pointer;`,
+      });
 
       setStyle(el, {
         padding: "0",
@@ -936,36 +974,14 @@ function styleLessonDesktop() {
         .replace(/\r?\n\$ /g, " && ")
         .replace(/^\$ /g, "");
 
-      const container = document.createElement("div");
-
-      setStyle(container, {
-        display: "flex",
-        justifyContent: "end",
-        borderBottom: "1px solid gainsboro",
-        padding: "12px 24px",
+      const container = Object.assign(document.createElement("div"), {
+        style: `display: flex; justify-content: end; border-bottom: 1px solid gainsboro; padding: 12px 24px;`,
       });
 
-      setStyle(iconClone, {
-        display: "block",
-        cursor: "pointer",
-      });
-
-      // CREATE 'COPIED' TOOLTIP
+      // create 'copied' tooltip
       const tooltipContainer = Object.assign(document.createElement("div"), {
         textContent: "Copied",
-      });
-
-      setStyle(tooltipContainer, {
-        position: "absolute",
-        top: "-24px",
-        right: "10px",
-        textShadow: "none",
-        backgroundColor: "#1c1c1c",
-        color: "#fff",
-        padding: "5px 10px",
-        borderRadius: "4px",
-        opacity: "0",
-        transition: "opacity .2s ease-in",
+        style: `position: absolute; top: -24px; right: 10px; text-shadow: none; background-color: #1c1c1c; color: #fff; padding: 5px 10px; border-radius: 4px; opacity: 0; transition: opacity .2s ease-in;`,
       });
 
       // add elements
@@ -979,26 +995,21 @@ function styleLessonDesktop() {
         toClipboard(copyText, tooltipContainer)
       );
 
-      el.dataset.copyAdded = "true"; // Mark that copy icon was added to this code block
+      // Mark that copy icon was added to this code block
+      el.dataset.copyAdded = "true";
     });
+}
 
-  // Makes lesson links pop up in new tab
-  v.local.lesson.content.container
-    .querySelectorAll("a")
-    .forEach((el) => (el.target = "_blank"));
-
-  setStyle(v.local.footer.prevBtn, {
-    color: "#14003d",
-  });
-
-  setStyle(v.footerContainer, {
-    paddingLeft: "40px",
-    paddingRight: "40px",
-  });
-
-  v.footerCols.forEach((col) => {
-    setStyle(col, { width: "270px" });
-  });
+function toggle(state) {
+  return async () => {
+    if (state === "open") {
+      hide(v.local.icons.openIcon);
+      setStyle(v.local.icons.closeIcon, { display: "inline-block" });
+    } else if (state === "close") {
+      hide(v.local.icons.closeIcon);
+      setStyle(v.local.icons.openIcon, { display: "inline-block" });
+    }
+  };
 }
 
 const getLoginSignupSelectors = () => ({
@@ -2139,252 +2150,6 @@ function styleCurriculumPageHasCertificateMobile() {
 }
 
 /**
- * This function applies mobile-specific styling to the lesson page.
- * It modifies the layout and appearance of various elements on the page.
- * It also handles the positioning of the internal course warning.
- */
-function styleLessonMobile() {
-  console.info("Running styleLessonMobile with setStyle");
-
-  styleLesson();
-
-  setStyle(v.local.lesson.innerContainer, {
-    maxWidth: "712px",
-    margin: "0 auto",
-  });
-
-  setStyle(v.local.body.mainContainer, {
-    position: "relative",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-  });
-
-  setStyle(v.local.body.contentContainer, { height: "auto" });
-
-  setStyle(v.local.body.innerContainer, {
-    margin: "0",
-    maxWidth: "none",
-    overflowX: "clip", // mobile
-  });
-
-  setStyle(v.local.lesson.mainContainer, {
-    position: "relative",
-    zIndex: "0",
-    paddingTop: "0",
-  });
-
-  setStyle(v.local.nav.toggleWrapper, {
-    position: "sticky",
-    top: width >= 767 ? "24px" : "56px", // mobile
-    zIndex: "1",
-    paddingRight: "12px", // mobile
-    float: "right", // mobile
-  });
-
-  setStyle([v.local.icons.openIcon, v.local.icons.closeIcon], {
-    padding: "12px",
-    border: "1px solid gainsboro", // mobile
-    borderRadius: "8px",
-    background: "rgba(255, 255, 255, .8)",
-    backdropFilter: "blur(1.5px)",
-  });
-
-  setStyle(v.local.footer.container, {
-    position: "relative",
-    border: "0",
-    backgroundColor: "transparent",
-  });
-
-  setStyle(v.local.body.leftNav, {
-    position: "fixed", // mobile
-    backgroundColor: "#f9f9f9",
-    width: "320px",
-    height: "100%", // mobile
-    paddingBottom: "40px", // mobile
-  });
-
-  setStyle(v.local.body.mainContainer, {
-    height: "100vh",
-    paddingBottom: "0",
-  });
-
-  setStyle(v.local.nav.container, { paddingBottom: "32px" });
-
-  // move elements
-  v.local.body.mainContainer.append(v.local.footer.container);
-  v.local.body.innerContainer.prepend(v.local.nav.toggleWrapper);
-  document
-    .querySelector("#lesson-main")
-    .prepend(
-      ...[v.local.lesson.content.internalCourseWarning].filter((element, index) =>
-        exists(element, index)
-      )
-    );
-
-  // hide elements
-  hide([v.local.nav.fullScreenBtn, v.local.icons.searchIcon, v.local.nav.navText]);
-
-  // HANDLE FIRST RENDER CASE WHEN EITHER NAV IS OPEN OR CLOSED
-  if (document.querySelector("body").classList.contains("cbp-spmenu-open")) {
-    hide(v.local.icons.openIcon);
-  } else {
-    hide(v.local.icons.closeIcon);
-  }
-
-  // DEFAULT LEFT-NAV TO BE CLOSED ON OPEN
-  document.querySelector("body").classList.remove("cbp-spmenu-open");
-  v.local.body.leftNav.classList.remove("cbp-spmenu-open");
-  setStyle(v.local.icons.openIcon, { display: "inline-block" });
-  hide(v.local.icons.closeIcon);
-
-  // HANDLE CLICKS
-  v.local.icons.openIcon.addEventListener("click", (e) => {
-    hide(e.target);
-    setStyle(v.local.icons.closeIcon, { display: "inline-block" });
-  });
-
-  v.local.icons.closeIcon.addEventListener("click", (e) => {
-    hide(e.target);
-    setStyle(v.local.icons.openIcon, { display: "inline-block" });
-  });
-
-  v.local.footer.navMobileOverlay.addEventListener("click", () => {
-    hide(v.local.icons.closeIcon);
-    setStyle(v.local.icons.openIcon, { display: "inline-block" });
-  });
-
-  if (v.local.nav.backToCurriculumText) {
-    v.local.nav.backToCurriculumText.textContent = "Back to Course Overview";
-  }
-
-  // STYLE EACH OF THE LESSON LINKS
-  v.local.nav.links.forEach((link) => {
-    const pageIcon = link.querySelector(".type-icon");
-    const lessonLinkContainer = link.querySelector(".lesson-row");
-
-    setStyle(link, {
-      color: "#1C1C1C", // mobile
-      cursor: "pointer",
-    });
-
-    setStyle(lessonLinkContainer, {
-      display: "flex",
-      flexDirection: "row-reverse",
-      justifyContent: "space-between",
-      margin: "0 12px",
-      paddingLeft: "12px",
-      paddingRight: "12px",
-      fontSize: "14px",
-      lineHeight: "20px",
-    });
-
-    hide(pageIcon);
-  });
-
-  v.local.nav.sectionTitles.forEach((title) =>
-    setStyle(title, {
-      backgroundColor: "transparent",
-      padding: "12px",
-      paddingLeft: "24px",
-      paddingRight: "24px",
-      marginTop: "12px",
-      marginBottom: "12px",
-      border: "0",
-      fontFamily: "Space Mono", // mobile
-      fontSize: "12px", // mobile
-      textTransform: "uppercase", // mobile
-      letterSpacing: ".05em", // mobile
-    })
-  );
-
-  v.local.lesson.content.codeBlocks
-    .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
-    .forEach((el) => {
-      const codeEl = el.querySelector("code");
-      const iconClone = v.local.nav.copyIcon.cloneNode(true);
-
-      setStyle(el, {
-        padding: "0",
-        overflow: "visible",
-        position: "relative",
-      });
-
-      setStyle(codeEl, {
-        display: "inline-block",
-        padding: "24px !important",
-        overflowX: "scroll",
-        width: "100%",
-      });
-
-      const copyText = codeEl.textContent
-        .trim()
-        .replace(/\r?\n\$ /g, " && ")
-        .replace(/^\$ /g, "");
-
-      const container = document.createElement("div");
-
-      setStyle(container, {
-        display: "flex",
-        justifyContent: "end",
-        borderBottom: "1px solid gainsboro",
-        padding: "12px 24px",
-      });
-
-      setStyle(iconClone, {
-        display: "block",
-        cursor: "pointer",
-      });
-
-      container.append(iconClone);
-
-      // CREATE 'COPIED' TOOLTIP
-      const tooltipContainer = document.createElement("div");
-      tooltipContainer.textContent = "Copied";
-
-      setStyle(tooltipContainer, {
-        position: "absolute",
-        top: "-24px",
-        right: "10px",
-        textShadow: "none",
-        backgroundColor: "#1c1c1c",
-        color: "#fff",
-        padding: "5px 10px",
-        borderRadius: "4px",
-        opacity: "0",
-        transition: "opacity .2s ease-in",
-      });
-
-      // add elements
-      el.append(tooltipContainer);
-      el.prepend(container);
-
-      // add event listener to cloned icon to copy block into clipboard
-      iconClone.addEventListener(
-        "click",
-        toClipboard(copyText, tooltipContainer)
-      );
-
-      el.dataset.copyAdded = "true"; // Mark that copy icon was added to this code block
-    });
-
-  // Makes lesson links pop up in new tab
-  v.local.lesson.content.container
-    .querySelectorAll("a")
-    .forEach((el) => (el.target = "_blank"));
-
-  setStyle(v.footerContainer, {
-    marginTop: "0", // mobile
-    paddingLeft: "0", // mobile
-    paddingRight: "0", // mobile
-  });
-
-  v.footerCols.forEach((col) => {
-    setStyle(col, { width: "270px" });
-  });
-}
-
-/**
  * This function handles the styling of various pages based on the current view (desktop or mobile).
  * It applies specific styles to different page types such as course details, catalog, login,
  * sign-up, curriculum, and lessons pages.
@@ -2414,7 +2179,7 @@ function handlePageStyling() {
       ? styleCurriculumPageHasCertificationDesktop()
       : styleCurriculumPageHasCertificateMobile();
   } else if (currentPage.isLesson) {
-    currentView === "desktop" ? styleLessonDesktop() : styleLessonMobile();
+    styleLesson();
   } else if (currentPage.isCatalog) {
     styleCatalog();
   }
