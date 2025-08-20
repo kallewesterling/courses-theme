@@ -740,7 +740,7 @@ function styleLesson() {
       },
     },
     nav: {
-      openIcon: document.querySelector("#left-nav-button"),
+      toggleWrapper: document.querySelector("#left-nav-button"),
       hamburgerIcon: document.querySelector(".fa.fa-bars"),
       xIcon: document.querySelector(".fa.fa-times"),
       copyIcon: document.querySelector(".copy-icon"),
@@ -800,7 +800,7 @@ function styleLessonDesktop() {
     paddingTop: "0",
   });
 
-  setStyle(v.local.nav.openIcon, {
+  setStyle(v.local.nav.toggleWrapper, {
     position: "sticky",
     top: "12px",
     zIndex: "1",
@@ -838,7 +838,7 @@ function styleLessonDesktop() {
 
   // move elements
   v.local.body.mainContainer.append(v.local.footer.container);
-  v.local.body.innerContainer.prepend(v.local.nav.openIcon);
+  v.local.body.innerContainer.prepend(v.local.nav.toggleWrapper);
   document
     .querySelector("#lesson-main")
     .prepend(
@@ -859,13 +859,13 @@ function styleLessonDesktop() {
 
   // HANDLE CLICKS
   v.local.nav.openIcon.addEventListener("click", () => {
-    hide(v.local.nav.openIcon);
+    hide(v.local.icons.openIcon);
     setStyle(v.local.icons.closeIcon, { display: "inline-block" });
   });
 
   v.local.icons.closeIcon.addEventListener("click", () => {
     hide(v.local.icons.closeIcon);
-    setStyle(v.local.nav.openIcon, { display: "inline-block" });
+    setStyle(v.local.icons.openIcon, { display: "inline-block" });
   });
 
   // STYLING OF THE LEFT NAV LINKS
