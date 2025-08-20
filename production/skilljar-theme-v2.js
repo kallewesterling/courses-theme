@@ -1612,7 +1612,7 @@ function styleCurriculumPageNoCertificate() {
 
   // move elements
   v.local.body.mainContainer.append(
-    [v.local.card.details].filter((element, index) => exists(element, index))
+    ...[v.local.card.details].filter((element, index) => exists(element, index))
   );
   v.local.header.mainHeadingContainer.append(
     ...[
