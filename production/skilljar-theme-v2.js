@@ -1,4 +1,3 @@
-const lessonView = {};
 let currentView = "";
 let initialLoadComplete = false;
 let globalCurriculumSection, globalAboutSection;
@@ -717,93 +716,98 @@ function stylePathCatalogPageStylingDesktop() {
   hide(topContentContainer);
 }
 
+function styleLesson() {
+  console.info("Running styleLesson");
+
+  v.local = {
+    body: {
+      mainContainer: document.querySelector("#lp-wrapper"),
+      leftNav: document.querySelector("#lp-left-nav"),
+      contentContainer: document.querySelector("#lp-content"),
+      innerContainer: document.querySelector("#lesson-body"),
+    },
+    lesson: {
+      innerContainer: document.querySelector("#lesson-main-inner"),
+      mainContainer: document.querySelector("#lesson-main"),
+      content: {
+        container: document.querySelector("sjwc-lesson-content-item"),
+        codeBlocks: new Array(
+          ...document.querySelectorAll("pre:has(code):not(.language-ansi)")
+        ),
+        internalCourseWarning: document.querySelector(
+          "#internal-course-warning"
+        ),
+      },
+    },
+    nav: {
+      openIcon: document.querySelector("#left-nav-button"),
+      hamburgerIcon: document.querySelector(".fa.fa-bars"),
+      xIcon: document.querySelector(".fa.fa-times"),
+      copyIcon: document.querySelector(".copy-icon"),
+      fullScreenBtn: document.querySelector(".toggle-fullscreen"),
+      navText: document.querySelector(".burger-text.sj-text-lessons"),
+      container: document.querySelector("#curriculum-list-2"),
+      backToCurriculumText: document.querySelector("#left-nav-return-text"),
+      links: document.querySelectorAll("#curriculum-list-2 a"),
+      sectionTitles: document.querySelectorAll(
+        "#curriculum-list-2 .section-title"
+      ),
+    },
+    icons: {
+      openIcon: document.querySelector(".fa.fa-bars"),
+      searchIcon: document.querySelector(".fa.fa-search"),
+      closeIcon: document.querySelector(".fa.fa-times"),
+    },
+    footer: {
+      container: document.querySelector("#lp-footer"),
+      prevBtn: document.querySelector(".button-prev-title span"),
+      navMobileOverlay: document.querySelector("#lpLeftNavBackground"),
+    },
+  };
+}
+
 /**
  * This function applies desktop-specific styling to the lesson page.
  */
 function styleLessonDesktop() {
   console.info("Running styleLessonDesktop");
 
-  const internalCourseWarning = document.querySelector(
-    "#internal-course-warning"
-  );
+  styleLesson();
 
-  const leftNav = document.querySelector("#lp-left-nav");
-  const mainLessonContentContainer = document.querySelector("#lp-wrapper");
-  const mainLessonContentSubContainer = document.querySelector("#lp-content");
-  const mainLessonInnerContainer = document.querySelector("#lesson-body");
-  const mainLessonMainContainer = document.querySelector("#lesson-main");
-
-  const lessonFooter = document.querySelector("#lp-footer");
-  const navOpenIcon = document.querySelector("#left-nav-button");
-  const hamburgerIcon = navOpenIcon.querySelector(".fa.fa-bars");
-  const xIcon = navOpenIcon.querySelector(".fa.fa-times");
-
-  const fullScreenBtn = document.querySelector(".toggle-fullscreen");
-
-  const lessonInnerContainer = document.querySelector("#lesson-main-inner");
-  const copyIcon = document.querySelector(".copy-icon");
-  const lessonContentContainer = document.querySelector(
-    "sjwc-lesson-content-item"
-  );
-  const parentEl = document.querySelector(".sj-page-lesson");
-
-  const openIcon = document.querySelector(".fa.fa-bars");
-  const searchIcon = document.querySelector(".fa.fa-search");
-  const closeIcon = document.querySelector(".fa.fa-times");
-  const navText = document.querySelector(".burger-text.sj-text-lessons");
-
-  const lessonNavLinksContainer = document.querySelector("#curriculum-list-2");
-  const backToCurriculumEl = document.querySelector("#left-nav-return-text");
-  const links = lessonNavLinksContainer.querySelectorAll("a");
-  const sectionTitles =
-    lessonNavLinksContainer.querySelectorAll(".section-title");
-
-  lessonView.codeBlocks = new Array(
-    ...document.querySelectorAll("pre:has(code):not(.language-ansi)")
-  );
-
-  const prevBtn = document.querySelector(".button-prev-title span");
-
-  setStyle(v.logo, {
-    height: "24px",
-  });
-
-  setStyle(lessonInnerContainer, {
+  setStyle(v.local.lesson.innerContainer, {
     maxWidth: "712px",
     margin: "0 auto",
   });
 
   // STYLING TO ALIGN NAV ICON TO LEFT CORNER AND STICKY
-  setStyle(mainLessonContentContainer, {
+  setStyle(v.local.body.mainContainer, {
     position: "relative",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
   });
 
-  setStyle(mainLessonContentSubContainer, {
-    height: "auto",
-  });
+  setStyle(v.local.body.contentContainer, { height: "auto" });
 
-  setStyle(mainLessonInnerContainer, {
+  setStyle(v.local.body.innerContainer, {
     margin: "0",
     maxWidth: "none",
   });
 
-  setStyle(mainLessonMainContainer, {
+  setStyle(v.local.lesson.mainContainer, {
     position: "relative",
     zIndex: "0",
     paddingTop: "0",
   });
 
-  setStyle(navOpenIcon, {
+  setStyle(v.local.nav.openIcon, {
     position: "sticky",
     top: "12px",
     zIndex: "1",
     float: "none",
   });
 
-  setStyle([hamburgerIcon, xIcon], {
+  setStyle([v.local.icons.openIcon, v.local.icons.closeIcon], {
     padding: "12px",
     border: "none",
     borderRadius: "8px",
@@ -811,64 +815,66 @@ function styleLessonDesktop() {
     backdropFilter: "blur(1.5px)",
   });
 
-  setStyle(lessonFooter, {
+  setStyle(v.local.footer.container, {
     position: "relative",
     border: "0",
     backgroundColor: "transparent",
   });
 
-  setStyle(leftNav, {
+  setStyle(v.local.body.leftNav, {
     position: "absolute",
     backgroundColor: "#f9f9f9",
     width: "320px",
-    marginBottom: "0px",
+    marginBottom: "0px", // desktop
   });
 
-  setStyle(mainLessonContentContainer, {
+  setStyle(v.local.body.mainContainer, {
     height: "100vh",
-    overflowY: "auto",
     paddingBottom: "0",
+    overflowY: "auto", // desktop
   });
+
+  setStyle(v.local.nav.container, { paddingBottom: "32px" });
 
   // move elements
-  mainLessonContentContainer.append(lessonFooter);
-  mainLessonInnerContainer.prepend(navOpenIcon);
-  if (internalCourseWarning) {
-    document.querySelector("#lesson-main").prepend(internalCourseWarning);
-  }
+  v.local.body.mainContainer.append(v.local.footer.container);
+  v.local.body.innerContainer.prepend(v.local.nav.openIcon);
+  document
+    .querySelector("#lesson-main")
+    .prepend(
+      ...[v.local.lesson.content.internalCourseWarning].filter((element, index) =>
+        exists(element, index)
+      )
+    );
 
   // hide elements
-  hide(fullScreenBtn);
-  hide(searchIcon);
-  hide(navText);
+  hide([v.local.nav.fullScreenBtn, v.local.icons.searchIcon, v.local.nav.navText]);
 
   // HANDLE FIRST RENDER CASE WHEN EITHER NAV IS OPEN OR CLOSED
-  if (parentEl.classList.contains("cbp-spmenu-open")) {
-    hide(openIcon);
+  if (document.querySelector("body").classList.contains("cbp-spmenu-open")) {
+    hide(v.local.nav.openIcon);
   } else {
-    hide(closeIcon);
+    hide(v.local.icons.closeIcon);
   }
 
   // HANDLE CLICKS
-  openIcon.addEventListener("click", (e) => {
+  v.local.nav.openIcon.addEventListener("click", (e) => {
     hide(e.target);
-    setStyle(closeIcon, { display: "inline-block" });
+    setStyle(v.local.icons.closeIcon, { display: "inline-block" });
   });
 
-  closeIcon.addEventListener("click", (e) => {
+  v.local.icons.closeIcon.addEventListener("click", (e) => {
     hide(e.target);
-    setStyle(openIcon, { display: "inline-block" });
+    setStyle(v.local.nav.openIcon, { display: "inline-block" });
   });
 
   // STYLING OF THE LEFT NAV LINKS
-  if (backToCurriculumEl) {
-    backToCurriculumEl.textContent = "Back to Course Overview";
+  if (v.local.nav.backToCurriculumText) {
+    v.local.nav.backToCurriculumText.textContent = "Back to Course Overview";
   }
 
-  setStyle(lessonNavLinksContainer, { paddingBottom: "32px" });
-
   // STYLE EACH OF THE LESSON LINKS
-  links.forEach((link) => {
+  v.local.nav.links.forEach((link) => {
     const pageIcon = link.querySelector(".type-icon");
     const lessonLinkContainer = link.querySelector(".lesson-row");
 
@@ -891,8 +897,7 @@ function styleLessonDesktop() {
     hide(pageIcon);
   });
 
-  // STYLE EACH OF THE LESSON LINK HEADER (THE MODULE NAMES)
-  sectionTitles.forEach((title) => {
+  v.local.nav.sectionTitles.forEach((title) => {
     setStyle(title, {
       backgroundColor: "transparent",
       padding: "12px",
@@ -907,13 +912,11 @@ function styleLessonDesktop() {
     });
   });
 
-  // HANDLE CODE BLOCK CUSTOM STYLING
-
-  lessonView.codeBlocks
+  v.local.lesson.content.codeBlocks
     .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
     .forEach((el) => {
       const codeEl = el.querySelector("code");
-      const iconClone = copyIcon.cloneNode(true);
+      const iconClone = v.local.nav.copyIcon.cloneNode(true);
 
       setStyle(el, {
         padding: "0",
@@ -980,11 +983,11 @@ function styleLessonDesktop() {
     });
 
   // Makes lesson links pop up in new tab
-  lessonContentContainer
+  v.local.lesson.content.container
     .querySelectorAll("a")
     .forEach((el) => (el.target = "_blank"));
 
-  setStyle(prevBtn, {
+  setStyle(v.local.footer.prevBtn, {
     color: "#14003d",
   });
 
@@ -1600,14 +1603,14 @@ function styleCurriculumPageNoCertificate() {
     v.local.header.courseInfo.textContent = skilljarCourse.short_description; // eslint-disable-line no-undef
 
     setStyle(
-    [
-      v.local.tabs.aboutSection,
-      v.local.tabs.curriculumSection,
-      globalAboutSection,
-      globalCurriculumSection,
-    ],
-    { padding: "0 !important" }
-  );
+      [
+        v.local.tabs.aboutSection,
+        v.local.tabs.curriculumSection,
+        globalAboutSection,
+        globalCurriculumSection,
+      ],
+      { padding: "0 !important" }
+    );
   }
 
   // move elements
@@ -2143,164 +2146,125 @@ function styleCurriculumPageHasCertificateMobile() {
 function styleLessonMobile() {
   console.info("Running styleLessonMobile with setStyle");
 
-  const internalCourseWarning = document.querySelector(
-    "#internal-course-warning"
-  );
+  styleLesson();
 
-  const leftNav = document.querySelector("#lp-left-nav");
-  const mainLessonContentContainer = document.querySelector("#lp-wrapper");
-  const mainLessonContentSubContainer = document.querySelector("#lp-content");
-  const mainLessonInnerContainer = document.querySelector("#lesson-body");
-  const mainLessonMainContainer = document.querySelector("#lesson-main");
-
-  const lessonFooter = document.querySelector("#lp-footer");
-  const navOpenIcon = document.querySelector("#left-nav-button");
-  const hamburgerIcon = navOpenIcon.querySelector(".fa.fa-bars");
-  const xIcon = navOpenIcon.querySelector(".fa.fa-times");
-  const leftNavMobileOverlay = document.querySelector("#lpLeftNavBackground");
-  const fullScreenBtn = document.querySelector(".toggle-fullscreen");
-
-  const lessonInnerContainer = document.querySelector("#lesson-main-inner");
-  const copyIcon = document.querySelector(".copy-icon");
-  const lessonContentContainer = document.querySelector(
-    "sjwc-lesson-content-item"
-  );
-  const parentEl = document.querySelector(".sj-page-lesson");
-
-  const openIcon = document.querySelector(".fa.fa-bars");
-  const searchIcon = document.querySelector(".fa.fa-search");
-  const closeIcon = document.querySelector(".fa.fa-times");
-  const navText = document.querySelector(".burger-text.sj-text-lessons");
-
-  const lessonNavLinksContainer = document.querySelector("#curriculum-list-2");
-  const backToCurriculumEl = document.querySelector("#left-nav-return-text");
-  const links = lessonNavLinksContainer.querySelectorAll("a");
-  const sectionTitles =
-    lessonNavLinksContainer.querySelectorAll(".section-title");
-
-  lessonView.codeBlocks = new Array(
-    ...document.querySelectorAll("pre:has(code):not(.language-ansi)")
-  );
-
-  setStyle(v.logo, { height: "48px" });
-
-  setStyle(lessonInnerContainer, {
+  setStyle(v.local.lesson.innerContainer, {
     maxWidth: "712px",
     margin: "0 auto",
   });
 
-  setStyle(mainLessonContentContainer, {
+  setStyle(v.local.body.mainContainer, {
     position: "relative",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
   });
 
-  setStyle(mainLessonContentSubContainer, { height: "auto" });
+  setStyle(v.local.body.contentContainer, { height: "auto" });
 
-  setStyle(mainLessonInnerContainer, {
+  setStyle(v.local.body.innerContainer, {
     margin: "0",
     maxWidth: "none",
-    overflowX: "clip",
+    overflowX: "clip", // mobile
   });
 
-  setStyle(mainLessonMainContainer, {
+  setStyle(v.local.lesson.mainContainer, {
     position: "relative",
     zIndex: "0",
     paddingTop: "0",
   });
 
-  setStyle(navOpenIcon, {
+  setStyle(v.local.nav.openIcon, {
     position: "sticky",
-    top: width >= 767 ? "24px" : "56px",
+    top: width >= 767 ? "24px" : "56px", // mobile
     zIndex: "1",
-    paddingRight: "12px",
-    float: "right",
+    paddingRight: "12px", // mobile
+    float: "right", // mobile
   });
 
-  setStyle([hamburgerIcon, xIcon], {
+  setStyle([v.local.icons.openIcon, v.local.icons.closeIcon], {
     padding: "12px",
-    border: "1px solid gainsboro",
+    border: "1px solid gainsboro", // mobile
     borderRadius: "8px",
     background: "rgba(255, 255, 255, .8)",
     backdropFilter: "blur(1.5px)",
   });
 
-  setStyle(lessonFooter, {
+  setStyle(v.local.footer.container, {
     position: "relative",
     border: "0",
     backgroundColor: "transparent",
   });
 
-  setStyle(leftNav, {
-    position: "fixed",
+  setStyle(v.local.body.leftNav, {
+    position: "fixed", // mobile
     backgroundColor: "#f9f9f9",
     width: "320px",
-    height: "100%",
-    paddingBottom: "40px",
+    height: "100%", // mobile
+    paddingBottom: "40px", // mobile
   });
 
-  setStyle(mainLessonContentContainer, {
+  setStyle(v.local.body.mainContainer, {
     height: "100vh",
     paddingBottom: "0",
   });
 
-  setStyle(v.footerContainer, { marginTop: "0" });
+  setStyle(v.local.nav.container, { paddingBottom: "32px" });
 
   // move elements
-  mainLessonContentContainer.append(lessonFooter);
-  mainLessonInnerContainer.prepend(navOpenIcon);
-  if (internalCourseWarning) {
-    document.querySelector("#lesson-main").prepend(internalCourseWarning);
-  }
+  v.local.body.mainContainer.append(v.local.footer.container);
+  v.local.body.innerContainer.prepend(v.local.nav.openIcon);
+  document
+    .querySelector("#lesson-main")
+    .prepend(
+      ...[v.local.lesson.content.internalCourseWarning].filter((element, index) =>
+        exists(element, index)
+      )
+    );
 
   // hide elements
-  hide(fullScreenBtn);
-  hide(searchIcon);
-  hide(navText);
+  hide([v.local.nav.fullScreenBtn, v.local.icons.searchIcon, v.local.nav.navText]);
 
   // HANDLE FIRST RENDER CASE WHEN EITHER NAV IS OPEN OR CLOSED
-  if (parentEl.classList.contains("cbp-spmenu-open")) {
-    hide(openIcon);
+  if (document.querySelector("body").classList.contains("cbp-spmenu-open")) {
+    hide(v.local.nav.openIcon);
   } else {
-    hide(closeIcon);
+    hide(v.local.icons.closeIcon);
   }
 
   // DEFAULT LEFT-NAV TO BE CLOSED ON OPEN
   document.querySelector("body").classList.remove("cbp-spmenu-open");
-  leftNav.classList.remove("cbp-spmenu-open");
-  openIcon.style.display = "inline-block";
-  hide(closeIcon);
+  v.local.body.leftNav.classList.remove("cbp-spmenu-open");
+  setStyle(v.local.nav.openIcon, { display: "inline-block" });
+  hide(v.local.icons.closeIcon);
 
   // HANDLE CLICKS
-  openIcon.addEventListener("click", (e) => {
+  v.local.nav.openIcon.addEventListener("click", (e) => {
     hide(e.target);
-    setStyle(closeIcon, { display: "inline-block" });
+    setStyle(v.local.icons.closeIcon, { display: "inline-block" });
   });
 
-  closeIcon.addEventListener("click", (e) => {
+  v.local.icons.closeIcon.addEventListener("click", (e) => {
     hide(e.target);
-    setStyle(openIcon, { display: "inline-block" });
+    setStyle(v.local.nav.openIcon, { display: "inline-block" });
   });
 
-  leftNavMobileOverlay.addEventListener("click", () => {
-    hide(closeIcon);
-    setStyle(openIcon, { display: "inline-block" });
+  v.local.footer.navMobileOverlay.addEventListener("click", () => {
+    hide(v.local.icons.closeIcon);
+    setStyle(v.local.nav.openIcon, { display: "inline-block" });
   });
 
-  if (backToCurriculumEl) {
-    backToCurriculumEl.textContent = "Back to Course Overview";
+  if (v.local.nav.backToCurriculumText) {
+    v.local.nav.backToCurriculumText.textContent = "Back to Course Overview";
   }
 
-  setStyle(lessonNavLinksContainer, { paddingBottom: "32px" });
-
   // STYLE EACH OF THE LESSON LINKS
-  links.forEach((link) => {
+  v.local.nav.links.forEach((link) => {
     const pageIcon = link.querySelector(".type-icon");
     const lessonLinkContainer = link.querySelector(".lesson-row");
 
     setStyle(link, {
-      color: "#1C1C1C",
+      color: "#1C1C1C", // mobile
       cursor: "pointer",
     });
 
@@ -2318,8 +2282,7 @@ function styleLessonMobile() {
     hide(pageIcon);
   });
 
-  // STYLE EACH OF THE LESSON LINK HEADER (THE MODULE NAMES)
-  sectionTitles.forEach((title) =>
+  v.local.nav.sectionTitles.forEach((title) =>
     setStyle(title, {
       backgroundColor: "transparent",
       padding: "12px",
@@ -2328,20 +2291,18 @@ function styleLessonMobile() {
       marginTop: "12px",
       marginBottom: "12px",
       border: "0",
-      fontFamily: "Space Mono",
-      fontSize: "12px",
-      textTransform: "uppercase",
-      letterSpacing: ".05em",
+      fontFamily: "Space Mono", // mobile
+      fontSize: "12px", // mobile
+      textTransform: "uppercase", // mobile
+      letterSpacing: ".05em", // mobile
     })
   );
 
-  // HANDLE CODE BLOCK CUSTOM STYLING
-
-  lessonView.codeBlocks
+  v.local.lesson.content.codeBlocks
     .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
     .forEach((el) => {
       const codeEl = el.querySelector("code");
-      const iconClone = copyIcon.cloneNode(true);
+      const iconClone = v.local.nav.copyIcon.cloneNode(true);
 
       setStyle(el, {
         padding: "0",
@@ -2408,11 +2369,15 @@ function styleLessonMobile() {
     });
 
   // Makes lesson links pop up in new tab
-  lessonContentContainer
+  v.local.lesson.content.container
     .querySelectorAll("a")
     .forEach((el) => (el.target = "_blank"));
 
-  setStyle(v.footerContainer, { paddingLeft: "0", paddingRight: "0" });
+  setStyle(v.footerContainer, {
+    marginTop: "0", // mobile
+    paddingLeft: "0", // mobile
+    paddingRight: "0", // mobile
+  });
 
   v.footerCols.forEach((col) => {
     setStyle(col, { width: "270px" });
