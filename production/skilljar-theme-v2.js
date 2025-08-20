@@ -852,19 +852,19 @@ function styleLessonDesktop() {
 
   // HANDLE FIRST RENDER CASE WHEN EITHER NAV IS OPEN OR CLOSED
   if (document.querySelector("body").classList.contains("cbp-spmenu-open")) {
-    hide(v.local.nav.openIcon);
+    hide(v.local.icons.openIcon);
   } else {
     hide(v.local.icons.closeIcon);
   }
 
   // HANDLE CLICKS
-  v.local.nav.openIcon.addEventListener("click", (e) => {
-    hide(e.target);
+  v.local.nav.openIcon.addEventListener("click", () => {
+    hide(v.local.nav.openIcon);
     setStyle(v.local.icons.closeIcon, { display: "inline-block" });
   });
 
-  v.local.icons.closeIcon.addEventListener("click", (e) => {
-    hide(e.target);
+  v.local.icons.closeIcon.addEventListener("click", () => {
+    hide(v.local.icons.closeIcon);
     setStyle(v.local.nav.openIcon, { display: "inline-block" });
   });
 
