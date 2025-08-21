@@ -42,7 +42,7 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
         currentSection,
         isHeader,
         elem.textContent.replace("optional", "").trim(),
-        elem.getAttribute("href") || null,
+        elem.href || null,
         elem.querySelector(".bullet i"),
       ];
     });
@@ -314,19 +314,6 @@ function styleCatalog() {
   }
 }
 
-// debug function (can be replaced with a simple `Boolean`)
-function exists(element, index) {
-  if (element !== null && element !== undefined) {
-    return true;
-  } else {
-    console.warn(
-      `setStyle: skipped non-element item ${index} in header append`,
-      element
-    );
-    return false;
-  }
-}
-
 /**
  * This function applies general styling to the course details page.
  */
@@ -542,7 +529,7 @@ function styleCourseDetails() {
         v.local.header.mainHeading,
         v.local.header.courseInfo,
         v.local.header.ctaBtnWrapper,
-      ].filter((d, ix) => exists(d, ix))
+      ].filter(Boolean)
     );
   }
 }
@@ -661,7 +648,7 @@ function stylePathCourseDetails() {
         v.local.header.mainHeading,
         v.local.header.courseInfo,
         v.local.header.ctaBtnWrapper,
-      ].filter((element, index) => exists(element, index))
+      ].filter(Boolean)
     );
   }
 
@@ -917,9 +904,7 @@ function styleLesson() {
   document
     .querySelector("#lesson-main")
     .prepend(
-      ...[v.local.lesson.content.internalCourseWarning].filter(
-        (element, index) => exists(element, index)
-      )
+      ...[v.local.lesson.content.internalCourseWarning].filter(Boolean)
     );
 
   // hide elements
@@ -1626,7 +1611,7 @@ function styleCurriculumPageNoCertificate() {
 
   // move elements
   v.local.body.mainContainer.append(
-    ...[v.local.card.details].filter((element, index) => exists(element, index))
+    ...[v.local.card.details].filter(Boolean)
   );
   v.local.header.mainHeadingContainer.append(
     ...[
@@ -1634,7 +1619,7 @@ function styleCurriculumPageNoCertificate() {
       v.local.header.mainHeading,
       v.local.header.courseInfo,
       v.local.header.ctaBtnWrapper,
-    ].filter((element, index) => exists(element, index))
+    ].filter(Boolean)
   );
   v.local.tabs.container.append(v.local.tabs.curriculumSection);
 
