@@ -149,7 +149,7 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
       if (section.bullets[ix])
         a.prepend(
           Object.assign(section.bullets[ix], {
-            style: `display: inline-block; font-size: 1.5em; transform: translateY(3px); padding-right: 5px; color: #3443f4;`,
+            style: `display: inline-block; font-size: 1.5em; transform: translateY(3px); margin-right: 10px; color: #3443f4;`,
           })
         );
 
