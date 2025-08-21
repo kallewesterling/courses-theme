@@ -1,5 +1,7 @@
 let initialLoadComplete = false;
 
+const c = (selector) => (document.querySelector(selector) ? true : false);
+
 const currentPage = {
   isCatalog: c(".sj-page-catalog-root"),
   isCurriculum: c(".sj-page-curriculum"),
@@ -10,7 +12,6 @@ const currentPage = {
   isPageDetail: c(".sj-page-detail-bundle.sj-page-detail-path"),
   isPageCatalog: c(".sj-page-series.sj-page-path"),
 };
-
 
 let v = {
   viewport: "", // "mobile" or "desktop"
@@ -32,8 +33,6 @@ let v = {
       : document.querySelector("#skilljar-content"),
   },
 };
-
-const c = (selector) => (document.querySelector(selector) ? true : false);
 
 function getCurriculumElements(curriculumParentContainer, border = "b") {
   let currentSection = 0,
