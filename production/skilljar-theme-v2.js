@@ -927,7 +927,7 @@ function styleLesson() {
     v.local.nav.fullScreenBtn,
     v.local.icons.searchIcon,
     v.local.nav.navText,
-    ...v.local.lesson.content.linkIcons,
+    ...v.local.lesson.nav.linkIcons,
     v.body.classList.contains("cbp-spmenu-open")
       ? v.local.icons.openIcon
       : v.local.icons.closeIcon,
