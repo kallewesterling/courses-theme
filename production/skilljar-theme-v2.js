@@ -154,18 +154,28 @@ function setStyle(target, style) {
 
   const apply = (el) => {
     for (const [prop, raw] of Object.entries(style)) {
+      const cssProp = toKebab(prop);
+
+      // If undefined → unset
+      if (raw === undefined) {
+        el.style.removeProperty(cssProp);
+        continue;
+      }
+
       let value = String(raw);
       let priority = "";
+
       if (/\s*!important\s*$/i.test(value)) {
         priority = "important";
         value = value.replace(/\s*!important\s*$/i, "");
       }
-      if (value.trim())
-        el.style.setProperty(toKebab(prop), value.trim(), priority);
+
+      if (value.trim()) {
+        el.style.setProperty(cssProp, value.trim(), priority);
+      }
     }
     return el;
   };
-
   // selector string → first match
   if (typeof target === "string") {
     const el = document.querySelector(target);
