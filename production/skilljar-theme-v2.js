@@ -926,6 +926,7 @@ function processCodeBlocks(codeBlocks) {
         padding: "0",
         overflow: "visible",
         position: "relative",
+        width: "100%",
       });
 
       setStyle(codeEl, {
