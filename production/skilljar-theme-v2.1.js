@@ -178,6 +178,7 @@ function setStyle(target, style) {
     }
     return el;
   };
+
   // selector string → first match
   if (typeof target === "string") {
     const el = document.querySelector(target);
