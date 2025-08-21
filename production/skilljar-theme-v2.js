@@ -938,7 +938,7 @@ function styleLesson() {
   toggle("close")();
 
   // handle clicks
-  v.local.nav.openIcon.addEventListener("click", toggle("open"));
+  v.local.icons.openIcon.addEventListener("click", toggle("open"));
 
   v.local.icons.closeIcon.addEventListener("click", toggle("close"));
 
