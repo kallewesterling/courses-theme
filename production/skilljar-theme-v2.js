@@ -488,9 +488,6 @@ function styleCourseDetails() {
   }
 
   if (v.viewport === "mobile") {
-    // footer on mobile
-    v.global.footerCols.forEach((col) => setStyle(col, { width: "212px" }));
-
     // logo on mobile
     setStyle(v.global.logo, { maxHeight: "48px" });
 
@@ -876,8 +873,6 @@ function styleLesson() {
       })
     : null;
 
-  setStyle(v.global.footerCols, { width: "270px" });
-
   // Makes lesson links pop up in new tab
   v.local.lesson.content.links.forEach((el) => (el.target = "_blank"));
 
@@ -1172,10 +1167,6 @@ function styleLogin() {
 
   setStyle(v.local.loginContent, { border: "0" });
 
-  setStyle(v.global.footerCols, {
-    width: v.viewport === "desktop" ? "270px" : "212px",
-  });
-
   // move elements
   v.local.loginForm.append(v.local.termsAndServices);
 
@@ -1286,10 +1277,6 @@ function styleSignup() {
     border: `2px solid ${v.viewport === "desktop" ? "#3443f4" : "#DCDCDC"}`,
     padding: v.viewport === "desktop" ? "20px 15px" : "12px",
     lineHeight: "24px",
-  });
-
-  setStyle(v.global.footerCols, {
-    width: v.viewport === "desktop" ? "270px" : "212px",
   });
 
   v.viewport === "desktop"
@@ -1554,8 +1541,6 @@ function styleCurriculumPageNoCertificate() {
       width: "90%",
       marginBottom: "32px",
     });
-
-    setStyle(v.global.footerCols, { width: "212px" });
   } else {
     // content (TODO: should this be for all viewports?)
     v.local.header.courseInfo.textContent = skilljarCourse.short_description; // eslint-disable-line no-undef
@@ -2083,9 +2068,7 @@ function styleCurriculumPageHasCertificationMobile() {
   });
 
   // FOOTER STYLING
-  v.global.footerCols.forEach((col) => {
-    col.style.width = "212px";
-  });
+  setStyle(v.global.footerCols, { width: "212px" });
 
   hide([...pageIcons]);
 }
@@ -2138,6 +2121,10 @@ function render() {
     display: "flex",
     paddingLeft: v.viewport === "desktop" ? "40px" : "0",
     paddingRight: v.viewport === "desktop" ? "40px" : "0",
+  });
+
+  setStyle(v.global.footerCols, {
+    width: v.viewport === "desktop" ? "270px" : "212px",
   });
 
   v.viewport === "mobile" && currentPage.isLesson
