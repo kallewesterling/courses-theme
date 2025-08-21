@@ -1,14 +1,22 @@
-let currentView = "";
 let initialLoadComplete = false;
 let globalCurriculumSection, globalAboutSection;
-let width;
 let v = {
-  body: document.querySelector("body"),
-  logo: document.querySelector(".header-center-img"),
-  footerContainer: document.querySelector("#footer-container"),
-  footerCols: document.querySelectorAll(
-    "#footer-container .global-footer-column"
-  ),
+  viewport: "", // "mobile" or "desktop"
+  width: 0, // current viewport width
+
+  // elements
+  global: {
+    body: document.querySelector("body"),
+    logo: document.querySelector(".header-center-img"),
+    footerContainer: document.querySelector("#footer-container"),
+    footerCols: document.querySelectorAll(
+      "#footer-container .global-footer-column"
+    ),
+    epFooter: document.querySelector("#ep-footer"),
+    contentContainer: currentPage.isLesson
+      ? document.querySelector(".sj-page-lesson")
+      : document.querySelector("#skilljar-content"),
+  },
 };
 
 const c = (selector) => (document.querySelector(selector) ? true : false);
@@ -272,21 +280,6 @@ function styleGroupHeading(groupHeadingContainer, border = "b") {
 }
 
 /**
- * This function inserts the footer into the page.
- */
-function insertFooter() {
-  const contentContainer = currentPage.isLesson
-    ? document.querySelector(".sj-page-lesson")
-    : document.querySelector("#skilljar-content");
-
-  setStyle(v.footerContainer, { display: "flex" });
-
-  if (currentPage.isLesson && currentView === "mobile") hide(v.footerContainer);
-
-  contentContainer.append(v.footerContainer);
-}
-
-/**
  * This function applies desktop-specific styling to the catalog page.
  */
 function styleCatalog() {
@@ -340,14 +333,13 @@ function styleCourseDetails() {
       mobile: document.querySelector(".show-for-small"),
       secondary: document.querySelector(".hide-for-small"),
       columns: document.querySelectorAll(".hide-for-small .columns"),
+      h3: document.querySelectorAll(".hide-for-small .columns h3"),
     },
     curriculum: {
-      // NOTE: THERE ARE 2 DP-CURRICULUMS. ONE IS DESKTOP AND OTHER IS FOR MOBILE (STILL TABED)!
-      container: document.querySelector(".dp-curriculum"),
-      header: document
-        .querySelector(".dp-curriculum")
-        .closest(".sj-curriculum-wrapper")
-        .querySelector("h3"),
+      container: document.querySelectorAll(".dp-curriculum")[0], // note: this is the desktop version
+      header: document.querySelector(
+        ".sj-curriculum-wrapper:has(.dp-curriculum) h3"
+      ),
     },
     card: {
       details: document.querySelector(".course-details-card"),
@@ -376,13 +368,13 @@ function styleCourseDetails() {
     backgroundColor: "#D0CFEE",
     margin: "0",
     maxWidth: "none",
-    paddingTop: currentView === "desktop" ? "96px" : "48px",
-    paddingBottom: currentView === "desktop" ? "96px" : "48px",
+    paddingTop: v.viewport === "desktop" ? "96px" : "48px",
+    paddingBottom: v.viewport === "desktop" ? "96px" : "48px",
     border: "0",
   });
 
   setStyle(v.local.header.flexContainer, {
-    flexDirection: currentView === "desktop" ? "row-reverse" : "column-reverse",
+    flexDirection: v.viewport === "desktop" ? "row-reverse" : "column-reverse",
     flexWrap: "nowrap",
     justifyContent: "start",
     gap: "24px",
@@ -391,8 +383,8 @@ function styleCourseDetails() {
 
   setStyle(v.local.header.mainHeadingContainer, {
     border: "0",
-    maxWidth: currentView === "desktop" ? "564px" : "none",
-    width: currentView === "desktop" ? "auto" : "100%",
+    maxWidth: v.viewport === "desktop" ? "564px" : "none",
+    width: v.viewport === "desktop" ? "auto" : "100%",
   });
 
   setStyle(v.local.header.floaterText, {
@@ -410,8 +402,8 @@ function styleCourseDetails() {
 
   setStyle(v.local.header.videoContainer, {
     maxWidth: "none",
-    paddingLeft: currentView === "desktop" ? "0px" : "15px",
-    paddingRight: currentView === "desktop" ? "0px" : "15px",
+    paddingLeft: v.viewport === "desktop" ? "0px" : "15px",
+    paddingRight: v.viewport === "desktop" ? "0px" : "15px",
   });
 
   setStyle(v.local.header.courseInfo, {
@@ -428,30 +420,26 @@ function styleCourseDetails() {
   setStyle(v.local.body.container, {
     padding: "0",
     margin:
-      currentView === "desktop"
-        ? "96px auto 46px auto"
-        : "72px auto -10px auto",
+      v.viewport === "desktop" ? "96px auto 46px auto" : "72px auto -10px auto",
     maxWidth: "min(1152px, 90%)",
     display: "grid",
     gridTemplateColumns:
-      currentView === "desktop"
+      v.viewport === "desktop"
         ? "minmax(100px, 760px) minmax(100px, 368px)"
         : "1fr",
     columnGap: "24px",
   });
 
-  v.local.body.columns.forEach((column) => {
-    setStyle(column, {
-      float: "none",
-      padding: "0",
-      width: "100%",
-      display: "block",
-      marginBottom: column.classList.contains("large-7") ? "48px" : "0",
-    });
+  setStyle(v.local.body.h3, { fontWeight: "600" });
 
-    setStyle(column.querySelector("h3"), { fontWeight: "600" });
+  setStyle(v.local.curriculum.container, { margin: "0" });
 
-    setStyle(column.querySelector(".dp-curriculum"), { margin: "0" });
+  setStyle(v.local.body.columns, {
+    float: "none",
+    padding: "0",
+    width: "100%",
+    display: "block",
+    marginBottom: "48px",
   });
 
   setStyle(v.local.card.details, {
@@ -487,18 +475,12 @@ function styleCourseDetails() {
     v.local.card.link.setAttribute("href", btnHref);
   }
 
-  if (currentView === "mobile") {
+  if (v.viewport === "mobile") {
     // footer on mobile
-
-    setStyle(v.footerContainer, {
-      paddingLeft: "0",
-      paddingRight: "0",
-    });
-
-    v.footerCols.forEach((col) => setStyle(col, { width: "212px" }));
+    v.global.footerCols.forEach((col) => setStyle(col, { width: "212px" }));
 
     // logo on mobile
-    setStyle(v.logo, { maxHeight: "48px" });
+    setStyle(v.global.logo, { maxHeight: "48px" });
 
     // header image on mobile
     setStyle(v.local.header.image, {
@@ -780,7 +762,7 @@ function styleLesson() {
     maxWidth: "none",
   });
 
-  currentView === "desktop"
+  v.viewport === "desktop"
     ? setStyle(v.local.body.leftNav, {
         backgroundColor: "#f9f9f9",
         width: "320px",
@@ -795,7 +777,7 @@ function styleLesson() {
         paddingBottom: "40px",
       });
 
-  currentView === "mobile"
+  v.viewport === "mobile"
     ? setStyle(v.local.nav.toggleWrapper, { overflowX: "clip" })
     : null;
 
@@ -808,20 +790,20 @@ function styleLesson() {
   setStyle(v.local.nav.toggleWrapper, {
     position: "sticky",
     zIndex: "1",
-    top: currentView === "desktop" ? "12px" : width >= 767 ? "24px" : "56px",
-    float: currentView === "desktop" ? "none" : "right",
+    top: v.viewport === "desktop" ? "12px" : v.width >= 767 ? "24px" : "56px",
+    float: v.viewport === "desktop" ? "none" : "right",
   });
-  currentView === "mobile"
+  v.viewport === "mobile"
     ? setStyle(v.local.nav.toggleWrapper, { paddingRight: "12px" })
     : null;
 
-  currentView === "desktop"
+  v.viewport === "desktop"
     ? setStyle(v.local.body.mainContainer, { overflowY: "auto" })
     : null;
 
   setStyle([v.local.icons.openIcon, v.local.icons.closeIcon], {
     padding: "12px",
-    border: currentView === "desktop" ? "none" : "1px solid gainsboro",
+    border: v.viewport === "desktop" ? "none" : "1px solid gainsboro",
     borderRadius: "8px",
     background: "rgba(255, 255, 255, .8)",
     backdropFilter: "blur(1.5px)",
@@ -852,7 +834,7 @@ function styleLesson() {
   });
 
   setStyle(v.local.nav.links, {
-    color: currentView === "desktop" ? "#14003d" : "#1c1c1c",
+    color: v.viewport === "desktop" ? "#14003d" : "#1c1c1c",
     cursor: "pointer",
   });
 
@@ -864,36 +846,25 @@ function styleLesson() {
     marginTop: "12px",
     marginBottom: "12px",
     border: "0",
-    fontFamily: currentView === "desktop" ? "Fusiona" : "Space Mono",
-    fontSize: currentView === "desktop" ? "16px" : "12px",
+    fontFamily: v.viewport === "desktop" ? "Fusiona" : "Space Mono",
+    fontSize: v.viewport === "desktop" ? "16px" : "12px",
     fontWeight: "700",
   });
 
-  currentView === "desktop"
+  v.viewport === "desktop"
     ? setStyle(v.local.nav.sectionTitles, {
         textTransform: "uppercase",
         letterSpacing: ".05em",
       })
     : null;
 
-  currentView === "desktop"
+  v.viewport === "desktop"
     ? setStyle(v.local.footer.prevBtn, {
         color: "#14003d",
       })
     : null;
 
-  currentView === "mobile"
-    ? setStyle(v.footerContainer, {
-        marginTop: "0", // mobile
-        paddingLeft: "0", // mobile
-        paddingRight: "0", // mobile
-      })
-    : setStyle(v.footerContainer, {
-        paddingLeft: "40px",
-        paddingRight: "40px",
-      });
-
-  setStyle(v.footerCols, { width: "270px" });
+  setStyle(v.global.footerCols, { width: "270px" });
 
   // Makes lesson links pop up in new tab
   v.local.lesson.content.links.forEach((el) => (el.target = "_blank"));
@@ -903,9 +874,7 @@ function styleLesson() {
   v.local.body.innerContainer.prepend(v.local.nav.toggleWrapper);
   document
     .querySelector("#lesson-main")
-    .prepend(
-      ...[v.local.lesson.content.internalCourseWarning].filter(Boolean)
-    );
+    .prepend(...[v.local.lesson.content.internalCourseWarning].filter(Boolean));
 
   // hide elements
   hide([
@@ -913,12 +882,12 @@ function styleLesson() {
     v.local.icons.searchIcon,
     v.local.nav.navText,
     ...v.local.nav.linkIcons,
-    v.body.classList.contains("cbp-spmenu-open")
+    v.global.body.classList.contains("cbp-spmenu-open")
       ? v.local.icons.openIcon
       : v.local.icons.closeIcon,
   ]);
 
-  v.body.classList.remove("cbp-spmenu-open");
+  v.global.body.classList.remove("cbp-spmenu-open");
   v.local.body.leftNav.classList.remove("cbp-spmenu-open");
   toggle("close")();
 
@@ -1022,11 +991,11 @@ const getLoginSignupSelectors = () => ({
   ),
 
   inputs: {
-    login: document.querySelector("#id_login"), // login
-    password: document.querySelector("#id_password"), // login
-    password1: document.querySelector("#id_password1"), // signup
-    password2: document.querySelector("#id_password2"), // signup
-    email: document.querySelector("#id_email"), // signup
+    login: document.querySelector("#id_login"), // login specific
+    password: document.querySelector("#id_password"), // login specific
+    password1: document.querySelector("#id_password1"), // signup specific
+    password2: document.querySelector("#id_password2"), // signup specific
+    email: document.querySelector("#id_email"), // signup specific
   },
 
   loginTab: document.querySelector("#login-tab-left"),
@@ -1089,7 +1058,7 @@ function styleLogin() {
     alignItems: "center",
   });
 
-  currentView === "desktop"
+  v.viewport === "desktop"
     ? setStyle(v.local.loginTab, {
         border: "0",
         textDecoration: "underline",
@@ -1109,7 +1078,7 @@ function styleLogin() {
         borderRadius: "100px",
       });
 
-  currentView === "desktop"
+  v.viewport === "desktop"
     ? setStyle(v.local.signupTabText, {
         color: "rgba(52, 67, 244, .4)",
         fontWeight: "700",
@@ -1124,32 +1093,32 @@ function styleLogin() {
       });
 
   setStyle([v.local.loginContentContainer, v.local.altMethodCol], {
-    width: currentView === "desktop" ? "50%" : "100%",
+    width: v.viewport === "desktop" ? "50%" : "100%",
   });
 
   setStyle(v.local.altMethodContainer, { paddingBottom: "0" });
 
   setStyle(v.local.altMethodUl, {
-    padding: currentView === "desktop" ? "0 0 0 125px;" : "0",
+    padding: v.viewport === "desktop" ? "0 0 0 125px;" : "0",
   });
 
-  currentView === "desktop"
+  v.viewport === "desktop"
     ? setStyle(v.local.altMethodLi, { padding: "0" })
     : null;
 
   setStyle([v.local.inputs.login, v.local.inputs.password], {
     borderRadius: "4px",
-    border: `2px solid ${currentView === "desktop" ? "#3443f4" : "#DCDCDC"}`,
-    padding: currentView === "desktop" ? "20px 15px" : "12px",
+    border: `2px solid ${v.viewport === "desktop" ? "#3443f4" : "#DCDCDC"}`,
+    padding: v.viewport === "desktop" ? "20px 15px" : "12px",
     fontSize: "14px",
     lineHeight: "24px",
   });
 
-  currentView === "mobile"
+  v.viewport === "mobile"
     ? setStyle(v.local.inputs.password, { marginBottom: "24px" })
     : null;
 
-  currentView === "desktop"
+  v.viewport === "desktop"
     ? setStyle([v.local.loginBtn, v.local.forgotPassword], {
         fontSize: "16px",
         fontFamily: "Space Mono",
@@ -1157,14 +1126,14 @@ function styleLogin() {
       })
     : null;
 
-  currentView === "mobile"
+  v.viewport === "mobile"
     ? setStyle(v.local.forgotPassword, {
         fontSize: "16px",
         marginBottom: "2px",
       })
     : null;
 
-  currentView === "desktop"
+  v.viewport === "desktop"
     ? setStyle(v.local.loginBtn, {
         width: "368px",
         height: "48px",
@@ -1190,13 +1159,8 @@ function styleLogin() {
 
   setStyle(v.local.loginContent, { border: "0" });
 
-  setStyle(v.footerContainer, {
-    paddingLeft: currentView === "desktop" ? "40px" : "0",
-    paddingRight: currentView === "desktop" ? "40px" : "0",
-  });
-
-  setStyle(v.footerCols, {
-    width: currentView === "desktop" ? "270px" : "212px",
+  setStyle(v.global.footerCols, {
+    width: v.viewport === "desktop" ? "270px" : "212px",
   });
 
   // move elements
@@ -1263,7 +1227,7 @@ function styleSignup() {
   });
 
   setStyle([v.local.loginContentContainer, v.local.altMethodCol], {
-    width: currentView === "desktop" ? "50%" : "100%",
+    width: v.viewport === "desktop" ? "50%" : "100%",
   });
 
   setStyle(v.local.altMethodContainer, { paddingBottom: "0" });
@@ -1290,7 +1254,7 @@ function styleSignup() {
 
   setStyle(v.local.googleBtn, {
     background: "linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%)",
-    width: currentView === "desktop" ? "auto" : "100%",
+    width: v.viewport === "desktop" ? "auto" : "100%",
     textAlign: "center",
   });
 
@@ -1306,21 +1270,16 @@ function styleSignup() {
 
   setStyle(v.local.allInputs, {
     borderRadius: "4px",
-    border: `2px solid ${currentView === "desktop" ? "#3443f4" : "#DCDCDC"}`,
-    padding: currentView === "desktop" ? "20px 15px" : "12px",
+    border: `2px solid ${v.viewport === "desktop" ? "#3443f4" : "#DCDCDC"}`,
+    padding: v.viewport === "desktop" ? "20px 15px" : "12px",
     lineHeight: "24px",
   });
 
-  setStyle(v.footerCols, {
-    width: currentView === "desktop" ? "270px" : "212px",
+  setStyle(v.global.footerCols, {
+    width: v.viewport === "desktop" ? "270px" : "212px",
   });
 
-  setStyle(v.footerContainer, {
-    paddingLeft: currentView === "desktop" ? "40px" : "0",
-    paddingRight: currentView === "desktop" ? "40px" : "0",
-  });
-
-  currentView === "desktop"
+  v.viewport === "desktop"
     ? setStyle(v.local.signupBtn, {
         width: "368px",
         height: "48px",
@@ -1337,7 +1296,7 @@ function styleSignup() {
         fontSize: "16px",
       });
 
-  if (currentView === "desktop") {
+  if (v.viewport === "desktop") {
     setStyle(v.local.altMethodCol, { paddingLeft: "100px" });
 
     setStyle(v.local.altMethodUl, { paddingLeft: "25px" });
@@ -1375,6 +1334,7 @@ function styleCurriculumPageNoCertificate() {
       courseInfo: document.querySelector(".sj-heading-paragraph"),
       ctaBtnWrapper: document.querySelector("#resume-button"),
       ctaBtn: document.querySelector("#resume-button a"),
+      ctaBtnText: document.querySelector("#resume-button a span"),
       backToCatalogLink: document.querySelector(".back-to-catalog"),
       lessons: document.querySelector(".cp-lessons"),
       progressBar: document.querySelector(".progress-bar"),
@@ -1383,31 +1343,27 @@ function styleCurriculumPageNoCertificate() {
       image: document.querySelector(".cp-promo-image img"),
     },
     tabs: {
-      container: document.querySelector(".section-container.tabs"),
-      curriculumSection: document.querySelector(
-        ".section-container.tabs section:nth-child(1)"
-      ),
-      aboutSection: document.querySelector(
-        ".section-container.tabs section:nth-child(2)"
-      ),
-      aboutHeader: document.querySelector(
-        ".section-container.tabs section:nth-child(2) h3"
-      ),
-      curriculumHeader: document.querySelector(
-        ".section-container.tabs section:nth-child(1) h2"
-      ),
+      container: document.querySelector(".tabs"),
+      curriculumSection: document.querySelector(".tabs section:nth-child(1)"),
+      aboutSection: document.querySelector(".tabs section:nth-child(2)"),
+      aboutHeader: document.querySelector(".tabs section:nth-child(2) h3"),
+      curriculumHeader: document.querySelector(".tabs section:nth-child(1) h2"),
       aboutContent: document.querySelector(
-        ".section-container.tabs section:nth-child(2) .content"
+        ".tabs section:nth-child(2) .content"
       ),
       curriculumContent: document.querySelector(
-        ".section-container.tabs section:nth-child(1) .content"
+        ".tabs section:nth-child(1) .content"
       ),
+      titles: document.querySelectorAll(".tabs section .title"),
     },
     curriculum: {
       container: document.querySelector("#curriculum-list"),
-      outsideContainer: document
-        .querySelector("#curriculum-list")
-        ?.closest(".content"),
+      outsideContainer: document.querySelector(
+        ".content:has(#curriculum-list)"
+      ),
+      header: document.querySelectorAll(
+        ".content:has(#curriculum-list) h2, .content:has(#curriculum-list) hr"
+      ),
       icons: document.querySelectorAll(".type-icon.hide-for-small"),
       lessonListItems: document.querySelectorAll(".lesson-row"),
       lessonListTitles: document.querySelectorAll(".lesson-row .title"),
@@ -1434,13 +1390,8 @@ function styleCurriculumPageNoCertificate() {
 
   // update resume button text and href (with auto-value fallback)
   if (v.local.header.ctaBtnWrapper && v.local.card.link) {
-    const btnText =
-      v.local.header.ctaBtnWrapper.querySelector(".button span")?.textContent ||
-      "Resume";
-    const btnHref =
-      v.local.header.ctaBtnWrapper
-        .querySelector(".button")
-        .getAttribute("href") || "resume";
+    const btnText = v.local.header.ctaBtnText.textContent || "Resume";
+    const btnHref = v.local.header.ctaBtn.getAttribute("href") || "resume";
 
     v.local.card.link.textContent = btnText;
     v.local.card.link.href = btnHref;
@@ -1483,7 +1434,7 @@ function styleCurriculumPageNoCertificate() {
     border: "0",
   });
 
-  currentView === "desktop"
+  v.viewport === "desktop"
     ? setStyle(v.local.header.container, {
         backgroundColor: "#D0CFEE",
         backgroundImage: "none",
@@ -1497,7 +1448,7 @@ function styleCurriculumPageNoCertificate() {
   setStyle(v.local.header.imageWrapper, {
     position: "static",
     padding: "0",
-    width: currentView === "desktop" ? "564px" : "90%",
+    width: v.viewport === "desktop" ? "564px" : "90%",
     height: "auto",
   });
 
@@ -1542,17 +1493,17 @@ function styleCurriculumPageNoCertificate() {
   });
 
   setStyle(v.local.tabs.container, {
-    margin: currentView === "desktop" ? "0 0 46px 0" : "96px 0 46px 0",
+    margin: v.viewport === "desktop" ? "0 0 46px 0" : "96px 0 46px 0",
   });
 
   setStyle(v.local.header.flexContainer, {
     margin: "96px 0",
     justifyContent: "center",
-    flexWrap: currentView === "desktop" ? "nowrap" : "wrap",
+    flexWrap: v.viewport === "desktop" ? "nowrap" : "wrap",
     gap: "24px",
   });
 
-  currentView === "desktop"
+  v.viewport === "desktop"
     ? setStyle(v.local.body.mainContainer, {
         display: "grid",
         marginTop: "96px",
@@ -1570,7 +1521,7 @@ function styleCurriculumPageNoCertificate() {
         paddingBottom: "0",
       });
 
-  currentView === "desktop"
+  v.viewport === "desktop"
     ? setStyle(v.local.card.details, { margin: "96px 0 46px 0" })
     : setStyle(v.local.card.details, {
         margin: "32px 0 56px 0",
@@ -1580,20 +1531,18 @@ function styleCurriculumPageNoCertificate() {
   setStyle(v.local.header.mainHeadingContainer, {
     position: "static",
     padding: "0",
-    maxWidth: currentView === "desktop" ? "564px" : "none",
+    maxWidth: v.viewport === "desktop" ? "564px" : "none",
     border: "0",
     textAlign: "left",
   });
 
-  if (currentView === "mobile") {
+  if (v.viewport === "mobile") {
     setStyle(v.local.header.mainHeadingContainer, {
       width: "90%",
       marginBottom: "32px",
     });
 
-    setStyle(v.footerContainer, { paddingLeft: "0", paddingRight: "0" });
-
-    setStyle(v.footerCols, { width: "212px" });
+    setStyle(v.global.footerCols, { width: "212px" });
   } else {
     // content (TODO: should this be for all viewports?)
     v.local.header.courseInfo.textContent = skilljarCourse.short_description; // eslint-disable-line no-undef
@@ -1610,9 +1559,7 @@ function styleCurriculumPageNoCertificate() {
   }
 
   // move elements
-  v.local.body.mainContainer.append(
-    ...[v.local.card.details].filter(Boolean)
-  );
+  v.local.body.mainContainer.append(...[v.local.card.details].filter(Boolean));
   v.local.header.mainHeadingContainer.append(
     ...[
       v.local.header.floaterText,
@@ -1626,13 +1573,11 @@ function styleCurriculumPageNoCertificate() {
   // hide elements
   hide([
     ...v.local.curriculum.icons,
+    ...v.local.curriculum.header,
+    ...v.local.tabs.titles,
     v.local.header.backToCatalogLink,
     v.local.header.lessons,
     v.local.header.progressBar,
-    v.local.curriculum.outsideContainer.querySelector("h2"),
-    v.local.curriculum.outsideContainer.querySelector("hr"),
-    v.local.tabs.aboutSection.querySelector(".title"),
-    v.local.tabs.curriculumSection.querySelector(".title"),
     !v.local.header.ctaBtnWrapper ? v.local.card.link : null, // Hide resume button if it doesn't exist
   ]);
 }
@@ -1678,7 +1623,7 @@ function styleCurriculumPageHasCertificationDesktop() {
     tabsContainer.querySelectorAll("section");
 
   // STYLE LOGO
-  v.logo.style.height = "24px";
+  v.global.logo.style.height = "24px";
 
   // TEST
   if (initialLoadComplete) {
@@ -1886,7 +1831,7 @@ function styleCurriculumPageHasCertificationDesktop() {
  * This function applies mobile-specific styling to the curriculum page when a certificate is present.
  * It modifies the layout and appearance of various elements on the page.
  */
-function styleCurriculumPageHasCertificateMobile() {
+function styleCurriculumPageHasCertificationMobile() {
   // TODO: Clean up this function
   console.info("Running styleCurriculumPageHasCertificateMobile");
 
@@ -1943,7 +1888,7 @@ function styleCurriculumPageHasCertificateMobile() {
   );
 
   // NAV STYLING
-  v.logo.style.maxHeight = "48px";
+  v.global.logo.style.maxHeight = "48px";
 
   // STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
   bodyMainContainer.style.display = "grid";
@@ -2125,9 +2070,7 @@ function styleCurriculumPageHasCertificateMobile() {
   });
 
   // FOOTER STYLING
-  v.footerContainer.style.paddingLeft = 0;
-  v.footerContainer.style.paddingRight = 0;
-  v.footerCols.forEach((col) => {
+  v.global.footerCols.forEach((col) => {
     col.style.width = "212px";
   });
 
@@ -2155,9 +2098,9 @@ function handlePageStyling() {
     styleCurriculumPageNoCertificate();
   } else if (currentPage.isCurriculum && hasCertificate) {
     // CURRICULUM PAGE W COMPLETED CERTIFICATION GOES HERE [YESSS CERTIFICATION] <<<<<<<<<<< [CHECK TO MAKE SURE THIS WORKS; NOT TESTED]
-    currentView === "desktop"
+    v.viewport === "desktop"
       ? styleCurriculumPageHasCertificationDesktop()
-      : styleCurriculumPageHasCertificateMobile();
+      : styleCurriculumPageHasCertificationMobile();
   } else if (currentPage.isLesson) {
     styleLesson();
   } else if (currentPage.isCatalog) {
@@ -2170,23 +2113,33 @@ function handlePageStyling() {
  * It checks the window width and applies appropriate styles for different page types.
  */
 function render() {
-  width =
+  v.width =
     window.innerWidth ||
     document.documentElement.clientWidth ||
     document.body.clientWidth;
 
-  if (width <= 991 && !(currentView === "mobile")) {
-    currentView = "mobile";
-  } else if (width > 991 && !(currentView === "desktop")) {
-    currentView = "desktop";
-  }
+  // set current view based on width
+  v.viewport = v.width <= 991 ? "mobile" : "desktop";
+
+  setStyle(v.global.footerContainer, {
+    display: "flex",
+    paddingLeft: v.viewport === "desktop" ? "40px" : "0",
+    paddingRight: v.viewport === "desktop" ? "40px" : "0",
+  });
+
+  v.viewport === "mobile" && currentPage.isLesson
+    ? setStyle(v.global.footerContainer, {
+        marginTop: "0", // mobile
+      })
+    : null;
+
+  currentPage.isLesson && v.viewport === "mobile"
+    ? hide(v.global.footerContainer)
+    : v.global.contentContainer.append(v.global.footerContainer);
 
   handlePageStyling();
 
-  if (!currentPage.isLesson) {
-    hide(document.querySelector("#ep-footer"));
-  }
-  insertFooter();
+  !currentPage.isLesson ? hide(v.global.epFooter) : null;
 }
 
 /**
