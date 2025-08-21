@@ -1,11 +1,25 @@
 let initialLoadComplete = false;
-let globalCurriculumSection, globalAboutSection;
+
+const currentPage = {
+  isCatalog: c(".sj-page-catalog-root"),
+  isCurriculum: c(".sj-page-curriculum"),
+  isCourseDetails: c(".sj-page-detail-course"),
+  isLesson: c(".sj-page-lesson"),
+  isLogin: c(".sj-page-login"),
+  isSignup: c(".sj-page-signup"),
+  isPageDetail: c(".sj-page-detail-bundle.sj-page-detail-path"),
+  isPageCatalog: c(".sj-page-series.sj-page-path"),
+};
+
+
 let v = {
   viewport: "", // "mobile" or "desktop"
   width: 0, // current viewport width
 
   // elements
   global: {
+    curriculumSection: null,
+    aboutSection: null,
     body: document.querySelector("body"),
     logo: document.querySelector(".header-center-img"),
     footerContainer: document.querySelector("#footer-container"),
@@ -20,17 +34,6 @@ let v = {
 };
 
 const c = (selector) => (document.querySelector(selector) ? true : false);
-
-const currentPage = {
-  isCatalog: c(".sj-page-catalog-root"),
-  isCurriculum: c(".sj-page-curriculum"),
-  isCourseDetails: c(".sj-page-detail-course"),
-  isLesson: c(".sj-page-lesson"),
-  isLogin: c(".sj-page-login"),
-  isSignup: c(".sj-page-signup"),
-  isPageDetail: c(".sj-page-detail-bundle.sj-page-detail-path"),
-  isPageCatalog: c(".sj-page-series.sj-page-path"),
-};
 
 function getCurriculumElements(curriculumParentContainer, border = "b") {
   let currentSection = 0,
@@ -1388,8 +1391,8 @@ function styleCurriculumPageNoCertificate() {
   };
 
   if (initialLoadComplete) {
-    v.local.tabs.curriculumSection = globalCurriculumSection;
-    v.local.tabs.aboutSection = globalAboutSection;
+    v.local.tabs.curriculumSection = v.global.curriculumSection;
+    v.local.tabs.aboutSection = v.global.aboutSection;
     v.local.tabs.container.append(
       v.local.tabs.curriculumSection,
       v.local.tabs.aboutSection
@@ -1417,8 +1420,8 @@ function styleCurriculumPageNoCertificate() {
     });
 
     // Add vars to global
-    globalCurriculumSection = v.local.tabs.curriculumSection;
-    globalAboutSection = v.local.tabs.aboutSection;
+    v.global.curriculumSection = v.local.tabs.curriculumSection;
+    v.global.aboutSection = v.local.tabs.aboutSection;
 
     const curriculumElements = getCurriculumElements(
       v.local.curriculum.container
@@ -1561,8 +1564,8 @@ function styleCurriculumPageNoCertificate() {
       [
         v.local.tabs.aboutSection,
         v.local.tabs.curriculumSection,
-        globalAboutSection,
-        globalCurriculumSection,
+        v.global.aboutSection,
+        v.global.curriculumSection,
       ],
       { padding: "0 !important" }
     );
@@ -1637,8 +1640,8 @@ function styleCurriculumPageHasCertificationDesktop() {
 
   // TEST
   if (initialLoadComplete) {
-    curriculumSection = globalCurriculumSection;
-    aboutSection = globalAboutSection;
+    curriculumSection = v.global.curriculumSection;
+    aboutSection = v.global.aboutSection;
     tabsContainer.append(curriculumSection, aboutSection);
   }
 
@@ -1756,8 +1759,8 @@ function styleCurriculumPageHasCertificationDesktop() {
   */
   if (!initialLoadComplete) {
     // Set global curriculum and about section vars
-    globalCurriculumSection = curriculumSection;
-    globalAboutSection = aboutSection;
+    v.global.curriculumSection = curriculumSection;
+    v.global.aboutSection = aboutSection;
 
     const hasSections = curriculumParentContainer.querySelector("h3")
       ? true
@@ -1877,8 +1880,8 @@ function styleCurriculumPageHasCertificationMobile() {
 
   // TEST
   if (initialLoadComplete) {
-    curriculumSection = globalCurriculumSection;
-    aboutSection = globalAboutSection;
+    curriculumSection = v.global.curriculumSection;
+    aboutSection = v.global.aboutSection;
     tabsContainer.append(curriculumSection, aboutSection);
   }
 
@@ -1998,8 +2001,8 @@ function styleCurriculumPageHasCertificationMobile() {
   */
   if (!initialLoadComplete) {
     // Set global curriculum and about section vars
-    globalCurriculumSection = curriculumSection;
-    globalAboutSection = aboutSection;
+    v.global.curriculumSection = curriculumSection;
+    v.global.aboutSection = aboutSection;
 
     const hasSections = curriculumParentContainer.querySelector("h3")
       ? true
