@@ -676,8 +676,8 @@ function stylePathCourseDetails() {
 /**
  * This function applies desktop-specific styling to the path catalog page.
  */
-function stylePathCatalogPageStylingDesktop() {
-  console.info("Running stylePathCatalogPageStylingDesktop");
+function stylePathCatalogPage() {
+  console.info("Running stylePathCatalogPage");
   const backArrowBtn = document.querySelector(".back-to-catalog");
 
   const mainContentContainer = document.querySelector("#catalog-content");
@@ -2160,7 +2160,7 @@ function handlePageStyling() {
   } else if (currentPage.isPageDetail) {
     stylePathCourseDetails();
   } else if (currentPage.isPageCatalog) {
-    currentView === "desktop" ? stylePathCatalogPageStylingDesktop() : null;
+    stylePathCatalogPage();
   } else if (currentPage.isLogin) {
     styleLogin();
   } else if (currentPage.isSignup) {
