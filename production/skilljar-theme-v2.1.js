@@ -1,9 +1,50 @@
+/*
+  * Chainguard Courses Theme v2.1
+  * This script applies custom styles and functionality to Chainguard's Skilljar platform.
+  * It includes features like curriculum styling, lesson navigation, and responsive design adjustments.
+  * It also provides utility functions for clipboard operations and element styling.
+  * 
+  * This script is designed to be run in the context of a Skilljar page.
+  * 
+  * @version 2.1
+  * @date 2025-08-21
+  * @author Chainguard
+  * @license MIT
+  * @see {@link https://courses.chainguard.com|Chainguard Courses}
+  */
+
 let initialLoadComplete = false;
+
+/**
+ * This function logs messages to the console with a specific style.
+ * It only logs messages if the hostname includes "chainguard-test.skilljar.com".
+ * It supports both string messages and objects.
+ * @param {string|object} message - The message to log.
+ * @param {...*} args - Additional arguments to log.
+ * @return {void}
+ * @example
+ * log("This is a test message");
+ * log({ key: "value" }, "Additional info");
+ */
+const log = (message, ...args) => {
+  if (
+    !message ||
+    !window.location.hostname.includes("chainguard-test.skilljar.com")
+  )
+    return;
+
+  if (typeof message === "string") {
+    log(`%c${message}`, "color: #3443f4; font-weight: 600;", ...args);
+  } else {
+    console.info("%c", "color: #3443f4; font-weight: 600;", message, ...args);
+  }
+};
 
 const c = (selector) => (document.querySelector(selector) ? true : false);
 
-const currentPage = {
-  isCatalog: c(".sj-page-catalog-root"),
+const page = {
+  isCatalog: c(".sj-page-catalog"),
+  isLanding: c(".sj-page-landing"),
   isCurriculum: c(".sj-page-curriculum"),
   isCourseDetails: c(".sj-page-detail-course"),
   isLesson: c(".sj-page-lesson"),
@@ -28,7 +69,7 @@ let v = {
       "#footer-container .global-footer-column"
     ),
     epFooter: document.querySelector("#ep-footer"),
-    contentContainer: currentPage.isLesson
+    contentContainer: page.isLesson
       ? document.querySelector(".sj-page-lesson")
       : document.querySelector("#skilljar-content"),
   },
@@ -235,7 +276,7 @@ function animateCopiedTooltip(tooltipEl) {
  * @return {void}
  */
 function styleGroupContainer(container, border = "b") {
-  console.info("Running styleGroupContainer with setStyle");
+  log("Running styleGroupContainer with setStyle");
   setStyle(container, {
     border: border === "b" ? "2px solid #3443F4" : "1px solid #DCDCDC",
     borderRadius: "8px",
@@ -255,7 +296,7 @@ function styleGroupContainer(container, border = "b") {
  * @return {void}
  */
 function styleListItem(lessonItem, isLastChild, hideIcon = true, border = "b") {
-  console.info("Running styleListItem with setStyle");
+  log("Running styleListItem with setStyle");
   if (hideIcon) {
     hide(lessonItem.querySelector(".type-icon"));
   }
@@ -279,7 +320,7 @@ function styleListItem(lessonItem, isLastChild, hideIcon = true, border = "b") {
  * @param {HTMLElement} groupHeadingContainer - The group heading container to style.
  */
 function styleGroupHeading(groupHeadingContainer, border = "b") {
-  console.info("Running styleGroupHeading with setStyle");
+  log("Running styleGroupHeading with setStyle");
   setStyle(groupHeadingContainer, {
     padding: "24px",
     margin: "0",
@@ -293,10 +334,17 @@ function styleGroupHeading(groupHeadingContainer, border = "b") {
 }
 
 /**
- * This function applies desktop-specific styling to the catalog page.
+ * This function applies desktop-specific styling to a catalog page.
  */
 function styleCatalog() {
-  console.info("Running styleCatalog");
+  log("Running styleCatalog");
+}
+
+/**
+ * This function applies desktop-specific styling to the landing page.
+ */
+function styleLanding() {
+  log("Running styleLanding");
   v.local = {
     catalogBodyParentContainer: document.querySelector("#catalog-content"),
     catalogContainer: document.querySelector("#catalog-courses"),
@@ -324,7 +372,7 @@ function styleCatalog() {
  * This function applies general styling to the course details page.
  */
 function styleCourseDetails() {
-  console.info("Running styleCourseDetails");
+  log("Running styleCourseDetails");
 
   v.local = {
     header: {
@@ -530,7 +578,7 @@ function styleCourseDetails() {
  * This function applies general styling to the path course details page.
  */
 function stylePathCourseDetails() {
-  console.info("Running stylePathCourseDetails");
+  log("Running stylePathCourseDetails");
 
   v.local = {
     header: {
@@ -656,7 +704,7 @@ function stylePathCourseDetails() {
  * This function applies desktop-specific styling to the path catalog page.
  */
 function stylePathCatalogPage() {
-  console.info("Running stylePathCatalogPage");
+  log("Running stylePathCatalogPage");
   const backArrowBtn = document.querySelector(".back-to-catalog");
 
   const mainContentContainer = document.querySelector("#catalog-content");
@@ -697,7 +745,7 @@ function stylePathCatalogPage() {
 }
 
 function styleLesson() {
-  console.info("Running styleLesson");
+  log("Running styleLesson");
 
   v.local = {
     body: {
@@ -961,6 +1009,7 @@ function processCodeBlocks(codeBlocks) {
       // Mark that copy icon was added to this code block
       el.dataset.copyAdded = "true";
     });
+  f;
 }
 
 function toggle(state) {
@@ -1043,7 +1092,7 @@ const getLoginSignupSelectors = () => ({
 });
 
 function styleLogin() {
-  console.info("Running styleLogin");
+  log("Running styleLogin");
 
   v.local = getLoginSignupSelectors();
 
@@ -1176,7 +1225,7 @@ function styleLogin() {
 }
 
 function styleSignup() {
-  console.info("Running styleSignup");
+  log("Running styleSignup");
 
   v.local = getLoginSignupSelectors();
 
@@ -1317,7 +1366,7 @@ function styleSignup() {
 }
 
 function styleCurriculumPageNoCertificate() {
-  console.info("Running styleCurriculumPageNoCertificate");
+  log("Running styleCurriculumPageNoCertificate");
 
   v.local = {
     body: {
@@ -1587,7 +1636,7 @@ function styleCurriculumPageNoCertificate() {
  */
 function styleCurriculumPageHasCertificationDesktop() {
   // TODO: Clean up this function
-  console.info("Running styleCurriculumPageHasCertificationDesktop");
+  log("Running styleCurriculumPageHasCertificationDesktop");
   const courseDescription = skilljarCourse.short_description; // eslint-disable-line no-undef
 
   // HEADER VARIABLES
@@ -1832,7 +1881,7 @@ function styleCurriculumPageHasCertificationDesktop() {
  */
 function styleCurriculumPageHasCertificationMobile() {
   // TODO: Clean up this function
-  console.info("Running styleCurriculumPageHasCertificateMobile");
+  log("Running styleCurriculumPageHasCertificateMobile");
 
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
   const headingFloaterText = document.querySelector(".sj-floater-text");
@@ -2075,34 +2124,57 @@ function styleCurriculumPageHasCertificationMobile() {
 }
 
 /**
- * This function handles the styling of various pages based on the current view (desktop or mobile).
- * It applies specific styles to different page types such as course details, catalog, login,
- * sign-up, curriculum, and lessons pages.
+ * This function handles the styling of the page based on the current page type.
+ * It applies different styles for landing, login, signup, course details, curriculum pages,
+ * lesson pages, catalog pages, and page details.
+ * 
+ * It also checks for the presence of a certificate and applies styles accordingly.
  */
 function handlePageStyling() {
   const hasCertificate = c(".cp-certificate");
-  if (currentPage.isCourseDetails) {
-    styleCourseDetails();
-  } else if (currentPage.isPageDetail) {
-    stylePathCourseDetails();
-  } else if (currentPage.isPageCatalog) {
-    stylePathCatalogPage();
-  } else if (currentPage.isLogin) {
-    styleLogin();
-  } else if (currentPage.isSignup) {
-    styleSignup();
-  } else if (currentPage.isCurriculum && !hasCertificate) {
-    styleCurriculumPageNoCertificate();
-  } else if (currentPage.isCurriculum && hasCertificate) {
-    // CURRICULUM PAGE W COMPLETED CERTIFICATION GOES HERE [YESSS CERTIFICATION] <<<<<<<<<<< [CHECK TO MAKE SURE THIS WORKS; NOT TESTED]
-    v.viewport === "desktop"
+
+  if (page.isLanding)
+    // we are on the landing page (which is a catalog page)
+    return styleLanding();
+
+  if (page.isLogin)
+    // we are on the login page
+    return styleLogin();
+
+  if (page.isSignup)
+    // we are on the sign-up page
+    return styleSignup();
+
+  if (page.isCourseDetails)
+    // we are on a course page but not logged in
+    return styleCourseDetails();
+
+  if (page.isCurriculum && !hasCertificate)
+    // we are on a course page (without a certificate) and logged in
+    return styleCurriculumPageNoCertificate();
+
+  if (page.isPageDetail)
+    // we are on the page that shows courses for a given learning path
+    return stylePathCourseDetails();
+
+  if (page.isPageCatalog)
+    // currently this doesn't seem to be in use
+    return stylePathCatalogPage();
+
+  if (page.isLesson)
+    // we are on a lesson page
+    return styleLesson();
+
+  if (page.isCatalog)
+    // we are on a catalog page (not currently in use)
+    return styleCatalog();
+
+  if (page.isCurriculum && hasCertificate)
+    // we are on a course page (with a certificate) and logged in
+    // n.b. this function is not edited and/or tested (and not in use)
+    return v.viewport === "desktop"
       ? styleCurriculumPageHasCertificationDesktop()
       : styleCurriculumPageHasCertificationMobile();
-  } else if (currentPage.isLesson) {
-    styleLesson();
-  } else if (currentPage.isCatalog) {
-    styleCatalog();
-  }
 }
 
 /**
@@ -2128,19 +2200,19 @@ function render() {
     width: v.viewport === "desktop" ? "270px" : "212px",
   });
 
-  v.viewport === "mobile" && currentPage.isLesson
+  v.viewport === "mobile" && page.isLesson
     ? setStyle(v.global.footerContainer, {
         marginTop: "0", // mobile
       })
     : null;
 
-  currentPage.isLesson && v.viewport === "mobile"
+  page.isLesson && v.viewport === "mobile"
     ? hide(v.global.footerContainer)
     : v.global.contentContainer.append(v.global.footerContainer);
 
   handlePageStyling();
 
-  !currentPage.isLesson ? hide(v.global.epFooter) : null;
+  !page.isLesson ? hide(v.global.epFooter) : null;
 }
 
 /**
