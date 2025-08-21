@@ -2155,6 +2155,7 @@ function styleCurriculumPageHasCertificateMobile() {
  * sign-up, curriculum, and lessons pages.
  */
 function handlePageStyling() {
+  const hasCertificate = c(".cp-certificate");
   if (currentPage.isCourseDetails) {
     styleCourseDetails();
   } else if (currentPage.isPageDetail) {
@@ -2165,15 +2166,9 @@ function handlePageStyling() {
     styleLogin();
   } else if (currentPage.isSignup) {
     styleSignup();
-  } else if (
-    currentPage.isCurriculum &&
-    !document.querySelector(".cp-certificate")
-  ) {
+  } else if (currentPage.isCurriculum && !hasCertificate) {
     styleCurriculumPageNoCertificate();
-  } else if (
-    currentPage.isCurriculum &&
-    document.querySelector(".cp-certificate")
-  ) {
+  } else if (currentPage.isCurriculum && hasCertificate) {
     // CURRICULUM PAGE W COMPLETED CERTIFICATION GOES HERE [YESSS CERTIFICATION] <<<<<<<<<<< [CHECK TO MAKE SURE THIS WORKS; NOT TESTED]
     currentView === "desktop"
       ? styleCurriculumPageHasCertificationDesktop()
