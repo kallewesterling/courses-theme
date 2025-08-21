@@ -34,7 +34,7 @@ const log = (message, ...args) => {
     return;
 
   if (typeof message === "string") {
-    log(`%c${message}`, "color: #3443f4; font-weight: 600;", ...args);
+    console.info(`%c${message}`, "color: #3443f4; font-weight: 600;", ...args);
   } else {
     console.info("%c", "color: #3443f4; font-weight: 600;", message, ...args);
   }
