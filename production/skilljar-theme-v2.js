@@ -2160,8 +2160,10 @@ function render() {
   It is a good place to run scripts that need to manipulate the DOM or set up event listeners.
 */
 document.addEventListener("DOMContentLoaded", () => {
+  hide(v.global.body);
   render();
   initialLoadComplete = true;
+  setStyle(v.global.body, { display: undefined });
 });
 
 /* 
