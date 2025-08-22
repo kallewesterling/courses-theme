@@ -49,21 +49,27 @@ body.sj-page-signup {
 
   .columns:has(#tabs) {
     /* Wrapper for Login/Signup buttons */
-    display: flex;
 
     #tabs {
+      display: flex;
+
       .login-tab {
         border: 0px;
         display: flex;
         padding: 8px 16px;
         align-items: center;
         border-radius: 100px;
+        font-family: Space Mono, monospace;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 24px;
       }
     }
   }
 
   #login-content {
     /* Wrapper for all login content */
+    border: 0px;
 
     .large-6.columns {
       width: 100%;
@@ -96,6 +102,103 @@ body.sj-page-signup {
           }
         }
       }
+    }
+  }
+}
+
+/* Handle signup/login buttons */
+body.sj-page-login #login-tab-left,
+body.sj-page-signup #login-tab-right {
+  /* Active login, inactive signup */
+  color: rgba(52, 67, 244, 1);
+}
+
+body.sj-page-login #login-tab-right,
+body.sj-page-signup #login-tab-left {
+  /* Inactive login, active signup */
+  color: rgba(52, 67, 244, 0.4);
+}
+
+body.sj-page-login #login_form,
+body.sj-page-signup #signup_form {
+  /* Login/signup form styles */
+
+  input {
+    border-radius: 4px;
+    border: 2px solid var(--primary-blue-hex);
+    padding: 20px 15px;
+    font-size: 14px;
+    line-height: 24px;
+
+    @media screen and (max-width: 991px) {
+      border: 2px solid var(--detail-medium-contrast);
+      padding: 12px;
+      margin-bottom: 24px;
+    }
+  }
+
+  label {
+    margin-bottom: 12px;
+    font-weight: 500;
+    font-size: 16px;
+    font-family: Fusiona;
+    line-height: 20px;
+  }
+
+  button#button-sign-in,
+  button#button-sign-up {
+    /* Sign in button */
+    width: 368px;
+    height: 48px;
+    color: var(--primary-dark-purple-hex);
+    background-color: transparent;
+    border: 2px solid var(--primary-blue-hex);
+    border-radius: 999px;
+
+    @media screen and (max-width: 991px) {
+      width: 100%;
+      margin-bottom: 12px;
+    }
+  }
+}
+
+body.sj-page-login {
+  /* Login page specific styles */
+
+  #login_form {
+    /* Login form elements */
+
+    a.sj-text-forgot-password,
+    button#button-sign-in {
+      /* Forgot password text + login button */
+      font-size: 16px;
+      font-family: Space Mono;
+      margin-bottom: 2px;
+    }
+
+    .large-12.columns:has(#button-sign-in) {
+      margin-bottom: 24px;
+    }
+
+    #id_password {
+      @media screen and (max-width: 991px) {
+        margin-bottom: 24px;
+      }
+    }
+  }
+}
+
+body.sj-page-signup {
+  /* Signup page specific styles */
+  /* ... */
+
+  #signup_form {
+    #id_password2 {
+      margin-bottom: 24px;
+    }
+
+    .text-center {
+      text-align: left !important;
     }
   }
 }

@@ -456,21 +456,7 @@ function styleCourseDetails() {
       link: document.querySelector(".course-details-card-link"),
     },
     signinText: document.querySelector(".signin"),
-    signinBtn: document.querySelector(".sj-text-sign-in"),
   };
-
-  setStyle(v.local.signinBtn, {
-    backgroundColor: "transparent",
-    padding: "8px 12px",
-    marginRight: "24px",
-    borderColor: "var(--primary-blue-hex)",
-    border: "2px solid var(--primary-blue-hex)",
-    borderRadius: "999px",
-    fontSize: "14px",
-    fontFamily: "Space Mono",
-    fontWeight: "700",
-    lineHeight: "20px",
-  });
 
   setStyle(v.local.header.container, {
     backgroundColor: "var(--form-bg)",
@@ -638,23 +624,10 @@ function stylePathCourseDetails() {
       catalogContainer: document.querySelector("#catalog-courses"),
     },
     signinText: document.querySelector(".signin"),
-    signinBtn: document.querySelector(".sj-text-sign-in"),
   };
 
   // set content
   v.local.header.floaterText.textContent = "Learning Path";
-
-  setStyle(v.local.signinBtn, {
-    backgroundColor: "transparent",
-    padding: "8px 12px",
-    marginRight: "24px",
-    border: "2px solid var(--primary-blue-hex)",
-    borderRadius: "999px",
-    fontSize: "14px",
-    fontFamily: "Space Mono",
-    fontWeight: "700",
-    lineHeight: "20px",
-  });
 
   setStyle(v.local.header.container, {
     background:
@@ -1067,40 +1040,23 @@ function toggle(state) {
 
 const getLoginSignupSelectors = () => ({
   googleBtn: document.querySelector("#google_login"),
-  loginContent: document.querySelector("#login-content"),
-  loginContentContainer: document.querySelector(".large-6.columns"),
   termsAndServices: document.querySelector("#access-message"),
-  tabContainer: document.querySelector(".large-12.columns"),
   altMethod:
     document.querySelector(".sj-text-sign-in-with span") ||
     document.querySelector(".sj-text-sign-up-with span"),
 
   inputs: {
-    login: document.querySelector("#id_login"), // login specific
-    password: document.querySelector("#id_password"), // login specific
-    password1: document.querySelector("#id_password1"), // signup specific
     password2: document.querySelector("#id_password2"), // signup specific
     email: document.querySelector("#id_email"), // signup specific
   },
 
-  loginTab: document.querySelector("#login-tab-left"),
-  signupTab: document.querySelector("#login-tab-right"),
-
   // login specific
-  forgotPassword: document.querySelector(".sj-text-forgot-password"),
   loginBtn: document.querySelector("#button-sign-in"),
   loginForm: document.querySelector("#login_form"),
-  loginNote: document.querySelector(".loginNote.sj-text-login-note"),
-  loginTabText: document.querySelector("#login-tab-left a"),
   loginTabTextSpan: document.querySelector("#login-tab-left a span"),
   loginText: document.querySelector("#login-tab-left span span"),
-  loginForgetWrapper: document.querySelector(
-    ".large-12.columns:has(#button-sign-in)"
-  ),
 
   // signup-specific
-  allInputs: document.querySelectorAll("input"),
-  allLabels: document.querySelectorAll("label"),
   signupForm: document.querySelector("#signup_form"),
   signupTabText:
     document.querySelector("#login-tab-right a") ||
@@ -1109,13 +1065,10 @@ const getLoginSignupSelectors = () => ({
   passwordConfirm: document.querySelector(
     "label[for=id_password2] .input-label-text span"
   ),
-  loginLabel: document.querySelector('label[for="id_email"]'),
   fNameLabel: document.querySelector('label[for="id_first_name"] span span'),
   lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
   emailLabel: document.querySelector('label[for="id_email"]'),
-  signupBtn: document.querySelector("#button-sign-up"),
   signupBtnText: document.querySelector("#button-sign-up span"),
-  signupBtnWrapper: document.querySelector("#signup_form .text-center"),
 });
 
 function styleLogin() {
@@ -1128,91 +1081,6 @@ function styleLogin() {
   v.local.altMethod.textContent = "Or Log In With";
   v.local.loginBtn.textContent = "Log In";
   v.local.googleBtn.textContent = "Continue with Google";
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.loginTab, {
-        border: "0",
-        textDecoration: "underline",
-        fontFamily: "Space Mono",
-        color: "var(--primary-blue-hex)",
-        fontWeight: "700",
-        fontSize: "18px",
-        lineHeight: "24px",
-      })
-    : setStyle(v.local.loginTab, {
-        border: "0",
-        backgroundColor: "var(--primary-blue-hex)",
-        color: "var(--primary-white-hex)",
-        fontWeight: "500",
-        fontSize: "16px",
-        lineHeight: "24px",
-        borderRadius: "100px",
-      });
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.signupTabText, {
-        color: "rgba(52, 67, 244, .4)",
-        fontWeight: "700",
-        fontSize: "18px",
-        lineHeight: "24px",
-      })
-    : setStyle(v.local.signupTabText, {
-        color: "#8C8C8C",
-        fontWeight: "500",
-        fontSize: "16px",
-        lineHeight: "24px",
-      });
-
-  setStyle([v.local.inputs.login, v.local.inputs.password], {
-    borderRadius: "4px",
-    border: `2px solid ${
-      v.viewport === "desktop"
-        ? "var(--primary-blue-hex)"
-        : "var(--detail-medium-contrast)"
-    }`,
-    padding: v.viewport === "desktop" ? "20px 15px" : "12px",
-    fontSize: "14px",
-    lineHeight: "24px",
-  });
-
-  v.viewport === "mobile"
-    ? setStyle(v.local.inputs.password, { marginBottom: "24px" })
-    : null;
-
-  v.viewport === "desktop"
-    ? setStyle([v.local.loginBtn, v.local.forgotPassword], {
-        fontSize: "16px",
-        fontFamily: "Space Mono",
-        marginBottom: "2px",
-      })
-    : null;
-
-  v.viewport === "mobile"
-    ? setStyle(v.local.forgotPassword, {
-        fontSize: "16px",
-        marginBottom: "2px",
-      })
-    : null;
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.loginBtn, {
-        width: "368px",
-        height: "48px",
-        color: "var(--primary-dark-purple-hex)",
-        backgroundColor: "transparent",
-        border: "2px solid var(--primary-blue-hex)",
-        borderRadius: "999px",
-      })
-    : setStyle(v.local.loginBtn, {
-        width: "100%",
-        height: "48px",
-        fontSize: "16px",
-        marginBottom: "12px",
-      });
-
-  setStyle(v.local.loginForgetWrapper, { marginBottom: "24px" });
-
-  setStyle(v.local.loginContent, { border: "0" });
 
   // move elements
   v.local.loginForm.append(v.local.termsAndServices);
@@ -1235,83 +1103,6 @@ function styleSignup() {
   v.local.emailLabel.textContent = "Work Email";
   v.local.inputs.email.placeholder = "Work Email";
   v.local.inputs.password2.placeholder = "Password Confirm";
-
-  setStyle(v.local.signupTab, {
-    backgroundColor: "var(--primary-blue-hex)",
-  });
-
-  setStyle([v.local.loginTabText, v.local.signupTabText], {
-    fontFamily: "Space Mono",
-    fontWeight: "700",
-    fontSize: "18px",
-    lineHeight: "24px",
-    textDecoration: "none",
-  });
-
-  setStyle(v.local.loginTabText, {
-    color: "rgba(52, 67, 244, .4)",
-  });
-
-  setStyle(v.local.signupTabText, {
-    color: "var(--primary-white-hex)",
-    textDecoration: "underline",
-  });
-
-  setStyle([v.local.inputs.login, v.local.inputs.password1], {
-    borderRadius: "4px",
-    borderColor: "var(--detail-medium-contrast)",
-    padding: "12px",
-    lineHeight: "24px",
-  });
-
-  setStyle(v.local.inputs.password2, { marginBottom: "24px" });
-
-  setStyle(v.local.signupBtnWrapper, { textAlign: "left !important" });
-
-  setStyle(v.local.googleBtn, {
-    background:
-      "linear-gradient(225deg, var(--label-color) 0%, var(--primary-cyan-hex) 100%)",
-    width: v.viewport === "desktop" ? "auto" : "100%",
-    textAlign: "center",
-  });
-
-  setStyle(v.local.loginContent, { border: "0" });
-
-  setStyle(v.local.allLabels, {
-    marginBottom: "12px",
-    fontWeight: "500",
-    fontSize: "16px",
-    fontFamily: "Fusiona",
-    lineHeight: "20px",
-  });
-
-  setStyle(v.local.allInputs, {
-    borderRadius: "4px",
-    border: `2px solid ${
-      v.viewport === "desktop"
-        ? "var(--primary-blue-hex)"
-        : "var(--detail-medium-contrast)"
-    }`,
-    padding: v.viewport === "desktop" ? "20px 15px" : "12px",
-    lineHeight: "24px",
-  });
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.signupBtn, {
-        width: "368px",
-        height: "48px",
-        fontSize: "16px",
-        fontFamily: "Space Mono",
-        color: "var(--primary-dark-purple-hex)",
-        backgroundColor: "transparent",
-        border: "2px solid var(--primary-blue-hex)",
-        borderRadius: "999px",
-      })
-    : setStyle(v.local.signupBtn, {
-        width: "100%",
-        height: "48px",
-        fontSize: "16px",
-      });
 
   // move elements
   v.local.signupForm.append(v.local.termsAndServices);
