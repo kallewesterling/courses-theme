@@ -33,10 +33,12 @@ const log = (message, ...args) => {
   )
     return;
 
+  const style = "color: var(--primary-blue-hex); font-weight: 600;";
+
   if (typeof message === "string") {
-    console.info(`%c${message}`, "color: #3443f4; font-weight: 600;", ...args);
+    console.info(`%c${message}`, style, ...args);
   } else {
-    console.info("%c", "color: #3443f4; font-weight: 600;", message, ...args);
+    console.info("%c", style, message, ...args);
   }
 };
 
@@ -55,13 +57,13 @@ function createClone(type = "checkbox") {
     height: "21",
     viewBox: "0 0 20 21",
     fill: "none",
+    style:
+      `display: block; fill: var(${
+        type === "checkbox" ? "--answer-option" : "--primary-blue-hex"
+      });` +
+      (type === "copy" ? "cursor: pointer;" : "") +
+      (type === "checkbox" ? "flex-shrink: 0;" : ""),
   };
-
-  type === "checkbox"
-    ? (attrs.style = "display: block; flex-shrink: 0;")
-    : type === "copy"
-    ? (attrs.style = "display: block; cursor: pointer;")
-    : null;
 
   const svg = createSvgElement("svg", attrs);
 
@@ -70,14 +72,12 @@ function createClone(type = "checkbox") {
     case "checkbox":
       path = createSvgElement("path", {
         d: "M8.22948 14.021L5.02148 10.792L5.75048 10.042L8.22948 12.5L14.2505 6.5L14.9795 7.271L8.22948 14.021Z",
-        fill: "#3443F4",
       });
       break;
 
     case "copy":
       path = createSvgElement("path", {
         d: "M5.12597 18.0835C4.75064 18.0835 4.43464 17.9548 4.17797 17.6975C3.9213 17.4408 3.79297 17.1248 3.79297 16.7495V6.3335H4.87597V16.7495C4.87597 16.8195 4.9003 16.8785 4.94897 16.9265C4.99764 16.9752 5.05664 16.9995 5.12597 16.9995H13.543V18.0835H5.12597ZM7.70897 15.4995C7.3343 15.4995 7.0183 15.3712 6.76097 15.1145C6.5043 14.8572 6.37597 14.5412 6.37597 14.1665V4.6875C6.37597 4.31216 6.5043 3.99283 6.76097 3.7295C7.0183 3.4655 7.3343 3.3335 7.70897 3.3335H15.189C15.5636 3.3335 15.883 3.4655 16.147 3.7295C16.411 3.99283 16.543 4.31216 16.543 4.6875V14.1665C16.543 14.5412 16.411 14.8572 16.147 15.1145C15.883 15.3712 15.5636 15.4995 15.189 15.4995H7.70897ZM7.70897 14.4165H15.189C15.2583 14.4165 15.3206 14.3922 15.376 14.3435C15.4313 14.2948 15.459 14.2358 15.459 14.1665V4.6875C15.459 4.61816 15.4313 4.5555 15.376 4.4995C15.3206 4.44416 15.2583 4.4165 15.189 4.4165H7.70897C7.63964 4.4165 7.58064 4.44416 7.53197 4.4995C7.4833 4.5555 7.45897 4.61816 7.45897 4.6875V14.1665C7.45897 14.2358 7.4833 14.2948 7.53197 14.3435C7.58064 14.3922 7.63964 14.4165 7.70897 14.4165Z",
-        fill: "#1C1C1C",
       });
       break;
   }
@@ -169,13 +169,13 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
   return a.map((section) => {
     const wrapper = Object.assign(document.createElement("div"), {
       style: `border-radius: 8px; margin-bottom: 48px; padding: 0; border: ${
-        border === "b" ? "2px solid #3443F4" : "1px solid #DCDCDC"
+        border === "b" ? "2px solid var(--primary-blue-hex)" : "1px solid var(--detail-medium-contrast)"
       };`,
     });
 
     const header = Object.assign(document.createElement("div"), {
       class: "curriculum-header",
-      style: `display: flex; align-items: center; padding: 24px; margin: 0; font-family: "Fusiona"; font-size: 16px; font-weight: 500; line-height: 125%; letter-spacing: "-.16px"; border-bottom: 2px solid #3443f4;`,
+      style: `display: flex; align-items: center; padding: 24px; margin: 0; font-family: "Fusiona"; font-size: 16px; font-weight: 500; line-height: 125%; letter-spacing: "-.16px"; border-bottom: 2px solid var(--primary-blue-hex);`,
       textContent: section.heading,
     });
 
@@ -185,8 +185,8 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
         style: `display: block; color: black; padding: 24px; font-size: 16px; font-weight: 400; line-height: 150%; border-bottom: ${
           ix !== section.lessons.length - 1
             ? border === "b"
-              ? "2px solid #3443F4"
-              : "1px solid #DCDCDC"
+              ? "2px solid var(--primary-blue-hex)"
+              : "1px solid var(--detail-medium-contrast)"
             : "none"
         };`,
         textContent: lesson,
@@ -196,7 +196,7 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
       if (section.bullets[ix])
         a.prepend(
           Object.assign(section.bullets[ix], {
-            style: `display: inline-block; font-size: 1.5em; transform: translateY(3px); margin-right: 10px; color: #3443f4;`,
+            style: `display: inline-block; font-size: 1.5em; transform: translateY(3px); margin-right: 10px; color: var(--primary-blue-hex);`,
           })
         );
 
@@ -325,7 +325,7 @@ function animateCopiedTooltip(tooltipEl) {
 function styleGroupContainer(container, border = "b") {
   log("Running styleGroupContainer with setStyle");
   setStyle(container, {
-    border: border === "b" ? "2px solid #3443F4" : "1px solid #DCDCDC",
+    border: border === "b" ? "2px solid var(--primary-blue-hex)" : "1px solid var(--detail-medium-contrast)",
     borderRadius: "8px",
     marginBottom: "48px",
     padding: "0",
@@ -356,8 +356,8 @@ function styleListItem(lessonItem, isLastChild, hideIcon = true, border = "b") {
     borderBottom: isLastChild
       ? "none"
       : border === "b"
-      ? "2px solid #3443F4"
-      : "1px solid #DCDCDC",
+      ? "2px solid var(--primary-blue-hex)"
+      : "1px solid var(--detail-medium-contrast)",
   });
 }
 
@@ -376,7 +376,7 @@ function styleGroupHeading(groupHeadingContainer, border = "b") {
     fontWeight: "500",
     lineHeight: "125%",
     letterSpacing: "-.16px",
-    borderBottom: border === "b" ? "2px solid #3443f4" : "1px solid #DCDCDC",
+    borderBottom: border === "b" ? "2px solid var(--primary-blue-hex)" : "1px solid var(--detail-medium-contrast)",
   });
 }
 
@@ -462,8 +462,8 @@ function styleCourseDetails() {
     backgroundColor: "transparent",
     padding: "8px 12px",
     marginRight: "24px",
-    borderColor: "#3443F4",
-    border: "2px solid #3443F4",
+    borderColor: "var(--primary-blue-hex)",
+    border: "2px solid var(--primary-blue-hex)",
     borderRadius: "999px",
     fontSize: "14px",
     fontFamily: "Space Mono",
@@ -647,8 +647,7 @@ function stylePathCourseDetails() {
     backgroundColor: "transparent",
     padding: "8px 12px",
     marginRight: "24px",
-    borderColor: "#3443F4",
-    border: "2px solid #3443F4",
+    border: "2px solid var(--primary-blue-hex)",
     borderRadius: "999px",
     fontSize: "14px",
     fontFamily: "Space Mono",
@@ -689,7 +688,7 @@ function stylePathCourseDetails() {
   });
 
   setStyle(v.local.header.mainHeading, {
-    color: "#fff",
+    color: "var(--primary-white-hex)",
     margin: "0 0 12px 0",
     fontSize: "36px",
     fontWeight: "600",
@@ -698,14 +697,14 @@ function stylePathCourseDetails() {
   });
 
   setStyle(v.local.header.courseInfo, {
-    color: "#fff",
+    color: "var(--primary-white-hex)",
     display: "block",
     margin: "0 0 24px 0",
   });
 
   setStyle(v.local.header.registerBtn, {
     borderColor: "#7AF0FE",
-    color: "#fff",
+    color: "var(--primary-white-hex)",
   });
 
   setStyle(v.local.body.container, {
@@ -764,8 +763,8 @@ function stylePathCatalogPage() {
     setStyle(innerContainer, { borderTop: "2px solid #D0CFEE" });
 
     course.addEventListener("mouseover", () => {
-      setStyle(course, { borderColor: "#3443f4" });
-      setStyle(innerContainer, { borderColor: "#3443f4" });
+      setStyle(course, { borderColor: "var(--primary-blue-hex)" });
+      setStyle(innerContainer, { borderColor: "var(--primary-blue-hex)" });
     });
 
     course.addEventListener("mouseout", () => {
@@ -784,6 +783,64 @@ function stylePathCatalogPage() {
 
 function styleLesson() {
   log("Running styleLesson");
+
+  /**
+   * This function processes code blocks by adding a copy icon and functionality to copy the code to the clipboard.
+   * It filters out code blocks that have the 'noCopy' or 'copyAdded' data attributes.
+   * @param {NodeList} codeBlocks - A list of code block elements to process.
+   * @return {void}
+   */
+  function processCodeBlocks(codeBlocks) {
+    codeBlocks
+      .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
+      .forEach((el) => {
+        const codeEl = el.querySelector("code");
+        const iconClone = createClone("copy");
+
+        setStyle(el, {
+          padding: "0",
+          overflow: "visible",
+          position: "relative",
+          width: "100%",
+        });
+
+        setStyle(codeEl, {
+          display: "inline-block",
+          padding: "24px !important",
+          overflowX: "scroll",
+          width: "100%",
+        });
+
+        const copyText = codeEl.textContent
+          .trim()
+          .replace(/\r?\n\$ /g, " && ")
+          .replace(/^\$ /g, "");
+
+        const container = Object.assign(document.createElement("div"), {
+          style: `display: flex; justify-content: end; border-bottom: 1px solid gainsboro; padding: 12px 24px;`,
+        });
+
+        // create 'copied' tooltip
+        const tooltipContainer = Object.assign(document.createElement("div"), {
+          textContent: "Copied",
+          style: `position: absolute; top: -24px; right: 10px; text-shadow: none; background-color: #1c1c1c; color: var(--primary-white-hex); padding: 5px 10px; border-radius: 4px; opacity: 0; transition: opacity .2s ease-in;`,
+        });
+
+        // add elements
+        container.append(iconClone);
+        el.append(tooltipContainer);
+        el.prepend(container);
+
+        // add event listener to cloned icon to copy block into clipboard
+        iconClone.addEventListener(
+          "click",
+          toClipboard(copyText, tooltipContainer)
+        );
+
+        // Mark that copy icon was added to this code block
+        el.dataset.copyAdded = "true";
+      });
+  }
 
   v.local = {
     body: {
@@ -992,58 +1049,6 @@ function styleLesson() {
   processCodeBlocks(v.local.lesson.content.codeBlocks);
 }
 
-function processCodeBlocks(codeBlocks) {
-  return codeBlocks
-    .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
-    .forEach((el) => {
-      const codeEl = el.querySelector("code");
-      const iconClone = createClone("copy");
-
-      setStyle(el, {
-        padding: "0",
-        overflow: "visible",
-        position: "relative",
-        width: "100%",
-      });
-
-      setStyle(codeEl, {
-        display: "inline-block",
-        padding: "24px !important",
-        overflowX: "scroll",
-        width: "100%",
-      });
-
-      const copyText = codeEl.textContent
-        .trim()
-        .replace(/\r?\n\$ /g, " && ")
-        .replace(/^\$ /g, "");
-
-      const container = Object.assign(document.createElement("div"), {
-        style: `display: flex; justify-content: end; border-bottom: 1px solid gainsboro; padding: 12px 24px;`,
-      });
-
-      // create 'copied' tooltip
-      const tooltipContainer = Object.assign(document.createElement("div"), {
-        textContent: "Copied",
-        style: `position: absolute; top: -24px; right: 10px; text-shadow: none; background-color: #1c1c1c; color: #fff; padding: 5px 10px; border-radius: 4px; opacity: 0; transition: opacity .2s ease-in;`,
-      });
-
-      // add elements
-      container.append(iconClone);
-      el.append(tooltipContainer);
-      el.prepend(container);
-
-      // add event listener to cloned icon to copy block into clipboard
-      iconClone.addEventListener(
-        "click",
-        toClipboard(copyText, tooltipContainer)
-      );
-
-      // Mark that copy icon was added to this code block
-      el.dataset.copyAdded = "true";
-    });
-}
-
 function toggle(state) {
   return async () => {
     if (state === "open") {
@@ -1153,15 +1158,15 @@ function styleLogin() {
         border: "0",
         textDecoration: "underline",
         fontFamily: "Space Mono",
-        color: "#3443f4",
+        color: "var(--primary-blue-hex)",
         fontWeight: "700",
         fontSize: "18px",
         lineHeight: "24px",
       })
     : setStyle(v.local.loginTab, {
         border: "0",
-        backgroundColor: "#3443F4",
-        color: "#fff",
+        backgroundColor: "var(--primary-blue-hex)",
+        color: "var(--primary-white-hex)",
         fontWeight: "500",
         fontSize: "16px",
         lineHeight: "24px",
@@ -1198,7 +1203,7 @@ function styleLogin() {
 
   setStyle([v.local.inputs.login, v.local.inputs.password], {
     borderRadius: "4px",
-    border: `2px solid ${v.viewport === "desktop" ? "#3443f4" : "#DCDCDC"}`,
+    border: `2px solid ${v.viewport === "desktop" ? "var(--primary-blue-hex)" : "var(--detail-medium-contrast)"}`,
     padding: v.viewport === "desktop" ? "20px 15px" : "12px",
     fontSize: "14px",
     lineHeight: "24px",
@@ -1229,7 +1234,7 @@ function styleLogin() {
         height: "48px",
         color: "#14003d",
         backgroundColor: "transparent",
-        border: "2px solid #3443f4",
+        border: "2px solid var(--primary-blue-hex)",
         borderRadius: "999px",
       })
     : setStyle(v.local.loginBtn, {
@@ -1292,7 +1297,7 @@ function styleSignup() {
   });
 
   setStyle(v.local.signupTab, {
-    backgroundColor: "#3443F4",
+    backgroundColor: "var(--primary-blue-hex)",
   });
 
   setStyle([v.local.loginTabText, v.local.signupTabText], {
@@ -1308,7 +1313,7 @@ function styleSignup() {
   });
 
   setStyle(v.local.signupTabText, {
-    color: "#fff",
+    color: "var(--primary-white-hex)",
     textDecoration: "underline",
   });
 
@@ -1329,7 +1334,7 @@ function styleSignup() {
 
   setStyle([v.local.inputs.login, v.local.inputs.password1], {
     borderRadius: "4px",
-    borderColor: "#DCDCDC",
+    borderColor: "var(--detail-medium-contrast)",
     padding: "12px",
     lineHeight: "24px",
   });
@@ -1356,7 +1361,7 @@ function styleSignup() {
 
   setStyle(v.local.allInputs, {
     borderRadius: "4px",
-    border: `2px solid ${v.viewport === "desktop" ? "#3443f4" : "#DCDCDC"}`,
+    border: `2px solid ${v.viewport === "desktop" ? "var(--primary-blue-hex)" : "var(--detail-medium-contrast)"}`,
     padding: v.viewport === "desktop" ? "20px 15px" : "12px",
     lineHeight: "24px",
   });
@@ -1369,7 +1374,7 @@ function styleSignup() {
         fontFamily: "Space Mono",
         color: "#14003d",
         backgroundColor: "transparent",
-        border: "2px solid #3443f4",
+        border: "2px solid var(--primary-blue-hex)",
         borderRadius: "999px",
       })
     : setStyle(v.local.signupBtn, {
@@ -1545,7 +1550,7 @@ function styleCurriculumPageNoCertificate() {
 
   setStyle(v.local.curriculum.lessonListTitles, {
     position: "static",
-    color: "#1C1C1C",
+    color: "rgb(var(--primary-text))",
     display: "flex",
     alignItems: "center",
     margin: "0",
