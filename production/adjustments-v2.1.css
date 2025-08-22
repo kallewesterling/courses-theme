@@ -129,6 +129,10 @@ body.sj-page-signup #login-tab-left {
   }
 }
 
+body.sj-page-login #login-tab-right, body.sj-page-signup #login-tab-left {
+    background-color: unset;
+}
+
 body.sj-page-login #login_form,
 body.sj-page-signup #signup_form {
   /* Login/signup form styles */
