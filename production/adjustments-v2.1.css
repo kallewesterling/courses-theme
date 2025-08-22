@@ -110,13 +110,23 @@ body.sj-page-signup {
 body.sj-page-login #login-tab-left,
 body.sj-page-signup #login-tab-right {
   /* Active login, inactive signup */
-  color: rgba(52, 67, 244, 1);
+  background-color: rgba(52, 67, 244, 0.09);
+
+  a,
+  span {
+    color: rgba(52, 67, 244, 1);
+  }
 }
 
 body.sj-page-login #login-tab-right,
 body.sj-page-signup #login-tab-left {
   /* Inactive login, active signup */
-  color: rgba(52, 67, 244, 0.4);
+  background-color: rgba(52, 67, 244, 0.09);
+  
+  a,
+  span {
+    color: rgba(52, 67, 244, 0.4);
+  }
 }
 
 body.sj-page-login #login_form,
