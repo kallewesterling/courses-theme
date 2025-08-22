@@ -1066,11 +1066,7 @@ function toggle(state) {
 }
 
 const getLoginSignupSelectors = () => ({
-  fbBtn: document.querySelector("#facebook_login"),
   googleBtn: document.querySelector("#google_login"),
-  tabArrow:
-    document.querySelector("#tab-marker-login") ||
-    document.querySelector("#tab-marker-signup"),
   loginContent: document.querySelector("#login-content"),
   loginContentContainer: document.querySelector(".large-6.columns"),
   termsAndServices: document.querySelector("#access-message"),
@@ -1078,16 +1074,6 @@ const getLoginSignupSelectors = () => ({
   altMethod:
     document.querySelector(".sj-text-sign-in-with span") ||
     document.querySelector(".sj-text-sign-up-with span"),
-  altMethodContainer: document.querySelector(".socialaccount_providers li"),
-  altMethodCol: document.querySelector(
-    ".large-6.columns:has(.socialaccount_providers)"
-  ),
-  altMethodUl: document.querySelector(
-    ".large-6.columns:has(.socialaccount_providers) ul"
-  ),
-  altMethodLi: document.querySelectorAll(
-    ".large-6.columns:has(.socialaccount_providers) li"
-  ),
 
   inputs: {
     login: document.querySelector("#id_login"), // login specific
@@ -1143,20 +1129,6 @@ function styleLogin() {
   v.local.loginBtn.textContent = "Log In";
   v.local.googleBtn.textContent = "Continue with Google";
 
-  setStyle(v.local.termsAndServices, {
-    maxWidth: "368px",
-    fontSize: "14px",
-    color: "#545454",
-  });
-
-  setStyle(v.local.tabContainer, { display: "flex" });
-
-  setStyle([v.local.loginTab, v.local.signupTab], {
-    display: "flex",
-    padding: "8px 16px",
-    alignItems: "center",
-  });
-
   v.viewport === "desktop"
     ? setStyle(v.local.loginTab, {
         border: "0",
@@ -1190,20 +1162,6 @@ function styleLogin() {
         fontSize: "16px",
         lineHeight: "24px",
       });
-
-  setStyle([v.local.loginContentContainer, v.local.altMethodCol], {
-    width: v.viewport === "desktop" ? "50%" : "100%",
-  });
-
-  setStyle(v.local.altMethodContainer, { paddingBottom: "0" });
-
-  setStyle(v.local.altMethodUl, {
-    padding: v.viewport === "desktop" ? "0 0 0 125px;" : "0",
-  });
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.altMethodLi, { padding: "0" })
-    : null;
 
   setStyle([v.local.inputs.login, v.local.inputs.password], {
     borderRadius: "4px",
@@ -1254,20 +1212,10 @@ function styleLogin() {
 
   setStyle(v.local.loginForgetWrapper, { marginBottom: "24px" });
 
-  setStyle(v.local.googleBtn, {
-    background:
-      "linear-gradient(225deg, var(--label-color) 0%, var(--primary-cyan-hex) 100%)",
-    width: "auto",
-    textAlign: "center",
-  });
-
   setStyle(v.local.loginContent, { border: "0" });
 
   // move elements
   v.local.loginForm.append(v.local.termsAndServices);
-
-  // hide elements
-  hide([v.local.tabArrow, v.local.fbBtn, v.local.loginNote]);
 }
 
 function styleSignup() {
@@ -1288,23 +1236,6 @@ function styleSignup() {
   v.local.inputs.email.placeholder = "Work Email";
   v.local.inputs.password2.placeholder = "Password Confirm";
 
-  setStyle(v.local.termsAndServices, {
-    maxWidth: "368px",
-    color: "#545454",
-    fontSize: "14px",
-    transform: "translateX(-13px)",
-  });
-
-  setStyle(v.local.tabContainer, { display: "flex" });
-
-  setStyle([v.local.loginTab, v.local.signupTab], {
-    border: "0",
-    display: "flex",
-    padding: "8px 16px",
-    alignItems: "center",
-    borderRadius: "100px",
-  });
-
   setStyle(v.local.signupTab, {
     backgroundColor: "var(--primary-blue-hex)",
   });
@@ -1324,21 +1255,6 @@ function styleSignup() {
   setStyle(v.local.signupTabText, {
     color: "var(--primary-white-hex)",
     textDecoration: "underline",
-  });
-
-  setStyle([v.local.loginContentContainer, v.local.altMethodCol], {
-    width: v.viewport === "desktop" ? "50%" : "100%",
-  });
-
-  setStyle(v.local.altMethodContainer, { paddingBottom: "0" });
-
-  setStyle(v.local.altMethodLi, { padding: "0" });
-
-  setStyle(v.local.altMethod, {
-    marginBottom: "12px",
-    fontWeight: "500",
-    fontSize: "16px",
-    lineHeight: "20px",
   });
 
   setStyle([v.local.inputs.login, v.local.inputs.password1], {
@@ -1397,23 +1313,8 @@ function styleSignup() {
         fontSize: "16px",
       });
 
-  if (v.viewport === "desktop") {
-    setStyle(v.local.altMethodCol, { paddingLeft: "100px" });
-
-    setStyle(v.local.altMethodUl, { paddingLeft: "25px" });
-  } else {
-    setStyle([v.local.altMethodUl, v.local.altMethodCol], {
-      padding: "0",
-    });
-
-    setStyle(v.local.altMethodLi, { padding: "0" });
-  }
-
   // move elements
   v.local.signupForm.append(v.local.termsAndServices);
-
-  // hide elements
-  hide([v.local.fbBtn, v.local.tabArrow]);
 }
 
 function styleCurriculumPageNoCertificate() {
@@ -2271,8 +2172,7 @@ document.addEventListener("DOMContentLoaded", () => {
 */
 window.addEventListener("resize", () => {
   // no need to re-apply styles on resize for landing page
-  if (page.isLanding)
-    return;
+  if (page.isLanding) return;
 
   render();
 });

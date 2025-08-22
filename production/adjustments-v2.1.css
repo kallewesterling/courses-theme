@@ -11,21 +11,91 @@ body.sj-page-catalog-root {
     }
   }
 }
+
 body.sj-page-login,
 body.sj-page-signup {
   /* Login and Signup pages shared styles */
 
+  /* Hide unwanted elements */
+  #facebook_login,
+  .loginNote.sj-text-login-note,
+  #tab-marker-login,
+  #tab-marker-signup {
+    display: none !important;
+  }
 
   #google_login {
+    /* Google login button */
     background: linear-gradient(
       225deg,
       var(--label-color) 0%,
       var(--primary-cyan-hex) 100%
     );
     width: auto;
+    text-align: center;
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 991px) {
       width: 100%;
+    }
+  }
+
+  #access-message {
+    /* Agree to our Terms & Privacy text */
+    max-width: 368px;
+    color: #545454;
+    font-size: 14px;
+    transform: translateX(-13px);
+  }
+
+  .columns:has(#tabs) {
+    /* Wrapper for Login/Signup buttons */
+    display: flex;
+
+    #tabs {
+      .login-tab {
+        border: 0px;
+        display: flex;
+        padding: 8px 16px;
+        align-items: center;
+        border-radius: 100px;
+      }
+    }
+  }
+
+  #login-content {
+    /* Wrapper for all login content */
+
+    .large-6.columns {
+      width: 100%;
+
+      @media screen and (max-width: 991px) {
+        width: 50%;
+      }
+    }
+
+    .large-6.columns:has(div.socialaccount_providers) {
+      /* The social login providers (we only use Google) */
+
+      div.socialaccount_providers {
+        ul {
+          padding: 0 0 0 125px;
+
+          @media screen and (max-width: 991px) {
+            padding: 0;
+          }
+
+          li {
+            padding-bottom: 0;
+
+            h4 {
+              margin-bottom: 12px;
+              font-weight: 500;
+              font-size: 16px;
+              line-height: 20px;
+            }
+          }
+        }
+      }
     }
   }
 }
