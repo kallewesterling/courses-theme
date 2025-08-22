@@ -11,3 +11,21 @@ body.sj-page-catalog-root {
     }
   }
 }
+body.sj-page-login,
+body.sj-page-signup {
+  /* Login and Signup pages shared styles */
+
+
+  #google_login {
+    background: linear-gradient(
+      225deg,
+      var(--label-color) 0%,
+      var(--primary-cyan-hex) 100%
+    );
+    width: auto;
+
+    @media only screen and (max-width: 600px) {
+      width: 100%;
+    }
+  }
+}
