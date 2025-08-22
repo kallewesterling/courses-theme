@@ -405,22 +405,15 @@ function styleLanding() {
     catalogContainer: document.querySelector("#catalog-courses"),
   };
 
-  if (!initialLoadComplete) {
-    // Create a container div for courses catalog list
-    const catalogContentContainer = Object.assign(
-      document.createElement("div"),
-      { style: `max-width: min(1232px, 90%); margin: 96px auto;` }
-    );
+  // Create header for list
+  const allCoursesHeader = Object.assign(document.createElement("h2"), {
+    textContent: "All Courses",
+  });
 
-    // Create header for list
-    const allCoursesHeader = Object.assign(document.createElement("h2"), {
-      textContent: "All Courses",
-      style: `font-size: 48px; margin-bottom: 38px;`,
-    });
-
-    catalogContentContainer.append(allCoursesHeader, v.local.catalogContainer);
-    v.local.catalogBodyParentContainer.append(catalogContentContainer);
-  }
+  v.local.catalogBodyParentContainer.append(
+    allCoursesHeader,
+    v.local.catalogContainer
+  );
 }
 
 /**
@@ -2277,5 +2270,9 @@ document.addEventListener("DOMContentLoaded", () => {
   It is a good place to run scripts that need to ensure all resources are available before executing.
 */
 window.addEventListener("resize", () => {
+  // no need to re-apply styles on resize for landing page
+  if (page.isLanding)
+    return;
+
   render();
 });

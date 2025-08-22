@@ -1,0 +1,13 @@
+body.sj-page-catalog-root {
+  /* Landing page styles */
+  #catalog-content {
+    max-width: min(1232px, 90%);
+    margin: 96px auto;
+
+    h2 {
+      /* "All Courses" header */
+      font-size: 48px;
+      margin-bottom: 38px;
+    }
+  }
+}
