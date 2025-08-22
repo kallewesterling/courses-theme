@@ -129,8 +129,9 @@ body.sj-page-signup #login-tab-left {
   }
 }
 
-body.sj-page-login #login-tab-right, body.sj-page-signup #login-tab-left {
-    background-color: unset;
+body.sj-page-login #login-tab-right,
+body.sj-page-signup #login-tab-left {
+  background-color: unset;
 }
 
 body.sj-page-login #login_form,
@@ -213,6 +214,176 @@ body.sj-page-signup {
 
     .text-center {
       text-align: left !important;
+    }
+  }
+}
+
+body.sj-page-detail-course {
+  /* Course detail page styles */
+
+  header .back-to-catalog {
+    /* Back to catalog button */
+    display: none !important;
+  }
+
+  .top-row-grey {
+    /* Header container */
+    background-color: var(--form-bg);
+    margin: 0;
+    max-width: none;
+    padding-top: 96px;
+    padding-bottom: 96px;
+    border: 0;
+
+    @media screen and (max-width: 991px) {
+      padding-top: 48px;
+      padding-bottom: 48px;
+    }
+
+    .dp-row-flex-v2 {
+      /* All header content */
+      display: flex;
+      flex-direction: row-reverse;
+      flex-wrap: nowrap;
+      justify-content: start;
+      gap: 24px;
+      max-width: 1188px;
+
+      @media screen and (max-width: 991px) {
+        flex-direction: column-reverse;
+      }
+
+      .dp-promo-image-wrapper {
+        /* Course image */
+        @media screen and (max-width: 991px) {
+          padding: 0px;
+          max-width: none;
+          width: 100%;
+        }
+      }
+
+      .dp-summary-wrapper {
+        /* Text content in header */
+        border: 0px;
+        max-width: 564px;
+        width: auto;
+
+        @media screen and (max-width: 991px) {
+          max-width: none;
+          width: 100%;
+        }
+
+        .sj-floater-text {
+          /* Type, e.g. Course/Learning Path */
+          display: block;
+          margin-bottom: 24px;
+        }
+
+        h1.break-word {
+          /* Course title */
+          font-size: 36px;
+          font-weight: 600;
+          line-height: 43.2px;
+          letter-spacing: -0.02em;
+          margin: 0 0 12px 0;
+
+          @media screen and (max-width: 991px) {
+            font-size: 30px;
+            line-height: 40px;
+          }
+        }
+
+        .video-max {
+          /* Video container */
+          max-width: none;
+          padding-left: 0px;
+          padding-right: 0px;
+
+          @media screen and (max-width: 991px) {
+            padding-left: 15px;
+            padding-right: 15px;
+          }
+        }
+
+        .sj-heading-paragraph {
+          /* Course description */
+          display: block;
+          margin: 0 0 24px 0;
+        }
+
+        .sj-course-info-wrapper {
+            display: none !important;
+        }
+
+        #purchase-button-wrapper-large {
+            /* Register/sign up/resume button wrapper */
+
+            .signin {
+                /* Sign in link */
+                display: none !important;
+            }
+        }
+      }
+    }
+  }
+
+  #dp-details {
+    /* Page content */
+    max-width: min(1152px, 90%);
+    margin: 96px auto 46px auto;
+    display: grid;
+    grid-template-columns: minmax(100px, 760px) minmax(100px, 368px);
+    column-gap: 24px;
+
+    @media screen and (max-width: 991px) {
+      margin: 72px auto -10px auto;
+      grid-template-columns: 1fr;
+    }
+
+    .show-for-small {
+        /* Mobile body content - hide it! */
+        display: none !important;
+    }
+
+    .hide-for-small {
+        /* Desktop body content */
+        padding: 0px;
+        max-width: 760px;
+        display: grid !important;
+
+        .columns {
+            /* Two columns: content + curriculum */
+            float: none;
+            padding: 0;
+            width: 100%;
+            display: block;
+            margin-bottom: 48px;
+
+            h3 {
+                /* Headers in content + curriculum */
+                font-weight: 600;
+            }
+
+        }
+
+        .columns.sj-curriculum-wrapper {
+            /* Curriculum wrapper */
+            
+            ul.dp-curriculum {
+                margin: 0;
+            }
+
+            h3 {
+                /* This used to be a header in the curriculum list, no longer used (since v2.1) */
+                display: none !important;
+            }
+        }
+    }
+
+    .course-details-card {
+        /* Course details card */
+        margin: 0 0 46px 0;
+        justify-self: center;
     }
   }
 }

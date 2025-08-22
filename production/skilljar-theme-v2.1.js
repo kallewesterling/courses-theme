@@ -425,121 +425,25 @@ function styleCourseDetails() {
   v.local = {
     header: {
       container: document.querySelector(".top-row-grey"),
-      flexContainer: document.querySelector(".dp-row-flex-v2"),
       floaterText: document.querySelector(".sj-floater-text"),
       mainHeading: document.querySelector(".break-word"),
+      courseInfo: document.querySelector(".sj-heading-paragraph"),
       ctaBtnWrapper: document.querySelector("#purchase-button-wrapper-large"),
       registerBtn: document.querySelector("#purchase-button-wrapper-large a"),
       mainHeadingContainer: document.querySelector(".dp-summary-wrapper"),
-      backToCatalogBtn: document.querySelector(".back-to-catalog"),
-      videoContainer: document.querySelector(".video-max"),
-      courseInfoWrapper: document.querySelector(".sj-course-info-wrapper"),
-      courseInfo: document.querySelector(".sj-heading-paragraph"),
-      image: document.querySelector(".dp-promo-image-wrapper"),
     },
     body: {
       container: document.querySelector("#dp-details"),
-      mobile: document.querySelector(".show-for-small"),
-      secondary: document.querySelector(".hide-for-small"),
-      columns: document.querySelectorAll(".hide-for-small .columns"),
-      h3: document.querySelectorAll(".hide-for-small .columns h3"),
     },
     curriculum: {
       container: document.querySelectorAll(".dp-curriculum")[0], // note: this is the desktop version
-      header: document.querySelector(
-        ".sj-curriculum-wrapper:has(.dp-curriculum) h3"
-      ),
     },
     card: {
       details: document.querySelector(".course-details-card"),
       detailItems: document.querySelectorAll(".course-details-card li"),
       link: document.querySelector(".course-details-card-link"),
     },
-    signinText: document.querySelector(".signin"),
   };
-
-  setStyle(v.local.header.container, {
-    backgroundColor: "var(--form-bg)",
-    margin: "0",
-    maxWidth: "none",
-    paddingTop: v.viewport === "desktop" ? "96px" : "48px",
-    paddingBottom: v.viewport === "desktop" ? "96px" : "48px",
-    border: "0",
-  });
-
-  setStyle(v.local.header.flexContainer, {
-    flexDirection: v.viewport === "desktop" ? "row-reverse" : "column-reverse",
-    flexWrap: "nowrap",
-    justifyContent: "start",
-    gap: "24px",
-    maxWidth: "1188px",
-  });
-
-  setStyle(v.local.header.mainHeadingContainer, {
-    border: "0",
-    maxWidth: v.viewport === "desktop" ? "564px" : "none",
-    width: v.viewport === "desktop" ? "auto" : "100%",
-  });
-
-  setStyle(v.local.header.floaterText, {
-    display: "block",
-    marginBottom: "24px",
-  });
-
-  setStyle(v.local.header.mainHeading, {
-    margin: "0 0 12px 0",
-    fontSize: "36px",
-    fontWeight: "600",
-    lineHeight: "43.2px",
-    letterSpacing: "-.02em",
-  });
-
-  setStyle(v.local.header.videoContainer, {
-    maxWidth: "none",
-    paddingLeft: v.viewport === "desktop" ? "0px" : "15px",
-    paddingRight: v.viewport === "desktop" ? "0px" : "15px",
-  });
-
-  setStyle(v.local.header.courseInfo, {
-    display: "block",
-    margin: "0 0 24px 0",
-  });
-
-  setStyle(v.local.body.secondary, {
-    padding: "0",
-    maxWidth: "760px",
-    display: "grid !important",
-  });
-
-  setStyle(v.local.body.container, {
-    padding: "0",
-    margin:
-      v.viewport === "desktop" ? "96px auto 46px auto" : "72px auto -10px auto",
-    maxWidth: "min(1152px, 90%)",
-    display: "grid",
-    gridTemplateColumns:
-      v.viewport === "desktop"
-        ? "minmax(100px, 760px) minmax(100px, 368px)"
-        : "1fr",
-    columnGap: "24px",
-  });
-
-  setStyle(v.local.body.h3, { fontWeight: "600" });
-
-  setStyle(v.local.curriculum.container, { margin: "0" });
-
-  setStyle(v.local.body.columns, {
-    float: "none",
-    padding: "0",
-    width: "100%",
-    display: "block",
-    marginBottom: "48px",
-  });
-
-  setStyle(v.local.card.details, {
-    margin: "0 0 46px 0",
-    justifySelf: "center",
-  });
 
   // do actions for non-initial load
   if (!initialLoadComplete) {
@@ -562,26 +466,6 @@ function styleCourseDetails() {
     v.local.card.link.setAttribute("href", btnHref);
   }
 
-  if (v.viewport === "mobile") {
-    // logo on mobile
-    setStyle(v.global.logo, { maxHeight: "48px" });
-
-    // header image on mobile
-    setStyle(v.local.header.image, {
-      padding: "0",
-      maxWidth: "none",
-      width: "100%",
-    });
-  }
-
-  // hide elements
-  hide([
-    v.local.header.courseInfoWrapper,
-    v.local.body.mobile,
-    v.local.header.backToCatalogBtn,
-    v.local.signinText,
-    v.local.curriculum.header,
-  ]);
 
   // move elements
   if (!initialLoadComplete) {
