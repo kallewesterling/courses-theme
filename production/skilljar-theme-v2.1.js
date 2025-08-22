@@ -91,7 +91,7 @@ const c = (selector) => (document.querySelector(selector) ? true : false);
 
 const page = {
   isCatalog: c(".sj-page-catalog"),
-  isLanding: c(".sj-page-landing"),
+  isLanding: c(".sj-page-catalog-root"),
   isCurriculum: c(".sj-page-curriculum"),
   isCourseDetails: c(".sj-page-detail-course"),
   isLesson: c(".sj-page-lesson"),
