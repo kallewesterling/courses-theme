@@ -169,7 +169,9 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
   return a.map((section) => {
     const wrapper = Object.assign(document.createElement("div"), {
       style: `border-radius: 8px; margin-bottom: 48px; padding: 0; border: ${
-        border === "b" ? "2px solid var(--primary-blue-hex)" : "1px solid var(--detail-medium-contrast)"
+        border === "b"
+          ? "2px solid var(--primary-blue-hex)"
+          : "1px solid var(--detail-medium-contrast)"
       };`,
     });
 
@@ -325,7 +327,10 @@ function animateCopiedTooltip(tooltipEl) {
 function styleGroupContainer(container, border = "b") {
   log("Running styleGroupContainer with setStyle");
   setStyle(container, {
-    border: border === "b" ? "2px solid var(--primary-blue-hex)" : "1px solid var(--detail-medium-contrast)",
+    border:
+      border === "b"
+        ? "2px solid var(--primary-blue-hex)"
+        : "1px solid var(--detail-medium-contrast)",
     borderRadius: "8px",
     marginBottom: "48px",
     padding: "0",
@@ -376,7 +381,10 @@ function styleGroupHeading(groupHeadingContainer, border = "b") {
     fontWeight: "500",
     lineHeight: "125%",
     letterSpacing: "-.16px",
-    borderBottom: border === "b" ? "2px solid var(--primary-blue-hex)" : "1px solid var(--detail-medium-contrast)",
+    borderBottom:
+      border === "b"
+        ? "2px solid var(--primary-blue-hex)"
+        : "1px solid var(--detail-medium-contrast)",
   });
 }
 
@@ -472,7 +480,7 @@ function styleCourseDetails() {
   });
 
   setStyle(v.local.header.container, {
-    backgroundColor: "#D0CFEE",
+    backgroundColor: "var(--form-bg)",
     margin: "0",
     maxWidth: "none",
     paddingTop: v.viewport === "desktop" ? "96px" : "48px",
@@ -682,7 +690,7 @@ function stylePathCourseDetails() {
   });
 
   setStyle(v.local.header.floaterText, {
-    color: "#7AF0FE",
+    color: "var(--primary-cyan-hex)",
     display: "block",
     marginBottom: "24px",
   });
@@ -703,7 +711,7 @@ function stylePathCourseDetails() {
   });
 
   setStyle(v.local.header.registerBtn, {
-    borderColor: "#7AF0FE",
+    borderColor: "var(--primary-cyan-hex)",
     color: "var(--primary-white-hex)",
   });
 
@@ -756,11 +764,11 @@ function stylePathCatalogPage() {
     const innerContainer = course.querySelector(".course-overview");
 
     setStyle(course, {
-      border: "2px solid #D0CFEE",
+      border: "2px solid var(--form-bg)",
       borderRadius: "20px",
     });
 
-    setStyle(innerContainer, { borderTop: "2px solid #D0CFEE" });
+    setStyle(innerContainer, { borderTop: "2px solid var(--form-bg)" });
 
     course.addEventListener("mouseover", () => {
       setStyle(course, { borderColor: "var(--primary-blue-hex)" });
@@ -768,8 +776,8 @@ function stylePathCatalogPage() {
     });
 
     course.addEventListener("mouseout", () => {
-      setStyle(course, { borderColor: "#D0CFEE" });
-      setStyle(innerContainer, { borderColor: "#D0CFEE" });
+      setStyle(course, { borderColor: "var(--form-bg)" });
+      setStyle(innerContainer, { borderColor: "var(--form-bg)" });
     });
   });
 
@@ -823,7 +831,7 @@ function styleLesson() {
         // create 'copied' tooltip
         const tooltipContainer = Object.assign(document.createElement("div"), {
           textContent: "Copied",
-          style: `position: absolute; top: -24px; right: 10px; text-shadow: none; background-color: #1c1c1c; color: var(--primary-white-hex); padding: 5px 10px; border-radius: 4px; opacity: 0; transition: opacity .2s ease-in;`,
+          style: `position: absolute; top: -24px; right: 10px; text-shadow: none; background-color: var(--answer-option); color: var(--primary-white-hex); padding: 5px 10px; border-radius: 4px; opacity: 0; transition: opacity .2s ease-in;`,
         });
 
         // add elements
@@ -984,7 +992,10 @@ function styleLesson() {
   });
 
   setStyle(v.local.nav.links, {
-    color: v.viewport === "desktop" ? "#14003d" : "#1c1c1c",
+    color:
+      v.viewport === "desktop"
+        ? "var(--primary-dark-purple-hex)"
+        : "var(--answer-option)",
     cursor: "pointer",
   });
 
@@ -1010,7 +1021,7 @@ function styleLesson() {
 
   v.viewport === "desktop"
     ? setStyle(v.local.footer.prevBtn, {
-        color: "#14003d",
+        color: "var(--primary-dark-purple-hex)",
       })
     : null;
 
@@ -1203,7 +1214,11 @@ function styleLogin() {
 
   setStyle([v.local.inputs.login, v.local.inputs.password], {
     borderRadius: "4px",
-    border: `2px solid ${v.viewport === "desktop" ? "var(--primary-blue-hex)" : "var(--detail-medium-contrast)"}`,
+    border: `2px solid ${
+      v.viewport === "desktop"
+        ? "var(--primary-blue-hex)"
+        : "var(--detail-medium-contrast)"
+    }`,
     padding: v.viewport === "desktop" ? "20px 15px" : "12px",
     fontSize: "14px",
     lineHeight: "24px",
@@ -1232,7 +1247,7 @@ function styleLogin() {
     ? setStyle(v.local.loginBtn, {
         width: "368px",
         height: "48px",
-        color: "#14003d",
+        color: "var(--primary-dark-purple-hex)",
         backgroundColor: "transparent",
         border: "2px solid var(--primary-blue-hex)",
         borderRadius: "999px",
@@ -1247,7 +1262,8 @@ function styleLogin() {
   setStyle(v.local.loginForgetWrapper, { marginBottom: "24px" });
 
   setStyle(v.local.googleBtn, {
-    background: "linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%)",
+    background:
+      "linear-gradient(225deg, var(--label-color) 0%, var(--primary-cyan-hex) 100%)",
     width: "auto",
     textAlign: "center",
   });
@@ -1344,7 +1360,8 @@ function styleSignup() {
   setStyle(v.local.signupBtnWrapper, { textAlign: "left !important" });
 
   setStyle(v.local.googleBtn, {
-    background: "linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%)",
+    background:
+      "linear-gradient(225deg, var(--label-color) 0%, var(--primary-cyan-hex) 100%)",
     width: v.viewport === "desktop" ? "auto" : "100%",
     textAlign: "center",
   });
@@ -1361,7 +1378,11 @@ function styleSignup() {
 
   setStyle(v.local.allInputs, {
     borderRadius: "4px",
-    border: `2px solid ${v.viewport === "desktop" ? "var(--primary-blue-hex)" : "var(--detail-medium-contrast)"}`,
+    border: `2px solid ${
+      v.viewport === "desktop"
+        ? "var(--primary-blue-hex)"
+        : "var(--detail-medium-contrast)"
+    }`,
     padding: v.viewport === "desktop" ? "20px 15px" : "12px",
     lineHeight: "24px",
   });
@@ -1372,7 +1393,7 @@ function styleSignup() {
         height: "48px",
         fontSize: "16px",
         fontFamily: "Space Mono",
-        color: "#14003d",
+        color: "var(--primary-dark-purple-hex)",
         backgroundColor: "transparent",
         border: "2px solid var(--primary-blue-hex)",
         borderRadius: "999px",
@@ -1518,11 +1539,12 @@ function styleCurriculumPageNoCertificate() {
 
   v.viewport === "desktop"
     ? setStyle(v.local.header.container, {
-        backgroundColor: "#D0CFEE",
+        backgroundColor: "var(--form-bg)",
         backgroundImage: "none",
       })
     : setStyle(v.local.header.container, {
-        backgroundImage: "linear-gradient(225deg, #7545FB 0%, #7AF0FE 100%)",
+        backgroundImage:
+          "linear-gradient(225deg, var(--label-color) 0%, var(--primary-cyan-hex) 100%)",
       });
 
   setStyle(v.local.header.ctaBtnWrapper, { marginLeft: "0", marginRight: "0" });
@@ -1762,7 +1784,7 @@ function styleCurriculumPageHasCertificationDesktop() {
   curriculumPageHeader.style.maxWidth = "none";
   curriculumPageHeader.style.padding = "0";
   curriculumPageHeader.style.backgroundImage =
-    "linear-gradient(315deg,#fde1fe,#f5f6fe 72%)";
+    "linear-gradient(315deg, var(--gradient-start), var(--gradient-end) 72%)";
   curriculumPageHeader.style.border = "0";
 
   // STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
@@ -1895,7 +1917,7 @@ function styleCurriculumPageHasCertificationDesktop() {
     item.querySelector(".bullet").style.position = "static";
 
     titleEl.style.position = "static";
-    titleEl.style.color = "#1C1C1C";
+    titleEl.style.color = "var(--answer-option)";
     titleEl.style.display = "flex";
     titleEl.style.alignItems = "center";
     titleEl.style.margin = "0";
@@ -1998,7 +2020,7 @@ function styleCurriculumPageHasCertificationMobile() {
   curriculumPageHeader.style.maxWidth = "none";
   curriculumPageHeader.style.padding = "0";
   curriculumPageHeader.style.backgroundImage =
-    "linear-gradient(315deg,#fde1fe,#f5f6fe 72%)";
+    "linear-gradient(315deg, var(--gradient-start), var(--gradient-end) 72%)";
   curriculumPageHeader.style.border = "0";
 
   // STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
@@ -2134,7 +2156,7 @@ function styleCurriculumPageHasCertificationMobile() {
     item.querySelector(".bullet").style.position = "static";
 
     titleEl.style.position = "static";
-    titleEl.style.color = "#1C1C1C";
+    titleEl.style.color = "var(--answer-option)";
     titleEl.style.display = "flex";
     titleEl.style.alignItems = "center";
     titleEl.style.margin = "0";
