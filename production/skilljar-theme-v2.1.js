@@ -1053,15 +1053,15 @@ const getLoginSignupSelectors = () => ({
   // login specific
   loginBtn: document.querySelector("#button-sign-in"),
   loginForm: document.querySelector("#login_form"),
-  loginTabTextSpan: document.querySelector("#login-tab-left a span"),
   loginText: document.querySelector("#login-tab-left span span"),
-
+  signupTabTextSpan: document.querySelector("#login-tab-right span"),
+  
   // signup-specific
+  loginTabTextSpan: document.querySelector("#login-tab-left a span"),
   signupForm: document.querySelector("#signup_form"),
   signupTabText:
     document.querySelector("#login-tab-right a") ||
     document.querySelector("#login-tab-right span"),
-  signupTabSpan: document.querySelector("#login-tab-right span"),
   passwordConfirm: document.querySelector(
     "label[for=id_password2] .input-label-text span"
   ),
@@ -1077,7 +1077,7 @@ function styleLogin() {
   v.local = getLoginSignupSelectors();
 
   v.local.loginText.textContent = "Log In";
-  v.local.signupTabSpan.textContent = "Sign Up";
+  v.local.signupTabTextSpan.textContent = "Sign Up";
   v.local.altMethod.textContent = "Or Log In With";
   v.local.loginBtn.textContent = "Log In";
   v.local.googleBtn.textContent = "Continue with Google";
