@@ -72,10 +72,10 @@ body.sj-page-signup {
     border: 0px;
 
     .large-6.columns {
-      width: 100%;
+      width: 50%;
 
       @media screen and (max-width: 991px) {
-        width: 50%;
+        width: 100%;
       }
     }
 
@@ -122,7 +122,7 @@ body.sj-page-login #login-tab-right,
 body.sj-page-signup #login-tab-left {
   /* Inactive login, active signup */
   background-color: rgba(52, 67, 244, 0.09);
-  
+
   a,
   span {
     color: rgba(52, 67, 244, 0.4);
