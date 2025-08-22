@@ -1,17 +1,17 @@
 /*
-  * Chainguard Courses Theme v2.1
-  * This script applies custom styles and functionality to Chainguard's Skilljar platform.
-  * It includes features like curriculum styling, lesson navigation, and responsive design adjustments.
-  * It also provides utility functions for clipboard operations and element styling.
-  * 
-  * This script is designed to be run in the context of a Skilljar page.
-  * 
-  * @version 2.1
-  * @date 2025-08-21
-  * @author Chainguard
-  * @license MIT
-  * @see {@link https://courses.chainguard.com|Chainguard Courses}
-  */
+ * Chainguard Courses Theme v2.1
+ * This script applies custom styles and functionality to Chainguard's Skilljar platform.
+ * It includes features like curriculum styling, lesson navigation, and responsive design adjustments.
+ * It also provides utility functions for clipboard operations and element styling.
+ *
+ * This script is designed to be run in the context of a Skilljar page.
+ *
+ * @version 2.1
+ * @date 2025-08-21
+ * @author Chainguard
+ * @license MIT
+ * @see {@link https://courses.chainguard.com|Chainguard Courses}
+ */
 
 let initialLoadComplete = false;
 
@@ -39,6 +39,53 @@ const log = (message, ...args) => {
     console.info("%c", "color: #3443f4; font-weight: 600;", message, ...args);
   }
 };
+
+function createClone(type = "checkbox") {
+  function createSvgElement(tag, attrs = {}) {
+    const el = document.createElementNS("http://www.w3.org/2000/svg", tag);
+    Object.entries(attrs).forEach(([key, value]) => {
+      el.setAttribute(key, value);
+    });
+    return el;
+  }
+
+  const attrs = {
+    class: `${type}-icon`,
+    width: "20",
+    height: "21",
+    viewBox: "0 0 20 21",
+    fill: "none",
+  };
+
+  type === "checkbox"
+    ? (attrs.style = "display: block; flex-shrink: 0;")
+    : type === "copy"
+    ? (attrs.style = "display: block; cursor: pointer;")
+    : null;
+
+  const svg = createSvgElement("svg", attrs);
+
+  let path;
+  switch (type) {
+    case "checkbox":
+      path = createSvgElement("path", {
+        d: "M8.22948 14.021L5.02148 10.792L5.75048 10.042L8.22948 12.5L14.2505 6.5L14.9795 7.271L8.22948 14.021Z",
+        fill: "#3443F4",
+      });
+      break;
+
+    case "copy":
+      path = createSvgElement("path", {
+        d: "M5.12597 18.0835C4.75064 18.0835 4.43464 17.9548 4.17797 17.6975C3.9213 17.4408 3.79297 17.1248 3.79297 16.7495V6.3335H4.87597V16.7495C4.87597 16.8195 4.9003 16.8785 4.94897 16.9265C4.99764 16.9752 5.05664 16.9995 5.12597 16.9995H13.543V18.0835H5.12597ZM7.70897 15.4995C7.3343 15.4995 7.0183 15.3712 6.76097 15.1145C6.5043 14.8572 6.37597 14.5412 6.37597 14.1665V4.6875C6.37597 4.31216 6.5043 3.99283 6.76097 3.7295C7.0183 3.4655 7.3343 3.3335 7.70897 3.3335H15.189C15.5636 3.3335 15.883 3.4655 16.147 3.7295C16.411 3.99283 16.543 4.31216 16.543 4.6875V14.1665C16.543 14.5412 16.411 14.8572 16.147 15.1145C15.883 15.3712 15.5636 15.4995 15.189 15.4995H7.70897ZM7.70897 14.4165H15.189C15.2583 14.4165 15.3206 14.3922 15.376 14.3435C15.4313 14.2948 15.459 14.2358 15.459 14.1665V4.6875C15.459 4.61816 15.4313 4.5555 15.376 4.4995C15.3206 4.44416 15.2583 4.4165 15.189 4.4165H7.70897C7.63964 4.4165 7.58064 4.44416 7.53197 4.4995C7.4833 4.5555 7.45897 4.61816 7.45897 4.6875V14.1665C7.45897 14.2358 7.4833 14.2948 7.53197 14.3435C7.58064 14.3922 7.63964 14.4165 7.70897 14.4165Z",
+        fill: "#1C1C1C",
+      });
+      break;
+  }
+
+  svg.appendChild(path);
+
+  return svg;
+}
 
 const c = (selector) => (document.querySelector(selector) ? true : false);
 
@@ -409,7 +456,6 @@ function styleCourseDetails() {
     },
     signinText: document.querySelector(".signin"),
     signinBtn: document.querySelector(".sj-text-sign-in"),
-    checkboxIcon: document.querySelector(".checkbox-icon"),
   };
 
   setStyle(v.local.signinBtn, {
@@ -517,16 +563,9 @@ function styleCourseDetails() {
     v.local.curriculum.container.innerHTML = ""; // Clear the container
     v.local.curriculum.container.append(...curriculumElements);
 
-    v.local.card.detailItems.forEach((li) => {
-      const iconClone = v.local.checkboxIcon.cloneNode(true);
-
-      setStyle(iconClone, {
-        display: "block",
-        flexShrink: "0",
-      });
-
-      li.prepend(iconClone);
-    });
+    v.local.card.detailItems.forEach((li) =>
+      li.prepend(createClone("checkbox"))
+    );
   }
 
   if (v.local.header.registerBtn && v.local.card.link) {
@@ -599,7 +638,6 @@ function stylePathCourseDetails() {
     },
     signinText: document.querySelector(".signin"),
     signinBtn: document.querySelector(".sj-text-sign-in"),
-    checkboxIcon: document.querySelector(".checkbox-icon"),
   };
 
   // set content
@@ -770,9 +808,6 @@ function styleLesson() {
     },
     nav: {
       toggleWrapper: document.querySelector("#left-nav-button"),
-      hamburgerIcon: document.querySelector(".fa.fa-bars"),
-      xIcon: document.querySelector(".fa.fa-times"),
-      copyIcon: document.querySelector(".copy-icon"),
       fullScreenBtn: document.querySelector(".toggle-fullscreen"),
       navText: document.querySelector(".burger-text.sj-text-lessons"),
       container: document.querySelector("#curriculum-list-2"),
@@ -962,9 +997,7 @@ function processCodeBlocks(codeBlocks) {
     .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
     .forEach((el) => {
       const codeEl = el.querySelector("code");
-      const iconClone = Object.assign(v.local.nav.copyIcon.cloneNode(true), {
-        style: `display: block; cursor: pointer;`,
-      });
+      const iconClone = createClone("copy");
 
       setStyle(el, {
         padding: "0",
@@ -1009,7 +1042,6 @@ function processCodeBlocks(codeBlocks) {
       // Mark that copy icon was added to this code block
       el.dataset.copyAdded = "true";
     });
-  f;
 }
 
 function toggle(state) {
@@ -1424,7 +1456,6 @@ function styleCurriculumPageNoCertificate() {
       detailItems: document.querySelectorAll(".course-details-card li"),
       link: document.querySelector(".course-details-card-link"),
     },
-    checkboxIcon: document.querySelector(".checkbox-icon"),
   };
 
   if (initialLoadComplete) {
@@ -1448,13 +1479,9 @@ function styleCurriculumPageNoCertificate() {
   }
 
   if (!initialLoadComplete) {
-    v.local.card.detailItems.forEach((li) => {
-      const iconClone = v.local.checkboxIcon.cloneNode(true);
-
-      setStyle(iconClone, { display: "block", flexShrink: "0" });
-
-      li.prepend(iconClone);
-    });
+    v.local.card.detailItems.forEach((li) =>
+      li.prepend(createClone("checkbox"))
+    );
 
     // Add vars to global
     v.global.curriculumSection = v.local.tabs.curriculumSection;
@@ -1692,7 +1719,6 @@ function styleCurriculumPageHasCertificationDesktop() {
   // CARD VARIABLES
   const courseDetailsCard = document.querySelector(".course-details-card");
   const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li");
-  const checkboxIcon = document.querySelector(".checkbox-icon");
   const courseDetailsCardLink = document.querySelector(
     ".course-details-card-link"
   );
@@ -1710,12 +1736,9 @@ function styleCurriculumPageHasCertificationDesktop() {
   hide(courseDetailsCardLink);
 
   if (!initialLoadComplete) {
-    courseDetailCardListItems.forEach((li) => {
-      const iconClone = checkboxIcon.cloneNode(true);
-      iconClone.style.display = "block";
-      iconClone.style.flexShrink = "0";
-      li.prepend(iconClone);
-    });
+    courseDetailCardListItems.forEach((li) =>
+      li.prepend(createClone("checkbox"))
+    );
   }
 
   bodyMainContainer.style.columnGap = "24px";
@@ -1930,7 +1953,6 @@ function styleCurriculumPageHasCertificationMobile() {
   // CARD VARIABLES
   const courseDetailsCard = document.querySelector(".course-details-card");
   const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li");
-  const checkboxIcon = document.querySelector(".checkbox-icon");
   const courseDetailsCardLink = document.querySelector(
     ".course-details-card-link"
   );
@@ -1951,12 +1973,9 @@ function styleCurriculumPageHasCertificationMobile() {
   hide(courseDetailsCardLink);
 
   if (!initialLoadComplete) {
-    courseDetailCardListItems.forEach((li) => {
-      const iconClone = checkboxIcon.cloneNode(true);
-      iconClone.style.display = "block";
-      iconClone.style.flexShrink = "0";
-      li.prepend(iconClone);
-    });
+    courseDetailCardListItems.forEach((li) =>
+      li.prepend(createClone("checkbox"))
+    );
   }
 
   innerContentContainer.style.width = "100%";
@@ -2127,7 +2146,7 @@ function styleCurriculumPageHasCertificationMobile() {
  * This function handles the styling of the page based on the current page type.
  * It applies different styles for landing, login, signup, course details, curriculum pages,
  * lesson pages, catalog pages, and page details.
- * 
+ *
  * It also checks for the presence of a certificate and applies styles accordingly.
  */
 function handlePageStyling() {
