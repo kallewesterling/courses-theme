@@ -856,7 +856,7 @@ const getLoginSignupSelectors = () => ({
   loginForm: document.querySelector("#login_form"),
   loginText: document.querySelector("#login-tab-left span span"),
   signupTabTextSpan: document.querySelector("#login-tab-right span"),
-  
+
   // signup-specific
   loginTabTextSpan: document.querySelector("#login-tab-left a span"),
   signupForm: document.querySelector("#signup_form"),
@@ -940,13 +940,6 @@ function styleCurriculumPageNoCertificate() {
     },
   };
 
-  if (initialLoadComplete) {
-    v.local.tabs.container.append(
-      v.local.tabs.curriculumSection,
-      v.local.tabs.aboutSection
-    );
-  }
-
   v.local.tabs.aboutSection?.classList.add("active");
 
   // update resume button text and href (with auto-value fallback)
@@ -972,7 +965,7 @@ function styleCurriculumPageNoCertificate() {
     v.local.curriculum.container.innerHTML = ""; // Clear the container
     v.local.curriculum.container.append(...curriculumElements);
   }
-  
+
   v.local.header.courseInfo.textContent = skilljarCourse.short_description; // eslint-disable-line no-undef
 
   // move elements
@@ -985,7 +978,10 @@ function styleCurriculumPageNoCertificate() {
       v.local.header.ctaBtnWrapper,
     ].filter(Boolean)
   );
-  v.local.tabs.container.append(v.local.tabs.curriculumSection);
+  v.local.tabs.container.append(
+    v.local.tabs.curriculumSection,
+    v.local.tabs.aboutSection
+  );
 }
 
 /**
