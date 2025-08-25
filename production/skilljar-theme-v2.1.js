@@ -107,8 +107,6 @@ let v = {
 
   // elements
   global: {
-    curriculumSection: null,
-    aboutSection: null,
     body: document.querySelector("body"),
     logo: document.querySelector(".header-center-img"),
     footerContainer: document.querySelector("#footer-container"),
