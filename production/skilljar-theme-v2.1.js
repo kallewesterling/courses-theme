@@ -961,6 +961,11 @@ function styleCurriculumPageNoCertificate() {
     v.local.tabs.aboutSection.id = "aboutSection";
     v.local.tabs.curriculumSection.id = "curriculumSection";
 
+    v.local.tabs.container.append(
+      v.local.tabs.aboutSection,
+      v.local.tabs.curriculumSection
+    );
+
     v.local.card.detailItems.forEach((li) =>
       li.prepend(createClone("checkbox"))
     );
@@ -984,10 +989,6 @@ function styleCurriculumPageNoCertificate() {
       v.local.header.courseInfo,
       v.local.header.ctaBtnWrapper,
     ].filter(Boolean)
-  );
-  v.local.tabs.container.append(
-    v.local.tabs.aboutSection,
-    v.local.tabs.curriculumSection
   );
 }
 
