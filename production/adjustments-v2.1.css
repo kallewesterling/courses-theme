@@ -702,51 +702,52 @@ body.sj-page-lesson {
       /* Menu content: lessons */
       padding-bottom: 32px;
 
-      .lesson-row {
-        /* Individual lesson */
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: space-between;
-        margin: 0 12px;
-        padding-left: 12px;
-        padding-right: 12px;
-        font-size: 14px;
-        line-height: 20px;
+      /* a is actually parent element, .lesson-row inside */
+      a.lesson {
+        /* Lesson link */
+        color: var(--primary-dark-purple-hex);
+        cursor: pointer;
 
-        a {
-          /* Lesson link */
-          color: var(--primary-dark-purple-hex);
-          cursor: pointer;
+        @media screen and (max-width: 991px) {
+          color: var(--answer-option);
+        }
 
-          @media screen and (max-width: 991px) {
-            color: var(--answer-option);
-          }
+        .lesson-row {
+          /* Individual lesson */
+          display: flex;
+          flex-direction: row-reverse;
+          justify-content: space-between;
+          margin: 0 12px;
+          padding-left: 12px;
+          padding-right: 12px;
+          font-size: 14px;
+          line-height: 20px;
 
           .type-icon {
             /* Lesson icons */
             display: none !important;
           }
         }
+      }
 
-        h3.section-title {
-          /* Section title */
-          background-color: transparent;
-          padding: 12px;
-          padding-left: 24px;
-          padding-right: 24px;
-          margin-top: 12px;
-          margin-bottom: 12px;
-          border: 0;
-          font-family: Fusiona;
-          font-size: 16px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
+      h3.section-title {
+        /* Section title */
+        background-color: transparent;
+        padding: 12px;
+        padding-left: 24px;
+        padding-right: 24px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        border: 0;
+        font-family: Fusiona;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
 
-          @media screen and (max-width: 991px) {
-            font-family: "Space Mono";
-            font-size: 12px;
-          }
+        @media screen and (max-width: 991px) {
+          font-family: "Space Mono";
+          font-size: 12px;
         }
       }
     }
