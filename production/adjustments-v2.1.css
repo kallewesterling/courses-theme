@@ -650,3 +650,262 @@ body.sj-page-curriculum:not(:has(.cp-certificate)) {
     }
   }
 }
+
+/* Handle open/close menu buttons */
+body.sj-page-lesson.cbp-spmenu-open {
+  .fa-bars {
+    display: none !important;
+  }
+
+  .fa-times {
+    display: inline-block !important;
+  }
+}
+
+body.sj-page-lesson:not(.cbp-spmenu-open) {
+  .fa-bars {
+    display: inline-block !important;
+  }
+
+  .fa-times {
+    display: none !important;
+  }
+}
+
+body.sj-page-lesson {
+  /* Lesson page styles */
+
+  @media screen and (max-width: 991px) {
+    /* Responsive styles for lesson page */
+    #footer-container {
+      /* hide footer on mobile devices and lesson pages */
+      display: none !important;
+    }
+  }
+
+  #lp-left-nav {
+    /* Left hand nav menu */
+    background-color: #f9f9f9;
+    width: 320px;
+    position: absolute;
+    margin-bottom: 0px;
+
+    @media screen and (max-width: 991px) {
+      /* Responsive styles for left nav menu */
+      position: fixed;
+      height: 100%;
+      background-color: #c6a7a7ff;
+      padding-bottom: 40px;
+    }
+
+    .lessons-wrapper {
+      /* Menu content: lessons */
+      padding-bottom: 32px;
+
+      .lesson-row {
+        /* Individual lesson */
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        margin: 0 12px;
+        padding-left: 12px;
+        padding-right: 12px;
+        font-size: 14px;
+        line-height: 20px;
+
+        a {
+          /* Lesson link */
+          color: var(--primary-dark-purple-hex);
+          cursor: pointer;
+
+          @media screen and (max-width: 991px) {
+            color: var(--answer-option);
+          }
+
+          .type-icon {
+            /* Lesson icons */
+            display: none !important;
+          }
+        }
+
+        h3.section-title {
+          /* Section title */
+          background-color: transparent;
+          padding: 12px;
+          padding-left: 24px;
+          padding-right: 24px;
+          margin-top: 12px;
+          margin-bottom: 12px;
+          border: 0;
+          font-family: Fusiona;
+          font-size: 16px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+
+          @media screen and (max-width: 991px) {
+            font-family: "Space Mono";
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+
+  #lp-wrapper {
+    /* Lesson content wrapper */
+    position: relative;
+    border: 0;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
+    height: 100vh;
+    padding-bottom: 0;
+
+    @media screen and (max-width: 991px) {
+      /* Responsive styles for lesson content wrapper */
+      overflow-y: scroll;
+    }
+
+    #lp-content {
+      /* Lesson content */
+      height: auto;
+
+      #lesson-body {
+        /* Lesson body */
+        margin: 0;
+        max-width: none;
+
+        a#left-nav-button {
+          /* Left nav button (open/close menu) */
+          position: sticky;
+          z-index: 1;
+          top: 12px;
+          float: none;
+
+          @media screen and (max-width: 767px) {
+            top: 24px;
+          }
+
+          @media screen and (max-width: 991px) {
+            /* Responsive styles for left nav button */
+            overflow-x: clip;
+            top: 56px;
+            float: right;
+            padding-right: 12px;
+          }
+
+          .fa-bars,
+          .fa-times {
+            /* Open and close icons */
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(1.5px);
+
+            @media screen and (max-width: 767px) {
+              border: 1px solid gainsboro;
+            }
+          }
+
+          .fa-bars {
+            /* Open icon */
+          }
+
+          .fa-times {
+            /* Close icon */
+          }
+
+          .fa-search {
+            /* Search icon */
+            display: none !important;
+          }
+
+          .burger-text {
+            /* Burger menu text */
+            display: none !important;
+          }
+        }
+
+        #lesson-main {
+          /* Lesson main content */
+          position: relative;
+          z-index: 0;
+          padding-top: 0;
+
+          #lesson-main-inner {
+            /* Lesson main content inner */
+            max-width: 712px;
+            margin: 0 auto;
+
+            sjwc-lesson-content-item {
+              /* Lesson content item */
+
+              #internal-course-warning {
+                /* Internal course warning */
+              }
+
+              pre {
+                /* Code block wrapper */
+                padding: 0px;
+                overflow: visible;
+                position: relative;
+                width: 100%;
+
+                code {
+                  /* Inline code */
+                  display: inline-block;
+                  padding: 24px !important;
+                  overflow-x: scroll;
+                  width: 100%;
+                }
+
+                .code-copy-container {
+                  /* Code copy button container */
+                  display: flex;
+                  justify-content: end;
+                  border-bottom: 1px solid gainsboro;
+                  padding: 12px 24px;
+                }
+
+                .tooltip {
+                  /* Tooltip */
+                  position: absolute;
+                  top: -24px;
+                  right: 10px;
+                  text-shadow: none;
+                  background-color: var(--answer-option);
+                  color: var(--primary-white-hex);
+                  padding: 5px 10px;
+                  border-radius: 4px;
+                  opacity: 0;
+                  transition: opacity 0.2s ease-in;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    #lp-footer {
+      /* Lesson footer */
+
+      .toggle-fullscreen {
+        display: none !important;
+      }
+
+      .button-prev-title span {
+        /* Previous button title */
+        color: var(--primary-dark-purple-hex);
+
+        @media screen and (max-width: 767px) {
+          color: inherit;
+        }
+      }
+    }
+  }
+}

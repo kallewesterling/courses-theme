@@ -564,33 +564,19 @@ function styleLesson() {
         const codeEl = el.querySelector("code");
         const iconClone = createClone("copy");
 
-        setStyle(el, {
-          padding: "0",
-          overflow: "visible",
-          position: "relative",
-          width: "100%",
-        });
-
-        setStyle(codeEl, {
-          display: "inline-block",
-          padding: "24px !important",
-          overflowX: "scroll",
-          width: "100%",
-        });
-
         const copyText = codeEl.textContent
           .trim()
           .replace(/\r?\n\$ /g, " && ")
           .replace(/^\$ /g, "");
 
         const container = Object.assign(document.createElement("div"), {
-          style: `display: flex; justify-content: end; border-bottom: 1px solid gainsboro; padding: 12px 24px;`,
+          class: "code-copy-container",
         });
 
         // create 'copied' tooltip
         const tooltipContainer = Object.assign(document.createElement("div"), {
           textContent: "Copied",
-          style: `position: absolute; top: -24px; right: 10px; text-shadow: none; background-color: var(--answer-option); color: var(--primary-white-hex); padding: 5px 10px; border-radius: 4px; opacity: 0; transition: opacity .2s ease-in;`,
+          class: "tooltip",
         });
 
         // add elements
@@ -612,15 +598,10 @@ function styleLesson() {
   v.local = {
     body: {
       mainContainer: document.querySelector("#lp-wrapper"),
-      leftNav: document.querySelector("#lp-left-nav"),
-      contentContainer: document.querySelector("#lp-content"),
       innerContainer: document.querySelector("#lesson-body"),
     },
     lesson: {
-      innerContainer: document.querySelector("#lesson-main-inner"),
-      mainContainer: document.querySelector("#lesson-main"),
       content: {
-        container: document.querySelector("sjwc-lesson-content-item"),
         codeBlocks: new Array(
           ...document.querySelectorAll("pre:has(code):not(.language-ansi)")
         ),
@@ -632,203 +613,30 @@ function styleLesson() {
     },
     nav: {
       toggleWrapper: document.querySelector("#left-nav-button"),
-      fullScreenBtn: document.querySelector(".toggle-fullscreen"),
-      navText: document.querySelector(".burger-text.sj-text-lessons"),
-      container: document.querySelector("#curriculum-list-2"),
       backToCurriculumText: document.querySelector("#left-nav-return-text"),
-      links: document.querySelectorAll("#curriculum-list-2 a"),
-      linkIcons: document.querySelectorAll("#curriculum-list-2 a .type-icon"),
-      lessonRows: document.querySelectorAll("#curriculum-list-2 .lesson-row"),
-      sectionTitles: document.querySelectorAll(
-        "#curriculum-list-2 .section-title"
-      ),
-    },
-    icons: {
-      openIcon: document.querySelector(".fa.fa-bars"),
-      searchIcon: document.querySelector(".fa.fa-search"),
-      closeIcon: document.querySelector(".fa.fa-times"),
     },
     footer: {
       container: document.querySelector("#lp-footer"),
-      prevBtn: document.querySelector(".button-prev-title span"),
-      navMobileOverlay: document.querySelector("#lpLeftNavBackground"),
     },
   };
 
   // content
-  v.local.nav.backToCurriculumText
-    ? (v.local.nav.backToCurriculumText.textContent = "Back to Course Overview")
-    : null;
-
-  setStyle(v.local.lesson.innerContainer, {
-    maxWidth: "712px",
-    margin: "0 auto",
-  });
-
-  setStyle(v.local.body.mainContainer, {
-    position: "relative",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-  });
-
-  setStyle(v.local.body.contentContainer, { height: "auto" });
-
-  setStyle(v.local.body.innerContainer, {
-    margin: "0",
-    maxWidth: "none",
-  });
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.body.leftNav, {
-        backgroundColor: "#f9f9f9",
-        width: "320px",
-        position: "absolute",
-        marginBottom: "0px",
-      })
-    : setStyle(v.local.body.leftNav, {
-        backgroundColor: "#f9f9f9",
-        width: "320px",
-        position: "fixed",
-        height: "100%",
-        paddingBottom: "40px",
-      });
-
-  v.viewport === "mobile"
-    ? setStyle(v.local.nav.toggleWrapper, { overflowX: "clip" })
-    : null;
-
-  setStyle(v.local.lesson.mainContainer, {
-    position: "relative",
-    zIndex: "0",
-    paddingTop: "0",
-  });
-
-  setStyle(v.local.nav.toggleWrapper, {
-    position: "sticky",
-    zIndex: "1",
-    top: v.viewport === "desktop" ? "12px" : v.width >= 767 ? "24px" : "56px",
-    float: v.viewport === "desktop" ? "none" : "right",
-  });
-  v.viewport === "mobile"
-    ? setStyle(v.local.nav.toggleWrapper, { paddingRight: "12px" })
-    : null;
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.body.mainContainer, { overflowY: "auto" })
-    : null;
-
-  setStyle([v.local.icons.openIcon, v.local.icons.closeIcon], {
-    padding: "12px",
-    border: v.viewport === "desktop" ? "none" : "1px solid gainsboro",
-    borderRadius: "8px",
-    background: "rgba(255, 255, 255, .8)",
-    backdropFilter: "blur(1.5px)",
-  });
-
-  setStyle(v.local.footer.container, {
-    position: "relative",
-    border: "0",
-    backgroundColor: "transparent",
-  });
-
-  setStyle(v.local.nav.container, { paddingBottom: "32px" });
-
-  setStyle(v.local.body.mainContainer, {
-    height: "100vh",
-    paddingBottom: "0",
-  });
-
-  setStyle(v.local.lesson.content.lessonRows, {
-    display: "flex",
-    flexDirection: "row-reverse",
-    justifyContent: "space-between",
-    margin: "0 12px",
-    paddingLeft: "12px",
-    paddingRight: "12px",
-    fontSize: "14px",
-    lineHeight: "20px",
-  });
-
-  setStyle(v.local.nav.links, {
-    color:
-      v.viewport === "desktop"
-        ? "var(--primary-dark-purple-hex)"
-        : "var(--answer-option)",
-    cursor: "pointer",
-  });
-
-  setStyle(v.local.nav.sectionTitles, {
-    backgroundColor: "transparent",
-    padding: "12px",
-    paddingLeft: "24px",
-    paddingRight: "24px",
-    marginTop: "12px",
-    marginBottom: "12px",
-    border: "0",
-    fontFamily: v.viewport === "desktop" ? "Fusiona" : "Space Mono",
-    fontSize: v.viewport === "desktop" ? "16px" : "12px",
-    fontWeight: "700",
-  });
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.nav.sectionTitles, {
-        textTransform: "uppercase",
-        letterSpacing: ".05em",
-      })
-    : null;
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.footer.prevBtn, {
-        color: "var(--primary-dark-purple-hex)",
-      })
-    : null;
+  if (v.local.nav.backToCurriculumText)
+    v.local.nav.backToCurriculumText.textContent = "Back to Course Overview";
 
   // Makes lesson links pop up in new tab
   v.local.lesson.content.links.forEach((el) => (el.target = "_blank"));
 
   // move elements
   v.local.body.mainContainer.append(v.local.footer.container);
-  v.local.body.innerContainer.prepend(v.local.nav.toggleWrapper);
-  document
-    .querySelector("#lesson-main")
-    .prepend(...[v.local.lesson.content.internalCourseWarning].filter(Boolean));
-
-  // hide elements
-  hide([
-    v.local.nav.fullScreenBtn,
-    v.local.icons.searchIcon,
-    v.local.nav.navText,
-    ...v.local.nav.linkIcons,
-    v.global.body.classList.contains("cbp-spmenu-open")
-      ? v.local.icons.openIcon
-      : v.local.icons.closeIcon,
-  ]);
-
-  v.global.body.classList.remove("cbp-spmenu-open");
-  v.local.body.leftNav.classList.remove("cbp-spmenu-open");
-  toggle("close")();
-
-  // handle clicks
-  v.local.icons.openIcon.addEventListener("click", toggle("open"));
-
-  v.local.icons.closeIcon.addEventListener("click", toggle("close"));
-
-  v.local.footer.navMobileOverlay.addEventListener("click", toggle("close"));
+  v.local.body.innerContainer.prepend(
+    ...[
+      v.local.lesson.content.internalCourseWarning,
+      v.local.nav.toggleWrapper,
+    ].filter(Boolean)
+  );
 
   processCodeBlocks(v.local.lesson.content.codeBlocks);
-}
-
-function toggle(state) {
-  return async () => {
-    if (state === "open") {
-      hide(v.local.icons.openIcon);
-      setStyle(v.local.icons.closeIcon, { display: "inline-block" });
-    } else if (state === "close") {
-      hide(v.local.icons.closeIcon);
-      setStyle(v.local.icons.openIcon, { display: "inline-block" });
-    }
-  };
 }
 
 const getLoginSignupSelectors = () => ({
@@ -1540,15 +1348,7 @@ function render() {
     width: v.viewport === "desktop" ? "270px" : "212px",
   });
 
-  v.viewport === "mobile" && page.isLesson
-    ? setStyle(v.global.footerContainer, {
-        marginTop: "0", // mobile
-      })
-    : null;
-
-  page.isLesson && v.viewport === "mobile"
-    ? hide(v.global.footerContainer)
-    : v.global.contentContainer.append(v.global.footerContainer);
+  v.global.contentContainer.append(v.global.footerContainer);
 
   handlePageStyling();
 
