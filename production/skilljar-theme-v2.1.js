@@ -570,13 +570,13 @@ function styleLesson() {
           .replace(/^\$ /g, "");
 
         const container = Object.assign(document.createElement("div"), {
-          class: "code-copy-container",
+          classList: ["code-copy-container"],
         });
 
         // create 'copied' tooltip
         const tooltipContainer = Object.assign(document.createElement("div"), {
           textContent: "Copied",
-          class: "tooltip",
+          classList: ["tooltip"],
         });
 
         // add elements
