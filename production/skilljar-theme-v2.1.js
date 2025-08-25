@@ -930,8 +930,8 @@ function styleCurriculumPageNoCertificate() {
     },
     tabs: {
       container: document.querySelector(".tabs"),
-      curriculumSection: document.querySelector(".tabs section:nth-child(1)"),
-      aboutSection: document.querySelector(".tabs section:nth-child(2)"),
+      curriculumSection: document.querySelector(".tabs section #curriculumSection") || document.querySelector(".tabs section:nth-child(1)"),
+      aboutSection: document.querySelector(".tabs section #aboutSection") || document.querySelector(".tabs section:nth-child(2)"),
     },
     card: {
       details: document.querySelector(".course-details-card"),
@@ -954,6 +954,9 @@ function styleCurriculumPageNoCertificate() {
   }
 
   if (!initialLoadComplete) {
+    v.local.tabs.aboutSection.id = "aboutSection";
+    v.local.tabs.curriculumSection.id = "curriculumSection";
+    
     v.local.card.detailItems.forEach((li) =>
       li.prepend(createClone("checkbox"))
     );
