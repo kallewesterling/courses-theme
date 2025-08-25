@@ -1374,6 +1374,7 @@ window.addEventListener("resize", () => {
   if (page.isLogin) return;
   if (page.isSignup) return;
   if (page.isCurriculum && !page.hasCertificate) return;
+  if (page.isLesson) return;
 
   render();
 });
