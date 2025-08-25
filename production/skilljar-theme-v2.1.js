@@ -915,53 +915,23 @@ function styleCurriculumPageNoCertificate() {
   v.local = {
     body: {
       mainContainer: document.querySelector("#cp-content"),
-      mobile: document.querySelector(".sj-mobile"),
-      wrapper: document.querySelector("#cp-content .columns"),
     },
     header: {
-      container: document.querySelector(".top-row-grey"),
-      flexContainer: document.querySelector(".dp-row-flex-v2"),
       mainHeadingContainer: document.querySelector(".cp-summary-wrapper"),
-      mainHeading: document.querySelector(".break-word"),
       floaterText: document.querySelector(".sj-floater-text"),
-      courseInfoWrapper: document.querySelector(".sj-course-info-wrapper"),
+      mainHeading: document.querySelector(".break-word"),
       courseInfo: document.querySelector(".sj-heading-paragraph"),
       ctaBtnWrapper: document.querySelector("#resume-button"),
       ctaBtn: document.querySelector("#resume-button a"),
       ctaBtnText: document.querySelector("#resume-button a span"),
-      backToCatalogLink: document.querySelector(".back-to-catalog"),
-      lessons: document.querySelector(".cp-lessons"),
-      progressBar: document.querySelector(".progress-bar"),
-      imageWrapper: document.querySelector(".cp-promo-image-wrapper"),
-      imageContainer: document.querySelector(".cp-promo-image"),
-      image: document.querySelector(".cp-promo-image img"),
+    },
+    curriculum: {
+      container: document.querySelector("#curriculum-list"),
     },
     tabs: {
       container: document.querySelector(".tabs"),
       curriculumSection: document.querySelector(".tabs section:nth-child(1)"),
       aboutSection: document.querySelector(".tabs section:nth-child(2)"),
-      aboutHeader: document.querySelector(".tabs section:nth-child(2) h3"),
-      curriculumHeader: document.querySelector(".tabs section:nth-child(1) h2"),
-      aboutContent: document.querySelector(
-        ".tabs section:nth-child(2) .content"
-      ),
-      curriculumContent: document.querySelector(
-        ".tabs section:nth-child(1) .content"
-      ),
-      titles: document.querySelectorAll(".tabs section .title"),
-    },
-    curriculum: {
-      container: document.querySelector("#curriculum-list"),
-      outsideContainer: document.querySelector(
-        ".content:has(#curriculum-list)"
-      ),
-      header: document.querySelectorAll(
-        ".content:has(#curriculum-list) h2, .content:has(#curriculum-list) hr"
-      ),
-      icons: document.querySelectorAll(".type-icon.hide-for-small"),
-      lessonListItems: document.querySelectorAll(".lesson-row"),
-      lessonListTitles: document.querySelectorAll(".lesson-row .title"),
-      lessonListBullets: document.querySelectorAll(".lesson-row .bullet"),
     },
     card: {
       details: document.querySelector(".course-details-card"),
@@ -971,8 +941,6 @@ function styleCurriculumPageNoCertificate() {
   };
 
   if (initialLoadComplete) {
-    v.local.tabs.curriculumSection = v.global.curriculumSection;
-    v.local.tabs.aboutSection = v.global.aboutSection;
     v.local.tabs.container.append(
       v.local.tabs.curriculumSection,
       v.local.tabs.aboutSection
@@ -988,16 +956,14 @@ function styleCurriculumPageNoCertificate() {
 
     v.local.card.link.textContent = btnText;
     v.local.card.link.href = btnHref;
+  } else {
+    hide(v.local.card.link); // Hide resume button if it doesn't exist
   }
 
   if (!initialLoadComplete) {
     v.local.card.detailItems.forEach((li) =>
       li.prepend(createClone("checkbox"))
     );
-
-    // Add vars to global
-    v.global.curriculumSection = v.local.tabs.curriculumSection;
-    v.global.aboutSection = v.local.tabs.aboutSection;
 
     const curriculumElements = getCurriculumElements(
       v.local.curriculum.container
@@ -1006,145 +972,8 @@ function styleCurriculumPageNoCertificate() {
     v.local.curriculum.container.innerHTML = ""; // Clear the container
     v.local.curriculum.container.append(...curriculumElements);
   }
-
-  setStyle(v.local.body.wrapper, { width: "100%" });
-
-  setStyle(v.local.header.mainHeading, {
-    fontWeight: "600",
-    fontSize: "36px",
-    lineHeight: "43.2px",
-    letterSpacing: "-0.5px",
-    marginTop: "0",
-  });
-
-  setStyle(v.local.header.container, {
-    maxWidth: "none",
-    padding: "0",
-    border: "0",
-  });
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.header.container, {
-        backgroundColor: "var(--form-bg)",
-        backgroundImage: "none",
-      })
-    : setStyle(v.local.header.container, {
-        backgroundImage:
-          "linear-gradient(225deg, var(--label-color) 0%, var(--primary-cyan-hex) 100%)",
-      });
-
-  setStyle(v.local.header.ctaBtnWrapper, { marginLeft: "0", marginRight: "0" });
-
-  setStyle(v.local.header.imageWrapper, {
-    position: "static",
-    padding: "0",
-    width: v.viewport === "desktop" ? "564px" : "90%",
-    height: "auto",
-  });
-
-  setStyle(v.local.header.imageContainer, { maxHeight: "none" });
-
-  setStyle(v.local.header.image, {
-    maxHeight: "none",
-    height: "auto",
-    maxWidth: "100%",
-  });
-
-  setStyle(v.local.curriculum.lessonListItems, {
-    display: "flex",
-    alignItems: "center",
-    gap: "12px",
-  });
-
-  setStyle(v.local.curriculum.lessonListTitles, {
-    position: "static",
-    color: "rgb(var(--primary-text))",
-    display: "flex",
-    alignItems: "center",
-    margin: "0",
-    transform: "translateY(2px)",
-  });
-
-  setStyle(v.local.curriculum.lessonListBullets, { position: "static" });
-
-  setStyle([v.local.header.courseInfo, v.local.header.floaterText], {
-    display: "block",
-  });
-
-  setStyle(v.local.tabs.curriculumSection, { marginTop: "48px" });
-
-  setStyle([v.local.tabs.aboutHeader, v.local.tabs.curriculumHeader], {
-    fontWeight: "600",
-  });
-
-  setStyle([v.local.tabs.aboutContent, v.local.tabs.curriculumContent], {
-    border: "0",
-    padding: "0",
-  });
-
-  setStyle(v.local.tabs.container, {
-    margin: v.viewport === "desktop" ? "0 0 46px 0" : "96px 0 46px 0",
-  });
-
-  setStyle(v.local.header.flexContainer, {
-    margin: "96px 0",
-    justifyContent: "center",
-    flexWrap: v.viewport === "desktop" ? "nowrap" : "wrap",
-    gap: "24px",
-  });
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.body.mainContainer, {
-        display: "grid",
-        marginTop: "96px",
-        gridTemplateColumns: "minmax(100px, 760px) minmax(100px, 368px)",
-        columnGap: "24px",
-        paddingTop: "0",
-        paddingBottom: "0",
-      })
-    : setStyle(v.local.body.mainContainer, {
-        display: "grid",
-        gridTemplateColumns: "1fr",
-        width: "90%",
-        columnGap: "24px",
-        paddingTop: "0",
-        paddingBottom: "0",
-      });
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.card.details, { margin: "96px 0 46px 0" })
-    : setStyle(v.local.card.details, {
-        margin: "32px 0 56px 0",
-        justifySelf: "center",
-      });
-
-  setStyle(v.local.header.mainHeadingContainer, {
-    position: "static",
-    padding: "0",
-    maxWidth: v.viewport === "desktop" ? "564px" : "none",
-    border: "0",
-    textAlign: "left",
-  });
-
-  if (v.viewport === "mobile") {
-    setStyle(v.local.header.mainHeadingContainer, {
-      width: "90%",
-      marginBottom: "32px",
-    });
-  } else {
-    // content (TODO: should this be for all viewports?)
-    v.local.header.courseInfo.textContent = skilljarCourse.short_description; // eslint-disable-line no-undef
-
-    setStyle(
-      [
-        v.local.tabs.aboutSection,
-        v.local.tabs.curriculumSection,
-        v.global.aboutSection,
-        v.global.curriculumSection,
-      ],
-      { padding: "0 !important" }
-    );
-  }
+  
+  v.local.header.courseInfo.textContent = skilljarCourse.short_description; // eslint-disable-line no-undef
 
   // move elements
   v.local.body.mainContainer.append(...[v.local.card.details].filter(Boolean));
@@ -1157,17 +986,6 @@ function styleCurriculumPageNoCertificate() {
     ].filter(Boolean)
   );
   v.local.tabs.container.append(v.local.tabs.curriculumSection);
-
-  // hide elements
-  hide([
-    ...v.local.curriculum.icons,
-    ...v.local.curriculum.header,
-    ...v.local.tabs.titles,
-    v.local.header.backToCatalogLink,
-    v.local.header.lessons,
-    v.local.header.progressBar,
-    !v.local.header.ctaBtnWrapper ? v.local.card.link : null, // Hide resume button if it doesn't exist
-  ]);
 }
 
 /**
