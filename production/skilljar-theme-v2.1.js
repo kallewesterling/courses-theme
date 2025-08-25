@@ -445,7 +445,14 @@ function styleCourseDetails() {
     },
   };
 
-  // do actions for non-initial load
+  if (v.local.header.registerBtn && v.local.card.link) {
+    const btnText = v.local.header.registerBtn.textContent || "Register";
+    const btnHref = v.local.header.registerBtn.href || "#";
+    v.local.card.link.textContent = btnText;
+    v.local.card.link.setAttribute("href", btnHref);
+  }
+
+  // move elements
   if (!initialLoadComplete) {
     const curriculumElements = getCurriculumElements(
       v.local.curriculum.container
@@ -457,18 +464,7 @@ function styleCourseDetails() {
     v.local.card.detailItems.forEach((li) =>
       li.prepend(createClone("checkbox"))
     );
-  }
 
-  if (v.local.header.registerBtn && v.local.card.link) {
-    const btnText = v.local.header.registerBtn.textContent || "Register";
-    const btnHref = v.local.header.registerBtn.href || "#";
-    v.local.card.link.textContent = btnText;
-    v.local.card.link.setAttribute("href", btnHref);
-  }
-
-
-  // move elements
-  if (!initialLoadComplete) {
     // append card
     v.local.body.container.append(...[v.local.card.details].filter(Boolean));
 
@@ -492,88 +488,16 @@ function stylePathCourseDetails() {
 
   v.local = {
     header: {
-      container: document.querySelector(".top-row-grey"),
-      flexContainer: document.querySelector(".dp-row-flex-v2"),
+      mainHeadingContainer: document.querySelector(".dp-summary-wrapper"),
       floaterText: document.querySelector(".sj-floater-text"),
       mainHeading: document.querySelector(".break-word"),
-      ctaBtnWrapper: document.querySelector("#purchase-button-wrapper-large"),
-      registerBtn: document.querySelector("#purchase-button-wrapper-large a"),
-      mainHeadingContainer: document.querySelector(".dp-summary-wrapper"),
-      backToCatalogBtn: document.querySelector(".back-to-catalog"),
-      courseInfoWrapper: document.querySelector(".sj-course-info-wrapper"),
       courseInfo: document.querySelector(".sj-heading-paragraph"),
+      ctaBtnWrapper: document.querySelector("#purchase-button-wrapper-large"),
     },
-    body: {
-      container: document.querySelector("#dp-details-bundle"),
-      catalogContainer: document.querySelector("#catalog-courses"),
-    },
-    signinText: document.querySelector(".signin"),
   };
 
   // set content
   v.local.header.floaterText.textContent = "Learning Path";
-
-  setStyle(v.local.header.container, {
-    background:
-      "url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png)",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    margin: "0",
-    maxWidth: "none",
-    paddingTop: "96px",
-    paddingBottom: "96px",
-    border: "0",
-  });
-
-  setStyle(v.local.header.flexContainer, {
-    flexDirection: "row-reverse",
-    flexWrap: "nowrap",
-    justifyContent: "start",
-    gap: "24px",
-    maxWidth: "1188px",
-  });
-
-  setStyle(v.local.header.mainHeadingContainer, {
-    border: "0",
-    maxWidth: "600px",
-  });
-
-  setStyle(v.local.header.floaterText, {
-    color: "var(--primary-cyan-hex)",
-    display: "block",
-    marginBottom: "24px",
-  });
-
-  setStyle(v.local.header.mainHeading, {
-    color: "var(--primary-white-hex)",
-    margin: "0 0 12px 0",
-    fontSize: "36px",
-    fontWeight: "600",
-    lineHeight: "43.2px",
-    letterSpacing: "-.02em",
-  });
-
-  setStyle(v.local.header.courseInfo, {
-    color: "var(--primary-white-hex)",
-    display: "block",
-    margin: "0 0 24px 0",
-  });
-
-  setStyle(v.local.header.registerBtn, {
-    borderColor: "var(--primary-cyan-hex)",
-    color: "var(--primary-white-hex)",
-  });
-
-  setStyle(v.local.body.container, {
-    padding: "0",
-    margin: "96px auto 46px auto",
-    maxWidth: "min(1152px, 90%)",
-  });
-
-  setStyle(v.local.body.catalogContainer, {
-    marginBottom: "85px",
-  });
 
   // move elements
   if (!initialLoadComplete) {
@@ -586,13 +510,6 @@ function stylePathCourseDetails() {
       ].filter(Boolean)
     );
   }
-
-  // hide elements
-  hide([
-    v.local.header.backToCatalogBtn,
-    v.local.signinText,
-    v.local.header.courseInfoWrapper,
-  ]);
 }
 
 /**

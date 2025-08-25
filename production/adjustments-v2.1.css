@@ -312,16 +312,16 @@ body.sj-page-detail-course {
         }
 
         .sj-course-info-wrapper {
-            display: none !important;
+          display: none !important;
         }
 
         #purchase-button-wrapper-large {
-            /* Register/sign up/resume button wrapper */
+          /* Register/sign up/resume button wrapper */
 
-            .signin {
-                /* Sign in link */
-                display: none !important;
-            }
+          .signin {
+            /* Sign in link */
+            display: none !important;
+          }
         }
       }
     }
@@ -341,49 +341,130 @@ body.sj-page-detail-course {
     }
 
     .show-for-small {
-        /* Mobile body content - hide it! */
-        display: none !important;
+      /* Mobile body content - hide it! */
+      display: none !important;
     }
 
     .hide-for-small {
-        /* Desktop body content */
-        padding: 0px;
-        max-width: 760px;
-        display: grid !important;
+      /* Desktop body content */
+      padding: 0px;
+      max-width: 760px;
+      display: grid !important;
 
-        .columns {
-            /* Two columns: content + curriculum */
-            float: none;
-            padding: 0;
-            width: 100%;
-            display: block;
-            margin-bottom: 48px;
+      .columns {
+        /* Two columns: content + curriculum */
+        float: none;
+        padding: 0;
+        width: 100%;
+        display: block;
+        margin-bottom: 48px;
 
-            h3 {
-                /* Headers in content + curriculum */
-                font-weight: 600;
-            }
+        h3 {
+          /* Headers in content + curriculum */
+          font-weight: 600;
+        }
+      }
 
+      .columns.sj-curriculum-wrapper {
+        /* Curriculum wrapper */
+
+        ul.dp-curriculum {
+          margin: 0;
         }
 
-        .columns.sj-curriculum-wrapper {
-            /* Curriculum wrapper */
-            
-            ul.dp-curriculum {
-                margin: 0;
-            }
-
-            h3 {
-                /* This used to be a header in the curriculum list, no longer used (since v2.1) */
-                display: none !important;
-            }
+        h3 {
+          /* This used to be a header in the curriculum list, no longer used (since v2.1) */
+          display: none !important;
         }
+      }
     }
 
     .course-details-card {
-        /* Course details card */
-        margin: 0 0 46px 0;
-        justify-self: center;
+      /* Course details card */
+      margin: 0 0 46px 0;
+      justify-self: center;
+    }
+  }
+}
+
+body.sj-page-detail-bundle.sj-page-detail-path {
+  /* Learning path detail page styles */
+
+  header .back-to-catalog {
+    /* Back to catalog button */
+    display: none !important;
+  }
+
+  .top-row-grey {
+    background: url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    max-width: none;
+    padding-top: 96px;
+    padding-bottom: 96px;
+    border: 0;
+
+    .dp-row-flex-v2 {
+      display: flex;
+      flex-direction: row-reverse;
+      flex-wrap: nowrap;
+      justify-content: start;
+      gap: 24px;
+      max-width: 1188px;
+
+      .dp-summary-wrapper {
+        border: 0;
+        max-width: 600px;    
+
+        .sj-floater-text {
+          color: "var(--primary-cyan-hex)";
+          display: "block";
+          margin-bottom: "24px";
+        }
+
+        h1.break-word {
+          color: var(--primary-white-hex);
+          margin: 0 0 12px 0;
+          font-size: 36px;
+          font-weight: 600;
+          line-height: 43.2px;
+          letter-spacing: -.02em;
+        }
+
+        .sj-heading-paragraph {
+          color: var(--primary-white-hex);
+          display: block;
+          margin: 0 0 24px 0;
+        }
+
+        .sj-course-info-wrapper {
+          display: none !important;
+        }
+
+        #purchase-button-wrapper-large {
+          a#purchase-button {
+            border-color: var(--primary-cyan-hex);
+            color: var(--primary-white-hex);
+          }
+          
+          .signin {
+            /* Sign in link */
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+
+  #dp-details-bundle {
+    padding: 0px;
+    margin: 96px auto 46px auto;
+    max-width: min(1152px, 90%);
+
+    #catalog-courses {
+      margin-bottom: 85px;
     }
   }
 }
