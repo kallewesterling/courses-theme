@@ -99,6 +99,7 @@ const page = {
   isSignup: c(".sj-page-signup"),
   isPageDetail: c(".sj-page-detail-bundle.sj-page-detail-path"),
   isPageCatalog: c(".sj-page-series.sj-page-path"),
+  hasCertificate: c(".cp-certificate"),
 };
 
 let v = {
@@ -450,32 +451,27 @@ function styleCourseDetails() {
     v.local.card.link.setAttribute("href", btnHref);
   }
 
-  // move elements
-  if (!initialLoadComplete) {
-    const curriculumElements = getCurriculumElements(
-      v.local.curriculum.container
-    );
+  const curriculumElements = getCurriculumElements(
+    v.local.curriculum.container
+  );
 
-    v.local.curriculum.container.innerHTML = ""; // Clear the container
-    v.local.curriculum.container.append(...curriculumElements);
+  v.local.curriculum.container.innerHTML = ""; // Clear the container
+  v.local.curriculum.container.append(...curriculumElements);
 
-    v.local.card.detailItems.forEach((li) =>
-      li.prepend(createClone("checkbox"))
-    );
+  v.local.card.detailItems.forEach((li) => li.prepend(createClone("checkbox")));
 
-    // append card
-    v.local.body.container.append(...[v.local.card.details].filter(Boolean));
+  // append card
+  v.local.body.container.append(...[v.local.card.details].filter(Boolean));
 
-    // append elements to header
-    v.local.header.mainHeadingContainer.append(
-      ...[
-        v.local.header.floaterText,
-        v.local.header.mainHeading,
-        v.local.header.courseInfo,
-        v.local.header.ctaBtnWrapper,
-      ].filter(Boolean)
-    );
-  }
+  // append elements to header
+  v.local.header.mainHeadingContainer.append(
+    ...[
+      v.local.header.floaterText,
+      v.local.header.mainHeading,
+      v.local.header.courseInfo,
+      v.local.header.ctaBtnWrapper,
+    ].filter(Boolean)
+  );
 }
 
 /**
@@ -498,16 +494,14 @@ function stylePathCourseDetails() {
   v.local.header.floaterText.textContent = "Learning Path";
 
   // move elements
-  if (!initialLoadComplete) {
-    v.local.header.mainHeadingContainer.append(
-      ...[
-        v.local.header.floaterText,
-        v.local.header.mainHeading,
-        v.local.header.courseInfo,
-        v.local.header.ctaBtnWrapper,
-      ].filter(Boolean)
-    );
-  }
+  v.local.header.mainHeadingContainer.append(
+    ...[
+      v.local.header.floaterText,
+      v.local.header.mainHeading,
+      v.local.header.courseInfo,
+      v.local.header.ctaBtnWrapper,
+    ].filter(Boolean)
+  );
 }
 
 /**
@@ -955,26 +949,22 @@ function styleCurriculumPageNoCertificate() {
     hide(v.local.card.link); // Hide resume button if it doesn't exist
   }
 
-  if (!initialLoadComplete) {
-    v.local.tabs.aboutSection.id = "aboutSection";
-    v.local.tabs.curriculumSection.id = "curriculumSection";
+  v.local.tabs.aboutSection.id = "aboutSection";
+  v.local.tabs.curriculumSection.id = "curriculumSection";
 
-    v.local.tabs.container.append(
-      v.local.tabs.aboutSection,
-      v.local.tabs.curriculumSection
-    );
+  v.local.tabs.container.append(
+    v.local.tabs.aboutSection,
+    v.local.tabs.curriculumSection
+  );
 
-    v.local.card.detailItems.forEach((li) =>
-      li.prepend(createClone("checkbox"))
-    );
+  v.local.card.detailItems.forEach((li) => li.prepend(createClone("checkbox")));
 
-    const curriculumElements = getCurriculumElements(
-      v.local.curriculum.container
-    );
+  const curriculumElements = getCurriculumElements(
+    v.local.curriculum.container
+  );
 
-    v.local.curriculum.container.innerHTML = ""; // Clear the container
-    v.local.curriculum.container.append(...curriculumElements);
-  }
+  v.local.curriculum.container.innerHTML = ""; // Clear the container
+  v.local.curriculum.container.append(...curriculumElements);
 
   v.local.header.courseInfo.textContent = skilljarCourse.short_description; // eslint-disable-line no-undef
 
@@ -1483,8 +1473,6 @@ function styleCurriculumPageHasCertificationMobile() {
  * It also checks for the presence of a certificate and applies styles accordingly.
  */
 function handlePageStyling() {
-  const hasCertificate = c(".cp-certificate");
-
   if (page.isLanding)
     // we are on the landing page (which is a catalog page)
     return styleLanding();
@@ -1501,7 +1489,7 @@ function handlePageStyling() {
     // we are on a course page but not logged in
     return styleCourseDetails();
 
-  if (page.isCurriculum && !hasCertificate)
+  if (page.isCurriculum && !page.hasCertificate)
     // we are on a course page (without a certificate) and logged in
     return styleCurriculumPageNoCertificate();
 
@@ -1521,7 +1509,7 @@ function handlePageStyling() {
     // we are on a catalog page (not currently in use)
     return styleCatalog();
 
-  if (page.isCurriculum && hasCertificate)
+  if (page.isCurriculum && page.hasCertificate)
     // we are on a course page (with a certificate) and logged in
     // n.b. this function is not edited and/or tested (and not in use)
     return v.viewport === "desktop"
@@ -1583,8 +1571,13 @@ document.addEventListener("DOMContentLoaded", () => {
   It is a good place to run scripts that need to ensure all resources are available before executing.
 */
 window.addEventListener("resize", () => {
-  // no need to re-apply styles on resize for landing page
+  // no need to re-apply styles on resize for the following pages
   if (page.isLanding) return;
+  if (page.isCourseDetails) return;
+  if (page.isPageDetail) return;
+  if (page.isLogin) return;
+  if (page.isSignup) return;
+  if (page.isCurriculum && !page.hasCertificate) return;
 
   render();
 });
