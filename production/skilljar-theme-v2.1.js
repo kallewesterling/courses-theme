@@ -557,44 +557,6 @@ function styleLesson() {
    * @param {NodeList} codeBlocks - A list of code block elements to process.
    * @return {void}
    */
-  function processCodeBlocks(codeBlocks) {
-    codeBlocks
-      .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
-      .forEach((el) => {
-        const codeEl = el.querySelector("code");
-        const iconClone = createClone("copy");
-
-        const copyText = codeEl.textContent
-          .trim()
-          .replace(/\r?\n\$ /g, " && ")
-          .replace(/^\$ /g, "");
-
-        const container = Object.assign(document.createElement("div"), {
-          classList: ["code-copy-container"],
-        });
-
-        // create 'copied' tooltip
-        const tooltipContainer = Object.assign(document.createElement("div"), {
-          textContent: "Copied",
-          classList: ["tooltip"],
-        });
-
-        // add elements
-        container.append(iconClone);
-        el.append(tooltipContainer);
-        el.prepend(container);
-
-        // add event listener to cloned icon to copy block into clipboard
-        iconClone.addEventListener(
-          "click",
-          toClipboard(copyText, tooltipContainer)
-        );
-
-        // Mark that copy icon was added to this code block
-        el.dataset.copyAdded = "true";
-      });
-  }
-
   v.local = {
     body: {
       mainContainer: document.querySelector("#lp-wrapper"),
@@ -636,7 +598,41 @@ function styleLesson() {
     ].filter(Boolean)
   );
 
-  processCodeBlocks(v.local.lesson.content.codeBlocks);
+  v.local.lesson.content.codeBlocks
+    .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
+    .forEach((el) => {
+      const codeEl = el.querySelector("code");
+      const iconClone = createClone("copy");
+
+      const copyText = codeEl.textContent
+        .trim()
+        .replace(/\r?\n\$ /g, " && ")
+        .replace(/^\$ /g, "");
+
+      const container = Object.assign(document.createElement("div"), {
+        style: `display: flex; justify-content: end; border-bottom: 1px solid gainsboro; padding: 12px 24px;`,
+      });
+
+      // create 'copied' tooltip
+      const tooltipContainer = Object.assign(document.createElement("div"), {
+        textContent: "Copied",
+        style: `position: absolute; top: -24px; right: 10px; text-shadow: none; background-color: var(--answer-option); color: var(--primary-white-hex); padding: 5px 10px; border-radius: 4px; opacity: 0; transition: opacity .2s ease-in;`,
+      });
+
+      // add elements
+      container.append(iconClone);
+      el.append(tooltipContainer);
+      el.prepend(container);
+
+      // add event listener to cloned icon to copy block into clipboard
+      iconClone.addEventListener(
+        "click",
+        toClipboard(copyText, tooltipContainer)
+      );
+
+      // Mark that copy icon was added to this code block
+      el.dataset.copyAdded = "true";
+    });
 }
 
 const getLoginSignupSelectors = () => ({
