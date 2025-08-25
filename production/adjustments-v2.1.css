@@ -903,7 +903,7 @@ body.sj-page-lesson {
         /* Previous button title */
         color: var(--primary-dark-purple-hex);
 
-        @media screen and (max-width: 767px) {
+        @media screen and (max-width: 991px) {
           color: inherit;
         }
       }
