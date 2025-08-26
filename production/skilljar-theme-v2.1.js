@@ -88,25 +88,39 @@ function createClone(type = "checkbox") {
 }
 
 function createResourceCard(resource) {
-  const card = document.createElement("div");
-  card.classList.add("resource-card");
+  const card = Object.assign(document.createElement("div"), {
+    classList: ["resource-card"]
+  });
 
-  const cardWrapper = document.createElement("div");
-  cardWrapper.classList.add("card-body");
+  const cardWrapper = Object.assign(document.createElement("div"), {
+    classList: ["card-body"],
+  });
 
-  const titleEl = document.createElement("h5");
-  titleEl.classList.add("card-title");
-  titleEl.textContent = resource.title;
+  const titleEl = Object.assign(document.createElement("h5"), {
+    classList: ["card-title"],
+    textContent: resource.title
+  });
+
   cardWrapper.appendChild(titleEl);
 
-  const link = resource.addUTM
-    ? resource.link + "?utm_source=skilljar"
-    : resource.link;
-  const linkEl = document.createElement("a");
-  linkEl.href = link;
-  linkEl.classList.add("button");
-  linkEl.target = "_blank";
-  linkEl.textContent = "View Resource";
+  let link;
+  if (resource.addUTM) {
+    const url = new URL(resource.link);
+    url.searchParams.set("utm_source", "courses");
+    url.searchParams.set("utm_medium", "referral");
+    url.searchParams.set("utm_campaign", "dev-enablement");
+    link = url.toString();
+  } else {
+    link = resource.link;
+  }
+
+  const linkEl = Object.assign(document.createElement("a"), {
+    href: link,
+    classList: ["button"],
+    target: "_blank",
+    textContent: "View Resource"
+  });
+
   cardWrapper.appendChild(linkEl);
   card.appendChild(cardWrapper);
 
