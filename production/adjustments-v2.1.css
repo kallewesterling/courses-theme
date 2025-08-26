@@ -891,9 +891,9 @@ body.sj-page-lesson {
                 /* A resource box */
 
                 .resource-wrapper {
-                  display: flex;
-                  padding: 10px;
-                  gap: 10px;
+                  display: grid;
+                  grid-template-columns: repeat(2, 1fr); /* two equal columns */
+                  gap: 1rem;
 
                   .resource-card {
                     /* Resource card styles */
@@ -925,11 +925,9 @@ body.sj-page-lesson {
                       word-wrap: break-word;
                     }
                     a.button {
-                      color: #fff !important;
-                      background-color: var(
-                        --primary-dark-purple-hex
-                      ) !important;
-                      border-color: var(--primary-dark-purple-hex) !important;
+                      color: var(--primary-dark-purple-hex) !important;
+                      background-color: var(--border-color-v2) !important;
+                      border-color: var(--border-color-v2) !important;
 
                       display: inline-block;
                       font-weight: 400;
