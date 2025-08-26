@@ -894,6 +894,9 @@ body.sj-page-lesson {
 
     #lp-footer {
       /* Lesson footer */
+      position: relative;
+      border: 0px;
+      background-color: transparent;
 
       @media screen and (max-width: 991px) {
         display: none !important;
