@@ -87,6 +87,32 @@ function createClone(type = "checkbox") {
   return svg;
 }
 
+function createResourceCard(resource) {
+  const card = document.createElement("div");
+  card.classList.add("resource-card");
+
+  const cardWrapper = document.createElement("div");
+  cardWrapper.classList.add("card-body");
+
+  const titleEl = document.createElement("h5");
+  titleEl.classList.add("card-title");
+  titleEl.textContent = resource.title;
+  cardWrapper.appendChild(titleEl);
+
+  const link = resource.addUTM
+    ? resource.link + "?utm_source=skilljar"
+    : resource.link;
+  const linkEl = document.createElement("a");
+  linkEl.href = link;
+  linkEl.classList.add("button");
+  linkEl.target = "_blank";
+  linkEl.textContent = "View Resource";
+  cardWrapper.appendChild(linkEl);
+  card.appendChild(cardWrapper);
+
+  return card;
+}
+
 const c = (selector) => (document.querySelector(selector) ? true : false);
 
 const page = {
@@ -571,6 +597,12 @@ function styleLesson() {
           "#internal-course-warning"
         ),
         links: document.querySelectorAll("sjwc-lesson-content-item a"),
+        resources: {
+          box: document.querySelector("sjwc-lesson-content-item .resource-box"),
+          wrapper: document.querySelector(
+            "sjwc-lesson-content-item .resource-box .resource-wrapper"
+          ),
+        },
       },
     },
     nav: {
@@ -633,6 +665,13 @@ function styleLesson() {
       // Mark that copy icon was added to this code block
       el.dataset.copyAdded = "true";
     });
+
+  if (v.local.lesson.content.resources && resources) { // eslint-disable-line no-undef
+    v.local.lesson.content.resources.wrapper.innerHTML = ""; // Clear existing content
+    v.local.lesson.content.resources.wrapper.append(
+      ...resources.resources.map((r) => createResourceCard(r)) // eslint-disable-line no-undef
+    );
+  }
 }
 
 const getLoginSignupSelectors = () => ({
@@ -1262,9 +1301,6 @@ function styleCurriculumPageHasCertificationMobile() {
     titleEl.style.margin = "0";
     titleEl.style.transform = "translateY(2px)";
   });
-
-  // FOOTER STYLING
-  setStyle(v.global.footerCols, { width: "212px" });
 
   hide([...pageIcons]);
 }
