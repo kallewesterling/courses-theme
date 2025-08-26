@@ -685,7 +685,7 @@ function styleLesson() {
     v.local.lesson.content.resources.wrapper.append(
       ...resources.resources.map((r) => createResourceCard(r)) // eslint-disable-line no-undef
     );
-  } else if (typeof resources !== "undefined") {
+  } else {
     hide(v.local.lesson.content.resources.box);
   }
 }
