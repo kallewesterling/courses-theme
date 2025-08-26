@@ -898,10 +898,6 @@ body.sj-page-lesson {
       border: 0px;
       background-color: transparent;
 
-      @media screen and (max-width: 991px) {
-        display: none !important;
-      }
-
       .toggle-fullscreen {
         display: none !important;
       }
