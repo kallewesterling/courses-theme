@@ -891,8 +891,24 @@ body.sj-page-lesson {
                 /* A resource box */
 
                 .resource-wrapper {
+                  display: flex;
+                  padding: 10px;
+                  gap: 10px;
+
                   .resource-card {
                     /* Resource card styles */
+                    position: relative;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -ms-flex-direction: column;
+                    flex-direction: column;
+                    min-width: 0;
+                    word-wrap: break-word;
+                    background-color: #fff;
+                    background-clip: border-box;
+                    border: 1px solid rgba(0, 0, 0, 0.125);
+                    border-radius: 0.25rem;
+
                     .card-body {
                       -ms-flex: 1 1 auto;
                       flex: 1 1 auto;
@@ -909,13 +925,14 @@ body.sj-page-lesson {
                       word-wrap: break-word;
                     }
                     a.button {
-                      color: #fff;
-                      background-color: var(--primary-dark-purple-hex);
-                      border-color: var(--primary-dark-purple-hex);
+                      color: #fff !important;
+                      background-color: var(
+                        --primary-dark-purple-hex
+                      ) !important;
+                      border-color: var(--primary-dark-purple-hex) !important;
 
                       display: inline-block;
                       font-weight: 400;
-                      color: #212529;
                       text-align: center;
                       vertical-align: middle;
                       -webkit-user-select: none;
@@ -924,10 +941,6 @@ body.sj-page-lesson {
                       user-select: none;
                       background-color: transparent;
                       border: 1px solid transparent;
-                      border-top-color: transparent;
-                      border-right-color: transparent;
-                      border-bottom-color: transparent;
-                      border-left-color: transparent;
                       padding: 0.375rem 0.75rem;
                       font-size: 1rem;
                       line-height: 1.5;
@@ -936,6 +949,7 @@ body.sj-page-lesson {
                         background-color 0.15s ease-in-out,
                         border-color 0.15s ease-in-out,
                         box-shadow 0.15s ease-in-out;
+                      margin: 0;
                     }
                   }
                 }
