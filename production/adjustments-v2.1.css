@@ -604,7 +604,6 @@ body.sj-page-curriculum:not(:has(.cp-certificate)) {
 
       section:nth-child(1) {
         /* Curriculum section */
-        margin-top: 48px;
         padding: 0 !important;
 
         h2 {
@@ -623,6 +622,7 @@ body.sj-page-curriculum:not(:has(.cp-certificate)) {
 
       section:nth-child(2) {
         /* Course details section */
+        margin-top: 48px;
         padding: 0 !important;
 
         h3 {
