@@ -666,7 +666,7 @@ function styleLesson() {
       el.dataset.copyAdded = "true";
     });
 
-  if (v.local.lesson.content.resources && resources) { // eslint-disable-line no-undef
+  if (v.local.lesson.content.resources && typeof resources !== "undefined") {
     v.local.lesson.content.resources.wrapper.innerHTML = ""; // Clear existing content
     v.local.lesson.content.resources.wrapper.append(
       ...resources.resources.map((r) => createResourceCard(r)) // eslint-disable-line no-undef
