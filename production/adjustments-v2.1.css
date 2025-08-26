@@ -886,6 +886,60 @@ body.sj-page-lesson {
                   transition: opacity 0.2s ease-in;
                 }
               }
+
+              .resource-box {
+                /* A resource box */
+
+                .resource-wrapper {
+                  .resource-card {
+                    /* Resource card styles */
+                    .card-body {
+                      -ms-flex: 1 1 auto;
+                      flex: 1 1 auto;
+                      padding: 1.25rem;
+                    }
+                    h5.card-title {
+                      margin-bottom: 0.75rem;
+                      font-size: 1.25rem;
+                      font-weight: 500;
+                      line-height: 1.2;
+                      margin-top: 0;
+                    }
+                    p.card-text {
+                      word-wrap: break-word;
+                    }
+                    a.button {
+                      color: #fff;
+                      background-color: var(--primary-dark-purple-hex);
+                      border-color: var(--primary-dark-purple-hex);
+
+                      display: inline-block;
+                      font-weight: 400;
+                      color: #212529;
+                      text-align: center;
+                      vertical-align: middle;
+                      -webkit-user-select: none;
+                      -moz-user-select: none;
+                      -ms-user-select: none;
+                      user-select: none;
+                      background-color: transparent;
+                      border: 1px solid transparent;
+                      border-top-color: transparent;
+                      border-right-color: transparent;
+                      border-bottom-color: transparent;
+                      border-left-color: transparent;
+                      padding: 0.375rem 0.75rem;
+                      font-size: 1rem;
+                      line-height: 1.5;
+                      border-radius: 0.25rem;
+                      transition: color 0.15s ease-in-out,
+                        background-color 0.15s ease-in-out,
+                        border-color 0.15s ease-in-out,
+                        box-shadow 0.15s ease-in-out;
+                    }
+                  }
+                }
+              }
             }
           }
         }
