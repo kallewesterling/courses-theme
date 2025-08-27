@@ -118,7 +118,7 @@ function createResourceCard(resource) {
 
   // ---- Badges before title ----
   if (Array.isArray(resource.tags) && resource.tags.length > 0) {
-    const badgeContainer = document.createElement("div");
+    const badgeContainer = Object.assign(document.createElement("div"), {className: "badge-container"});
 
     resource.tags.forEach((tag) => {
       const badge = Object.assign(document.createElement("div"), {
