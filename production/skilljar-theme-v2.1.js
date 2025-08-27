@@ -89,7 +89,7 @@ function createClone(type = "checkbox") {
 
 function createResourceCard(resource) {
   const card = Object.assign(document.createElement("div"), {
-    classList: ["resource-card"]
+    classList: ["resource-card"],
   });
 
   const cardWrapper = Object.assign(document.createElement("div"), {
@@ -98,7 +98,7 @@ function createResourceCard(resource) {
 
   const titleEl = Object.assign(document.createElement("h5"), {
     classList: ["card-title"],
-    textContent: resource.title
+    textContent: resource.title,
   });
 
   cardWrapper.appendChild(titleEl);
@@ -118,7 +118,7 @@ function createResourceCard(resource) {
     href: link,
     classList: ["button"],
     target: "_blank",
-    textContent: "View Resource"
+    textContent: "View Resource",
   });
 
   cardWrapper.appendChild(linkEl);
@@ -679,6 +679,11 @@ function styleLesson() {
       // Mark that copy icon was added to this code block
       el.dataset.copyAdded = "true";
     });
+
+  // Make section titles normal h3 elements
+  Array.from(document.querySelectorAll("h3.sjwc-section-title")).map((el) =>
+    el.classList.remove("sjwc-section-title")
+  );
 
   if (v.local.lesson.content.resources && typeof resources !== "undefined") {
     v.local.lesson.content.resources.wrapper.innerHTML = ""; // Clear existing content
