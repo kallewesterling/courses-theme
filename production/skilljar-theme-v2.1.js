@@ -118,7 +118,9 @@ function createResourceCard(resource) {
 
   // ---- Badges before title ----
   if (Array.isArray(resource.tags) && resource.tags.length > 0) {
-    const badgeContainer = Object.assign(document.createElement("div"), {className: "badge-container"});
+    const badgeContainer = Object.assign(document.createElement("div"), {
+      className: "badge-container",
+    });
 
     resource.tags.forEach((tag) => {
       const badge = Object.assign(document.createElement("div"), {
@@ -630,7 +632,9 @@ function styleLesson() {
         ),
         links: document.querySelectorAll("sjwc-lesson-content-item a"),
         resources: {
-          boxes: document.querySelectorAll("sjwc-lesson-content-item .resource-box"),
+          boxes: document.querySelectorAll(
+            "sjwc-lesson-content-item .resource-box"
+          ),
           wrapper: document.querySelector(
             "sjwc-lesson-content-item .resource-box .resource-wrapper"
           ),
@@ -704,10 +708,28 @@ function styleLesson() {
   );
 
   if (v.local.lesson.content.resources && typeof resources !== "undefined") {
-    v.local.lesson.content.resources.wrapper.innerHTML = ""; // Clear existing content
-    v.local.lesson.content.resources.wrapper.append(
-      ...resources.resources.map((r) => createResourceCard(r)) // eslint-disable-line no-undef
-    );
+    if (typeof resources.resource !== "undefined") { // eslint-disable-line no-undef
+      // we have a list of resources and will drop that in the first box
+      const box = v.local.lesson.content.resources.boxes[0];
+      const wrapper = box.querySelector(".resource-wrapper");
+      wrapper.innerHTML = ""; // Clear existing content
+      wrapper.append(
+        ...resources.resources.map((r) => createResourceCard(r)) // eslint-disable-line no-undef
+      );
+    } else if (typeof resources.groups !== "undefined") { // eslint-disable-line no-undef
+      // we have groups of resources to drop in each box
+      v.local.lesson.content.resources.boxes.forEach((box) => {
+        const wrapper = box.querySelector(".resource-wrapper");
+        wrapper.innerHTML = ""; // Clear existing content
+        if (resources.groups[box.dataset.group]) { // eslint-disable-line no-undef
+          wrapper.append(
+            ...resources.groups[box.dataset.group].map((r) => // eslint-disable-line no-undef
+              createResourceCard(r)
+            )
+          );
+        }
+      });
+    }
   }
 }
 
