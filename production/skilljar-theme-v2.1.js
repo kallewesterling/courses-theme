@@ -630,7 +630,7 @@ function styleLesson() {
         ),
         links: document.querySelectorAll("sjwc-lesson-content-item a"),
         resources: {
-          box: document.querySelector("sjwc-lesson-content-item .resource-box"),
+          boxes: document.querySelectorAll("sjwc-lesson-content-item .resource-box"),
           wrapper: document.querySelector(
             "sjwc-lesson-content-item .resource-box .resource-wrapper"
           ),
@@ -708,8 +708,6 @@ function styleLesson() {
     v.local.lesson.content.resources.wrapper.append(
       ...resources.resources.map((r) => createResourceCard(r)) // eslint-disable-line no-undef
     );
-  } else {
-    hide(v.local.lesson.content.resources.box);
   }
 }
 
