@@ -88,21 +88,7 @@ function createClone(type = "checkbox") {
 }
 
 function createResourceCard(resource) {
-  const card = Object.assign(document.createElement("div"), {
-    classList: ["resource-card"],
-  });
-
-  const cardWrapper = Object.assign(document.createElement("div"), {
-    classList: ["card-body"],
-  });
-
-  const titleEl = Object.assign(document.createElement("h5"), {
-    classList: ["card-title"],
-    textContent: resource.title,
-  });
-
-  cardWrapper.appendChild(titleEl);
-
+  // ---- Link with optional UTM ----
   let link;
   if (resource.addUTM) {
     const url = new URL(resource.link);
@@ -114,17 +100,49 @@ function createResourceCard(resource) {
     link = resource.link;
   }
 
-  const linkEl = Object.assign(document.createElement("a"), {
+  // ---- Outer link wrapper ----
+  const linkWrapper = Object.assign(document.createElement("a"), {
     href: link,
-    classList: ["button"],
     target: "_blank",
-    textContent: "View Resource",
+    className: "resource-link-wrapper", // style like a block if needed
   });
 
-  cardWrapper.appendChild(linkEl);
-  card.appendChild(cardWrapper);
+  // ---- Card container ----
+  const card = Object.assign(document.createElement("div"), {
+    className: "resource-card",
+  });
 
-  return card;
+  const cardWrapper = Object.assign(document.createElement("div"), {
+    className: "card-body",
+  });
+
+  // ---- Badges before title ----
+  if (Array.isArray(resource.tags) && resource.tags.length > 0) {
+    const badgeContainer = document.createElement("div");
+
+    resource.tags.forEach((tag) => {
+      const badge = Object.assign(document.createElement("div"), {
+        className: "badge",
+        textContent: tag,
+      });
+      badgeContainer.appendChild(badge);
+    });
+
+    cardWrapper.appendChild(badgeContainer);
+  }
+
+  // ---- Title ----
+  const titleEl = Object.assign(document.createElement("h5"), {
+    className: "card-title",
+    textContent: resource.title,
+  });
+  cardWrapper.appendChild(titleEl);
+
+  // ---- Assemble ----
+  card.appendChild(cardWrapper);
+  linkWrapper.appendChild(card);
+
+  return linkWrapper;
 }
 
 const c = (selector) => (document.querySelector(selector) ? true : false);
