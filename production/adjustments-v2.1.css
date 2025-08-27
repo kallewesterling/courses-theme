@@ -893,7 +893,7 @@ body.sj-page-lesson {
 
               .resource-box {
                 /* A resource box */
-                h4 {
+                h3 {
                   font-size: 1.25rem;
                 }
 
@@ -945,10 +945,10 @@ body.sj-page-lesson {
                       }
 
                       h5.card-title {
-                        margin-bottom: 0.75rem;
+                        margin-bottom: 0;
                         font-size: 1rem;
                         font-weight: 500;
-                        line-height: 1.2;
+                        line-height: 1.5rem;
                         margin-top: 0;
                       }
 
