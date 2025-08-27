@@ -3,6 +3,9 @@ const THEME = 'min-light'; // Shiki theme to use
 import {h} from 'https://esm.sh/hastscript@9?bundle'
 import { codeToHtml } from 'https://esm.sh/shiki@3.0.0'
 
+import * as shiki from "https://esm.sh/shiki@3.0.0";
+window.shiki = shiki;
+
 function addCopyButton() {
     // From https://github.com/joshnuss/shiki-transformer-copy-button
 
