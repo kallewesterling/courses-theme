@@ -886,9 +886,16 @@ body.sj-page-lesson {
                   transition: opacity 0.2s ease-in;
                 }
               }
+              
+              .resource-box:not(:has(.resource-card)) {
+                display: none !important;
+              }
 
               .resource-box {
                 /* A resource box */
+                h4 {
+                  font-size: 1.25rem;
+                }
 
                 .resource-wrapper {
                   display: grid;
@@ -914,16 +921,19 @@ body.sj-page-lesson {
                       flex: 1 1 auto;
                       padding: 1.25rem;
                     }
+
                     h5.card-title {
                       margin-bottom: 0.75rem;
-                      font-size: 1.25rem;
+                      font-size: 1rem;
                       font-weight: 500;
                       line-height: 1.2;
                       margin-top: 0;
                     }
+                    
                     p.card-text {
                       word-wrap: break-word;
                     }
+                    
                     a.button {
                       color: var(--primary-dark-purple-hex) !important;
                       background-color: var(--border-color-v2) !important;
@@ -940,7 +950,7 @@ body.sj-page-lesson {
                       background-color: transparent;
                       border: 1px solid transparent;
                       padding: 0.375rem 0.75rem;
-                      font-size: 1rem;
+                      font-size: 0.8rem;
                       line-height: 1.5;
                       border-radius: 0.25rem;
                       transition: color 0.15s ease-in-out,
