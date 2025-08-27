@@ -4,6 +4,7 @@ import { h } from "https://esm.sh/hastscript@9?bundle";
 
 import * as shiki from "https://esm.sh/shiki@3.0.0";
 window.shiki = shiki;
+window.h = h;
 
 /*
  * This function adds a copy button to code blocks.
