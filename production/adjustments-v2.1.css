@@ -60,6 +60,10 @@ body.sj-page-catalog-root {
         border: 1px solid #000;
         width: calc(33% - 24px) !important; /* 3 should fit */
 
+        @media screen and (max-width: 991px) {
+          width: 100% !important; /* 1 only on mobile */
+        }
+
         .badge-box {
           box-shadow: unset !important;
           color: #fff !important;
