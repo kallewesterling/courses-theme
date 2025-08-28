@@ -10,9 +10,6 @@
     rgba(20, 0, 255, 0.07) 0%,
     rgba(170, 0, 255, 0) 100%
   );
-  bottom: 0;
-  position: absolute;
-  width: 100%;
 }
 
 body.sj-page-catalog-root {
@@ -76,6 +73,7 @@ body.sj-page-catalog-root {
             text-rendering: auto;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            margin-right: 10px;
           }
         }
 
