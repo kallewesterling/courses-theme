@@ -65,18 +65,23 @@ body.sj-page-catalog-root {
           color: #fff !important;
           background: rgb(117, 69, 251) !important;
 
-          ::before {
-            content: "";
-            display: inline-block;
-            font: normal normal normal 14px/1 FontAwesome;
-            font-size: inherit;
-            text-rendering: auto;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            margin-right: 10px;
-          }
+        }
+        
+        /* Adding FontAwesome icon before badge box */
+        .badge-box::before {
+          content: "";
+          display: inline-block;
+          font: normal normal normal 14px/1 FontAwesome;
+          font-size: inherit;
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          margin-right: 10px;
         }
 
+        .sj-ribbon-wrapper {
+          display: none !important; /* Hide "registered" ribbon */
+        }
         .coursebox-image {
           display: none !important; /* Hide course image */
         }
