@@ -37,6 +37,7 @@ body.sj-page-catalog-root {
 
       h1 {
         color: black !important; /* Make title black */
+        text-align: center; /* Center */
       }
 
       p {
