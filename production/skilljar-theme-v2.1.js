@@ -464,13 +464,7 @@ function styleLanding() {
     catalogContainer: document.querySelector("#catalog-courses"),
   };
 
-  // Create header for list
-  const allCoursesHeader = Object.assign(document.createElement("h2"), {
-    textContent: "All Courses",
-  });
-
   v.local.catalogBodyParentContainer.append(
-    allCoursesHeader,
     v.local.catalogContainer
   );
 }

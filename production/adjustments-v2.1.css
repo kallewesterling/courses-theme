@@ -1,13 +1,51 @@
+#skilljar-content {
+  background: transparent !important; /* Hide white background */
+}
+
 body.sj-page-catalog-root {
   /* Landing page styles */
+
+  #main-container {
+    background: linear-gradient(
+      180deg,
+      rgba(20, 0, 255, 0.16) 0%,
+      rgba(170, 0, 255, 0) 23%
+    );
+  }
+
+  .catalog-header {
+    .catalog-hero {
+      background: transparent !important; /* Hide background */
+      color: black !important; /* Make title black */
+      min-height: unset;
+
+      h1 {
+        color: black !important; /* Make title black */
+      }
+
+      p {
+        margin-bottom: 0px;
+      }
+
+      a {
+        display: none !important; /* Hide "View Our Courses" button */
+      }
+    }
+  }
+
   #catalog-content {
     max-width: min(1232px, 90%);
     margin: 96px auto;
 
-    h2 {
-      /* "All Courses" header */
-      font-size: 48px;
-      margin-bottom: 38px;
+    #catalog-courses {
+      .coursebox-container {
+        border-radius: 16px;
+        border: 1px solid #000;
+        
+        .coursebox-image {
+          display: none !important; /* Hide course image */
+        }
+      }
     }
   }
 }
