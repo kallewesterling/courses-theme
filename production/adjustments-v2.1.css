@@ -47,6 +47,10 @@ body.sj-page-catalog-root {
           display: none !important; /* Hide course image */
         }
       }
+
+      .coursebox-container:has(.badge-box) {
+        padding-top: 48px;
+      }
     }
   }
 }
