@@ -67,12 +67,22 @@ body.sj-page-catalog-root {
           box-shadow: unset !important;
           color: #fff !important;
           background: rgb(117, 69, 251) !important;
+
+          ::before {
+            content: "";
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: inherit;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+          }
         }
 
         .coursebox-image {
           display: none !important; /* Hide course image */
         }
-        
+
         .coursebox-text-description {
           font-size: 14px;
         }
