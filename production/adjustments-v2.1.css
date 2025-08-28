@@ -24,7 +24,7 @@ body.sj-page-catalog-root {
 
     #header {
       background: transparent !important; /* Hide background */
-      border-bottom: 1px solid #d5d4d4;
+      border-bottom: unset !important;
     }
   }
 
@@ -58,9 +58,20 @@ body.sj-page-catalog-root {
       .coursebox-container {
         border-radius: 16px;
         border: 1px solid #000;
+        width: calc(33% - 24px) !important; /* 3 should fit */
+
+        .badge-box {
+          box-shadow: unset !important;
+          color: #fff !important;
+          background: rgb(117, 69, 251) !important;
+        }
 
         .coursebox-image {
           display: none !important; /* Hide course image */
+        }
+        
+        .coursebox-text-description {
+          font-size: 14px;
         }
       }
 
