@@ -14,6 +14,9 @@
  */
 
 let initialLoadComplete = false;
+let isStaging = window.location.hostname.includes(
+  "chainguard-test.skilljar.com"
+);
 
 /**
  * This function logs messages to the console with a specific style.
@@ -27,11 +30,7 @@ let initialLoadComplete = false;
  * log({ key: "value" }, "Additional info");
  */
 const log = (message, ...args) => {
-  if (
-    !message ||
-    !window.location.hostname.includes("chainguard-test.skilljar.com")
-  )
-    return;
+  if (!message || !isStaging) return;
 
   const style = "color: var(--primary-blue-hex); font-weight: 600;";
 
@@ -464,9 +463,7 @@ function styleLanding() {
     catalogContainer: document.querySelector("#catalog-courses"),
   };
 
-  v.local.catalogBodyParentContainer.append(
-    v.local.catalogContainer
-  );
+  v.local.catalogBodyParentContainer.append(v.local.catalogContainer);
 }
 
 /**
@@ -702,7 +699,8 @@ function styleLesson() {
   );
 
   if (v.local.lesson.content.resources && typeof resources !== "undefined") {
-    if (typeof resources.resource !== "undefined") { // eslint-disable-line no-undef
+    if (typeof resources.resource !== "undefined") {
+      // eslint-disable-line no-undef
       // we have a list of resources and will drop that in the first box
       const box = v.local.lesson.content.resources.boxes[0];
       const wrapper = box.querySelector(".resource-wrapper");
@@ -710,15 +708,19 @@ function styleLesson() {
       wrapper.append(
         ...resources.resources.map((r) => createResourceCard(r)) // eslint-disable-line no-undef
       );
-    } else if (typeof resources.groups !== "undefined") { // eslint-disable-line no-undef
+    } else if (typeof resources.groups !== "undefined") {
+      // eslint-disable-line no-undef
       // we have groups of resources to drop in each box
       v.local.lesson.content.resources.boxes.forEach((box) => {
         const wrapper = box.querySelector(".resource-wrapper");
         wrapper.innerHTML = ""; // Clear existing content
-        if (resources.groups[box.dataset.group]) { // eslint-disable-line no-undef
+        if (resources.groups[box.dataset.group]) {
+          // eslint-disable-line no-undef
           wrapper.append(
-            ...resources.groups[box.dataset.group].map((r) => // eslint-disable-line no-undef
-              createResourceCard(r)
+            ...resources.groups[box.dataset.group].map(
+              (
+                r // eslint-disable-line no-undef
+              ) => createResourceCard(r)
             )
           );
         }
@@ -1445,9 +1447,17 @@ function render() {
   It is a good place to run scripts that need to manipulate the DOM or set up event listeners.
 */
 document.addEventListener("DOMContentLoaded", () => {
+  // hide all
   hide(v.global.body);
+  
+  // adding "cg-staging" for staging server
+  isStaging ? v.global.body.classList.add("cg-staging") : null;
+  
+  // render + set initalLoadComplete
   render();
   initialLoadComplete = true;
+  
+  // show all
   setStyle(v.global.body, { display: undefined });
 });
 
