@@ -21,6 +21,11 @@ body.sj-page-catalog-root {
       rgba(20, 0, 255, 0.16) 0%,
       rgba(170, 0, 255, 0) 23%
     );
+
+    #header {
+      background: transparent !important; /* Hide background */
+      border-bottom: 1px solid #d5d4d4;
+    }
   }
 
   .catalog-header {
