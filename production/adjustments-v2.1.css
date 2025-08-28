@@ -18,6 +18,7 @@ body.sj-page-catalog-root {
       background: transparent !important; /* Hide background */
       color: black !important; /* Make title black */
       min-height: unset;
+      padding: 66px 0px;
 
       h1 {
         color: black !important; /* Make title black */
@@ -35,13 +36,13 @@ body.sj-page-catalog-root {
 
   #catalog-content {
     max-width: min(1232px, 90%);
-    margin: 96px auto;
+    margin: 0px auto;
 
     #catalog-courses {
       .coursebox-container {
         border-radius: 16px;
         border: 1px solid #000;
-        
+
         .coursebox-image {
           display: none !important; /* Hide course image */
         }
