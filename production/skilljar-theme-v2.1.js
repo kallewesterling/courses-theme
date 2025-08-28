@@ -463,6 +463,25 @@ function styleLanding() {
     catalogContainer: document.querySelector("#catalog-courses"),
   };
 
+  // set up userCourseJourney global variable
+  window.userCourseJourney = {
+    unregistered: Array.from(
+      document.querySelectorAll(
+        ".coursebox-container[data-course-status='unregistered']"
+      )
+    ).map((el) => Object.assign({ ...el.dataset })),
+    registered: Array.from(
+      document.querySelectorAll(
+        ".coursebox-container[data-course-status='registered']"
+      )
+    ).map((el) => Object.assign({ ...el.dataset })),
+    completed: Array.from(
+      document.querySelectorAll(
+        ".coursebox-container[data-course-status='completed']"
+      )
+    ).map((el) => Object.assign({ ...el.dataset })),
+  };
+
   v.local.catalogBodyParentContainer.append(v.local.catalogContainer);
 }
 
@@ -1449,14 +1468,14 @@ function render() {
 document.addEventListener("DOMContentLoaded", () => {
   // hide all
   hide(v.global.body);
-  
+
   // adding "cg-staging" for staging server
   isStaging ? v.global.body.classList.add("cg-staging") : null;
-  
+
   // render + set initalLoadComplete
   render();
   initialLoadComplete = true;
-  
+
   // show all
   setStyle(v.global.body, { display: undefined });
 });
