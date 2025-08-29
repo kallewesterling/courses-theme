@@ -1,17 +1,19 @@
+/* eslint-disable no-undef */
+
 /*
- * Chainguard Courses Theme v2.1
- * This script applies custom styles and functionality to Chainguard's Skilljar platform.
- * It includes features like curriculum styling, lesson navigation, and responsive design adjustments.
- * It also provides utility functions for clipboard operations and element styling.
- *
- * This script is designed to be run in the context of a Skilljar page.
- *
- * @version 2.1
- * @date 2025-08-21
- * @author Chainguard
- * @license MIT
- * @see {@link https://courses.chainguard.com|Chainguard Courses}
- */
+* Chainguard Courses Theme v2.1
+* This script applies custom styles and functionality to Chainguard's Skilljar platform.
+* It includes features like curriculum styling, lesson navigation, and responsive design adjustments.
+* It also provides utility functions for clipboard operations and element styling.
+*
+* This script is designed to be run in the context of a Skilljar page.
+*
+* @version 2.1
+* @date 2025-08-21
+* @author Chainguard
+* @license MIT
+* @see {@link https://courses.chainguard.com|Chainguard Courses}
+*/
 
 let initialLoadComplete = false;
 let isStaging = window.location.hostname.includes(
@@ -719,27 +721,20 @@ function styleLesson() {
 
   if (v.local.lesson.content.resources && typeof resources !== "undefined") {
     if (typeof resources.resource !== "undefined") {
-      // eslint-disable-line no-undef
       // we have a list of resources and will drop that in the first box
       const box = v.local.lesson.content.resources.boxes[0];
       const wrapper = box.querySelector(".resource-wrapper");
       wrapper.innerHTML = ""; // Clear existing content
-      wrapper.append(
-        ...resources.resources.map((r) => createResourceCard(r)) // eslint-disable-line no-undef
-      );
+      wrapper.append(...resources.resources.map((r) => createResourceCard(r)));
     } else if (typeof resources.groups !== "undefined") {
-      // eslint-disable-line no-undef
       // we have groups of resources to drop in each box
       v.local.lesson.content.resources.boxes.forEach((box) => {
         const wrapper = box.querySelector(".resource-wrapper");
         wrapper.innerHTML = ""; // Clear existing content
         if (resources.groups[box.dataset.group]) {
-          // eslint-disable-line no-undef
           wrapper.append(
-            ...resources.groups[box.dataset.group].map(
-              (
-                r // eslint-disable-line no-undef
-              ) => createResourceCard(r)
+            ...resources.groups[box.dataset.group].map((r) =>
+              createResourceCard(r)
             )
           );
         }
@@ -883,7 +878,7 @@ function styleCurriculumPageNoCertificate() {
   v.local.curriculum.container.innerHTML = ""; // Clear the container
   v.local.curriculum.container.append(...curriculumElements);
 
-  v.local.header.courseInfo.textContent = skilljarCourse.short_description; // eslint-disable-line no-undef
+  v.local.header.courseInfo.textContent = skilljarCourse.short_description;
 
   // move elements
   v.local.body.mainContainer.append(...[v.local.card.details].filter(Boolean));
@@ -904,7 +899,7 @@ function styleCurriculumPageNoCertificate() {
 function styleCurriculumPageHasCertificationDesktop() {
   // TODO: Clean up this function
   log("Running styleCurriculumPageHasCertificationDesktop");
-  const courseDescription = skilljarCourse.short_description; // eslint-disable-line no-undef
+  const courseDescription = skilljarCourse.short_description;
 
   // HEADER VARIABLES
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
