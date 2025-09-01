@@ -1491,3 +1491,16 @@ window.addEventListener("resize", () => {
 
   render();
 });
+
+// Make header white on scroll
+$(document).ready(function() {
+    var scroll_pos = 0;
+    $(document).scroll(function() {
+        scroll_pos = $(this).scrollTop();
+        if(scroll_pos > 100) {
+            setStyle(document.querySelector("header"), {backgroundColor: "white !important"});
+        } else {
+            setStyle(document.querySelector("header"), {backgroundColor: "transparent !important"});
+        }
+    });
+});

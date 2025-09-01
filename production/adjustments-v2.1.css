@@ -1,9 +1,11 @@
 #skilljar-content {
   background: transparent !important; /* Hide white background */
 }
+
 #skilljar-content::after {
   height: 0px;
 }
+
 #footer-container {
   background: linear-gradient(
     0deg,
@@ -12,8 +14,46 @@
   );
 }
 
-body.sj-page-catalog-root {
+body {
+  header .back-to-catalog {
+    /* Back to catalog button */
+    display: none !important;
+  }
+}
+
+body.sj-page-catalog-root,
+body.sj-page-curriculum {
   /* Landing page styles */
+
+  .top-row-grey {
+    /* Header container */
+    background-color: transparent !important;
+    background-image: none !important;
+
+    .d-flex-center-v2 {
+      justify-content: start;
+
+      .cp-summary-row-v2 {
+        width: 100% !important;
+      }
+
+      .dp-row-flex-v2 {
+        .cp-promo-image-wrapper,
+        .dp-promo-image-wrapper {
+          /* Course image */
+          display: none !important;
+        }
+
+        .cp-summary-wrapper {
+          max-width: 100% !important;
+
+          .sj-heading-paragraph {
+            max-width: 80%;
+          }
+        }
+      }
+    }
+  }
 
   #main-container {
     background: linear-gradient(
@@ -69,9 +109,8 @@ body.sj-page-catalog-root {
           box-shadow: unset !important;
           color: #fff !important;
           background: rgb(117, 69, 251) !important;
-
         }
-        
+
         /* Adding FontAwesome icon before badge box */
         .badge-box::before {
           content: "";
@@ -312,11 +351,6 @@ body.sj-page-signup {
 body.sj-page-detail-course {
   /* Course detail page styles */
 
-  header .back-to-catalog {
-    /* Back to catalog button */
-    display: none !important;
-  }
-
   .top-row-grey {
     /* Header container */
     background-color: var(--form-bg) !important;
@@ -331,87 +365,93 @@ body.sj-page-detail-course {
       padding-bottom: 48px;
     }
 
-    .dp-row-flex-v2 {
-      /* All header content */
-      display: flex;
-      flex-direction: row-reverse;
-      flex-wrap: nowrap;
+    .d-flex-center-v2 {
       justify-content: start;
-      gap: 24px;
-      max-width: 1188px;
 
-      @media screen and (max-width: 991px) {
-        flex-direction: column-reverse;
-      }
-
-      .dp-promo-image-wrapper {
-        /* Course image */
-        @media screen and (max-width: 991px) {
-          padding: 0px;
-          max-width: none;
-          width: 100%;
-        }
-      }
-
-      .dp-summary-wrapper {
-        /* Text content in header */
-        border: 0px;
-        max-width: 564px;
-        width: auto;
+      .dp-row-flex-v2 {
+        /* All header content */
+        display: flex;
+        flex-direction: row-reverse;
+        flex-wrap: nowrap;
+        justify-content: start;
+        gap: 24px;
+        max-width: 1188px;
 
         @media screen and (max-width: 991px) {
-          max-width: none;
-          width: 100%;
+          flex-direction: column-reverse;
         }
 
-        .sj-floater-text {
-          /* Type, e.g. Course/Learning Path */
-          display: block;
-          margin-bottom: 24px;
-        }
-
-        h1.break-word {
-          /* Course title */
-          font-size: 36px;
-          font-weight: 600;
-          line-height: 43.2px;
-          letter-spacing: -0.02em;
-          margin: 0 0 12px 0;
-
-          @media screen and (max-width: 991px) {
-            font-size: 30px;
-            line-height: 40px;
-          }
-        }
-
-        .video-max {
-          /* Video container */
-          max-width: none;
-          padding-left: 0px;
-          padding-right: 0px;
-
-          @media screen and (max-width: 991px) {
-            padding-left: 15px;
-            padding-right: 15px;
-          }
-        }
-
-        .sj-heading-paragraph {
-          /* Course description */
-          display: block;
-          margin: 0 0 24px 0;
-        }
-
-        .sj-course-info-wrapper {
+        .dp-promo-image-wrapper {
+          /* Course image */
           display: none !important;
+
+          @media screen and (max-width: 991px) {
+            padding: 0px;
+            max-width: none;
+            width: 100%;
+          }
         }
 
-        #purchase-button-wrapper-large {
-          /* Register/sign up/resume button wrapper */
+        .dp-summary-wrapper {
+          /* Text content in header */
+          border: 0px;
+          max-width: 564px;
+          width: auto;
 
-          .signin {
-            /* Sign in link */
+          @media screen and (max-width: 991px) {
+            max-width: none;
+            width: 100%;
+          }
+
+          .sj-floater-text {
+            /* Type, e.g. Course/Learning Path */
+            display: block;
+            margin-bottom: 24px;
+          }
+
+          h1.break-word {
+            /* Course title */
+            font-size: 36px;
+            font-weight: 600;
+            line-height: 43.2px;
+            letter-spacing: -0.02em;
+            margin: 0 0 12px 0;
+
+            @media screen and (max-width: 991px) {
+              font-size: 30px;
+              line-height: 40px;
+            }
+          }
+
+          .video-max {
+            /* Video container */
+            max-width: none;
+            padding-left: 0px;
+            padding-right: 0px;
+
+            @media screen and (max-width: 991px) {
+              padding-left: 15px;
+              padding-right: 15px;
+            }
+          }
+
+          .sj-heading-paragraph {
+            /* Course description */
+            display: block;
+            margin: 0 0 24px 0;
+          }
+
+          .sj-course-info-wrapper {
             display: none !important;
+          }
+
+          #purchase-button-wrapper-large {
+            /* Register/sign up/resume button wrapper */
+
+            .signin {
+              /* Sign in link */
+              display: none !important;
+            }
           }
         }
       }
@@ -480,11 +520,6 @@ body.sj-page-detail-course {
 
 body.sj-page-detail-bundle.sj-page-detail-path {
   /* Learning path detail page styles */
-
-  header .back-to-catalog {
-    /* Back to catalog button */
-    display: none !important;
-  }
 
   .top-row-grey {
     background: url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png);
@@ -563,15 +598,9 @@ body.sj-page-detail-bundle.sj-page-detail-path {
 body.sj-page-curriculum:not(:has(.cp-certificate)) {
   /* Non-certificate issued course description (logged in) styles */
 
-  header .back-to-catalog {
-    /* Back to catalog button */
-    display: none !important;
-  }
-
   .top-row-grey {
     /* Header container */
-    background-color: var(--form-bg) !important;
-    background-image: none !important;
+    /* background-color: var(--form-bg) !important; */
     max-width: none;
     padding: 0;
     border: 0;
