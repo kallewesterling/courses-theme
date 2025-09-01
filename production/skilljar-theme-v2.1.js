@@ -1,19 +1,19 @@
 /* eslint-disable no-undef */
 
 /*
-* Chainguard Courses Theme v2.1
-* This script applies custom styles and functionality to Chainguard's Skilljar platform.
-* It includes features like curriculum styling, lesson navigation, and responsive design adjustments.
-* It also provides utility functions for clipboard operations and element styling.
-*
-* This script is designed to be run in the context of a Skilljar page.
-*
-* @version 2.1
-* @date 2025-08-21
-* @author Chainguard
-* @license MIT
-* @see {@link https://courses.chainguard.com|Chainguard Courses}
-*/
+ * Chainguard Courses Theme v2.1
+ * This script applies custom styles and functionality to Chainguard's Skilljar platform.
+ * It includes features like curriculum styling, lesson navigation, and responsive design adjustments.
+ * It also provides utility functions for clipboard operations and element styling.
+ *
+ * This script is designed to be run in the context of a Skilljar page.
+ *
+ * @version 2.1
+ * @date 2025-08-21
+ * @author Chainguard
+ * @license MIT
+ * @see {@link https://courses.chainguard.com|Chainguard Courses}
+ */
 
 let initialLoadComplete = false;
 let isStaging = window.location.hostname.includes(
@@ -1493,14 +1493,18 @@ window.addEventListener("resize", () => {
 });
 
 // Make header white on scroll
-$(document).ready(function() {
-    var scroll_pos = 0;
-    $(document).scroll(function() {
-        scroll_pos = $(this).scrollTop();
-        if(scroll_pos > 100) {
-            setStyle(document.querySelector("header"), {backgroundColor: "white !important"});
-        } else {
-            setStyle(document.querySelector("header"), {backgroundColor: "transparent !important"});
-        }
-    });
+$(document).ready(function () {
+  var scroll_pos = 0;
+  $(document).scroll(function () {
+    scroll_pos = $(this).scrollTop();
+    if (scroll_pos > 100) {
+      setStyle(document.querySelector("header"), {
+        backgroundColor: "white !important",
+      });
+    } else {
+      setStyle(document.querySelector("header"), {
+        backgroundColor: "transparent !important",
+      });
+    }
+  });
 });
