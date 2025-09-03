@@ -39,6 +39,23 @@
   }
 }
 
+.course-details-card {
+  .course-details-card-header {
+    font-weight: 700;
+  }
+  
+  .course-details-card-list {
+    li::before {
+      content: "";
+      font: normal normal normal 14px/1 FontAwesome;
+      font-size: 14px;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  }
+}
+
 .curriculum-wrapper {
   border-radius: 8px;
   margin-bottom: 48px;

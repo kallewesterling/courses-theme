@@ -533,7 +533,7 @@ function styleCourseDetails() {
   v.local.curriculum.container.innerHTML = ""; // Clear the container
   v.local.curriculum.container.append(...curriculumElements);
 
-  v.local.card.detailItems.forEach((li) => li.prepend(createClone("checkbox")));
+  // v.local.card.detailItems.forEach((li) => li.prepend(createClone("checkbox")));
 
   // append card
   v.local.body.container.append(...[v.local.card.details].filter(Boolean));
@@ -872,7 +872,7 @@ function styleCurriculumPageNoCertificate() {
     v.local.tabs.curriculumSection
   );
 
-  v.local.card.detailItems.forEach((li) => li.prepend(createClone("checkbox")));
+  // v.local.card.detailItems.forEach((li) => li.prepend(createClone("checkbox")));
 
   const curriculumElements = getCurriculumElements(
     v.local.curriculum.container
@@ -956,7 +956,7 @@ function styleCurriculumPageHasCertificationDesktop() {
 
   // CARD VARIABLES
   const courseDetailsCard = document.querySelector(".course-details-card");
-  const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li");
+  // const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li");
   const courseDetailsCardLink = document.querySelector(
     ".course-details-card-link"
   );
@@ -973,11 +973,11 @@ function styleCurriculumPageHasCertificationDesktop() {
 
   hide(courseDetailsCardLink);
 
-  if (!initialLoadComplete) {
-    courseDetailCardListItems.forEach((li) =>
-      li.prepend(createClone("checkbox"))
-    );
-  }
+  // if (!initialLoadComplete) {
+  //   courseDetailCardListItems.forEach((li) =>
+  //     li.prepend(createClone("checkbox"))
+  //   );
+  // }
 
   bodyMainContainer.style.columnGap = "24px";
   innerContentContainer.style.width = "100%";
@@ -1190,7 +1190,7 @@ function styleCurriculumPageHasCertificationMobile() {
 
   // CARD VARIABLES
   const courseDetailsCard = document.querySelector(".course-details-card");
-  const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li");
+  // const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li");
   const courseDetailsCardLink = document.querySelector(
     ".course-details-card-link"
   );
@@ -1210,11 +1210,11 @@ function styleCurriculumPageHasCertificationMobile() {
 
   hide(courseDetailsCardLink);
 
-  if (!initialLoadComplete) {
-    courseDetailCardListItems.forEach((li) =>
-      li.prepend(createClone("checkbox"))
-    );
-  }
+  // if (!initialLoadComplete) {
+  //   courseDetailCardListItems.forEach((li) =>
+  //     li.prepend(createClone("checkbox"))
+  //   );
+  // }
 
   innerContentContainer.style.width = "100%";
 
