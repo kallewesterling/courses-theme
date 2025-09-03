@@ -255,6 +255,8 @@ body.sj-page-detail-course {
         border-radius: 16px;
         border: 1px solid #000;
         width: calc(33% - 24px) !important; /* 3 should fit */
+        display: flex;
+        flex-direction: column;
 
         @media screen and (max-width: 991px) {
           width: 100% !important; /* 1 only on mobile */
@@ -288,6 +290,7 @@ body.sj-page-detail-course {
 
         .coursebox-text-description {
           font-size: 14px;
+          flex: 1;
         }
       }
 
