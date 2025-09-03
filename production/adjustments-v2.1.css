@@ -43,7 +43,7 @@
   .course-details-card-header {
     font-weight: 700;
   }
-  
+
   .course-details-card-list {
     li::before {
       content: "";
@@ -52,6 +52,7 @@
       text-rendering: auto;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      transform: translateY(5px);
     }
   }
 }
