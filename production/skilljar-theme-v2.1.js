@@ -1500,7 +1500,7 @@ $(document).ready(function () {
   v.global.scroll_pos = 0;
   $(document).scroll(function () {
     v.global.scroll_pos = $(this).scrollTop();
-    if (v.global.scroll_pos > 100) {
+    if (v.global.scroll_pos > 60) {
       setStyle(document.querySelector("header"), {
         backgroundColor: "white !important",
       });
