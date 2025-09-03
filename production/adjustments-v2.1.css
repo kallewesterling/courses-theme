@@ -85,6 +85,10 @@
     border-bottom: 2px solid var(--primary-blue-hex);
     height: 100%;
 
+    &:hover {
+      background-color: var(--gradient-end);
+    }
+
     i {
       margin-right: 12px;
       color: var(--primary-blue-hex);
@@ -291,6 +295,27 @@ body.sj-page-detail-course {
         .coursebox-text-description {
           font-size: 14px;
           flex: 1;
+        }
+
+        .course-overview {
+          font-size: 80%;
+          font-weight: 300;
+
+          .course-overview__content {
+            padding: 8px 8px 0px 8px;
+
+            a {
+              color: var(--primary-dark-purple-hex);
+
+              i {
+                padding-right: 12px;
+              }
+
+              .course-overview__content__lesson__type-icon {
+                display: none !important;
+              }
+            }
+          }
         }
       }
 
