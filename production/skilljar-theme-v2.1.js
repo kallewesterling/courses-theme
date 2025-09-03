@@ -200,7 +200,7 @@ let v = {
   },
 };
 
-function getCurriculumElements(curriculumParentContainer, border = "b") {
+function getCurriculumElements(curriculumParentContainer) {
   let currentSection = 0,
     elements = Array.from(
       curriculumParentContainer.querySelectorAll("[class^='lesson-']")
