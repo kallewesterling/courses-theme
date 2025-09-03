@@ -861,6 +861,7 @@ function styleCurriculumPageNoCertificate() {
     v.local.card.link.textContent = btnText;
     v.local.card.link.href = btnHref;
   } else {
+    log("Hiding resume button as it could not be found");
     hide(v.local.card.link); // Hide resume button if it doesn't exist
   }
 
