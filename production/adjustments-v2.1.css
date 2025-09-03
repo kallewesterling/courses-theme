@@ -39,34 +39,33 @@
   }
 }
 
-.dp-curriculum {
-  .curriculum-wrapper {
-    border-radius: 8px;
-    margin-bottom: 48px;
-    padding: 0px;
-    border: 2px solid var(--primary-blue-hex);
+.curriculum-wrapper {
+  border-radius: 8px;
+  margin-bottom: 48px;
+  padding: 0px;
+  border: 2px solid var(--primary-blue-hex);
 
-    .curriculum-header {
-      display: flex;
-      align-items: center;
-      padding: 24px;
-      margin: 0px;
-      font-family: "Fusiona";
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 125%;
-      border-bottom: 2px solid var(--primary-blue-hex);
-    }
+  .curriculum-header {
+    display: flex;
+    align-items: center;
+    padding: 24px;
+    margin: 0px;
+    font-family: "Fusiona";
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 125%;
+    border-bottom: 2px solid var(--primary-blue-hex);
+  }
 
-    .curriculum-lesson {
-      display: block;
-      color: black;
-      padding: 24px;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 150%;
-      border-bottom: 2px solid var(--primary-blue-hex);
-    }
+  .curriculum-lesson {
+    display: block;
+    color: black;
+    padding: 24px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+    border-bottom: 2px solid var(--primary-blue-hex);
+    height: 100%;
   }
 }
 
