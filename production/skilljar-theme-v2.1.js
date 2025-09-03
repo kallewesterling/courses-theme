@@ -1516,18 +1516,20 @@ window.addEventListener("resize", () => {
 });
 
 // Make header white on scroll
-$(document).ready(function () {
-  v.global.scroll_pos = 0;
-  $(document).scroll(function () {
-    v.global.scroll_pos = $(this).scrollTop();
-    if (v.global.scroll_pos > 60) {
-      setStyle(document.querySelector("header"), {
-        backgroundColor: "white !important",
-      });
-    } else {
-      setStyle(document.querySelector("header"), {
-        backgroundColor: "transparent !important",
-      });
-    }
+if (!page.isLesson) {
+  $(document).ready(function () {
+    v.global.scroll_pos = 0;
+    $(document).scroll(function () {
+      v.global.scroll_pos = $(this).scrollTop();
+      if (v.global.scroll_pos > 60) {
+        setStyle(document.querySelector("header"), {
+          backgroundColor: "white !important",
+        });
+      } else {
+        setStyle(document.querySelector("header"), {
+          backgroundColor: "transparent !important",
+        });
+      }
+    });
   });
-});
+}
