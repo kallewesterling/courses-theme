@@ -1,3 +1,28 @@
+.callout {
+  background-color: rgba(52, 68, 244, 0.05) !important;
+  box-shadow: unset !important;
+  border: 1px solid var(--primary-blue-hex) !important;
+  opacity: 1 !important;
+  padding: 20px !important;
+  margin: 45px 0px !important;
+  width: 100% !important;
+
+  .callout-header {
+    background-color: transparent !important;
+    text-transform: uppercase !important;
+
+    i {display: none !important;}
+  }
+
+  .callout-body {
+    ul {
+      li::marker {
+        color: var(--primary-blue-hex) !important;
+      }
+    }
+  }
+}
+
 #skilljar-content {
   background: transparent !important; /* Hide white background */
   min-height: 100%;
@@ -158,7 +183,7 @@ body.sj-page-detail-bundle.sj-page-detail-path {
         .sj-ribbon-wrapper {
           display: none !important; /* Hide "registered" ribbon */
         }
-        
+
         .coursebox-image {
           display: none !important; /* Hide course image */
         }
