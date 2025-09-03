@@ -20,19 +20,23 @@ const isStaging = window.location.hostname.includes(
   "chainguard-test.skilljar.com"
 );
 const course = {
-  id: skilljarCourse.id, 
+  id: skilljarCourse.id,
   publishedCourseId: skilljarCourse.publishedCourseId,
   tags: skilljarCourse.tags,
   title: skilljarCourse.title,
   short_description: skilljarCourse.short_description,
   long_description_html: skilljarCourse.long_description_html,
-  progress: skilljarCourseProgress,
-  path: undefined,
-  completed: skilljarCourseProgress.completed_at !== "",
-}
+  progress: {},
+  path: {},
+  completed: false,
+};
 
-if (skilljarCourseSeries)
-  course.path = skilljarCourseSeries.path;
+if (skilljarCourseSeries) course.path = skilljarCourseSeries.path;
+
+if (skilljarCourseProgress) {
+  course.progress = skilljarCourseProgress;
+  course.completed = skilljarCourseProgress.completed_at !== "";
+}
 
 /**
  * This function logs messages to the console with a specific style.
@@ -258,7 +262,7 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
 
     const lessons = section.lessons.map((lesson, ix) => {
       const a = Object.assign(document.createElement("a"), {
-        className: "curriculum-lesson", /* lesson-row */
+        className: "curriculum-lesson" /* lesson-row */,
         // style: `display: block; color: black; padding: 24px; font-size: 16px; font-weight: 400; line-height: 150%; border-bottom: ${
         //   ix !== section.lessons.length - 1
         //     ? border === "b"
