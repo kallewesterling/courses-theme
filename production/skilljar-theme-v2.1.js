@@ -53,7 +53,7 @@ function createClone(type = "checkbox") {
   }
 
   const attrs = {
-    class: `${type}-icon`,
+    className: `${type}-icon`,
     width: "20",
     height: "21",
     viewBox: "0 0 20 21",
@@ -236,14 +236,14 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
     });
 
     const header = Object.assign(document.createElement("div"), {
-      class: "curriculum-header",
+      className: "curriculum-header",
       style: `display: flex; align-items: center; padding: 24px; margin: 0; font-family: "Fusiona"; font-size: 16px; font-weight: 500; line-height: 125%; letter-spacing: "-.16px"; border-bottom: 2px solid var(--primary-blue-hex);`,
       textContent: section.heading,
     });
 
     const lessons = section.lessons.map((lesson, ix) => {
       const a = Object.assign(document.createElement("a"), {
-        class: "curriculum-lesson lesson-row",
+        className: "curriculum-lesson lesson-row",
         style: `display: block; color: black; padding: 24px; font-size: 16px; font-weight: 400; line-height: 150%; border-bottom: ${
           ix !== section.lessons.length - 1
             ? border === "b"
