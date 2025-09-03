@@ -16,9 +16,23 @@
  */
 
 let initialLoadComplete = false;
-let isStaging = window.location.hostname.includes(
+const isStaging = window.location.hostname.includes(
   "chainguard-test.skilljar.com"
 );
+const course = {
+  id: skilljarCourse.id, 
+  publishedCourseId: skilljarCourse.publishedCourseId,
+  tags: skilljarCourse.tags,
+  title: skilljarCourse.title,
+  short_description: skilljarCourse.short_description,
+  long_description_html: skilljarCourse.long_description_html,
+  progress: skilljarCourseProgress,
+  path: undefined,
+  completed: skilljarCourseProgress.completed_at !== "",
+}
+
+if (skilljarCourseSeries)
+  course.path = skilljarCourseSeries.path;
 
 /**
  * This function logs messages to the console with a specific style.
