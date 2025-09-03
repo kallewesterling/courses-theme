@@ -244,7 +244,7 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
 
     const lessons = section.lessons.map((lesson, ix) => {
       const a = Object.assign(document.createElement("a"), {
-        className: "curriculum-lesson lesson-row",
+        className: "curriculum-lesson", /* lesson-row */
         // style: `display: block; color: black; padding: 24px; font-size: 16px; font-weight: 400; line-height: 150%; border-bottom: ${
         //   ix !== section.lessons.length - 1
         //     ? border === "b"
