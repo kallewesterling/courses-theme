@@ -11,7 +11,9 @@
     background-color: transparent !important;
     text-transform: uppercase !important;
 
-    i {display: none !important;}
+    i {
+      display: none !important;
+    }
   }
 
   .callout-body {
@@ -55,9 +57,34 @@ body {
   }
 }
 
+body.sj-page-detail-course {
+  .large-6 {
+    width: 100% !important;
+    border: unset !important;
+
+    .sj-course-info-wrapper {
+      max-width: 80% !important;
+    }
+
+    .inline-collapsible-section {
+      margin: 20px 0;
+
+      label h5 {
+        color: lightgray !important;
+      }
+
+      .inline-collapsible-section__label__icons__expand,
+      .inline-collapsible-section__label__icons__collapse {
+        background-color: lightgray !important;
+      }
+    }
+  }
+}
+
 body.sj-page-catalog-root,
 body.sj-page-curriculum,
-body.sj-page-detail-bundle.sj-page-detail-path {
+body.sj-page-detail-bundle.sj-page-detail-path,
+body.sj-page-detail-course {
   /* Landing page styles */
 
   .top-row-grey {
