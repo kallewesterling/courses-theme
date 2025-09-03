@@ -84,6 +84,11 @@
     line-height: 150%;
     border-bottom: 2px solid var(--primary-blue-hex);
     height: 100%;
+
+    i {
+      margin-right: 12px;
+      color: var(--primary-blue-hex);
+    }
   }
 }
 
