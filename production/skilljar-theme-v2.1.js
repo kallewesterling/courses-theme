@@ -31,9 +31,10 @@ const course = {
   completed: false,
 };
 
-if (skilljarCourseSeries) course.path = skilljarCourseSeries.path;
+if (typeof skilljarCourseSeries !== "undefined")
+  course.path = skilljarCourseSeries.path;
 
-if (skilljarCourseProgress) {
+if (typeof skilljarCourseProgress !== "undefined") {
   course.progress = skilljarCourseProgress;
   course.completed = skilljarCourseProgress.completed_at !== "";
 }
