@@ -228,6 +228,7 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
 
   return a.map((section) => {
     const wrapper = Object.assign(document.createElement("div"), {
+      className: "curriculum-wrapper",
       style: `border-radius: 8px; margin-bottom: 48px; padding: 0; border: ${
         border === "b"
           ? "2px solid var(--primary-blue-hex)"
