@@ -499,8 +499,8 @@ function styleCourseDetails() {
       floaterText: document.querySelector(".sj-floater-text"),
       mainHeading: document.querySelector(".break-word"),
       courseInfo:
-        document.querySelector(".sj-heading-paragraph") ||
-        document.querySelector(".sj-course-info-wrapper"),
+        document.querySelector(".sj-course-info-wrapper") ||
+        document.querySelector(".sj-heading-paragraph"),
       ctaBtnWrapper: document.querySelector("#purchase-button-wrapper-large"),
       registerBtn: document.querySelector("#purchase-button-wrapper-large a"),
       mainHeadingContainer: document.querySelector(".dp-summary-wrapper"),
