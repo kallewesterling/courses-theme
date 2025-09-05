@@ -19,17 +19,22 @@ let initialLoadComplete = false;
 const isStaging = window.location.hostname.includes(
   "chainguard-test.skilljar.com"
 );
-const course = {
-  id: skilljarCourse.id,
-  publishedCourseId: skilljarCourse.publishedCourseId,
-  tags: skilljarCourse.tags,
-  title: skilljarCourse.title,
-  short_description: skilljarCourse.short_description,
-  long_description_html: skilljarCourse.long_description_html,
+let course = {
   progress: {},
   path: {},
   completed: false,
-};
+}
+
+if (typeof skilljarCourse !== "undefined") {
+  course = Object.assign(course, {
+    id: skilljarCourse.id,
+    publishedCourseId: skilljarCourse.publishedCourseId,
+    tags: skilljarCourse.tags,
+    title: skilljarCourse.title,
+    short_description: skilljarCourse.short_description,
+    long_description_html: skilljarCourse.long_description_html,
+  });
+}
 
 if (typeof skilljarCourseSeries !== "undefined")
   course.path = skilljarCourseSeries.path;
