@@ -812,8 +812,32 @@ function styleLesson() {
     el.classList.remove("sjwc-section-title")
   );
 
+  if (
+    typeof resources.resources !== "undefined" &&
+    v.local.lesson.content.resources.boxes.length === 0
+  ) {
+    console.info(
+      "No resource boxes found to add resources to. Adding automatically!"
+    );
+    const box = Object.assign(document.createElement("div"), {
+      className: "resource-box",
+    });
+    const header = Object.assign(document.createElement("h3"), {
+      textContent: "📘 More Resources",
+    });
+    const wrapper = Object.assign(document.createElement("div"), {
+      className: "resource-wrapper",
+    });
+
+    box.append(header, wrapper);
+    v.global.body.append(box);
+  }
+
   if (v.local.lesson.content.resources && typeof resources !== "undefined") {
-    if (typeof resources.resources !== "undefined" && v.local.lesson.content.resources.boxes.length === 1) {
+    if (
+      typeof resources.resources !== "undefined" &&
+      v.local.lesson.content.resources.boxes.length === 1
+    ) {
       // we have a list of resources and will drop that in the first box
       const cards = resources.resources.map((r) => createResourceCard(r));
 
@@ -826,8 +850,6 @@ function styleLesson() {
 
       // Add cards
       wrapper.append(...cards);
-    } else if (typeof resources.resources !== "undefined" && v.local.lesson.content.resources.boxes.length === 0) {
-      console.warn("No resource boxes found to add resources to.");
     } else if (typeof resources.groups !== "undefined") {
       // we have groups of resources to drop in each box
       v.local.lesson.content.resources.boxes.forEach((box) => {
