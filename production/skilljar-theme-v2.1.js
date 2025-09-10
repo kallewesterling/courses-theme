@@ -938,7 +938,12 @@ function styleCurriculumPageNoCertificate() {
     v.local.card.link.href = btnHref;
   } else {
     log("Hiding resume button as it could not be found");
-    hide(v.local.card.link); // Hide resume button if it doesn't exist
+    if (course.completed) {
+      v.local.card.link.textContent = "🎉 Completed";
+      v.local.card.link.style = "background-color: green !important;";
+    } else {
+      hide(v.local.card.link); // Hide resume button if it doesn't exist
+    }
   }
 
   v.local.tabs.aboutSection.id = "aboutSection";
