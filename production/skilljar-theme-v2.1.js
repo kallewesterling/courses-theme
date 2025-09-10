@@ -44,7 +44,7 @@ if (typeof skilljarCourse !== "undefined") {
 
 if (typeof skilljarCourseSeries !== "undefined") {
   course.path = skilljarCourseSeries.path;
-  course.path.edit = `https://dashboard.skilljar.com/publishing/domains/${domain}/published-paths/${skilljarPath.id}/edit`;
+  course.path.edit = `https://dashboard.skilljar.com/publishing/domains/${domain}/published-paths/${skilljarCourseSeries.id}/edit`;
 }
 
 if (typeof skilljarCourseProgress !== "undefined") {
