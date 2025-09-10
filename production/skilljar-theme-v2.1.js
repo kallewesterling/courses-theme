@@ -22,9 +22,7 @@ let initialLoadComplete = false,
   course = {
     progress: {},
     path:
-      typeof skilljarCourseSeries !== "undefined"
-        ? skilljarCourseSeries
-        : {},
+      typeof skilljarCourseSeries !== "undefined" ? skilljarCourseSeries : {},
     completed: false,
   };
 
@@ -953,6 +951,12 @@ function styleCurriculumPageNoCertificate() {
     if (course.completed) {
       v.local.card.link.textContent = "🎉 Completed";
       v.local.card.link.classList.add("completed");
+      v.local.card.details.append(
+        Object.assign(document.createElement("p"), {
+          textContent: "Click on any lesson that you want to revisit.",
+          className: "completed-subtext",
+        })
+      );
     } else {
       hide(v.local.card.link); // Hide resume button if it doesn't exist
     }

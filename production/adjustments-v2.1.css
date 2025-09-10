@@ -71,6 +71,14 @@
     background-color: green !important;
     cursor: default !important;
   }
+
+  .completed-subtext {
+    padding: 0px 20px 20px 0px !important;
+    font-size: 12px !important;
+    font-family: "Space Mono" !important;
+    margin: 0 24px !important;
+    color: green !important;
+  }
 }
 
 .curriculum-wrapper {
