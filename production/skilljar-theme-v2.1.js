@@ -39,6 +39,7 @@ if (typeof skilljarCourse !== "undefined") {
     title: skilljarCourse.title,
     short_description: skilljarCourse.short_description,
     long_description_html: skilljarCourse.long_description_html,
+    edit: `https://dashboard.skilljar.com/course/${skilljarCourse.id}`,
   });
 }
 
