@@ -15,34 +15,44 @@
  * @see {@link https://courses.chainguard.com|Chainguard Courses}
  */
 
-let initialLoadComplete = false;
-const isStaging = window.location.hostname.includes(
-  "chainguard-test.skilljar.com"
-);
-let course = {
-  progress: {},
-  path: {},
-  completed: false,
-};
+let initialLoadComplete = false,
+  isStaging = false,
+  isInternal = false,
+  domain = "3glgawqmzatte",
+  course = {
+    progress: {},
+    path:
+      typeof skilljarCourseSeries !== "undefined" ? skilljarCourseSeries : {},
+    completed: false,
+  };
 
-if (typeof skilljarCourse !== "undefined") {
-  course = Object.assign(course, {
-    id: skilljarCourse.id,
-    publishedCourseId: skilljarCourse.publishedCourseId,
-    tags: skilljarCourse.tags,
-    title: skilljarCourse.title,
-    short_description: skilljarCourse.short_description,
-    long_description_html: skilljarCourse.long_description_html,
-  });
+if (window.location.hostname.includes("chainguard-test.skilljar.com")) {
+  isStaging = true;
+  domain = "ix1ljpxex6xd";
 }
 
-if (typeof skilljarCourseSeries !== "undefined")
-  course.path = skilljarCourseSeries.path;
+course.path.edit =
+  typeof skilljarCourseSeries !== "undefined"
+    ? `https://dashboard.skilljar.com/publishing/domains/${domain}/published-paths/${skilljarCourseSeries.id}/edit`
+    : "";
+
+if (typeof skilljarCourse !== "undefined") {
+  course.id = skilljarCourse.id;
+  course.publishedCourseId = skilljarCourse.publishedCourseId;
+  course.tags = skilljarCourse.tags;
+  course.title = skilljarCourse.title;
+  course.short_description = skilljarCourse.short_description;
+  course.long_description_html = skilljarCourse.long_description_html;
+  course.edit = `https://dashboard.skilljar.com/course/${skilljarCourse.id}`;
+}
 
 if (typeof skilljarCourseProgress !== "undefined") {
   course.progress = skilljarCourseProgress;
   course.completed = skilljarCourseProgress.completed_at !== "";
 }
+
+if (typeof skilljarUser !== "undefined")
+  isInternal = skilljarUser.email.includes("@chainguard.dev");
 
 /**
  * This function logs messages to the console with a specific style.
@@ -587,10 +597,13 @@ function stylePathCourseDetails() {
       courseInfo: document.querySelector(".sj-heading-paragraph"),
       ctaBtnWrapper: document.querySelector("#purchase-button-wrapper-large"),
     },
+    catalog: document.querySelector(".catalog-center-width"),
   };
 
   // set content
   v.local.header.floaterText.textContent = "Learning Path";
+  v.local.header.courseInfo.textContent =
+    skilljarCourseSeries.short_description || "";
 
   // move elements
   v.local.header.mainHeadingContainer.append(
@@ -601,6 +614,59 @@ function stylePathCourseDetails() {
       v.local.header.ctaBtnWrapper,
     ].filter(Boolean)
   );
+
+  if (skilljarCourseSeries.title === "Chainguard Containers Onboarding Guide") {
+    // apply style specific to container onboarding path
+    const csmWrapper = Object.assign(document.createElement("div"), {
+      id: "catalog-courses",
+      className: "course-listing",
+    });
+    csmWrapper.dataset.listing = "CSM";
+    v.local.catalog.prepend(csmWrapper);
+
+    const saHeader = Object.assign(document.createElement("h3"), {
+      className: "course-listing-header technical-onboarding",
+      textContent: "Technical Onboarding",
+    });
+
+    const csmHeader = Object.assign(document.createElement("h3"), {
+      className: "course-listing-header admin-onboarding",
+      textContent: "Admin Onboarding",
+    });
+
+    // here we set the order of csmCourses
+    const csmCourses = [
+      "kickoff-guide-to-chainguard",
+      "getting-started-with-chainguards-console",
+      "shared-responsibility-model",
+      "chainguards-superstar-support",
+    ]
+      .filter(Boolean)
+      .map((d) =>
+        document.querySelector(`.coursebox-container[data-course=${d}]`)
+      );
+
+    const saCourses = document.querySelector(
+      "#catalog-courses:not([data-listing='CSM'])"
+    );
+
+    csmWrapper.append(...csmCourses.filter(Boolean));
+
+    v.local.catalog.append(csmHeader, csmWrapper, saHeader, saCourses);
+
+    // move completed courses to end of list
+    saCourses.append(
+      ...saCourses.querySelectorAll(
+        ".coursebox-container[data-course-status='complete']"
+      )
+    );
+
+    csmWrapper.append(
+      ...csmWrapper.querySelectorAll(
+        ".coursebox-container[data-course-status='complete']"
+      )
+    );
+  }
 }
 
 /**
@@ -662,6 +728,7 @@ function styleLesson() {
       innerContainer: document.querySelector("#lesson-body"),
     },
     lesson: {
+      body: document.querySelector("#lesson-body"),
       content: {
         codeBlocks: new Array(
           ...document.querySelectorAll("pre:has(code):not(.language-ansi)")
@@ -746,8 +813,32 @@ function styleLesson() {
     el.classList.remove("sjwc-section-title")
   );
 
+  if (
+    typeof resources.resources !== "undefined" &&
+    v.local.lesson.content.resources.boxes.length === 0
+  ) {
+    console.info(
+      "No resource boxes found to add resources to. Adding automatically!"
+    );
+    const box = Object.assign(document.createElement("div"), {
+      className: "resource-box",
+    });
+    const header = Object.assign(document.createElement("h3"), {
+      textContent: "📘 More Resources",
+    });
+    const wrapper = Object.assign(document.createElement("div"), {
+      className: "resource-wrapper",
+    });
+
+    box.append(header, wrapper);
+    v.local.lesson.body.append(box);
+  }
+
   if (v.local.lesson.content.resources && typeof resources !== "undefined") {
-    if (typeof resources.resources !== "undefined") {
+    if (
+      typeof resources.resources !== "undefined" &&
+      v.local.lesson.content.resources.boxes.length === 1
+    ) {
       // we have a list of resources and will drop that in the first box
       const cards = resources.resources.map((r) => createResourceCard(r));
 
@@ -897,7 +988,18 @@ function styleCurriculumPageNoCertificate() {
     v.local.card.link.href = btnHref;
   } else {
     log("Hiding resume button as it could not be found");
-    hide(v.local.card.link); // Hide resume button if it doesn't exist
+    if (course.completed) {
+      v.local.card.link.textContent = "🎉 Completed";
+      v.local.card.link.classList.add("completed");
+      v.local.card.details.append(
+        Object.assign(document.createElement("p"), {
+          textContent: "Click on any lesson that you want to revisit.",
+          className: "completed-subtext",
+        })
+      );
+    } else {
+      hide(v.local.card.link); // Hide resume button if it doesn't exist
+    }
   }
 
   v.local.tabs.aboutSection.id = "aboutSection";
@@ -1446,7 +1548,7 @@ function handlePageStyling() {
     return stylePathCourseDetails();
 
   if (page.isPageCatalog)
-    // currently this doesn't seem to be in use
+    // we are on a learning path and registered for it
     return stylePathCatalogPage();
 
   if (page.isLesson)

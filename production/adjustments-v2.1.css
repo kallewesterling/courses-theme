@@ -2,6 +2,18 @@
   display: none !important;
 }
 
+#main-container[data-bundle="chainguard-containers-onboarding-guide"] {
+  .coursebox-container[data-course-status="complete"] {
+    /* Completed courses are dimmed and get a green background */
+    opacity: 0.4;
+    background-color: #ecffec;
+  }
+
+  #purchase-button {
+    display: none !important;
+  }
+}
+
 .callout {
   background-color: rgba(52, 68, 244, 0.05) !important;
   box-shadow: unset !important;
@@ -58,6 +70,19 @@
       -moz-osx-font-smoothing: grayscale;
       transform: translateY(5px);
     }
+  }
+
+  .course-details-card-link.completed {
+    background-color: green !important;
+    cursor: default !important;
+  }
+
+  .completed-subtext {
+    padding: 0px 20px 20px 0px !important;
+    font-size: 12px !important;
+    font-family: "Space Mono" !important;
+    margin: 0 24px !important;
+    color: green !important;
   }
 }
 
@@ -145,7 +170,7 @@ body.sj-page-detail-course {
       max-width: 80% !important;
 
       .social-media-wrapper {
-        display: block !important;
+        display: none !important;
       }
     }
 
@@ -261,6 +286,10 @@ body.sj-page-detail-course {
     max-width: min(1232px, 90%);
     margin: 0px auto;
     padding-bottom: 100px;
+
+    .course-listing-header.technical-onboarding {
+      margin-top: 3em;
+    }
 
     #catalog-courses {
       .coursebox-container {
@@ -644,7 +673,7 @@ body.sj-page-detail-course {
             display: none !important;
 
             .social-media-wrapper {
-              display: block !important;
+              display: none !important;
             }
           }
 
