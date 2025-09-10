@@ -640,9 +640,11 @@ function stylePathCourseDetails() {
       "getting-started-with-chainguards-console",
       "shared-responsibility-model",
       "chainguards-superstar-support",
-    ].map((d) =>
-      document.querySelector(`.coursebox-container[data-course=${d}]`)
-    );
+    ]
+      .filter(Boolean)
+      .map((d) =>
+        document.querySelector(`.coursebox-container[data-course=${d}]`)
+      );
 
     const saCourses = document.querySelector(
       "#catalog-courses:not([data-listing='CSM'])"
@@ -655,6 +657,12 @@ function stylePathCourseDetails() {
     // move completed courses to end of list
     saCourses.append(
       ...saCourses.querySelectorAll(
+        ".coursebox-container[data-course-status='complete']"
+      )
+    );
+
+    csmWrapper.append(
+      ...csmWrapper.querySelectorAll(
         ".coursebox-container[data-course-status='complete']"
       )
     );
