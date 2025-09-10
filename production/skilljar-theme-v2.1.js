@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 /*
  * Chainguard Courses Theme v2.1
  * This script applies custom styles and functionality to Chainguard's Skilljar platform.
@@ -14,6 +16,33 @@
  */
 
 let initialLoadComplete = false;
+const isStaging = window.location.hostname.includes(
+  "chainguard-test.skilljar.com"
+);
+let course = {
+  progress: {},
+  path: {},
+  completed: false,
+};
+
+if (typeof skilljarCourse !== "undefined") {
+  course = Object.assign(course, {
+    id: skilljarCourse.id,
+    publishedCourseId: skilljarCourse.publishedCourseId,
+    tags: skilljarCourse.tags,
+    title: skilljarCourse.title,
+    short_description: skilljarCourse.short_description,
+    long_description_html: skilljarCourse.long_description_html,
+  });
+}
+
+if (typeof skilljarCourseSeries !== "undefined")
+  course.path = skilljarCourseSeries.path;
+
+if (typeof skilljarCourseProgress !== "undefined") {
+  course.progress = skilljarCourseProgress;
+  course.completed = skilljarCourseProgress.completed_at !== "";
+}
 
 /**
  * This function logs messages to the console with a specific style.
@@ -27,11 +56,7 @@ let initialLoadComplete = false;
  * log({ key: "value" }, "Additional info");
  */
 const log = (message, ...args) => {
-  if (
-    !message ||
-    !window.location.hostname.includes("chainguard-test.skilljar.com")
-  )
-    return;
+  if (!message || !isStaging) return;
 
   const style = "color: var(--primary-blue-hex); font-weight: 600;";
 
@@ -52,7 +77,7 @@ function createClone(type = "checkbox") {
   }
 
   const attrs = {
-    class: `${type}-icon`,
+    className: `${type}-icon`,
     width: "20",
     height: "21",
     viewBox: "0 0 20 21",
@@ -87,6 +112,66 @@ function createClone(type = "checkbox") {
   return svg;
 }
 
+function createResourceCard(resource) {
+  // ---- Link with optional UTM ----
+  let link;
+  if (resource.addUTM) {
+    const url = new URL(resource.link);
+    url.searchParams.set("utm_source", "courses");
+    url.searchParams.set("utm_medium", "referral");
+    url.searchParams.set("utm_campaign", "dev-enablement");
+    link = url.toString();
+  } else {
+    link = resource.link;
+  }
+
+  // ---- Outer link wrapper ----
+  const linkWrapper = Object.assign(document.createElement("a"), {
+    href: link,
+    target: "_blank",
+    className: "resource-link-wrapper", // style like a block if needed
+  });
+
+  // ---- Card container ----
+  const card = Object.assign(document.createElement("div"), {
+    className: "resource-card",
+  });
+
+  const cardWrapper = Object.assign(document.createElement("div"), {
+    className: "card-body",
+  });
+
+  // ---- Badges before title ----
+  if (Array.isArray(resource.tags) && resource.tags.length > 0) {
+    const badgeContainer = Object.assign(document.createElement("div"), {
+      className: "badge-container",
+    });
+
+    resource.tags.forEach((tag) => {
+      const badge = Object.assign(document.createElement("div"), {
+        className: "badge",
+        textContent: tag,
+      });
+      badgeContainer.appendChild(badge);
+    });
+
+    cardWrapper.appendChild(badgeContainer);
+  }
+
+  // ---- Title ----
+  const titleEl = Object.assign(document.createElement("h5"), {
+    className: "card-title",
+    textContent: resource.title,
+  });
+  cardWrapper.appendChild(titleEl);
+
+  // ---- Assemble ----
+  card.appendChild(cardWrapper);
+  linkWrapper.appendChild(card);
+
+  return linkWrapper;
+}
+
 const c = (selector) => (document.querySelector(selector) ? true : false);
 
 const page = {
@@ -99,6 +184,7 @@ const page = {
   isSignup: c(".sj-page-signup"),
   isPageDetail: c(".sj-page-detail-bundle.sj-page-detail-path"),
   isPageCatalog: c(".sj-page-series.sj-page-path"),
+  hasCertificate: c(".cp-certificate"),
 };
 
 let v = {
@@ -107,8 +193,6 @@ let v = {
 
   // elements
   global: {
-    curriculumSection: null,
-    aboutSection: null,
     body: document.querySelector("body"),
     logo: document.querySelector(".header-center-img"),
     footerContainer: document.querySelector("#footer-container"),
@@ -122,7 +206,7 @@ let v = {
   },
 };
 
-function getCurriculumElements(curriculumParentContainer, border = "b") {
+function getCurriculumElements(curriculumParentContainer) {
   let currentSection = 0,
     elements = Array.from(
       curriculumParentContainer.querySelectorAll("[class^='lesson-']")
@@ -168,29 +252,30 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
 
   return a.map((section) => {
     const wrapper = Object.assign(document.createElement("div"), {
-      style: `border-radius: 8px; margin-bottom: 48px; padding: 0; border: ${
-        border === "b"
-          ? "2px solid var(--primary-blue-hex)"
-          : "1px solid var(--detail-medium-contrast)"
-      };`,
+      className: "curriculum-wrapper",
+      // style: `border-radius: 8px; margin-bottom: 48px; padding: 0; border: ${
+      //   border === "b"
+      //     ? "2px solid var(--primary-blue-hex)"
+      //     : "1px solid var(--detail-medium-contrast)"
+      // };`,
     });
 
     const header = Object.assign(document.createElement("div"), {
-      class: "curriculum-header",
-      style: `display: flex; align-items: center; padding: 24px; margin: 0; font-family: "Fusiona"; font-size: 16px; font-weight: 500; line-height: 125%; letter-spacing: "-.16px"; border-bottom: 2px solid var(--primary-blue-hex);`,
+      className: "curriculum-header",
+      // style: `display: flex; align-items: center; padding: 24px; margin: 0; font-family: "Fusiona"; font-size: 16px; font-weight: 500; line-height: 125%; letter-spacing: "-.16px"; border-bottom: 2px solid var(--primary-blue-hex);`,
       textContent: section.heading,
     });
 
     const lessons = section.lessons.map((lesson, ix) => {
       const a = Object.assign(document.createElement("a"), {
-        class: "curriculum-lesson lesson-row",
-        style: `display: block; color: black; padding: 24px; font-size: 16px; font-weight: 400; line-height: 150%; border-bottom: ${
-          ix !== section.lessons.length - 1
-            ? border === "b"
-              ? "2px solid var(--primary-blue-hex)"
-              : "1px solid var(--detail-medium-contrast)"
-            : "none"
-        };`,
+        className: "curriculum-lesson" /* lesson-row */,
+        // style: `display: block; color: black; padding: 24px; font-size: 16px; font-weight: 400; line-height: 150%; border-bottom: ${
+        //   ix !== section.lessons.length - 1
+        //     ? border === "b"
+        //       ? "2px solid var(--primary-blue-hex)"
+        //       : "1px solid var(--detail-medium-contrast)"
+        //     : "none"
+        // };`,
         textContent: lesson,
         href: section.links[ix] || "#",
       });
@@ -198,7 +283,7 @@ function getCurriculumElements(curriculumParentContainer, border = "b") {
       if (section.bullets[ix])
         a.prepend(
           Object.assign(section.bullets[ix], {
-            style: `display: inline-block; font-size: 1.5em; transform: translateY(3px); margin-right: 10px; color: var(--primary-blue-hex);`,
+            // style: `display: inline-block; font-size: 1.5em; transform: translateY(3px); margin-right: 10px; color: var(--primary-blue-hex);`,
           })
         );
 
@@ -405,22 +490,26 @@ function styleLanding() {
     catalogContainer: document.querySelector("#catalog-courses"),
   };
 
-  if (!initialLoadComplete) {
-    // Create a container div for courses catalog list
-    const catalogContentContainer = Object.assign(
-      document.createElement("div"),
-      { style: `max-width: min(1232px, 90%); margin: 96px auto;` }
-    );
+  // set up userCourseJourney global variable
+  window.userCourseJourney = {
+    unregistered: Array.from(
+      document.querySelectorAll(
+        ".coursebox-container[data-course-status='unregistered']"
+      )
+    ).map((el) => Object.assign({ ...el.dataset })),
+    registered: Array.from(
+      document.querySelectorAll(
+        ".coursebox-container[data-course-status='registered']"
+      )
+    ).map((el) => Object.assign({ ...el.dataset })),
+    completed: Array.from(
+      document.querySelectorAll(
+        ".coursebox-container[data-course-status='completed']"
+      )
+    ).map((el) => Object.assign({ ...el.dataset })),
+  };
 
-    // Create header for list
-    const allCoursesHeader = Object.assign(document.createElement("h2"), {
-      textContent: "All Courses",
-      style: `font-size: 48px; margin-bottom: 38px;`,
-    });
-
-    catalogContentContainer.append(allCoursesHeader, v.local.catalogContainer);
-    v.local.catalogBodyParentContainer.append(catalogContentContainer);
-  }
+  v.local.catalogBodyParentContainer.append(v.local.catalogContainer);
 }
 
 /**
@@ -432,149 +521,27 @@ function styleCourseDetails() {
   v.local = {
     header: {
       container: document.querySelector(".top-row-grey"),
-      flexContainer: document.querySelector(".dp-row-flex-v2"),
       floaterText: document.querySelector(".sj-floater-text"),
       mainHeading: document.querySelector(".break-word"),
+      courseInfo:
+        document.querySelector(".sj-course-info-wrapper") ||
+        document.querySelector(".sj-heading-paragraph"),
       ctaBtnWrapper: document.querySelector("#purchase-button-wrapper-large"),
       registerBtn: document.querySelector("#purchase-button-wrapper-large a"),
       mainHeadingContainer: document.querySelector(".dp-summary-wrapper"),
-      backToCatalogBtn: document.querySelector(".back-to-catalog"),
-      videoContainer: document.querySelector(".video-max"),
-      courseInfoWrapper: document.querySelector(".sj-course-info-wrapper"),
-      courseInfo: document.querySelector(".sj-heading-paragraph"),
-      image: document.querySelector(".dp-promo-image-wrapper"),
     },
     body: {
       container: document.querySelector("#dp-details"),
-      mobile: document.querySelector(".show-for-small"),
-      secondary: document.querySelector(".hide-for-small"),
-      columns: document.querySelectorAll(".hide-for-small .columns"),
-      h3: document.querySelectorAll(".hide-for-small .columns h3"),
     },
     curriculum: {
       container: document.querySelectorAll(".dp-curriculum")[0], // note: this is the desktop version
-      header: document.querySelector(
-        ".sj-curriculum-wrapper:has(.dp-curriculum) h3"
-      ),
     },
     card: {
       details: document.querySelector(".course-details-card"),
       detailItems: document.querySelectorAll(".course-details-card li"),
       link: document.querySelector(".course-details-card-link"),
     },
-    signinText: document.querySelector(".signin"),
-    signinBtn: document.querySelector(".sj-text-sign-in"),
   };
-
-  setStyle(v.local.signinBtn, {
-    backgroundColor: "transparent",
-    padding: "8px 12px",
-    marginRight: "24px",
-    borderColor: "var(--primary-blue-hex)",
-    border: "2px solid var(--primary-blue-hex)",
-    borderRadius: "999px",
-    fontSize: "14px",
-    fontFamily: "Space Mono",
-    fontWeight: "700",
-    lineHeight: "20px",
-  });
-
-  setStyle(v.local.header.container, {
-    backgroundColor: "var(--form-bg)",
-    margin: "0",
-    maxWidth: "none",
-    paddingTop: v.viewport === "desktop" ? "96px" : "48px",
-    paddingBottom: v.viewport === "desktop" ? "96px" : "48px",
-    border: "0",
-  });
-
-  setStyle(v.local.header.flexContainer, {
-    flexDirection: v.viewport === "desktop" ? "row-reverse" : "column-reverse",
-    flexWrap: "nowrap",
-    justifyContent: "start",
-    gap: "24px",
-    maxWidth: "1188px",
-  });
-
-  setStyle(v.local.header.mainHeadingContainer, {
-    border: "0",
-    maxWidth: v.viewport === "desktop" ? "564px" : "none",
-    width: v.viewport === "desktop" ? "auto" : "100%",
-  });
-
-  setStyle(v.local.header.floaterText, {
-    display: "block",
-    marginBottom: "24px",
-  });
-
-  setStyle(v.local.header.mainHeading, {
-    margin: "0 0 12px 0",
-    fontSize: "36px",
-    fontWeight: "600",
-    lineHeight: "43.2px",
-    letterSpacing: "-.02em",
-  });
-
-  setStyle(v.local.header.videoContainer, {
-    maxWidth: "none",
-    paddingLeft: v.viewport === "desktop" ? "0px" : "15px",
-    paddingRight: v.viewport === "desktop" ? "0px" : "15px",
-  });
-
-  setStyle(v.local.header.courseInfo, {
-    display: "block",
-    margin: "0 0 24px 0",
-  });
-
-  setStyle(v.local.body.secondary, {
-    padding: "0",
-    maxWidth: "760px",
-    display: "grid !important",
-  });
-
-  setStyle(v.local.body.container, {
-    padding: "0",
-    margin:
-      v.viewport === "desktop" ? "96px auto 46px auto" : "72px auto -10px auto",
-    maxWidth: "min(1152px, 90%)",
-    display: "grid",
-    gridTemplateColumns:
-      v.viewport === "desktop"
-        ? "minmax(100px, 760px) minmax(100px, 368px)"
-        : "1fr",
-    columnGap: "24px",
-  });
-
-  setStyle(v.local.body.h3, { fontWeight: "600" });
-
-  setStyle(v.local.curriculum.container, { margin: "0" });
-
-  setStyle(v.local.body.columns, {
-    float: "none",
-    padding: "0",
-    width: "100%",
-    display: "block",
-    marginBottom: "48px",
-  });
-
-  setStyle(v.local.card.details, {
-    margin: "0 0 46px 0",
-    justifySelf: "center",
-  });
-
-  // do actions for non-initial load
-  if (!initialLoadComplete) {
-    const curriculumElements = getCurriculumElements(
-      v.local.curriculum.container
-    );
-
-    v.local.curriculum.container.innerHTML = ""; // Clear the container
-    v.local.curriculum.container.append(...curriculumElements);
-
-    v.local.card.detailItems.forEach((li) =>
-      li.prepend(createClone("checkbox"))
-    );
-  }
 
   if (v.local.header.registerBtn && v.local.card.link) {
     const btnText = v.local.header.registerBtn.textContent || "Register";
@@ -583,42 +550,27 @@ function styleCourseDetails() {
     v.local.card.link.setAttribute("href", btnHref);
   }
 
-  if (v.viewport === "mobile") {
-    // logo on mobile
-    setStyle(v.global.logo, { maxHeight: "48px" });
+  const curriculumElements = getCurriculumElements(
+    v.local.curriculum.container
+  );
 
-    // header image on mobile
-    setStyle(v.local.header.image, {
-      padding: "0",
-      maxWidth: "none",
-      width: "100%",
-    });
-  }
+  v.local.curriculum.container.innerHTML = ""; // Clear the container
+  v.local.curriculum.container.append(...curriculumElements);
 
-  // hide elements
-  hide([
-    v.local.header.courseInfoWrapper,
-    v.local.body.mobile,
-    v.local.header.backToCatalogBtn,
-    v.local.signinText,
-    v.local.curriculum.header,
-  ]);
+  // v.local.card.detailItems.forEach((li) => li.prepend(createClone("checkbox")));
 
-  // move elements
-  if (!initialLoadComplete) {
-    // append card
-    v.local.body.container.append(...[v.local.card.details].filter(Boolean));
+  // append card
+  v.local.body.container.append(...[v.local.card.details].filter(Boolean));
 
-    // append elements to header
-    v.local.header.mainHeadingContainer.append(
-      ...[
-        v.local.header.floaterText,
-        v.local.header.mainHeading,
-        v.local.header.courseInfo,
-        v.local.header.ctaBtnWrapper,
-      ].filter(Boolean)
-    );
-  }
+  // append elements to header
+  v.local.header.mainHeadingContainer.append(
+    ...[
+      v.local.header.floaterText,
+      v.local.header.mainHeading,
+      v.local.header.courseInfo,
+      v.local.header.ctaBtnWrapper,
+    ].filter(Boolean)
+  );
 }
 
 /**
@@ -629,120 +581,26 @@ function stylePathCourseDetails() {
 
   v.local = {
     header: {
-      container: document.querySelector(".top-row-grey"),
-      flexContainer: document.querySelector(".dp-row-flex-v2"),
+      mainHeadingContainer: document.querySelector(".dp-summary-wrapper"),
       floaterText: document.querySelector(".sj-floater-text"),
       mainHeading: document.querySelector(".break-word"),
-      ctaBtnWrapper: document.querySelector("#purchase-button-wrapper-large"),
-      registerBtn: document.querySelector("#purchase-button-wrapper-large a"),
-      mainHeadingContainer: document.querySelector(".dp-summary-wrapper"),
-      backToCatalogBtn: document.querySelector(".back-to-catalog"),
-      courseInfoWrapper: document.querySelector(".sj-course-info-wrapper"),
       courseInfo: document.querySelector(".sj-heading-paragraph"),
+      ctaBtnWrapper: document.querySelector("#purchase-button-wrapper-large"),
     },
-    body: {
-      container: document.querySelector("#dp-details-bundle"),
-      catalogContainer: document.querySelector("#catalog-courses"),
-    },
-    signinText: document.querySelector(".signin"),
-    signinBtn: document.querySelector(".sj-text-sign-in"),
   };
 
   // set content
   v.local.header.floaterText.textContent = "Learning Path";
 
-  setStyle(v.local.signinBtn, {
-    backgroundColor: "transparent",
-    padding: "8px 12px",
-    marginRight: "24px",
-    border: "2px solid var(--primary-blue-hex)",
-    borderRadius: "999px",
-    fontSize: "14px",
-    fontFamily: "Space Mono",
-    fontWeight: "700",
-    lineHeight: "20px",
-  });
-
-  setStyle(v.local.header.container, {
-    background:
-      "url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png)",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    margin: "0",
-    maxWidth: "none",
-    paddingTop: "96px",
-    paddingBottom: "96px",
-    border: "0",
-  });
-
-  setStyle(v.local.header.flexContainer, {
-    flexDirection: "row-reverse",
-    flexWrap: "nowrap",
-    justifyContent: "start",
-    gap: "24px",
-    maxWidth: "1188px",
-  });
-
-  setStyle(v.local.header.mainHeadingContainer, {
-    border: "0",
-    maxWidth: "600px",
-  });
-
-  setStyle(v.local.header.floaterText, {
-    color: "var(--primary-cyan-hex)",
-    display: "block",
-    marginBottom: "24px",
-  });
-
-  setStyle(v.local.header.mainHeading, {
-    color: "var(--primary-white-hex)",
-    margin: "0 0 12px 0",
-    fontSize: "36px",
-    fontWeight: "600",
-    lineHeight: "43.2px",
-    letterSpacing: "-.02em",
-  });
-
-  setStyle(v.local.header.courseInfo, {
-    color: "var(--primary-white-hex)",
-    display: "block",
-    margin: "0 0 24px 0",
-  });
-
-  setStyle(v.local.header.registerBtn, {
-    borderColor: "var(--primary-cyan-hex)",
-    color: "var(--primary-white-hex)",
-  });
-
-  setStyle(v.local.body.container, {
-    padding: "0",
-    margin: "96px auto 46px auto",
-    maxWidth: "min(1152px, 90%)",
-  });
-
-  setStyle(v.local.body.catalogContainer, {
-    marginBottom: "85px",
-  });
-
   // move elements
-  if (!initialLoadComplete) {
-    v.local.header.mainHeadingContainer.append(
-      ...[
-        v.local.header.floaterText,
-        v.local.header.mainHeading,
-        v.local.header.courseInfo,
-        v.local.header.ctaBtnWrapper,
-      ].filter(Boolean)
-    );
-  }
-
-  // hide elements
-  hide([
-    v.local.header.backToCatalogBtn,
-    v.local.signinText,
-    v.local.header.courseInfoWrapper,
-  ]);
+  v.local.header.mainHeadingContainer.append(
+    ...[
+      v.local.header.floaterText,
+      v.local.header.mainHeading,
+      v.local.header.courseInfo,
+      v.local.header.ctaBtnWrapper,
+    ].filter(Boolean)
+  );
 }
 
 /**
@@ -798,70 +656,13 @@ function styleLesson() {
    * @param {NodeList} codeBlocks - A list of code block elements to process.
    * @return {void}
    */
-  function processCodeBlocks(codeBlocks) {
-    codeBlocks
-      .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
-      .forEach((el) => {
-        const codeEl = el.querySelector("code");
-        const iconClone = createClone("copy");
-
-        setStyle(el, {
-          padding: "0",
-          overflow: "visible",
-          position: "relative",
-          width: "100%",
-        });
-
-        setStyle(codeEl, {
-          display: "inline-block",
-          padding: "24px !important",
-          overflowX: "scroll",
-          width: "100%",
-        });
-
-        const copyText = codeEl.textContent
-          .trim()
-          .replace(/\r?\n\$ /g, " && ")
-          .replace(/^\$ /g, "");
-
-        const container = Object.assign(document.createElement("div"), {
-          style: `display: flex; justify-content: end; border-bottom: 1px solid gainsboro; padding: 12px 24px;`,
-        });
-
-        // create 'copied' tooltip
-        const tooltipContainer = Object.assign(document.createElement("div"), {
-          textContent: "Copied",
-          style: `position: absolute; top: -24px; right: 10px; text-shadow: none; background-color: var(--answer-option); color: var(--primary-white-hex); padding: 5px 10px; border-radius: 4px; opacity: 0; transition: opacity .2s ease-in;`,
-        });
-
-        // add elements
-        container.append(iconClone);
-        el.append(tooltipContainer);
-        el.prepend(container);
-
-        // add event listener to cloned icon to copy block into clipboard
-        iconClone.addEventListener(
-          "click",
-          toClipboard(copyText, tooltipContainer)
-        );
-
-        // Mark that copy icon was added to this code block
-        el.dataset.copyAdded = "true";
-      });
-  }
-
   v.local = {
     body: {
       mainContainer: document.querySelector("#lp-wrapper"),
-      leftNav: document.querySelector("#lp-left-nav"),
-      contentContainer: document.querySelector("#lp-content"),
       innerContainer: document.querySelector("#lesson-body"),
     },
     lesson: {
-      innerContainer: document.querySelector("#lesson-main-inner"),
-      mainContainer: document.querySelector("#lesson-main"),
       content: {
-        container: document.querySelector("sjwc-lesson-content-item"),
         codeBlocks: new Array(
           ...document.querySelectorAll("pre:has(code):not(.language-ansi)")
         ),
@@ -869,274 +670,148 @@ function styleLesson() {
           "#internal-course-warning"
         ),
         links: document.querySelectorAll("sjwc-lesson-content-item a"),
+        resources: {
+          boxes: document.querySelectorAll(
+            "sjwc-lesson-content-item .resource-box"
+          ),
+          wrapper: document.querySelector(
+            "sjwc-lesson-content-item .resource-box .resource-wrapper"
+          ),
+        },
       },
     },
     nav: {
       toggleWrapper: document.querySelector("#left-nav-button"),
-      fullScreenBtn: document.querySelector(".toggle-fullscreen"),
-      navText: document.querySelector(".burger-text.sj-text-lessons"),
-      container: document.querySelector("#curriculum-list-2"),
       backToCurriculumText: document.querySelector("#left-nav-return-text"),
-      links: document.querySelectorAll("#curriculum-list-2 a"),
-      linkIcons: document.querySelectorAll("#curriculum-list-2 a .type-icon"),
-      lessonRows: document.querySelectorAll("#curriculum-list-2 .lesson-row"),
-      sectionTitles: document.querySelectorAll(
-        "#curriculum-list-2 .section-title"
-      ),
-    },
-    icons: {
-      openIcon: document.querySelector(".fa.fa-bars"),
-      searchIcon: document.querySelector(".fa.fa-search"),
-      closeIcon: document.querySelector(".fa.fa-times"),
     },
     footer: {
       container: document.querySelector("#lp-footer"),
-      prevBtn: document.querySelector(".button-prev-title span"),
-      navMobileOverlay: document.querySelector("#lpLeftNavBackground"),
     },
   };
 
   // content
-  v.local.nav.backToCurriculumText
-    ? (v.local.nav.backToCurriculumText.textContent = "Back to Course Overview")
-    : null;
-
-  setStyle(v.local.lesson.innerContainer, {
-    maxWidth: "712px",
-    margin: "0 auto",
-  });
-
-  setStyle(v.local.body.mainContainer, {
-    position: "relative",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-  });
-
-  setStyle(v.local.body.contentContainer, { height: "auto" });
-
-  setStyle(v.local.body.innerContainer, {
-    margin: "0",
-    maxWidth: "none",
-  });
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.body.leftNav, {
-        backgroundColor: "#f9f9f9",
-        width: "320px",
-        position: "absolute",
-        marginBottom: "0px",
-      })
-    : setStyle(v.local.body.leftNav, {
-        backgroundColor: "#f9f9f9",
-        width: "320px",
-        position: "fixed",
-        height: "100%",
-        paddingBottom: "40px",
-      });
-
-  v.viewport === "mobile"
-    ? setStyle(v.local.nav.toggleWrapper, { overflowX: "clip" })
-    : null;
-
-  setStyle(v.local.lesson.mainContainer, {
-    position: "relative",
-    zIndex: "0",
-    paddingTop: "0",
-  });
-
-  setStyle(v.local.nav.toggleWrapper, {
-    position: "sticky",
-    zIndex: "1",
-    top: v.viewport === "desktop" ? "12px" : v.width >= 767 ? "24px" : "56px",
-    float: v.viewport === "desktop" ? "none" : "right",
-  });
-  v.viewport === "mobile"
-    ? setStyle(v.local.nav.toggleWrapper, { paddingRight: "12px" })
-    : null;
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.body.mainContainer, { overflowY: "auto" })
-    : null;
-
-  setStyle([v.local.icons.openIcon, v.local.icons.closeIcon], {
-    padding: "12px",
-    border: v.viewport === "desktop" ? "none" : "1px solid gainsboro",
-    borderRadius: "8px",
-    background: "rgba(255, 255, 255, .8)",
-    backdropFilter: "blur(1.5px)",
-  });
-
-  setStyle(v.local.footer.container, {
-    position: "relative",
-    border: "0",
-    backgroundColor: "transparent",
-  });
-
-  setStyle(v.local.nav.container, { paddingBottom: "32px" });
-
-  setStyle(v.local.body.mainContainer, {
-    height: "100vh",
-    paddingBottom: "0",
-  });
-
-  setStyle(v.local.lesson.content.lessonRows, {
-    display: "flex",
-    flexDirection: "row-reverse",
-    justifyContent: "space-between",
-    margin: "0 12px",
-    paddingLeft: "12px",
-    paddingRight: "12px",
-    fontSize: "14px",
-    lineHeight: "20px",
-  });
-
-  setStyle(v.local.nav.links, {
-    color:
-      v.viewport === "desktop"
-        ? "var(--primary-dark-purple-hex)"
-        : "var(--answer-option)",
-    cursor: "pointer",
-  });
-
-  setStyle(v.local.nav.sectionTitles, {
-    backgroundColor: "transparent",
-    padding: "12px",
-    paddingLeft: "24px",
-    paddingRight: "24px",
-    marginTop: "12px",
-    marginBottom: "12px",
-    border: "0",
-    fontFamily: v.viewport === "desktop" ? "Fusiona" : "Space Mono",
-    fontSize: v.viewport === "desktop" ? "16px" : "12px",
-    fontWeight: "700",
-  });
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.nav.sectionTitles, {
-        textTransform: "uppercase",
-        letterSpacing: ".05em",
-      })
-    : null;
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.footer.prevBtn, {
-        color: "var(--primary-dark-purple-hex)",
-      })
-    : null;
+  if (v.local.nav.backToCurriculumText)
+    v.local.nav.backToCurriculumText.textContent = "Back to Course Overview";
 
   // Makes lesson links pop up in new tab
   v.local.lesson.content.links.forEach((el) => (el.target = "_blank"));
 
   // move elements
   v.local.body.mainContainer.append(v.local.footer.container);
-  v.local.body.innerContainer.prepend(v.local.nav.toggleWrapper);
-  document
-    .querySelector("#lesson-main")
-    .prepend(...[v.local.lesson.content.internalCourseWarning].filter(Boolean));
+  v.local.body.innerContainer.prepend(
+    ...[
+      v.local.lesson.content.internalCourseWarning,
+      v.local.nav.toggleWrapper,
+    ].filter(Boolean)
+  );
 
-  // hide elements
-  hide([
-    v.local.nav.fullScreenBtn,
-    v.local.icons.searchIcon,
-    v.local.nav.navText,
-    ...v.local.nav.linkIcons,
-    v.global.body.classList.contains("cbp-spmenu-open")
-      ? v.local.icons.openIcon
-      : v.local.icons.closeIcon,
-  ]);
+  v.local.lesson.content.codeBlocks
+    .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
+    .forEach((el) => {
+      const codeEl = el.querySelector("code");
+      const iconClone = createClone("copy");
 
-  v.global.body.classList.remove("cbp-spmenu-open");
-  v.local.body.leftNav.classList.remove("cbp-spmenu-open");
-  toggle("close")();
+      const copyText = codeEl.textContent
+        .trim()
+        .replace(/\r?\n\$ /g, " && ")
+        .replace(/^\$ /g, "");
 
-  // handle clicks
-  v.local.icons.openIcon.addEventListener("click", toggle("open"));
+      const container = Object.assign(document.createElement("div"), {
+        style: `display: flex; justify-content: end; border-bottom: 1px solid gainsboro; padding: 12px 24px;`,
+      });
 
-  v.local.icons.closeIcon.addEventListener("click", toggle("close"));
+      // create 'copied' tooltip
+      const tooltipContainer = Object.assign(document.createElement("div"), {
+        textContent: "Copied",
+        style: `position: absolute; top: -24px; right: 10px; text-shadow: none; background-color: var(--answer-option); color: var(--primary-white-hex); padding: 5px 10px; border-radius: 4px; opacity: 0; transition: opacity .2s ease-in;`,
+      });
 
-  v.local.footer.navMobileOverlay.addEventListener("click", toggle("close"));
+      // add elements
+      container.append(iconClone);
+      el.append(tooltipContainer);
+      el.prepend(container);
 
-  processCodeBlocks(v.local.lesson.content.codeBlocks);
-}
+      // add event listener to cloned icon to copy block into clipboard
+      iconClone.addEventListener(
+        "click",
+        toClipboard(copyText, tooltipContainer)
+      );
 
-function toggle(state) {
-  return async () => {
-    if (state === "open") {
-      hide(v.local.icons.openIcon);
-      setStyle(v.local.icons.closeIcon, { display: "inline-block" });
-    } else if (state === "close") {
-      hide(v.local.icons.closeIcon);
-      setStyle(v.local.icons.openIcon, { display: "inline-block" });
+      // Mark that copy icon was added to this code block
+      el.dataset.copyAdded = "true";
+    });
+
+  // Make section titles normal h3 elements
+  Array.from(document.querySelectorAll("h3.sjwc-section-title")).map((el) =>
+    el.classList.remove("sjwc-section-title")
+  );
+
+  if (v.local.lesson.content.resources && typeof resources !== "undefined") {
+    if (typeof resources.resources !== "undefined") {
+      // we have a list of resources and will drop that in the first box
+      const cards = resources.resources.map((r) => createResourceCard(r));
+
+      const box = v.local.lesson.content.resources.boxes[0];
+
+      const wrapper = box.querySelector(".resource-wrapper");
+
+      // Clear existing content
+      wrapper.innerHTML = "";
+
+      // Add cards
+      wrapper.append(...cards);
+    } else if (typeof resources.groups !== "undefined") {
+      // we have groups of resources to drop in each box
+      v.local.lesson.content.resources.boxes.forEach((box) => {
+        const cards = resources.groups[box.dataset.group].map((r) =>
+          createResourceCard(r)
+        );
+
+        const wrapper = box.querySelector(".resource-wrapper");
+
+        // Clear existing content
+        wrapper.innerHTML = "";
+
+        // Add cards
+        if (resources.groups[box.dataset.group]) {
+          wrapper.append(...cards);
+        }
+      });
     }
-  };
+  }
 }
 
 const getLoginSignupSelectors = () => ({
-  fbBtn: document.querySelector("#facebook_login"),
   googleBtn: document.querySelector("#google_login"),
-  tabArrow:
-    document.querySelector("#tab-marker-login") ||
-    document.querySelector("#tab-marker-signup"),
-  loginContent: document.querySelector("#login-content"),
-  loginContentContainer: document.querySelector(".large-6.columns"),
   termsAndServices: document.querySelector("#access-message"),
-  tabContainer: document.querySelector(".large-12.columns"),
   altMethod:
     document.querySelector(".sj-text-sign-in-with span") ||
     document.querySelector(".sj-text-sign-up-with span"),
-  altMethodContainer: document.querySelector(".socialaccount_providers li"),
-  altMethodCol: document.querySelector(
-    ".large-6.columns:has(.socialaccount_providers)"
-  ),
-  altMethodUl: document.querySelector(
-    ".large-6.columns:has(.socialaccount_providers) ul"
-  ),
-  altMethodLi: document.querySelectorAll(
-    ".large-6.columns:has(.socialaccount_providers) li"
-  ),
 
   inputs: {
-    login: document.querySelector("#id_login"), // login specific
-    password: document.querySelector("#id_password"), // login specific
-    password1: document.querySelector("#id_password1"), // signup specific
     password2: document.querySelector("#id_password2"), // signup specific
     email: document.querySelector("#id_email"), // signup specific
   },
 
-  loginTab: document.querySelector("#login-tab-left"),
-  signupTab: document.querySelector("#login-tab-right"),
-
   // login specific
-  forgotPassword: document.querySelector(".sj-text-forgot-password"),
   loginBtn: document.querySelector("#button-sign-in"),
   loginForm: document.querySelector("#login_form"),
-  loginNote: document.querySelector(".loginNote.sj-text-login-note"),
-  loginTabText: document.querySelector("#login-tab-left a"),
-  loginTabTextSpan: document.querySelector("#login-tab-left a span"),
   loginText: document.querySelector("#login-tab-left span span"),
-  loginForgetWrapper: document.querySelector(
-    ".large-12.columns:has(#button-sign-in)"
-  ),
+  signupTabTextSpan: document.querySelector("#login-tab-right span"),
 
   // signup-specific
-  allInputs: document.querySelectorAll("input"),
-  allLabels: document.querySelectorAll("label"),
+  loginTabTextSpan: document.querySelector("#login-tab-left a span"),
   signupForm: document.querySelector("#signup_form"),
   signupTabText:
     document.querySelector("#login-tab-right a") ||
     document.querySelector("#login-tab-right span"),
-  signupTabSpan: document.querySelector("#login-tab-right span"),
   passwordConfirm: document.querySelector(
     "label[for=id_password2] .input-label-text span"
   ),
-  loginLabel: document.querySelector('label[for="id_email"]'),
   fNameLabel: document.querySelector('label[for="id_first_name"] span span'),
   lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
   emailLabel: document.querySelector('label[for="id_email"]'),
-  signupBtn: document.querySelector("#button-sign-up"),
   signupBtnText: document.querySelector("#button-sign-up span"),
-  signupBtnWrapper: document.querySelector("#signup_form .text-center"),
 });
 
 function styleLogin() {
@@ -1145,136 +820,13 @@ function styleLogin() {
   v.local = getLoginSignupSelectors();
 
   v.local.loginText.textContent = "Log In";
-  v.local.signupTabSpan.textContent = "Sign Up";
+  v.local.signupTabTextSpan.textContent = "Sign Up";
   v.local.altMethod.textContent = "Or Log In With";
   v.local.loginBtn.textContent = "Log In";
   v.local.googleBtn.textContent = "Continue with Google";
 
-  setStyle(v.local.termsAndServices, {
-    maxWidth: "368px",
-    fontSize: "14px",
-    color: "#545454",
-  });
-
-  setStyle(v.local.tabContainer, { display: "flex" });
-
-  setStyle([v.local.loginTab, v.local.signupTab], {
-    display: "flex",
-    padding: "8px 16px",
-    alignItems: "center",
-  });
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.loginTab, {
-        border: "0",
-        textDecoration: "underline",
-        fontFamily: "Space Mono",
-        color: "var(--primary-blue-hex)",
-        fontWeight: "700",
-        fontSize: "18px",
-        lineHeight: "24px",
-      })
-    : setStyle(v.local.loginTab, {
-        border: "0",
-        backgroundColor: "var(--primary-blue-hex)",
-        color: "var(--primary-white-hex)",
-        fontWeight: "500",
-        fontSize: "16px",
-        lineHeight: "24px",
-        borderRadius: "100px",
-      });
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.signupTabText, {
-        color: "rgba(52, 67, 244, .4)",
-        fontWeight: "700",
-        fontSize: "18px",
-        lineHeight: "24px",
-      })
-    : setStyle(v.local.signupTabText, {
-        color: "#8C8C8C",
-        fontWeight: "500",
-        fontSize: "16px",
-        lineHeight: "24px",
-      });
-
-  setStyle([v.local.loginContentContainer, v.local.altMethodCol], {
-    width: v.viewport === "desktop" ? "50%" : "100%",
-  });
-
-  setStyle(v.local.altMethodContainer, { paddingBottom: "0" });
-
-  setStyle(v.local.altMethodUl, {
-    padding: v.viewport === "desktop" ? "0 0 0 125px;" : "0",
-  });
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.altMethodLi, { padding: "0" })
-    : null;
-
-  setStyle([v.local.inputs.login, v.local.inputs.password], {
-    borderRadius: "4px",
-    border: `2px solid ${
-      v.viewport === "desktop"
-        ? "var(--primary-blue-hex)"
-        : "var(--detail-medium-contrast)"
-    }`,
-    padding: v.viewport === "desktop" ? "20px 15px" : "12px",
-    fontSize: "14px",
-    lineHeight: "24px",
-  });
-
-  v.viewport === "mobile"
-    ? setStyle(v.local.inputs.password, { marginBottom: "24px" })
-    : null;
-
-  v.viewport === "desktop"
-    ? setStyle([v.local.loginBtn, v.local.forgotPassword], {
-        fontSize: "16px",
-        fontFamily: "Space Mono",
-        marginBottom: "2px",
-      })
-    : null;
-
-  v.viewport === "mobile"
-    ? setStyle(v.local.forgotPassword, {
-        fontSize: "16px",
-        marginBottom: "2px",
-      })
-    : null;
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.loginBtn, {
-        width: "368px",
-        height: "48px",
-        color: "var(--primary-dark-purple-hex)",
-        backgroundColor: "transparent",
-        border: "2px solid var(--primary-blue-hex)",
-        borderRadius: "999px",
-      })
-    : setStyle(v.local.loginBtn, {
-        width: "100%",
-        height: "48px",
-        fontSize: "16px",
-        marginBottom: "12px",
-      });
-
-  setStyle(v.local.loginForgetWrapper, { marginBottom: "24px" });
-
-  setStyle(v.local.googleBtn, {
-    background:
-      "linear-gradient(225deg, var(--label-color) 0%, var(--primary-cyan-hex) 100%)",
-    width: "auto",
-    textAlign: "center",
-  });
-
-  setStyle(v.local.loginContent, { border: "0" });
-
   // move elements
   v.local.loginForm.append(v.local.termsAndServices);
-
-  // hide elements
-  hide([v.local.tabArrow, v.local.fbBtn, v.local.loginNote]);
 }
 
 function styleSignup() {
@@ -1295,132 +847,8 @@ function styleSignup() {
   v.local.inputs.email.placeholder = "Work Email";
   v.local.inputs.password2.placeholder = "Password Confirm";
 
-  setStyle(v.local.termsAndServices, {
-    maxWidth: "368px",
-    color: "#545454",
-    fontSize: "14px",
-    transform: "translateX(-13px)",
-  });
-
-  setStyle(v.local.tabContainer, { display: "flex" });
-
-  setStyle([v.local.loginTab, v.local.signupTab], {
-    border: "0",
-    display: "flex",
-    padding: "8px 16px",
-    alignItems: "center",
-    borderRadius: "100px",
-  });
-
-  setStyle(v.local.signupTab, {
-    backgroundColor: "var(--primary-blue-hex)",
-  });
-
-  setStyle([v.local.loginTabText, v.local.signupTabText], {
-    fontFamily: "Space Mono",
-    fontWeight: "700",
-    fontSize: "18px",
-    lineHeight: "24px",
-    textDecoration: "none",
-  });
-
-  setStyle(v.local.loginTabText, {
-    color: "rgba(52, 67, 244, .4)",
-  });
-
-  setStyle(v.local.signupTabText, {
-    color: "var(--primary-white-hex)",
-    textDecoration: "underline",
-  });
-
-  setStyle([v.local.loginContentContainer, v.local.altMethodCol], {
-    width: v.viewport === "desktop" ? "50%" : "100%",
-  });
-
-  setStyle(v.local.altMethodContainer, { paddingBottom: "0" });
-
-  setStyle(v.local.altMethodLi, { padding: "0" });
-
-  setStyle(v.local.altMethod, {
-    marginBottom: "12px",
-    fontWeight: "500",
-    fontSize: "16px",
-    lineHeight: "20px",
-  });
-
-  setStyle([v.local.inputs.login, v.local.inputs.password1], {
-    borderRadius: "4px",
-    borderColor: "var(--detail-medium-contrast)",
-    padding: "12px",
-    lineHeight: "24px",
-  });
-
-  setStyle(v.local.inputs.password2, { marginBottom: "24px" });
-
-  setStyle(v.local.signupBtnWrapper, { textAlign: "left !important" });
-
-  setStyle(v.local.googleBtn, {
-    background:
-      "linear-gradient(225deg, var(--label-color) 0%, var(--primary-cyan-hex) 100%)",
-    width: v.viewport === "desktop" ? "auto" : "100%",
-    textAlign: "center",
-  });
-
-  setStyle(v.local.loginContent, { border: "0" });
-
-  setStyle(v.local.allLabels, {
-    marginBottom: "12px",
-    fontWeight: "500",
-    fontSize: "16px",
-    fontFamily: "Fusiona",
-    lineHeight: "20px",
-  });
-
-  setStyle(v.local.allInputs, {
-    borderRadius: "4px",
-    border: `2px solid ${
-      v.viewport === "desktop"
-        ? "var(--primary-blue-hex)"
-        : "var(--detail-medium-contrast)"
-    }`,
-    padding: v.viewport === "desktop" ? "20px 15px" : "12px",
-    lineHeight: "24px",
-  });
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.signupBtn, {
-        width: "368px",
-        height: "48px",
-        fontSize: "16px",
-        fontFamily: "Space Mono",
-        color: "var(--primary-dark-purple-hex)",
-        backgroundColor: "transparent",
-        border: "2px solid var(--primary-blue-hex)",
-        borderRadius: "999px",
-      })
-    : setStyle(v.local.signupBtn, {
-        width: "100%",
-        height: "48px",
-        fontSize: "16px",
-      });
-
-  if (v.viewport === "desktop") {
-    setStyle(v.local.altMethodCol, { paddingLeft: "100px" });
-
-    setStyle(v.local.altMethodUl, { paddingLeft: "25px" });
-  } else {
-    setStyle([v.local.altMethodUl, v.local.altMethodCol], {
-      padding: "0",
-    });
-
-    setStyle(v.local.altMethodLi, { padding: "0" });
-  }
-
   // move elements
   v.local.signupForm.append(v.local.termsAndServices);
-
-  // hide elements
-  hide([v.local.fbBtn, v.local.tabArrow]);
 }
 
 function styleCurriculumPageNoCertificate() {
@@ -1429,53 +857,27 @@ function styleCurriculumPageNoCertificate() {
   v.local = {
     body: {
       mainContainer: document.querySelector("#cp-content"),
-      mobile: document.querySelector(".sj-mobile"),
-      wrapper: document.querySelector("#cp-content .columns"),
     },
     header: {
-      container: document.querySelector(".top-row-grey"),
-      flexContainer: document.querySelector(".dp-row-flex-v2"),
       mainHeadingContainer: document.querySelector(".cp-summary-wrapper"),
-      mainHeading: document.querySelector(".break-word"),
       floaterText: document.querySelector(".sj-floater-text"),
-      courseInfoWrapper: document.querySelector(".sj-course-info-wrapper"),
+      mainHeading: document.querySelector(".break-word"),
       courseInfo: document.querySelector(".sj-heading-paragraph"),
       ctaBtnWrapper: document.querySelector("#resume-button"),
       ctaBtn: document.querySelector("#resume-button a"),
       ctaBtnText: document.querySelector("#resume-button a span"),
-      backToCatalogLink: document.querySelector(".back-to-catalog"),
-      lessons: document.querySelector(".cp-lessons"),
-      progressBar: document.querySelector(".progress-bar"),
-      imageWrapper: document.querySelector(".cp-promo-image-wrapper"),
-      imageContainer: document.querySelector(".cp-promo-image"),
-      image: document.querySelector(".cp-promo-image img"),
-    },
-    tabs: {
-      container: document.querySelector(".tabs"),
-      curriculumSection: document.querySelector(".tabs section:nth-child(1)"),
-      aboutSection: document.querySelector(".tabs section:nth-child(2)"),
-      aboutHeader: document.querySelector(".tabs section:nth-child(2) h3"),
-      curriculumHeader: document.querySelector(".tabs section:nth-child(1) h2"),
-      aboutContent: document.querySelector(
-        ".tabs section:nth-child(2) .content"
-      ),
-      curriculumContent: document.querySelector(
-        ".tabs section:nth-child(1) .content"
-      ),
-      titles: document.querySelectorAll(".tabs section .title"),
     },
     curriculum: {
       container: document.querySelector("#curriculum-list"),
-      outsideContainer: document.querySelector(
-        ".content:has(#curriculum-list)"
-      ),
-      header: document.querySelectorAll(
-        ".content:has(#curriculum-list) h2, .content:has(#curriculum-list) hr"
-      ),
-      icons: document.querySelectorAll(".type-icon.hide-for-small"),
-      lessonListItems: document.querySelectorAll(".lesson-row"),
-      lessonListTitles: document.querySelectorAll(".lesson-row .title"),
-      lessonListBullets: document.querySelectorAll(".lesson-row .bullet"),
+    },
+    tabs: {
+      container: document.querySelector(".tabs"),
+      curriculumSection:
+        document.querySelector(".tabs section #curriculumSection") ||
+        document.querySelector(".tabs section:nth-child(1)"),
+      aboutSection:
+        document.querySelector(".tabs section #aboutSection") ||
+        document.querySelector(".tabs section:nth-child(2)"),
     },
     card: {
       details: document.querySelector(".course-details-card"),
@@ -1483,15 +885,6 @@ function styleCurriculumPageNoCertificate() {
       link: document.querySelector(".course-details-card-link"),
     },
   };
-
-  if (initialLoadComplete) {
-    v.local.tabs.curriculumSection = v.global.curriculumSection;
-    v.local.tabs.aboutSection = v.global.aboutSection;
-    v.local.tabs.container.append(
-      v.local.tabs.curriculumSection,
-      v.local.tabs.aboutSection
-    );
-  }
 
   v.local.tabs.aboutSection?.classList.add("active");
 
@@ -1502,163 +895,29 @@ function styleCurriculumPageNoCertificate() {
 
     v.local.card.link.textContent = btnText;
     v.local.card.link.href = btnHref;
-  }
-
-  if (!initialLoadComplete) {
-    v.local.card.detailItems.forEach((li) =>
-      li.prepend(createClone("checkbox"))
-    );
-
-    // Add vars to global
-    v.global.curriculumSection = v.local.tabs.curriculumSection;
-    v.global.aboutSection = v.local.tabs.aboutSection;
-
-    const curriculumElements = getCurriculumElements(
-      v.local.curriculum.container
-    );
-
-    v.local.curriculum.container.innerHTML = ""; // Clear the container
-    v.local.curriculum.container.append(...curriculumElements);
-  }
-
-  setStyle(v.local.body.wrapper, { width: "100%" });
-
-  setStyle(v.local.header.mainHeading, {
-    fontWeight: "600",
-    fontSize: "36px",
-    lineHeight: "43.2px",
-    letterSpacing: "-0.5px",
-    marginTop: "0",
-  });
-
-  setStyle(v.local.header.container, {
-    maxWidth: "none",
-    padding: "0",
-    border: "0",
-  });
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.header.container, {
-        backgroundColor: "var(--form-bg)",
-        backgroundImage: "none",
-      })
-    : setStyle(v.local.header.container, {
-        backgroundImage:
-          "linear-gradient(225deg, var(--label-color) 0%, var(--primary-cyan-hex) 100%)",
-      });
-
-  setStyle(v.local.header.ctaBtnWrapper, { marginLeft: "0", marginRight: "0" });
-
-  setStyle(v.local.header.imageWrapper, {
-    position: "static",
-    padding: "0",
-    width: v.viewport === "desktop" ? "564px" : "90%",
-    height: "auto",
-  });
-
-  setStyle(v.local.header.imageContainer, { maxHeight: "none" });
-
-  setStyle(v.local.header.image, {
-    maxHeight: "none",
-    height: "auto",
-    maxWidth: "100%",
-  });
-
-  setStyle(v.local.curriculum.lessonListItems, {
-    display: "flex",
-    alignItems: "center",
-    gap: "12px",
-  });
-
-  setStyle(v.local.curriculum.lessonListTitles, {
-    position: "static",
-    color: "rgb(var(--primary-text))",
-    display: "flex",
-    alignItems: "center",
-    margin: "0",
-    transform: "translateY(2px)",
-  });
-
-  setStyle(v.local.curriculum.lessonListBullets, { position: "static" });
-
-  setStyle([v.local.header.courseInfo, v.local.header.floaterText], {
-    display: "block",
-  });
-
-  setStyle(v.local.tabs.curriculumSection, { marginTop: "48px" });
-
-  setStyle([v.local.tabs.aboutHeader, v.local.tabs.curriculumHeader], {
-    fontWeight: "600",
-  });
-
-  setStyle([v.local.tabs.aboutContent, v.local.tabs.curriculumContent], {
-    border: "0",
-    padding: "0",
-  });
-
-  setStyle(v.local.tabs.container, {
-    margin: v.viewport === "desktop" ? "0 0 46px 0" : "96px 0 46px 0",
-  });
-
-  setStyle(v.local.header.flexContainer, {
-    margin: "96px 0",
-    justifyContent: "center",
-    flexWrap: v.viewport === "desktop" ? "nowrap" : "wrap",
-    gap: "24px",
-  });
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.body.mainContainer, {
-        display: "grid",
-        marginTop: "96px",
-        gridTemplateColumns: "minmax(100px, 760px) minmax(100px, 368px)",
-        columnGap: "24px",
-        paddingTop: "0",
-        paddingBottom: "0",
-      })
-    : setStyle(v.local.body.mainContainer, {
-        display: "grid",
-        gridTemplateColumns: "1fr",
-        width: "90%",
-        columnGap: "24px",
-        paddingTop: "0",
-        paddingBottom: "0",
-      });
-
-  v.viewport === "desktop"
-    ? setStyle(v.local.card.details, { margin: "96px 0 46px 0" })
-    : setStyle(v.local.card.details, {
-        margin: "32px 0 56px 0",
-        justifySelf: "center",
-      });
-
-  setStyle(v.local.header.mainHeadingContainer, {
-    position: "static",
-    padding: "0",
-    maxWidth: v.viewport === "desktop" ? "564px" : "none",
-    border: "0",
-    textAlign: "left",
-  });
-
-  if (v.viewport === "mobile") {
-    setStyle(v.local.header.mainHeadingContainer, {
-      width: "90%",
-      marginBottom: "32px",
-    });
   } else {
-    // content (TODO: should this be for all viewports?)
-    v.local.header.courseInfo.textContent = skilljarCourse.short_description; // eslint-disable-line no-undef
-
-    setStyle(
-      [
-        v.local.tabs.aboutSection,
-        v.local.tabs.curriculumSection,
-        v.global.aboutSection,
-        v.global.curriculumSection,
-      ],
-      { padding: "0 !important" }
-    );
+    log("Hiding resume button as it could not be found");
+    hide(v.local.card.link); // Hide resume button if it doesn't exist
   }
+
+  v.local.tabs.aboutSection.id = "aboutSection";
+  v.local.tabs.curriculumSection.id = "curriculumSection";
+
+  v.local.tabs.container.append(
+    v.local.tabs.aboutSection,
+    v.local.tabs.curriculumSection
+  );
+
+  // v.local.card.detailItems.forEach((li) => li.prepend(createClone("checkbox")));
+
+  const curriculumElements = getCurriculumElements(
+    v.local.curriculum.container
+  );
+
+  v.local.curriculum.container.innerHTML = ""; // Clear the container
+  v.local.curriculum.container.append(...curriculumElements);
+
+  v.local.header.courseInfo.textContent = skilljarCourse.short_description;
 
   // move elements
   v.local.body.mainContainer.append(...[v.local.card.details].filter(Boolean));
@@ -1670,18 +929,6 @@ function styleCurriculumPageNoCertificate() {
       v.local.header.ctaBtnWrapper,
     ].filter(Boolean)
   );
-  v.local.tabs.container.append(v.local.tabs.curriculumSection);
-
-  // hide elements
-  hide([
-    ...v.local.curriculum.icons,
-    ...v.local.curriculum.header,
-    ...v.local.tabs.titles,
-    v.local.header.backToCatalogLink,
-    v.local.header.lessons,
-    v.local.header.progressBar,
-    !v.local.header.ctaBtnWrapper ? v.local.card.link : null, // Hide resume button if it doesn't exist
-  ]);
 }
 
 /**
@@ -1691,7 +938,7 @@ function styleCurriculumPageNoCertificate() {
 function styleCurriculumPageHasCertificationDesktop() {
   // TODO: Clean up this function
   log("Running styleCurriculumPageHasCertificationDesktop");
-  const courseDescription = skilljarCourse.short_description; // eslint-disable-line no-undef
+  const courseDescription = skilljarCourse.short_description;
 
   // HEADER VARIABLES
   const headingParagraph = document.querySelector(".sj-heading-paragraph");
@@ -1745,7 +992,7 @@ function styleCurriculumPageHasCertificationDesktop() {
 
   // CARD VARIABLES
   const courseDetailsCard = document.querySelector(".course-details-card");
-  const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li");
+  // const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li");
   const courseDetailsCardLink = document.querySelector(
     ".course-details-card-link"
   );
@@ -1762,11 +1009,11 @@ function styleCurriculumPageHasCertificationDesktop() {
 
   hide(courseDetailsCardLink);
 
-  if (!initialLoadComplete) {
-    courseDetailCardListItems.forEach((li) =>
-      li.prepend(createClone("checkbox"))
-    );
-  }
+  // if (!initialLoadComplete) {
+  //   courseDetailCardListItems.forEach((li) =>
+  //     li.prepend(createClone("checkbox"))
+  //   );
+  // }
 
   bodyMainContainer.style.columnGap = "24px";
   innerContentContainer.style.width = "100%";
@@ -1979,7 +1226,7 @@ function styleCurriculumPageHasCertificationMobile() {
 
   // CARD VARIABLES
   const courseDetailsCard = document.querySelector(".course-details-card");
-  const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li");
+  // const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li");
   const courseDetailsCardLink = document.querySelector(
     ".course-details-card-link"
   );
@@ -1999,11 +1246,11 @@ function styleCurriculumPageHasCertificationMobile() {
 
   hide(courseDetailsCardLink);
 
-  if (!initialLoadComplete) {
-    courseDetailCardListItems.forEach((li) =>
-      li.prepend(createClone("checkbox"))
-    );
-  }
+  // if (!initialLoadComplete) {
+  //   courseDetailCardListItems.forEach((li) =>
+  //     li.prepend(createClone("checkbox"))
+  //   );
+  // }
 
   innerContentContainer.style.width = "100%";
 
@@ -2163,9 +1410,6 @@ function styleCurriculumPageHasCertificationMobile() {
     titleEl.style.transform = "translateY(2px)";
   });
 
-  // FOOTER STYLING
-  setStyle(v.global.footerCols, { width: "212px" });
-
   hide([...pageIcons]);
 }
 
@@ -2177,8 +1421,6 @@ function styleCurriculumPageHasCertificationMobile() {
  * It also checks for the presence of a certificate and applies styles accordingly.
  */
 function handlePageStyling() {
-  const hasCertificate = c(".cp-certificate");
-
   if (page.isLanding)
     // we are on the landing page (which is a catalog page)
     return styleLanding();
@@ -2195,7 +1437,7 @@ function handlePageStyling() {
     // we are on a course page but not logged in
     return styleCourseDetails();
 
-  if (page.isCurriculum && !hasCertificate)
+  if (page.isCurriculum && !page.hasCertificate)
     // we are on a course page (without a certificate) and logged in
     return styleCurriculumPageNoCertificate();
 
@@ -2215,7 +1457,7 @@ function handlePageStyling() {
     // we are on a catalog page (not currently in use)
     return styleCatalog();
 
-  if (page.isCurriculum && hasCertificate)
+  if (page.isCurriculum && page.hasCertificate)
     // we are on a course page (with a certificate) and logged in
     // n.b. this function is not edited and/or tested (and not in use)
     return v.viewport === "desktop"
@@ -2246,15 +1488,7 @@ function render() {
     width: v.viewport === "desktop" ? "270px" : "212px",
   });
 
-  v.viewport === "mobile" && page.isLesson
-    ? setStyle(v.global.footerContainer, {
-        marginTop: "0", // mobile
-      })
-    : null;
-
-  page.isLesson && v.viewport === "mobile"
-    ? hide(v.global.footerContainer)
-    : v.global.contentContainer.append(v.global.footerContainer);
+  v.global.contentContainer.append(v.global.footerContainer);
 
   handlePageStyling();
 
@@ -2266,9 +1500,17 @@ function render() {
   It is a good place to run scripts that need to manipulate the DOM or set up event listeners.
 */
 document.addEventListener("DOMContentLoaded", () => {
+  // hide all
   hide(v.global.body);
+
+  // adding "cg-staging" for staging server
+  isStaging ? v.global.body.classList.add("cg-staging") : null;
+
+  // render + set initalLoadComplete
   render();
   initialLoadComplete = true;
+
+  // show all
   setStyle(v.global.body, { display: undefined });
 });
 
@@ -2277,5 +1519,33 @@ document.addEventListener("DOMContentLoaded", () => {
   It is a good place to run scripts that need to ensure all resources are available before executing.
 */
 window.addEventListener("resize", () => {
+  // no need to re-apply styles on resize for the following pages
+  if (page.isLanding) return;
+  if (page.isCourseDetails) return;
+  if (page.isPageDetail) return;
+  if (page.isLogin) return;
+  if (page.isSignup) return;
+  if (page.isCurriculum && !page.hasCertificate) return;
+  if (page.isLesson) return;
+
   render();
 });
+
+// Make header white on scroll
+if (!page.isLesson) {
+  $(document).ready(function () {
+    v.global.scroll_pos = 0;
+    $(document).scroll(function () {
+      v.global.scroll_pos = $(this).scrollTop();
+      if (v.global.scroll_pos > 60) {
+        setStyle(document.querySelector("header"), {
+          backgroundColor: "white !important",
+        });
+      } else {
+        setStyle(document.querySelector("header"), {
+          backgroundColor: "transparent !important",
+        });
+      }
+    });
+  });
+}
