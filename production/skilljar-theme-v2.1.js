@@ -23,7 +23,7 @@ let initialLoadComplete = false,
     progress: {},
     path:
       typeof skilljarCourseSeries !== "undefined"
-        ? skilljarCourseSeries.path
+        ? skilljarCourseSeries
         : {},
     completed: false,
   };
