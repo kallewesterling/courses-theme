@@ -541,7 +541,6 @@ function styleCourseDetails() {
       detailItems: document.querySelectorAll(".course-details-card li"),
       link: document.querySelector(".course-details-card-link"),
     },
-    catalog: document.querySelector(".catalog-center-width"),
   };
 
   if (v.local.header.registerBtn && v.local.card.link) {
@@ -588,6 +587,7 @@ function stylePathCourseDetails() {
       courseInfo: document.querySelector(".sj-heading-paragraph"),
       ctaBtnWrapper: document.querySelector("#purchase-button-wrapper-large"),
     },
+    catalog: document.querySelector(".catalog-center-width"),
   };
 
   // set content
