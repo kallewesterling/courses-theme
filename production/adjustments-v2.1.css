@@ -145,7 +145,7 @@ body.sj-page-detail-course {
       max-width: 80% !important;
 
       .social-media-wrapper {
-        display: block !important;
+        display: none !important;
       }
     }
 
@@ -644,7 +644,7 @@ body.sj-page-detail-course {
             display: none !important;
 
             .social-media-wrapper {
-              display: block !important;
+              display: none !important;
             }
           }
 
