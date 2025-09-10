@@ -541,6 +541,7 @@ function styleCourseDetails() {
       detailItems: document.querySelectorAll(".course-details-card li"),
       link: document.querySelector(".course-details-card-link"),
     },
+    catalog: document.querySelector(".catalog-center-width"),
   };
 
   if (v.local.header.registerBtn && v.local.card.link) {
@@ -591,6 +592,8 @@ function stylePathCourseDetails() {
 
   // set content
   v.local.header.floaterText.textContent = "Learning Path";
+  v.local.header.courseInfo.textContent =
+    skilljarCourseSeries.short_description || "";
 
   // move elements
   v.local.header.mainHeadingContainer.append(
@@ -601,6 +604,44 @@ function stylePathCourseDetails() {
       v.local.header.ctaBtnWrapper,
     ].filter(Boolean)
   );
+
+  if (skilljarCourseSeries.title === "Chainguard Containers Onboarding Guide") {
+    // apply style specific to container onboarding path
+    const csmWrapper = Object.assign(document.createElement("div"), {
+      id: "catalog-courses",
+      className: "course-listing",
+    });
+    csmWrapper.dataset.listing = "CSM";
+    v.local.catalog.prepend(csmWrapper);
+
+    const saHeader = Object.assign(document.createElement("h3"), {
+      className: "course-listing-header technical-onboarding",
+      textContent: "Technical Onboarding",
+    });
+
+    const csmHeader = Object.assign(document.createElement("h3"), {
+      className: "course-listing-header admin-onboarding",
+      textContent: "Admin Onboarding",
+    });
+
+    // here we set the order of csmCourses
+    const csmCourses = [
+      "kickoff-guide-to-chainguard",
+      "getting-started-with-chainguards-console",
+      "shared-responsibility-model",
+      "chainguards-superstar-support",
+    ].map((d) =>
+      document.querySelector(`.coursebox-container[data-course=${d}]`)
+    );
+
+    const saCourses = document.querySelector(
+      "#catalog-courses:not([data-listing='CSM'])"
+    );
+
+    csmWrapper.append(...csmCourses.filter(Boolean));
+
+    v.local.catalog.append(csmHeader, csmWrapper, saHeader, saCourses);
+  }
 }
 
 /**
