@@ -728,6 +728,7 @@ function styleLesson() {
       innerContainer: document.querySelector("#lesson-body"),
     },
     lesson: {
+      body: document.querySelector("#lesson-body"),
       content: {
         codeBlocks: new Array(
           ...document.querySelectorAll("pre:has(code):not(.language-ansi)")
@@ -830,7 +831,7 @@ function styleLesson() {
     });
 
     box.append(header, wrapper);
-    v.global.body.append(box);
+    v.local.lesson.body.append(box);
   }
 
   if (v.local.lesson.content.resources && typeof resources !== "undefined") {
