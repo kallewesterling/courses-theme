@@ -940,7 +940,7 @@ function styleCurriculumPageNoCertificate() {
     log("Hiding resume button as it could not be found");
     if (course.completed) {
       v.local.card.link.textContent = "🎉 Completed";
-      v.local.card.link.style = "background-color: green !important;";
+      v.local.card.link.classList.add("completed");
     } else {
       hide(v.local.card.link); // Hide resume button if it doesn't exist
     }

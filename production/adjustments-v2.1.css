@@ -66,6 +66,11 @@
       transform: translateY(5px);
     }
   }
+
+  .course-details-card-link.completed {
+    background-color: green !important;
+    cursor: default !important;
+  }
 }
 
 .curriculum-wrapper {
