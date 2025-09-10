@@ -651,6 +651,13 @@ function stylePathCourseDetails() {
     csmWrapper.append(...csmCourses.filter(Boolean));
 
     v.local.catalog.append(csmHeader, csmWrapper, saHeader, saCourses);
+
+    // move completed courses to end of list
+    saCourses.append(
+      ...saCourses.querySelectorAll(
+        ".coursebox-container[data-course-status='complete']"
+      )
+    );
   }
 }
 
