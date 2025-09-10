@@ -1,3 +1,7 @@
+.sj-save-toggle-block {
+  display: none !important;
+}
+
 .callout {
   background-color: rgba(52, 68, 244, 0.05) !important;
   box-shadow: unset !important;
@@ -323,6 +327,12 @@ body.sj-page-detail-course {
         padding-top: 48px;
       }
     }
+  }
+}
+
+body.sj-page-lesson {
+  #header {
+    background-color: #fff !important; /* Make header white on lessons */
   }
 }
 
