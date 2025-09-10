@@ -1126,14 +1126,6 @@ body.sj-page-lesson {
             }
           }
 
-          .fa-bars {
-            /* Open icon */
-          }
-
-          .fa-times {
-            /* Close icon */
-          }
-
           .fa-search {
             /* Search icon */
             display: none !important;
