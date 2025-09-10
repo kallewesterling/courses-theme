@@ -16,9 +16,15 @@
  */
 
 let initialLoadComplete = false;
-const isStaging = window.location.hostname.includes(
-  "chainguard-test.skilljar.com"
-);
+
+if (window.location.hostname.includes("chainguard-test.skilljar.com")) {
+  isStaging = true;
+  domain = "ix1ljpxex6xd";
+} else {
+  isStaging = false;
+  domain = "3glgawqmzatte";
+}
+
 let course = {
   progress: {},
   path: {},
@@ -43,6 +49,8 @@ if (typeof skilljarCourseProgress !== "undefined") {
   course.progress = skilljarCourseProgress;
   course.completed = skilljarCourseProgress.completed_at !== "";
 }
+
+const isInternal = skilljarUser.email.includes("@chainguard.dev");
 
 /**
  * This function logs messages to the console with a specific style.
@@ -1492,7 +1500,7 @@ function handlePageStyling() {
     return stylePathCourseDetails();
 
   if (page.isPageCatalog)
-    // currently this doesn't seem to be in use
+    // we are on a learning path and registered for it
     return stylePathCatalogPage();
 
   if (page.isLesson)
