@@ -15,37 +15,37 @@
  * @see {@link https://courses.chainguard.com|Chainguard Courses}
  */
 
-let initialLoadComplete = false;
+let initialLoadComplete = false,
+  isStaging = false,
+  isInternal = false,
+  domain = "3glgawqmzatte",
+  course = {
+    progress: {},
+    path:
+      typeof skilljarCourseSeries !== "undefined"
+        ? skilljarCourseSeries.path
+        : {},
+    completed: false,
+  };
 
 if (window.location.hostname.includes("chainguard-test.skilljar.com")) {
   isStaging = true;
   domain = "ix1ljpxex6xd";
-} else {
-  isStaging = false;
-  domain = "3glgawqmzatte";
 }
 
-let course = {
-  progress: {},
-  path: {},
-  completed: false,
-};
+course.path.edit =
+  typeof skilljarCourseSeries !== "undefined"
+    ? `https://dashboard.skilljar.com/publishing/domains/${domain}/published-paths/${skilljarCourseSeries.id}/edit`
+    : "";
 
 if (typeof skilljarCourse !== "undefined") {
-  course = Object.assign(course, {
-    id: skilljarCourse.id,
-    publishedCourseId: skilljarCourse.publishedCourseId,
-    tags: skilljarCourse.tags,
-    title: skilljarCourse.title,
-    short_description: skilljarCourse.short_description,
-    long_description_html: skilljarCourse.long_description_html,
-    edit: `https://dashboard.skilljar.com/course/${skilljarCourse.id}`,
-  });
-}
-
-if (typeof skilljarCourseSeries !== "undefined") {
-  course.path = skilljarCourseSeries.path;
-  course.path.edit = `https://dashboard.skilljar.com/publishing/domains/${domain}/published-paths/${skilljarCourseSeries.id}/edit`;
+  course.id = skilljarCourse.id;
+  course.publishedCourseId = skilljarCourse.publishedCourseId;
+  course.tags = skilljarCourse.tags;
+  course.title = skilljarCourse.title;
+  course.short_description = skilljarCourse.short_description;
+  course.long_description_html = skilljarCourse.long_description_html;
+  course.edit = `https://dashboard.skilljar.com/course/${skilljarCourse.id}`;
 }
 
 if (typeof skilljarCourseProgress !== "undefined") {
@@ -53,11 +53,8 @@ if (typeof skilljarCourseProgress !== "undefined") {
   course.completed = skilljarCourseProgress.completed_at !== "";
 }
 
-if (typeof skilljarUser !== "undefined") {
-  const isInternal = skilljarUser.email.includes("@chainguard.dev");
-} else {
-  const isInternal = false;
-}
+if (typeof skilljarUser !== "undefined")
+  isInternal = skilljarUser.email.includes("@chainguard.dev");
 
 /**
  * This function logs messages to the console with a specific style.
