@@ -42,15 +42,21 @@ if (typeof skilljarCourse !== "undefined") {
   });
 }
 
-if (typeof skilljarCourseSeries !== "undefined")
+if (typeof skilljarCourseSeries !== "undefined") {
   course.path = skilljarCourseSeries.path;
+  course.path.edit = `https://dashboard.skilljar.com/publishing/domains/${domain}/published-paths/${skilljarPath.id}/edit`;
+}
 
 if (typeof skilljarCourseProgress !== "undefined") {
   course.progress = skilljarCourseProgress;
   course.completed = skilljarCourseProgress.completed_at !== "";
 }
 
-const isInternal = skilljarUser.email.includes("@chainguard.dev");
+if (typeof skilljarUser !== "undefined") {
+  const isInternal = skilljarUser.email.includes("@chainguard.dev");
+} else {
+  const isInternal = false;
+}
 
 /**
  * This function logs messages to the console with a specific style.
