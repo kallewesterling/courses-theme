@@ -23,7 +23,7 @@ let course = {
   progress: {},
   path: {},
   completed: false,
-}
+};
 
 if (typeof skilljarCourse !== "undefined") {
   course = Object.assign(course, {
@@ -747,23 +747,34 @@ function styleLesson() {
   );
 
   if (v.local.lesson.content.resources && typeof resources !== "undefined") {
-    if (typeof resources.resource !== "undefined") {
+    if (typeof resources.resources !== "undefined") {
       // we have a list of resources and will drop that in the first box
+      const cards = resources.resources.map((r) => createResourceCard(r));
+
       const box = v.local.lesson.content.resources.boxes[0];
+
       const wrapper = box.querySelector(".resource-wrapper");
-      wrapper.innerHTML = ""; // Clear existing content
-      wrapper.append(...resources.resources.map((r) => createResourceCard(r)));
+
+      // Clear existing content
+      wrapper.innerHTML = "";
+
+      // Add cards
+      wrapper.append(...cards);
     } else if (typeof resources.groups !== "undefined") {
       // we have groups of resources to drop in each box
       v.local.lesson.content.resources.boxes.forEach((box) => {
+        const cards = resources.groups[box.dataset.group].map((r) =>
+          createResourceCard(r)
+        );
+
         const wrapper = box.querySelector(".resource-wrapper");
-        wrapper.innerHTML = ""; // Clear existing content
+
+        // Clear existing content
+        wrapper.innerHTML = "";
+
+        // Add cards
         if (resources.groups[box.dataset.group]) {
-          wrapper.append(
-            ...resources.groups[box.dataset.group].map((r) =>
-              createResourceCard(r)
-            )
-          );
+          wrapper.append(...cards);
         }
       });
     }
