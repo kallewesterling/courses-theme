@@ -641,10 +641,15 @@ body.sj-page-detail-course {
 
           #purchase-button-wrapper-large {
             /* Register/sign up/resume button wrapper */
+            justify-content: left !important;
 
             .signin {
               /* Sign in link */
               display: none !important;
+            }
+
+            .sj-save-toggle-centered {
+              justify-content: inherit !important;
             }
           }
         }
@@ -764,6 +769,9 @@ body.sj-page-detail-bundle.sj-page-detail-path {
         }
 
         #purchase-button-wrapper-large {
+          /* Register/sign up/resume button wrapper */
+          justify-content: left !important;
+
           a#purchase-button {
             border-color: var(--primary-cyan-hex);
             color: var(--primary-white-hex);
@@ -772,6 +780,10 @@ body.sj-page-detail-bundle.sj-page-detail-path {
           .signin {
             /* Sign in link */
             display: none !important;
+          }
+
+          .sj-save-toggle-centered {
+            justify-content: inherit !important;
           }
         }
       }
