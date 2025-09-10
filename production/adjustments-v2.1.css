@@ -2,11 +2,16 @@
   display: none !important;
 }
 
-#main-container[data-bundle="chainguard-containers-onboarding-guide"]
+#main-container[data-bundle="chainguard-containers-onboarding-guide"] {
   .coursebox-container[data-course-status="complete"] {
-  /* Completed courses are dimmed and get a green background */
-  opacity: 0.4;
-  background-color: #ecffec;
+    /* Completed courses are dimmed and get a green background */
+    opacity: 0.4;
+    background-color: #ecffec;
+  }
+
+  #purchase-button {
+    display: none !important;
+  }
 }
 
 .callout {
