@@ -2,6 +2,13 @@
   display: none !important;
 }
 
+#main-container[data-bundle="chainguard-containers-onboarding-guide"]
+  .coursebox-container[data-course-status="complete"] {
+  /* Completed courses are dimmed and get a green background */
+  opacity: 0.4;
+  background-color: #ecffec;
+}
+
 .callout {
   background-color: rgba(52, 68, 244, 0.05) !important;
   box-shadow: unset !important;
