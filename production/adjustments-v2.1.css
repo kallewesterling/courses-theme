@@ -47,6 +47,10 @@
         color: var(--primary-blue-hex) !important;
       }
     }
+
+    code {
+      background-color: #3443f421;
+    }
   }
 
   p {
