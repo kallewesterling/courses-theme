@@ -736,6 +736,7 @@ function styleLesson() {
     },
     lesson: {
       body: document.querySelector("#lesson-body"),
+      innerBody: document.querySelector("#lesson-main-inner"),
       content: {
         codeBlocks: new Array(
           ...document.querySelectorAll("pre:has(code):not(.language-ansi)")
@@ -788,6 +789,79 @@ function styleLesson() {
       v.local.nav.toggleWrapper,
     ].filter(Boolean)
   );
+
+  // 1) Find canonical footer controls
+  const footerPrev = document.querySelector("#lp-footer .prev-lesson-button");
+  const footerNext = document.querySelector("#lp-footer .next-lesson-link");
+
+  // 2) Extract Prev
+  const prevHref  = footerPrev?.getAttribute("href") || "#";
+  const prevTitle = footerPrev?.getAttribute("title") || "Previous Lesson";
+  const prevTrack = footerPrev?.getAttribute("data-track-click");
+
+  // 3) Extract Next (Skilljar style: onNextLessonClick('<url>'))
+  const up = footerNext?.getAttribute("onmouseup") || "";
+  const kd = footerNext?.getAttribute("onkeydown") || "";
+  const nextMatch = (up || kd).match(/onNextLessonClick\('([^']+)'\)/);
+  const nextUrl   = nextMatch ? nextMatch[1] : null;
+  const nextTitle = footerNext?.getAttribute("title") || "Next Lesson";
+  const nextTrack = footerNext?.getAttribute("data-track-click");
+
+  // 4) Build buttons
+  const prevBtn = Object.assign(document.createElement("a"), {
+    className: "lesson-btn prev",
+    rel: "prev",
+    role: "button",
+    href: prevHref,
+    textContent: "← Previous",
+    title: prevTitle
+  });
+  if (prevTrack) prevBtn.setAttribute("data-track-click", prevTrack);
+
+  const nextBtn = Object.assign(document.createElement("a"), {
+    className: "lesson-btn next",
+    rel: "next",
+    role: "button",
+    // give it a real href for middle-click/open-in-new-tab
+    href: nextUrl || "#",
+    textContent: "Next →",
+    title: nextTitle,
+    tabindex: 0
+  });
+  if (nextTrack) nextBtn.setAttribute("data-track-click", nextTrack);
+
+  // 5) Behavior: call onNextLessonClick just like Skilljar
+  function goNext(e) {
+    if (!nextUrl) return;
+    e?.preventDefault();
+    if (typeof window.onNextLessonClick === "function") {
+      window.onNextLessonClick(nextUrl);
+    } else {
+      window.location.href = nextUrl;
+    }
+  }
+  nextBtn.addEventListener("click", goNext);
+  nextBtn.addEventListener("mouseup", goNext);
+  nextBtn.addEventListener("keydown", (e) => {
+    const k = e.key;
+    if (k === "Enter" || k === " " || k === "Spacebar" || k === "ArrowRight") {
+      goNext(e);
+    }
+  });
+
+  // Disable/hide if missing
+  if (!footerPrev) { prevBtn.style.display = "none"; }
+  if (!footerNext || !nextUrl) { nextBtn.style.display = "none"; }
+
+  // 6) Build wrapper
+  const btnWrapper = Object.assign(document.createElement("nav"), {
+    className: "lesson-floater",
+    role: "navigation",
+    ariaLabel: "Lesson navigation"
+  });
+
+  btnWrapper.append(prevBtn, nextBtn);
+  v.local.lesson.innerBody.append(btnWrapper);
 
   v.local.lesson.content.codeBlocks
     .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)

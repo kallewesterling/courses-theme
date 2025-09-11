@@ -1201,6 +1201,7 @@ body.sj-page-lesson {
             /* Lesson main content inner */
             max-width: 712px;
             margin: 0 auto;
+            padding-bottom: 100px;
 
             sjwc-lesson-content-item {
               /* Lesson content item */
@@ -1399,6 +1400,38 @@ body.sj-page-lesson {
                 }
               }
             }
+
+            .lesson-floater {
+              position: sticky;
+              bottom: 1rem;
+              display: flex;
+              justify-content: center;
+              gap: 0.5rem;
+              z-index: 10;
+              padding: 0.5rem;
+              margin-top: 2rem;
+              margin-right: 0.5rem;
+
+              .lesson-btn {
+                border: 1px solid rgba(0, 0, 0, 0.12);
+                background: #d6c6fb;
+                border-radius: 999px;
+                padding: 0.6rem 0.9rem;
+                font: 500 14px/1 system-ui, -apple-system, Segoe UI, Roboto,
+                  Arial, sans-serif;
+                text-decoration: none;
+                color: #111;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+                transition: transform 0.06s ease, box-shadow 0.2s ease;
+              }
+              .lesson-btn:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+              }
+              .lesson-btn:active {
+                transform: translateY(0);
+              }
+            }
           }
         }
       }
@@ -1409,6 +1442,7 @@ body.sj-page-lesson {
       position: relative;
       border: 0px;
       background-color: transparent;
+      display: none !important;
 
       .toggle-fullscreen {
         display: none !important;
