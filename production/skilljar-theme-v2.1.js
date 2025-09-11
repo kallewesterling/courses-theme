@@ -813,46 +813,33 @@ function styleLesson() {
     el.classList.remove("sjwc-section-title")
   );
 
-  const numBoxes = v.local.lesson.content.resources.boxes.length;
+  if (typeof resources !== "undefined") {
+    const numBoxes = v.local.lesson.content.resources.boxes.length;
 
-  if (typeof resources.resources !== "undefined" && numBoxes === 0) {
-    console.info(
-      "No resource boxes found to add resources to. Adding automatically!"
-    );
-    const box = Object.assign(document.createElement("div"), {
-      className: "resource-box",
-    });
-    const header = Object.assign(document.createElement("h3"), {
-      textContent: "📘 More Resources",
-    });
-    const wrapper = Object.assign(document.createElement("div"), {
-      className: "resource-wrapper",
-    });
+    if (typeof resources.resources !== "undefined" && numBoxes === 0) {
+      console.info(
+        "No resource boxes found to add resources to. Adding automatically!"
+      );
+      const box = Object.assign(document.createElement("div"), {
+        className: "resource-box",
+      });
+      const header = Object.assign(document.createElement("h3"), {
+        textContent: "📘 More Resources",
+      });
+      const wrapper = Object.assign(document.createElement("div"), {
+        className: "resource-wrapper",
+      });
 
-    box.append(header, wrapper);
-    v.local.lesson.body.append(box);
-  }
+      box.append(header, wrapper);
+      v.local.lesson.body.append(box);
+    }
 
-  if (v.local.lesson.content.resources && typeof resources !== "undefined") {
-    if (typeof resources.resources !== "undefined" && numBoxes === 1) {
-      // we have a list of resources and will drop that in the first box
-      const cards = resources.resources.map((r) => createResourceCard(r));
+    if (v.local.lesson.content.resources && typeof resources !== "undefined") {
+      if (typeof resources.resources !== "undefined" && numBoxes === 1) {
+        // we have a list of resources and will drop that in the first box
+        const cards = resources.resources.map((r) => createResourceCard(r));
 
-      const box = v.local.lesson.content.resources.boxes[0];
-
-      const wrapper = box.querySelector(".resource-wrapper");
-
-      // Clear existing content
-      wrapper.innerHTML = "";
-
-      // Add cards
-      wrapper.append(...cards);
-    } else if (typeof resources.groups !== "undefined") {
-      // we have groups of resources to drop in each box
-      v.local.lesson.content.resources.boxes.forEach((box) => {
-        const cards = resources.groups[box.dataset.group].map((r) =>
-          createResourceCard(r)
-        );
+        const box = v.local.lesson.content.resources.boxes[0];
 
         const wrapper = box.querySelector(".resource-wrapper");
 
@@ -860,10 +847,25 @@ function styleLesson() {
         wrapper.innerHTML = "";
 
         // Add cards
-        if (resources.groups[box.dataset.group]) {
-          wrapper.append(...cards);
-        }
-      });
+        wrapper.append(...cards);
+      } else if (typeof resources.groups !== "undefined") {
+        // we have groups of resources to drop in each box
+        v.local.lesson.content.resources.boxes.forEach((box) => {
+          const cards = resources.groups[box.dataset.group].map((r) =>
+            createResourceCard(r)
+          );
+
+          const wrapper = box.querySelector(".resource-wrapper");
+
+          // Clear existing content
+          wrapper.innerHTML = "";
+
+          // Add cards
+          if (resources.groups[box.dataset.group]) {
+            wrapper.append(...cards);
+          }
+        });
+      }
     }
   }
 }
