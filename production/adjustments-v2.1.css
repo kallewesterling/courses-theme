@@ -1227,9 +1227,14 @@ body.sj-page-lesson {
                   gap: 3px !important;
 
                   a {
-                    color: darkblue !important;
+                    color: #3f17ac !important;
                   }
                 }
+              }
+
+              code:not(pre code) {
+                color: #3f17ac !important;
+                background-color: #0000000d !important;
               }
 
               pre {
