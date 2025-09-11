@@ -1201,6 +1201,7 @@ body.sj-page-lesson {
             /* Lesson main content inner */
             max-width: 712px;
             margin: 0 auto;
+            padding-bottom: 100px;
 
             sjwc-lesson-content-item {
               /* Lesson content item */
