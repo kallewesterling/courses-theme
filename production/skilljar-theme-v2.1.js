@@ -15,6 +15,13 @@
  * @see {@link https://courses.chainguard.com|Chainguard Courses}
  */
 
+// UTM settings
+const UTM = {
+  SOURCE: "courses",
+  MEDIUM: "referral",
+  CAMPAIGN: "dev-enablement",
+};
+
 let initialLoadComplete = false,
   isStaging = false,
   isInternal = false,
@@ -761,7 +768,17 @@ function styleLesson() {
     v.local.nav.backToCurriculumText.textContent = "Back to Course Overview";
 
   // Makes lesson links pop up in new tab
-  v.local.lesson.content.links.forEach((el) => (el.target = "_blank"));
+  v.local.lesson.content.links.forEach((el) => {
+    el.target = "_blank";
+    // we also want to set some utm_source, utm_medium here if it's a link to a certain set of domains (domain name includes chainguard.dev)
+    if (el.href.includes("chainguard.dev")) {
+      const url = new URL(el.href);
+      url.searchParams.set("utm_source", UTM.SOURCE);
+      url.searchParams.set("utm_medium", UTM.MEDIUM);
+      url.searchParams.set("utm_campaign", UTM.CAMPAIGN);
+      el.href = url.toString();
+    }
+  });
 
   // move elements
   v.local.body.mainContainer.append(v.local.footer.container);
