@@ -795,7 +795,7 @@ function styleLesson() {
   const footerNext = document.querySelector("#lp-footer .next-lesson-link");
 
   // 2) Extract Prev
-  const prevHref  = footerPrev?.getAttribute("href") || "#";
+  const prevHref = footerPrev?.getAttribute("href") || "#";
   const prevTitle = footerPrev?.getAttribute("title") || "Previous Lesson";
   const prevTrack = footerPrev?.getAttribute("data-track-click");
 
@@ -803,7 +803,7 @@ function styleLesson() {
   const up = footerNext?.getAttribute("onmouseup") || "";
   const kd = footerNext?.getAttribute("onkeydown") || "";
   const nextMatch = (up || kd).match(/onNextLessonClick\('([^']+)'\)/);
-  const nextUrl   = nextMatch ? nextMatch[1] : null;
+  const nextUrl = nextMatch ? nextMatch[1] : null;
   const nextTitle = footerNext?.getAttribute("title") || "Next Lesson";
   const nextTrack = footerNext?.getAttribute("data-track-click");
 
@@ -814,7 +814,7 @@ function styleLesson() {
     role: "button",
     href: prevHref,
     textContent: "← Previous",
-    title: prevTitle
+    title: prevTitle,
   });
   if (prevTrack) prevBtn.setAttribute("data-track-click", prevTrack);
 
@@ -826,7 +826,7 @@ function styleLesson() {
     href: nextUrl || "#",
     textContent: "Next →",
     title: nextTitle,
-    tabindex: 0
+    tabindex: 0,
   });
   if (nextTrack) nextBtn.setAttribute("data-track-click", nextTrack);
 
@@ -850,18 +850,23 @@ function styleLesson() {
   });
 
   // Disable/hide if missing
-  if (!footerPrev) { prevBtn.style.display = "none"; }
-  if (!footerNext || !nextUrl) { nextBtn.style.display = "none"; }
+  if (!footerPrev) {
+    prevBtn.style.display = "none";
+  }
+  if (!footerNext || !nextUrl) {
+    nextBtn.style.display = "none";
+  }
 
   // 6) Build wrapper
   const btnWrapper = Object.assign(document.createElement("nav"), {
     className: "lesson-floater",
     role: "navigation",
-    ariaLabel: "Lesson navigation"
+    ariaLabel: "Lesson navigation",
   });
 
   btnWrapper.append(prevBtn, nextBtn);
-  v.local.lesson.innerBody.append(btnWrapper);
+
+  v.local.lesson.innerBody.append(document.createElement("hr"), btnWrapper);
 
   v.local.lesson.content.codeBlocks
     .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
