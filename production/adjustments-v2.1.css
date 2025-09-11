@@ -47,6 +47,10 @@
         color: var(--primary-blue-hex) !important;
       }
     }
+
+    code {
+      background-color: #3443f421;
+    }
   }
 
   p {
@@ -1209,10 +1213,52 @@ body.sj-page-lesson {
                 /* One column table */
                 grid-template-columns: 1fr !important;
               }
-              
+
               .two-col-table {
                 /* Two column table */
-                grid-template-columns: repeat(2, minmax(min-content, max-content)) !important;
+                grid-template-columns: repeat(
+                  2,
+                  minmax(min-content, max-content)
+                ) !important;
+              }
+
+              blockquote.cg {
+                cite {
+                  gap: 3px !important;
+
+                  a {
+                    color: #3f17ac !important;
+                  }
+                }
+              }
+
+              .content-img-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-image: linear-gradient(
+                  315deg,
+                  rgb(253, 225, 254),
+                  rgb(245, 246, 254) 72%
+                );
+                border-radius: 8px;
+                margin: 48px auto;
+                padding: 49px;
+                background-color: #fff;
+                max-width: fit-content;
+
+                img {
+                  border-radius: 4px;
+                  max-height: 300px;
+                  width: auto;
+                  display: block;
+                  border: white 20px solid;
+                }
+              }
+
+              code:not(pre code) {
+                color: #3f17ac !important;
+                background-color: #0000000d !important;
               }
 
               pre {
