@@ -1205,6 +1205,16 @@ body.sj-page-lesson {
                 /* Internal course warning */
               }
 
+              .one-col-table {
+                /* One column table */
+                grid-template-columns: 1fr !important;
+              }
+              
+              .two-col-table {
+                /* Two column table */
+                grid-template-columns: repeat(2, minmax(min-content, max-content)) !important;
+              }
+
               pre {
                 /* Code block wrapper */
                 padding: 0px;
