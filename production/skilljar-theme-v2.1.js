@@ -526,6 +526,269 @@ function styleLanding() {
     ).map((el) => Object.assign({ ...el.dataset })),
   };
 
+  const registeredCourses = userCourseJourney.registered.map((d) => d.course);
+  const completedCourses = userCourseJourney.completed.map((d) => d.course);
+
+  let sections = [];
+
+  if (isInternal)
+    sections.concat([
+      {
+        eyebrow: "Internal Training",
+        title: "For Chainguardians",
+        description:
+          "Access internal training materials and resources to enhance your skills and knowledge about Chainguard's products and services.",
+        links: [
+          {
+            isPath: false,
+            isCourse: true,
+            hasBadge: false,
+            title: "Build Your First Chainguard Container",
+            slug: "build-your-first-chainguard-container",
+            description:
+              "This course is designed to teach new Chainguard engineers how to build container images.",
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="27" viewBox="0 0 30 27" fill="none"><path class="fill-current text-[#14003D] group-hover:text-white" fill-rule="evenodd" clip-rule="evenodd" d="M24.7199 16.1854C24.9569 15.368 25.0857 14.4724 25.0857 13.4982C25.0857 7.40502 20.047 0.546799 15.0146 0.546799C9.98217 0.546799 4.94345 7.40502 4.94345 13.4982C4.94345 14.8267 5.18298 16.0092 5.60976 17.0461L2.58476 16.876C1.35268 16.8067 0.217578 17.6851 0.409743 18.9041C0.484274 19.3769 0.626315 19.8608 0.879992 20.2788C0.0236265 20.8812 -0.326192 21.9885 0.367699 22.8564C1.06428 23.7277 2.08704 24.5305 3.49093 24.5305C5.01364 24.5305 5.93005 24.137 6.48659 23.6428C6.52721 23.8586 6.61101 24.0711 6.7433 24.2719C7.42673 25.3095 8.55862 26.4501 10.232 26.4501C13.0786 26.4501 13.3961 24.6622 13.5554 23.765C13.5679 23.6948 13.5794 23.6301 13.591 23.572L15.4933 22.6207L17.3956 23.572C17.4072 23.63 17.4187 23.6947 17.4312 23.7648L17.4312 23.765C17.5905 24.6622 17.908 26.4501 20.7546 26.4501C22.428 26.4501 23.5599 25.3095 24.2433 24.2719C24.2702 24.2311 24.2951 24.1898 24.318 24.1481C24.8542 24.38 25.5641 24.5305 26.506 24.5305C27.9099 24.5305 28.9327 23.7277 29.6292 22.8564C30.4824 21.7893 29.7577 20.3602 28.4536 19.9528L28.0227 19.8181C29.2881 19.1624 29.4743 17.9255 29.3387 16.8418C29.1856 15.6172 27.8516 15.0879 26.687 15.496L24.7199 16.1854ZM15.4951 22.603C15.494 22.603 15.4929 22.603 15.4917 22.6031L15.4933 22.6039L15.4951 22.603Z" fill="#14003D"></path></svg>`,
+          },
+        ],
+      },
+    ]);
+
+  sections = sections.concat([
+    {
+      eyebrow: "Chainguard Fundamentals",
+      title: "Get Started with Containers",
+      description:
+        "Begin your Chainguard journey with essentials. Learn how containers work, how to use Chainguard securely, and gain confidence through guided onboarding.",
+      links: [
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Chainguard Containers Crash Course",
+          slug: "linkys-crash-course-on-chainguard-images",
+          description:
+            "A fast, focused overview to get you started—from setup and registry basics to vulnerability management and support.",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 2 5 13h6l-1.2 9L19 11h-6l.5-9z"/></svg>`,
+        },
+        {
+          isPath: true,
+          isCourse: false,
+          hasBadge: false,
+          title: "Chainguard Containers Onboarding Guide",
+          slug: "path/chainguard-containers-onboarding-guide",
+          description:
+            "A full 14-course path taking you from container image basics through migration, debugging, and registry mirroring.",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M4 4h16v2H4V4Zm0 7h16v2H4v-2Zm0 7h16v2H4v-2Z"/></svg>`,
+        },
+      ],
+    },
+    {
+      eyebrow: "Tools & Customization",
+      title: "Make Chainguard Your Own",
+      description:
+        "Take control with customization tools. Learn to tailor Chainguard containers to your workflows and modernize Dockerfiles into secure, minimal builds.",
+      links: [
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Getting Started with Custom Assembly",
+          slug: "getting-started-with-chainguards-custom-assembly",
+          description:
+            "Quickly and securely customize your Chainguard Images—no Dockerfile required.",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M12 2 15 8 22 9 17 14l1 7-6-3-6 3 1-7-5-5 7-1 3-6Z"/></svg>`,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Getting Started with Dockerfile Converter",
+          slug: "getting-started-with-chainguards-dockerfile-converter",
+          description:
+            "Convert Dockerfiles to secure, minimal Chainguard Containers with the Dockerfile Converter CLI.",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M12 2 15 8 22 9 17 14l1 7-6-3-6 3 1-7-5-5 7-1 3-6Z"/></svg>`,
+        },
+      ],
+    },
+    {
+      eyebrow: "Security & Compliance",
+      title: "Stay Ahead of Risks",
+      description:
+        "Level up your security practices. Understand vulnerabilities, compliance frameworks like SLSA, and secure emerging areas like AI/ML.",
+      links: [
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: true,
+          title: "Painless Vulnerability Management",
+          slug: "vulnerability-management-certification",
+          description:
+            "Covers what vulnerability management is, why it matters, and how to practice it effectively.",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="29" height="31" viewBox="0 0 29 31" fill="none"><path class="fill-current text-[#14003D] group-hover:text-white" d="M14.5 30.9948C12.5855 30.9948 10.7855 30.6307 9.1002 29.9025C7.41461 29.1743 5.94825 28.1867 4.70113 26.9395C3.45402 25.6924 2.46636 24.2261 1.73817 22.5405C1.00997 20.8551 0.645874 19.0552 0.645874 17.1406C0.645874 14.5849 1.29179 12.2207 2.58363 10.048C3.87572 7.8756 5.64443 6.18357 7.88978 4.97194C7.92357 5.32169 7.96756 5.6751 8.02176 6.03215C8.07596 6.38919 8.16468 6.79959 8.2879 7.26334C6.58481 8.34203 5.24995 9.75077 4.28332 11.4896C3.31669 13.2284 2.83337 15.1121 2.83337 17.1406C2.83337 20.3976 3.96358 23.1563 6.224 25.4167C8.48442 27.6771 11.2431 28.8073 14.5 28.8073C17.757 28.8073 20.5157 27.6771 22.7761 25.4167C25.0365 23.1563 26.1667 20.3976 26.1667 17.1406C26.1667 15.1121 25.6811 13.2223 24.7098 11.4714C23.7386 9.72039 22.3891 8.30557 20.6615 7.22689C20.785 6.77262 20.8761 6.36926 20.9349 6.01683C20.9938 5.6644 21.0475 5.3161 21.0961 4.97194C23.3417 6.18357 25.1127 7.87195 26.4092 10.0371C27.7059 12.202 28.3542 14.5698 28.3542 17.1406C28.3542 19.0552 27.9901 20.8551 27.2619 22.5405C26.5337 24.2261 25.5461 25.6924 24.299 26.9395C23.0518 28.1867 21.5855 29.1743 19.8999 29.9025C18.2145 30.6307 16.4146 30.9948 14.5 30.9948ZM14.5 25.1615C12.2751 25.1615 10.3821 24.3809 8.82093 22.8198C7.25978 21.2586 6.47921 19.3656 6.47921 17.1406C6.47921 15.9273 6.73308 14.7826 7.24082 13.7066C7.74832 12.6306 8.47044 11.7169 9.40718 10.9653C9.50999 11.2643 9.61791 11.5924 9.73093 11.9497C9.84419 12.3067 9.98954 12.7395 10.167 13.248C9.67916 13.7883 9.30716 14.3894 9.05098 15.0512C8.7948 15.713 8.66671 16.4095 8.66671 17.1406C8.66671 18.7448 9.23789 20.1181 10.3802 21.2604C11.5226 22.4028 12.8959 22.974 14.5 22.974C16.1042 22.974 17.4775 22.4028 18.6198 21.2604C19.7622 20.1181 20.3334 18.7448 20.3334 17.1406C20.3334 16.4003 20.203 15.7038 19.9422 15.0512C19.6814 14.3988 19.307 13.7978 18.8189 13.248C18.9572 12.8423 19.061 12.5329 19.1302 12.3198C19.1995 12.1066 19.3416 11.6504 19.5564 10.9511C20.5024 11.7029 21.233 12.6191 21.7483 13.6997C22.2634 14.7803 22.5209 15.9273 22.5209 17.1406C22.5209 19.3656 21.7403 21.2586 20.1792 22.8198C18.618 24.3809 16.725 25.1615 14.5 25.1615ZM13.3221 11.6719C12.4228 8.9589 11.8475 7.10329 11.5961 6.10506C11.3446 5.10659 11.2188 4.16706 11.2188 3.28647C11.2188 2.36845 11.5362 1.59213 12.1711 0.95751C12.8057 0.322649 13.582 0.00521851 14.5 0.00521851C15.4181 0.00521851 16.1944 0.322649 16.829 0.95751C17.4639 1.59213 17.7813 2.36845 17.7813 3.28647C17.7813 4.16706 17.6555 5.10659 17.4039 6.10506C17.1526 7.10329 16.5773 8.9589 15.678 11.6719H13.3221ZM14.5 19.6927C13.7915 19.6927 13.189 19.4446 12.6924 18.9482C12.1961 18.4517 11.948 17.8491 11.948 17.1406C11.948 16.4321 12.1961 15.8296 12.6924 15.333C13.189 14.8367 13.7915 14.5886 14.5 14.5886C15.2085 14.5886 15.8111 14.8367 16.3076 15.333C16.804 15.8296 17.0521 16.4321 17.0521 17.1406C17.0521 17.8491 16.804 18.4517 16.3076 18.9482C15.8111 19.4446 15.2085 19.6927 14.5 19.6927Z" fill="#14003D"></path></svg>`,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Get Spicy with SLSA",
+          slug: "get-spicy-with-slsa-securing-your-supply-chain-one-level-at-a-time",
+          description:
+            "Understand SLSA, how Chainguard helps you meet it, and why it matters now more than ever.",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="21" height="25" viewBox="0 0 21 25" fill="none"><path class="fill-current text-[#14003D] group-hover:text-white" d="M10.5 0.309998L0.748047 3.967V11.3907C0.748047 17.5467 4.90484 23.2881 10.5 24.69C16.0953 23.2881 20.252 17.5467 20.252 11.3907V3.967L10.5 0.309998ZM17.814 11.3907C17.814 16.2667 14.7056 20.777 10.5 22.1545C6.2945 20.777 3.18605 16.2789 3.18605 11.3907V5.66141L10.5 2.91866L17.814 5.66141V11.3907Z" fill="#14003D"></path></svg>`,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: true,
+          title: "Securing the AI/ML Supply Chain",
+          slug: "securing-ai",
+          description:
+            "Unpack threats, tools, and standards shaping MLSecOps—protect models, datasets, and AI/ML pipelines.",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none"><path class="fill-current text-[#14003D] group-hover:text-white" d="M14.9488 28.3542C14.2121 28.3542 13.5886 28.099 13.0782 27.5885C12.5677 27.0781 12.3125 26.4546 12.3125 25.7179V14.9488C12.3125 14.2121 12.5677 13.5885 13.0782 13.0781C13.5886 12.5677 14.2121 12.3125 14.9488 12.3125H25.7179C26.4546 12.3125 27.0782 12.5677 27.5886 13.0781C28.099 13.5885 28.3542 14.2121 28.3542 14.9488V25.7179C28.3542 26.4546 28.099 27.0781 27.5886 27.5885C27.0782 28.099 26.4546 28.3542 25.7179 28.3542H14.9488ZM14.9488 26.1667H25.7179C25.8302 26.1667 25.933 26.1199 26.0263 26.0263C26.1199 25.933 26.1667 25.8302 26.1667 25.7179V14.9488C26.1667 14.8365 26.1199 14.7337 26.0263 14.6404C25.933 14.5468 25.8302 14.5 25.7179 14.5H14.9488C14.8366 14.5 14.7337 14.5468 14.6404 14.6404C14.5468 14.7337 14.5 14.8365 14.5 14.9488V25.7179C14.5 25.8302 14.5468 25.933 14.6404 26.0263C14.7337 26.1199 14.8366 26.1667 14.9488 26.1667ZM6.47921 22.6889V9.11546C6.47921 8.37876 6.73442 7.7552 7.24483 7.24479C7.75525 6.73437 8.37881 6.47916 9.11551 6.47916H22.6889V8.66666H9.11551C9.00322 8.66666 8.90041 8.71345 8.80707 8.80703C8.7135 8.90036 8.66671 9.00317 8.66671 9.11546V22.6889H6.47921ZM0.645874 16.8556V3.28213C0.645874 2.54543 0.901082 1.92187 1.4115 1.41145C1.92192 0.901037 2.54547 0.645828 3.28218 0.645828H16.8556V2.83333H3.28218C3.16988 2.83333 3.06707 2.88012 2.97374 2.97369C2.88016 3.06703 2.83337 3.16984 2.83337 3.28213V16.8556H0.645874Z" fill="#14003D"></path></svg>`,
+        },
+      ],
+    },
+    {
+      eyebrow: "Deep-Dive Paths",
+      title: "Master Containers",
+      description:
+        "Go beyond the basics with this in-depth learning path. Gain expertise in managing Chainguard Containers across the full software supply chain.",
+      links: [
+        {
+          isPath: true,
+          isCourse: false,
+          hasBadge: false,
+          title: "Complete Guide to Chainguard Containers",
+          slug: "path/linkys-guide-to-chainguard-images",
+          description:
+            "An 8-course path covering implementation, management, and best practices for Chainguard Containers.",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M4 6h16v2H4V6Zm0 5h16v2H4v-2Zm0 5h16v2H4v-2Z"/></svg>`,
+        },
+      ],
+    },
+  ]);
+
+  let html = "";
+  sections.forEach((section) => {
+    const sectionElement = Object.assign(document.createElement("section"), {
+      className: "featured-courses",
+    });
+
+    const grid = Object.assign(document.createElement("div"), {
+      className: "featured-courses__grid",
+    });
+
+    const intro = Object.assign(document.createElement("div"), {
+      className: "featured-courses__intro",
+    });
+
+    const eyebrow = Object.assign(document.createElement("h2"), {
+      className: "eyebrow",
+      textContent: section.eyebrow || "",
+    });
+
+    const headline = Object.assign(document.createElement("p"), {
+      className: "headline",
+      textContent: section.title || "",
+    });
+
+    const subhead = Object.assign(document.createElement("p"), {
+      className: "subhead",
+      textContent: section.description || "",
+    });
+
+    // const cta = Object.assign(document.createElement("a"), {
+    //     className: "btn btn--primary",
+    //     href: "/",
+    //     textContent: "Browse all courses",
+    // });
+
+    intro.append(...[eyebrow, headline, subhead /*cta*/]);
+    grid.append(intro);
+    sectionElement.append(grid);
+
+    const cardsElem = Object.assign(document.createElement("div"), {
+      className: "cards",
+    });
+
+    section.links.forEach((link) => {
+      const isRegistered = registeredCourses.includes(link.slug);
+      const isCompleted = completedCourses.includes(link.slug);
+
+      article = Object.assign(document.createElement("article"), {
+        className: `card ${isCompleted ? "card--completed" : ""} ${
+          isRegistered ? "card--in-progress" : ""
+        }`,
+      });
+
+      innerContainer = Object.assign(document.createElement("div"), {
+        className: "card__inner",
+      });
+
+      if (isCompleted) {
+        pill = Object.assign(document.createElement("span"), {
+          className: "pill completed",
+          textContent: "Completed",
+        });
+        innerContainer.append(pill);
+      }
+
+      if (isRegistered && !isCompleted) {
+        pill = Object.assign(document.createElement("span"), {
+          className: "pill in-progress",
+          textContent: "In Progress",
+        });
+        innerContainer.append(pill);
+      }
+
+      iconContainer = Object.assign(document.createElement("div"), {
+        className: "card__icon",
+        innerHTML: link.icon || "",
+      });
+      titleEyebrow = Object.assign(document.createElement("h5"), {
+        className: "card__eyebrow",
+        textContent: link.isCourse ? "Course" : "Learning Path",
+      });
+      title = Object.assign(document.createElement("h3"), {
+        className: "card__title",
+        textContent: link.title || "",
+      });
+
+      description = Object.assign(document.createElement("p"), {
+        className: "card__text",
+        textContent: link.description || "",
+      });
+
+      innerContainer.append(
+        ...[iconContainer, titleEyebrow, title, description]
+      );
+
+      if (link.hasBadge && !isCompleted) {
+        pill = Object.assign(document.createElement("span"), {
+          className: "pill badged",
+          textContent: "Get a Badge",
+        });
+        innerContainer.append(pill);
+      }
+
+      article.append(innerContainer);
+
+      cardLink = Object.assign(document.createElement("a"), {
+        className: "card__link",
+        href: `/${link.slug}`,
+        title: link.isCourse ? "Start course" : "Start path",
+      });
+
+      cardLink.append(article);
+
+      cardsElem.append(cardLink);
+    });
+
+    grid.append(cardsElem);
+    sectionElement.append(grid);
+    document.querySelector("#skilljar-content").append(sectionElement);
+  });
+
   v.local.catalogBodyParentContainer.append(v.local.catalogContainer);
 }
 
