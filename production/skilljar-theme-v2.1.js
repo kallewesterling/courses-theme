@@ -1289,6 +1289,11 @@ function styleLogin() {
     document.querySelector("#login-content"),
   ]);
 
+  const authContainer = Object.assign(document.createElement("div"), {
+    id: "auth-container",
+    style: "flex-grow: 1;"
+  });
+
   // create new auth card
   const authCard = Object.assign(document.createElement("div"), {
     className: "auth-card",
@@ -1304,10 +1309,12 @@ function styleLogin() {
     ]
   );
 
+  authContainer.append(...[document.querySelector("#tabs"), authCard]);
+
   document
     .querySelector("#skilljar-content")
     .append(
-      ...[document.querySelector("#tabs"), authCard, v.global.footerContainer]
+      ...[authContainer, v.global.footerContainer]
     );
 }
 
