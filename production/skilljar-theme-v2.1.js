@@ -668,6 +668,9 @@ function styleLanding() {
     },
   ]);
 
+  // temporarily setting baseURL here
+  const baseURL = "https://courses.chainguard.dev";
+  
   sections.forEach((section) => {
     const sectionElement = Object.assign(document.createElement("section"), {
       className: "featured-courses",
@@ -774,7 +777,7 @@ function styleLanding() {
 
       cardLink = Object.assign(document.createElement("a"), {
         className: "card__link",
-        href: `/${link.slug}`,
+        href: `${baseURL ? baseURL : ""}/${link.slug}`,
         title: link.isCourse ? "Start course" : "Start path",
       });
 
