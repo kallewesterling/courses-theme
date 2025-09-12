@@ -795,7 +795,7 @@ function styleLanding() {
 
   v.local.catalogBodyParentContainer.append(v.local.catalogContainer);
 
-  hide(v.local.mainContentContainer);
+  hide(v.local.catalogBodyParentContainer);
 }
 
 /**
