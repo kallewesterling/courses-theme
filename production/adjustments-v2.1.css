@@ -1459,3 +1459,199 @@ body.sj-page-lesson {
     }
   }
 }
+
+
+
+/* New: Featured courses */
+
+
+.featured-courses {
+  margin: 64px auto;
+  width: 93%;
+  max-width: var(--w-max);
+  padding-bottom: 64px;
+  border-bottom: 1px solid var(--separator);
+  color: var(--primary-dark-purple-hex);
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.featured-courses__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.featured-courses__intro {
+  padding-right: 32px;
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-3);
+  color: var(--placeholder-color);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+}
+
+.headline {
+  margin: 0 0 var(--space-3);
+  font-weight: 800;
+  font-size: 2.25rem;
+  line-height: 50px;
+}
+
+.subhead {
+  margin: 0 0 var(--space-3);
+  color: var(--ink-dim);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.06s ease, box-shadow 0.2s ease,
+    background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  outline: 0;
+}
+.btn--primary {
+  background: var(--primary-blue-hex);
+  color: var(--primary-white-hex);
+  border: 1px solid var(--primary-blue-hex);
+}
+.btn--primary:hover {
+  filter: brightness(0.95);
+}
+.btn--primary:focus-visible {
+  box-shadow: 0 0 0 3px #c9d1ff;
+}
+.btn--primary:active {
+  transform: translateY(1px);
+}
+
+.cards {
+  display: grid;
+  gap: 16px;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius-2);
+  height: 100%;
+}
+.card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card__inner {
+  padding: 24px;
+}
+.card__icon {
+  margin: 0 auto var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--icon-border);
+  background: var(--primary-white-hex);
+  border-radius: var(--radius-1);
+  padding: 16px;
+}
+.card__title {
+  margin: 0 0 8px;
+  font-weight: 800;
+  font-size: 1.5rem;
+  line-height: 35px;
+}
+.card__text {
+  margin: 0 0 var(--space-2);
+  font-size: 1rem;
+
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.card__link {
+  display: inline-block;
+  margin-top: 4px;
+  color: var(--primary-dark-purple-hex);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+.card__eyebrow {
+  text-transform: uppercase;
+  padding: 0px;
+  margin: 0 0 8px;
+  color: var(--placeholder-color);
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 12px;
+    margin: 12px 12px 0px;
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--placeholder-color);
+    background: #e8e6fb;
+    border: 1px solid #c9c5f2;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    position: relative;
+  }
+
+  .pill::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30' fill='none'><path d='M22.0951 16.1082V13.6916H26.9284V16.1082H22.0951ZM23.5451 24.5666L19.6784 21.6666L21.1284 19.7332L24.9951 22.6332L23.5451 24.5666ZM21.1284 10.0666L19.6784 8.13325L23.5451 5.23325L24.9951 7.16658L21.1284 10.0666ZM6.38672 23.3582V18.5249H5.17839C4.5138 18.5249 3.94488 18.2883 3.47161 17.815C2.99835 17.3418 2.76172 16.7728 2.76172 16.1082V13.6916C2.76172 13.027 2.99835 12.4581 3.47161 11.9848C3.94488 11.5115 4.5138 11.2749 5.17839 11.2749H10.0117L16.0534 7.64991V22.1499L10.0117 18.5249H8.80338V23.3582H6.38672ZM13.6367 17.8603V11.9395L10.6763 13.6916H5.17839V16.1082H10.6763L13.6367 17.8603ZM17.2617 18.9478V10.852C17.8055 11.3353 18.2435 11.9244 18.5758 12.6192C18.9081 13.314 19.0742 14.0742 19.0742 14.8999C19.0742 15.7256 18.9081 16.4859 18.5758 17.1806C18.2435 17.8754 17.8055 18.4645 17.2617 18.9478Z' fill='%2314003D'/></svg>") no-repeat center;    background-size: contain;
+  }
+}
+
+/* Responsive layout */
+@media (min-width: 640px) {
+  .featured-courses {
+    width: 85%;
+  }
+}
+@media (min-width: 900px) {
+  .card__inner {
+    padding: 32px;
+  }
+}
+@media (min-width: 1200px) {
+  .featured-courses {
+    margin: 80px auto;
+    padding-bottom: 80px;
+  }
+  .featured-courses__grid {
+    grid-template-columns: 38% calc(62% - 24px);
+  }
+}
+@media (min-width: 1536px) {
+  .featured-courses__grid {
+    grid-template-columns: 34% calc(66% - 24px);
+  }
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Motion/accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .card__link {
+    transition: none;
+  }
+}
