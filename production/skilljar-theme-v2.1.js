@@ -749,7 +749,7 @@ function styleLanding() {
       });
       titleEyebrow = Object.assign(document.createElement("h5"), {
         className: "card__eyebrow",
-        textContent: link.isCourse ? "Course" : "Learning Path",
+        textContent: link.isCourse ? "Course | Free" : "Learning Path | Free",
       });
       title = Object.assign(document.createElement("h3"), {
         className: "card__title",
