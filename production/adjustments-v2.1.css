@@ -1765,6 +1765,15 @@ body.sj-page-login {
     margin: 18px auto 0;
   }
 
+  #auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    gap: 12px;
+  }
+
   /* -------- Tabs (Log In / Sign Up) -------- */
   #tabs {
     display: flex;
@@ -1912,6 +1921,13 @@ body.sj-page-login {
     border: 1px solid transparent;
     box-shadow: 0 8px 20px rgba(129, 61, 243, 0.18);
     transition: transform 0.05s ease, filter 0.15s ease, box-shadow 0.15s ease;
+  }
+  #google_login::before {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-size: 1.25rem;
+    text-align: left;
+    width: 27px;
   }
   #google_login:hover {
     filter: brightness(0.98);
