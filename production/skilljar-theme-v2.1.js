@@ -670,7 +670,7 @@ function styleLanding() {
 
   // temporarily setting baseURL here
   const baseURL = "https://courses.chainguard.dev";
-  
+
   sections.forEach((section) => {
     const sectionElement = Object.assign(document.createElement("section"), {
       className: "featured-courses",
@@ -794,6 +794,8 @@ function styleLanding() {
   document.querySelector("#skilljar-content").append(v.global.footerContainer);
 
   v.local.catalogBodyParentContainer.append(v.local.catalogContainer);
+
+  hide(mainContentContainer);
 }
 
 /**
