@@ -668,7 +668,6 @@ function styleLanding() {
     },
   ]);
 
-  let html = "";
   sections.forEach((section) => {
     const sectionElement = Object.assign(document.createElement("section"), {
       className: "featured-courses",
@@ -788,6 +787,8 @@ function styleLanding() {
     sectionElement.append(grid);
     document.querySelector("#skilljar-content").append(sectionElement);
   });
+
+  document.querySelector("#skilljar-content").append(v.local.footerContainer);
 
   v.local.catalogBodyParentContainer.append(v.local.catalogContainer);
 }
