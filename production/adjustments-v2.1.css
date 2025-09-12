@@ -1625,6 +1625,9 @@ body.sj-page-lesson {
   text-decoration: none;
   border-bottom: 2px solid transparent;
 }
+.card__link:hover {
+  color: var(--primary-dark-purple-hex) !important;
+}
 .card__eyebrow {
   font-family: Lato;
   text-transform: uppercase;
