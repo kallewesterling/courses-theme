@@ -1283,22 +1283,32 @@ function styleLogin() {
   v.local.loginForm.append(v.local.termsAndServices);
 
   // test moving login elements around
-  document
-    .querySelector("#skilljar-content")
-    .append(
-      ...[
-        document.querySelector("#tabs"),
-        document.querySelector("#login_form"),
-        document.querySelector("h4.sj-text-sign-in-with"),
-        document.querySelector("button#google_login"),
-        document.querySelector("#access-message"),
-        v.global.footerContainer,
-      ]
-    );
+  // hide existing login content
   hide([
     document.querySelector(".white-bg"),
     document.querySelector("#login-content"),
   ]);
+
+  // create new auth card
+  const authCard = Object.assign(document.createElement("div"), {
+    className: "auth-card",
+  });
+
+  // append existing elements to it
+  authCard.append(
+    ...[
+      document.querySelector("#login_form"),
+      document.querySelector("h4.sj-text-sign-in-with"),
+      document.querySelector("button#google_login"),
+      document.querySelector("#access-message"),
+    ]
+  );
+
+  document
+    .querySelector("#skilljar-content")
+    .append(
+      ...[document.querySelector("#tabs"), authCard, v.global.footerContainer]
+    );
 }
 
 function styleSignup() {
