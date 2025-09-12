@@ -1281,6 +1281,24 @@ function styleLogin() {
 
   // move elements
   v.local.loginForm.append(v.local.termsAndServices);
+
+  // test moving login elements around
+  document
+    .querySelector("#skilljar-content")
+    .append(
+      ...[
+        document.querySelector("#tabs"),
+        document.querySelector("#login_form"),
+        document.querySelector("h4.sj-text-sign-in-with"),
+        document.querySelector("button#google_login"),
+        document.querySelector("#access-message"),
+        v.global.footerContainer,
+      ]
+    );
+  hide([
+    document.querySelector(".white-bg"),
+    document.querySelector("#login-content"),
+  ]);
 }
 
 function styleSignup() {
