@@ -521,7 +521,7 @@ function styleLanding() {
     ).map((el) => Object.assign({ ...el.dataset })),
     completed: Array.from(
       document.querySelectorAll(
-        ".coursebox-container[data-course-status='completed']"
+        ".coursebox-container[data-course-status='complete']"
       )
     ).map((el) => Object.assign({ ...el.dataset })),
   };
