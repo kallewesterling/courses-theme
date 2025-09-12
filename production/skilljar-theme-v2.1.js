@@ -788,7 +788,7 @@ function styleLanding() {
     document.querySelector("#skilljar-content").append(sectionElement);
   });
 
-  document.querySelector("#skilljar-content").append(v.local.footerContainer);
+  document.querySelector("#skilljar-content").append(v.global.footerContainer);
 
   v.local.catalogBodyParentContainer.append(v.local.catalogContainer);
 }
