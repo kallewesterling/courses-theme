@@ -1476,6 +1476,10 @@ body.sj-page-lesson {
   line-height: 1.55;
 }
 
+.featured-courses:last-of-type {
+  border-bottom: unset;
+}
+
 .featured-courses__grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1484,9 +1488,11 @@ body.sj-page-lesson {
 
 .featured-courses__intro {
   padding-right: 32px;
+  font-family: Lato;
 }
 
 .eyebrow {
+  font-family: inherit;
   margin: 0 0 var(--space-1);
   color: var(--placeholder-color);
   text-transform: uppercase;
@@ -1496,6 +1502,7 @@ body.sj-page-lesson {
 }
 
 .headline {
+  font-family: inherit;
   margin: 0 0 var(--space-4);
   font-weight: 800;
   font-size: 2.25rem;
@@ -1618,7 +1625,11 @@ body.sj-page-lesson {
   border-bottom: 2px solid transparent;
 }
 .card__eyebrow {
+  font-family: Lato;
   text-transform: uppercase;
+  font-size: 0.8em;
+  font-weight: 700;
+  color: #d3c6e8;
   padding: 0px;
   margin: 0 0 8px;
   color: var(--placeholder-color);
