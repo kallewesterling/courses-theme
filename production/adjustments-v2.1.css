@@ -1761,8 +1761,14 @@ body.sj-page-login {
   /* Center the stack */
   #tabs,
   .auth-card {
+    display: flex;
     width: min(560px, 94vw);
     margin: 18px auto 0;
+  }
+
+  .auth-card {
+    flex-direction: column;
+    align-items: center;
   }
 
   #auth-container {
@@ -1901,9 +1907,10 @@ body.sj-page-login {
   /* Divider heading */
   .sj-text-sign-in-with span {
     display: block;
-    margin: 16px 0 10px;
+    margin: 16px 0 -5px;
     font-weight: 800;
-    color: var(--brand-ink);
+    color: #d3c6e8;
+    text-transform: uppercase;
   }
 
   /* Google button */
@@ -1942,11 +1949,12 @@ body.sj-page-login {
 
   /* Terms */
   #access-message {
-    margin-top: 12px;
     font-size: 14px;
+    margin: 62px 0px 0px 0px;
   }
   #access-message p {
     color: var(--ink-dim);
+    margin: 0px;
   }
   #access-message a {
     color: var(--brand-ink);
