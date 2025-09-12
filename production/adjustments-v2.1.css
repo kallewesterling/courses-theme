@@ -1492,6 +1492,7 @@ body.sj-page-lesson {
 }
 
 .eyebrow {
+  color: var(--primary-blue-hex);
   font-family: inherit;
   margin: 0 0 var(--space-1);
   color: var(--placeholder-color);
