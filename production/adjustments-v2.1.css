@@ -1740,22 +1740,23 @@ body.sj-page-lesson {
 }
 
 /* New: Login page styling */
+:root {
+  --brand: #3c44f7; /* primary blue */
+  --brand-ink: #14003d; /* deep ink */
+  --ink: #0f1020;
+  --ink-dim: #0f1020b3;
+  --paper: #ffffff;
+  --card-bg: #fbfaff; /* faint lavender */
+  --border: #d8d5e0;
+  --ring: #c9d1ff; /* focus halo */
+  --radius-xl: 20px;
+  --radius-md: 14px;
+  --shadow: 0 12px 30px rgba(20, 0, 61, 0.08);
+  --grad: linear-gradient(90deg, #57c6ff 0%, #5b6bff 50%, #813df3 100%);
+}
+
 body.sj-page-login {
   /* ============ Chainguard – Login (Airy) ============ */
-  :root {
-    --brand: #3c44f7; /* primary blue */
-    --brand-ink: #14003d; /* deep ink */
-    --ink: #0f1020;
-    --ink-dim: #0f1020b3;
-    --paper: #ffffff;
-    --card-bg: #fbfaff; /* faint lavender */
-    --border: #d8d5e0;
-    --ring: #c9d1ff; /* focus halo */
-    --radius-xl: 20px;
-    --radius-md: 14px;
-    --shadow: 0 12px 30px rgba(20, 0, 61, 0.08);
-    --grad: linear-gradient(90deg, #57c6ff 0%, #5b6bff 50%, #813df3 100%);
-  }
 
   /* Center the stack */
   #tabs,
