@@ -666,10 +666,10 @@ function styleLanding() {
     ).map((el) => Object.assign({ ...el.dataset })),
   };
 
-  let sections = [];
+  window.landingSections = [];
 
   if (isInternal)
-    sections.concat([
+    window.landingSections.concat([
       {
         eyebrow: "Internal Training",
         title: "For Chainguardians",
@@ -690,7 +690,7 @@ function styleLanding() {
       },
     ]);
 
-  sections = sections.concat([
+  window.landingSections = window.landingSections.concat([
     {
       eyebrow: "Chainguard Fundamentals",
       title: "Get Started with Containers",
@@ -805,7 +805,7 @@ function styleLanding() {
     },
   ]);
 
-  makeSections(sections);
+  makeSections(window.landingSections);
 
   document.querySelector("#skilljar-content").append(v.global.footerContainer);
 
