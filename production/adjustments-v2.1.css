@@ -1755,9 +1755,47 @@ body.sj-page-lesson {
   --grad: linear-gradient(90deg, #57c6ff 0%, #5b6bff 50%, #813df3 100%);
 }
 
-body.sj-page-login, body.sj-page-signup {
-  /* ============ Chainguard – Login (Airy) ============ */
+/* ============ Login (Airy) ============ */
 
+body.sj-page-login {
+  #tabs #login-tab-left {
+    background: rgba(60, 68, 247, 0.12);
+    color: var(--brand-ink);
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(201, 209, 255, 0.65) inset;
+  }
+  #tabs #login-tab-right a {
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+    color: #8c8aa4;
+    text-decoration: none;
+    font-weight: 800;
+  }
+}
+
+body.sj-page-signup {
+  #tabs #login-tab-right {
+    background: rgba(60, 68, 247, 0.12);
+    color: var(--brand-ink);
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(201, 209, 255, 0.65) inset;
+  }
+  #tabs #login-tab-right a {
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+    color: #8c8aa4;
+    text-decoration: none;
+    font-weight: 800;
+  }
+}
+
+body.sj-page-login, body.sj-page-signup {
   /* Center the stack */
   #tabs,
   .auth-card {
@@ -1799,22 +1837,6 @@ body.sj-page-login, body.sj-page-signup {
     background: #f0eeff;
     color: #8c8aa4;
     border: 1px solid transparent;
-  }
-  #tabs #login-tab-left {
-    background: rgba(60, 68, 247, 0.12);
-    color: var(--brand-ink);
-    border-color: var(--brand);
-    box-shadow: 0 0 0 3px rgba(201, 209, 255, 0.65) inset;
-  }
-  #tabs #login-tab-right a {
-    display: inline-flex;
-    align-items: center;
-    height: 44px;
-    padding: 0 18px;
-    border-radius: 999px;
-    color: #8c8aa4;
-    text-decoration: none;
-    font-weight: 800;
   }
   #tabs .tab-marker {
     display: none;
