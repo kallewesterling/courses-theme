@@ -178,7 +178,7 @@ function makeSections(
       });
 
       const price = Object.assign(document.createElement("span"), {
-        textContent: " | Free"
+        textContent: " | Free",
       });
 
       titleEyebrow.append(price);
@@ -669,7 +669,7 @@ function styleLanding() {
   window.landingSections = [];
 
   if (isInternal)
-    window.landingSections.concat([
+    window.landingSections = window.landingSections.concat([
       {
         eyebrow: "Internal Training",
         title: "For Chainguardians",
