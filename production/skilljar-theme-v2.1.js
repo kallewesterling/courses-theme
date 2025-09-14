@@ -1073,56 +1073,68 @@ function stylePathCourseDetails() {
       },
     ];
 
-    // apply style specific to container onboarding path
-    const csmWrapper = Object.assign(document.createElement("div"), {
-      id: "catalog-courses",
-      className: "course-listing",
-    });
-    csmWrapper.dataset.listing = "CSM";
-    v.local.catalog.prepend(csmWrapper);
+    // // apply style specific to container onboarding path
+    // const csmWrapper = Object.assign(document.createElement("div"), {
+    //   id: "catalog-courses",
+    //   className: "course-listing",
+    // });
+    // csmWrapper.dataset.listing = "CSM";
+    // v.local.catalog.prepend(csmWrapper);
 
-    const saHeader = Object.assign(document.createElement("h3"), {
-      className: "course-listing-header technical-onboarding",
-      textContent: "Technical Onboarding",
-    });
+    // const saHeader = Object.assign(document.createElement("h3"), {
+    //   className: "course-listing-header technical-onboarding",
+    //   textContent: "Technical Onboarding",
+    // });
 
-    const csmHeader = Object.assign(document.createElement("h3"), {
-      className: "course-listing-header admin-onboarding",
-      textContent: "Admin Onboarding",
-    });
+    // const csmHeader = Object.assign(document.createElement("h3"), {
+    //   className: "course-listing-header admin-onboarding",
+    //   textContent: "Admin Onboarding",
+    // });
 
-    // here we set the order of csmCourses
-    const csmCourses = [
-      "kickoff-guide-to-chainguard",
-      "getting-started-with-chainguards-console",
-      "shared-responsibility-model",
-      "chainguards-superstar-support",
-    ]
-      .filter(Boolean)
-      .map((d) =>
-        document.querySelector(`.coursebox-container[data-course=${d}]`)
-      );
+    // // here we set the order of csmCourses
+    // const csmCourses = [
+    //   "kickoff-guide-to-chainguard",
+    //   "getting-started-with-chainguards-console",
+    //   "shared-responsibility-model",
+    //   "chainguards-superstar-support",
+    // ]
+    //   .filter(Boolean)
+    //   .map((d) =>
+    //     document.querySelector(`.coursebox-container[data-course=${d}]`)
+    //   );
 
-    const saCourses = document.querySelector(
-      "#catalog-courses:not([data-listing='CSM'])"
+    // const saCourses = document.querySelector(
+    //   "#catalog-courses:not([data-listing='CSM'])"
+    // );
+
+    // csmWrapper.append(...csmCourses.filter(Boolean));
+
+    // v.local.catalog.append(csmHeader, csmWrapper, saHeader, saCourses);
+
+    // // move completed courses to end of list
+    // saCourses.append(
+    //   ...saCourses.querySelectorAll(
+    //     ".coursebox-container[data-course-status='complete']"
+    //   )
+    // );
+
+    // csmWrapper.append(
+    //   ...csmWrapper.querySelectorAll(
+    //     ".coursebox-container[data-course-status='complete']"
+    //   )
+    // );
+
+    hide(".sj-courseboxes-v2");
+
+    makeSections(
+      window.pathSections,
+      "#skilljar-content",
+      "https://courses.chainguard.dev/path/chainguard-containers-onboarding-guide"
     );
 
-    csmWrapper.append(...csmCourses.filter(Boolean));
-
-    v.local.catalog.append(csmHeader, csmWrapper, saHeader, saCourses);
-
-    // move completed courses to end of list
-    saCourses.append(
-      ...saCourses.querySelectorAll(
-        ".coursebox-container[data-course-status='complete']"
-      )
-    );
-
-    csmWrapper.append(
-      ...csmWrapper.querySelectorAll(
-        ".coursebox-container[data-course-status='complete']"
-      )
-    );
+    document
+      .querySelector("#skilljar-content")
+      .append(v.global.footerContainer);
   }
 }
 
