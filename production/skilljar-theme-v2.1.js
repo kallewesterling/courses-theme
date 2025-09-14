@@ -26,6 +26,7 @@ let initialLoadComplete = false,
   isStaging = false,
   isInternal = false,
   domain = "3glgawqmzatte",
+  userCourseJourney = {},
   course = {
     progress: {},
     path:
@@ -37,6 +38,26 @@ if (window.location.hostname.includes("chainguard-test.skilljar.com")) {
   isStaging = true;
   domain = "ix1ljpxex6xd";
 }
+
+// set up userCourseJourney global variable
+if (Array.from(document.querySelectorAll(".coursebox-container")).length)
+  userCourseJourney = {
+    unregistered: Array.from(
+      document.querySelectorAll(
+        ".coursebox-container[data-course-status='unregistered']"
+      )
+    ).map((el) => Object.assign({ ...el.dataset })),
+    registered: Array.from(
+      document.querySelectorAll(
+        ".coursebox-container[data-course-status='registered']"
+      )
+    ).map((el) => Object.assign({ ...el.dataset })),
+    completed: Array.from(
+      document.querySelectorAll(
+        ".coursebox-container[data-course-status='complete']"
+      )
+    ).map((el) => Object.assign({ ...el.dataset })),
+  };
 
 course.path.edit =
   typeof skilljarCourseSeries !== "undefined"
@@ -645,25 +666,6 @@ function styleLanding() {
   v.local = {
     catalogBodyParentContainer: document.querySelector("#catalog-content"),
     catalogContainer: document.querySelector("#catalog-courses"),
-  };
-
-  // set up userCourseJourney global variable
-  window.userCourseJourney = {
-    unregistered: Array.from(
-      document.querySelectorAll(
-        ".coursebox-container[data-course-status='unregistered']"
-      )
-    ).map((el) => Object.assign({ ...el.dataset })),
-    registered: Array.from(
-      document.querySelectorAll(
-        ".coursebox-container[data-course-status='registered']"
-      )
-    ).map((el) => Object.assign({ ...el.dataset })),
-    completed: Array.from(
-      document.querySelectorAll(
-        ".coursebox-container[data-course-status='complete']"
-      )
-    ).map((el) => Object.assign({ ...el.dataset })),
   };
 
   window.landingSections = [];
