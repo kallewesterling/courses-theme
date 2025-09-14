@@ -1295,9 +1295,6 @@ function styleAuth() {
     v.local.signupForm.append(v.local.termsAndServices);
   }
 
-  // move elements
-
-  // test moving login elements around
   // hide existing login content
   hide([
     document.querySelector(".white-bg"),
