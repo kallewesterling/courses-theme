@@ -759,7 +759,7 @@ body.sj-page-detail-course {
   }
 }
 
-body.sj-page-detail-bundle.sj-page-detail-path {
+body.sj-page-detail-bundle.sj-page-detail-path, body.sj-page-catalog.sj-page-series {
   /* Learning path detail page styles */
 
   .top-row-grey {
