@@ -1497,10 +1497,6 @@ body.sj-page-lesson {
   font-weight: 600;
   font-size: 0.9rem;
   letter-spacing: 0.04em;
-
-  span {
-    font-weight: 400 !important; /* "Free" */
-  }
 }
 
 .headline {
@@ -1640,6 +1636,10 @@ body.sj-page-lesson {
   color: #d3c6e8;
   padding: 0px;
   margin: 0 0 8px;
+
+  span {
+    font-weight: 400 !important; /* "Free" */
+  }
 }
 
 /* Responsive layout */
