@@ -1306,7 +1306,7 @@ function styleAuth() {
 
   const authContainer = Object.assign(document.createElement("div"), {
     id: "auth-container",
-    style: "flex-grow: 1;",
+    style: "flex-grow: 1; min-height: 100vw;",
   });
 
   // create new auth card
