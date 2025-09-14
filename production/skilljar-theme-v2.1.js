@@ -920,9 +920,10 @@ function stylePathCourseDetails() {
           {
             isPath: false,
             isCourse: true,
+            hasBadge: false,
             title:
               "Kickoff Guide to Chainguard: Getting Started with Our Platform",
-            url: "/path/chainguard-containers-onboarding-guide/kickoff-guide-to-chainguard",
+            slug: "kickoff-guide-to-chainguard",
             description:
               "A fast, guided kickoff to help you hit the ground running with Chainguard.",
             icon: ``,
@@ -930,8 +931,9 @@ function stylePathCourseDetails() {
           {
             isPath: false,
             isCourse: true,
+            hasBadge: false,
             title: "Getting Started with Chainguard's Console",
-            url: "/path/chainguard-containers-onboarding-guide/getting-started-with-chainguards-console",
+            slug: "getting-started-with-chainguards-console",
             description:
               "Learn how to explore, manage, and provision container images through Chainguard’s Console.",
             icon: ``,
@@ -939,9 +941,10 @@ function stylePathCourseDetails() {
           {
             isPath: false,
             isCourse: true,
+            hasBadge: false,
             title:
               "An Introduction to Chainguard's Shared Responsibility Model",
-            url: "/path/chainguard-containers-onboarding-guide/shared-responsibility-model",
+            slug: "shared-responsibility-model",
             description:
               "See how Chainguard divides security responsibilities so you can focus on building applications while we handle the undifferentiated heavy lifting.",
             icon: ``,
@@ -949,8 +952,9 @@ function stylePathCourseDetails() {
           {
             isPath: false,
             isCourse: true,
+            hasBadge: false,
             title: "Chainguard's Superstar Support",
-            url: "/path/chainguard-containers-onboarding-guide/chainguards-superstar-support",
+            slug: "chainguards-superstar-support",
             description:
               "Skip the stress and get answers fast. Learn how to navigate Chainguard’s support like a superstar and keep your supply chain secure with zero ticket anxiety.",
             icon: ``,
@@ -967,8 +971,9 @@ function stylePathCourseDetails() {
           {
             isPath: false,
             isCourse: true,
+            hasBadge: false,
             title: "Chainguard 101: Secure Container Images Basics",
-            url: "/path/chainguard-containers-onboarding-guide/chainguard-101",
+            slug: "chainguard-101",
             description:
               "Learn how to build, run, and maintain apps on secure, minimal Chainguard Containers with confidence.",
             icon: ``,
@@ -976,8 +981,9 @@ function stylePathCourseDetails() {
           {
             isPath: false,
             isCourse: true,
+            hasBadge: false,
             title: "Integrating SSO and IdPs with Chainguard Registry",
-            url: "/path/chainguard-containers-onboarding-guide/integrating-sso-and-idps-with-chainguard-registry",
+            slug: "integrating-sso-and-idps-with-chainguard-registry",
             description:
               "Connect your identity provider and streamline secure access to Chainguard’s registry.",
             icon: ``,
@@ -985,8 +991,9 @@ function stylePathCourseDetails() {
           {
             isPath: false,
             isCourse: true,
+            hasBadge: false,
             title: "Registry Mirroring with Chainguard",
-            url: "/path/chainguard-containers-onboarding-guide/registry-mirroring",
+            slug: "registry-mirroring",
             description:
               "Mirror Chainguard images and packages into your internal registry to simplify access, improve reliability, and strengthen control.",
             icon: ``,
@@ -994,9 +1001,10 @@ function stylePathCourseDetails() {
           {
             isPath: false,
             isCourse: true,
+            hasBadge: false,
             title:
               "Keeping Up With Latest: Update Strategies for Chainguard Images",
-            url: "/path/chainguard-containers-onboarding-guide/keeping-up-with-latest",
+            slug: "keeping-up-with-latest",
             description:
               "Stay secure and compliant by keeping your Chainguard images up to date—without the chaos.",
             icon: ``,
@@ -1004,8 +1012,9 @@ function stylePathCourseDetails() {
           {
             isPath: false,
             isCourse: true,
+            hasBadge: false,
             title: "Managing End-of-Life Grace Periods with Chainguard",
-            url: "/path/chainguard-containers-onboarding-guide/managing-end-of-life-grace-periods-with-chainguard",
+            slug: "managing-end-of-life-grace-periods-with-chainguard",
             description:
               "Navigate Chainguard’s EOL Grace Period to keep workloads secure while you plan upgrades.",
             icon: ``,
@@ -1013,8 +1022,9 @@ function stylePathCourseDetails() {
           {
             isPath: false,
             isCourse: true,
+            hasBadge: false,
             title: "Getting Started with Chainguard's Custom Assembly",
-            url: "/path/chainguard-containers-onboarding-guide/getting-started-with-chainguards-custom-assembly",
+            slug: "getting-started-with-chainguards-custom-assembly",
             description:
               "Quickly and securely customize your Chainguard Images—no Dockerfile required.",
             icon: ``,
@@ -1022,8 +1032,9 @@ function stylePathCourseDetails() {
           {
             isPath: false,
             isCourse: true,
+            hasBadge: false,
             title: "Migrating to Chainguard Application Images",
-            url: "/path/chainguard-containers-onboarding-guide/migrating-to-chainguard-application-images",
+            slug: "migrating-to-chainguard-application-images",
             description:
               "Replace vulnerable upstream images with secure, drop-in Chainguard application images in just a few steps.",
             icon: ``,
@@ -1031,8 +1042,9 @@ function stylePathCourseDetails() {
           {
             isPath: false,
             isCourse: true,
+            hasBadge: false,
             title: "Mastering Base Image Migrations With Chainguard",
-            url: "/path/chainguard-containers-onboarding-guide/mastering-base-image-migrations-with-chainguard",
+            slug: "mastering-base-image-migrations-with-chainguard",
             description:
               "Migrate real apps from “it works on Debian” to minimal, secure Chainguard base images.",
             icon: ``,
@@ -1040,8 +1052,9 @@ function stylePathCourseDetails() {
           {
             isPath: false,
             isCourse: true,
+            hasBadge: false,
             title: "Containers 102: Practical Image Migration Skills",
-            url: "/path/chainguard-containers-onboarding-guide/containers-102",
+            slug: "containers-102",
             description:
               "Hands-on tactics to keep images small, secure, and portable while you migrate to Chainguard.",
             icon: ``,
@@ -1049,8 +1062,9 @@ function stylePathCourseDetails() {
           {
             isPath: false,
             isCourse: true,
+            hasBadge: false,
             title: "Debugging Chainguard Containers",
-            url: "/path/chainguard-containers-onboarding-guide/debugging-chainguard-containers",
+            slug: "debugging-chainguard-containers",
             description:
               "Practical strategies to debug Chainguard’s minimal, secure container images in Docker and Kubernetes—without breaking their security model.",
             icon: ``,
