@@ -174,10 +174,14 @@ function makeSections(
 
       titleEyebrow = Object.assign(document.createElement("h5"), {
         className: "card__eyebrow",
-        textContent: `${
-          link.isCourse ? "Course" : "Learning Path"
-        } | <span>Free</span>`,
+        textContent: link.isCourse ? "Course" : "Learning Path",
       });
+
+      const price = Object.assign(document.createElement("span"), {
+        textContent: " | Free"
+      });
+
+      titleEyebrow.append(price);
 
       title = Object.assign(document.createElement("h3"), {
         className: "card__title",
