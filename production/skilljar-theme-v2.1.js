@@ -84,6 +84,142 @@ const log = (message, ...args) => {
   }
 };
 
+/*
+ * TODO: docstring
+ */
+function makeSections(
+  sections,
+  parentSelector = "#skilljar-content",
+  baseURL = "https://courses.chainguard.dev"
+) {
+  const registeredCourses = userCourseJourney.registered.map((d) => d.course);
+  const completedCourses = userCourseJourney.completed.map((d) => d.course);
+
+  sections.forEach((section) => {
+    const sectionElement = Object.assign(document.createElement("section"), {
+      className: "featured-courses",
+    });
+
+    const grid = Object.assign(document.createElement("div"), {
+      className: "featured-courses__grid",
+    });
+
+    const intro = Object.assign(document.createElement("div"), {
+      className: "featured-courses__intro",
+    });
+
+    const eyebrow = Object.assign(document.createElement("h2"), {
+      className: "eyebrow",
+      textContent: section.eyebrow || "",
+    });
+
+    const headline = Object.assign(document.createElement("p"), {
+      className: "headline",
+      textContent: section.title || "",
+    });
+
+    const subhead = Object.assign(document.createElement("p"), {
+      className: "subhead",
+      textContent: section.description || "",
+    });
+
+    // const cta = Object.assign(document.createElement("a"), {
+    //     className: "btn btn--primary",
+    //     href: "/",
+    //     textContent: "Browse all courses",
+    // });
+
+    intro.append(...[eyebrow, headline, subhead /*cta*/]);
+    grid.append(intro);
+    sectionElement.append(grid);
+
+    const cardsElem = Object.assign(document.createElement("div"), {
+      className: "cards",
+    });
+
+    section.links.forEach((link) => {
+      const isRegistered = registeredCourses.includes(link.slug);
+      const isCompleted = completedCourses.includes(link.slug);
+
+      article = Object.assign(document.createElement("article"), {
+        className: `card ${isCompleted ? "card--completed" : ""} ${
+          isRegistered ? "card--in-progress" : ""
+        }`,
+      });
+
+      innerContainer = Object.assign(document.createElement("div"), {
+        className: "card__inner",
+      });
+
+      if (isCompleted) {
+        pill = Object.assign(document.createElement("span"), {
+          className: "pill completed",
+          textContent: "Completed",
+        });
+        innerContainer.append(pill);
+      }
+
+      if (isRegistered && !isCompleted) {
+        pill = Object.assign(document.createElement("span"), {
+          className: "pill in-progress",
+          textContent: "In Progress",
+        });
+        innerContainer.append(pill);
+      }
+
+      iconContainer = Object.assign(document.createElement("div"), {
+        className: "card__icon",
+        innerHTML: link.icon || "",
+      });
+
+      titleEyebrow = Object.assign(document.createElement("h5"), {
+        className: "card__eyebrow",
+        textContent: `${
+          link.isCourse ? "Course" : "Learning Path"
+        } | <span>Free</span>`,
+      });
+
+      title = Object.assign(document.createElement("h3"), {
+        className: "card__title",
+        textContent: link.title || "",
+      });
+
+      description = Object.assign(document.createElement("p"), {
+        className: "card__text",
+        textContent: link.description || "",
+      });
+
+      innerContainer.append(
+        ...[iconContainer, titleEyebrow, title, description]
+      );
+
+      if (link.hasBadge && !isCompleted) {
+        pill = Object.assign(document.createElement("span"), {
+          className: "pill badged",
+          textContent: "Get a Badge",
+        });
+        innerContainer.append(pill);
+      }
+
+      article.append(innerContainer);
+
+      cardLink = Object.assign(document.createElement("a"), {
+        className: "card__link",
+        href: `${baseURL}/${link.slug}`,
+        title: link.isCourse ? "Start course" : "Start path",
+      });
+
+      cardLink.append(article);
+
+      cardsElem.append(cardLink);
+    });
+
+    grid.append(cardsElem);
+    sectionElement.append(grid);
+    document.querySelector(parentSelector).append(sectionElement);
+  });
+}
+
 function createClone(type = "checkbox") {
   function createSvgElement(tag, attrs = {}) {
     const el = document.createElementNS("http://www.w3.org/2000/svg", tag);
@@ -526,9 +662,6 @@ function styleLanding() {
     ).map((el) => Object.assign({ ...el.dataset })),
   };
 
-  const registeredCourses = userCourseJourney.registered.map((d) => d.course);
-  const completedCourses = userCourseJourney.completed.map((d) => d.course);
-
   let sections = [];
 
   if (isInternal)
@@ -668,128 +801,7 @@ function styleLanding() {
     },
   ]);
 
-  // temporarily setting baseURL here
-  const baseURL = "https://courses.chainguard.dev";
-
-  sections.forEach((section) => {
-    const sectionElement = Object.assign(document.createElement("section"), {
-      className: "featured-courses",
-    });
-
-    const grid = Object.assign(document.createElement("div"), {
-      className: "featured-courses__grid",
-    });
-
-    const intro = Object.assign(document.createElement("div"), {
-      className: "featured-courses__intro",
-    });
-
-    const eyebrow = Object.assign(document.createElement("h2"), {
-      className: "eyebrow",
-      textContent: section.eyebrow || "",
-    });
-
-    const headline = Object.assign(document.createElement("p"), {
-      className: "headline",
-      textContent: section.title || "",
-    });
-
-    const subhead = Object.assign(document.createElement("p"), {
-      className: "subhead",
-      textContent: section.description || "",
-    });
-
-    // const cta = Object.assign(document.createElement("a"), {
-    //     className: "btn btn--primary",
-    //     href: "/",
-    //     textContent: "Browse all courses",
-    // });
-
-    intro.append(...[eyebrow, headline, subhead /*cta*/]);
-    grid.append(intro);
-    sectionElement.append(grid);
-
-    const cardsElem = Object.assign(document.createElement("div"), {
-      className: "cards",
-    });
-
-    section.links.forEach((link) => {
-      const isRegistered = registeredCourses.includes(link.slug);
-      const isCompleted = completedCourses.includes(link.slug);
-
-      article = Object.assign(document.createElement("article"), {
-        className: `card ${isCompleted ? "card--completed" : ""} ${
-          isRegistered ? "card--in-progress" : ""
-        }`,
-      });
-
-      innerContainer = Object.assign(document.createElement("div"), {
-        className: "card__inner",
-      });
-
-      if (isCompleted) {
-        pill = Object.assign(document.createElement("span"), {
-          className: "pill completed",
-          textContent: "Completed",
-        });
-        innerContainer.append(pill);
-      }
-
-      if (isRegistered && !isCompleted) {
-        pill = Object.assign(document.createElement("span"), {
-          className: "pill in-progress",
-          textContent: "In Progress",
-        });
-        innerContainer.append(pill);
-      }
-
-      iconContainer = Object.assign(document.createElement("div"), {
-        className: "card__icon",
-        innerHTML: link.icon || "",
-      });
-      titleEyebrow = Object.assign(document.createElement("h5"), {
-        className: "card__eyebrow",
-        textContent: `${link.isCourse ? "Course" : "Learning Path"} | <span>Free</span>`,
-      });
-      title = Object.assign(document.createElement("h3"), {
-        className: "card__title",
-        textContent: link.title || "",
-      });
-
-      description = Object.assign(document.createElement("p"), {
-        className: "card__text",
-        textContent: link.description || "",
-      });
-
-      innerContainer.append(
-        ...[iconContainer, titleEyebrow, title, description]
-      );
-
-      if (link.hasBadge && !isCompleted) {
-        pill = Object.assign(document.createElement("span"), {
-          className: "pill badged",
-          textContent: "Get a Badge",
-        });
-        innerContainer.append(pill);
-      }
-
-      article.append(innerContainer);
-
-      cardLink = Object.assign(document.createElement("a"), {
-        className: "card__link",
-        href: `${baseURL ? baseURL : ""}/${link.slug}`,
-        title: link.isCourse ? "Start course" : "Start path",
-      });
-
-      cardLink.append(article);
-
-      cardsElem.append(cardLink);
-    });
-
-    grid.append(cardsElem);
-    sectionElement.append(grid);
-    document.querySelector("#skilljar-content").append(sectionElement);
-  });
+  makeSections(sections);
 
   document.querySelector("#skilljar-content").append(v.global.footerContainer);
 
