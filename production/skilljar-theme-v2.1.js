@@ -1143,43 +1143,43 @@ function stylePathCourseDetails() {
  */
 function stylePathCatalogPage() {
   log("Running stylePathCatalogPage");
-  const backArrowBtn = document.querySelector(".back-to-catalog");
+  // const backArrowBtn = document.querySelector(".back-to-catalog");
 
-  const mainContentContainer = document.querySelector("#catalog-content");
-  const topContentContainer = mainContentContainer.querySelector(
-    ".path-curriculum-resume-wrapper"
-  );
-  const coursesList = document.querySelectorAll(
-    "#catalog-courses .coursebox-container"
-  );
+  // const mainContentContainer = document.querySelector("#catalog-content");
+  // const topContentContainer = mainContentContainer.querySelector(
+  //   ".path-curriculum-resume-wrapper"
+  // );
+  // const coursesList = document.querySelectorAll(
+  //   "#catalog-courses .coursebox-container"
+  // );
 
-  coursesList.forEach((course) => {
-    const innerContainer = course.querySelector(".course-overview");
+  // coursesList.forEach((course) => {
+  //   const innerContainer = course.querySelector(".course-overview");
 
-    setStyle(course, {
-      border: "2px solid var(--form-bg)",
-      borderRadius: "20px",
-    });
+  //   setStyle(course, {
+  //     border: "2px solid var(--form-bg)",
+  //     borderRadius: "20px",
+  //   });
 
-    setStyle(innerContainer, { borderTop: "2px solid var(--form-bg)" });
+  //   setStyle(innerContainer, { borderTop: "2px solid var(--form-bg)" });
 
-    course.addEventListener("mouseover", () => {
-      setStyle(course, { borderColor: "var(--primary-blue-hex)" });
-      setStyle(innerContainer, { borderColor: "var(--primary-blue-hex)" });
-    });
+  //   course.addEventListener("mouseover", () => {
+  //     setStyle(course, { borderColor: "var(--primary-blue-hex)" });
+  //     setStyle(innerContainer, { borderColor: "var(--primary-blue-hex)" });
+  //   });
 
-    course.addEventListener("mouseout", () => {
-      setStyle(course, { borderColor: "var(--form-bg)" });
-      setStyle(innerContainer, { borderColor: "var(--form-bg)" });
-    });
-  });
+  //   course.addEventListener("mouseout", () => {
+  //     setStyle(course, { borderColor: "var(--form-bg)" });
+  //     setStyle(innerContainer, { borderColor: "var(--form-bg)" });
+  //   });
+  // });
 
-  // MAIN CONTENT STYLING
-  setStyle(mainContentContainer, { margin: "96px auto" });
+  // // MAIN CONTENT STYLING
+  // setStyle(mainContentContainer, { margin: "96px auto" });
 
-  // hide elements
-  hide(backArrowBtn);
-  hide(topContentContainer);
+  // // hide elements
+  // hide(backArrowBtn);
+  // hide(topContentContainer);
 }
 
 function styleLesson() {
