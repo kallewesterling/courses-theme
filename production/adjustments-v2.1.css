@@ -1795,7 +1795,8 @@ body.sj-page-signup {
   }
 }
 
-body.sj-page-login, body.sj-page-signup {
+body.sj-page-login,
+body.sj-page-signup {
   /* Center the stack */
   #tabs,
   .auth-card {
@@ -1860,57 +1861,65 @@ body.sj-page-login, body.sj-page-signup {
   }
 
   /* Inputs */
-  #login_form input[type="email"],
-  #login_form input[type="password"] {
-    width: 100%;
-    height: 56px;
-    padding: 12px 16px;
-    border-radius: var(--radius-md);
-    border: 2px solid rgba(60, 68, 247, 0.55);
-    background: #fff;
-    color: var(--ink);
-    transition: border-color 0.15s ease, box-shadow 0.15s ease,
-      background-color 0.15s ease;
-    box-shadow: 0 1px 0 rgba(20, 0, 61, 0.02);
-  }
-  #login_form input::placeholder {
-    color: #9c9ab0;
-  }
-  #login_form input:hover {
-    border-color: var(--brand);
-  }
-  #login_form input:focus {
-    outline: none;
-    border-color: var(--brand);
-    box-shadow: 0 0 0 4px var(--ring);
-  }
-  /* HTML5 invalid focus */
-  #login_form input:invalid:focus {
-    box-shadow: 0 0 0 4px rgba(255, 92, 92, 0.25);
-  }
+  #login_form,
+  #signup_form {
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      height: 56px;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      border: 2px solid rgba(60, 68, 247, 0.55);
+      background: #fff;
+      color: var(--ink);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease,
+        background-color 0.15s ease;
+      box-shadow: 0 1px 0 rgba(20, 0, 61, 0.02);
+    }
+    input::placeholder {
+      color: #9c9ab0;
+    }
+    input:hover {
+      border-color: var(--brand);
+    }
+    input:focus {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 4px var(--ring);
+    }
+    /* HTML5 invalid focus */
+    input:invalid:focus {
+      box-shadow: 0 0 0 4px rgba(255, 92, 92, 0.25);
+    }
 
-  /* Submit button */
-  #button-sign-in {
-    width: 100%;
-    height: 56px;
-    margin-top: 10px;
-    border-radius: 999px;
-    font-weight: 800;
-    letter-spacing: 0.02em;
-    background: var(--brand);
-    color: #fff;
-    border: 1px solid var(--brand);
-    transition: transform 0.05s ease, filter 0.15s ease, box-shadow 0.15s ease;
-  }
-  #button-sign-in:hover {
-    filter: brightness(0.96);
-  }
-  #button-sign-in:active {
-    transform: translateY(1px);
-  }
-  #button-sign-in:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 4px var(--ring);
+    /* Submit button */
+    #button-sign-in,
+    #button-sign-up {
+      width: 100%;
+      height: 56px;
+      margin-top: 10px;
+      border-radius: 999px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      background: var(--brand);
+      color: #fff;
+      border: 1px solid var(--brand);
+      transition: transform 0.05s ease, filter 0.15s ease, box-shadow 0.15s ease;
+    }
+    #button-sign-in:hover,
+    #button-sign-up:hover {
+      filter: brightness(0.96);
+    }
+    #button-sign-in:active,
+    #button-sign-up:active {
+      transform: translateY(1px);
+    }
+    #button-sign-in:focus-visible,
+    #button-sign-up:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 4px var(--ring);
+    }
   }
 
   /* Forgot password */
@@ -1927,7 +1936,8 @@ body.sj-page-login, body.sj-page-signup {
   }
 
   /* Divider heading */
-  .sj-text-sign-in-with span {
+  .sj-text-sign-in-with span,
+  .sj-text-sign-up-with span {
     display: block;
     margin: 16px 0 -5px;
     font-weight: 800;
@@ -1973,12 +1983,13 @@ body.sj-page-login, body.sj-page-signup {
   #access-message {
     font-size: 14px;
     margin: 62px 0px 0px 0px;
+
+    p {
+      color: var(--ink-dim);
+      margin: 0px;
+    }
   }
-  #access-message p {
-    color: var(--ink-dim);
-    margin: 0px;
-  }
-  #access-message a {
+  #access-message #access-message a {
     color: var(--brand-ink);
     text-underline-offset: 3px;
   }
