@@ -1315,13 +1315,13 @@ function styleAuth() {
   });
 
   // append existing elements to it
+  const form = page.isLogin ? v.local.loginForm : v.local.signupForm;
+  const orSignUpWith = page.isLogin
+    ? document.querySelector(".sj-text-sign-in-with")
+    : document.querySelector(".sj-text-sign-up-with");
+
   authCard.append(
-    ...[
-      page.isLogin ? v.local.loginForm : v.local.signupForm,
-      v.local.altMethod,
-      v.local.googleBtn,
-      v.local.termsAndServices,
-    ]
+    ...[form, orSignUpWith, v.local.googleBtn, v.local.termsAndServices]
   );
 
   authContainer.append(...[document.querySelector("#tabs"), authCard]);
