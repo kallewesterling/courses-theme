@@ -22,6 +22,171 @@ const UTM = {
   CAMPAIGN: "dev-enablement",
 };
 
+// path settings
+pathSections = {
+  containersOnboarding: [
+    {
+      eyebrow: "Admin Onboarding",
+      title: "Platform Admin Kickoff",
+      description:
+        "Start here to get oriented: kickoff, Console basics, our shared responsibility model, and how to work with Support.",
+      links: [
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title:
+            "Kickoff Guide to Chainguard: Getting Started with Our Platform",
+          slug: "kickoff-guide-to-chainguard",
+          description:
+            "A fast, guided kickoff to help you hit the ground running with Chainguard.",
+          icon: ``,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Getting Started with Chainguard's Console",
+          slug: "getting-started-with-chainguards-console",
+          description:
+            "Learn how to explore, manage, and provision container images through Chainguard’s Console.",
+          icon: ``,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "An Introduction to Chainguard's Shared Responsibility Model",
+          slug: "shared-responsibility-model",
+          description:
+            "See how Chainguard divides security responsibilities so you can focus on building applications while we handle the undifferentiated heavy lifting.",
+          icon: ``,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Chainguard's Superstar Support",
+          slug: "chainguards-superstar-support",
+          description:
+            "Skip the stress and get answers fast. Learn how to navigate Chainguard’s support like a superstar and keep your supply chain secure with zero ticket anxiety.",
+          icon: ``,
+        },
+      ],
+    },
+
+    {
+      eyebrow: "Technical Onboarding",
+      title: "Secure Image Setup & Ops",
+      description:
+        "Hands-on setup and operations: secure image basics, SSO/IdP integration, registry mirroring, update strategy, EOL planning, customization, migrations, and debugging.",
+      links: [
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Chainguard 101: Secure Container Images Basics",
+          slug: "chainguard-101",
+          description:
+            "Learn how to build, run, and maintain apps on secure, minimal Chainguard Containers with confidence.",
+          icon: ``,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Integrating SSO and IdPs with Chainguard Registry",
+          slug: "integrating-sso-and-idps-with-chainguard-registry",
+          description:
+            "Connect your identity provider and streamline secure access to Chainguard’s registry.",
+          icon: ``,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Registry Mirroring with Chainguard",
+          slug: "registry-mirroring",
+          description:
+            "Mirror Chainguard images and packages into your internal registry to simplify access, improve reliability, and strengthen control.",
+          icon: ``,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title:
+            "Keeping Up With Latest: Update Strategies for Chainguard Images",
+          slug: "keeping-up-with-latest",
+          description:
+            "Stay secure and compliant by keeping your Chainguard images up to date—without the chaos.",
+          icon: ``,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Managing End-of-Life Grace Periods with Chainguard",
+          slug: "managing-end-of-life-grace-periods-with-chainguard",
+          description:
+            "Navigate Chainguard’s EOL Grace Period to keep workloads secure while you plan upgrades.",
+          icon: ``,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Getting Started with Chainguard's Custom Assembly",
+          slug: "getting-started-with-chainguards-custom-assembly",
+          description:
+            "Quickly and securely customize your Chainguard Images—no Dockerfile required.",
+          icon: ``,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Migrating to Chainguard Application Images",
+          slug: "migrating-to-chainguard-application-images",
+          description:
+            "Replace vulnerable upstream images with secure, drop-in Chainguard application images in just a few steps.",
+          icon: ``,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Mastering Base Image Migrations With Chainguard",
+          slug: "mastering-base-image-migrations-with-chainguard",
+          description:
+            "Migrate real apps from “it works on Debian” to minimal, secure Chainguard base images.",
+          icon: ``,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Containers 102: Practical Image Migration Skills",
+          slug: "containers-102",
+          description:
+            "Hands-on tactics to keep images small, secure, and portable while you migrate to Chainguard.",
+          icon: ``,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Debugging Chainguard Containers",
+          slug: "debugging-chainguard-containers",
+          description:
+            "Practical strategies to debug Chainguard’s minimal, secure container images in Docker and Kubernetes—without breaking their security model.",
+          icon: ``,
+        },
+      ],
+    },
+  ],
+};
+
 let initialLoadComplete = false,
   isStaging = false,
   isInternal = false,
@@ -910,224 +1075,10 @@ function stylePathCourseDetails() {
   );
 
   if (skilljarCourseSeries.title === "Chainguard Containers Onboarding Guide") {
-    window.pathSections = [
-      {
-        eyebrow: "Admin Onboarding",
-        title: "Platform Admin Kickoff",
-        description:
-          "Start here to get oriented: kickoff, Console basics, our shared responsibility model, and how to work with Support.",
-        links: [
-          {
-            isPath: false,
-            isCourse: true,
-            hasBadge: false,
-            title:
-              "Kickoff Guide to Chainguard: Getting Started with Our Platform",
-            slug: "kickoff-guide-to-chainguard",
-            description:
-              "A fast, guided kickoff to help you hit the ground running with Chainguard.",
-            icon: ``,
-          },
-          {
-            isPath: false,
-            isCourse: true,
-            hasBadge: false,
-            title: "Getting Started with Chainguard's Console",
-            slug: "getting-started-with-chainguards-console",
-            description:
-              "Learn how to explore, manage, and provision container images through Chainguard’s Console.",
-            icon: ``,
-          },
-          {
-            isPath: false,
-            isCourse: true,
-            hasBadge: false,
-            title:
-              "An Introduction to Chainguard's Shared Responsibility Model",
-            slug: "shared-responsibility-model",
-            description:
-              "See how Chainguard divides security responsibilities so you can focus on building applications while we handle the undifferentiated heavy lifting.",
-            icon: ``,
-          },
-          {
-            isPath: false,
-            isCourse: true,
-            hasBadge: false,
-            title: "Chainguard's Superstar Support",
-            slug: "chainguards-superstar-support",
-            description:
-              "Skip the stress and get answers fast. Learn how to navigate Chainguard’s support like a superstar and keep your supply chain secure with zero ticket anxiety.",
-            icon: ``,
-          },
-        ],
-      },
-
-      {
-        eyebrow: "Technical Onboarding",
-        title: "Secure Image Setup & Ops",
-        description:
-          "Hands-on setup and operations: secure image basics, SSO/IdP integration, registry mirroring, update strategy, EOL planning, customization, migrations, and debugging.",
-        links: [
-          {
-            isPath: false,
-            isCourse: true,
-            hasBadge: false,
-            title: "Chainguard 101: Secure Container Images Basics",
-            slug: "chainguard-101",
-            description:
-              "Learn how to build, run, and maintain apps on secure, minimal Chainguard Containers with confidence.",
-            icon: ``,
-          },
-          {
-            isPath: false,
-            isCourse: true,
-            hasBadge: false,
-            title: "Integrating SSO and IdPs with Chainguard Registry",
-            slug: "integrating-sso-and-idps-with-chainguard-registry",
-            description:
-              "Connect your identity provider and streamline secure access to Chainguard’s registry.",
-            icon: ``,
-          },
-          {
-            isPath: false,
-            isCourse: true,
-            hasBadge: false,
-            title: "Registry Mirroring with Chainguard",
-            slug: "registry-mirroring",
-            description:
-              "Mirror Chainguard images and packages into your internal registry to simplify access, improve reliability, and strengthen control.",
-            icon: ``,
-          },
-          {
-            isPath: false,
-            isCourse: true,
-            hasBadge: false,
-            title:
-              "Keeping Up With Latest: Update Strategies for Chainguard Images",
-            slug: "keeping-up-with-latest",
-            description:
-              "Stay secure and compliant by keeping your Chainguard images up to date—without the chaos.",
-            icon: ``,
-          },
-          {
-            isPath: false,
-            isCourse: true,
-            hasBadge: false,
-            title: "Managing End-of-Life Grace Periods with Chainguard",
-            slug: "managing-end-of-life-grace-periods-with-chainguard",
-            description:
-              "Navigate Chainguard’s EOL Grace Period to keep workloads secure while you plan upgrades.",
-            icon: ``,
-          },
-          {
-            isPath: false,
-            isCourse: true,
-            hasBadge: false,
-            title: "Getting Started with Chainguard's Custom Assembly",
-            slug: "getting-started-with-chainguards-custom-assembly",
-            description:
-              "Quickly and securely customize your Chainguard Images—no Dockerfile required.",
-            icon: ``,
-          },
-          {
-            isPath: false,
-            isCourse: true,
-            hasBadge: false,
-            title: "Migrating to Chainguard Application Images",
-            slug: "migrating-to-chainguard-application-images",
-            description:
-              "Replace vulnerable upstream images with secure, drop-in Chainguard application images in just a few steps.",
-            icon: ``,
-          },
-          {
-            isPath: false,
-            isCourse: true,
-            hasBadge: false,
-            title: "Mastering Base Image Migrations With Chainguard",
-            slug: "mastering-base-image-migrations-with-chainguard",
-            description:
-              "Migrate real apps from “it works on Debian” to minimal, secure Chainguard base images.",
-            icon: ``,
-          },
-          {
-            isPath: false,
-            isCourse: true,
-            hasBadge: false,
-            title: "Containers 102: Practical Image Migration Skills",
-            slug: "containers-102",
-            description:
-              "Hands-on tactics to keep images small, secure, and portable while you migrate to Chainguard.",
-            icon: ``,
-          },
-          {
-            isPath: false,
-            isCourse: true,
-            hasBadge: false,
-            title: "Debugging Chainguard Containers",
-            slug: "debugging-chainguard-containers",
-            description:
-              "Practical strategies to debug Chainguard’s minimal, secure container images in Docker and Kubernetes—without breaking their security model.",
-            icon: ``,
-          },
-        ],
-      },
-    ];
-
-    // // apply style specific to container onboarding path
-    // const csmWrapper = Object.assign(document.createElement("div"), {
-    //   id: "catalog-courses",
-    //   className: "course-listing",
-    // });
-    // csmWrapper.dataset.listing = "CSM";
-    // v.local.catalog.prepend(csmWrapper);
-
-    // const saHeader = Object.assign(document.createElement("h3"), {
-    //   className: "course-listing-header technical-onboarding",
-    //   textContent: "Technical Onboarding",
-    // });
-
-    // const csmHeader = Object.assign(document.createElement("h3"), {
-    //   className: "course-listing-header admin-onboarding",
-    //   textContent: "Admin Onboarding",
-    // });
-
-    // // here we set the order of csmCourses
-    // const csmCourses = [
-    //   "kickoff-guide-to-chainguard",
-    //   "getting-started-with-chainguards-console",
-    //   "shared-responsibility-model",
-    //   "chainguards-superstar-support",
-    // ]
-    //   .filter(Boolean)
-    //   .map((d) =>
-    //     document.querySelector(`.coursebox-container[data-course=${d}]`)
-    //   );
-
-    // const saCourses = document.querySelector(
-    //   "#catalog-courses:not([data-listing='CSM'])"
-    // );
-
-    // csmWrapper.append(...csmCourses.filter(Boolean));
-
-    // v.local.catalog.append(csmHeader, csmWrapper, saHeader, saCourses);
-
-    // // move completed courses to end of list
-    // saCourses.append(
-    //   ...saCourses.querySelectorAll(
-    //     ".coursebox-container[data-course-status='complete']"
-    //   )
-    // );
-
-    // csmWrapper.append(
-    //   ...csmWrapper.querySelectorAll(
-    //     ".coursebox-container[data-course-status='complete']"
-    //   )
-    // );
-
     hide(".sj-courseboxes-v2");
 
     makeSections(
-      window.pathSections,
+      pathSections.containersOnboarding,
       "#skilljar-content",
       "https://courses.chainguard.dev/path/chainguard-containers-onboarding-guide"
     );
