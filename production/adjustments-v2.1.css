@@ -1755,7 +1755,7 @@ body.sj-page-lesson {
   --grad: linear-gradient(90deg, #57c6ff 0%, #5b6bff 50%, #813df3 100%);
 }
 
-body.sj-page-login {
+body.sj-page-login, body.sj-page-signup {
   /* ============ Chainguard – Login (Airy) ============ */
 
   /* Center the stack */

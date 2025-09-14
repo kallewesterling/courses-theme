@@ -1235,52 +1235,67 @@ function styleLesson() {
   }
 }
 
-const getLoginSignupSelectors = () => ({
-  googleBtn: document.querySelector("#google_login"),
-  termsAndServices: document.querySelector("#access-message"),
-  altMethod:
-    document.querySelector(".sj-text-sign-in-with span") ||
-    document.querySelector(".sj-text-sign-up-with span"),
+function styleAuth() {
+  log("Running styleAuth");
 
-  inputs: {
-    password2: document.querySelector("#id_password2"), // signup specific
-    email: document.querySelector("#id_email"), // signup specific
-  },
+  v.local = {
+    googleBtn: document.querySelector("#google_login"),
+    termsAndServices: document.querySelector("#access-message"),
+    altMethod:
+      document.querySelector(".sj-text-sign-in-with span") ||
+      document.querySelector(".sj-text-sign-up-with span"),
 
-  // login specific
-  loginBtn: document.querySelector("#button-sign-in"),
-  loginForm: document.querySelector("#login_form"),
-  loginText: document.querySelector("#login-tab-left span span"),
-  signupTabTextSpan: document.querySelector("#login-tab-right span"),
+    inputs: {
+      password2: document.querySelector("#id_password2"), // signup specific
+      email: document.querySelector("#id_email"), // signup specific
+    },
 
-  // signup-specific
-  loginTabTextSpan: document.querySelector("#login-tab-left a span"),
-  signupForm: document.querySelector("#signup_form"),
-  signupTabText:
-    document.querySelector("#login-tab-right a") ||
-    document.querySelector("#login-tab-right span"),
-  passwordConfirm: document.querySelector(
-    "label[for=id_password2] .input-label-text span"
-  ),
-  fNameLabel: document.querySelector('label[for="id_first_name"] span span'),
-  lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
-  emailLabel: document.querySelector('label[for="id_email"]'),
-  signupBtnText: document.querySelector("#button-sign-up span"),
-});
+    // login specific
+    loginBtn: document.querySelector("#button-sign-in"),
+    loginForm: document.querySelector("#login_form"),
+    loginText: document.querySelector("#login-tab-left span span"),
+    signupTabTextSpan: document.querySelector("#login-tab-right span"),
 
-function styleLogin() {
-  log("Running styleLogin");
+    // signup-specific
+    loginTabTextSpan: document.querySelector("#login-tab-left a span"),
+    signupForm: document.querySelector("#signup_form"),
+    signupTabText:
+      document.querySelector("#login-tab-right a") ||
+      document.querySelector("#login-tab-right span"),
+    passwordConfirm: document.querySelector(
+      "label[for=id_password2] .input-label-text span"
+    ),
+    fNameLabel: document.querySelector('label[for="id_first_name"] span span'),
+    lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
+    emailLabel: document.querySelector('label[for="id_email"]'),
+    signupBtnText: document.querySelector("#button-sign-up span"),
+  };
 
-  v.local = getLoginSignupSelectors();
+  if (page.isLogin) {
+    v.local.loginText.textContent = "Log In";
+    v.local.signupTabTextSpan.textContent = "Sign Up";
+    v.local.altMethod.textContent = "Or Log In With";
+    v.local.loginBtn.textContent = "Log In";
+    v.local.googleBtn.textContent = "Continue with Google";
 
-  v.local.loginText.textContent = "Log In";
-  v.local.signupTabTextSpan.textContent = "Sign Up";
-  v.local.altMethod.textContent = "Or Log In With";
-  v.local.loginBtn.textContent = "Log In";
-  v.local.googleBtn.textContent = "Continue with Google";
+    v.local.loginForm.append(v.local.termsAndServices);
+  } else {
+    v.local.loginTabTextSpan.textContent = "Log In";
+    v.local.signupTabText.textContent = "Sign Up";
+    v.local.altMethod.textContent = "Or Sign Up With";
+    v.local.fNameLabel.textContent = "First Name";
+    v.local.googleBtn.textContent = "Continue with Google";
+    v.local.lNameLabel.textContent = "Last Name";
+    v.local.signupBtnText.textContent = "Sign Up";
+    v.local.passwordConfirm.textContent = "Password Confirm";
+    v.local.emailLabel.textContent = "Work Email";
+    v.local.inputs.email.placeholder = "Work Email";
+    v.local.inputs.password2.placeholder = "Password Confirm";
+
+    v.local.signupForm.append(v.local.termsAndServices);
+  }
 
   // move elements
-  v.local.loginForm.append(v.local.termsAndServices);
 
   // test moving login elements around
   // hide existing login content
@@ -1291,7 +1306,7 @@ function styleLogin() {
 
   const authContainer = Object.assign(document.createElement("div"), {
     id: "auth-container",
-    style: "flex-grow: 1;"
+    style: "flex-grow: 1;",
   });
 
   // create new auth card
@@ -1302,10 +1317,10 @@ function styleLogin() {
   // append existing elements to it
   authCard.append(
     ...[
-      document.querySelector("#login_form"),
-      document.querySelector("h4.sj-text-sign-in-with"),
-      document.querySelector("button#google_login"),
-      document.querySelector("#access-message"),
+      page.isLogin ? v.local.loginForm : v.local.signupForm,
+      v.local.altMethod,
+      v.local.googleBtn,
+      v.local.termsAndServices,
     ]
   );
 
@@ -1313,31 +1328,7 @@ function styleLogin() {
 
   document
     .querySelector("#skilljar-content")
-    .append(
-      ...[authContainer, v.global.footerContainer]
-    );
-}
-
-function styleSignup() {
-  log("Running styleSignup");
-
-  v.local = getLoginSignupSelectors();
-
-  // set content
-  v.local.loginTabTextSpan.textContent = "Log In";
-  v.local.signupTabText.textContent = "Sign Up";
-  v.local.altMethod.textContent = "Or Sign Up With";
-  v.local.fNameLabel.textContent = "First Name";
-  v.local.googleBtn.textContent = "Continue with Google";
-  v.local.lNameLabel.textContent = "Last Name";
-  v.local.signupBtnText.textContent = "Sign Up";
-  v.local.passwordConfirm.textContent = "Password Confirm";
-  v.local.emailLabel.textContent = "Work Email";
-  v.local.inputs.email.placeholder = "Work Email";
-  v.local.inputs.password2.placeholder = "Password Confirm";
-
-  // move elements
-  v.local.signupForm.append(v.local.termsAndServices);
+    .append(...[authContainer, v.global.footerContainer]);
 }
 
 function styleCurriculumPageNoCertificate() {
@@ -1925,13 +1916,9 @@ function handlePageStyling() {
     // we are on the landing page (which is a catalog page)
     return styleLanding();
 
-  if (page.isLogin)
-    // we are on the login page
-    return styleLogin();
-
-  if (page.isSignup)
-    // we are on the sign-up page
-    return styleSignup();
+  if (page.isLogin || page.isSignup)
+    // we are on the login or signup page
+    return styleAuth();
 
   if (page.isCourseDetails)
     // we are on a course page but not logged in
