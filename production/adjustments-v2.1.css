@@ -787,7 +787,6 @@ body.sj-page-detail-bundle.sj-page-detail-path, body.sj-page-catalog.sj-page-ser
         max-width: 600px;
 
         .sj-floater-text {
-          color: var(--primary-cyan-hex);
           display: block;
           margin-bottom: 24px;
         }
