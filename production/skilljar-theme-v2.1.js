@@ -1082,14 +1082,13 @@ function stylePathCourseDetails() {
       "#skilljar-content",
       `https://courses.chainguard.dev/path/${skilljarPath.slug}`
     );
-    
+
     document
       .querySelector("#skilljar-content")
       .append(v.global.footerContainer);
   } else {
-    console.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`)
+    console.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
   }
-
 }
 
 /**
@@ -1110,25 +1109,50 @@ function stylePathCatalogPage() {
   //    DIV row padding-side
   //       DIV columns
   //          DIV dp-long-description
-  //             P [long description of path]        
+  //             P [long description of path]
 
   hide(".path-curriculum-resume-wrapper");
 
-  const topRow = Object.assign(document.createElement("div"), { className: "top-row-grey top-row-white-v2 padding-top padding-side row-v2" });
-  const topRowInner = Object.assign(document.createElement("div"), { className: "row dp-row-flex-v2" });
-  const topRowLeft = Object.assign(document.createElement("div"), { className: "columns text-center large-6 dp-summary-wrapper text-left-v2" });
-  const floaterText = Object.assign(document.createElement("div"), { className: "sj-floater-text", textContent: "Learning Path" });
-  const mainHeading = Object.assign(document.createElement("h1"), { className: "break-word", textContent: skilljarCourseSeries.title || "" });
-  const courseInfo = Object.assign(document.createElement("p"), { className: "sj-heading-paragraph", textContent: skilljarCourseSeries.short_description || "" });
-  const ctaBtnWrapper = document.querySelector(".path-curriculum-button-wrapper a");
+  const topRow = Object.assign(document.createElement("div"), {
+    className: "top-row-grey top-row-white-v2 padding-top padding-side row-v2",
+  });
+  const topRowInner = Object.assign(document.createElement("div"), {
+    className: "row dp-row-flex-v2",
+  });
+  const topRowLeft = Object.assign(document.createElement("div"), {
+    className: "columns text-center large-6 dp-summary-wrapper text-left-v2",
+  });
+  const floaterText = Object.assign(document.createElement("div"), {
+    className: "sj-floater-text",
+    textContent: "Learning Path",
+  });
+  const mainHeading = Object.assign(document.createElement("h1"), {
+    className: "break-word",
+    textContent: skilljarCourseSeries.title || "",
+  });
+  const courseInfo = Object.assign(document.createElement("p"), {
+    className: "sj-heading-paragraph",
+    textContent: skilljarCourseSeries.short_description || "",
+  });
+  const ctaBtnWrapper = document.querySelector(
+    ".path-curriculum-button-wrapper a"
+  );
   topRowLeft.append(floaterText, mainHeading, courseInfo, ctaBtnWrapper);
   topRowInner.append(topRowLeft);
   topRow.append(topRowInner);
 
-  const detailsBundle = Object.assign(document.createElement("div"), { id: "dp-details-bundle" });
-  const detailsBundleRow = Object.assign(document.createElement("div"), { className: "row padding-side" });
-  const detailsBundleCol = Object.assign(document.createElement("div"), { className: "columns" });
-  const longDescription = Object.assign(document.createElement("div"), { className: "dp-long-description" });
+  const detailsBundle = Object.assign(document.createElement("div"), {
+    id: "dp-details-bundle",
+  });
+  const detailsBundleRow = Object.assign(document.createElement("div"), {
+    className: "row padding-side",
+  });
+  const detailsBundleCol = Object.assign(document.createElement("div"), {
+    className: "columns",
+  });
+  const longDescription = Object.assign(document.createElement("div"), {
+    className: "dp-long-description",
+  });
   const longDescPara = Object.assign(document.createElement("p"));
   longDescPara.innerHTML = skilljarCourseSeries.long_description_html;
   longDescription.append(longDescPara);
@@ -1137,15 +1161,20 @@ function stylePathCatalogPage() {
   detailsBundle.append(detailsBundleRow);
 
   // back to landing page button
-  const backToLandingBtn = document.querySelector(".back-to-catalog.animated-button-pair");
+  const backToLandingBtn = document.querySelector(
+    ".back-to-catalog.animated-button-pair"
+  );
+  const backToLandingBtnText = backToLandingBtn?.querySelector("span");
   if (backToLandingBtn) {
-    backToLandingBtn.textContent = "Back to Home";
+    backToLandingBtnText.textContent = "Back to Home";
     setStyle(backToLandingBtn, { display: "block !important;" });
     document.querySelector("#skilljar-content").prepend(backToLandingBtn);
   }
-  
+
   // prepend topRow and detailsBundle to content
-  document.querySelector("#skilljar-content").prepend(...[topRow, detailsBundle]);
+  document
+    .querySelector("#skilljar-content")
+    .prepend(...[topRow, detailsBundle]);
 
   if (pathSections[skilljarPath.slug]) {
     hide(".sj-courseboxes-v2");
@@ -1155,12 +1184,12 @@ function stylePathCatalogPage() {
       "#skilljar-content",
       `https://courses.chainguard.dev/path/${skilljarPath.slug}`
     );
-    
+
     document
       .querySelector("#skilljar-content")
       .append(v.global.footerContainer);
   } else {
-    console.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`)
+    console.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
   }
 
   // const backArrowBtn = document.querySelector(".back-to-catalog");
