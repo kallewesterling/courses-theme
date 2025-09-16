@@ -1135,8 +1135,17 @@ function stylePathCatalogPage() {
   detailsBundleCol.append(longDescription);
   detailsBundleRow.append(detailsBundleCol);
   detailsBundle.append(detailsBundleRow);
- 
-  document.querySelector("#skilljar-content").prepend(...[detailsBundle, topRow]);
+
+  // back to landing page button
+  const backToLandingBtn = document.querySelector(".back-to-catalog.animated-button-pair");
+  if (backToLandingBtn) {
+    backToLandingBtn.textContent = "Back to Home";
+    setStyle(backToLandingBtn, { display: "block !important;" });
+    document.querySelector("#skilljar-content").prepend(backToLandingBtn);
+  }
+  
+  // prepend topRow and detailsBundle to content
+  document.querySelector("#skilljar-content").prepend(...[topRow, detailsBundle]);
 
   if (pathSections[skilljarPath.slug]) {
     hide(".sj-courseboxes-v2");
