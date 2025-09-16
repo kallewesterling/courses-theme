@@ -811,14 +811,14 @@ body.sj-page-detail-bundle.sj-page-detail-path, body.sj-page-catalog.sj-page-ser
           display: none !important;
         }
 
+        a#purchase-button, a#path-curriculum-resume-button {
+          border-color: var(--primary-cyan-hex);
+          color: var(--primary-white-hex);
+        }
+
         #purchase-button-wrapper-large {
           /* Register/sign up/resume button wrapper */
           justify-content: left !important;
-
-          a#purchase-button {
-            border-color: var(--primary-cyan-hex);
-            color: var(--primary-white-hex);
-          }
 
           .signin {
             /* Sign in link */
