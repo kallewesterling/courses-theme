@@ -2224,6 +2224,7 @@ window.addEventListener("resize", () => {
   if (page.isSignup) return;
   if (page.isCurriculum && !page.hasCertificate) return;
   if (page.isLesson) return;
+  if (page.isPageCatalog) return;
 
   render();
 });
