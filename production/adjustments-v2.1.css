@@ -764,7 +764,8 @@ body.sj-page-detail-course {
   }
 }
 
-body.sj-page-detail-bundle.sj-page-detail-path, body.sj-page-catalog.sj-page-series {
+body.sj-page-detail-bundle.sj-page-detail-path,
+body.sj-page-catalog.sj-page-series {
   /* Learning path detail page styles */
 
   .top-row-grey {
@@ -814,9 +815,15 @@ body.sj-page-detail-bundle.sj-page-detail-path, body.sj-page-catalog.sj-page-ser
           display: none !important;
         }
 
-        a#purchase-button, a#path-curriculum-resume-button {
+        a#purchase-button,
+        a#path-curriculum-resume-button {
           border-color: var(--primary-cyan-hex);
           color: var(--primary-white-hex);
+        }
+
+        a#purchase-button:hover,
+        a#path-curriculum-resume-button:hover {
+          color: white !important;
         }
 
         #purchase-button-wrapper-large {
