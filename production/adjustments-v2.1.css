@@ -241,6 +241,10 @@ body.sj-page-detail-course {
         a {
           color: black !important;
         }
+
+        a:hover {
+          color: white !important;
+        }
       }
     }
   }
