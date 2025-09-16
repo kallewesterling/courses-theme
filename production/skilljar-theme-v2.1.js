@@ -1168,13 +1168,12 @@ function stylePathCatalogPage() {
   if (backToLandingBtn) {
     backToLandingBtnText.textContent = "Back to Home";
     setStyle(backToLandingBtn, { display: "block !important;" });
-    document.querySelector("#skilljar-content").prepend(backToLandingBtn);
   }
 
   // prepend topRow and detailsBundle to content
   document
     .querySelector("#skilljar-content")
-    .prepend(...[topRow, detailsBundle]);
+    .prepend(...[topRow, backToLandingBtn, detailsBundle].filter(Boolean));
 
   if (pathSections[skilljarPath.slug]) {
     hide(".sj-courseboxes-v2");
