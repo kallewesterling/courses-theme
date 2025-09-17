@@ -199,7 +199,7 @@ let initialLoadComplete = false,
     completed: false,
   };
 
-if (window.location.hostname.includes("chainguard-test.skilljar.com")) {
+if (window.location.hostname === "chainguard-test.skilljar.com") {
   isStaging = true;
   domain = "ix1ljpxex6xd";
 }
