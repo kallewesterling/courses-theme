@@ -559,7 +559,9 @@ function getCurriculumElements(curriculumParentContainer) {
   const content = elements
     .filter((e) => !e.classList.contains("lesson-row"))
     .map((elem) => {
-      const isHeader = elem.classList.contains("section");
+      const isHeader =
+        elem.classList.contains("section") ||
+        elem.classList.contains("lesson-section");
 
       currentSection += isHeader ? 1 : 0;
 
@@ -610,8 +612,7 @@ function getCurriculumElements(curriculumParentContainer) {
         href: section.links[ix] || "#",
       });
 
-      if (section.bullets[ix])
-        a.prepend(section.bullets[ix]);
+      if (section.bullets[ix]) a.prepend(section.bullets[ix]);
 
       return a;
     });
