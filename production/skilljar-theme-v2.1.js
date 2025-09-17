@@ -552,14 +552,14 @@ let v = {
 function getCurriculumElements(curriculumParentContainer) {
   let currentSection = 0,
     elements = Array.from(
-      curriculumParentContainer.querySelectorAll("[class^='lesson-']")
+      curriculumParentContainer.querySelectorAll("[class^='lesson-'],.section")
     ),
     a;
 
   const content = elements
     .filter((e) => !e.classList.contains("lesson-row"))
     .map((elem) => {
-      const isHeader = elem.classList.contains("lesson-section");
+      const isHeader = elem.classList.contains("section");
 
       currentSection += isHeader ? 1 : 0;
 
@@ -596,39 +596,22 @@ function getCurriculumElements(curriculumParentContainer) {
   return a.map((section) => {
     const wrapper = Object.assign(document.createElement("div"), {
       className: "curriculum-wrapper",
-      // style: `border-radius: 8px; margin-bottom: 48px; padding: 0; border: ${
-      //   border === "b"
-      //     ? "2px solid var(--primary-blue-hex)"
-      //     : "1px solid var(--detail-medium-contrast)"
-      // };`,
     });
 
     const header = Object.assign(document.createElement("div"), {
       className: "curriculum-header",
-      // style: `display: flex; align-items: center; padding: 24px; margin: 0; font-family: "Fusiona"; font-size: 16px; font-weight: 500; line-height: 125%; letter-spacing: "-.16px"; border-bottom: 2px solid var(--primary-blue-hex);`,
       textContent: section.heading,
     });
 
     const lessons = section.lessons.map((lesson, ix) => {
       const a = Object.assign(document.createElement("a"), {
         className: "curriculum-lesson" /* lesson-row */,
-        // style: `display: block; color: black; padding: 24px; font-size: 16px; font-weight: 400; line-height: 150%; border-bottom: ${
-        //   ix !== section.lessons.length - 1
-        //     ? border === "b"
-        //       ? "2px solid var(--primary-blue-hex)"
-        //       : "1px solid var(--detail-medium-contrast)"
-        //     : "none"
-        // };`,
         textContent: lesson,
         href: section.links[ix] || "#",
       });
 
       if (section.bullets[ix])
-        a.prepend(
-          Object.assign(section.bullets[ix], {
-            // style: `display: inline-block; font-size: 1.5em; transform: translateY(3px); margin-right: 10px; color: var(--primary-blue-hex);`,
-          })
-        );
+        a.prepend(section.bullets[ix]);
 
       return a;
     });
