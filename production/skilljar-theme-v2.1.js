@@ -65,7 +65,9 @@ pathSections = {
           title: "Chainguard Containers To the Rescue!",
           description:
             "Explore how Chainguard Containers can help you mitigate vulnerabilities and enhance your security posture.",
-        }
+        },
+      ],
+    },
   ],
   "chainguard-containers-onboarding-guide": [
     {
