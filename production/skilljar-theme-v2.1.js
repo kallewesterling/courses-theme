@@ -1166,7 +1166,19 @@ function stylePathCatalogPage() {
   const ctaBtnWrapper = document.querySelector(
     ".path-curriculum-button-wrapper a"
   );
-  topRowLeft.append(floaterText, mainHeading, courseInfo, ctaBtnWrapper);
+  const progressAnnotation = document.querySelector(
+    ".path-curriculum-progress-bar-annotation"
+  );
+  const progressBar = document.querySelector("#path-curriculum-progress-bar");
+  hide([progressAnnotation, progressBar]); // temporarily
+  topRowLeft.append(
+    floaterText,
+    mainHeading,
+    courseInfo,
+    ctaBtnWrapper,
+    progressAnnotation,
+    progressBar
+  );
   topRowInner.append(topRowLeft);
   topRow.append(topRowInner);
 
