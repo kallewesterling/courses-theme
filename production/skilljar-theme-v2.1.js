@@ -1171,16 +1171,16 @@ function stylePathCatalogPage() {
   );
   const progressBar = document.querySelector("#path-curriculum-progress-bar");
   hide([progressAnnotation, progressBar]); // temporarily
-  topRowLeft
-    .append(
+  topRowLeft.append(
+    ...[
       floaterText,
       mainHeading,
       courseInfo,
       ctaBtnWrapper,
       progressAnnotation,
-      progressBar
-    )
-    .filter(Boolean);
+      progressBar,
+    ].filter(Boolean)
+  );
   topRowInner.append(topRowLeft);
   topRow.append(topRowInner);
 
