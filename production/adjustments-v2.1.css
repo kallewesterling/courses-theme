@@ -2021,7 +2021,7 @@ body.sj-page-signup {
 /* Breadcrumb styling */
 #breadcrumb {
   margin: 20px auto;
-  
+
   .breadcrumb {
     --ink: #14003d;
     --muted: #6b6a78;
@@ -2063,7 +2063,7 @@ body.sj-page-signup {
     font-weight: 800;
   }
   .breadcrumb .crumb {
-    max-width: 28ch;
+    max-width: min-content;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
