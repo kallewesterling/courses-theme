@@ -28,6 +28,78 @@ const baseURL = isAdmin
   ? "https://chainguard-test.skilljar.com"
   : "https://courses.chainguard.dev";
 
+// let initialLoadComplete = false,
+let isStaging = false,
+  isInternal = false,
+  domain = "3glgawqmzatte",
+  userCourseJourney = {},
+  course = {
+    progress: {},
+    path:
+      typeof skilljarCourseSeries !== "undefined" ? skilljarCourseSeries : {},
+    completed: false,
+  },
+  crumbs = [["Home", baseURL]];
+
+if (window.location.hostname === "chainguard-test.skilljar.com") {
+  isStaging = true;
+  domain = "ix1ljpxex6xd";
+}
+
+// set up userCourseJourney global variable
+if (Array.from(document.querySelectorAll(".coursebox-container")).length)
+  userCourseJourney = {
+    unregistered: Array.from(
+      document.querySelectorAll(
+        ".coursebox-container[data-course-status='unregistered']"
+      )
+    ).map((el) => Object.assign({ ...el.dataset })),
+    registered: Array.from(
+      document.querySelectorAll(
+        ".coursebox-container[data-course-status='registered']"
+      )
+    ).map((el) => Object.assign({ ...el.dataset })),
+    completed: Array.from(
+      document.querySelectorAll(
+        ".coursebox-container[data-course-status='complete']"
+      )
+    ).map((el) => Object.assign({ ...el.dataset })),
+  };
+
+if (typeof skilljarCourseSeries !== "undefined") {
+  course.path.edit = `https://dashboard.skilljar.com/publishing/domains/${domain}/published-paths/${skilljarCourseSeries.id}/edit`;
+  crumbs.push([
+    skilljarCourseSeries.title,
+    `${baseURL}/paths/${skilljarCourseSeries.slug}`,
+  ]);
+}
+
+if (typeof skilljarCourse !== "undefined") {
+  course.id = skilljarCourse.id;
+  course.publishedCourseId = skilljarCourse.publishedCourseId;
+  course.tags = skilljarCourse.tags;
+  course.title = skilljarCourse.title;
+  course.short_description = skilljarCourse.short_description;
+  course.long_description_html = skilljarCourse.long_description_html;
+  course.edit = `https://dashboard.skilljar.com/course/${skilljarCourse.id}`;
+
+  let courseURL = "#";
+  if (typeof skilljarCourseSeries !== "undefined") {
+    // courseURL = `${baseURL}/path/${skilljarCourseSeries.slug}/courses/${skilljarCourse.publishedCourseId}`;
+  } else {
+    // courseURL = `${baseURL}/courses/${skilljarCourse.publishedCourseId}`;
+  }
+  crumbs.push([skilljarCourse.title, courseURL]);
+}
+
+if (typeof skilljarCourseProgress !== "undefined") {
+  course.progress = skilljarCourseProgress;
+  course.completed = skilljarCourseProgress.completed_at !== "";
+}
+
+if (typeof skilljarUser !== "undefined")
+  isInternal = skilljarUser.email.includes("@chainguard.dev");
+
 // path settings
 pathSections = {
   home: [
@@ -371,78 +443,6 @@ pathSections = {
     },
   ],
 };
-
-// let initialLoadComplete = false,
-let isStaging = false,
-  isInternal = false,
-  domain = "3glgawqmzatte",
-  userCourseJourney = {},
-  course = {
-    progress: {},
-    path:
-      typeof skilljarCourseSeries !== "undefined" ? skilljarCourseSeries : {},
-    completed: false,
-  },
-  crumbs = [["Home", baseURL]];
-
-if (window.location.hostname === "chainguard-test.skilljar.com") {
-  isStaging = true;
-  domain = "ix1ljpxex6xd";
-}
-
-// set up userCourseJourney global variable
-if (Array.from(document.querySelectorAll(".coursebox-container")).length)
-  userCourseJourney = {
-    unregistered: Array.from(
-      document.querySelectorAll(
-        ".coursebox-container[data-course-status='unregistered']"
-      )
-    ).map((el) => Object.assign({ ...el.dataset })),
-    registered: Array.from(
-      document.querySelectorAll(
-        ".coursebox-container[data-course-status='registered']"
-      )
-    ).map((el) => Object.assign({ ...el.dataset })),
-    completed: Array.from(
-      document.querySelectorAll(
-        ".coursebox-container[data-course-status='complete']"
-      )
-    ).map((el) => Object.assign({ ...el.dataset })),
-  };
-
-if (typeof skilljarCourseSeries !== "undefined") {
-  course.path.edit = `https://dashboard.skilljar.com/publishing/domains/${domain}/published-paths/${skilljarCourseSeries.id}/edit`;
-  crumbs.push([
-    skilljarCourseSeries.title,
-    `${baseURL}/paths/${skilljarCourseSeries.slug}`,
-  ]);
-}
-
-if (typeof skilljarCourse !== "undefined") {
-  course.id = skilljarCourse.id;
-  course.publishedCourseId = skilljarCourse.publishedCourseId;
-  course.tags = skilljarCourse.tags;
-  course.title = skilljarCourse.title;
-  course.short_description = skilljarCourse.short_description;
-  course.long_description_html = skilljarCourse.long_description_html;
-  course.edit = `https://dashboard.skilljar.com/course/${skilljarCourse.id}`;
-
-  let courseURL = "#";
-  if (typeof skilljarCourseSeries !== "undefined") {
-    // courseURL = `${baseURL}/path/${skilljarCourseSeries.slug}/courses/${skilljarCourse.publishedCourseId}`;
-  } else {
-    // courseURL = `${baseURL}/courses/${skilljarCourse.publishedCourseId}`;
-  }
-  crumbs.push([skilljarCourse.title, courseURL]);
-}
-
-if (typeof skilljarCourseProgress !== "undefined") {
-  course.progress = skilljarCourseProgress;
-  course.completed = skilljarCourseProgress.completed_at !== "";
-}
-
-if (typeof skilljarUser !== "undefined")
-  isInternal = skilljarUser.email.includes("@chainguard.dev");
 
 /*
  * Renders a breadcrumb navigation element.
