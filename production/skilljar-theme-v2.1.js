@@ -28,14 +28,6 @@ const baseURL = isAdmin
   ? "https://chainguard-test.skilljar.com"
   : "https://courses.chainguard.dev";
 
-const crumbs = [
-  ["Home", baseURL],
-  skilljarCourseSeries?.title
-    ? [skilljarCourseSeries?.title, `/path/${skilljarCourseSeries.slug}`]
-    : undefined,
-  skilljarCourse?.title ? [skilljarCourse?.title, `#`] : undefined,
-].filter(Boolean);
-
 // path settings
 pathSections = {
   "chainguard-vulnslayer": [
@@ -256,7 +248,8 @@ let initialLoadComplete = false,
     path:
       typeof skilljarCourseSeries !== "undefined" ? skilljarCourseSeries : {},
     completed: false,
-  };
+  },
+  crumbs = [["Home", baseURL]];
 
 if (window.location.hostname === "chainguard-test.skilljar.com") {
   isStaging = true;
@@ -283,10 +276,13 @@ if (Array.from(document.querySelectorAll(".coursebox-container")).length)
     ).map((el) => Object.assign({ ...el.dataset })),
   };
 
-course.path.edit =
-  typeof skilljarCourseSeries !== "undefined"
-    ? `https://dashboard.skilljar.com/publishing/domains/${domain}/published-paths/${skilljarCourseSeries.id}/edit`
-    : "";
+if (typeof skilljarCourseSeries !== "undefined") {
+  course.path.edit = `https://dashboard.skilljar.com/publishing/domains/${domain}/published-paths/${skilljarCourseSeries.id}/edit`;
+  crumbs.push([
+    skilljarCourseSeries.title,
+    `${baseURL}/paths/${skilljarCourseSeries.slug}`,
+  ]);
+}
 
 if (typeof skilljarCourse !== "undefined") {
   course.id = skilljarCourse.id;
@@ -296,6 +292,17 @@ if (typeof skilljarCourse !== "undefined") {
   course.short_description = skilljarCourse.short_description;
   course.long_description_html = skilljarCourse.long_description_html;
   course.edit = `https://dashboard.skilljar.com/course/${skilljarCourse.id}`;
+
+  let courseURL = "#";
+  if (typeof skilljarCourseSeries !== "undefined") {
+    // courseURL = `${baseURL}/path/${skilljarCourseSeries.slug}/courses/${skilljarCourse.publishedCourseId}`;
+  } else {
+    // courseURL = `${baseURL}/courses/${skilljarCourse.publishedCourseId}`;
+  }
+  crumbs.push([
+    skilljarCourse.title,
+    courseURL,
+  ]);
 }
 
 if (typeof skilljarCourseProgress !== "undefined") {
@@ -305,6 +312,14 @@ if (typeof skilljarCourseProgress !== "undefined") {
 
 if (typeof skilljarUser !== "undefined")
   isInternal = skilljarUser.email.includes("@chainguard.dev");
+
+// const crumbs = [
+//   ["Home", baseURL],
+//   skilljarCourseSeries?.title
+//     ?
+//     : undefined,
+//   skilljarCourse?.title ? [skilljarCourse?.title, `#`] : undefined,
+// ].filter(Boolean);
 
 /*
  * Renders a breadcrumb navigation element.
