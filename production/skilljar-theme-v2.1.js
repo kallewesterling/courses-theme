@@ -2302,6 +2302,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // show all
   setStyle(v.global.body, { display: undefined });
+
+  if (isInternal) {
+    const infoBox = Object.assign(document.createElement("div"), {
+      className: "info-box",
+      innerHTML: `
+      <p>
+        ${page.isLanding ? "styleLanding" : ""}
+        ${page.isCourseDetails ? "styleCourseDetails" : ""}
+        ${page.isPageDetail ? "stylePathCourseDetails" : ""}
+        ${page.isLogin ? "styleAuth" : ""}
+        ${page.isSignup ? "styleAuth" : ""}
+        ${page.isCurriculum && !page.hasCertificate ? "styleCurriculumPageNoCertificate" : ""}
+        ${page.isCurriculum && page.hasCertificate ? "styleCurriculumPageHasCertification" : ""}
+        ${page.isLesson ? "styleLesson" : ""}
+        ${page.isPageCatalog ? "stylePathCatalogPage" : ""}
+      </p>
+    `});
+    document.querySelector(".search-container")?.replaceChildren(infoBox);
+  }
 });
 
 /* 
