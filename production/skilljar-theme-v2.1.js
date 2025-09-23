@@ -28,6 +28,14 @@ const baseURL = isAdmin
   ? "https://chainguard-test.skilljar.com"
   : "https://courses.chainguard.dev";
 
+const crumbs = [
+  ["Home", baseURL],
+  skilljarCourseSeries?.title
+    ? [skilljarCourseSeries?.title, `/path/${skilljarCourseSeries.slug}`]
+    : undefined,
+  skilljarCourse?.title ? [skilljarCourse?.title, `#`] : undefined,
+].filter(Boolean);
+
 // path settings
 pathSections = {
   "chainguard-vulnslayer": [
@@ -297,6 +305,59 @@ if (typeof skilljarCourseProgress !== "undefined") {
 
 if (typeof skilljarUser !== "undefined")
   isInternal = skilljarUser.email.includes("@chainguard.dev");
+
+/*
+ * Renders a breadcrumb navigation element.
+ * @param {HTMLElement} targetElement - The target element to replace with the breadcrumb navigation.
+ * @param {Array} crumbs - An array of arrays, where each sub-array contains two elements: the label (string) and the href (string) for each breadcrumb item.
+ *                         The last item in the array is considered the current page and will not be a link.
+ * @example
+ * renderBreadcrumbs('#breadcrumb-container', [
+ *   ['Home', '/'],
+ *   ['Section', '/section'],
+ *   ['Current Page', '']
+ * ]);
+ */
+function renderBreadcrumbs(targetElement, crumbs) {
+  if (
+    !targetElement ||
+    !crumbs ||
+    !Array.isArray(crumbs) ||
+    crumbs.length === 0
+  )
+    return;
+
+  // Create the breadcrumb navigation elements
+  const nav = document.createElement("nav");
+  nav.className = "breadcrumb";
+  nav.setAttribute("aria-label", "Breadcrumb");
+
+  const ol = document.createElement("ol");
+
+  crumbs.forEach(([label, href], i) => {
+    const li = document.createElement("li");
+
+    if (i < crumbs.length - 1 && href && href !== "#") {
+      const a = document.createElement("a");
+      a.href = href;
+      a.textContent = label;
+      a.className = "crumb";
+      a.title = label;
+      li.appendChild(a);
+    } else {
+      const span = document.createElement("span");
+      span.textContent = label;
+      span.className = "crumb";
+      span.title = label;
+      span.setAttribute("aria-current", "page");
+      li.appendChild(span);
+    }
+    ol.appendChild(li);
+  });
+
+  nav.appendChild(ol);
+  targetElement?.replaceChildren(nav);
+}
 
 /**
  * This function logs messages to the console with a specific style.
@@ -1188,7 +1249,13 @@ function stylePathCatalogPage() {
     ].filter(Boolean)
   );
   topRowInner.append(topRowLeft);
-  topRow.append(topRowInner);
+
+  const breadcrumb = Object.assign(document.createElement("div"), {
+    className: "row dp-row-flex-v2",
+    id: "breadcrumb",
+  });
+  renderBreadcrumbs(breadcrumb, crumbs);
+  topRow.append(breadcrumb, topRowInner);
 
   const detailsBundle = Object.assign(document.createElement("div"), {
     id: "dp-details-bundle",
