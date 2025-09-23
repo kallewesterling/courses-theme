@@ -1706,17 +1706,17 @@ function styleCurriculumPageNoCertificate() {
   v.local.header.courseInfo.textContent = skilljarCourse.short_description;
 
   // add a breadcrumb to a div with id "" added to .cp-summary-row-v2
-  const breadcrumbDiv = Object.assign(document.createElement("div"), {
+  const breadcrumb = Object.assign(document.createElement("div"), {
     id: "breadcrumb",
     className: "",
   });
-  renderBreadcrumbs(breadcrumbDiv, crumbs);
+  renderBreadcrumbs(breadcrumb, crumbs);
 
   // move elements
   v.local.body.mainContainer.append(...[v.local.card.details].filter(Boolean));
   v.local.header.mainHeadingContainer.append(
     ...[
-      breadcrumbDiv,
+      breadcrumb,
       v.local.header.floaterText,
       v.local.header.mainHeading,
       v.local.header.courseInfo,
