@@ -105,8 +105,10 @@ if (typeof skilljarCourseProgress !== "undefined") {
 }
 
 // path settings
-let bookmarkIcon = `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 963.4 963.4" xml:space="preserve" width="30" height="27"><path d="M114.3,59.2H69.7c-33.1,0-60,26.9-60,60V903.4c0,33.1,26.9,60,60,60h824c33.1,0,60-26.9,60-60V119.2c0-33.1-26.9-60-60-60   H568.9c0,0.3,0,0.5,0,0.8v420.3c0,25.6-10.2,49.2-28.8,66.5c-17,15.799-39.2,24.5-62.4,24.5c-12.4,0-24.4-2.5-35.7-7.301   c-11.899-5.1-22.399-12.6-31.2-22.301L341.601,466.1l-69.2,75.599C263.5,551.4,253,558.9,241.2,564   c-11.3,4.9-23.3,7.301-35.7,7.301c-23.2,0-45.4-8.701-62.4-24.5c-18.6-17.301-28.8-40.9-28.8-66.5V60   C114.3,59.7,114.3,59.4,114.3,59.2z"/><path d="M228.2,501.1l90.6-99.1c6.101-6.699,14.5-10.1,22.9-10.1s16.7,3.4,22.9,10.1l90.6,99.1c6.4,7,14.6,10.1,22.6,10.1   c15.9,0,31.301-12.299,31.301-31.099V60c0-0.3,0-0.5,0-0.8C508.7,26.4,482,0,449.101,0H234.3c-32.9,0-59.6,26.4-60,59.2   c0,0.3,0,0.5,0,0.8v420.3c0,18.799,15.3,31.1,31.3,31.1C213.6,511.301,221.7,508.199,228.2,501.1z"/></svg>`;
-let burgerIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M4 4h16v2H4V4Zm0 7h16v2H4v-2Zm0 7h16v2H4v-2Z"/></svg>`;
+const icons = {
+  bookmark: `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 963.4 963.4" xml:space="preserve" width="30" height="27"><path d="M114.3,59.2H69.7c-33.1,0-60,26.9-60,60V903.4c0,33.1,26.9,60,60,60h824c33.1,0,60-26.9,60-60V119.2c0-33.1-26.9-60-60-60   H568.9c0,0.3,0,0.5,0,0.8v420.3c0,25.6-10.2,49.2-28.8,66.5c-17,15.799-39.2,24.5-62.4,24.5c-12.4,0-24.4-2.5-35.7-7.301   c-11.899-5.1-22.399-12.6-31.2-22.301L341.601,466.1l-69.2,75.599C263.5,551.4,253,558.9,241.2,564   c-11.3,4.9-23.3,7.301-35.7,7.301c-23.2,0-45.4-8.701-62.4-24.5c-18.6-17.301-28.8-40.9-28.8-66.5V60   C114.3,59.7,114.3,59.4,114.3,59.2z"/><path d="M228.2,501.1l90.6-99.1c6.101-6.699,14.5-10.1,22.9-10.1s16.7,3.4,22.9,10.1l90.6,99.1c6.4,7,14.6,10.1,22.6,10.1   c15.9,0,31.301-12.299,31.301-31.099V60c0-0.3,0-0.5,0-0.8C508.7,26.4,482,0,449.101,0H234.3c-32.9,0-59.6,26.4-60,59.2   c0,0.3,0,0.5,0,0.8v420.3c0,18.799,15.3,31.1,31.3,31.1C213.6,511.301,221.7,508.199,228.2,501.1z"/></svg>`,
+  burger: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M4 4h16v2H4V4Zm0 7h16v2H4v-2Zm0 7h16v2H4v-2Z"/></svg>`,
+};
 
 pathSections = {
   home: [
@@ -131,12 +133,12 @@ pathSections = {
               isPath: true,
               isCourse: false,
               hasBadge: true,
-              icon: burgerIcon,
+              icon: icons.burger,
               title: "Chainguard Vulnslayer",
               slug: "path/chainguard-vulnslayer",
               description:
                 "Learn how to manage vulnerabilities effectively using Chainguard's tools and best practices. Currently, this is an internal learning path as we haven't rolled it out publicly yet.",
-            }
+            },
           ],
         }
       : undefined,
@@ -164,7 +166,7 @@ pathSections = {
           slug: "path/chainguard-containers-onboarding-guide",
           description:
             "A full 14-course path taking you from container image basics through migration, debugging, and registry mirroring.",
-          icon: burgerIcon,
+          icon: icons.burger,
         },
       ],
     },
@@ -234,24 +236,26 @@ pathSections = {
         },
       ],
     },
-    isInternal ? {
-      eyebrow: "Deep-Dive Paths",
-      title: "Master Containers",
-      description:
-        "Go beyond the basics with this in-depth learning path. Gain expertise in managing Chainguard Containers across the full software supply chain.",
-      links: [
-        {
-          isPath: true,
-          isCourse: false,
-          hasBadge: false,
-          title: "Complete Guide to Chainguard Containers",
-          slug: "path/linkys-guide-to-chainguard-images",
+    isInternal
+      ? {
+          eyebrow: "Deep-Dive Paths",
+          title: "Master Containers",
           description:
-            "This learning path is being sunset. An 8-course path covering implementation, management, and best practices for Chainguard Containers.",
-          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M4 6h16v2H4V6Zm0 5h16v2H4v-2Zm0 5h16v2H4v-2Z"/></svg>`,
-        },
-      ],
-    } : undefined,
+            "Go beyond the basics with this in-depth learning path. Gain expertise in managing Chainguard Containers across the full software supply chain.",
+          links: [
+            {
+              isPath: true,
+              isCourse: false,
+              hasBadge: false,
+              title: "Complete Guide to Chainguard Containers",
+              slug: "path/linkys-guide-to-chainguard-images",
+              description:
+                "This learning path is being sunset. An 8-course path covering implementation, management, and best practices for Chainguard Containers.",
+              icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M4 6h16v2H4V6Zm0 5h16v2H4v-2Zm0 5h16v2H4v-2Z"/></svg>`,
+            },
+          ],
+        }
+      : undefined,
   ].filter(Boolean),
   "chainguard-vulnslayer": [
     {
@@ -263,7 +267,7 @@ pathSections = {
           slug: "software-vulnerabilities-what-are-they",
           isPath: false,
           isCourse: true,
-          icon: bookmarkIcon,
+          icon: icons.bookmark,
           hasBadge: false,
           title: "Software Vulnerabilities: What Are They?",
           description:
@@ -273,7 +277,7 @@ pathSections = {
           slug: "how-to-manage-cves",
           isPath: false,
           isCourse: true,
-          icon: bookmarkIcon,
+          icon: icons.bookmark,
           hasBadge: false,
           title: "How to Manage CVEs",
           description:
@@ -283,7 +287,7 @@ pathSections = {
           slug: "more-secure-base-images",
           isPath: false,
           isCourse: true,
-          icon: bookmarkIcon,
+          icon: icons.bookmark,
           hasBadge: false,
           title: "More Secure Base Images",
           description:
@@ -293,7 +297,7 @@ pathSections = {
           slug: "chainguard-containers-to-the-rescue",
           isPath: false,
           isCourse: true,
-          icon: bookmarkIcon,
+          icon: icons.bookmark,
           hasBadge: false,
           title: "Chainguard Containers To the Rescue!",
           description:
@@ -318,7 +322,7 @@ pathSections = {
           slug: "kickoff-guide-to-chainguard",
           description:
             "A fast, guided kickoff to help you hit the ground running with Chainguard.",
-          icon: bookmarkIcon,
+          icon: icons.bookmark,
         },
         {
           isPath: false,
@@ -328,7 +332,7 @@ pathSections = {
           slug: "getting-started-with-chainguards-console",
           description:
             "Learn how to explore, manage, and provision container images through Chainguard’s Console.",
-          icon: bookmarkIcon,
+          icon: icons.bookmark,
         },
         {
           isPath: false,
@@ -338,7 +342,7 @@ pathSections = {
           slug: "shared-responsibility-model",
           description:
             "See how Chainguard divides security responsibilities so you can focus on building applications while we handle the undifferentiated heavy lifting.",
-          icon: bookmarkIcon,
+          icon: icons.bookmark,
         },
         {
           isPath: false,
@@ -348,7 +352,7 @@ pathSections = {
           slug: "chainguards-superstar-support",
           description:
             "Skip the stress and get answers fast. Learn how to navigate Chainguard’s support like a superstar and keep your supply chain secure with zero ticket anxiety.",
-          icon: bookmarkIcon,
+          icon: icons.bookmark,
         },
       ],
     },
@@ -367,7 +371,7 @@ pathSections = {
           slug: "chainguard-101",
           description:
             "Learn how to build, run, and maintain apps on secure, minimal Chainguard Containers with confidence.",
-          icon: bookmarkIcon,
+          icon: icons.bookmark,
         },
         {
           isPath: false,
@@ -377,7 +381,7 @@ pathSections = {
           slug: "integrating-sso-and-idps-with-chainguard-registry",
           description:
             "Connect your identity provider and streamline secure access to Chainguard’s registry.",
-          icon: bookmarkIcon,
+          icon: icons.bookmark,
         },
         {
           isPath: false,
@@ -387,7 +391,7 @@ pathSections = {
           slug: "registry-mirroring",
           description:
             "Mirror Chainguard images and packages into your internal registry to simplify access, improve reliability, and strengthen control.",
-          icon: bookmarkIcon,
+          icon: icons.bookmark,
         },
         {
           isPath: false,
@@ -398,7 +402,7 @@ pathSections = {
           slug: "keeping-up-with-latest",
           description:
             "Stay secure and compliant by keeping your Chainguard images up to date—without the chaos.",
-          icon: bookmarkIcon,
+          icon: icons.bookmark,
         },
         {
           isPath: false,
@@ -408,7 +412,7 @@ pathSections = {
           slug: "managing-end-of-life-grace-periods-with-chainguard",
           description:
             "Navigate Chainguard’s EOL Grace Period to keep workloads secure while you plan upgrades.",
-          icon: bookmarkIcon,
+          icon: icons.bookmark,
         },
         {
           isPath: false,
@@ -418,7 +422,7 @@ pathSections = {
           slug: "getting-started-with-chainguards-custom-assembly",
           description:
             "Quickly and securely customize your Chainguard Images—no Dockerfile required.",
-          icon: bookmarkIcon,
+          icon: icons.bookmark,
         },
         {
           isPath: false,
@@ -428,7 +432,7 @@ pathSections = {
           slug: "migrating-to-chainguard-application-images",
           description:
             "Replace vulnerable upstream images with secure, drop-in Chainguard application images in just a few steps.",
-          icon: bookmarkIcon,
+          icon: icons.bookmark,
         },
         {
           isPath: false,
@@ -448,7 +452,7 @@ pathSections = {
           slug: "containers-102",
           description:
             "Hands-on tactics to keep images small, secure, and portable while you migrate to Chainguard.",
-          icon: bookmarkIcon,
+          icon: icons.bookmark,
         },
         {
           isPath: false,
@@ -458,7 +462,7 @@ pathSections = {
           slug: "debugging-chainguard-containers",
           description:
             "Practical strategies to debug Chainguard’s minimal, secure container images in Docker and Kubernetes—without breaking their security model.",
-          icon: bookmarkIcon,
+          icon: icons.bookmark,
         },
       ],
     },
