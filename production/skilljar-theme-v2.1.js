@@ -117,7 +117,7 @@ pathSections = {
           eyebrow: "Internal Training",
           title: "For Chainguardians",
           description:
-            "Access internal training materials and resources to enhance your skills and knowledge about Chainguard's products and services.",
+            "Because you are logged in with a Chainguard email address, you can access internal training materials and resources to enhance your skills and knowledge about Chainguard's products and services.",
           links: [
             {
               isPath: false,
