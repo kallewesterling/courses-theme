@@ -299,10 +299,7 @@ if (typeof skilljarCourse !== "undefined") {
   } else {
     // courseURL = `${baseURL}/courses/${skilljarCourse.publishedCourseId}`;
   }
-  crumbs.push([
-    skilljarCourse.title,
-    courseURL,
-  ]);
+  crumbs.push([skilljarCourse.title, courseURL]);
 }
 
 if (typeof skilljarCourseProgress !== "undefined") {
@@ -312,14 +309,6 @@ if (typeof skilljarCourseProgress !== "undefined") {
 
 if (typeof skilljarUser !== "undefined")
   isInternal = skilljarUser.email.includes("@chainguard.dev");
-
-// const crumbs = [
-//   ["Home", baseURL],
-//   skilljarCourseSeries?.title
-//     ?
-//     : undefined,
-//   skilljarCourse?.title ? [skilljarCourse?.title, `#`] : undefined,
-// ].filter(Boolean);
 
 /*
  * Renders a breadcrumb navigation element.
@@ -343,30 +332,33 @@ function renderBreadcrumbs(targetElement, crumbs) {
     return;
 
   // Create the breadcrumb navigation elements
-  const nav = document.createElement("nav");
-  nav.className = "breadcrumb";
-  nav.setAttribute("aria-label", "Breadcrumb");
+  const nav = Object.assign(document.createElement("nav"), {
+    className: "breadcrumb",
+    "aria-label": "Breadcrumb",
+    role: "navigation",
+  });
 
   const ol = document.createElement("ol");
 
-  crumbs.forEach(([label, href], i) => {
+  crumbs.forEach(([textContent, href], i) => {
     const li = document.createElement("li");
-
+    let element;
     if (i < crumbs.length - 1 && href && href !== "#") {
-      const a = document.createElement("a");
-      a.href = href;
-      a.textContent = label;
-      a.className = "crumb";
-      a.title = label;
-      li.appendChild(a);
+      element = Object.assign(document.createElement("a"), {
+        href,
+        textContent,
+        className: "crumb",
+        title: textContent,
+      });
     } else {
-      const span = document.createElement("span");
-      span.textContent = label;
-      span.className = "crumb";
-      span.title = label;
-      span.setAttribute("aria-current", "page");
-      li.appendChild(span);
+      element = Object.assign(document.createElement("span"), {
+        textContent,
+        className: "crumb",
+        title: textContent,
+        ariaCurrent: "page",
+      });
     }
+    li.appendChild(element);
     ol.appendChild(li);
   });
 
@@ -1137,8 +1129,6 @@ function styleCourseDetails() {
   v.local.curriculum.container.innerHTML = ""; // Clear the container
   v.local.curriculum.container.append(...curriculumElements);
 
-  // v.local.card.detailItems.forEach((li) => li.prepend(createClone("checkbox")));
-
   // append card
   v.local.body.container.append(...[v.local.card.details].filter(Boolean));
 
@@ -1207,20 +1197,6 @@ function stylePathCourseDetails() {
  */
 function stylePathCatalogPage() {
   log("Running stylePathCatalogPage");
-
-  // we have to build the top structure
-  // DIV top-row-grey top-row-white-v2 padding-top padding-side row-v2
-  //    DIV row dp-row-flex-v2
-  //       DIV columns text-center  large-6 dp-summary-wrapper text-left-v2
-  //          DIV sj-floater-text ["Learning Path"]
-  //          H1 break-word [name of path]
-  //          P sj-heading-paragraph [short description of path]
-  //          DIV #purchase-button-wrapper-large purchase-button-wrapper
-  // DIV #dp-details-bundle
-  //    DIV row padding-side
-  //       DIV columns
-  //          DIV dp-long-description
-  //             P [long description of path]
 
   hide(".path-curriculum-resume-wrapper");
 
@@ -1311,44 +1287,6 @@ function stylePathCatalogPage() {
   } else {
     console.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
   }
-
-  // const backArrowBtn = document.querySelector(".back-to-catalog");
-
-  // const mainContentContainer = document.querySelector("#catalog-content");
-  // const topContentContainer = mainContentContainer.querySelector(
-  //   ".path-curriculum-resume-wrapper"
-  // );
-  // const coursesList = document.querySelectorAll(
-  //   "#catalog-courses .coursebox-container"
-  // );
-
-  // coursesList.forEach((course) => {
-  //   const innerContainer = course.querySelector(".course-overview");
-
-  //   setStyle(course, {
-  //     border: "2px solid var(--form-bg)",
-  //     borderRadius: "20px",
-  //   });
-
-  //   setStyle(innerContainer, { borderTop: "2px solid var(--form-bg)" });
-
-  //   course.addEventListener("mouseover", () => {
-  //     setStyle(course, { borderColor: "var(--primary-blue-hex)" });
-  //     setStyle(innerContainer, { borderColor: "var(--primary-blue-hex)" });
-  //   });
-
-  //   course.addEventListener("mouseout", () => {
-  //     setStyle(course, { borderColor: "var(--form-bg)" });
-  //     setStyle(innerContainer, { borderColor: "var(--form-bg)" });
-  //   });
-  // });
-
-  // // MAIN CONTENT STYLING
-  // setStyle(mainContentContainer, { margin: "96px auto" });
-
-  // // hide elements
-  // hide(backArrowBtn);
-  // hide(topContentContainer);
 }
 
 function styleLesson() {
@@ -1757,8 +1695,6 @@ function styleCurriculumPageNoCertificate() {
     v.local.tabs.aboutSection,
     v.local.tabs.curriculumSection
   );
-
-  // v.local.card.detailItems.forEach((li) => li.prepend(createClone("checkbox")));
 
   const curriculumElements = getCurriculumElements(
     v.local.curriculum.container
