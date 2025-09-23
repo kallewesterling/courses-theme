@@ -372,8 +372,8 @@ pathSections = {
   ],
 };
 
-let initialLoadComplete = false,
-  isStaging = false,
+// let initialLoadComplete = false,
+let isStaging = false,
   isInternal = false,
   domain = "3glgawqmzatte",
   userCourseJourney = {},
@@ -780,7 +780,7 @@ const page = {
   isSignup: c(".sj-page-signup"),
   isPageDetail: c(".sj-page-detail-bundle.sj-page-detail-path"),
   isPageCatalog: c(".sj-page-series.sj-page-path"),
-  hasCertificate: c(".cp-certificate"),
+  // hasCertificate: c(".cp-certificate"),
 };
 
 let v = {
@@ -989,18 +989,18 @@ function animateCopiedTooltip(tooltipEl) {
  * @param {string} border - The border style to apply. Default is "b" for blue.
  * @return {void}
  */
-function styleGroupContainer(container, border = "b") {
-  log("Running styleGroupContainer with setStyle");
-  setStyle(container, {
-    border:
-      border === "b"
-        ? "2px solid var(--primary-blue-hex)"
-        : "1px solid var(--detail-medium-contrast)",
-    borderRadius: "8px",
-    marginBottom: "48px",
-    padding: "0",
-  });
-}
+// function styleGroupContainer(container, border = "b") {
+//   log("Running styleGroupContainer with setStyle");
+//   setStyle(container, {
+//     border:
+//       border === "b"
+//         ? "2px solid var(--primary-blue-hex)"
+//         : "1px solid var(--detail-medium-contrast)",
+//     borderRadius: "8px",
+//     marginBottom: "48px",
+//     padding: "0",
+//   });
+// }
 
 /**
  * This function styles the list item for lessons.
@@ -1012,46 +1012,46 @@ function styleGroupContainer(container, border = "b") {
  * @param {string} border - The border style to apply. Default is "b" for blue.
  * @return {void}
  */
-function styleListItem(lessonItem, isLastChild, hideIcon = true, border = "b") {
-  log("Running styleListItem with setStyle");
-  if (hideIcon) {
-    hide(lessonItem.querySelector(".type-icon"));
-  }
+// function styleListItem(lessonItem, isLastChild, hideIcon = true, border = "b") {
+//   log("Running styleListItem with setStyle");
+//   if (hideIcon) {
+//     hide(lessonItem.querySelector(".type-icon"));
+//   }
 
-  setStyle(lessonItem, {
-    padding: "24px",
-    fontSize: "16px",
-    fontWeight: "400",
-    lineHeight: "150%",
-    borderBottom: isLastChild
-      ? "none"
-      : border === "b"
-      ? "2px solid var(--primary-blue-hex)"
-      : "1px solid var(--detail-medium-contrast)",
-  });
-}
+//   setStyle(lessonItem, {
+//     padding: "24px",
+//     fontSize: "16px",
+//     fontWeight: "400",
+//     lineHeight: "150%",
+//     borderBottom: isLastChild
+//       ? "none"
+//       : border === "b"
+//       ? "2px solid var(--primary-blue-hex)"
+//       : "1px solid var(--detail-medium-contrast)",
+//   });
+// }
 
 /**
  * This function styles the group heading container.
  * It sets padding, border bottom, and styles the actual group heading.
  * @param {HTMLElement} groupHeadingContainer - The group heading container to style.
  */
-function styleGroupHeading(groupHeadingContainer, border = "b") {
-  log("Running styleGroupHeading with setStyle");
-  setStyle(groupHeadingContainer, {
-    padding: "24px",
-    margin: "0",
-    fontFamily: "Fusiona",
-    fontSize: "16px",
-    fontWeight: "500",
-    lineHeight: "125%",
-    letterSpacing: "-.16px",
-    borderBottom:
-      border === "b"
-        ? "2px solid var(--primary-blue-hex)"
-        : "1px solid var(--detail-medium-contrast)",
-  });
-}
+// function styleGroupHeading(groupHeadingContainer, border = "b") {
+//   log("Running styleGroupHeading with setStyle");
+//   setStyle(groupHeadingContainer, {
+//     padding: "24px",
+//     margin: "0",
+//     fontFamily: "Fusiona",
+//     fontSize: "16px",
+//     fontWeight: "500",
+//     lineHeight: "125%",
+//     letterSpacing: "-.16px",
+//     borderBottom:
+//       border === "b"
+//         ? "2px solid var(--primary-blue-hex)"
+//         : "1px solid var(--detail-medium-contrast)",
+//   });
+// }
 
 /**
  * This function applies desktop-specific styling to a catalog page.
@@ -1740,483 +1740,483 @@ function styleCurriculumPageNoCertificate() {
  * This function applies desktop-specific styling to the curriculum page when a certificate is available.
  * It modifies the layout and appearance of various elements on the page.
  */
-function styleCurriculumPageHasCertificationDesktop() {
-  // TODO: Clean up this function
-  log("Running styleCurriculumPageHasCertificationDesktop");
-  const courseDescription = skilljarCourse.short_description;
+// function styleCurriculumPageHasCertificationDesktop() {
+//   // TODO: Clean up this function
+//   log("Running styleCurriculumPageHasCertificationDesktop");
+//   const courseDescription = skilljarCourse.short_description;
 
-  // HEADER VARIABLES
-  const headingParagraph = document.querySelector(".sj-heading-paragraph");
-  const headingFloaterText = document.querySelector(".sj-floater-text");
-  const container = document.querySelector(".cp-summary-wrapper"); // DUPLICATE VAR
-  const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR
-  const backToCatalogLink = document.querySelector(".back-to-catalog");
+//   // HEADER VARIABLES
+//   const headingParagraph = document.querySelector(".sj-heading-paragraph");
+//   const headingFloaterText = document.querySelector(".sj-floater-text");
+//   const container = document.querySelector(".cp-summary-wrapper"); // DUPLICATE VAR
+//   const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR
+//   const backToCatalogLink = document.querySelector(".back-to-catalog");
 
-  hide(backToCatalogLink);
+//   hide(backToCatalogLink);
 
-  const curriculumPageHeader = document.querySelector(".top-row-grey");
-  const headerTextAndImgContainer = document.querySelector(".dp-row-flex-v2");
-  const sjHeaderTextContainer = document.querySelector(".cp-summary-wrapper");
-  const sjHeaderTextHeading = document.querySelector(".break-word");
-  const sjHeaderTextSubheading = document.querySelector(".cp-lessons");
-  const sjHeaderTextProgressBar = document.querySelector(
-    ".progress-bar.button-border-color"
-  );
-  const certificateEl = document.querySelector(".cp-certificate");
-  const sjHeaderImgContainer = document.querySelector(
-    ".large-4.pull-8.columns.cp-promo-image-wrapper"
-  );
-  const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image");
-  const sjHeaderImg = document.querySelector(".cp-promo-image img");
+//   const curriculumPageHeader = document.querySelector(".top-row-grey");
+//   const headerTextAndImgContainer = document.querySelector(".dp-row-flex-v2");
+//   const sjHeaderTextContainer = document.querySelector(".cp-summary-wrapper");
+//   const sjHeaderTextHeading = document.querySelector(".break-word");
+//   const sjHeaderTextSubheading = document.querySelector(".cp-lessons");
+//   const sjHeaderTextProgressBar = document.querySelector(
+//     ".progress-bar.button-border-color"
+//   );
+//   const certificateEl = document.querySelector(".cp-certificate");
+//   const sjHeaderImgContainer = document.querySelector(
+//     ".large-4.pull-8.columns.cp-promo-image-wrapper"
+//   );
+//   const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image");
+//   const sjHeaderImg = document.querySelector(".cp-promo-image img");
 
-  // BODY VARIABLES
-  const bodyMainContainer = document.querySelector("#cp-content");
-  const innerContentContainer = bodyMainContainer.querySelector(".columns");
-  const tabsContainer = document.querySelector(".section-container.tabs");
-  let [curriculumSection, aboutSection] =
-    tabsContainer.querySelectorAll("section");
+//   // BODY VARIABLES
+//   const bodyMainContainer = document.querySelector("#cp-content");
+//   const innerContentContainer = bodyMainContainer.querySelector(".columns");
+//   const tabsContainer = document.querySelector(".section-container.tabs");
+//   let [curriculumSection, aboutSection] =
+//     tabsContainer.querySelectorAll("section");
 
-  // STYLE LOGO
-  v.global.logo.style.height = "24px";
+//   // STYLE LOGO
+//   v.global.logo.style.height = "24px";
 
-  // TEST
-  if (initialLoadComplete) {
-    curriculumSection = v.global.curriculumSection;
-    aboutSection = v.global.aboutSection;
-    tabsContainer.append(curriculumSection, aboutSection);
-  }
+//   // TEST
+//   if (initialLoadComplete) {
+//     curriculumSection = v.global.curriculumSection;
+//     aboutSection = v.global.aboutSection;
+//     tabsContainer.append(curriculumSection, aboutSection);
+//   }
 
-  const pageIcons = document.querySelectorAll(".type-icon.hide-for-small");
-  const lessonListItems = document.querySelectorAll(".lesson-row");
-  const curriculumParentContainer = document.querySelector("#curriculum-list");
-  const curriculumItemsListLIVE = new Array(
-    ...curriculumParentContainer.childNodes
-  );
-  const curriculumOutsideContainer =
-    curriculumParentContainer.closest(".content");
+//   const pageIcons = document.querySelectorAll(".type-icon.hide-for-small");
+//   const lessonListItems = document.querySelectorAll(".lesson-row");
+//   const curriculumParentContainer = document.querySelector("#curriculum-list");
+//   const curriculumItemsListLIVE = new Array(
+//     ...curriculumParentContainer.childNodes
+//   );
+//   const curriculumOutsideContainer =
+//     curriculumParentContainer.closest(".content");
 
-  // CARD VARIABLES
-  const courseDetailsCard = document.querySelector(".course-details-card");
-  // const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li");
-  const courseDetailsCardLink = document.querySelector(
-    ".course-details-card-link"
-  );
+//   // CARD VARIABLES
+//   const courseDetailsCard = document.querySelector(".course-details-card");
+//   // const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li");
+//   const courseDetailsCardLink = document.querySelector(
+//     ".course-details-card-link"
+//   );
 
-  // STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
-  bodyMainContainer.style.display = "grid";
-  bodyMainContainer.style.marginTop = "96px";
-  bodyMainContainer.style.gridTemplateColumns =
-    "minmax(100px, 760px) minmax(100px, 368px)";
+//   // STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
+//   bodyMainContainer.style.display = "grid";
+//   bodyMainContainer.style.marginTop = "96px";
+//   bodyMainContainer.style.gridTemplateColumns =
+//     "minmax(100px, 760px) minmax(100px, 368px)";
 
-  bodyMainContainer.append(...(courseDetailsCard ? [courseDetailsCard] : []));
+//   bodyMainContainer.append(...(courseDetailsCard ? [courseDetailsCard] : []));
 
-  courseDetailsCard.style.margin = "96px 0 46px 0";
+//   courseDetailsCard.style.margin = "96px 0 46px 0";
 
-  hide(courseDetailsCardLink);
+//   hide(courseDetailsCardLink);
 
-  // if (!initialLoadComplete) {
-  //   courseDetailCardListItems.forEach((li) =>
-  //     li.prepend(createClone("checkbox"))
-  //   );
-  // }
+//   // if (!initialLoadComplete) {
+//   //   courseDetailCardListItems.forEach((li) =>
+//   //     li.prepend(createClone("checkbox"))
+//   //   );
+//   // }
 
-  bodyMainContainer.style.columnGap = "24px";
-  innerContentContainer.style.width = "100%";
+//   bodyMainContainer.style.columnGap = "24px";
+//   innerContentContainer.style.width = "100%";
 
-  // STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-  sjHeaderTextHeading.style.fontWeight = "600";
-  sjHeaderTextHeading.style.fontSize = "36px";
-  sjHeaderTextHeading.style.lineHeight = "43.2px";
-  sjHeaderTextHeading.style.letterSpacing = "-0.5px";
-  sjHeaderTextHeading.style.marginTop = "0";
-  hide(sjHeaderTextSubheading);
-  hide(sjHeaderTextProgressBar);
+//   // STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
+//   sjHeaderTextHeading.style.fontWeight = "600";
+//   sjHeaderTextHeading.style.fontSize = "36px";
+//   sjHeaderTextHeading.style.lineHeight = "43.2px";
+//   sjHeaderTextHeading.style.letterSpacing = "-0.5px";
+//   sjHeaderTextHeading.style.marginTop = "0";
+//   hide(sjHeaderTextSubheading);
+//   hide(sjHeaderTextProgressBar);
 
-  // STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
-  curriculumPageHeader.style.maxWidth = "none";
-  curriculumPageHeader.style.padding = "0";
-  curriculumPageHeader.style.backgroundImage =
-    "linear-gradient(315deg, var(--gradient-start), var(--gradient-end) 72%)";
-  curriculumPageHeader.style.border = "0";
+//   // STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
+//   curriculumPageHeader.style.maxWidth = "none";
+//   curriculumPageHeader.style.padding = "0";
+//   curriculumPageHeader.style.backgroundImage =
+//     "linear-gradient(315deg, var(--gradient-start), var(--gradient-end) 72%)";
+//   curriculumPageHeader.style.border = "0";
 
-  // STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
-  // TEXT CONTAINER
-  sjHeaderTextContainer.style.position = "static";
-  sjHeaderTextContainer.style.padding = "0";
-  sjHeaderTextContainer.style.maxWidth = "564px";
-  sjHeaderTextContainer.style.border = "0";
-  sjHeaderTextContainer.style.textAlign = "left";
-  // IMG CONTAINER
-  sjHeaderImgContainer.style.position = "static";
-  sjHeaderImgContainer.style.padding = "0";
-  sjHeaderImgContainer.style.width = "564px";
-  sjHeaderImgContainer.style.height = "auto";
-  sjHeaderImgDirectContainer.style.maxHeight = "none";
-  sjHeaderImg.style.maxHeight = "none";
-  sjHeaderImg.style.height = "auto";
-  sjHeaderImg.style.maxWidth = "100%";
-  // PARENT CONTAINER
-  headerTextAndImgContainer.style.margin = "96px 0";
-  headerTextAndImgContainer.style.justifyContent = "center";
-  headerTextAndImgContainer.style.flexWrap = "nowrap";
-  headerTextAndImgContainer.style.gap = "24px";
+//   // STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
+//   // TEXT CONTAINER
+//   sjHeaderTextContainer.style.position = "static";
+//   sjHeaderTextContainer.style.padding = "0";
+//   sjHeaderTextContainer.style.maxWidth = "564px";
+//   sjHeaderTextContainer.style.border = "0";
+//   sjHeaderTextContainer.style.textAlign = "left";
+//   // IMG CONTAINER
+//   sjHeaderImgContainer.style.position = "static";
+//   sjHeaderImgContainer.style.padding = "0";
+//   sjHeaderImgContainer.style.width = "564px";
+//   sjHeaderImgContainer.style.height = "auto";
+//   sjHeaderImgDirectContainer.style.maxHeight = "none";
+//   sjHeaderImg.style.maxHeight = "none";
+//   sjHeaderImg.style.height = "auto";
+//   sjHeaderImg.style.maxWidth = "100%";
+//   // PARENT CONTAINER
+//   headerTextAndImgContainer.style.margin = "96px 0";
+//   headerTextAndImgContainer.style.justifyContent = "center";
+//   headerTextAndImgContainer.style.flexWrap = "nowrap";
+//   headerTextAndImgContainer.style.gap = "24px";
 
-  // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-  headingParagraph.textContent = courseDescription;
-  headingParagraph.style.display = "block";
-  headingFloaterText.style.display = "block";
-  container.append(
-    ...(headingFloaterText ? [headingFloaterText] : []),
-    ...(mainHeading ? [mainHeading] : []),
-    ...(headingParagraph ? [headingParagraph] : []),
-    ...(certificateEl ? [certificateEl] : [])
-  );
+//   // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
+//   headingParagraph.textContent = courseDescription;
+//   headingParagraph.style.display = "block";
+//   headingFloaterText.style.display = "block";
+//   container.append(
+//     ...(headingFloaterText ? [headingFloaterText] : []),
+//     ...(mainHeading ? [mainHeading] : []),
+//     ...(headingParagraph ? [headingParagraph] : []),
+//     ...(certificateEl ? [certificateEl] : [])
+//   );
 
-  // CURRICULUM PAGE BODY STYLING
-  tabsContainer.append(curriculumSection);
-  tabsContainer.style.margin = "0 0 46px 0";
-  bodyMainContainer.style.paddingTop = "0";
-  bodyMainContainer.style.paddingBottom = "0";
-  aboutSection.classList.add("active");
-  curriculumSection.style.marginTop = "48px";
+//   // CURRICULUM PAGE BODY STYLING
+//   tabsContainer.append(curriculumSection);
+//   tabsContainer.style.margin = "0 0 46px 0";
+//   bodyMainContainer.style.paddingTop = "0";
+//   bodyMainContainer.style.paddingBottom = "0";
+//   aboutSection.classList.add("active");
+//   curriculumSection.style.marginTop = "48px";
 
-  aboutSection.querySelector("h3").style.fontWeight = "600";
-  hide(aboutSection.querySelector(".title"));
-  aboutSection.querySelector(".content").style.border = "0";
-  aboutSection.querySelector(".content").style.padding = "0";
-  hide(curriculumSection.querySelector(".title"));
-  curriculumSection.querySelector("h2").style.fontWeight = "600";
-  curriculumSection.querySelector(".content").style.border = "0";
-  curriculumSection.querySelector(".content").style.padding = "0";
+//   aboutSection.querySelector("h3").style.fontWeight = "600";
+//   hide(aboutSection.querySelector(".title"));
+//   aboutSection.querySelector(".content").style.border = "0";
+//   aboutSection.querySelector(".content").style.padding = "0";
+//   hide(curriculumSection.querySelector(".title"));
+//   curriculumSection.querySelector("h2").style.fontWeight = "600";
+//   curriculumSection.querySelector(".content").style.border = "0";
+//   curriculumSection.querySelector(".content").style.padding = "0";
 
-  /*
-  ------------------------------
-  NEW CURRICULUM DISPLAY STYLING
-  ------------------------------
-  */
-  if (!initialLoadComplete) {
-    // Set global curriculum and about section vars
-    v.global.curriculumSection = curriculumSection;
-    v.global.aboutSection = aboutSection;
+//   /*
+//   ------------------------------
+//   NEW CURRICULUM DISPLAY STYLING
+//   ------------------------------
+//   */
+//   if (!initialLoadComplete) {
+//     // Set global curriculum and about section vars
+//     v.global.curriculumSection = curriculumSection;
+//     v.global.aboutSection = aboutSection;
 
-    const hasSections = curriculumParentContainer.querySelector("h3")
-      ? true
-      : false;
-    let curContainer = document.createElement("div");
+//     const hasSections = curriculumParentContainer.querySelector("h3")
+//       ? true
+//       : false;
+//     let curContainer = document.createElement("div");
 
-    if (!hasSections) {
-      styleGroupContainer(curContainer);
-    }
+//     if (!hasSections) {
+//       styleGroupContainer(curContainer);
+//     }
 
-    curriculumItemsListLIVE.forEach((el) => {
-      if (el?.tagName) {
-        el.classList.add("curriculumItem");
-      }
-    });
+//     curriculumItemsListLIVE.forEach((el) => {
+//       if (el?.tagName) {
+//         el.classList.add("curriculumItem");
+//       }
+//     });
 
-    const curriculumItemsListNonLive =
-      curriculumParentContainer.querySelectorAll(".curriculumItem");
+//     const curriculumItemsListNonLive =
+//       curriculumParentContainer.querySelectorAll(".curriculumItem");
 
-    curriculumItemsListNonLive.forEach((el, i, curArr) => {
-      if (el.tagName === "DIV") {
-        // Yes? push curContainer into parent container
-        curriculumParentContainer.append(curContainer);
-        // Reset curContainer while pushing current new heading & icon in there for the next iteration
-        curContainer = document.createElement("div");
-        styleGroupContainer(curContainer);
+//     curriculumItemsListNonLive.forEach((el, i, curArr) => {
+//       if (el.tagName === "DIV") {
+//         // Yes? push curContainer into parent container
+//         curriculumParentContainer.append(curContainer);
+//         // Reset curContainer while pushing current new heading & icon in there for the next iteration
+//         curContainer = document.createElement("div");
+//         styleGroupContainer(curContainer);
 
-        const newGroupHeading = document.createElement("div");
-        newGroupHeading.style.display = "flex";
-        newGroupHeading.style.gap = "12px";
+//         const newGroupHeading = document.createElement("div");
+//         newGroupHeading.style.display = "flex";
+//         newGroupHeading.style.gap = "12px";
 
-        newGroupHeading.textContent =
-          el.querySelector("h3")?.textContent?.trim() || "Module";
+//         newGroupHeading.textContent =
+//           el.querySelector("h3")?.textContent?.trim() || "Module";
 
-        styleGroupHeading(newGroupHeading);
+//         styleGroupHeading(newGroupHeading);
 
-        curContainer.append(newGroupHeading);
-        hide(el);
-      } else {
-        // Else, normal/expected behaviour
-        // Transfer inner html of current list item to new created div
-        const isLastChild = curArr[i + 1]
-          ? curArr[i + 1].tagName === "DIV"
-          : true;
+//         curContainer.append(newGroupHeading);
+//         hide(el);
+//       } else {
+//         // Else, normal/expected behaviour
+//         // Transfer inner html of current list item to new created div
+//         const isLastChild = curArr[i + 1]
+//           ? curArr[i + 1].tagName === "DIV"
+//           : true;
 
-        const newListEl = document.createElement("div");
-        styleListItem(newListEl, isLastChild, false);
+//         const newListEl = document.createElement("div");
+//         styleListItem(newListEl, isLastChild, false);
 
-        newListEl.append(el);
-        curContainer.append(newListEl);
-      }
-    });
+//         newListEl.append(el);
+//         curContainer.append(newListEl);
+//       }
+//     });
 
-    curriculumParentContainer.append(curContainer);
+//     curriculumParentContainer.append(curContainer);
 
-    hide(curriculumOutsideContainer.querySelector("h2"));
-    hide(curriculumOutsideContainer.querySelector("hr"));
-  }
+//     hide(curriculumOutsideContainer.querySelector("h2"));
+//     hide(curriculumOutsideContainer.querySelector("hr"));
+//   }
 
-  // CURRICULUM ITSELF STYLING
-  hide(...pageIcons);
+//   // CURRICULUM ITSELF STYLING
+//   hide(...pageIcons);
 
-  lessonListItems.forEach((item) => {
-    const titleEl = item.querySelector(".title");
-    item.style.display = "flex";
-    item.style.alignItems = "center";
-    item.style.gap = "12px";
+//   lessonListItems.forEach((item) => {
+//     const titleEl = item.querySelector(".title");
+//     item.style.display = "flex";
+//     item.style.alignItems = "center";
+//     item.style.gap = "12px";
 
-    item.querySelector(".bullet").style.position = "static";
+//     item.querySelector(".bullet").style.position = "static";
 
-    titleEl.style.position = "static";
-    titleEl.style.color = "var(--answer-option)";
-    titleEl.style.display = "flex";
-    titleEl.style.alignItems = "center";
-    titleEl.style.margin = "0";
-    titleEl.style.transform = "translateY(2px)";
-  });
-}
+//     titleEl.style.position = "static";
+//     titleEl.style.color = "var(--answer-option)";
+//     titleEl.style.display = "flex";
+//     titleEl.style.alignItems = "center";
+//     titleEl.style.margin = "0";
+//     titleEl.style.transform = "translateY(2px)";
+//   });
+// }
 
 /**
  * This function applies mobile-specific styling to the curriculum page when a certificate is present.
  * It modifies the layout and appearance of various elements on the page.
  */
-function styleCurriculumPageHasCertificationMobile() {
-  // TODO: Clean up this function
-  log("Running styleCurriculumPageHasCertificateMobile");
+// function styleCurriculumPageHasCertificationMobile() {
+//   // TODO: Clean up this function
+//   log("Running styleCurriculumPageHasCertificateMobile");
 
-  const headingParagraph = document.querySelector(".sj-heading-paragraph");
-  const headingFloaterText = document.querySelector(".sj-floater-text");
-  const container = document.querySelector(".cp-summary-wrapper"); // DUPLICATE VAR
-  const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR
-  const backToCatalogLink = document.querySelector(".back-to-catalog");
+//   const headingParagraph = document.querySelector(".sj-heading-paragraph");
+//   const headingFloaterText = document.querySelector(".sj-floater-text");
+//   const container = document.querySelector(".cp-summary-wrapper"); // DUPLICATE VAR
+//   const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR
+//   const backToCatalogLink = document.querySelector(".back-to-catalog");
 
-  hide(backToCatalogLink);
+//   hide(backToCatalogLink);
 
-  const curriculumPageHeader = document.querySelector(".top-row-grey");
-  const headerTextAndImgContainer = document.querySelector(".dp-row-flex-v2");
-  const sjHeaderTextContainer = document.querySelector(".cp-summary-wrapper");
-  const sjHeaderTextHeading = document.querySelector(".break-word");
-  const sjHeaderTextSubheading = document.querySelector(".cp-lessons");
-  const sjHeaderTextProgressBar = document.querySelector(
-    ".progress-bar.button-border-color"
-  );
-  const certificateEl = document.querySelector(".cp-certificate");
-  const sjHeaderImgContainer = document.querySelector(
-    ".large-4.pull-8.columns.cp-promo-image-wrapper"
-  );
-  const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image");
-  const sjHeaderImg = document.querySelector(".cp-promo-image img");
+//   const curriculumPageHeader = document.querySelector(".top-row-grey");
+//   const headerTextAndImgContainer = document.querySelector(".dp-row-flex-v2");
+//   const sjHeaderTextContainer = document.querySelector(".cp-summary-wrapper");
+//   const sjHeaderTextHeading = document.querySelector(".break-word");
+//   const sjHeaderTextSubheading = document.querySelector(".cp-lessons");
+//   const sjHeaderTextProgressBar = document.querySelector(
+//     ".progress-bar.button-border-color"
+//   );
+//   const certificateEl = document.querySelector(".cp-certificate");
+//   const sjHeaderImgContainer = document.querySelector(
+//     ".large-4.pull-8.columns.cp-promo-image-wrapper"
+//   );
+//   const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image");
+//   const sjHeaderImg = document.querySelector(".cp-promo-image img");
 
-  // BODY VARIABLES
-  const bodyMainContainer = document.querySelector("#cp-content");
-  const innerContentContainer = bodyMainContainer.querySelector(".columns");
-  const tabsContainer = document.querySelector(".section-container.tabs");
-  let [curriculumSection, aboutSection] =
-    tabsContainer.querySelectorAll("section");
+//   // BODY VARIABLES
+//   const bodyMainContainer = document.querySelector("#cp-content");
+//   const innerContentContainer = bodyMainContainer.querySelector(".columns");
+//   const tabsContainer = document.querySelector(".section-container.tabs");
+//   let [curriculumSection, aboutSection] =
+//     tabsContainer.querySelectorAll("section");
 
-  // TEST
-  if (initialLoadComplete) {
-    curriculumSection = v.global.curriculumSection;
-    aboutSection = v.global.aboutSection;
-    tabsContainer.append(curriculumSection, aboutSection);
-  }
+//   // TEST
+//   if (initialLoadComplete) {
+//     curriculumSection = v.global.curriculumSection;
+//     aboutSection = v.global.aboutSection;
+//     tabsContainer.append(curriculumSection, aboutSection);
+//   }
 
-  const pageIcons = document.querySelectorAll(".type-icon.hide-for-small");
-  const lessonListItems = document.querySelectorAll(".lesson-row");
-  const curriculumParentContainer = document.querySelector("#curriculum-list");
-  const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
-  const curriculumOutsideContainer =
-    curriculumParentContainer.closest(".content");
+//   const pageIcons = document.querySelectorAll(".type-icon.hide-for-small");
+//   const lessonListItems = document.querySelectorAll(".lesson-row");
+//   const curriculumParentContainer = document.querySelector("#curriculum-list");
+//   const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
+//   const curriculumOutsideContainer =
+//     curriculumParentContainer.closest(".content");
 
-  // CARD VARIABLES
-  const courseDetailsCard = document.querySelector(".course-details-card");
-  // const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li");
-  const courseDetailsCardLink = document.querySelector(
-    ".course-details-card-link"
-  );
+//   // CARD VARIABLES
+//   const courseDetailsCard = document.querySelector(".course-details-card");
+//   // const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li");
+//   const courseDetailsCardLink = document.querySelector(
+//     ".course-details-card-link"
+//   );
 
-  // NAV STYLING
-  v.global.logo.style.maxHeight = "48px";
+//   // NAV STYLING
+//   v.global.logo.style.maxHeight = "48px";
 
-  // STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
-  bodyMainContainer.style.display = "grid";
-  bodyMainContainer.style.gridTemplateColumns = "1fr";
-  bodyMainContainer.style.width = "90%";
-  bodyMainContainer.style.columnGap = "24px";
+//   // STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
+//   bodyMainContainer.style.display = "grid";
+//   bodyMainContainer.style.gridTemplateColumns = "1fr";
+//   bodyMainContainer.style.width = "90%";
+//   bodyMainContainer.style.columnGap = "24px";
 
-  courseDetailsCard.style.margin = "32px 0 56px 0";
-  courseDetailsCard.style.justifySelf = "center";
-  bodyMainContainer.append(courseDetailsCard);
+//   courseDetailsCard.style.margin = "32px 0 56px 0";
+//   courseDetailsCard.style.justifySelf = "center";
+//   bodyMainContainer.append(courseDetailsCard);
 
-  hide(courseDetailsCardLink);
+//   hide(courseDetailsCardLink);
 
-  // if (!initialLoadComplete) {
-  //   courseDetailCardListItems.forEach((li) =>
-  //     li.prepend(createClone("checkbox"))
-  //   );
-  // }
+//   // if (!initialLoadComplete) {
+//   //   courseDetailCardListItems.forEach((li) =>
+//   //     li.prepend(createClone("checkbox"))
+//   //   );
+//   // }
 
-  innerContentContainer.style.width = "100%";
+//   innerContentContainer.style.width = "100%";
 
-  // STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-  sjHeaderTextHeading.style.fontWeight = "600";
-  sjHeaderTextHeading.style.fontSize = "36px";
-  sjHeaderTextHeading.style.lineHeight = "43.2px";
-  sjHeaderTextHeading.style.letterSpacing = "-0.5px";
-  sjHeaderTextHeading.style.marginTop = "0";
-  hide(sjHeaderTextSubheading);
-  hide(sjHeaderTextProgressBar);
+//   // STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
+//   sjHeaderTextHeading.style.fontWeight = "600";
+//   sjHeaderTextHeading.style.fontSize = "36px";
+//   sjHeaderTextHeading.style.lineHeight = "43.2px";
+//   sjHeaderTextHeading.style.letterSpacing = "-0.5px";
+//   sjHeaderTextHeading.style.marginTop = "0";
+//   hide(sjHeaderTextSubheading);
+//   hide(sjHeaderTextProgressBar);
 
-  // STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
-  curriculumPageHeader.style.maxWidth = "none";
-  curriculumPageHeader.style.padding = "0";
-  curriculumPageHeader.style.backgroundImage =
-    "linear-gradient(315deg, var(--gradient-start), var(--gradient-end) 72%)";
-  curriculumPageHeader.style.border = "0";
+//   // STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
+//   curriculumPageHeader.style.maxWidth = "none";
+//   curriculumPageHeader.style.padding = "0";
+//   curriculumPageHeader.style.backgroundImage =
+//     "linear-gradient(315deg, var(--gradient-start), var(--gradient-end) 72%)";
+//   curriculumPageHeader.style.border = "0";
 
-  // STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
-  // TEXT CONTAINER
-  sjHeaderTextContainer.style.position = "static";
-  sjHeaderTextContainer.style.padding = "0";
-  sjHeaderTextContainer.style.maxWidth = "none";
-  sjHeaderTextContainer.style.width = "100%";
-  sjHeaderTextContainer.style.marginBottom = "32px";
-  sjHeaderTextContainer.style.border = "0";
-  sjHeaderTextContainer.style.textAlign = "left";
-  // IMG CONTAINER
-  sjHeaderImgContainer.style.position = "static";
-  sjHeaderImgContainer.style.padding = "0";
-  sjHeaderImgContainer.style.width = "90%";
-  sjHeaderImgContainer.style.maxWidth = "564px";
-  sjHeaderImgContainer.style.height = "auto";
-  sjHeaderImgDirectContainer.style.maxHeight = "none";
-  sjHeaderImg.style.maxHeight = "none";
-  sjHeaderImg.style.height = "auto";
-  sjHeaderImg.style.maxWidth = "100%";
-  // PARENT CONTAINER
-  container.style.width = "90%";
-  headerTextAndImgContainer.style.margin = "96px 0";
-  headerTextAndImgContainer.style.justifyContent = "center";
-  headerTextAndImgContainer.style.flexWrap = "wrap";
-  headerTextAndImgContainer.style.gap = "24px";
+//   // STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
+//   // TEXT CONTAINER
+//   sjHeaderTextContainer.style.position = "static";
+//   sjHeaderTextContainer.style.padding = "0";
+//   sjHeaderTextContainer.style.maxWidth = "none";
+//   sjHeaderTextContainer.style.width = "100%";
+//   sjHeaderTextContainer.style.marginBottom = "32px";
+//   sjHeaderTextContainer.style.border = "0";
+//   sjHeaderTextContainer.style.textAlign = "left";
+//   // IMG CONTAINER
+//   sjHeaderImgContainer.style.position = "static";
+//   sjHeaderImgContainer.style.padding = "0";
+//   sjHeaderImgContainer.style.width = "90%";
+//   sjHeaderImgContainer.style.maxWidth = "564px";
+//   sjHeaderImgContainer.style.height = "auto";
+//   sjHeaderImgDirectContainer.style.maxHeight = "none";
+//   sjHeaderImg.style.maxHeight = "none";
+//   sjHeaderImg.style.height = "auto";
+//   sjHeaderImg.style.maxWidth = "100%";
+//   // PARENT CONTAINER
+//   container.style.width = "90%";
+//   headerTextAndImgContainer.style.margin = "96px 0";
+//   headerTextAndImgContainer.style.justifyContent = "center";
+//   headerTextAndImgContainer.style.flexWrap = "wrap";
+//   headerTextAndImgContainer.style.gap = "24px";
 
-  // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-  headingParagraph.style.display = "block";
-  headingFloaterText.style.display = "block";
-  container.append(
-    headingFloaterText,
-    mainHeading,
-    headingParagraph,
-    certificateEl
-  );
-  // CURRICULUM PAGE BODY STYLING
-  tabsContainer.append(curriculumSection);
-  tabsContainer.style.margin = "96px 0 46px 0";
-  bodyMainContainer.style.paddingTop = "0";
-  bodyMainContainer.style.paddingBottom = "0";
-  aboutSection.classList.add("active");
-  curriculumSection.style.marginTop = "48px";
+//   // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
+//   headingParagraph.style.display = "block";
+//   headingFloaterText.style.display = "block";
+//   container.append(
+//     headingFloaterText,
+//     mainHeading,
+//     headingParagraph,
+//     certificateEl
+//   );
+//   // CURRICULUM PAGE BODY STYLING
+//   tabsContainer.append(curriculumSection);
+//   tabsContainer.style.margin = "96px 0 46px 0";
+//   bodyMainContainer.style.paddingTop = "0";
+//   bodyMainContainer.style.paddingBottom = "0";
+//   aboutSection.classList.add("active");
+//   curriculumSection.style.marginTop = "48px";
 
-  aboutSection.querySelector("h3").style.fontWeight = "600";
-  hide(aboutSection.querySelector(".title"));
-  aboutSection.querySelector(".content").style.border = "0";
-  aboutSection.querySelector(".content").style.padding = "0";
-  hide(curriculumSection.querySelector(".title"));
-  curriculumSection.querySelector("h2").style.fontWeight = "600";
-  curriculumSection.querySelector(".content").style.border = "0";
-  curriculumSection.querySelector(".content").style.padding = "0";
+//   aboutSection.querySelector("h3").style.fontWeight = "600";
+//   hide(aboutSection.querySelector(".title"));
+//   aboutSection.querySelector(".content").style.border = "0";
+//   aboutSection.querySelector(".content").style.padding = "0";
+//   hide(curriculumSection.querySelector(".title"));
+//   curriculumSection.querySelector("h2").style.fontWeight = "600";
+//   curriculumSection.querySelector(".content").style.border = "0";
+//   curriculumSection.querySelector(".content").style.padding = "0";
 
-  /*
-  ------------------------------
-  NEW CURRICULUM DISPLAY STYLING
-  ------------------------------
-  */
-  if (!initialLoadComplete) {
-    // Set global curriculum and about section vars
-    v.global.curriculumSection = curriculumSection;
-    v.global.aboutSection = aboutSection;
+//   /*
+//   ------------------------------
+//   NEW CURRICULUM DISPLAY STYLING
+//   ------------------------------
+//   */
+//   if (!initialLoadComplete) {
+//     // Set global curriculum and about section vars
+//     v.global.curriculumSection = curriculumSection;
+//     v.global.aboutSection = aboutSection;
 
-    const hasSections = curriculumParentContainer.querySelector("h3")
-      ? true
-      : false;
-    let curContainer = document.createElement("div");
+//     const hasSections = curriculumParentContainer.querySelector("h3")
+//       ? true
+//       : false;
+//     let curContainer = document.createElement("div");
 
-    if (!hasSections) {
-      styleGroupContainer(curContainer, "g");
-    }
+//     if (!hasSections) {
+//       styleGroupContainer(curContainer, "g");
+//     }
 
-    curriculumItemsListLIVE.forEach((el) => {
-      if (el?.tagName) {
-        el.classList.add("curriculumItem");
-      }
-    });
+//     curriculumItemsListLIVE.forEach((el) => {
+//       if (el?.tagName) {
+//         el.classList.add("curriculumItem");
+//       }
+//     });
 
-    const curriculumItemsListNonLive =
-      curriculumParentContainer.querySelectorAll(".curriculumItem");
+//     const curriculumItemsListNonLive =
+//       curriculumParentContainer.querySelectorAll(".curriculumItem");
 
-    curriculumItemsListNonLive.forEach((el, i, curArr) => {
-      if (el.tagName === "DIV") {
-        // Yes? push curContainer into parent container
-        curriculumParentContainer.append(curContainer);
-        // Reset curContainer while pushing current new heading & icon in there for the next iteration
-        curContainer = document.createElement("div");
-        styleGroupContainer(curContainer);
+//     curriculumItemsListNonLive.forEach((el, i, curArr) => {
+//       if (el.tagName === "DIV") {
+//         // Yes? push curContainer into parent container
+//         curriculumParentContainer.append(curContainer);
+//         // Reset curContainer while pushing current new heading & icon in there for the next iteration
+//         curContainer = document.createElement("div");
+//         styleGroupContainer(curContainer);
 
-        const newGroupHeading = document.createElement("div");
-        newGroupHeading.style.display = "flex";
-        newGroupHeading.style.gap = "12px";
+//         const newGroupHeading = document.createElement("div");
+//         newGroupHeading.style.display = "flex";
+//         newGroupHeading.style.gap = "12px";
 
-        newGroupHeading.textContent =
-          el.querySelector("h3")?.textContent?.trim() || "Module";
+//         newGroupHeading.textContent =
+//           el.querySelector("h3")?.textContent?.trim() || "Module";
 
-        styleGroupHeading(newGroupHeading, "c");
+//         styleGroupHeading(newGroupHeading, "c");
 
-        curContainer.append(newGroupHeading);
-        hide(el);
-      } else {
-        // Else, normal/expected behaviour
-        // Transfer inner html of current list item to new created div
-        const isLastChild = curArr[i + 1]
-          ? curArr[i + 1].tagName === "DIV"
-          : true;
+//         curContainer.append(newGroupHeading);
+//         hide(el);
+//       } else {
+//         // Else, normal/expected behaviour
+//         // Transfer inner html of current list item to new created div
+//         const isLastChild = curArr[i + 1]
+//           ? curArr[i + 1].tagName === "DIV"
+//           : true;
 
-        const newListEl = document.createElement("div");
-        styleListItem(newListEl, isLastChild, false, "g");
+//         const newListEl = document.createElement("div");
+//         styleListItem(newListEl, isLastChild, false, "g");
 
-        // Styling for mobile
-        el.querySelector(".title").style.textWrap = "wrap";
+//         // Styling for mobile
+//         el.querySelector(".title").style.textWrap = "wrap";
 
-        newListEl.append(el);
-        curContainer.append(newListEl);
-      }
-    });
+//         newListEl.append(el);
+//         curContainer.append(newListEl);
+//       }
+//     });
 
-    curriculumParentContainer.append(curContainer);
+//     curriculumParentContainer.append(curContainer);
 
-    hide(curriculumOutsideContainer.querySelector("h2"));
-    hide(curriculumOutsideContainer.querySelector("hr"));
-  }
+//     hide(curriculumOutsideContainer.querySelector("h2"));
+//     hide(curriculumOutsideContainer.querySelector("hr"));
+//   }
 
-  // CURRICULUM ITSELF STYLING
-  lessonListItems.forEach((item) => {
-    const titleEl = item.querySelector(".title");
-    item.style.display = "flex";
-    item.style.alignItems = "center";
-    item.style.gap = "12px";
+//   // CURRICULUM ITSELF STYLING
+//   lessonListItems.forEach((item) => {
+//     const titleEl = item.querySelector(".title");
+//     item.style.display = "flex";
+//     item.style.alignItems = "center";
+//     item.style.gap = "12px";
 
-    item.querySelector(".bullet").style.position = "static";
+//     item.querySelector(".bullet").style.position = "static";
 
-    titleEl.style.position = "static";
-    titleEl.style.color = "var(--answer-option)";
-    titleEl.style.display = "flex";
-    titleEl.style.alignItems = "center";
-    titleEl.style.margin = "0";
-    titleEl.style.transform = "translateY(2px)";
-  });
+//     titleEl.style.position = "static";
+//     titleEl.style.color = "var(--answer-option)";
+//     titleEl.style.display = "flex";
+//     titleEl.style.alignItems = "center";
+//     titleEl.style.margin = "0";
+//     titleEl.style.transform = "translateY(2px)";
+//   });
 
-  hide([...pageIcons]);
-}
+//   hide([...pageIcons]);
+// }
 
 /**
  * This function handles the styling of the page based on the current page type.
@@ -2238,7 +2238,8 @@ function handlePageStyling() {
     // we are on a course page but not logged in
     return styleCourseDetails();
 
-  if (page.isCurriculum && !page.hasCertificate)
+  if (page.isCurriculum)
+    // && !page.hasCertificate)
     // we are on a course page (without a certificate) and logged in
     return styleCurriculumPageNoCertificate();
 
@@ -2258,12 +2259,12 @@ function handlePageStyling() {
     // we are on a catalog page (not currently in use)
     return styleCatalog();
 
-  if (page.isCurriculum && page.hasCertificate)
-    // we are on a course page (with a certificate) and logged in
-    // n.b. this function is not edited and/or tested (and not in use)
-    return v.viewport === "desktop"
-      ? styleCurriculumPageHasCertificationDesktop()
-      : styleCurriculumPageHasCertificationMobile();
+  // if (page.isCurriculum && page.hasCertificate)
+  //   // we are on a course page (with a certificate) and logged in
+  //   // n.b. this function is not edited and/or tested (and not in use)
+  //   return v.viewport === "desktop"
+  //     ? styleCurriculumPageHasCertificationDesktop()
+  //     : styleCurriculumPageHasCertificationMobile();
 }
 
 /**
@@ -2340,7 +2341,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // render + set initalLoadComplete
   render();
-  initialLoadComplete = true;
+  // initialLoadComplete = true;
 
   // show all
   setStyle(v.global.body, { display: undefined });
@@ -2350,19 +2351,19 @@ document.addEventListener("DOMContentLoaded", () => {
   This event is fired when the entire page is fully loaded, including all dependent resources such as stylesheets and images.
   It is a good place to run scripts that need to ensure all resources are available before executing.
 */
-window.addEventListener("resize", () => {
-  // no need to re-apply styles on resize for the following pages
-  if (page.isLanding) return;
-  if (page.isCourseDetails) return;
-  if (page.isPageDetail) return;
-  if (page.isLogin) return;
-  if (page.isSignup) return;
-  if (page.isCurriculum && !page.hasCertificate) return;
-  if (page.isLesson) return;
-  if (page.isPageCatalog) return;
+// window.addEventListener("resize", () => {
+//   // no need to re-apply styles on resize for the following pages
+//   if (page.isLanding) return;
+//   if (page.isCourseDetails) return;
+//   if (page.isPageDetail) return;
+//   if (page.isLogin) return;
+//   if (page.isSignup) return;
+//   if (page.isCurriculum) return; // && !page.hasCertificate) return;
+//   if (page.isLesson) return;
+//   if (page.isPageCatalog) return;
 
-  render();
-});
+//   render();
+// });
 
 // Make header white on scroll
 if (!page.isLesson) {
