@@ -1291,20 +1291,10 @@ function stylePathCatalogPage() {
   detailsBundleRow.append(detailsBundleCol);
   detailsBundle.append(detailsBundleRow);
 
-  // back to landing page button
-  const backToLandingBtn = document.querySelector(
-    ".back-to-catalog.animated-button-pair"
-  );
-  const backToLandingBtnText = backToLandingBtn?.querySelector("span");
-  if (backToLandingBtn) {
-    backToLandingBtnText.textContent = "Back to Home";
-    setStyle(backToLandingBtn, { display: "block !important;" });
-  }
-
   // prepend topRow and detailsBundle to content
   document
     .querySelector("#skilljar-content")
-    .prepend(...[topRow, backToLandingBtn, detailsBundle].filter(Boolean));
+    .prepend(...[topRow, detailsBundle].filter(Boolean));
 
   if (pathSections[skilljarPath.slug]) {
     hide(".sj-courseboxes-v2");
