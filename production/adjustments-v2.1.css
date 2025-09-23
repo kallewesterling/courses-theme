@@ -2021,6 +2021,7 @@ body.sj-page-signup {
 /* Breadcrumb styling */
 #breadcrumb {
   margin: 20px auto;
+  justify-content: start;
 
   .breadcrumb {
     --ink: #14003d;
