@@ -1132,9 +1132,17 @@ function styleCourseDetails() {
   // append card
   v.local.body.container.append(...[v.local.card.details].filter(Boolean));
 
+  // add a breadcrumb to a div with id "breadcrumb" added to .dp-summary-wrapper
+  const breadcrumb = Object.assign(document.createElement("div"), {
+    id: "breadcrumb",
+    className: "",
+  });
+  renderBreadcrumbs(breadcrumb, crumbs);
+  
   // append elements to header
   v.local.header.mainHeadingContainer.append(
     ...[
+      breadcrumb,
       v.local.header.floaterText,
       v.local.header.mainHeading,
       v.local.header.courseInfo,
