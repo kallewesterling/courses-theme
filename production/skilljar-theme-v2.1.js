@@ -77,7 +77,7 @@ if (typeof skilljarCourseSeries !== "undefined") {
   course.path.edit = `https://dashboard.skilljar.com/publishing/domains/${domain}/published-paths/${skilljarCourseSeries.id}/edit`;
   crumbs.push([
     skilljarCourseSeries.title,
-    `${baseURL}/paths/${skilljarCourseSeries.slug}`,
+    `${baseURL}/path/${skilljarCourseSeries.slug}`,
   ]);
 }
 
