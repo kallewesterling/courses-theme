@@ -2293,16 +2293,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // hide all
   hide(v.global.body);
 
-  // adding "cg-staging" for staging server
+  // DEBUG: adding "cg-staging" for staging server
   isStaging ? v.global.body.classList.add("cg-staging") : null;
-
-  // render + set initalLoadComplete
-  render();
-  initialLoadComplete = true;
-
-  // show all
-  setStyle(v.global.body, { display: undefined });
-
+  
+  // DEBUG: adding info box for internal users
   if (isInternal) {
     const infoBox = Object.assign(document.createElement("div"), {
       className: "info-box",
@@ -2332,6 +2326,13 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     document.querySelector(".search-container")?.remove();
   }
+
+  // render + set initalLoadComplete
+  render();
+  initialLoadComplete = true;
+
+  // show all
+  setStyle(v.global.body, { display: undefined });
 });
 
 /* 
