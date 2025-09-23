@@ -1173,9 +1173,17 @@ function stylePathCourseDetails() {
   v.local.header.courseInfo.textContent =
     skilljarCourseSeries.short_description || "";
 
+  // add a breadcrumb to a div with id "" added to .cp-summary-row-v2
+  const breadcrumb = Object.assign(document.createElement("div"), {
+    id: "breadcrumb",
+    className: "",
+  });
+  renderBreadcrumbs(breadcrumb, crumbs);
+
   // move elements
   v.local.header.mainHeadingContainer.append(
     ...[
+      breadcrumb,
       v.local.header.floaterText,
       v.local.header.mainHeading,
       v.local.header.courseInfo,
