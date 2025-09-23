@@ -22,6 +22,12 @@ const UTM = {
   CAMPAIGN: "dev-enablement",
 };
 
+// baseURL settings
+const isAdmin = skilljarUser.email === "kalle.westerling@chainguard.dev";
+const baseURL = isAdmin
+  ? "https://chainguard-test.skilljar.com"
+  : "https://courses.chainguard.dev";
+
 // path settings
 pathSections = {
   "chainguard-vulnslayer": [
@@ -1001,7 +1007,7 @@ function styleLanding() {
     },
   ]);
 
-  makeSections(window.landingSections);
+  makeSections(window.landingSections, "#skilljar-content", baseURL);
 
   document.querySelector("#skilljar-content").append(v.global.footerContainer);
 
@@ -1109,7 +1115,7 @@ function stylePathCourseDetails() {
     makeSections(
       pathSections[skilljarPath.slug],
       "#skilljar-content",
-      `https://courses.chainguard.dev/path/${skilljarPath.slug}`
+      `${baseURL}/path/${skilljarPath.slug}`
     );
 
     document
@@ -1224,7 +1230,7 @@ function stylePathCatalogPage() {
     makeSections(
       pathSections[skilljarPath.slug],
       "#skilljar-content",
-      `https://courses.chainguard.dev/path/${skilljarPath.slug}`
+      `${baseURL}/path/${skilljarPath.slug}`
     );
 
     document
