@@ -2313,13 +2313,24 @@ document.addEventListener("DOMContentLoaded", () => {
         ${page.isPageDetail ? "stylePathCourseDetails" : ""}
         ${page.isLogin ? "styleAuth" : ""}
         ${page.isSignup ? "styleAuth" : ""}
-        ${page.isCurriculum && !page.hasCertificate ? "styleCurriculumPageNoCertificate" : ""}
-        ${page.isCurriculum && page.hasCertificate ? "styleCurriculumPageHasCertification" : ""}
+        ${
+          page.isCurriculum && !page.hasCertificate
+            ? "styleCurriculumPageNoCertificate"
+            : ""
+        }
+        ${
+          page.isCurriculum && page.hasCertificate
+            ? "styleCurriculumPageHasCertification"
+            : ""
+        }
         ${page.isLesson ? "styleLesson" : ""}
         ${page.isPageCatalog ? "stylePathCatalogPage" : ""}
       </p>
-    `});
+    `,
+    });
     document.querySelector(".search-container")?.replaceChildren(infoBox);
+  } else {
+    document.querySelector(".search-container")?.remove();
   }
 });
 
