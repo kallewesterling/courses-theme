@@ -2056,11 +2056,12 @@ body.sj-page-signup {
     font-weight: 600;
   }
   .breadcrumb a:hover {
+    color: var(--ink) !important;
     text-decoration: underline;
     text-underline-offset: 2px;
   }
   .breadcrumb [aria-current="page"] {
-    color: var(--ink);
+    color: var(--muted);
     font-weight: 800;
   }
   .breadcrumb .crumb {
