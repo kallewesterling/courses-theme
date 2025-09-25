@@ -22,6 +22,24 @@ const UTM = {
   CAMPAIGN: "dev-enablement",
 };
 
+// confetti defaults
+const AUTOHIDE_COMPLETION = 6000;
+const particles = {
+  stars: { counts: 40, scalar: 1.2 },
+  circles: { counts: 10, scalar: 0.75 },
+  logos: { counts: 50, scalar: 3.0 },
+};
+
+const confettiDefaults = {
+  spread: 360,
+  ticks: 50,
+  gravity: 1,
+  decay: 0.94,
+  startVelocity: 40,
+  shapes: ["star"],
+  colors: ["#C6FF50", "#50FFE1"],
+};
+
 // baseURL settings
 
 let isInternal = false,
@@ -2406,5 +2424,146 @@ if (!page.isLesson) {
         });
       }
     });
+  });
+}
+
+/**
+ * Inject overlay HTML once
+ */
+function ensureCompletionPopup() {
+  let el = document.getElementById("completion-popup");
+  if (el) return el;
+
+  el = Object.assign(document.createElement("div"), {
+    id: "completion-popup",
+    role: "dialog",
+    "aria-modal": "true",
+    "aria-hidden": "true",
+  });
+
+  el.addEventListener("click", () => hideCompletion(el));
+
+  const content = Object.assign(document.createElement("div"), {
+    id: "completion-content",
+  });
+  const card = Object.assign(document.createElement("div"), {
+    id: "completion-card",
+    tabIndex: -1,
+  });
+  const h1 = Object.assign(document.createElement("h1"), {
+    id: "completion-title",
+    textContent: `Hooray! You finished ${
+      course?.title ? course?.title : "the course!"
+    }`,
+  });
+  const p = Object.assign(document.createElement("p"), {
+    id: "completion-sub",
+    textContent: "Seriously, nice work!",
+  });
+  const notice = Object.assign(document.createElement("p"), {
+    id: "completion-notice",
+    innerHTML: `You can close this popup by clicking outside of it or press ESC to dismiss. It will also disappear automatically in <span id="completion-countdown">${
+      AUTOHIDE_COMPLETION / 1000
+    }</span> seconds.`,
+  });
+
+  card.append(h1, p, notice);
+  content.append(card);
+  el.append(content);
+  document.body.appendChild(el);
+
+  // ESC to close
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && el.getAttribute("aria-hidden") === "false")
+      hideCompletion(el);
+  });
+
+  return el;
+}
+
+/**
+ * Show / hide with fade
+ */
+function showCompletion(el) {
+  el.setAttribute("aria-hidden", "false");
+  setStyle(el, { display: "block" });
+  // Next paint to trigger transition
+  requestAnimationFrame(() => setStyle(el, { opacity: "1" }));
+  // focus for accessibility
+  const focusTarget = el.querySelector("#completion-card");
+  if (focusTarget) focusTarget.focus({ preventScroll: true });
+
+  const countdownEl = el.querySelector("#completion-countdown");
+  if (countdownEl) {
+    let remaining = AUTOHIDE_COMPLETION / 1000;
+    countdownEl.textContent = remaining;
+    const interval = setInterval(() => {
+      remaining -= 1;
+      if (remaining > 0) {
+        countdownEl.textContent = remaining;
+      } else {
+        clearInterval(interval);
+      }
+    }, 1000);
+  }
+}
+
+function hideCompletion(el) {
+  setStyle(el, { opacity: "0" });
+  const finish = () => {
+    el.setAttribute("aria-hidden", "true");
+    setStyle(el, { display: "none" });
+    el.removeEventListener("transitionend", finish);
+  };
+  el.addEventListener("transitionend", finish);
+  // Safety timeout in case transitionend doesn’t fire
+  setTimeout(finish, 300);
+}
+
+/**
+ * Public trigger (call this from Skilljar when course completes)
+ * Example usage:
+ *   window.animateCompletion();
+ */
+window.animateCompletion = function animateCompletion() {
+  const el = ensureCompletionPopup();
+  showCompletion(el);
+
+  // Confetti bursts
+  setTimeout(shoot, 0);
+  setTimeout(shoot, 100);
+  setTimeout(shoot, 200);
+
+  // Auto-hide
+  setTimeout(() => hideCompletion(el), AUTOHIDE_COMPLETION);
+};
+
+function shoot() {
+  confetti({
+    ...confettiDefaults,
+    particleCount: particles.stars.counts,
+    scalar: particles.stars.scalar,
+    shapes: ["star"],
+  });
+  confetti({
+    ...confettiDefaults,
+    particleCount: particles.circles.counts,
+    scalar: particles.circles.scalar,
+    shapes: ["circle"],
+  });
+  confetti({
+    ...confettiDefaults,
+    particleCount: particles.logos.counts,
+    scalar: particles.logos.scalar,
+    shapes: ["image"],
+    shapeOptions: {
+      image: [
+        {
+          src: "https://cc.sj-cdn.net/instructor/l9kl0bllkdr4-chainguard/themes/2gr0n1rmedy35/favicon.1757695230.png",
+          width: 32,
+          height: 32,
+        },
+      ],
+    },
   });
 }
