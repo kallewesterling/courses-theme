@@ -23,7 +23,7 @@ const UTM = {
 };
 
 // confetti defaults
-const AUTOHIDE_COMPLETION = 3000;
+const AUTOHIDE_COMPLETION = 6000;
 const particles = {
   stars: { counts: 40, scalar: 1.2 },
   circles: { counts: 10, scalar: 0.75 },
@@ -37,7 +37,7 @@ const confettiDefaults = {
   decay: 0.94,
   startVelocity: 40,
   shapes: ["star"],
-  colors: ["#C6FF50", "#50FFE1"]
+  colors: ["#C6FF50", "#50FFE1"],
 };
 
 // baseURL settings
@@ -2462,7 +2462,9 @@ function ensureCompletionPopup() {
   });
   const notice = Object.assign(document.createElement("p"), {
     id: "completion-notice",
-    textContent: "You can close this popup by clicking outside of it or press ESC to dismiss. It will also disappear automatically in 10 seconds.",
+    textContent: `You can close this popup by clicking outside of it or press ESC to dismiss. It will also disappear automatically in ${
+      AUTOHIDE_COMPLETION / 1000
+    } seconds.`,
   });
 
   card.append(h1, p, notice);
