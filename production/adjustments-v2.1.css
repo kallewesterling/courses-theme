@@ -167,10 +167,7 @@ body {
       background-color: white;
       border: 2px solid var(--ring);
       border-radius: 999px;
-      font-family: "Space Mono";
-      font-size: 14px;
-      font-weight: 700;
-      padding: 10px 20px;
+      padding: 10px 20px !important;
     }
   }
 }
