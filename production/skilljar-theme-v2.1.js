@@ -27,17 +27,17 @@ const AUTOHIDE_COMPLETION = 3000;
 const particles = {
   stars: { counts: 40, scalar: 1.2 },
   circles: { counts: 10, scalar: 0.75 },
-  logos: { counts: 50, scalar: 1.5 },
+  logos: { counts: 50, scalar: 3.0 },
 };
 
 const confettiDefaults = {
   spread: 360,
   ticks: 50,
-  gravity: 0,
+  gravity: 1,
   decay: 0.94,
-  startVelocity: 30,
+  startVelocity: 40,
   shapes: ["star"],
-  colors: ["#C6FF50", "#50FFE1"], // ["FFE400", "FFBD00", "E89400", "FFCA6C", "FDFFB8"],
+  colors: ["#C6FF50", "#50FFE1"]
 };
 
 // baseURL settings
