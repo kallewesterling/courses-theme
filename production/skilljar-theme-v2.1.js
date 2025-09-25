@@ -23,6 +23,13 @@ const UTM = {
 };
 
 // confetti defaults
+const AUTOHIDE_COMPLETION = 3000;
+const particles = {
+  stars: {counts: 40, scalar: 1.2},
+  circles: {counts: 10, scalar: 0.75},
+  logos: {counts: 50, scalar: 1.5},
+}
+
 const confettiDefaults = {
   spread: 360,
   ticks: 50,
@@ -2506,26 +2513,26 @@ window.animateCompletion = function animateCompletion() {
   setTimeout(shoot, 200);
 
   // Auto-hide
-  setTimeout(() => hideCompletion(el), 3000);
+  setTimeout(() => hideCompletion(el), AUTOHIDE_COMPLETION);
 };
 
 function shoot() {
   confetti({
     ...confettiDefaults,
-    particleCount: 40,
-    scalar: 1.2,
+    particleCount: particles.stars.counts,
+    scalar: particles.stars.scalar,
     shapes: ["star"],
   });
   confetti({
     ...confettiDefaults,
-    particleCount: 10,
-    scalar: 0.75,
+    particleCount: particles.circles.counts,
+    scalar: particles.circles.scalar,
     shapes: ["circle"],
   });
   confetti({
     ...confettiDefaults,
-    particleCount: 50,
-    scalar: 1.5,
+    particleCount: particles.logos.counts,
+    scalar: particles.logos.scalar,
     shapes: ["image"],
     shapeOptions: {
       image: [
