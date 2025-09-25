@@ -22,26 +22,64 @@ const UTM = {
   CAMPAIGN: "dev-enablement",
 };
 
-let initialLoadComplete = false,
-  isStaging = false,
-  isInternal = false,
+// baseURL settings
+
+let isInternal = false,
+  isAdmin = false;
+
+if (typeof skilljarUser !== "undefined") {
+  isInternal = skilljarUser.email.includes("@chainguard.dev");
+  isAdmin = skilljarUser.email === "kalle.westerling@chainguard.dev";
+}
+
+const baseURL = isAdmin
+  ? "https://chainguard-test.skilljar.com"
+  : "https://courses.chainguard.dev";
+
+// let initialLoadComplete = false,
+let isStaging = false,
   domain = "3glgawqmzatte",
+  userCourseJourney = {},
   course = {
     progress: {},
     path:
       typeof skilljarCourseSeries !== "undefined" ? skilljarCourseSeries : {},
     completed: false,
-  };
+  },
+  crumbs = [["Home", baseURL]];
 
-if (window.location.hostname.includes("chainguard-test.skilljar.com")) {
+if (window.location.hostname === "chainguard-test.skilljar.com") {
   isStaging = true;
   domain = "ix1ljpxex6xd";
 }
 
-course.path.edit =
-  typeof skilljarCourseSeries !== "undefined"
-    ? `https://dashboard.skilljar.com/publishing/domains/${domain}/published-paths/${skilljarCourseSeries.id}/edit`
-    : "";
+// set up userCourseJourney global variable
+if (Array.from(document.querySelectorAll(".coursebox-container")).length)
+  userCourseJourney = {
+    unregistered: Array.from(
+      document.querySelectorAll(
+        ".coursebox-container[data-course-status='unregistered']"
+      )
+    ).map((el) => Object.assign({ ...el.dataset })),
+    registered: Array.from(
+      document.querySelectorAll(
+        ".coursebox-container[data-course-status='registered']"
+      )
+    ).map((el) => Object.assign({ ...el.dataset })),
+    completed: Array.from(
+      document.querySelectorAll(
+        ".coursebox-container[data-course-status='complete']"
+      )
+    ).map((el) => Object.assign({ ...el.dataset })),
+  };
+
+if (typeof skilljarCourseSeries !== "undefined") {
+  course.path.edit = `https://dashboard.skilljar.com/publishing/domains/${domain}/published-paths/${skilljarCourseSeries.id}/edit`;
+  crumbs.push([
+    skilljarCourseSeries.title,
+    `${baseURL}/path/${skilljarCourseSeries.slug}`,
+  ]);
+}
 
 if (typeof skilljarCourse !== "undefined") {
   course.id = skilljarCourse.id;
@@ -51,6 +89,14 @@ if (typeof skilljarCourse !== "undefined") {
   course.short_description = skilljarCourse.short_description;
   course.long_description_html = skilljarCourse.long_description_html;
   course.edit = `https://dashboard.skilljar.com/course/${skilljarCourse.id}`;
+
+  let courseURL = "#";
+  if (typeof skilljarCourseSeries !== "undefined") {
+    // courseURL = `${baseURL}/path/${skilljarCourseSeries.slug}/courses/${skilljarCourse.publishedCourseId}`;
+  } else {
+    // courseURL = `${baseURL}/courses/${skilljarCourse.publishedCourseId}`;
+  }
+  crumbs.push([skilljarCourse.title, courseURL]);
 }
 
 if (typeof skilljarCourseProgress !== "undefined") {
@@ -58,8 +104,426 @@ if (typeof skilljarCourseProgress !== "undefined") {
   course.completed = skilljarCourseProgress.completed_at !== "";
 }
 
-if (typeof skilljarUser !== "undefined")
-  isInternal = skilljarUser.email.includes("@chainguard.dev");
+// path settings
+const icons = {
+  bookmark: `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 963.4 963.4" xml:space="preserve" width="30" height="27"><path d="M114.3,59.2H69.7c-33.1,0-60,26.9-60,60V903.4c0,33.1,26.9,60,60,60h824c33.1,0,60-26.9,60-60V119.2c0-33.1-26.9-60-60-60   H568.9c0,0.3,0,0.5,0,0.8v420.3c0,25.6-10.2,49.2-28.8,66.5c-17,15.799-39.2,24.5-62.4,24.5c-12.4,0-24.4-2.5-35.7-7.301   c-11.899-5.1-22.399-12.6-31.2-22.301L341.601,466.1l-69.2,75.599C263.5,551.4,253,558.9,241.2,564   c-11.3,4.9-23.3,7.301-35.7,7.301c-23.2,0-45.4-8.701-62.4-24.5c-18.6-17.301-28.8-40.9-28.8-66.5V60   C114.3,59.7,114.3,59.4,114.3,59.2z"/><path d="M228.2,501.1l90.6-99.1c6.101-6.699,14.5-10.1,22.9-10.1s16.7,3.4,22.9,10.1l90.6,99.1c6.4,7,14.6,10.1,22.6,10.1   c15.9,0,31.301-12.299,31.301-31.099V60c0-0.3,0-0.5,0-0.8C508.7,26.4,482,0,449.101,0H234.3c-32.9,0-59.6,26.4-60,59.2   c0,0.3,0,0.5,0,0.8v420.3c0,18.799,15.3,31.1,31.3,31.1C213.6,511.301,221.7,508.199,228.2,501.1z"/></svg>`,
+  burger: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M4 4h16v2H4V4Zm0 7h16v2H4v-2Zm0 7h16v2H4v-2Z"/></svg>`,
+};
+
+pathSections = {
+  home: [
+    isInternal
+      ? {
+          eyebrow: "Internal Training",
+          title: "For Chainguardians",
+          description:
+            "Because you are logged in with a Chainguard email address, you can access internal training materials and resources to enhance your skills and knowledge about Chainguard's products and services.",
+          links: [
+            {
+              isPath: false,
+              isCourse: true,
+              hasBadge: false,
+              title: "Build Your First Chainguard Container",
+              slug: "build-your-first-chainguard-container",
+              description:
+                "This course is designed to teach new Chainguard engineers how to build container images.",
+              icon: `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="27" viewBox="0 0 30 27" fill="none"><path class="fill-current text-[#14003D] group-hover:text-white" fill-rule="evenodd" clip-rule="evenodd" d="M24.7199 16.1854C24.9569 15.368 25.0857 14.4724 25.0857 13.4982C25.0857 7.40502 20.047 0.546799 15.0146 0.546799C9.98217 0.546799 4.94345 7.40502 4.94345 13.4982C4.94345 14.8267 5.18298 16.0092 5.60976 17.0461L2.58476 16.876C1.35268 16.8067 0.217578 17.6851 0.409743 18.9041C0.484274 19.3769 0.626315 19.8608 0.879992 20.2788C0.0236265 20.8812 -0.326192 21.9885 0.367699 22.8564C1.06428 23.7277 2.08704 24.5305 3.49093 24.5305C5.01364 24.5305 5.93005 24.137 6.48659 23.6428C6.52721 23.8586 6.61101 24.0711 6.7433 24.2719C7.42673 25.3095 8.55862 26.4501 10.232 26.4501C13.0786 26.4501 13.3961 24.6622 13.5554 23.765C13.5679 23.6948 13.5794 23.6301 13.591 23.572L15.4933 22.6207L17.3956 23.572C17.4072 23.63 17.4187 23.6947 17.4312 23.7648L17.4312 23.765C17.5905 24.6622 17.908 26.4501 20.7546 26.4501C22.428 26.4501 23.5599 25.3095 24.2433 24.2719C24.2702 24.2311 24.2951 24.1898 24.318 24.1481C24.8542 24.38 25.5641 24.5305 26.506 24.5305C27.9099 24.5305 28.9327 23.7277 29.6292 22.8564C30.4824 21.7893 29.7577 20.3602 28.4536 19.9528L28.0227 19.8181C29.2881 19.1624 29.4743 17.9255 29.3387 16.8418C29.1856 15.6172 27.8516 15.0879 26.687 15.496L24.7199 16.1854ZM15.4951 22.603C15.494 22.603 15.4929 22.603 15.4917 22.6031L15.4933 22.6039L15.4951 22.603Z" fill="#14003D"></path></svg>`,
+            },
+            {
+              isPath: true,
+              isCourse: false,
+              hasBadge: true,
+              icon: icons.burger,
+              title: "Chainguard Vulnslayer",
+              slug: "path/chainguard-vulnslayer",
+              description:
+                "Learn how to manage vulnerabilities effectively using Chainguard's tools and best practices. Currently, this is an internal learning path as we haven't rolled it out publicly yet.",
+            },
+          ],
+        }
+      : undefined,
+    {
+      eyebrow: "Chainguard Fundamentals",
+      title: "Get Started with Containers",
+      description:
+        "Begin your Chainguard journey with essentials. Learn how containers work, how to use Chainguard securely, and gain confidence through guided onboarding.",
+      links: [
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Chainguard Containers Crash Course",
+          slug: "linkys-crash-course-on-chainguard-images",
+          description:
+            "A fast, focused overview to get you started—from setup and registry basics to vulnerability management and support.",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 2 5 13h6l-1.2 9L19 11h-6l.5-9z"/></svg>`,
+        },
+        {
+          isPath: true,
+          isCourse: false,
+          hasBadge: false,
+          title: "Chainguard Containers Onboarding Guide",
+          slug: "path/chainguard-containers-onboarding-guide",
+          description:
+            "A full 14-course path taking you from container image basics through migration, debugging, and registry mirroring.",
+          icon: icons.burger,
+        },
+      ],
+    },
+    {
+      eyebrow: "Tools & Customization",
+      title: "Make Chainguard Your Own",
+      description:
+        "Take control with customization tools. Learn to tailor Chainguard containers to your workflows and modernize Dockerfiles into secure, minimal builds.",
+      links: [
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Getting Started with Custom Assembly",
+          slug: "getting-started-with-chainguards-custom-assembly",
+          description:
+            "Quickly and securely customize your Chainguard Images—no Dockerfile required.",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M12 2 15 8 22 9 17 14l1 7-6-3-6 3 1-7-5-5 7-1 3-6Z"/></svg>`,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Getting Started with Dockerfile Converter",
+          slug: "getting-started-with-chainguards-dockerfile-converter",
+          description:
+            "Convert Dockerfiles to secure, minimal Chainguard Containers with the Dockerfile Converter CLI.",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M12 2 15 8 22 9 17 14l1 7-6-3-6 3 1-7-5-5 7-1 3-6Z"/></svg>`,
+        },
+      ],
+    },
+    {
+      eyebrow: "Security & Compliance",
+      title: "Stay Ahead of Risks",
+      description:
+        "Level up your security practices. Understand vulnerabilities, compliance frameworks like SLSA, and secure emerging areas like AI/ML.",
+      links: [
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: true,
+          title: "Painless Vulnerability Management",
+          slug: "vulnerability-management-certification",
+          description:
+            "Covers what vulnerability management is, why it matters, and how to practice it effectively.",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="29" height="31" viewBox="0 0 29 31" fill="none"><path class="fill-current text-[#14003D] group-hover:text-white" d="M14.5 30.9948C12.5855 30.9948 10.7855 30.6307 9.1002 29.9025C7.41461 29.1743 5.94825 28.1867 4.70113 26.9395C3.45402 25.6924 2.46636 24.2261 1.73817 22.5405C1.00997 20.8551 0.645874 19.0552 0.645874 17.1406C0.645874 14.5849 1.29179 12.2207 2.58363 10.048C3.87572 7.8756 5.64443 6.18357 7.88978 4.97194C7.92357 5.32169 7.96756 5.6751 8.02176 6.03215C8.07596 6.38919 8.16468 6.79959 8.2879 7.26334C6.58481 8.34203 5.24995 9.75077 4.28332 11.4896C3.31669 13.2284 2.83337 15.1121 2.83337 17.1406C2.83337 20.3976 3.96358 23.1563 6.224 25.4167C8.48442 27.6771 11.2431 28.8073 14.5 28.8073C17.757 28.8073 20.5157 27.6771 22.7761 25.4167C25.0365 23.1563 26.1667 20.3976 26.1667 17.1406C26.1667 15.1121 25.6811 13.2223 24.7098 11.4714C23.7386 9.72039 22.3891 8.30557 20.6615 7.22689C20.785 6.77262 20.8761 6.36926 20.9349 6.01683C20.9938 5.6644 21.0475 5.3161 21.0961 4.97194C23.3417 6.18357 25.1127 7.87195 26.4092 10.0371C27.7059 12.202 28.3542 14.5698 28.3542 17.1406C28.3542 19.0552 27.9901 20.8551 27.2619 22.5405C26.5337 24.2261 25.5461 25.6924 24.299 26.9395C23.0518 28.1867 21.5855 29.1743 19.8999 29.9025C18.2145 30.6307 16.4146 30.9948 14.5 30.9948ZM14.5 25.1615C12.2751 25.1615 10.3821 24.3809 8.82093 22.8198C7.25978 21.2586 6.47921 19.3656 6.47921 17.1406C6.47921 15.9273 6.73308 14.7826 7.24082 13.7066C7.74832 12.6306 8.47044 11.7169 9.40718 10.9653C9.50999 11.2643 9.61791 11.5924 9.73093 11.9497C9.84419 12.3067 9.98954 12.7395 10.167 13.248C9.67916 13.7883 9.30716 14.3894 9.05098 15.0512C8.7948 15.713 8.66671 16.4095 8.66671 17.1406C8.66671 18.7448 9.23789 20.1181 10.3802 21.2604C11.5226 22.4028 12.8959 22.974 14.5 22.974C16.1042 22.974 17.4775 22.4028 18.6198 21.2604C19.7622 20.1181 20.3334 18.7448 20.3334 17.1406C20.3334 16.4003 20.203 15.7038 19.9422 15.0512C19.6814 14.3988 19.307 13.7978 18.8189 13.248C18.9572 12.8423 19.061 12.5329 19.1302 12.3198C19.1995 12.1066 19.3416 11.6504 19.5564 10.9511C20.5024 11.7029 21.233 12.6191 21.7483 13.6997C22.2634 14.7803 22.5209 15.9273 22.5209 17.1406C22.5209 19.3656 21.7403 21.2586 20.1792 22.8198C18.618 24.3809 16.725 25.1615 14.5 25.1615ZM13.3221 11.6719C12.4228 8.9589 11.8475 7.10329 11.5961 6.10506C11.3446 5.10659 11.2188 4.16706 11.2188 3.28647C11.2188 2.36845 11.5362 1.59213 12.1711 0.95751C12.8057 0.322649 13.582 0.00521851 14.5 0.00521851C15.4181 0.00521851 16.1944 0.322649 16.829 0.95751C17.4639 1.59213 17.7813 2.36845 17.7813 3.28647C17.7813 4.16706 17.6555 5.10659 17.4039 6.10506C17.1526 7.10329 16.5773 8.9589 15.678 11.6719H13.3221ZM14.5 19.6927C13.7915 19.6927 13.189 19.4446 12.6924 18.9482C12.1961 18.4517 11.948 17.8491 11.948 17.1406C11.948 16.4321 12.1961 15.8296 12.6924 15.333C13.189 14.8367 13.7915 14.5886 14.5 14.5886C15.2085 14.5886 15.8111 14.8367 16.3076 15.333C16.804 15.8296 17.0521 16.4321 17.0521 17.1406C17.0521 17.8491 16.804 18.4517 16.3076 18.9482C15.8111 19.4446 15.2085 19.6927 14.5 19.6927Z" fill="#14003D"></path></svg>`,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Get Spicy with SLSA",
+          slug: "get-spicy-with-slsa-securing-your-supply-chain-one-level-at-a-time",
+          description:
+            "Understand SLSA, how Chainguard helps you meet it, and why it matters now more than ever.",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="21" height="25" viewBox="0 0 21 25" fill="none"><path class="fill-current text-[#14003D] group-hover:text-white" d="M10.5 0.309998L0.748047 3.967V11.3907C0.748047 17.5467 4.90484 23.2881 10.5 24.69C16.0953 23.2881 20.252 17.5467 20.252 11.3907V3.967L10.5 0.309998ZM17.814 11.3907C17.814 16.2667 14.7056 20.777 10.5 22.1545C6.2945 20.777 3.18605 16.2789 3.18605 11.3907V5.66141L10.5 2.91866L17.814 5.66141V11.3907Z" fill="#14003D"></path></svg>`,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: true,
+          title: "Securing the AI/ML Supply Chain",
+          slug: "securing-ai",
+          description:
+            "Unpack threats, tools, and standards shaping MLSecOps—protect models, datasets, and AI/ML pipelines.",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none"><path class="fill-current text-[#14003D] group-hover:text-white" d="M14.9488 28.3542C14.2121 28.3542 13.5886 28.099 13.0782 27.5885C12.5677 27.0781 12.3125 26.4546 12.3125 25.7179V14.9488C12.3125 14.2121 12.5677 13.5885 13.0782 13.0781C13.5886 12.5677 14.2121 12.3125 14.9488 12.3125H25.7179C26.4546 12.3125 27.0782 12.5677 27.5886 13.0781C28.099 13.5885 28.3542 14.2121 28.3542 14.9488V25.7179C28.3542 26.4546 28.099 27.0781 27.5886 27.5885C27.0782 28.099 26.4546 28.3542 25.7179 28.3542H14.9488ZM14.9488 26.1667H25.7179C25.8302 26.1667 25.933 26.1199 26.0263 26.0263C26.1199 25.933 26.1667 25.8302 26.1667 25.7179V14.9488C26.1667 14.8365 26.1199 14.7337 26.0263 14.6404C25.933 14.5468 25.8302 14.5 25.7179 14.5H14.9488C14.8366 14.5 14.7337 14.5468 14.6404 14.6404C14.5468 14.7337 14.5 14.8365 14.5 14.9488V25.7179C14.5 25.8302 14.5468 25.933 14.6404 26.0263C14.7337 26.1199 14.8366 26.1667 14.9488 26.1667ZM6.47921 22.6889V9.11546C6.47921 8.37876 6.73442 7.7552 7.24483 7.24479C7.75525 6.73437 8.37881 6.47916 9.11551 6.47916H22.6889V8.66666H9.11551C9.00322 8.66666 8.90041 8.71345 8.80707 8.80703C8.7135 8.90036 8.66671 9.00317 8.66671 9.11546V22.6889H6.47921ZM0.645874 16.8556V3.28213C0.645874 2.54543 0.901082 1.92187 1.4115 1.41145C1.92192 0.901037 2.54547 0.645828 3.28218 0.645828H16.8556V2.83333H3.28218C3.16988 2.83333 3.06707 2.88012 2.97374 2.97369C2.88016 3.06703 2.83337 3.16984 2.83337 3.28213V16.8556H0.645874Z" fill="#14003D"></path></svg>`,
+        },
+      ],
+    },
+    isInternal
+      ? {
+          eyebrow: "Deep-Dive Paths",
+          title: "Master Containers",
+          description:
+            "Go beyond the basics with this in-depth learning path. Gain expertise in managing Chainguard Containers across the full software supply chain.",
+          links: [
+            {
+              isPath: true,
+              isCourse: false,
+              hasBadge: false,
+              title: "Complete Guide to Chainguard Containers",
+              slug: "path/linkys-guide-to-chainguard-images",
+              description:
+                "This learning path is being sunset. An 8-course path covering implementation, management, and best practices for Chainguard Containers.",
+              icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M4 6h16v2H4V6Zm0 5h16v2H4v-2Zm0 5h16v2H4v-2Z"/></svg>`,
+            },
+          ],
+        }
+      : undefined,
+  ].filter(Boolean),
+  "chainguard-vulnslayer": [
+    {
+      eyebrow: "",
+      title: "Painless Vulnerability Management",
+      description: "",
+      links: [
+        {
+          slug: "software-vulnerabilities-what-are-they",
+          isPath: false,
+          isCourse: true,
+          icon: icons.bookmark,
+          hasBadge: false,
+          title: "Software Vulnerabilities: What Are They?",
+          description:
+            "Understand the basics of software vulnerabilities, including common types and their implications.",
+        },
+        {
+          slug: "how-to-manage-cves",
+          isPath: false,
+          isCourse: true,
+          icon: icons.bookmark,
+          hasBadge: false,
+          title: "How to Manage CVEs",
+          description:
+            "Learn effective strategies for managing Common Vulnerabilities and Exposures (CVEs) in your software.",
+        },
+        {
+          slug: "more-secure-base-images",
+          isPath: false,
+          isCourse: true,
+          icon: icons.bookmark,
+          hasBadge: false,
+          title: "More Secure Base Images",
+          description:
+            "Discover best practices for using Chainguard's secure base images in your containerized applications.",
+        },
+        {
+          slug: "chainguard-containers-to-the-rescue",
+          isPath: false,
+          isCourse: true,
+          icon: icons.bookmark,
+          hasBadge: false,
+          title: "Chainguard Containers To the Rescue!",
+          description:
+            "Explore how Chainguard Containers can help you mitigate vulnerabilities and enhance your security posture.",
+        },
+      ],
+    },
+  ],
+  "chainguard-containers-onboarding-guide": [
+    {
+      eyebrow: "Admin Onboarding",
+      title: "Platform Admin Kickoff",
+      description:
+        "Start here to get oriented: kickoff, Console basics, our shared responsibility model, and how to work with Support.",
+      links: [
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title:
+            "Kickoff Guide to Chainguard: Getting Started with Our Platform",
+          slug: "kickoff-guide-to-chainguard",
+          description:
+            "A fast, guided kickoff to help you hit the ground running with Chainguard.",
+          icon: icons.bookmark,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Getting Started with Chainguard's Console",
+          slug: "getting-started-with-chainguards-console",
+          description:
+            "Learn how to explore, manage, and provision container images through Chainguard’s Console.",
+          icon: icons.bookmark,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "An Introduction to Chainguard's Shared Responsibility Model",
+          slug: "shared-responsibility-model",
+          description:
+            "See how Chainguard divides security responsibilities so you can focus on building applications while we handle the undifferentiated heavy lifting.",
+          icon: icons.bookmark,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Chainguard's Superstar Support",
+          slug: "chainguards-superstar-support",
+          description:
+            "Skip the stress and get answers fast. Learn how to navigate Chainguard’s support like a superstar and keep your supply chain secure with zero ticket anxiety.",
+          icon: icons.bookmark,
+        },
+      ],
+    },
+
+    {
+      eyebrow: "Technical Onboarding",
+      title: "Secure Image Setup & Ops",
+      description:
+        "Hands-on setup and operations: secure image basics, SSO/IdP integration, registry mirroring, update strategy, EOL planning, customization, migrations, and debugging.",
+      links: [
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Chainguard 101: Secure Container Images Basics",
+          slug: "chainguard-101",
+          description:
+            "Learn how to build, run, and maintain apps on secure, minimal Chainguard Containers with confidence.",
+          icon: icons.bookmark,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Integrating SSO and IdPs with Chainguard Registry",
+          slug: "integrating-sso-and-idps-with-chainguard-registry",
+          description:
+            "Connect your identity provider and streamline secure access to Chainguard’s registry.",
+          icon: icons.bookmark,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Registry Mirroring with Chainguard",
+          slug: "registry-mirroring",
+          description:
+            "Mirror Chainguard images and packages into your internal registry to simplify access, improve reliability, and strengthen control.",
+          icon: icons.bookmark,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title:
+            "Keeping Up With Latest: Update Strategies for Chainguard Images",
+          slug: "keeping-up-with-latest",
+          description:
+            "Stay secure and compliant by keeping your Chainguard images up to date—without the chaos.",
+          icon: icons.bookmark,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Managing End-of-Life Grace Periods with Chainguard",
+          slug: "managing-end-of-life-grace-periods-with-chainguard",
+          description:
+            "Navigate Chainguard’s EOL Grace Period to keep workloads secure while you plan upgrades.",
+          icon: icons.bookmark,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Getting Started with Chainguard's Custom Assembly",
+          slug: "getting-started-with-chainguards-custom-assembly",
+          description:
+            "Quickly and securely customize your Chainguard Images—no Dockerfile required.",
+          icon: icons.bookmark,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Migrating to Chainguard Application Images",
+          slug: "migrating-to-chainguard-application-images",
+          description:
+            "Replace vulnerable upstream images with secure, drop-in Chainguard application images in just a few steps.",
+          icon: icons.bookmark,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Mastering Base Image Migrations With Chainguard",
+          slug: "mastering-base-image-migrations-with-chainguard",
+          description:
+            "Migrate real apps from “it works on Debian” to minimal, secure Chainguard base images.",
+          icon: ``,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Containers 102: Practical Image Migration Skills",
+          slug: "containers-102",
+          description:
+            "Hands-on tactics to keep images small, secure, and portable while you migrate to Chainguard.",
+          icon: icons.bookmark,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Debugging Chainguard Containers",
+          slug: "debugging-chainguard-containers",
+          description:
+            "Practical strategies to debug Chainguard’s minimal, secure container images in Docker and Kubernetes—without breaking their security model.",
+          icon: icons.bookmark,
+        },
+      ],
+    },
+  ],
+};
+
+/*
+ * Renders a breadcrumb navigation element.
+ * @param {HTMLElement} targetElement - The target element to replace with the breadcrumb navigation.
+ * @param {Array} crumbs - An array of arrays, where each sub-array contains two elements: the label (string) and the href (string) for each breadcrumb item.
+ *                         The last item in the array is considered the current page and will not be a link.
+ * @example
+ * renderBreadcrumbs('#breadcrumb-container', [
+ *   ['Home', '/'],
+ *   ['Section', '/section'],
+ *   ['Current Page', '']
+ * ]);
+ */
+function renderBreadcrumbs(targetElement, crumbs) {
+  if (
+    !targetElement ||
+    !crumbs ||
+    !Array.isArray(crumbs) ||
+    crumbs.length === 0
+  )
+    return;
+
+  // Create the breadcrumb navigation elements
+  const nav = Object.assign(document.createElement("nav"), {
+    className: "breadcrumb",
+    "aria-label": "Breadcrumb",
+    role: "navigation",
+  });
+
+  const ol = document.createElement("ol");
+
+  crumbs.forEach(([textContent, href], i) => {
+    const li = document.createElement("li");
+    let element;
+    if (i < crumbs.length - 1 && href && href !== "#") {
+      element = Object.assign(document.createElement("a"), {
+        href,
+        textContent,
+        className: "crumb",
+        title: textContent,
+      });
+    } else {
+      element = Object.assign(document.createElement("span"), {
+        textContent,
+        className: "crumb",
+        title: textContent,
+        ariaCurrent: "page",
+      });
+    }
+    li.appendChild(element);
+    ol.appendChild(li);
+  });
+
+  nav.appendChild(ol);
+  targetElement?.replaceChildren(nav);
+}
 
 /**
  * This function logs messages to the console with a specific style.
@@ -83,6 +547,146 @@ const log = (message, ...args) => {
     console.info("%c", style, message, ...args);
   }
 };
+
+/*
+ * TODO: docstring
+ */
+function makeSections(
+  sections,
+  parentSelector = "#skilljar-content",
+  baseURL = "https://courses.chainguard.dev"
+) {
+  const registeredCourses = userCourseJourney.registered.map((d) => d.course);
+  const completedCourses = userCourseJourney.completed.map((d) => d.course);
+
+  sections.forEach((section) => {
+    const sectionElement = Object.assign(document.createElement("section"), {
+      className: "featured-courses",
+    });
+
+    const grid = Object.assign(document.createElement("div"), {
+      className: "featured-courses__grid",
+    });
+
+    const intro = Object.assign(document.createElement("div"), {
+      className: "featured-courses__intro",
+    });
+
+    const eyebrow = Object.assign(document.createElement("h2"), {
+      className: "eyebrow",
+      textContent: section.eyebrow || "",
+    });
+
+    const headline = Object.assign(document.createElement("p"), {
+      className: "headline",
+      textContent: section.title || "",
+    });
+
+    const subhead = Object.assign(document.createElement("p"), {
+      className: "subhead",
+      textContent: section.description || "",
+    });
+
+    // const cta = Object.assign(document.createElement("a"), {
+    //     className: "btn btn--primary",
+    //     href: "/",
+    //     textContent: "Browse all courses",
+    // });
+
+    intro.append(...[eyebrow, headline, subhead /*cta*/]);
+    grid.append(intro);
+    sectionElement.append(grid);
+
+    const cardsElem = Object.assign(document.createElement("div"), {
+      className: "cards",
+    });
+
+    section.links.forEach((link) => {
+      const isRegistered = registeredCourses.includes(link.slug);
+      const isCompleted = completedCourses.includes(link.slug);
+
+      article = Object.assign(document.createElement("article"), {
+        className: `card ${isCompleted ? "card--completed" : ""} ${
+          isRegistered ? "card--in-progress" : ""
+        }`,
+      });
+
+      innerContainer = Object.assign(document.createElement("div"), {
+        className: "card__inner",
+      });
+
+      if (isCompleted) {
+        pill = Object.assign(document.createElement("span"), {
+          className: "pill completed",
+          textContent: "Completed",
+        });
+        innerContainer.append(pill);
+      }
+
+      if (isRegistered && !isCompleted) {
+        pill = Object.assign(document.createElement("span"), {
+          className: "pill in-progress",
+          textContent: "In Progress",
+        });
+        innerContainer.append(pill);
+      }
+
+      iconContainer = Object.assign(document.createElement("div"), {
+        className: "card__icon",
+        innerHTML: link.icon || "",
+      });
+
+      titleEyebrow = Object.assign(document.createElement("h5"), {
+        className: "card__eyebrow",
+        textContent: link.isCourse ? "Course" : "Learning Path",
+      });
+
+      const price = Object.assign(document.createElement("span"), {
+        textContent: " | Free",
+      });
+
+      titleEyebrow.append(price);
+
+      title = Object.assign(document.createElement("h3"), {
+        className: "card__title",
+        textContent: link.title || "",
+      });
+
+      description = Object.assign(document.createElement("p"), {
+        className: "card__text",
+        textContent: link.description || "",
+      });
+
+      innerContainer.append(
+        ...[iconContainer, titleEyebrow, title, description]
+      );
+
+      if (link.hasBadge && !isCompleted) {
+        pill = Object.assign(document.createElement("span"), {
+          className: "pill badged",
+          textContent: "Get a Badge",
+        });
+        innerContainer.append(pill);
+      }
+
+      article.append(innerContainer);
+
+      cardLink = Object.assign(document.createElement("a"), {
+        className: "card__link",
+        href: `${baseURL}/${link.slug}`,
+        title: link.isCourse ? "Start course" : "Start path",
+      });
+
+      cardLink.append(article);
+
+      cardsElem.append(cardLink);
+    });
+
+    grid.append(cardsElem);
+    sectionElement.append(grid);
+    document.querySelector(parentSelector).append(sectionElement);
+  });
+}
 
 function createClone(type = "checkbox") {
   function createSvgElement(tag, attrs = {}) {
@@ -201,7 +805,7 @@ const page = {
   isSignup: c(".sj-page-signup"),
   isPageDetail: c(".sj-page-detail-bundle.sj-page-detail-path"),
   isPageCatalog: c(".sj-page-series.sj-page-path"),
-  hasCertificate: c(".cp-certificate"),
+  // hasCertificate: c(".cp-certificate"),
 };
 
 let v = {
@@ -226,14 +830,16 @@ let v = {
 function getCurriculumElements(curriculumParentContainer) {
   let currentSection = 0,
     elements = Array.from(
-      curriculumParentContainer.querySelectorAll("[class^='lesson-']")
+      curriculumParentContainer.querySelectorAll("[class^='lesson-'],.section")
     ),
     a;
 
   const content = elements
     .filter((e) => !e.classList.contains("lesson-row"))
     .map((elem) => {
-      const isHeader = elem.classList.contains("lesson-section");
+      const isHeader =
+        elem.classList.contains("section") ||
+        elem.classList.contains("lesson-section");
 
       currentSection += isHeader ? 1 : 0;
 
@@ -270,39 +876,21 @@ function getCurriculumElements(curriculumParentContainer) {
   return a.map((section) => {
     const wrapper = Object.assign(document.createElement("div"), {
       className: "curriculum-wrapper",
-      // style: `border-radius: 8px; margin-bottom: 48px; padding: 0; border: ${
-      //   border === "b"
-      //     ? "2px solid var(--primary-blue-hex)"
-      //     : "1px solid var(--detail-medium-contrast)"
-      // };`,
     });
 
     const header = Object.assign(document.createElement("div"), {
       className: "curriculum-header",
-      // style: `display: flex; align-items: center; padding: 24px; margin: 0; font-family: "Fusiona"; font-size: 16px; font-weight: 500; line-height: 125%; letter-spacing: "-.16px"; border-bottom: 2px solid var(--primary-blue-hex);`,
       textContent: section.heading,
     });
 
     const lessons = section.lessons.map((lesson, ix) => {
       const a = Object.assign(document.createElement("a"), {
         className: "curriculum-lesson" /* lesson-row */,
-        // style: `display: block; color: black; padding: 24px; font-size: 16px; font-weight: 400; line-height: 150%; border-bottom: ${
-        //   ix !== section.lessons.length - 1
-        //     ? border === "b"
-        //       ? "2px solid var(--primary-blue-hex)"
-        //       : "1px solid var(--detail-medium-contrast)"
-        //     : "none"
-        // };`,
         textContent: lesson,
         href: section.links[ix] || "#",
       });
 
-      if (section.bullets[ix])
-        a.prepend(
-          Object.assign(section.bullets[ix], {
-            // style: `display: inline-block; font-size: 1.5em; transform: translateY(3px); margin-right: 10px; color: var(--primary-blue-hex);`,
-          })
-        );
+      if (section.bullets[ix]) a.prepend(section.bullets[ix]);
 
       return a;
     });
@@ -426,18 +1014,18 @@ function animateCopiedTooltip(tooltipEl) {
  * @param {string} border - The border style to apply. Default is "b" for blue.
  * @return {void}
  */
-function styleGroupContainer(container, border = "b") {
-  log("Running styleGroupContainer with setStyle");
-  setStyle(container, {
-    border:
-      border === "b"
-        ? "2px solid var(--primary-blue-hex)"
-        : "1px solid var(--detail-medium-contrast)",
-    borderRadius: "8px",
-    marginBottom: "48px",
-    padding: "0",
-  });
-}
+// function styleGroupContainer(container, border = "b") {
+//   log("Running styleGroupContainer with setStyle");
+//   setStyle(container, {
+//     border:
+//       border === "b"
+//         ? "2px solid var(--primary-blue-hex)"
+//         : "1px solid var(--detail-medium-contrast)",
+//     borderRadius: "8px",
+//     marginBottom: "48px",
+//     padding: "0",
+//   });
+// }
 
 /**
  * This function styles the list item for lessons.
@@ -449,46 +1037,46 @@ function styleGroupContainer(container, border = "b") {
  * @param {string} border - The border style to apply. Default is "b" for blue.
  * @return {void}
  */
-function styleListItem(lessonItem, isLastChild, hideIcon = true, border = "b") {
-  log("Running styleListItem with setStyle");
-  if (hideIcon) {
-    hide(lessonItem.querySelector(".type-icon"));
-  }
+// function styleListItem(lessonItem, isLastChild, hideIcon = true, border = "b") {
+//   log("Running styleListItem with setStyle");
+//   if (hideIcon) {
+//     hide(lessonItem.querySelector(".type-icon"));
+//   }
 
-  setStyle(lessonItem, {
-    padding: "24px",
-    fontSize: "16px",
-    fontWeight: "400",
-    lineHeight: "150%",
-    borderBottom: isLastChild
-      ? "none"
-      : border === "b"
-      ? "2px solid var(--primary-blue-hex)"
-      : "1px solid var(--detail-medium-contrast)",
-  });
-}
+//   setStyle(lessonItem, {
+//     padding: "24px",
+//     fontSize: "16px",
+//     fontWeight: "400",
+//     lineHeight: "150%",
+//     borderBottom: isLastChild
+//       ? "none"
+//       : border === "b"
+//       ? "2px solid var(--primary-blue-hex)"
+//       : "1px solid var(--detail-medium-contrast)",
+//   });
+// }
 
 /**
  * This function styles the group heading container.
  * It sets padding, border bottom, and styles the actual group heading.
  * @param {HTMLElement} groupHeadingContainer - The group heading container to style.
  */
-function styleGroupHeading(groupHeadingContainer, border = "b") {
-  log("Running styleGroupHeading with setStyle");
-  setStyle(groupHeadingContainer, {
-    padding: "24px",
-    margin: "0",
-    fontFamily: "Fusiona",
-    fontSize: "16px",
-    fontWeight: "500",
-    lineHeight: "125%",
-    letterSpacing: "-.16px",
-    borderBottom:
-      border === "b"
-        ? "2px solid var(--primary-blue-hex)"
-        : "1px solid var(--detail-medium-contrast)",
-  });
-}
+// function styleGroupHeading(groupHeadingContainer, border = "b") {
+//   log("Running styleGroupHeading with setStyle");
+//   setStyle(groupHeadingContainer, {
+//     padding: "24px",
+//     margin: "0",
+//     fontFamily: "Fusiona",
+//     fontSize: "16px",
+//     fontWeight: "500",
+//     lineHeight: "125%",
+//     letterSpacing: "-.16px",
+//     borderBottom:
+//       border === "b"
+//         ? "2px solid var(--primary-blue-hex)"
+//         : "1px solid var(--detail-medium-contrast)",
+//   });
+// }
 
 /**
  * This function applies desktop-specific styling to a catalog page.
@@ -507,26 +1095,13 @@ function styleLanding() {
     catalogContainer: document.querySelector("#catalog-courses"),
   };
 
-  // set up userCourseJourney global variable
-  window.userCourseJourney = {
-    unregistered: Array.from(
-      document.querySelectorAll(
-        ".coursebox-container[data-course-status='unregistered']"
-      )
-    ).map((el) => Object.assign({ ...el.dataset })),
-    registered: Array.from(
-      document.querySelectorAll(
-        ".coursebox-container[data-course-status='registered']"
-      )
-    ).map((el) => Object.assign({ ...el.dataset })),
-    completed: Array.from(
-      document.querySelectorAll(
-        ".coursebox-container[data-course-status='completed']"
-      )
-    ).map((el) => Object.assign({ ...el.dataset })),
-  };
+  makeSections(pathSections["home"], "#skilljar-content", baseURL);
+
+  document.querySelector("#skilljar-content").append(v.global.footerContainer);
 
   v.local.catalogBodyParentContainer.append(v.local.catalogContainer);
+
+  hide(v.local.catalogBodyParentContainer);
 }
 
 /**
@@ -574,14 +1149,20 @@ function styleCourseDetails() {
   v.local.curriculum.container.innerHTML = ""; // Clear the container
   v.local.curriculum.container.append(...curriculumElements);
 
-  // v.local.card.detailItems.forEach((li) => li.prepend(createClone("checkbox")));
-
   // append card
   v.local.body.container.append(...[v.local.card.details].filter(Boolean));
+
+  // add a breadcrumb to a div with id "breadcrumb" added to .dp-summary-wrapper
+  const breadcrumb = Object.assign(document.createElement("div"), {
+    id: "breadcrumb",
+    className: "",
+  });
+  renderBreadcrumbs(breadcrumb, crumbs);
 
   // append elements to header
   v.local.header.mainHeadingContainer.append(
     ...[
+      breadcrumb,
       v.local.header.floaterText,
       v.local.header.mainHeading,
       v.local.header.courseInfo,
@@ -612,9 +1193,17 @@ function stylePathCourseDetails() {
   v.local.header.courseInfo.textContent =
     skilljarCourseSeries.short_description || "";
 
+  // add a breadcrumb to a div with id "" added to .cp-summary-row-v2
+  const breadcrumb = Object.assign(document.createElement("div"), {
+    id: "breadcrumb",
+    className: "",
+  });
+  renderBreadcrumbs(breadcrumb, crumbs);
+
   // move elements
   v.local.header.mainHeadingContainer.append(
     ...[
+      breadcrumb,
       v.local.header.floaterText,
       v.local.header.mainHeading,
       v.local.header.courseInfo,
@@ -622,57 +1211,20 @@ function stylePathCourseDetails() {
     ].filter(Boolean)
   );
 
-  if (skilljarCourseSeries.title === "Chainguard Containers Onboarding Guide") {
-    // apply style specific to container onboarding path
-    const csmWrapper = Object.assign(document.createElement("div"), {
-      id: "catalog-courses",
-      className: "course-listing",
-    });
-    csmWrapper.dataset.listing = "CSM";
-    v.local.catalog.prepend(csmWrapper);
+  if (pathSections[skilljarPath.slug]) {
+    hide(".sj-courseboxes-v2");
 
-    const saHeader = Object.assign(document.createElement("h3"), {
-      className: "course-listing-header technical-onboarding",
-      textContent: "Technical Onboarding",
-    });
-
-    const csmHeader = Object.assign(document.createElement("h3"), {
-      className: "course-listing-header admin-onboarding",
-      textContent: "Admin Onboarding",
-    });
-
-    // here we set the order of csmCourses
-    const csmCourses = [
-      "kickoff-guide-to-chainguard",
-      "getting-started-with-chainguards-console",
-      "shared-responsibility-model",
-      "chainguards-superstar-support",
-    ]
-      .filter(Boolean)
-      .map((d) =>
-        document.querySelector(`.coursebox-container[data-course=${d}]`)
-      );
-
-    const saCourses = document.querySelector(
-      "#catalog-courses:not([data-listing='CSM'])"
+    makeSections(
+      pathSections[skilljarPath.slug],
+      "#skilljar-content",
+      `${baseURL}/path/${skilljarPath.slug}`
     );
 
-    csmWrapper.append(...csmCourses.filter(Boolean));
-
-    v.local.catalog.append(csmHeader, csmWrapper, saHeader, saCourses);
-
-    // move completed courses to end of list
-    saCourses.append(
-      ...saCourses.querySelectorAll(
-        ".coursebox-container[data-course-status='complete']"
-      )
-    );
-
-    csmWrapper.append(
-      ...csmWrapper.querySelectorAll(
-        ".coursebox-container[data-course-status='complete']"
-      )
-    );
+    document
+      .querySelector("#skilljar-content")
+      .append(v.global.footerContainer);
+  } else {
+    console.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
   }
 }
 
@@ -681,43 +1233,96 @@ function stylePathCourseDetails() {
  */
 function stylePathCatalogPage() {
   log("Running stylePathCatalogPage");
-  const backArrowBtn = document.querySelector(".back-to-catalog");
 
-  const mainContentContainer = document.querySelector("#catalog-content");
-  const topContentContainer = mainContentContainer.querySelector(
-    ".path-curriculum-resume-wrapper"
-  );
-  const coursesList = document.querySelectorAll(
-    "#catalog-courses .coursebox-container"
-  );
+  hide(".path-curriculum-resume-wrapper");
 
-  coursesList.forEach((course) => {
-    const innerContainer = course.querySelector(".course-overview");
-
-    setStyle(course, {
-      border: "2px solid var(--form-bg)",
-      borderRadius: "20px",
-    });
-
-    setStyle(innerContainer, { borderTop: "2px solid var(--form-bg)" });
-
-    course.addEventListener("mouseover", () => {
-      setStyle(course, { borderColor: "var(--primary-blue-hex)" });
-      setStyle(innerContainer, { borderColor: "var(--primary-blue-hex)" });
-    });
-
-    course.addEventListener("mouseout", () => {
-      setStyle(course, { borderColor: "var(--form-bg)" });
-      setStyle(innerContainer, { borderColor: "var(--form-bg)" });
-    });
+  const topRow = Object.assign(document.createElement("div"), {
+    className: "top-row-grey top-row-white-v2 padding-top padding-side row-v2",
   });
+  const topRowInner = Object.assign(document.createElement("div"), {
+    className: "row dp-row-flex-v2",
+  });
+  const topRowLeft = Object.assign(document.createElement("div"), {
+    className: "columns text-center large-6 dp-summary-wrapper text-left-v2",
+  });
+  const floaterText = Object.assign(document.createElement("div"), {
+    className: "sj-floater-text",
+    textContent: "Learning Path",
+  });
+  const mainHeading = Object.assign(document.createElement("h1"), {
+    className: "break-word",
+    textContent: skilljarCourseSeries.title || "",
+  });
+  const courseInfo = Object.assign(document.createElement("p"), {
+    className: "sj-heading-paragraph",
+    textContent: skilljarCourseSeries.short_description || "",
+  });
+  const ctaBtnWrapper = document.querySelector(
+    ".path-curriculum-button-wrapper a"
+  );
+  const progressAnnotation = document.querySelector(
+    "#path-curriculum-progress-bar-annotation"
+  );
+  const progressBar = document.querySelector("#path-curriculum-progress-bar");
+  hide([progressAnnotation, progressBar]); // temporarily
+  topRowLeft.append(
+    ...[
+      floaterText,
+      mainHeading,
+      courseInfo,
+      ctaBtnWrapper,
+      progressAnnotation,
+      progressBar,
+    ].filter(Boolean)
+  );
+  topRowInner.append(topRowLeft);
 
-  // MAIN CONTENT STYLING
-  setStyle(mainContentContainer, { margin: "96px auto" });
+  const breadcrumb = Object.assign(document.createElement("div"), {
+    className: "row dp-row-flex-v2",
+    id: "breadcrumb",
+  });
+  renderBreadcrumbs(breadcrumb, crumbs);
+  topRow.append(breadcrumb, topRowInner);
 
-  // hide elements
-  hide(backArrowBtn);
-  hide(topContentContainer);
+  const detailsBundle = Object.assign(document.createElement("div"), {
+    id: "dp-details-bundle",
+  });
+  const detailsBundleRow = Object.assign(document.createElement("div"), {
+    className: "row padding-side",
+  });
+  const detailsBundleCol = Object.assign(document.createElement("div"), {
+    className: "columns",
+  });
+  const longDescription = Object.assign(document.createElement("div"), {
+    className: "dp-long-description",
+  });
+  const longDescPara = Object.assign(document.createElement("p"));
+  longDescPara.innerHTML = skilljarCourseSeries.long_description_html;
+  longDescription.append(longDescPara);
+  detailsBundleCol.append(longDescription);
+  detailsBundleRow.append(detailsBundleCol);
+  detailsBundle.append(detailsBundleRow);
+
+  // prepend topRow and detailsBundle to content
+  document
+    .querySelector("#skilljar-content")
+    .prepend(...[topRow, detailsBundle].filter(Boolean));
+
+  if (pathSections[skilljarPath.slug]) {
+    hide(".sj-courseboxes-v2");
+
+    makeSections(
+      pathSections[skilljarPath.slug],
+      "#skilljar-content",
+      `${baseURL}/path/${skilljarPath.slug}`
+    );
+
+    document
+      .querySelector("#skilljar-content")
+      .append(v.global.footerContainer);
+  } else {
+    console.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
+  }
 }
 
 function styleLesson() {
@@ -966,74 +1571,97 @@ function styleLesson() {
   }
 }
 
-const getLoginSignupSelectors = () => ({
-  googleBtn: document.querySelector("#google_login"),
-  termsAndServices: document.querySelector("#access-message"),
-  altMethod:
-    document.querySelector(".sj-text-sign-in-with span") ||
-    document.querySelector(".sj-text-sign-up-with span"),
+function styleAuth() {
+  log("Running styleAuth");
 
-  inputs: {
-    password2: document.querySelector("#id_password2"), // signup specific
-    email: document.querySelector("#id_email"), // signup specific
-  },
+  v.local = {
+    googleBtn: document.querySelector("#google_login"),
+    termsAndServices: document.querySelector("#access-message"),
+    altMethod:
+      document.querySelector(".sj-text-sign-in-with span") ||
+      document.querySelector(".sj-text-sign-up-with span"),
 
-  // login specific
-  loginBtn: document.querySelector("#button-sign-in"),
-  loginForm: document.querySelector("#login_form"),
-  loginText: document.querySelector("#login-tab-left span span"),
-  signupTabTextSpan: document.querySelector("#login-tab-right span"),
+    inputs: {
+      password2: document.querySelector("#id_password2"), // signup specific
+      email: document.querySelector("#id_email"), // signup specific
+    },
 
-  // signup-specific
-  loginTabTextSpan: document.querySelector("#login-tab-left a span"),
-  signupForm: document.querySelector("#signup_form"),
-  signupTabText:
-    document.querySelector("#login-tab-right a") ||
-    document.querySelector("#login-tab-right span"),
-  passwordConfirm: document.querySelector(
-    "label[for=id_password2] .input-label-text span"
-  ),
-  fNameLabel: document.querySelector('label[for="id_first_name"] span span'),
-  lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
-  emailLabel: document.querySelector('label[for="id_email"]'),
-  signupBtnText: document.querySelector("#button-sign-up span"),
-});
+    // login specific
+    loginBtn: document.querySelector("#button-sign-in"),
+    loginForm: document.querySelector("#login_form"),
+    loginText: document.querySelector("#login-tab-left span span"),
+    signupTabTextSpan: document.querySelector("#login-tab-right span"),
 
-function styleLogin() {
-  log("Running styleLogin");
+    // signup-specific
+    loginTabTextSpan: document.querySelector("#login-tab-left a span"),
+    signupForm: document.querySelector("#signup_form"),
+    signupTabText:
+      document.querySelector("#login-tab-right a") ||
+      document.querySelector("#login-tab-right span"),
+    passwordConfirm: document.querySelector(
+      "label[for=id_password2] .input-label-text span"
+    ),
+    fNameLabel: document.querySelector('label[for="id_first_name"] span span'),
+    lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
+    emailLabel: document.querySelector('label[for="id_email"]'),
+    signupBtnText: document.querySelector("#button-sign-up span"),
+  };
 
-  v.local = getLoginSignupSelectors();
+  if (page.isLogin) {
+    v.local.loginText.textContent = "Log In";
+    v.local.signupTabTextSpan.textContent = "Sign Up";
+    v.local.altMethod.textContent = "Or Log In With";
+    v.local.loginBtn.textContent = "Log In";
+    v.local.googleBtn.textContent = "Continue with Google";
 
-  v.local.loginText.textContent = "Log In";
-  v.local.signupTabTextSpan.textContent = "Sign Up";
-  v.local.altMethod.textContent = "Or Log In With";
-  v.local.loginBtn.textContent = "Log In";
-  v.local.googleBtn.textContent = "Continue with Google";
+    v.local.loginForm.append(v.local.termsAndServices);
+  } else {
+    v.local.loginTabTextSpan.textContent = "Log In";
+    v.local.signupTabText.textContent = "Sign Up";
+    v.local.altMethod.textContent = "Or Sign Up With";
+    v.local.fNameLabel.textContent = "First Name";
+    v.local.googleBtn.textContent = "Continue with Google";
+    v.local.lNameLabel.textContent = "Last Name";
+    v.local.signupBtnText.textContent = "Sign Up";
+    v.local.passwordConfirm.textContent = "Password Confirm";
+    v.local.emailLabel.textContent = "Work Email";
+    v.local.inputs.email.placeholder = "Work Email";
+    v.local.inputs.password2.placeholder = "Password Confirm";
 
-  // move elements
-  v.local.loginForm.append(v.local.termsAndServices);
-}
+    v.local.signupForm.append(v.local.termsAndServices);
+  }
 
-function styleSignup() {
-  log("Running styleSignup");
+  // hide existing login content
+  hide([
+    document.querySelector(".white-bg"),
+    document.querySelector("#login-content"),
+  ]);
 
-  v.local = getLoginSignupSelectors();
+  const authContainer = Object.assign(document.createElement("div"), {
+    id: "auth-container",
+    style: "flex-grow: 1; min-height: 100vh;",
+  });
 
-  // set content
-  v.local.loginTabTextSpan.textContent = "Log In";
-  v.local.signupTabText.textContent = "Sign Up";
-  v.local.altMethod.textContent = "Or Sign Up With";
-  v.local.fNameLabel.textContent = "First Name";
-  v.local.googleBtn.textContent = "Continue with Google";
-  v.local.lNameLabel.textContent = "Last Name";
-  v.local.signupBtnText.textContent = "Sign Up";
-  v.local.passwordConfirm.textContent = "Password Confirm";
-  v.local.emailLabel.textContent = "Work Email";
-  v.local.inputs.email.placeholder = "Work Email";
-  v.local.inputs.password2.placeholder = "Password Confirm";
+  // create new auth card
+  const authCard = Object.assign(document.createElement("div"), {
+    className: "auth-card",
+  });
 
-  // move elements
-  v.local.signupForm.append(v.local.termsAndServices);
+  // append existing elements to it
+  const form = page.isLogin ? v.local.loginForm : v.local.signupForm;
+  const orSignUpWith = page.isLogin
+    ? document.querySelector(".sj-text-sign-in-with")
+    : document.querySelector(".sj-text-sign-up-with");
+
+  authCard.append(
+    ...[form, orSignUpWith, v.local.googleBtn, v.local.termsAndServices]
+  );
+
+  authContainer.append(...[document.querySelector("#tabs"), authCard]);
+
+  document
+    .querySelector("#skilljar-content")
+    .append(...[authContainer, v.global.footerContainer]);
 }
 
 function styleCurriculumPageNoCertificate() {
@@ -1104,8 +1732,6 @@ function styleCurriculumPageNoCertificate() {
     v.local.tabs.curriculumSection
   );
 
-  // v.local.card.detailItems.forEach((li) => li.prepend(createClone("checkbox")));
-
   const curriculumElements = getCurriculumElements(
     v.local.curriculum.container
   );
@@ -1115,10 +1741,18 @@ function styleCurriculumPageNoCertificate() {
 
   v.local.header.courseInfo.textContent = skilljarCourse.short_description;
 
+  // add a breadcrumb to a div with id "" added to .cp-summary-row-v2
+  const breadcrumb = Object.assign(document.createElement("div"), {
+    id: "breadcrumb",
+    className: "",
+  });
+  renderBreadcrumbs(breadcrumb, crumbs);
+
   // move elements
   v.local.body.mainContainer.append(...[v.local.card.details].filter(Boolean));
   v.local.header.mainHeadingContainer.append(
     ...[
+      breadcrumb,
       v.local.header.floaterText,
       v.local.header.mainHeading,
       v.local.header.courseInfo,
@@ -1131,483 +1765,483 @@ function styleCurriculumPageNoCertificate() {
  * This function applies desktop-specific styling to the curriculum page when a certificate is available.
  * It modifies the layout and appearance of various elements on the page.
  */
-function styleCurriculumPageHasCertificationDesktop() {
-  // TODO: Clean up this function
-  log("Running styleCurriculumPageHasCertificationDesktop");
-  const courseDescription = skilljarCourse.short_description;
+// function styleCurriculumPageHasCertificationDesktop() {
+//   // TODO: Clean up this function
+//   log("Running styleCurriculumPageHasCertificationDesktop");
+//   const courseDescription = skilljarCourse.short_description;
 
-  // HEADER VARIABLES
-  const headingParagraph = document.querySelector(".sj-heading-paragraph");
-  const headingFloaterText = document.querySelector(".sj-floater-text");
-  const container = document.querySelector(".cp-summary-wrapper"); // DUPLICATE VAR
-  const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR
-  const backToCatalogLink = document.querySelector(".back-to-catalog");
+//   // HEADER VARIABLES
+//   const headingParagraph = document.querySelector(".sj-heading-paragraph");
+//   const headingFloaterText = document.querySelector(".sj-floater-text");
+//   const container = document.querySelector(".cp-summary-wrapper"); // DUPLICATE VAR
+//   const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR
+//   const backToCatalogLink = document.querySelector(".back-to-catalog");
 
-  hide(backToCatalogLink);
+//   hide(backToCatalogLink);
 
-  const curriculumPageHeader = document.querySelector(".top-row-grey");
-  const headerTextAndImgContainer = document.querySelector(".dp-row-flex-v2");
-  const sjHeaderTextContainer = document.querySelector(".cp-summary-wrapper");
-  const sjHeaderTextHeading = document.querySelector(".break-word");
-  const sjHeaderTextSubheading = document.querySelector(".cp-lessons");
-  const sjHeaderTextProgressBar = document.querySelector(
-    ".progress-bar.button-border-color"
-  );
-  const certificateEl = document.querySelector(".cp-certificate");
-  const sjHeaderImgContainer = document.querySelector(
-    ".large-4.pull-8.columns.cp-promo-image-wrapper"
-  );
-  const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image");
-  const sjHeaderImg = document.querySelector(".cp-promo-image img");
+//   const curriculumPageHeader = document.querySelector(".top-row-grey");
+//   const headerTextAndImgContainer = document.querySelector(".dp-row-flex-v2");
+//   const sjHeaderTextContainer = document.querySelector(".cp-summary-wrapper");
+//   const sjHeaderTextHeading = document.querySelector(".break-word");
+//   const sjHeaderTextSubheading = document.querySelector(".cp-lessons");
+//   const sjHeaderTextProgressBar = document.querySelector(
+//     ".progress-bar.button-border-color"
+//   );
+//   const certificateEl = document.querySelector(".cp-certificate");
+//   const sjHeaderImgContainer = document.querySelector(
+//     ".large-4.pull-8.columns.cp-promo-image-wrapper"
+//   );
+//   const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image");
+//   const sjHeaderImg = document.querySelector(".cp-promo-image img");
 
-  // BODY VARIABLES
-  const bodyMainContainer = document.querySelector("#cp-content");
-  const innerContentContainer = bodyMainContainer.querySelector(".columns");
-  const tabsContainer = document.querySelector(".section-container.tabs");
-  let [curriculumSection, aboutSection] =
-    tabsContainer.querySelectorAll("section");
+//   // BODY VARIABLES
+//   const bodyMainContainer = document.querySelector("#cp-content");
+//   const innerContentContainer = bodyMainContainer.querySelector(".columns");
+//   const tabsContainer = document.querySelector(".section-container.tabs");
+//   let [curriculumSection, aboutSection] =
+//     tabsContainer.querySelectorAll("section");
 
-  // STYLE LOGO
-  v.global.logo.style.height = "24px";
+//   // STYLE LOGO
+//   v.global.logo.style.height = "24px";
 
-  // TEST
-  if (initialLoadComplete) {
-    curriculumSection = v.global.curriculumSection;
-    aboutSection = v.global.aboutSection;
-    tabsContainer.append(curriculumSection, aboutSection);
-  }
+//   // TEST
+//   if (initialLoadComplete) {
+//     curriculumSection = v.global.curriculumSection;
+//     aboutSection = v.global.aboutSection;
+//     tabsContainer.append(curriculumSection, aboutSection);
+//   }
 
-  const pageIcons = document.querySelectorAll(".type-icon.hide-for-small");
-  const lessonListItems = document.querySelectorAll(".lesson-row");
-  const curriculumParentContainer = document.querySelector("#curriculum-list");
-  const curriculumItemsListLIVE = new Array(
-    ...curriculumParentContainer.childNodes
-  );
-  const curriculumOutsideContainer =
-    curriculumParentContainer.closest(".content");
+//   const pageIcons = document.querySelectorAll(".type-icon.hide-for-small");
+//   const lessonListItems = document.querySelectorAll(".lesson-row");
+//   const curriculumParentContainer = document.querySelector("#curriculum-list");
+//   const curriculumItemsListLIVE = new Array(
+//     ...curriculumParentContainer.childNodes
+//   );
+//   const curriculumOutsideContainer =
+//     curriculumParentContainer.closest(".content");
 
-  // CARD VARIABLES
-  const courseDetailsCard = document.querySelector(".course-details-card");
-  // const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li");
-  const courseDetailsCardLink = document.querySelector(
-    ".course-details-card-link"
-  );
+//   // CARD VARIABLES
+//   const courseDetailsCard = document.querySelector(".course-details-card");
+//   // const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li");
+//   const courseDetailsCardLink = document.querySelector(
+//     ".course-details-card-link"
+//   );
 
-  // STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
-  bodyMainContainer.style.display = "grid";
-  bodyMainContainer.style.marginTop = "96px";
-  bodyMainContainer.style.gridTemplateColumns =
-    "minmax(100px, 760px) minmax(100px, 368px)";
+//   // STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
+//   bodyMainContainer.style.display = "grid";
+//   bodyMainContainer.style.marginTop = "96px";
+//   bodyMainContainer.style.gridTemplateColumns =
+//     "minmax(100px, 760px) minmax(100px, 368px)";
 
-  bodyMainContainer.append(...(courseDetailsCard ? [courseDetailsCard] : []));
+//   bodyMainContainer.append(...(courseDetailsCard ? [courseDetailsCard] : []));
 
-  courseDetailsCard.style.margin = "96px 0 46px 0";
+//   courseDetailsCard.style.margin = "96px 0 46px 0";
 
-  hide(courseDetailsCardLink);
+//   hide(courseDetailsCardLink);
 
-  // if (!initialLoadComplete) {
-  //   courseDetailCardListItems.forEach((li) =>
-  //     li.prepend(createClone("checkbox"))
-  //   );
-  // }
+//   // if (!initialLoadComplete) {
+//   //   courseDetailCardListItems.forEach((li) =>
+//   //     li.prepend(createClone("checkbox"))
+//   //   );
+//   // }
 
-  bodyMainContainer.style.columnGap = "24px";
-  innerContentContainer.style.width = "100%";
+//   bodyMainContainer.style.columnGap = "24px";
+//   innerContentContainer.style.width = "100%";
 
-  // STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-  sjHeaderTextHeading.style.fontWeight = "600";
-  sjHeaderTextHeading.style.fontSize = "36px";
-  sjHeaderTextHeading.style.lineHeight = "43.2px";
-  sjHeaderTextHeading.style.letterSpacing = "-0.5px";
-  sjHeaderTextHeading.style.marginTop = "0";
-  hide(sjHeaderTextSubheading);
-  hide(sjHeaderTextProgressBar);
+//   // STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
+//   sjHeaderTextHeading.style.fontWeight = "600";
+//   sjHeaderTextHeading.style.fontSize = "36px";
+//   sjHeaderTextHeading.style.lineHeight = "43.2px";
+//   sjHeaderTextHeading.style.letterSpacing = "-0.5px";
+//   sjHeaderTextHeading.style.marginTop = "0";
+//   hide(sjHeaderTextSubheading);
+//   hide(sjHeaderTextProgressBar);
 
-  // STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
-  curriculumPageHeader.style.maxWidth = "none";
-  curriculumPageHeader.style.padding = "0";
-  curriculumPageHeader.style.backgroundImage =
-    "linear-gradient(315deg, var(--gradient-start), var(--gradient-end) 72%)";
-  curriculumPageHeader.style.border = "0";
+//   // STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
+//   curriculumPageHeader.style.maxWidth = "none";
+//   curriculumPageHeader.style.padding = "0";
+//   curriculumPageHeader.style.backgroundImage =
+//     "linear-gradient(315deg, var(--gradient-start), var(--gradient-end) 72%)";
+//   curriculumPageHeader.style.border = "0";
 
-  // STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
-  // TEXT CONTAINER
-  sjHeaderTextContainer.style.position = "static";
-  sjHeaderTextContainer.style.padding = "0";
-  sjHeaderTextContainer.style.maxWidth = "564px";
-  sjHeaderTextContainer.style.border = "0";
-  sjHeaderTextContainer.style.textAlign = "left";
-  // IMG CONTAINER
-  sjHeaderImgContainer.style.position = "static";
-  sjHeaderImgContainer.style.padding = "0";
-  sjHeaderImgContainer.style.width = "564px";
-  sjHeaderImgContainer.style.height = "auto";
-  sjHeaderImgDirectContainer.style.maxHeight = "none";
-  sjHeaderImg.style.maxHeight = "none";
-  sjHeaderImg.style.height = "auto";
-  sjHeaderImg.style.maxWidth = "100%";
-  // PARENT CONTAINER
-  headerTextAndImgContainer.style.margin = "96px 0";
-  headerTextAndImgContainer.style.justifyContent = "center";
-  headerTextAndImgContainer.style.flexWrap = "nowrap";
-  headerTextAndImgContainer.style.gap = "24px";
+//   // STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
+//   // TEXT CONTAINER
+//   sjHeaderTextContainer.style.position = "static";
+//   sjHeaderTextContainer.style.padding = "0";
+//   sjHeaderTextContainer.style.maxWidth = "564px";
+//   sjHeaderTextContainer.style.border = "0";
+//   sjHeaderTextContainer.style.textAlign = "left";
+//   // IMG CONTAINER
+//   sjHeaderImgContainer.style.position = "static";
+//   sjHeaderImgContainer.style.padding = "0";
+//   sjHeaderImgContainer.style.width = "564px";
+//   sjHeaderImgContainer.style.height = "auto";
+//   sjHeaderImgDirectContainer.style.maxHeight = "none";
+//   sjHeaderImg.style.maxHeight = "none";
+//   sjHeaderImg.style.height = "auto";
+//   sjHeaderImg.style.maxWidth = "100%";
+//   // PARENT CONTAINER
+//   headerTextAndImgContainer.style.margin = "96px 0";
+//   headerTextAndImgContainer.style.justifyContent = "center";
+//   headerTextAndImgContainer.style.flexWrap = "nowrap";
+//   headerTextAndImgContainer.style.gap = "24px";
 
-  // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-  headingParagraph.textContent = courseDescription;
-  headingParagraph.style.display = "block";
-  headingFloaterText.style.display = "block";
-  container.append(
-    ...(headingFloaterText ? [headingFloaterText] : []),
-    ...(mainHeading ? [mainHeading] : []),
-    ...(headingParagraph ? [headingParagraph] : []),
-    ...(certificateEl ? [certificateEl] : [])
-  );
+//   // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
+//   headingParagraph.textContent = courseDescription;
+//   headingParagraph.style.display = "block";
+//   headingFloaterText.style.display = "block";
+//   container.append(
+//     ...(headingFloaterText ? [headingFloaterText] : []),
+//     ...(mainHeading ? [mainHeading] : []),
+//     ...(headingParagraph ? [headingParagraph] : []),
+//     ...(certificateEl ? [certificateEl] : [])
+//   );
 
-  // CURRICULUM PAGE BODY STYLING
-  tabsContainer.append(curriculumSection);
-  tabsContainer.style.margin = "0 0 46px 0";
-  bodyMainContainer.style.paddingTop = "0";
-  bodyMainContainer.style.paddingBottom = "0";
-  aboutSection.classList.add("active");
-  curriculumSection.style.marginTop = "48px";
+//   // CURRICULUM PAGE BODY STYLING
+//   tabsContainer.append(curriculumSection);
+//   tabsContainer.style.margin = "0 0 46px 0";
+//   bodyMainContainer.style.paddingTop = "0";
+//   bodyMainContainer.style.paddingBottom = "0";
+//   aboutSection.classList.add("active");
+//   curriculumSection.style.marginTop = "48px";
 
-  aboutSection.querySelector("h3").style.fontWeight = "600";
-  hide(aboutSection.querySelector(".title"));
-  aboutSection.querySelector(".content").style.border = "0";
-  aboutSection.querySelector(".content").style.padding = "0";
-  hide(curriculumSection.querySelector(".title"));
-  curriculumSection.querySelector("h2").style.fontWeight = "600";
-  curriculumSection.querySelector(".content").style.border = "0";
-  curriculumSection.querySelector(".content").style.padding = "0";
+//   aboutSection.querySelector("h3").style.fontWeight = "600";
+//   hide(aboutSection.querySelector(".title"));
+//   aboutSection.querySelector(".content").style.border = "0";
+//   aboutSection.querySelector(".content").style.padding = "0";
+//   hide(curriculumSection.querySelector(".title"));
+//   curriculumSection.querySelector("h2").style.fontWeight = "600";
+//   curriculumSection.querySelector(".content").style.border = "0";
+//   curriculumSection.querySelector(".content").style.padding = "0";
 
-  /*
-  ------------------------------
-  NEW CURRICULUM DISPLAY STYLING
-  ------------------------------
-  */
-  if (!initialLoadComplete) {
-    // Set global curriculum and about section vars
-    v.global.curriculumSection = curriculumSection;
-    v.global.aboutSection = aboutSection;
+//   /*
+//   ------------------------------
+//   NEW CURRICULUM DISPLAY STYLING
+//   ------------------------------
+//   */
+//   if (!initialLoadComplete) {
+//     // Set global curriculum and about section vars
+//     v.global.curriculumSection = curriculumSection;
+//     v.global.aboutSection = aboutSection;
 
-    const hasSections = curriculumParentContainer.querySelector("h3")
-      ? true
-      : false;
-    let curContainer = document.createElement("div");
+//     const hasSections = curriculumParentContainer.querySelector("h3")
+//       ? true
+//       : false;
+//     let curContainer = document.createElement("div");
 
-    if (!hasSections) {
-      styleGroupContainer(curContainer);
-    }
+//     if (!hasSections) {
+//       styleGroupContainer(curContainer);
+//     }
 
-    curriculumItemsListLIVE.forEach((el) => {
-      if (el?.tagName) {
-        el.classList.add("curriculumItem");
-      }
-    });
+//     curriculumItemsListLIVE.forEach((el) => {
+//       if (el?.tagName) {
+//         el.classList.add("curriculumItem");
+//       }
+//     });
 
-    const curriculumItemsListNonLive =
-      curriculumParentContainer.querySelectorAll(".curriculumItem");
+//     const curriculumItemsListNonLive =
+//       curriculumParentContainer.querySelectorAll(".curriculumItem");
 
-    curriculumItemsListNonLive.forEach((el, i, curArr) => {
-      if (el.tagName === "DIV") {
-        // Yes? push curContainer into parent container
-        curriculumParentContainer.append(curContainer);
-        // Reset curContainer while pushing current new heading & icon in there for the next iteration
-        curContainer = document.createElement("div");
-        styleGroupContainer(curContainer);
+//     curriculumItemsListNonLive.forEach((el, i, curArr) => {
+//       if (el.tagName === "DIV") {
+//         // Yes? push curContainer into parent container
+//         curriculumParentContainer.append(curContainer);
+//         // Reset curContainer while pushing current new heading & icon in there for the next iteration
+//         curContainer = document.createElement("div");
+//         styleGroupContainer(curContainer);
 
-        const newGroupHeading = document.createElement("div");
-        newGroupHeading.style.display = "flex";
-        newGroupHeading.style.gap = "12px";
+//         const newGroupHeading = document.createElement("div");
+//         newGroupHeading.style.display = "flex";
+//         newGroupHeading.style.gap = "12px";
 
-        newGroupHeading.textContent =
-          el.querySelector("h3")?.textContent?.trim() || "Module";
+//         newGroupHeading.textContent =
+//           el.querySelector("h3")?.textContent?.trim() || "Module";
 
-        styleGroupHeading(newGroupHeading);
+//         styleGroupHeading(newGroupHeading);
 
-        curContainer.append(newGroupHeading);
-        hide(el);
-      } else {
-        // Else, normal/expected behaviour
-        // Transfer inner html of current list item to new created div
-        const isLastChild = curArr[i + 1]
-          ? curArr[i + 1].tagName === "DIV"
-          : true;
+//         curContainer.append(newGroupHeading);
+//         hide(el);
+//       } else {
+//         // Else, normal/expected behaviour
+//         // Transfer inner html of current list item to new created div
+//         const isLastChild = curArr[i + 1]
+//           ? curArr[i + 1].tagName === "DIV"
+//           : true;
 
-        const newListEl = document.createElement("div");
-        styleListItem(newListEl, isLastChild, false);
+//         const newListEl = document.createElement("div");
+//         styleListItem(newListEl, isLastChild, false);
 
-        newListEl.append(el);
-        curContainer.append(newListEl);
-      }
-    });
+//         newListEl.append(el);
+//         curContainer.append(newListEl);
+//       }
+//     });
 
-    curriculumParentContainer.append(curContainer);
+//     curriculumParentContainer.append(curContainer);
 
-    hide(curriculumOutsideContainer.querySelector("h2"));
-    hide(curriculumOutsideContainer.querySelector("hr"));
-  }
+//     hide(curriculumOutsideContainer.querySelector("h2"));
+//     hide(curriculumOutsideContainer.querySelector("hr"));
+//   }
 
-  // CURRICULUM ITSELF STYLING
-  hide(...pageIcons);
+//   // CURRICULUM ITSELF STYLING
+//   hide(...pageIcons);
 
-  lessonListItems.forEach((item) => {
-    const titleEl = item.querySelector(".title");
-    item.style.display = "flex";
-    item.style.alignItems = "center";
-    item.style.gap = "12px";
+//   lessonListItems.forEach((item) => {
+//     const titleEl = item.querySelector(".title");
+//     item.style.display = "flex";
+//     item.style.alignItems = "center";
+//     item.style.gap = "12px";
 
-    item.querySelector(".bullet").style.position = "static";
+//     item.querySelector(".bullet").style.position = "static";
 
-    titleEl.style.position = "static";
-    titleEl.style.color = "var(--answer-option)";
-    titleEl.style.display = "flex";
-    titleEl.style.alignItems = "center";
-    titleEl.style.margin = "0";
-    titleEl.style.transform = "translateY(2px)";
-  });
-}
+//     titleEl.style.position = "static";
+//     titleEl.style.color = "var(--answer-option)";
+//     titleEl.style.display = "flex";
+//     titleEl.style.alignItems = "center";
+//     titleEl.style.margin = "0";
+//     titleEl.style.transform = "translateY(2px)";
+//   });
+// }
 
 /**
  * This function applies mobile-specific styling to the curriculum page when a certificate is present.
  * It modifies the layout and appearance of various elements on the page.
  */
-function styleCurriculumPageHasCertificationMobile() {
-  // TODO: Clean up this function
-  log("Running styleCurriculumPageHasCertificateMobile");
+// function styleCurriculumPageHasCertificationMobile() {
+//   // TODO: Clean up this function
+//   log("Running styleCurriculumPageHasCertificateMobile");
 
-  const headingParagraph = document.querySelector(".sj-heading-paragraph");
-  const headingFloaterText = document.querySelector(".sj-floater-text");
-  const container = document.querySelector(".cp-summary-wrapper"); // DUPLICATE VAR
-  const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR
-  const backToCatalogLink = document.querySelector(".back-to-catalog");
+//   const headingParagraph = document.querySelector(".sj-heading-paragraph");
+//   const headingFloaterText = document.querySelector(".sj-floater-text");
+//   const container = document.querySelector(".cp-summary-wrapper"); // DUPLICATE VAR
+//   const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR
+//   const backToCatalogLink = document.querySelector(".back-to-catalog");
 
-  hide(backToCatalogLink);
+//   hide(backToCatalogLink);
 
-  const curriculumPageHeader = document.querySelector(".top-row-grey");
-  const headerTextAndImgContainer = document.querySelector(".dp-row-flex-v2");
-  const sjHeaderTextContainer = document.querySelector(".cp-summary-wrapper");
-  const sjHeaderTextHeading = document.querySelector(".break-word");
-  const sjHeaderTextSubheading = document.querySelector(".cp-lessons");
-  const sjHeaderTextProgressBar = document.querySelector(
-    ".progress-bar.button-border-color"
-  );
-  const certificateEl = document.querySelector(".cp-certificate");
-  const sjHeaderImgContainer = document.querySelector(
-    ".large-4.pull-8.columns.cp-promo-image-wrapper"
-  );
-  const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image");
-  const sjHeaderImg = document.querySelector(".cp-promo-image img");
+//   const curriculumPageHeader = document.querySelector(".top-row-grey");
+//   const headerTextAndImgContainer = document.querySelector(".dp-row-flex-v2");
+//   const sjHeaderTextContainer = document.querySelector(".cp-summary-wrapper");
+//   const sjHeaderTextHeading = document.querySelector(".break-word");
+//   const sjHeaderTextSubheading = document.querySelector(".cp-lessons");
+//   const sjHeaderTextProgressBar = document.querySelector(
+//     ".progress-bar.button-border-color"
+//   );
+//   const certificateEl = document.querySelector(".cp-certificate");
+//   const sjHeaderImgContainer = document.querySelector(
+//     ".large-4.pull-8.columns.cp-promo-image-wrapper"
+//   );
+//   const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image");
+//   const sjHeaderImg = document.querySelector(".cp-promo-image img");
 
-  // BODY VARIABLES
-  const bodyMainContainer = document.querySelector("#cp-content");
-  const innerContentContainer = bodyMainContainer.querySelector(".columns");
-  const tabsContainer = document.querySelector(".section-container.tabs");
-  let [curriculumSection, aboutSection] =
-    tabsContainer.querySelectorAll("section");
+//   // BODY VARIABLES
+//   const bodyMainContainer = document.querySelector("#cp-content");
+//   const innerContentContainer = bodyMainContainer.querySelector(".columns");
+//   const tabsContainer = document.querySelector(".section-container.tabs");
+//   let [curriculumSection, aboutSection] =
+//     tabsContainer.querySelectorAll("section");
 
-  // TEST
-  if (initialLoadComplete) {
-    curriculumSection = v.global.curriculumSection;
-    aboutSection = v.global.aboutSection;
-    tabsContainer.append(curriculumSection, aboutSection);
-  }
+//   // TEST
+//   if (initialLoadComplete) {
+//     curriculumSection = v.global.curriculumSection;
+//     aboutSection = v.global.aboutSection;
+//     tabsContainer.append(curriculumSection, aboutSection);
+//   }
 
-  const pageIcons = document.querySelectorAll(".type-icon.hide-for-small");
-  const lessonListItems = document.querySelectorAll(".lesson-row");
-  const curriculumParentContainer = document.querySelector("#curriculum-list");
-  const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
-  const curriculumOutsideContainer =
-    curriculumParentContainer.closest(".content");
+//   const pageIcons = document.querySelectorAll(".type-icon.hide-for-small");
+//   const lessonListItems = document.querySelectorAll(".lesson-row");
+//   const curriculumParentContainer = document.querySelector("#curriculum-list");
+//   const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
+//   const curriculumOutsideContainer =
+//     curriculumParentContainer.closest(".content");
 
-  // CARD VARIABLES
-  const courseDetailsCard = document.querySelector(".course-details-card");
-  // const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li");
-  const courseDetailsCardLink = document.querySelector(
-    ".course-details-card-link"
-  );
+//   // CARD VARIABLES
+//   const courseDetailsCard = document.querySelector(".course-details-card");
+//   // const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li");
+//   const courseDetailsCardLink = document.querySelector(
+//     ".course-details-card-link"
+//   );
 
-  // NAV STYLING
-  v.global.logo.style.maxHeight = "48px";
+//   // NAV STYLING
+//   v.global.logo.style.maxHeight = "48px";
 
-  // STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
-  bodyMainContainer.style.display = "grid";
-  bodyMainContainer.style.gridTemplateColumns = "1fr";
-  bodyMainContainer.style.width = "90%";
-  bodyMainContainer.style.columnGap = "24px";
+//   // STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
+//   bodyMainContainer.style.display = "grid";
+//   bodyMainContainer.style.gridTemplateColumns = "1fr";
+//   bodyMainContainer.style.width = "90%";
+//   bodyMainContainer.style.columnGap = "24px";
 
-  courseDetailsCard.style.margin = "32px 0 56px 0";
-  courseDetailsCard.style.justifySelf = "center";
-  bodyMainContainer.append(courseDetailsCard);
+//   courseDetailsCard.style.margin = "32px 0 56px 0";
+//   courseDetailsCard.style.justifySelf = "center";
+//   bodyMainContainer.append(courseDetailsCard);
 
-  hide(courseDetailsCardLink);
+//   hide(courseDetailsCardLink);
 
-  // if (!initialLoadComplete) {
-  //   courseDetailCardListItems.forEach((li) =>
-  //     li.prepend(createClone("checkbox"))
-  //   );
-  // }
+//   // if (!initialLoadComplete) {
+//   //   courseDetailCardListItems.forEach((li) =>
+//   //     li.prepend(createClone("checkbox"))
+//   //   );
+//   // }
 
-  innerContentContainer.style.width = "100%";
+//   innerContentContainer.style.width = "100%";
 
-  // STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-  sjHeaderTextHeading.style.fontWeight = "600";
-  sjHeaderTextHeading.style.fontSize = "36px";
-  sjHeaderTextHeading.style.lineHeight = "43.2px";
-  sjHeaderTextHeading.style.letterSpacing = "-0.5px";
-  sjHeaderTextHeading.style.marginTop = "0";
-  hide(sjHeaderTextSubheading);
-  hide(sjHeaderTextProgressBar);
+//   // STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
+//   sjHeaderTextHeading.style.fontWeight = "600";
+//   sjHeaderTextHeading.style.fontSize = "36px";
+//   sjHeaderTextHeading.style.lineHeight = "43.2px";
+//   sjHeaderTextHeading.style.letterSpacing = "-0.5px";
+//   sjHeaderTextHeading.style.marginTop = "0";
+//   hide(sjHeaderTextSubheading);
+//   hide(sjHeaderTextProgressBar);
 
-  // STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
-  curriculumPageHeader.style.maxWidth = "none";
-  curriculumPageHeader.style.padding = "0";
-  curriculumPageHeader.style.backgroundImage =
-    "linear-gradient(315deg, var(--gradient-start), var(--gradient-end) 72%)";
-  curriculumPageHeader.style.border = "0";
+//   // STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
+//   curriculumPageHeader.style.maxWidth = "none";
+//   curriculumPageHeader.style.padding = "0";
+//   curriculumPageHeader.style.backgroundImage =
+//     "linear-gradient(315deg, var(--gradient-start), var(--gradient-end) 72%)";
+//   curriculumPageHeader.style.border = "0";
 
-  // STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
-  // TEXT CONTAINER
-  sjHeaderTextContainer.style.position = "static";
-  sjHeaderTextContainer.style.padding = "0";
-  sjHeaderTextContainer.style.maxWidth = "none";
-  sjHeaderTextContainer.style.width = "100%";
-  sjHeaderTextContainer.style.marginBottom = "32px";
-  sjHeaderTextContainer.style.border = "0";
-  sjHeaderTextContainer.style.textAlign = "left";
-  // IMG CONTAINER
-  sjHeaderImgContainer.style.position = "static";
-  sjHeaderImgContainer.style.padding = "0";
-  sjHeaderImgContainer.style.width = "90%";
-  sjHeaderImgContainer.style.maxWidth = "564px";
-  sjHeaderImgContainer.style.height = "auto";
-  sjHeaderImgDirectContainer.style.maxHeight = "none";
-  sjHeaderImg.style.maxHeight = "none";
-  sjHeaderImg.style.height = "auto";
-  sjHeaderImg.style.maxWidth = "100%";
-  // PARENT CONTAINER
-  container.style.width = "90%";
-  headerTextAndImgContainer.style.margin = "96px 0";
-  headerTextAndImgContainer.style.justifyContent = "center";
-  headerTextAndImgContainer.style.flexWrap = "wrap";
-  headerTextAndImgContainer.style.gap = "24px";
+//   // STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
+//   // TEXT CONTAINER
+//   sjHeaderTextContainer.style.position = "static";
+//   sjHeaderTextContainer.style.padding = "0";
+//   sjHeaderTextContainer.style.maxWidth = "none";
+//   sjHeaderTextContainer.style.width = "100%";
+//   sjHeaderTextContainer.style.marginBottom = "32px";
+//   sjHeaderTextContainer.style.border = "0";
+//   sjHeaderTextContainer.style.textAlign = "left";
+//   // IMG CONTAINER
+//   sjHeaderImgContainer.style.position = "static";
+//   sjHeaderImgContainer.style.padding = "0";
+//   sjHeaderImgContainer.style.width = "90%";
+//   sjHeaderImgContainer.style.maxWidth = "564px";
+//   sjHeaderImgContainer.style.height = "auto";
+//   sjHeaderImgDirectContainer.style.maxHeight = "none";
+//   sjHeaderImg.style.maxHeight = "none";
+//   sjHeaderImg.style.height = "auto";
+//   sjHeaderImg.style.maxWidth = "100%";
+//   // PARENT CONTAINER
+//   container.style.width = "90%";
+//   headerTextAndImgContainer.style.margin = "96px 0";
+//   headerTextAndImgContainer.style.justifyContent = "center";
+//   headerTextAndImgContainer.style.flexWrap = "wrap";
+//   headerTextAndImgContainer.style.gap = "24px";
 
-  // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-  headingParagraph.style.display = "block";
-  headingFloaterText.style.display = "block";
-  container.append(
-    headingFloaterText,
-    mainHeading,
-    headingParagraph,
-    certificateEl
-  );
-  // CURRICULUM PAGE BODY STYLING
-  tabsContainer.append(curriculumSection);
-  tabsContainer.style.margin = "96px 0 46px 0";
-  bodyMainContainer.style.paddingTop = "0";
-  bodyMainContainer.style.paddingBottom = "0";
-  aboutSection.classList.add("active");
-  curriculumSection.style.marginTop = "48px";
+//   // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
+//   headingParagraph.style.display = "block";
+//   headingFloaterText.style.display = "block";
+//   container.append(
+//     headingFloaterText,
+//     mainHeading,
+//     headingParagraph,
+//     certificateEl
+//   );
+//   // CURRICULUM PAGE BODY STYLING
+//   tabsContainer.append(curriculumSection);
+//   tabsContainer.style.margin = "96px 0 46px 0";
+//   bodyMainContainer.style.paddingTop = "0";
+//   bodyMainContainer.style.paddingBottom = "0";
+//   aboutSection.classList.add("active");
+//   curriculumSection.style.marginTop = "48px";
 
-  aboutSection.querySelector("h3").style.fontWeight = "600";
-  hide(aboutSection.querySelector(".title"));
-  aboutSection.querySelector(".content").style.border = "0";
-  aboutSection.querySelector(".content").style.padding = "0";
-  hide(curriculumSection.querySelector(".title"));
-  curriculumSection.querySelector("h2").style.fontWeight = "600";
-  curriculumSection.querySelector(".content").style.border = "0";
-  curriculumSection.querySelector(".content").style.padding = "0";
+//   aboutSection.querySelector("h3").style.fontWeight = "600";
+//   hide(aboutSection.querySelector(".title"));
+//   aboutSection.querySelector(".content").style.border = "0";
+//   aboutSection.querySelector(".content").style.padding = "0";
+//   hide(curriculumSection.querySelector(".title"));
+//   curriculumSection.querySelector("h2").style.fontWeight = "600";
+//   curriculumSection.querySelector(".content").style.border = "0";
+//   curriculumSection.querySelector(".content").style.padding = "0";
 
-  /*
-  ------------------------------
-  NEW CURRICULUM DISPLAY STYLING
-  ------------------------------
-  */
-  if (!initialLoadComplete) {
-    // Set global curriculum and about section vars
-    v.global.curriculumSection = curriculumSection;
-    v.global.aboutSection = aboutSection;
+//   /*
+//   ------------------------------
+//   NEW CURRICULUM DISPLAY STYLING
+//   ------------------------------
+//   */
+//   if (!initialLoadComplete) {
+//     // Set global curriculum and about section vars
+//     v.global.curriculumSection = curriculumSection;
+//     v.global.aboutSection = aboutSection;
 
-    const hasSections = curriculumParentContainer.querySelector("h3")
-      ? true
-      : false;
-    let curContainer = document.createElement("div");
+//     const hasSections = curriculumParentContainer.querySelector("h3")
+//       ? true
+//       : false;
+//     let curContainer = document.createElement("div");
 
-    if (!hasSections) {
-      styleGroupContainer(curContainer, "g");
-    }
+//     if (!hasSections) {
+//       styleGroupContainer(curContainer, "g");
+//     }
 
-    curriculumItemsListLIVE.forEach((el) => {
-      if (el?.tagName) {
-        el.classList.add("curriculumItem");
-      }
-    });
+//     curriculumItemsListLIVE.forEach((el) => {
+//       if (el?.tagName) {
+//         el.classList.add("curriculumItem");
+//       }
+//     });
 
-    const curriculumItemsListNonLive =
-      curriculumParentContainer.querySelectorAll(".curriculumItem");
+//     const curriculumItemsListNonLive =
+//       curriculumParentContainer.querySelectorAll(".curriculumItem");
 
-    curriculumItemsListNonLive.forEach((el, i, curArr) => {
-      if (el.tagName === "DIV") {
-        // Yes? push curContainer into parent container
-        curriculumParentContainer.append(curContainer);
-        // Reset curContainer while pushing current new heading & icon in there for the next iteration
-        curContainer = document.createElement("div");
-        styleGroupContainer(curContainer);
+//     curriculumItemsListNonLive.forEach((el, i, curArr) => {
+//       if (el.tagName === "DIV") {
+//         // Yes? push curContainer into parent container
+//         curriculumParentContainer.append(curContainer);
+//         // Reset curContainer while pushing current new heading & icon in there for the next iteration
+//         curContainer = document.createElement("div");
+//         styleGroupContainer(curContainer);
 
-        const newGroupHeading = document.createElement("div");
-        newGroupHeading.style.display = "flex";
-        newGroupHeading.style.gap = "12px";
+//         const newGroupHeading = document.createElement("div");
+//         newGroupHeading.style.display = "flex";
+//         newGroupHeading.style.gap = "12px";
 
-        newGroupHeading.textContent =
-          el.querySelector("h3")?.textContent?.trim() || "Module";
+//         newGroupHeading.textContent =
+//           el.querySelector("h3")?.textContent?.trim() || "Module";
 
-        styleGroupHeading(newGroupHeading, "c");
+//         styleGroupHeading(newGroupHeading, "c");
 
-        curContainer.append(newGroupHeading);
-        hide(el);
-      } else {
-        // Else, normal/expected behaviour
-        // Transfer inner html of current list item to new created div
-        const isLastChild = curArr[i + 1]
-          ? curArr[i + 1].tagName === "DIV"
-          : true;
+//         curContainer.append(newGroupHeading);
+//         hide(el);
+//       } else {
+//         // Else, normal/expected behaviour
+//         // Transfer inner html of current list item to new created div
+//         const isLastChild = curArr[i + 1]
+//           ? curArr[i + 1].tagName === "DIV"
+//           : true;
 
-        const newListEl = document.createElement("div");
-        styleListItem(newListEl, isLastChild, false, "g");
+//         const newListEl = document.createElement("div");
+//         styleListItem(newListEl, isLastChild, false, "g");
 
-        // Styling for mobile
-        el.querySelector(".title").style.textWrap = "wrap";
+//         // Styling for mobile
+//         el.querySelector(".title").style.textWrap = "wrap";
 
-        newListEl.append(el);
-        curContainer.append(newListEl);
-      }
-    });
+//         newListEl.append(el);
+//         curContainer.append(newListEl);
+//       }
+//     });
 
-    curriculumParentContainer.append(curContainer);
+//     curriculumParentContainer.append(curContainer);
 
-    hide(curriculumOutsideContainer.querySelector("h2"));
-    hide(curriculumOutsideContainer.querySelector("hr"));
-  }
+//     hide(curriculumOutsideContainer.querySelector("h2"));
+//     hide(curriculumOutsideContainer.querySelector("hr"));
+//   }
 
-  // CURRICULUM ITSELF STYLING
-  lessonListItems.forEach((item) => {
-    const titleEl = item.querySelector(".title");
-    item.style.display = "flex";
-    item.style.alignItems = "center";
-    item.style.gap = "12px";
+//   // CURRICULUM ITSELF STYLING
+//   lessonListItems.forEach((item) => {
+//     const titleEl = item.querySelector(".title");
+//     item.style.display = "flex";
+//     item.style.alignItems = "center";
+//     item.style.gap = "12px";
 
-    item.querySelector(".bullet").style.position = "static";
+//     item.querySelector(".bullet").style.position = "static";
 
-    titleEl.style.position = "static";
-    titleEl.style.color = "var(--answer-option)";
-    titleEl.style.display = "flex";
-    titleEl.style.alignItems = "center";
-    titleEl.style.margin = "0";
-    titleEl.style.transform = "translateY(2px)";
-  });
+//     titleEl.style.position = "static";
+//     titleEl.style.color = "var(--answer-option)";
+//     titleEl.style.display = "flex";
+//     titleEl.style.alignItems = "center";
+//     titleEl.style.margin = "0";
+//     titleEl.style.transform = "translateY(2px)";
+//   });
 
-  hide([...pageIcons]);
-}
+//   hide([...pageIcons]);
+// }
 
 /**
  * This function handles the styling of the page based on the current page type.
@@ -1621,19 +2255,16 @@ function handlePageStyling() {
     // we are on the landing page (which is a catalog page)
     return styleLanding();
 
-  if (page.isLogin)
-    // we are on the login page
-    return styleLogin();
-
-  if (page.isSignup)
-    // we are on the sign-up page
-    return styleSignup();
+  if (page.isLogin || page.isSignup)
+    // we are on the login or signup page
+    return styleAuth();
 
   if (page.isCourseDetails)
     // we are on a course page but not logged in
     return styleCourseDetails();
 
-  if (page.isCurriculum && !page.hasCertificate)
+  if (page.isCurriculum)
+    // && !page.hasCertificate)
     // we are on a course page (without a certificate) and logged in
     return styleCurriculumPageNoCertificate();
 
@@ -1653,12 +2284,12 @@ function handlePageStyling() {
     // we are on a catalog page (not currently in use)
     return styleCatalog();
 
-  if (page.isCurriculum && page.hasCertificate)
-    // we are on a course page (with a certificate) and logged in
-    // n.b. this function is not edited and/or tested (and not in use)
-    return v.viewport === "desktop"
-      ? styleCurriculumPageHasCertificationDesktop()
-      : styleCurriculumPageHasCertificationMobile();
+  // if (page.isCurriculum && page.hasCertificate)
+  //   // we are on a course page (with a certificate) and logged in
+  //   // n.b. this function is not edited and/or tested (and not in use)
+  //   return v.viewport === "desktop"
+  //     ? styleCurriculumPageHasCertificationDesktop()
+  //     : styleCurriculumPageHasCertificationMobile();
 }
 
 /**
@@ -1699,12 +2330,43 @@ document.addEventListener("DOMContentLoaded", () => {
   // hide all
   hide(v.global.body);
 
-  // adding "cg-staging" for staging server
+  // DEBUG: adding "cg-staging" for staging server
   isStaging ? v.global.body.classList.add("cg-staging") : null;
+
+  // DEBUG: adding info box for internal users
+  if (isInternal) {
+    const infoBox = Object.assign(document.createElement("div"), {
+      className: "info-box",
+      innerHTML: `
+      <p>
+        ${page.isLanding ? "styleLanding" : ""}
+        ${page.isCourseDetails ? "styleCourseDetails" : ""}
+        ${page.isPageDetail ? "stylePathCourseDetails" : ""}
+        ${page.isLogin ? "styleAuth" : ""}
+        ${page.isSignup ? "styleAuth" : ""}
+        ${
+          page.isCurriculum && !page.hasCertificate
+            ? "styleCurriculumPageNoCertificate"
+            : ""
+        }
+        ${
+          page.isCurriculum && page.hasCertificate
+            ? "styleCurriculumPageHasCertification"
+            : ""
+        }
+        ${page.isLesson ? "styleLesson" : ""}
+        ${page.isPageCatalog ? "stylePathCatalogPage" : ""}
+      </p>
+    `,
+    });
+    document.querySelector(".search-container")?.replaceChildren(infoBox);
+  } else {
+    document.querySelector(".search-container")?.remove();
+  }
 
   // render + set initalLoadComplete
   render();
-  initialLoadComplete = true;
+  // initialLoadComplete = true;
 
   // show all
   setStyle(v.global.body, { display: undefined });
@@ -1714,18 +2376,19 @@ document.addEventListener("DOMContentLoaded", () => {
   This event is fired when the entire page is fully loaded, including all dependent resources such as stylesheets and images.
   It is a good place to run scripts that need to ensure all resources are available before executing.
 */
-window.addEventListener("resize", () => {
-  // no need to re-apply styles on resize for the following pages
-  if (page.isLanding) return;
-  if (page.isCourseDetails) return;
-  if (page.isPageDetail) return;
-  if (page.isLogin) return;
-  if (page.isSignup) return;
-  if (page.isCurriculum && !page.hasCertificate) return;
-  if (page.isLesson) return;
+// window.addEventListener("resize", () => {
+//   // no need to re-apply styles on resize for the following pages
+//   if (page.isLanding) return;
+//   if (page.isCourseDetails) return;
+//   if (page.isPageDetail) return;
+//   if (page.isLogin) return;
+//   if (page.isSignup) return;
+//   if (page.isCurriculum) return; // && !page.hasCertificate) return;
+//   if (page.isLesson) return;
+//   if (page.isPageCatalog) return;
 
-  render();
-});
+//   render();
+// });
 
 // Make header white on scroll
 if (!page.isLesson) {
