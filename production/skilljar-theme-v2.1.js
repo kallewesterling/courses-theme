@@ -22,6 +22,17 @@ const UTM = {
   CAMPAIGN: "dev-enablement",
 };
 
+// confetti defaults
+const confettiDefaults = {
+  spread: 360,
+  ticks: 50,
+  gravity: 0,
+  decay: 0.94,
+  startVelocity: 30,
+  shapes: ["star"],
+  colors: ["#C6FF50", "#50FFE1"], // ["FFE400", "FFBD00", "E89400", "FFCA6C", "FDFFB8"],
+};
+
 // baseURL settings
 
 let isInternal = false,
@@ -2440,17 +2451,8 @@ function ensureCompletionPopup() {
     id: "completion-sub",
     textContent: "Nice work. Ready for the next step?",
   });
-  const btn = Object.assign(document.createElement("button"), {
-    id: "completion-close",
-    type: "button",
-    textContent: "Close",
-  });
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    hideCompletion(el);
-  });
 
-  card.append(h1, p, btn);
+  card.append(h1, p);
   content.append(card);
   el.append(content);
   document.body.appendChild(el);
@@ -2498,7 +2500,7 @@ window.animateCompletion = function animateCompletion() {
   const el = ensureCompletionPopup();
   showCompletion(el);
 
-    // Confetti bursts
+  // Confetti bursts
   setTimeout(shoot, 0);
   setTimeout(shoot, 100);
   setTimeout(shoot, 200);
@@ -2508,25 +2510,20 @@ window.animateCompletion = function animateCompletion() {
 };
 
 function shoot() {
-  const defaults = {
-    spread: 360,
-    ticks: 50,
-    gravity: 0,
-    decay: 0.94,
-    startVelocity: 30,
-    shapes: ["star"],
-    colors: ["FFE400", "FFBD00", "E89400", "FFCA6C", "FDFFB8"],
-  };
-
-  confetti({ ...defaults, particleCount: 40, scalar: 1.2, shapes: ["star"] });
   confetti({
-    ...defaults,
+    ...confettiDefaults,
+    particleCount: 40,
+    scalar: 1.2,
+    shapes: ["star"],
+  });
+  confetti({
+    ...confettiDefaults,
     particleCount: 10,
     scalar: 0.75,
     shapes: ["circle"],
   });
   confetti({
-    ...defaults,
+    ...confettiDefaults,
     particleCount: 50,
     scalar: 1.5,
     shapes: ["image"],
