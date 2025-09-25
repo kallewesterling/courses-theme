@@ -2083,3 +2083,57 @@ body.sj-page-signup {
       center/contain no-repeat;
   }
 }
+
+#completion-popup {
+  position: fixed; /* covers viewport */
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  opacity: 0;
+  display: none;
+  transition: opacity 0.2s ease-in;
+}
+#completion-popup[aria-hidden="false"] {
+  display: block;
+}
+#completion-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none; /* click closes anywhere */
+}
+#completion-card {
+  pointer-events: auto; /* enable focus */
+  background: white;
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  max-width: 520px;
+  width: calc(100% - 32px);
+  text-align: center;
+  font-family: inherit;
+}
+#completion-title {
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+}
+#completion-sub {
+  margin: 0 0 1rem 0;
+  opacity: 0.85;
+}
+#completion-close {
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  #completion-popup {
+    transition: none;
+  }
+}

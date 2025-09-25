@@ -2408,3 +2408,136 @@ if (!page.isLesson) {
     });
   });
 }
+
+/**
+ * Inject overlay HTML once
+ */
+function ensureCompletionPopup() {
+  let el = document.getElementById("completion-popup");
+  if (el) return el;
+
+  el = Object.assign(document.createElement("div"), {
+    id: "completion-popup",
+    role: "dialog",
+    "aria-modal": "true",
+    "aria-hidden": "true",
+  });
+
+  el.addEventListener("click", () => hideCompletion(el));
+
+  const content = Object.assign(document.createElement("div"), {
+    id: "completion-content",
+  });
+  const card = Object.assign(document.createElement("div"), {
+    id: "completion-card",
+    tabIndex: -1,
+  });
+  const h1 = Object.assign(document.createElement("h1"), {
+    id: "completion-title",
+    textContent: "Hooray! You finished the course!",
+  });
+  const p = Object.assign(document.createElement("p"), {
+    id: "completion-sub",
+    textContent: "Nice work. Ready for the next step?",
+  });
+  const btn = Object.assign(document.createElement("button"), {
+    id: "completion-close",
+    type: "button",
+    textContent: "Close",
+  });
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    hideCompletion(el);
+  });
+
+  card.append(h1, p, btn);
+  content.append(card);
+  el.append(content);
+  document.body.appendChild(el);
+
+  // ESC to close
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && el.getAttribute("aria-hidden") === "false")
+      hideCompletion(el);
+  });
+
+  return el;
+}
+
+/**
+ * Show / hide with fade
+ */
+function showCompletion(el) {
+  el.setAttribute("aria-hidden", "false");
+  setStyle(el, { display: "block" });
+  // Next paint to trigger transition
+  requestAnimationFrame(() => setStyle(el, { opacity: "1" }));
+  // focus for accessibility
+  const focusTarget = el.querySelector("#completion-card");
+  if (focusTarget) focusTarget.focus({ preventScroll: true });
+}
+
+function hideCompletion(el) {
+  setStyle(el, { opacity: "0" });
+  const finish = () => {
+    el.setAttribute("aria-hidden", "true");
+    setStyle(el, { display: "none" });
+    el.removeEventListener("transitionend", finish);
+  };
+  el.addEventListener("transitionend", finish);
+  // Safety timeout in case transitionend doesn’t fire
+  setTimeout(finish, 300);
+}
+
+/**
+ * Public trigger (call this from Skilljar when course completes)
+ * Example usage:
+ *   window.animateCompletion();
+ */
+window.animateCompletion = function animateCompletion() {
+  const el = ensureCompletionPopup();
+  showCompletion(el);
+
+    // Confetti bursts
+  setTimeout(shoot, 0);
+  setTimeout(shoot, 100);
+  setTimeout(shoot, 200);
+
+  // Auto-hide
+  setTimeout(() => hideCompletion(el), 3000);
+};
+
+function shoot() {
+  const defaults = {
+    spread: 360,
+    ticks: 50,
+    gravity: 0,
+    decay: 0.94,
+    startVelocity: 30,
+    shapes: ["star"],
+    colors: ["FFE400", "FFBD00", "E89400", "FFCA6C", "FDFFB8"],
+  };
+
+  confetti({ ...defaults, particleCount: 40, scalar: 1.2, shapes: ["star"] });
+  confetti({
+    ...defaults,
+    particleCount: 10,
+    scalar: 0.75,
+    shapes: ["circle"],
+  });
+  confetti({
+    ...defaults,
+    particleCount: 50,
+    scalar: 1.5,
+    shapes: ["image"],
+    shapeOptions: {
+      image: [
+        {
+          src: "https://cc.sj-cdn.net/instructor/l9kl0bllkdr4-chainguard/themes/2gr0n1rmedy35/favicon.1757695230.png",
+          width: 32,
+          height: 32,
+        },
+      ],
+    },
+  });
+}
