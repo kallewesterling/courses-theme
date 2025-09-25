@@ -2462,9 +2462,9 @@ function ensureCompletionPopup() {
   });
   const notice = Object.assign(document.createElement("p"), {
     id: "completion-notice",
-    textContent: `You can close this popup by clicking outside of it or press ESC to dismiss. It will also disappear automatically in ${
+    innerHTML: `You can close this popup by clicking outside of it or press ESC to dismiss. It will also disappear automatically in <span id="completion-countdown">${
       AUTOHIDE_COMPLETION / 1000
-    } seconds.`,
+    }</span> seconds.`,
   });
 
   card.append(h1, p, notice);
@@ -2492,6 +2492,20 @@ function showCompletion(el) {
   // focus for accessibility
   const focusTarget = el.querySelector("#completion-card");
   if (focusTarget) focusTarget.focus({ preventScroll: true });
+
+  const countdownEl = el.querySelector("#completion-countdown");
+  if (countdownEl) {
+    let remaining = AUTOHIDE_COMPLETION / 1000;
+    countdownEl.textContent = remaining;
+    const interval = setInterval(() => {
+      remaining -= 1;
+      if (remaining > 0) {
+        countdownEl.textContent = remaining;
+      } else {
+        clearInterval(interval);
+      }
+    }, 1000);
+  }
 }
 
 function hideCompletion(el) {
