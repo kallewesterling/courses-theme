@@ -25,10 +25,10 @@ const UTM = {
 // confetti defaults
 const AUTOHIDE_COMPLETION = 3000;
 const particles = {
-  stars: {counts: 40, scalar: 1.2},
-  circles: {counts: 10, scalar: 0.75},
-  logos: {counts: 50, scalar: 1.5},
-}
+  stars: { counts: 40, scalar: 1.2 },
+  circles: { counts: 10, scalar: 0.75 },
+  logos: { counts: 50, scalar: 1.5 },
+};
 
 const confettiDefaults = {
   spread: 360,
@@ -2452,14 +2452,20 @@ function ensureCompletionPopup() {
   });
   const h1 = Object.assign(document.createElement("h1"), {
     id: "completion-title",
-    textContent: "Hooray! You finished the course!",
+    textContent: `Hooray! You finished ${
+      course?.title ? course?.title : "the course!"
+    }`,
   });
   const p = Object.assign(document.createElement("p"), {
     id: "completion-sub",
-    textContent: "Nice work. Ready for the next step?",
+    textContent: "Seriously, nice work!",
+  });
+  const notice = Object.assign(document.createElement("p"), {
+    id: "completion-notice",
+    textContent: "You can close this popup by clicking outside of it or press ESC to dismiss. It will also disappear automatically in 10 seconds.",
   });
 
-  card.append(h1, p);
+  card.append(h1, p, notice);
   content.append(card);
   el.append(content);
   document.body.appendChild(el);
