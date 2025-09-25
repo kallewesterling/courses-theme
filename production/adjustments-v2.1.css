@@ -162,6 +162,16 @@ body {
       /* Back to catalog button */
       display: none !important;
     }
+
+    .header-link.login-link {
+      background-color: white;
+      border: 2px solid var(--ring);
+      border-radius: 999px;
+      font-family: "Space Mono";
+      font-size: 14px;
+      font-weight: 700;
+      padding: 10px 20px;
+    }
   }
 }
 
