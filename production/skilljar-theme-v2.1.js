@@ -1570,6 +1570,14 @@ function styleLesson() {
       } else if (typeof resources.groups !== "undefined") {
         // we have groups of resources to drop in each box
         v.local.lesson.content.resources.boxes.forEach((box) => {
+          if (!box.dataset.group) {
+            console.warn(
+              "Resource box is missing data-group attribute, skipping:",
+              box
+            );
+            return;
+          }
+
           const cards = resources.groups[box.dataset.group].map((r) =>
             createResourceCard(r)
           );
