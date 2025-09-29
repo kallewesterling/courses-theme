@@ -2360,7 +2360,7 @@ document.addEventListener("DOMContentLoaded", () => {
   isStaging ? v.global.body.classList.add("cg-staging") : null;
 
   // DEBUG: adding info box for internal users
-  if (isInternal) {
+  if (isAdmin) {
     const infoBox = Object.assign(document.createElement("div"), {
       className: "info-box",
       innerHTML: `
