@@ -321,6 +321,16 @@ pathSections = {
           description:
             "Explore how Chainguard Containers can help you mitigate vulnerabilities and enhance your security posture.",
         },
+        {
+          slug: "painless-vulnerability-management-final-exercise",
+          isPath: false,
+          isCourse: true,
+          icon: icons.bookmark,
+          hasBadge: false,
+          title: "Painless Vulnerability Management: Final Exercise",
+          description:
+            "Apply what you've learned in this comprehensive exercise on vulnerability management.",
+        },
       ],
     },
   ],
