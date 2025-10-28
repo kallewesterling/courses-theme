@@ -623,7 +623,10 @@ function makeSections(
 
     intro.append(...[eyebrow, headline, subhead /*cta*/]);
     grid.append(intro);
-    sectionElement.append(grid);
+
+    sectionElement.append(
+      ...[document.querySelector("#messages"), grid].filter(Boolean)
+    );
 
     const cardsElem = Object.assign(document.createElement("div"), {
       className: "cards",
