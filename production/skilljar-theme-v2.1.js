@@ -525,6 +525,16 @@ pathSections = {
             "Learn best practices for managing Common Vulnerabilities and Exposures (CVEs) in your software supply chain.",
           icon: icons.bookmark,
         },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Chainguard Containers Crash Course",
+          slug: "linkys-crash-course-on-chainguard-images",
+          description:
+            "A comprehensive introduction to Chainguard Containers and their benefits.",
+          icon: icons.bookmark,
+        }
       ],
     },
     {
