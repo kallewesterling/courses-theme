@@ -1818,7 +1818,7 @@ function styleCurriculumPageNoCertificate() {
 
     v.local.card.link.textContent = btnText;
     v.local.card.link.href = btnHref;
-  } else {
+  } else if (v.local.card.link) {
     log("Hiding resume button as it could not be found");
     if (course.completed) {
       v.local.card.link.textContent = "🎉 Completed";
