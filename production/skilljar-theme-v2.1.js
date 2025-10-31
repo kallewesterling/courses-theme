@@ -1250,7 +1250,7 @@ function styleCourseDetails() {
   if (typeof courseDetails !== "undefined") {
     v.local.card.details ? v.local.card.details.remove() : null; // remove existing card if present
     v.local.body.container.append(
-      ...[createCourseDetailsCard(courseDetails, { btnText, btnHref })].filter(
+      ...[createCourseDetailsCard(courseDetails, { btnText, btnHref, completed: course.completed })].filter(
         Boolean
       )
     );
@@ -1842,7 +1842,7 @@ function styleCurriculumPageNoCertificate() {
   if (typeof courseDetails !== "undefined") {
     v.local.card.details ? v.local.card.details.remove() : null; // remove existing card if present
     v.local.body.mainContainer.append(
-      ...[createCourseDetailsCard(courseDetails, { btnText, btnHref })].filter(
+      ...[createCourseDetailsCard(courseDetails, { btnText, btnHref, completed: course.completed })].filter(
         Boolean
       )
     );
