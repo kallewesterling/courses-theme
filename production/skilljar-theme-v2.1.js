@@ -1825,6 +1825,8 @@ function styleCurriculumPageNoCertificate() {
     if (course.completed) {
       v.local.card.link.textContent = "🎉 Completed";
       v.local.card.link.classList.add("completed");
+
+      v.local.card.details = document.querySelector(".course-details-card"); // re-query details
       v.local.card.details.append(
         Object.assign(document.createElement("p"), {
           textContent: "Click on any lesson that you want to revisit.",
