@@ -495,6 +495,68 @@ pathSections = {
       ],
     },
   ],
+  
+  // Partner intro
+  "chainguard-discovery-partner-sales-foundations": [
+    {
+      eyebrow: "XYZ XYZ XYZ",
+      title: "Chainguard Value Proposition",
+      description:
+        "We can have a short description here for introduction to Chainguard's value prop or whatever this section will be",
+      links: [
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title:
+            "Software Vulnerabilities: What Are They?",
+          slug: "software-vulnerabilities-what-are-they",
+          description:
+            "Understand the basics of software vulnerabilities, including common types and their implications.",
+          icon: icons.bookmark,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "How to Manage CVEs",
+          slug: "how-to-manage-cves",
+          description:
+            "Learn best practices for managing Common Vulnerabilities and Exposures (CVEs) in your software supply chain.",
+          icon: icons.bookmark,
+        },
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Chainguard Containers Crash Course",
+          slug: "linkys-crash-course-on-chainguard-images",
+          description:
+            "A comprehensive introduction to Chainguard Containers and their benefits.",
+          icon: icons.bookmark,
+        }
+      ],
+    },
+    {
+      eyebrow: "Something else here",
+      title: "Federal Government Overview",
+      description:
+        "This is another description for the second section in this partner intro example",
+      links: [
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title:
+            "Getting Started with Carahsoft: How to Quote Chainguard",
+          slug: "getting-started-with-carahsoft-how-to-quote-chainguard",
+          description:
+            "Understand the basics of quoting Chainguard through Carahsoft.",
+          icon: icons.bookmark,
+        },
+      ],
+    }
+  ],
 };
 
 /*
