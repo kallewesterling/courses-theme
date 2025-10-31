@@ -1216,6 +1216,7 @@ function styleCourseDetails() {
   };
 
   if (typeof courseDetails !== "undefined") {
+    v.local.card.details ? v.local.card.details.remove() : null; // remove existing card if present
     v.local.body.container.append(
       ...[createCourseDetailsCard(courseDetails)].filter(Boolean)
     );
@@ -1794,6 +1795,7 @@ function styleCurriculumPageNoCertificate() {
   };
 
   if (typeof courseDetails !== "undefined") {
+    v.local.card.details ? v.local.card.details.remove() : null; // remove existing card if present
     v.local.body.mainContainer.append(
       ...[createCourseDetailsCard(courseDetails)].filter(Boolean)
     );
