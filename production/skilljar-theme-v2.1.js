@@ -932,8 +932,19 @@ function getCurriculumElements(curriculumParentContainer) {
   });
 }
 
-function createCourseDetailsCard(details) {
-  console.info("Creating course details card with details:", details);
+function createCourseDetailsCard(
+  details,
+  options = {
+    btnText: "Register",
+    btnHref: "#",
+    completed: false,
+  }
+) {
+  console.info(
+    "Creating course details card with details and options:",
+    details,
+    options
+  );
 
   // Create main container
   const card = Object.assign(document.createElement("div"), {
@@ -973,10 +984,24 @@ function createCourseDetailsCard(details) {
   card.appendChild(list);
 
   // Link
-  const link = document.createElement("a");
-  link.className = "course-details-card-link";
-  link.innerHTML = "&nbsp;";
+  const link = Object.assign(document.createElement("a"), {
+    href: options.btnHref,
+    textContent: options.completed ? "🎉 Completed" : options.btnText,
+    className: `course-details-card-link ${
+      options.completed ? "completed" : ""
+    }`,
+  });
+
   card.appendChild(link);
+
+  if (options.completed) {
+    card.append(
+      Object.assign(document.createElement("p"), {
+        textContent: "Click on any lesson that you want to revisit.",
+        className: "completed-subtext",
+      })
+    );
+  }
 
   return card;
 }
@@ -1215,19 +1240,17 @@ function styleCourseDetails() {
     },
   };
 
+  const btnText = v.local.header.registerBtn.textContent || "Register";
+  const btnHref = v.local.header.registerBtn.href || "#";
+
   if (typeof courseDetails !== "undefined") {
     v.local.card.details ? v.local.card.details.remove() : null; // remove existing card if present
     v.local.body.container.append(
-      ...[createCourseDetailsCard(courseDetails)].filter(Boolean)
+      ...[createCourseDetailsCard(courseDetails, { btnText, btnHref })].filter(
+        Boolean
+      )
     );
     v.local.card.link = document.querySelector(".course-details-card-link"); // re-query link
-  }
-
-  if (v.local.header.registerBtn && v.local.card.link) {
-    const btnText = v.local.header.registerBtn.textContent || "Register";
-    const btnHref = v.local.header.registerBtn.href || "#";
-    v.local.card.link.textContent = btnText;
-    v.local.card.link.setAttribute("href", btnHref);
   }
 
   const curriculumElements = getCurriculumElements(
@@ -1805,10 +1828,15 @@ function styleCurriculumPageNoCertificate() {
     v.local.tabs.curriculumSection
   );
 
+  const btnText = v.local.header.ctaBtnText.textContent || "Resume";
+  const btnHref = v.local.header.ctaBtn.getAttribute("href") || "resume";
+
   if (typeof courseDetails !== "undefined") {
     v.local.card.details ? v.local.card.details.remove() : null; // remove existing card if present
     v.local.body.mainContainer.append(
-      ...[createCourseDetailsCard(courseDetails)].filter(Boolean)
+      ...[createCourseDetailsCard(courseDetails, { btnText, btnHref })].filter(
+        Boolean
+      )
     );
     v.local.card.link = document.querySelector(".course-details-card-link"); // re-query link
   }
@@ -1822,18 +1850,7 @@ function styleCurriculumPageNoCertificate() {
     v.local.card.link.href = btnHref;
   } else if (v.local.card.link) {
     log("Hiding resume button as it could not be found");
-    if (course.completed) {
-      v.local.card.link.textContent = "🎉 Completed";
-      v.local.card.link.classList.add("completed");
-
-      v.local.card.details = document.querySelector(".course-details-card"); // re-query details
-      v.local.card.details.append(
-        Object.assign(document.createElement("p"), {
-          textContent: "Click on any lesson that you want to revisit.",
-          className: "completed-subtext",
-        })
-      );
-    } else {
+    if (!course.completed) {
       hide(v.local.card.link); // Hide resume button if it doesn't exist
     }
   }
