@@ -933,6 +933,8 @@ function getCurriculumElements(curriculumParentContainer) {
 }
 
 function createCourseDetailsCard(details) {
+  console.info("Creating course details card with details:", details);
+  
   // Create main container
   const card = Object.assign(document.createElement("div"), {
     className: "course-details-card",
