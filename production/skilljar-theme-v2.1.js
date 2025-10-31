@@ -1220,6 +1220,7 @@ function styleCourseDetails() {
     v.local.body.container.append(
       ...[createCourseDetailsCard(courseDetails)].filter(Boolean)
     );
+    v.local.card.link = document.querySelector(".course-details-card-link"); // re-query link
   }
 
   if (v.local.header.registerBtn && v.local.card.link) {
@@ -1809,6 +1810,7 @@ function styleCurriculumPageNoCertificate() {
     v.local.body.mainContainer.append(
       ...[createCourseDetailsCard(courseDetails)].filter(Boolean)
     );
+    v.local.card.link = document.querySelector(".course-details-card-link"); // re-query link
   }
 
   // update resume button text and href (with auto-value fallback)
