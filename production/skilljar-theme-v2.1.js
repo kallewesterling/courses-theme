@@ -1794,14 +1794,22 @@ function styleCurriculumPageNoCertificate() {
     },
   };
 
+  v.local.tabs.aboutSection?.classList.add("active");
+
+  v.local.tabs.aboutSection.id = "aboutSection";
+  v.local.tabs.curriculumSection.id = "curriculumSection";
+
+  v.local.tabs.container.append(
+    v.local.tabs.aboutSection,
+    v.local.tabs.curriculumSection
+  );
+
   if (typeof courseDetails !== "undefined") {
     v.local.card.details ? v.local.card.details.remove() : null; // remove existing card if present
     v.local.body.mainContainer.append(
       ...[createCourseDetailsCard(courseDetails)].filter(Boolean)
     );
   }
-
-  v.local.tabs.aboutSection?.classList.add("active");
 
   // update resume button text and href (with auto-value fallback)
   if (v.local.header.ctaBtnWrapper && v.local.card.link) {
@@ -1825,14 +1833,6 @@ function styleCurriculumPageNoCertificate() {
       hide(v.local.card.link); // Hide resume button if it doesn't exist
     }
   }
-
-  v.local.tabs.aboutSection.id = "aboutSection";
-  v.local.tabs.curriculumSection.id = "curriculumSection";
-
-  v.local.tabs.container.append(
-    v.local.tabs.aboutSection,
-    v.local.tabs.curriculumSection
-  );
 
   const curriculumElements = getCurriculumElements(
     v.local.curriculum.container
