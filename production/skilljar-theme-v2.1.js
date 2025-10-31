@@ -1240,8 +1240,12 @@ function styleCourseDetails() {
     },
   };
 
-  const btnText = v.local.header.registerBtn.textContent || "Register";
-  const btnHref = v.local.header.registerBtn.href || "#";
+  const btnText = v.local.header.ctaBtnWrapper
+    ? v.local.header.registerBtn.textContent
+    : "Register";
+  const btnHref = v.local.header.ctaBtnWrapper
+    ? v.local.header.registerBtn.href
+    : "#"; // TODO: fix this link
 
   if (typeof courseDetails !== "undefined") {
     v.local.card.details ? v.local.card.details.remove() : null; // remove existing card if present
@@ -1828,8 +1832,12 @@ function styleCurriculumPageNoCertificate() {
     v.local.tabs.curriculumSection
   );
 
-  const btnText = v.local.header.ctaBtnText.textContent || "Resume";
-  const btnHref = v.local.header.ctaBtn.getAttribute("href") || "resume";
+  const btnText = v.local.header.ctaBtnWrapper
+    ? v.local.header.ctaBtnText.textContent
+    : "Resume";
+  const btnHref = v.local.header.ctaBtnText
+    ? v.local.header.ctaBtn.getAttribute("href")
+    : "resume";
 
   if (typeof courseDetails !== "undefined") {
     v.local.card.details ? v.local.card.details.remove() : null; // remove existing card if present
