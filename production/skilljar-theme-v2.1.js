@@ -836,6 +836,7 @@ const page = {
   isSignup: c(".sj-page-signup"),
   isPageDetail: c(".sj-page-detail-bundle.sj-page-detail-path"),
   isPageCatalog: c(".sj-page-series.sj-page-path"),
+  is404: c(".sj-page-error-404"),
   // hasCertificate: c(".cp-certificate"),
 };
 
@@ -1188,6 +1189,13 @@ function animateCopiedTooltip(tooltipEl) {
  */
 function styleCatalog() {
   log("Running styleCatalog");
+}
+
+/**
+ * This function applies styling to the 404 error page.
+ */
+function style404() {
+  console.log("Running style404");
 }
 
 /**
@@ -2414,6 +2422,10 @@ function handlePageStyling() {
   if (page.isCatalog)
     // we are on a catalog page (not currently in use)
     return styleCatalog();
+
+  if (page.is404)
+    // we are on a 404 page
+    return style404();
 
   // if (page.isCurriculum && page.hasCertificate)
   //   // we are on a course page (with a certificate) and logged in
