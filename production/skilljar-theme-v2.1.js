@@ -932,6 +932,53 @@ function getCurriculumElements(curriculumParentContainer) {
   });
 }
 
+function createCourseDetailsCard(details) {
+  // Create main container
+  const card = Object.assign(document.createElement("div"), {
+    className: "course-details-card",
+  });
+
+  // Header
+  const header = Object.assign(document.createElement("div"), {
+    className: "course-details-card-header",
+    textContent: "Course Details",
+  });
+  card.appendChild(header);
+
+  // List
+  const list = Object.assign(document.createElement("ul"), {
+    className: "course-details-card-list",
+  });
+
+  // Audience
+  const audienceItem = Object.assign(document.createElement("li"), {
+    innerHTML: `<p>${details.audience}</p>`,
+  });
+  list.appendChild(audienceItem);
+
+  // Time
+  const timeItem = Object.assign(document.createElement("li"), {
+    innerHTML: `<p>${details.time}</p>`,
+  });
+  list.appendChild(timeItem);
+
+  // Lessons
+  const lessonsItem = Object.assign(document.createElement("li"), {
+    innerHTML: `<p>${details.lessons} Lessons</p>`,
+  });
+  list.appendChild(lessonsItem);
+
+  card.appendChild(list);
+
+  // Link
+  const link = document.createElement("a");
+  link.className = "course-details-card-link";
+  link.innerHTML = "&nbsp;";
+  card.appendChild(link);
+
+  return card;
+}
+
 /**
  * This function copies the given text to the clipboard and animates a tooltip indicating success.
  * @param {string} copyText - The text to copy to the clipboard.
@@ -1165,6 +1212,12 @@ function styleCourseDetails() {
       link: document.querySelector(".course-details-card-link"),
     },
   };
+
+  if (typeof courseDetails !== "undefined") {
+    v.local.body.container.append(
+      ...[createCourseDetailsCard(courseDetails)].filter(Boolean)
+    );
+  }
 
   if (v.local.header.registerBtn && v.local.card.link) {
     const btnText = v.local.header.registerBtn.textContent || "Register";
