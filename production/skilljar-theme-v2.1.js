@@ -1794,7 +1794,7 @@ function styleCurriculumPageNoCertificate() {
   };
 
   if (typeof courseDetails !== "undefined") {
-    v.local.body.container.append(
+    v.local.body.mainContainer.append(
       ...[createCourseDetailsCard(courseDetails)].filter(Boolean)
     );
   }
