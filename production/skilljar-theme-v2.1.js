@@ -934,7 +934,7 @@ function getCurriculumElements(curriculumParentContainer) {
 
 function createCourseDetailsCard(details) {
   console.info("Creating course details card with details:", details);
-  
+
   // Create main container
   const card = Object.assign(document.createElement("div"), {
     className: "course-details-card",
@@ -1792,6 +1792,12 @@ function styleCurriculumPageNoCertificate() {
       link: document.querySelector(".course-details-card-link"),
     },
   };
+
+  if (typeof courseDetails !== "undefined") {
+    v.local.body.container.append(
+      ...[createCourseDetailsCard(courseDetails)].filter(Boolean)
+    );
+  }
 
   v.local.tabs.aboutSection?.classList.add("active");
 
