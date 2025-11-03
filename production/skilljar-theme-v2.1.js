@@ -2573,7 +2573,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add path edit link
     if (course.path.id && domain) {
-      innerHTML += `<p style="margin:0 10px 0 0"><a href="https://dashboard.skilljar.com/publishing/domains/${domain}/published-paths/${course.path.id}/edit/">Edit Path</a></p>`;
+      innerHTML += `<p style="margin:0 10px 0 0"><a href="https://dashboard.skilljar.com/publishing/domains/${domain}/published-paths/${course.path.id}/edit">Edit Path</a></p>`;
     }
 
     const infoBox = Object.assign(document.createElement("div"), {
