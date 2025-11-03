@@ -2546,7 +2546,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // DEBUG: adding info box for internal users
   if (isAdmin) {
-    let innerHTML = `<p>
+    let innerHTML = `<p style="margin:0 10px 0 0">
         ${page.isLanding ? "styleLanding" : ""}
         ${page.isCourseDetails ? "styleCourseDetails" : ""}
         ${page.isPageDetail ? "stylePathCourseDetails" : ""}
@@ -2568,19 +2568,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add course edit link
     if (course.id) {
-      innerHTML += `<p><a href="https://dashboard.skilljar.com/course/${course.id}/">Edit Course</a></p>`;
+      innerHTML += `<p style="margin:0 10px 0 0"><a href="https://dashboard.skilljar.com/course/${course.id}/">Edit Course</a></p>`;
     }
-    
+
     // Add path edit link
     if (course.path.id && domain) {
-      innerHTML += `<p><a href="https://dashboard.skilljar.com/publishing/domains/${domain}/published-paths/${course.path.id}/edit/">Edit Path</a></p>`;
+      innerHTML += `<p style="margin:0 10px 0 0"><a href="https://dashboard.skilljar.com/publishing/domains/${domain}/published-paths/${course.path.id}/edit/">Edit Path</a></p>`;
     }
 
     const infoBox = Object.assign(document.createElement("div"), {
       innerHTML,
       className: "info-box",
+      style: `float:left;display:flex;align-items:center;height:60px;font-size:85%;`
     });
-    document.querySelector(".search-container")?.replaceChildren(infoBox);
+    document.querySelector(".search-container")?.remove();
+
+    const headerContainer = document.querySelector("#header-right");
+    headerContainer.insertBefore(infoBox, headerContainer.firstChild);
   } else {
     document.querySelector(".search-container")?.remove();
   }
