@@ -2566,8 +2566,14 @@ document.addEventListener("DOMContentLoaded", () => {
         ${page.isPageCatalog ? "stylePathCatalogPage" : ""}
       </p>`;
 
+    // Add course edit link
     if (course.id) {
-      innerHTML += `<p><a href="https://dashboard.skilljar.com/course/${course.id}/">Edit</a></p>`;
+      innerHTML += `<p><a href="https://dashboard.skilljar.com/course/${course.id}/">Edit Course</a></p>`;
+    }
+    
+    // Add path edit link
+    if (course.path.id && domain) {
+      innerHTML += `<p><a href="https://dashboard.skilljar.com/publishing/domains/${domain}/published-paths/${course.path.id}/edit/">Edit Path</a></p>`;
     }
 
     const infoBox = Object.assign(document.createElement("div"), {
