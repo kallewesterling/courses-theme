@@ -160,6 +160,7 @@ pathSections = {
                 }
               : undefined,
           ].filter(Boolean),
+          classNames: ["internal"],
         }
       : undefined,
     {
@@ -651,8 +652,12 @@ function makeSections(
 
   sections.forEach((section) => {
     const sectionElement = Object.assign(document.createElement("section"), {
-      className: "featured-courses",
+      classNames: "featured-courses",
     });
+
+    if (section.classNames) {
+      sectionElement.classList.add(...section.classNames);
+    }
 
     const grid = Object.assign(document.createElement("div"), {
       className: "featured-courses__grid",
