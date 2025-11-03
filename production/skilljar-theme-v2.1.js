@@ -656,7 +656,7 @@ function makeSections(
     });
 
     if (section.classNames) {
-      sectionElement.classList.add(...section.classNames);
+      sectionElement.classList.add(...["featured-courses", ...section.classNames]);
     }
 
     const grid = Object.assign(document.createElement("div"), {
