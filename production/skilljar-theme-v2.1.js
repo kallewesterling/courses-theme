@@ -652,11 +652,11 @@ function makeSections(
 
   sections.forEach((section) => {
     const sectionElement = Object.assign(document.createElement("section"), {
-      classNames: "featured-courses",
+      className: "featured-courses",
     });
 
     if (section.classNames) {
-      sectionElement.classList.add(...["featured-courses", ...section.classNames]);
+      sectionElement.classList.add(...section.classNames);
     }
 
     const grid = Object.assign(document.createElement("div"), {
