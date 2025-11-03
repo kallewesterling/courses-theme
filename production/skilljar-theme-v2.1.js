@@ -495,7 +495,7 @@ pathSections = {
       ],
     },
   ],
-  
+
   // Partner intro
   "chainguard-discovery-partner-sales-foundations": [
     {
@@ -508,8 +508,7 @@ pathSections = {
           isPath: false,
           isCourse: true,
           hasBadge: false,
-          title:
-            "Software Vulnerabilities: What Are They?",
+          title: "Software Vulnerabilities: What Are They?",
           slug: "software-vulnerabilities-what-are-they",
           description:
             "Understand the basics of software vulnerabilities, including common types and their implications.",
@@ -534,7 +533,7 @@ pathSections = {
           description:
             "A comprehensive introduction to Chainguard Containers and their benefits.",
           icon: icons.bookmark,
-        }
+        },
       ],
     },
     {
@@ -547,15 +546,14 @@ pathSections = {
           isPath: false,
           isCourse: true,
           hasBadge: false,
-          title:
-            "Getting Started with Carahsoft: How to Quote Chainguard",
+          title: "Getting Started with Carahsoft: How to Quote Chainguard",
           slug: "getting-started-with-carahsoft-how-to-quote-chainguard",
           description:
             "Understand the basics of quoting Chainguard through Carahsoft.",
           icon: icons.bookmark,
         },
       ],
-    }
+    },
   ],
 };
 
@@ -1320,9 +1318,13 @@ function styleCourseDetails() {
   if (typeof courseDetails !== "undefined") {
     v.local.card.details ? v.local.card.details.remove() : null; // remove existing card if present
     v.local.body.container.append(
-      ...[createCourseDetailsCard(courseDetails, { btnText, btnHref, completed: course.completed })].filter(
-        Boolean
-      )
+      ...[
+        createCourseDetailsCard(courseDetails, {
+          btnText,
+          btnHref,
+          completed: course.completed,
+        }),
+      ].filter(Boolean)
     );
     v.local.card.link = document.querySelector(".course-details-card-link"); // re-query link
   }
@@ -1912,9 +1914,13 @@ function styleCurriculumPageNoCertificate() {
   if (typeof courseDetails !== "undefined") {
     v.local.card.details ? v.local.card.details.remove() : null; // remove existing card if present
     v.local.body.mainContainer.append(
-      ...[createCourseDetailsCard(courseDetails, { btnText, btnHref, completed: course.completed })].filter(
-        Boolean
-      )
+      ...[
+        createCourseDetailsCard(courseDetails, {
+          btnText,
+          btnHref,
+          completed: course.completed,
+        }),
+      ].filter(Boolean)
     );
     v.local.card.link = document.querySelector(".course-details-card-link"); // re-query link
   }
@@ -2540,10 +2546,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // DEBUG: adding info box for internal users
   if (isAdmin) {
-    const infoBox = Object.assign(document.createElement("div"), {
-      className: "info-box",
-      innerHTML: `
-      <p>
+    let innerHTML = `<p>
         ${page.isLanding ? "styleLanding" : ""}
         ${page.isCourseDetails ? "styleCourseDetails" : ""}
         ${page.isPageDetail ? "stylePathCourseDetails" : ""}
@@ -2561,8 +2564,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         ${page.isLesson ? "styleLesson" : ""}
         ${page.isPageCatalog ? "stylePathCatalogPage" : ""}
-      </p>
-    `,
+      </p>`;
+
+    if (course.id) {
+      innerHTML += `<p><a href="https://dashboard.skilljar.com/course/${course.id}/">Edit</a></p>`;
+    }
+
+    const infoBox = Object.assign(document.createElement("div"), {
+      innerHTML,
+      className: "info-box",
     });
     document.querySelector(".search-container")?.replaceChildren(infoBox);
   } else {
