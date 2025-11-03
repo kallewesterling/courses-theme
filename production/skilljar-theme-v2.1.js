@@ -132,7 +132,7 @@ pathSections = {
   home: [
     isInternal
       ? {
-          eyebrow: "Internal Training",
+          eyebrow: "🔓 Internal Training",
           title: "For Chainguardians",
           description:
             "Because you are logged in with a Chainguard email address, you can access internal training materials and resources to enhance your skills and knowledge about Chainguard's products and services.",
