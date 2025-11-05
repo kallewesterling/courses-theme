@@ -132,7 +132,7 @@ pathSections = {
   home: [
     isInternal
       ? {
-          eyebrow: "Internal Training",
+          eyebrow: "🔓 Internal Training",
           title: "For Chainguardians",
           description:
             "Because you are logged in with a Chainguard email address, you can access internal training materials and resources to enhance your skills and knowledge about Chainguard's products and services.",
@@ -160,6 +160,7 @@ pathSections = {
                 }
               : undefined,
           ].filter(Boolean),
+          classNames: ["internal"],
         }
       : undefined,
     {
@@ -539,6 +540,24 @@ pathSections = {
       ],
     },
     {
+      eyebrow: "Pitching Chainguard",
+      title: "How to Effectively Pitch Chainguard",
+      description:
+        "Learn strategies and best practices for effectively pitching Chainguard to potential customers.",
+      links: [
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "How to Pitch Chainguard",
+          slug: "how-to-pitch-chainguard",
+          description:
+            "A walk-through of key points for pitching Chainguard solutions.",
+          icon: icons.bookmark,
+        },
+      ],
+    },
+    {
       eyebrow: "Something else here",
       title: "Federal Government Overview",
       description:
@@ -653,6 +672,10 @@ function makeSections(
     const sectionElement = Object.assign(document.createElement("section"), {
       className: "featured-courses",
     });
+
+    if (section.classNames) {
+      sectionElement.classList.add(...section.classNames);
+    }
 
     const grid = Object.assign(document.createElement("div"), {
       className: "featured-courses__grid",

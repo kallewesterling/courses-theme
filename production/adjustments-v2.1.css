@@ -1541,6 +1541,16 @@ body.sj-page-lesson {
   height: 100%;
 }
 
+.featured-courses.internal {
+  background-color: #f7f7f7;
+  border-radius: 20px;
+  padding: 60px;
+
+  .card {
+    background-color: white;
+  }
+}
+
 .card--completed {
   border: 1px solid rgb(var(--tertiary-dark-green));
 }
