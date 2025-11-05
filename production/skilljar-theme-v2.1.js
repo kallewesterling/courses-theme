@@ -540,6 +540,24 @@ pathSections = {
       ],
     },
     {
+      eyebrow: "Pitching Chainguard",
+      title: "How to Effectively Pitch Chainguard",
+      description:
+        "Learn strategies and best practices for effectively pitching Chainguard to potential customers.",
+      links: [
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "How to Pitch Chainguard",
+          slug: "how-to-pitch-chainguard",
+          description:
+            "A walk-through of key points for pitching Chainguard solutions.",
+          icon: icons.bookmark,
+        },
+      ],
+    },
+    {
       eyebrow: "Something else here",
       title: "Federal Government Overview",
       description:
