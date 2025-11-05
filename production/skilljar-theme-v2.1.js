@@ -549,8 +549,8 @@ pathSections = {
           isPath: false,
           isCourse: true,
           hasBadge: false,
-          title: "How to Pitch Chainguard",
-          slug: "how-to-pitch-chainguard",
+          title: "Pitching the Chainguard Way",
+          slug: "pitching-the-chainguard-way",
           description:
             "A walk-through of key points for pitching Chainguard solutions.",
           icon: icons.bookmark,
