@@ -340,6 +340,36 @@ pathSections = {
       ],
     },
   ],
+  "partners": [
+    {
+      eyebrow: "Partner Training",
+      title: "Chainguard Partner Sales Training",
+      description:
+        "Equip your sales team with the knowledge they need to effectively sell Chainguard's products and solutions.",
+      links: [
+        {
+          isPath: true,
+          isCourse: false,
+          hasBadge: false,
+          title: "Chainguard Discovery: Partner Sales Foundations",
+          slug: "path/chainguard-discovery-partner-sales-foundations",
+          icon: icons.burger,
+          description:
+            "A comprehensive learning path designed to provide partners with the foundational knowledge needed to effectively sell Chainguard's products and solutions.",
+        },
+        {
+          isPath: true,
+          isCourse: false,
+          hasBadge: false,
+          title: "Chainguard Advanced: Partner Sales Accelerator",
+          slug: "path/chainguard-advanced-partner-sales-accelerator",
+          icon: icons.burger,
+          description:
+            "An advanced learning path aimed at equipping partners with the skills and knowledge to accelerate their sales efforts for Chainguard's products and solutions.",
+        }
+      ],
+    },
+  ],
   "chainguard-containers-onboarding-guide": [
     {
       eyebrow: "Admin Onboarding",
@@ -1277,6 +1307,28 @@ function animateCopiedTooltip(tooltipEl) {
  */
 function styleCatalog() {
   log("Running styleCatalog");
+  let sectionName = "";
+
+  v.local = {
+    catalogBodyParentContainer: document.querySelector("#catalog-content"),
+    catalogContainer: document.querySelector("#catalog-courses"),
+  };
+
+  if (page.isLanding) {
+    sectionName = "home";
+  } else if (skilljarCatalogPage.slug) {
+    sectionName = skilljarCatalogPage.slug; // ex. "partners"
+  }
+
+  if (sectionName) {
+    makeSections(pathSections[sectionName], "#skilljar-content", baseURL);
+
+    document.querySelector("#skilljar-content").append(v.global.footerContainer);
+
+    v.local.catalogBodyParentContainer.append(v.local.catalogContainer);
+
+    hide(v.local.catalogBodyParentContainer);
+  }
 }
 
 /**
@@ -1291,18 +1343,7 @@ function style404() {
  */
 function styleLanding() {
   log("Running styleLanding");
-  v.local = {
-    catalogBodyParentContainer: document.querySelector("#catalog-content"),
-    catalogContainer: document.querySelector("#catalog-courses"),
-  };
-
-  makeSections(pathSections["home"], "#skilljar-content", baseURL);
-
-  document.querySelector("#skilljar-content").append(v.global.footerContainer);
-
-  v.local.catalogBodyParentContainer.append(v.local.catalogContainer);
-
-  hide(v.local.catalogBodyParentContainer);
+  
 }
 
 /**
@@ -2486,10 +2527,6 @@ function styleCurriculumPageNoCertificate() {
  * It also checks for the presence of a certificate and applies styles accordingly.
  */
 function handlePageStyling() {
-  if (page.isLanding)
-    // we are on the landing page (which is a catalog page)
-    return styleLanding();
-
   if (page.isLogin || page.isSignup)
     // we are on the login or signup page
     return styleAuth();
@@ -2515,7 +2552,7 @@ function handlePageStyling() {
     // we are on a lesson page
     return styleLesson();
 
-  if (page.isCatalog)
+  if (page.isCatalog || page.isLanding)
     // we are on a catalog page (not currently in use)
     return styleCatalog();
 
