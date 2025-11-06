@@ -22,6 +22,11 @@ const UTM = {
   CAMPAIGN: "dev-enablement",
 };
 
+const DOMAIN = {
+  prod: {url: "courses.chainguard.dev", id: "3glgawqmzatte"},
+  stage: {url: "chainguard-test.skilljar.com", id: "ix1ljpxex6xd"},
+};
+
 // confetti defaults
 const AUTOHIDE_COMPLETION = 6000;
 const particles = {
@@ -50,13 +55,12 @@ if (typeof skilljarUser !== "undefined") {
   isAdmin = skilljarUser.email === "kalle.westerling@chainguard.dev";
 }
 
-const baseURL = isAdmin
-  ? "https://chainguard-test.skilljar.com"
-  : "https://courses.chainguard.dev";
+DOMAIN.current = isAdmin ? DOMAIN.stage : DOMAIN.prod;
+
+const baseURL = DOMAIN.current.url;
 
 // let initialLoadComplete = false,
 let isStaging = false,
-  domain = "3glgawqmzatte",
   userCourseJourney = {},
   course = {
     progress: {},
@@ -68,7 +72,6 @@ let isStaging = false,
 
 if (window.location.hostname === "chainguard-test.skilljar.com") {
   isStaging = true;
-  domain = "ix1ljpxex6xd";
 }
 
 // set up userCourseJourney global variable
@@ -92,7 +95,7 @@ if (Array.from(document.querySelectorAll(".coursebox-container")).length)
   };
 
 if (typeof skilljarCourseSeries !== "undefined") {
-  course.path.edit = `https://dashboard.skilljar.com/publishing/domains/${domain}/published-paths/${skilljarCourseSeries.id}/edit`;
+  course.path.edit = `https://dashboard.skilljar.com/publishing/domains/${DOMAIN.current.id}/published-paths/${skilljarCourseSeries.id}/edit`;
   crumbs.push([
     skilljarCourseSeries.title,
     `${baseURL}/path/${skilljarCourseSeries.slug}`,
@@ -646,7 +649,7 @@ function renderBreadcrumbs(targetElement, crumbs) {
  * log({ key: "value" }, "Additional info");
  */
 const log = (message, ...args) => {
-  if (!message || !isStaging) return;
+  if ((!message || !isStaging) && !isAdmin) return;
 
   const style = "color: var(--primary-blue-hex); font-weight: 600;";
 
@@ -2597,8 +2600,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Add path edit link
-    if (course.path.id && domain) {
-      innerHTML += `<p style="margin:0 10px 0 0"><a href="https://dashboard.skilljar.com/publishing/domains/${domain}/published-paths/${course.path.id}/edit">Edit Path</a></p>`;
+    if (course.path.id && DOMAIN.current) {
+      innerHTML += `<p style="margin:0 10px 0 0"><a href="https://dashboard.skilljar.com/publishing/domains/${DOMAIN.current.id}/published-paths/${course.path.id}/edit">Edit Path</a></p>`;
     }
 
     const infoBox = Object.assign(document.createElement("div"), {
