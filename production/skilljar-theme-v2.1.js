@@ -23,8 +23,8 @@ const UTM = {
 };
 
 const DOMAIN = {
-  prod: {url: "courses.chainguard.dev", id: "3glgawqmzatte"},
-  stage: {url: "chainguard-test.skilljar.com", id: "ix1ljpxex6xd"},
+  prod: { url: "courses.chainguard.dev", id: "3glgawqmzatte" },
+  stage: { url: "chainguard-test.skilljar.com", id: "ix1ljpxex6xd" },
 };
 
 // confetti defaults
@@ -57,7 +57,7 @@ if (typeof skilljarUser !== "undefined") {
 
 DOMAIN.current = isAdmin ? DOMAIN.stage : DOMAIN.prod;
 
-const baseURL = DOMAIN.current.url;
+const baseURL = `https://${DOMAIN.current.url}`;
 
 // let initialLoadComplete = false,
 let isStaging = false,
@@ -340,7 +340,7 @@ pathSections = {
       ],
     },
   ],
-  "partners": [
+  partners: [
     {
       eyebrow: "Partner Training",
       title: "Chainguard Partner Sales Training",
@@ -366,7 +366,7 @@ pathSections = {
           icon: icons.burger,
           description:
             "An advanced learning path aimed at equipping partners with the skills and knowledge to accelerate their sales efforts for Chainguard's products and solutions.",
-        }
+        },
       ],
     },
   ],
@@ -1323,7 +1323,9 @@ function styleCatalog() {
   if (sectionName) {
     makeSections(pathSections[sectionName], "#skilljar-content", baseURL);
 
-    document.querySelector("#skilljar-content").append(v.global.footerContainer);
+    document
+      .querySelector("#skilljar-content")
+      .append(v.global.footerContainer);
 
     v.local.catalogBodyParentContainer.append(v.local.catalogContainer);
 
@@ -1343,7 +1345,6 @@ function style404() {
  */
 function styleLanding() {
   log("Running styleLanding");
-  
 }
 
 /**
