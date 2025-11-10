@@ -146,13 +146,13 @@
   height: 0px;
 }
 
-#footer-container {
+/* #footer-container {
   background: linear-gradient(
     0deg,
     rgba(20, 0, 255, 0.07) 0%,
     rgba(170, 0, 255, 0) 100%
   );
-}
+} */
 
 body {
   header {

@@ -30,6 +30,6 @@
   --white: rgb(255, 255, 255);
 }
 
-#main-container {
+#main-container, #footer-container {
   background-color: var(--white);
 }
