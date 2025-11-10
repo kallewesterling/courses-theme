@@ -1500,7 +1500,7 @@ body.sj-page-lesson {
   max-width: var(--w-max);
   padding-bottom: 64px;
   border-bottom: 1px solid var(--separator);
-  color: var(--blurple);
+  color: var(--ink);
   font-size: 18px;
   line-height: 1.55;
 }
