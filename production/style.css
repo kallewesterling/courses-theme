@@ -32,7 +32,7 @@ body {
 /*
 #header #header-right .login-link {
   border-radius: 4px !important;
-  color: var(--primary-blue-hex) !important;
+  color: var(--blurple) !important;
   outline: solid 1px #c2c7fc !important;
 }
 */
@@ -52,7 +52,7 @@ body {
 }
 
 body {
-  color: var(--primary-dark-purple-hex);
+  color: var(--ink);
 }
 
 h1,
@@ -65,8 +65,8 @@ h4,
 .h4-style,
 h5,
 h6 {
-  font-family: "Fusiona", sans-serif;
-  color: var(--primary-dark-purple-hex);
+  /* font-family: "Fusiona", sans-serif; */
+  color: var(--ink);
 }
 
 span {
@@ -75,20 +75,19 @@ span {
 
 a,
 #curriculum-list-2 a {
-  color: var(--primary-blue-hex);
+  color: var(--blurple);
 }
 
 label {
-  color: var(--primary-dark-purple-hex);
+  color: var(--ink);
 }
 
 .button,
 .button-prev-title {
-  color: var(--primary-dark-purple-hex);
-  background-color: transparent;
-  border: 2px solid var(--primary-blue-hex);
-  border-radius: 999px;
-  font-family: "Space Mono";
+  color: var(--white) !important;
+  background-color: var(--blurple);
+  border: 0;
+  font-family: Gellix;
   font-size: 14px;
   font-weight: 700;
   padding: 10px 20px;
@@ -100,9 +99,9 @@ label {
 }
 
 .button:hover {
-  background-color: var(--primary-blue-hex) !important;
-  color: var(--primary-white-hex) !important;
-  border-color: var(--primary-blue-hex) !important;
+  color: var(--white) !important;
+  background-color: var(--blurple);
+  /* border-color: var(--blurple) !important; */
 }
 
 /* SPECIFIC STYLING */
@@ -113,13 +112,13 @@ label {
   transition: all 0.2s ease-in;
   font-size: 14px;
   font-weight: 700;
-  font-family: "Space Mono";
+  font-family: Roobert;
 }
 
 #header-right .login-link:hover {
-  background-color: var(--primary-blue-hex) !important;
+  background-color: var(--blurple) !important;
   color: var(--primary-white-hex) !important;
-  border-color: var(--primary-blue-hex) !important;
+  border-color: var(--blurple) !important;
 }
 
 /* CUR PAGE NAV END */
@@ -225,7 +224,7 @@ label {
 
 #button-sign-in:hover,
 #button-sign-up:hover {
-  background-color: var(--primary-blue-hex) !important;
+  background-color: var(--blurple) !important;
   color: var(--primary-white-hex) !important;
 }
 
@@ -252,7 +251,7 @@ label {
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
-  font-family: "Fusiona";
+  font-family: Gellix;
 }
 
 .lesson-row {
@@ -260,7 +259,7 @@ label {
 }
 
 .lesson-row:hover {
-  background-color: var(--secondary-light-gray-hex);
+  background-color: var(--white);
 }
 
 .course-details-card {
@@ -270,7 +269,7 @@ label {
   margin-bottom: 50px !important;
   border-radius: 8px !important;
   background-color: var(--primary-white-hex) !important;
-  border: 2px solid var(--primary-blue-hex) !important;
+  border: 2px solid var(--blurple) !important;
   display: flex !important;
   flex-direction: column !important;
   color: inherit !important;
@@ -282,10 +281,10 @@ label {
 .course-details-card-header {
   font-size: 16px;
   font-weight: 500;
-  font-family: "Fusiona";
+  font-family: Gellix;
   line-height: 20px;
   letter-spacing: -0.01em;
-  border-bottom: 2px solid var(--primary-blue-hex) !important;
+  border-bottom: 2px solid var(--blurple) !important;
   padding: 24px;
 }
 
@@ -311,14 +310,14 @@ label {
 }
 
 .course-details-card-link {
-  background-color: var(--primary-blue-hex) !important;
+  background-color: var(--blurple) !important;
   color: var(--primary-white-hex) !important;
   padding: 12px 20px !important;
   text-align: center !important;
   text-decoration: none !important;
   display: inline-block;
   font-size: 16px !important;
-  font-family: "Space Mono" !important;
+  font-family: Roobert !important;
   border-radius: 999px !important;
   cursor: pointer !important;
   margin: 0 24px !important;
@@ -399,7 +398,7 @@ body .lesson-page #lp-wrapper #lesson-body .lesson-top {
   font-weight: 600;
   font-size: 36px;
   line-height: 43.2px;
-  color: var(--primary-dark-purple-hex);
+  color: var(--ink);
 }
 
 .content-img-outer-container {
@@ -429,13 +428,13 @@ body .lesson-page #lp-wrapper #lesson-body .lesson-top {
 }
 
 .course-details-card-link:visited {
-  background-color: var(--primary-blue-hex);
+  background-color: var(--blurple);
   color: var(--primary-white-hex);
 }
 
 .course-details-card-link:hover,
 .course-details-card-link:active {
-  background-color: var(--primary-blue-hex);
+  background-color: var(--blurple);
   color: var(--primary-white-hex);
 }
 
@@ -445,8 +444,8 @@ body .lesson-page #lp-wrapper #lesson-body .lesson-top {
 }
 
 #lp-left-nav .lesson-active {
-  background-color: var(--secondary-light-gray-hex);
-  color: var(--primary-dark-purple-hex);
+  background-color: #eaeaea;
+  color: var(--ink);
   margin: 0 12px;
   border-radius: 4px;
 }
@@ -465,16 +464,16 @@ pre[class*="language-"] {
 .lp-color-scheme-light .lp-left-nav .section-title,
 .lesson-page #lp-wrapper #lesson-body,
 .course-text-content {
-  color: var(--primary-dark-purple-hex) !important;
+  color: var(--ink) !important;
 }
 
 .lp-color-scheme-light .lp-left-nav .course-title,
 .lp-color-scheme-light .lp-left-nav .section-title {
-  font-family: "Fusiona";
+  font-family: Gellix;
 }
 
 .bullet .fa.fa-check-circle {
-  color: var(--primary-blue-hex);
+  color: var(--blurple);
 }
 
 #lp-footer .left .prev-lesson-button .button-content .fa.fa-angle-left {
@@ -722,7 +721,7 @@ sjwc-lesson-content-item pre code {
 
   .ctas {
     margin-bottom: 16px;
-    font-family: "Space Mono", monospace;
+    font-family: Roobert, monospace;
     font-weight: 700;
     font-size: 14px;
 
@@ -739,26 +738,26 @@ sjwc-lesson-content-item pre code {
       margin-bottom: 30px;
 
       &:hover {
-        color: #3443f4;
+        color: var(--blurple);
       }
 
       & .icon {
-        color: #3443f4;
+        color: var(--blurple);
       }
     }
 
-    .cta-contact-us {
+    /* .cta-contact-us {
       transition: all 0.2s ease-in;
-      border: 2px solid #3443f4;
+      border: 2px solid var(--blurple);
       display: inline-block;
       padding: 10px 20px;
       border-radius: 999px;
 
       &:hover {
-        background-color: #3443f4;
+        background-color: var(--blurple);
         color: #fff;
       }
-    }
+    } */
   }
 }
 
@@ -799,8 +798,11 @@ sjwc-lesson-content-item pre code {
   }
 
   h2 {
-    margin: 0 0 18px 0;
-    font-size: 20px;
+    margin: 0 0 15px 0;
+    font-family: 'Roobert';
+    text-transform: uppercase;
+    font-size: 12px;
+    color: var(--ink-40);
   }
 }
 
@@ -877,11 +879,11 @@ sjwc-lesson-content-item pre code {
 }
 .sj-floater-text {
   display: none;
-  font-family: "Space Mono";
+  font-family: Roobert;
   font-weight: 700;
   font-size: 16px;
   line-height: 23.7px;
-  margin-bottom: 24px;
+  /* margin-bottom: 24px; */
   color: #7545fb;
 }
 

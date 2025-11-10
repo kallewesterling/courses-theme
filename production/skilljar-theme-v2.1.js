@@ -1106,9 +1106,15 @@ function createCourseDetailsCard(
   const link = Object.assign(document.createElement("a"), {
     href: options.completed ? "#" : options.btnHref,
     textContent: options.completed ? "🎉 Completed" : options.btnText,
-    className: `course-details-card-link ${
-      options.completed ? "completed" : ""
+    className: `button ${
+      options.completed ? "completed" : "" // course-details-card-link
     }`,
+  });
+
+  // add margin to link button
+  setStyle(link, {
+    marginLeft: "20px",
+    marginRight: "20px",
   });
 
   card.appendChild(link);
@@ -2612,7 +2618,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // DEBUG: adding info box for internal users
   if (isAdmin) {
-    let innerHTML = `<p style="margin:0 10px 0 0">
+    let innerHTML = [`<p style="margin:0">
         ${page.isLanding ? "styleLanding" : ""}
         ${page.isCourseDetails ? "styleCourseDetails" : ""}
         ${page.isPageDetail ? "stylePathCourseDetails" : ""}
@@ -2630,27 +2636,28 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         ${page.isLesson ? "styleLesson" : ""}
         ${page.isPageCatalog ? "stylePathCatalogPage" : ""}
-      </p>`;
+      </p>`];
 
     // Add course edit link
     if (course.id) {
-      innerHTML += `<p style="margin:0 10px 0 0"><a href="https://dashboard.skilljar.com/course/${course.id}/">Edit Course</a></p>`;
+      innerHTML.push(`<p style="margin:0"><a href="https://dashboard.skilljar.com/course/${course.id}/">Edit Course</a></p>`);
     }
 
     // Add path edit link
     if (course.path.id && DOMAIN.current) {
-      innerHTML += `<p style="margin:0 10px 0 0"><a href="https://dashboard.skilljar.com/publishing/domains/${DOMAIN.current.id}/published-paths/${course.path.id}/edit">Edit Path</a></p>`;
+      innerHTML.push(`<p style="margin:0"><a href="https://dashboard.skilljar.com/publishing/domains/${DOMAIN.current.id}/published-paths/${course.path.id}/edit">Edit Path</a></p>`);
     }
 
-    const infoBox = Object.assign(document.createElement("div"), {
+    const infoBoxes = innerHTML.map((innerHTML) => Object.assign(document.createElement("div"), {
       innerHTML,
       className: "info-box",
-      style: `float:left;display:flex;align-items:center;height:60px;font-size:85%;`,
-    });
+    }));
     document.querySelector(".search-container")?.remove();
 
     const headerContainer = document.querySelector("#header-right");
-    headerContainer.insertBefore(infoBox, headerContainer.firstChild);
+    infoBoxes.forEach(infoBox => {
+      headerContainer.insertBefore(infoBox, headerContainer.firstChild);
+    });
   } else {
     document.querySelector(".search-container")?.remove();
   }
@@ -2682,23 +2689,23 @@ document.addEventListener("DOMContentLoaded", () => {
 // });
 
 // Make header white on scroll
-if (!page.isLesson) {
-  $(document).ready(function () {
-    v.global.scroll_pos = 0;
-    $(document).scroll(function () {
-      v.global.scroll_pos = $(this).scrollTop();
-      if (v.global.scroll_pos > 60) {
-        setStyle(document.querySelector("header"), {
-          backgroundColor: "white !important",
-        });
-      } else {
-        setStyle(document.querySelector("header"), {
-          backgroundColor: "transparent !important",
-        });
-      }
-    });
-  });
-}
+// if (!page.isLesson) {
+//   $(document).ready(function () {
+//     v.global.scroll_pos = 0;
+//     $(document).scroll(function () {
+//       v.global.scroll_pos = $(this).scrollTop();
+//       if (v.global.scroll_pos > 60) {
+//         setStyle(document.querySelector("header"), {
+//           backgroundColor: "white !important",
+//         });
+//       } else {
+//         setStyle(document.querySelector("header"), {
+//           backgroundColor: "transparent !important",
+//         });
+//       }
+//     });
+//   });
+// }
 
 /**
  * Inject overlay HTML once

@@ -1,0 +1,91 @@
+:root {
+  --primary-blue: 52 67 244;
+
+  /* Brand (Non-text) */
+  --blurple: rgb(98, 38, 251);
+  --light-blurple: rgb(241, 236, 254);
+  --aqua: rgb(43, 186, 253);
+  --light-aqua: rgb(223, 244, 254);
+  --fuschia: rgb(253, 43, 242);
+  --light-fuschia: rgb(253, 223, 252);
+  --lime: rgb(68, 253, 43);
+  --light-lime: rgb(233, 252, 234);
+  --solar: rgb(253, 57, 100);
+  --light-solar: rgb(252, 224, 224);
+
+  /* Brand (Text) */
+  --blurple-text: rgb(0, 160, 235);
+  --aqua-text: rgb(4, 189, 19);
+  --fuschia-text: rgb(246, 4, 64);
+  --lime-text: rgb(98, 38, 251);
+  --solar-text: rgb(235, 2, 224);
+
+  /* Neutral */
+  --ink: rgb(13, 22, 28);
+  --ink-90: rgb(13, 22, 28, 0.9);
+  --ink-70: rgb(13, 22, 28, 0.7);
+  --ink-40: rgb(13, 22, 28, 0.4);
+  --ink-10: rgb(13, 22, 28, 0.1);
+  --ink-5: rgb(13, 22, 28, 0.05);
+  --white: rgb(255, 255, 255);
+
+  --neutral-border: rgb(218, 218, 218);
+}
+
+#main-container,
+#footer-container,
+#header {
+  background-color: var(--white);
+}
+
+#header {
+  border-bottom: 1px solid var(--neutral-border);
+
+  .header-center-img.header-logo-svg {
+    width: 300px !important;
+  }
+
+  .info-box {
+    float: left;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    font-size: 85%;
+    border-left: 1px solid var(--neutral-border);
+    padding: 0 10px;
+  }
+
+  .headerheight.align-vertical {
+    border-left: 1px solid var(--neutral-border);
+  }
+}
+
+* {
+  font-family: Roobert, Lato;
+}
+
+h1,
+.h1-style,
+h2,
+.h2-style,
+h3,
+.h3-style,
+h4,
+.h4-style,
+h5,
+h6 {
+  font-family: Gellix;
+  font-weight: 700;
+}
+
+.footer-col,
+.logo-col-content {
+  a,
+  p {
+    font-family: Gellix !important;
+  }
+}
+
+.search-container {
+  display: none !important;
+}
