@@ -28,8 +28,14 @@
   --ink-10: rgb(13, 22, 28, 0.1);
   --ink-5: rgb(13, 22, 28, 0.05);
   --white: rgb(255, 255, 255);
+
+  --neutral-border: rgb(218, 218, 218);
 }
 
-#main-container, #footer-container {
+#main-container, #footer-container, header {
   background-color: var(--white);
+}
+
+header {
+  border-bottom: 1px solid var(--neutral-border);
 }
