@@ -65,7 +65,7 @@ h4,
 .h4-style,
 h5,
 h6 {
-  font-family: "Fusiona", sans-serif;
+  /* font-family: "Fusiona", sans-serif; */
   color: var(--primary-dark-purple-hex);
 }
 
@@ -88,7 +88,7 @@ label {
   background-color: transparent;
   border: 2px solid var(--primary-blue-hex);
   border-radius: 999px;
-  font-family: "Space Mono";
+  font-family: Roobert;
   font-size: 14px;
   font-weight: 700;
   padding: 10px 20px;
@@ -113,7 +113,7 @@ label {
   transition: all 0.2s ease-in;
   font-size: 14px;
   font-weight: 700;
-  font-family: "Space Mono";
+  font-family: Roobert;
 }
 
 #header-right .login-link:hover {
@@ -252,7 +252,7 @@ label {
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
-  font-family: "Fusiona";
+  font-family: Gellix;
 }
 
 .lesson-row {
@@ -282,7 +282,7 @@ label {
 .course-details-card-header {
   font-size: 16px;
   font-weight: 500;
-  font-family: "Fusiona";
+  font-family: Gellix;
   line-height: 20px;
   letter-spacing: -0.01em;
   border-bottom: 2px solid var(--primary-blue-hex) !important;
@@ -318,7 +318,7 @@ label {
   text-decoration: none !important;
   display: inline-block;
   font-size: 16px !important;
-  font-family: "Space Mono" !important;
+  font-family: Roobert !important;
   border-radius: 999px !important;
   cursor: pointer !important;
   margin: 0 24px !important;
@@ -470,7 +470,7 @@ pre[class*="language-"] {
 
 .lp-color-scheme-light .lp-left-nav .course-title,
 .lp-color-scheme-light .lp-left-nav .section-title {
-  font-family: "Fusiona";
+  font-family: Gellix;
 }
 
 .bullet .fa.fa-check-circle {
@@ -722,7 +722,7 @@ sjwc-lesson-content-item pre code {
 
   .ctas {
     margin-bottom: 16px;
-    font-family: "Space Mono", monospace;
+    font-family: Roobert, monospace;
     font-weight: 700;
     font-size: 14px;
 
@@ -877,7 +877,7 @@ sjwc-lesson-content-item pre code {
 }
 .sj-floater-text {
   display: none;
-  font-family: "Space Mono";
+  font-family: Roobert;
   font-weight: 700;
   font-size: 16px;
   line-height: 23.7px;
