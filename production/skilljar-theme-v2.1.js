@@ -2634,12 +2634,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add course edit link
     if (course.id) {
-      innerHTML.append(`<p style="margin:0"><a href="https://dashboard.skilljar.com/course/${course.id}/">Edit Course</a></p>`);
+      innerHTML.push(`<p style="margin:0"><a href="https://dashboard.skilljar.com/course/${course.id}/">Edit Course</a></p>`);
     }
 
     // Add path edit link
     if (course.path.id && DOMAIN.current) {
-      innerHTML.append(`<p style="margin:0"><a href="https://dashboard.skilljar.com/publishing/domains/${DOMAIN.current.id}/published-paths/${course.path.id}/edit">Edit Path</a></p>`);
+      innerHTML.push(`<p style="margin:0"><a href="https://dashboard.skilljar.com/publishing/domains/${DOMAIN.current.id}/published-paths/${course.path.id}/edit">Edit Path</a></p>`);
     }
 
     const infoBoxes = innerHTML.map((innerHTML) => Object.assign(document.createElement("div"), {
