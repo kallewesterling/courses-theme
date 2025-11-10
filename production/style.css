@@ -107,6 +107,10 @@ label {
   /* border-color: var(--blurple) !important; */
 }
 
+#header-right .login-link {
+  margin-left: 14px;
+}
+
 /* SPECIFIC STYLING */
 
 /* CUR PAGE NAV START */
