@@ -1111,6 +1111,12 @@ function createCourseDetailsCard(
     }`,
   });
 
+  // add margin to link button
+  setStyle(link, {
+    marginLeft: "20px",
+    marginRight: "20px",
+  });
+
   card.appendChild(link);
 
   if (options.completed) {
