@@ -1544,6 +1544,7 @@ body.sj-page-lesson {
   background: var(--card-bg);
   border-radius: var(--radius-2);
   height: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .featured-courses.internal {
@@ -1565,7 +1566,6 @@ body.sj-page-lesson {
 .card:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.04);
   transform: translateY(-2px);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .card__inner {
   padding: 24px;
