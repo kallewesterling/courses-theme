@@ -84,7 +84,7 @@
   .completed-subtext {
     padding: 0px 20px 20px 0px !important;
     font-size: 12px !important;
-    font-family: "Space Mono" !important;
+    font-family: Roobert !important;
     margin: 0 24px !important;
     color: green !important;
   }
@@ -1132,7 +1132,7 @@ body.sj-page-lesson {
         letter-spacing: 0.05em;
 
         @media screen and (max-width: 991px) {
-          font-family: "Space Mono";
+          font-family: Roobert;
           font-size: 12px;
         }
       }
