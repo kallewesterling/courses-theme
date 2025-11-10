@@ -29,11 +29,11 @@ const columnData = {
     text: "©2025 Chainguard. All Rights Reserved.",
     links: [
       {
-        label: "Privacy Policy",
+        label: "Privacy",
         href: "https://www.chainguard.dev/legal/privacy-notice?utm_source=courses",
       },
       {
-        label: "Terms of Use",
+        label: "Terms",
         href: "https://www.chainguard.dev/legal/terms-of-use?utm_source=courses",
       },
     ],
@@ -228,6 +228,15 @@ function generateFooter(data, containerId = "footer-container") {
         data.copyright.links.map((l) =>
           el("a", { href: l.href, text: l.label })
         )
+
+        // in-between every link we want a | separator except after the last one
+        .reduce((acc, el, idx, arr) => {
+          acc.push(el);
+          if (idx < arr.length - 1) {
+            acc.push(el("span", { text: " | " }));
+          }
+          return acc;
+        }, []),
       ),
     ]);
     left.appendChild(copy);
