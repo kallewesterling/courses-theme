@@ -738,23 +738,23 @@ sjwc-lesson-content-item pre code {
       margin-bottom: 30px;
 
       &:hover {
-        color: #3443f4;
+        color: var(--blurple);
       }
 
       & .icon {
-        color: #3443f4;
+        color: var(--blurple);
       }
     }
 
     /* .cta-contact-us {
       transition: all 0.2s ease-in;
-      border: 2px solid #3443f4;
+      border: 2px solid var(--blurple);
       display: inline-block;
       padding: 10px 20px;
       border-radius: 999px;
 
       &:hover {
-        background-color: #3443f4;
+        background-color: var(--blurple);
         color: #fff;
       }
     } */
