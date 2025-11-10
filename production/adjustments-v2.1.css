@@ -650,7 +650,7 @@ body.sj-page-detail-course {
           .sj-floater-text {
             /* Type, e.g. Course/Learning Path */
             display: block;
-            margin-bottom: 24px;
+            /* margin-bottom: 24px; */
           }
 
           h1.break-word {
