@@ -43,3 +43,12 @@
     width: 350px !important;
   }
 }
+
+* {
+  font-family: Roobert, Lato;
+}
+
+h1, .h1-style, h2, .h2-style, h3, .h3-style, h4, .h4-style, h5, h6 {
+  font-family: Gellix;
+  font-weight: 700;
+}
