@@ -1558,10 +1558,10 @@ body.sj-page-lesson {
 }
 
 .card--completed {
-  border: 1px solid rgb(var(--tertiary-dark-green));
+  border: 1px solid #04bd13; /* lime */
 }
 .card--in-progress {
-  border: 1px solid rgba(var(--tertiary-orange));
+  border: 1px solid #fd3964; /* solar */
 }
 .card:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.04);
@@ -1605,14 +1605,14 @@ body.sj-page-lesson {
     right: 24px;
   }
   .pill.completed {
-    background: #d1f4e5;
-    border: 1px solid #a6e1c9;
-    color: rgb(var(--tertiary-dark-green));
+    background: #04bd133d;
+    border: 1px solid #04bd13a6;
+    color: #04bd13; /* lime */
   }
   .pill.in-progress {
-    background: #ffece8;
-    border: 1px solid #ffb6a7;
-    color: rgb(var(--tertiary-orange));
+    background: #fd396421;
+    border: 1px solid #fd396480;
+    color: #fd3964; /* solar */
   }
 
   .pill.completed::before {
