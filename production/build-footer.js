@@ -230,8 +230,8 @@ function generateFooter(data, containerId = "footer-container") {
         )
 
         // in-between every link we want a | separator except after the last one
-        .reduce((acc, el, idx, arr) => {
-          acc.push(el);
+        .reduce((acc, elem, idx, arr) => {
+          acc.push(elem);
           if (idx < arr.length - 1) {
             acc.push(el("span", { text: " | " }));
           }
