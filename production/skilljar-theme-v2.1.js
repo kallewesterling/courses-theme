@@ -1106,8 +1106,8 @@ function createCourseDetailsCard(
   const link = Object.assign(document.createElement("a"), {
     href: options.completed ? "#" : options.btnHref,
     textContent: options.completed ? "🎉 Completed" : options.btnText,
-    className: `course-details-card-link ${
-      options.completed ? "completed" : ""
+    className: `button ${
+      options.completed ? "completed" : "" // course-details-card-link
     }`,
   });
 
