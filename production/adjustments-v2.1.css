@@ -358,7 +358,7 @@ body.sj-page-detail-course {
             padding: 8px 8px 0px 8px;
 
             a {
-              color: var(--primary-dark-purple-hex);
+              color: var(--blurple);
 
               i {
                 padding-right: 12px;
@@ -539,7 +539,7 @@ body.sj-page-signup #signup_form {
     /* Sign in button */
     width: 368px;
     height: 48px;
-    color: var(--primary-dark-purple-hex);
+    color: var(--blurple);
     background-color: transparent;
     border: 2px solid var(--blurple);
     border-radius: 999px;
@@ -1095,7 +1095,7 @@ body.sj-page-lesson {
       /* a is actually parent element, .lesson-row inside */
       a.lesson {
         /* Lesson link */
-        color: var(--primary-dark-purple-hex);
+        color: var(--blurple);
         cursor: pointer;
 
         @media screen and (max-width: 991px) {
@@ -1393,7 +1393,7 @@ body.sj-page-lesson {
                       }
 
                       a.button {
-                        color: var(--primary-dark-purple-hex) !important;
+                        color: var(--blurple) !important;
                         background-color: var(--border-color-v2) !important;
                         border-color: var(--border-color-v2) !important;
 
@@ -1472,7 +1472,7 @@ body.sj-page-lesson {
 
       .button-prev-title span {
         /* Previous button title */
-        color: var(--primary-dark-purple-hex);
+        color: var(--blurple);
 
         @media screen and (max-width: 991px) {
           color: inherit;
@@ -1490,7 +1490,7 @@ body.sj-page-lesson {
   max-width: var(--w-max);
   padding-bottom: 64px;
   border-bottom: 1px solid var(--separator);
-  color: var(--primary-dark-purple-hex);
+  color: var(--blurple);
   font-size: 18px;
   line-height: 1.55;
 }
@@ -1655,12 +1655,12 @@ body.sj-page-lesson {
 .card__link {
   display: inline-block;
   margin-top: 4px;
-  color: var(--primary-dark-purple-hex);
+  color: var(--blurple);
   text-decoration: none;
   border-bottom: 2px solid transparent;
 }
 .card__link:hover {
-  color: var(--primary-dark-purple-hex) !important;
+  color: var(--blurple) !important;
 }
 .card__eyebrow {
   font-family: inherit;
