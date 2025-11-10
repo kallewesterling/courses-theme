@@ -1228,6 +1228,16 @@ body.sj-page-lesson {
             sjwc-lesson-content-item {
               /* Lesson content item */
 
+              h3 {
+                font-weight: 600;
+                font-size: 26px;
+              }
+
+              h4 {
+                font-weight: 400;
+                font-size: 24px;
+              }
+
               #internal-course-warning {
                 /* Internal course warning */
               }
