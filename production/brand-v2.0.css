@@ -52,7 +52,10 @@
     height: 60px;
     font-size: 85%;
     border-left: 1px solid var(--neutral-border);
-    border-right: 1px solid var(--neutral-border);
+  }
+
+  .headerheight.align-vertical {
+    border-left: 1px solid var(--neutral-border);
   }
 }
 
