@@ -691,6 +691,10 @@ body.sj-page-detail-course {
             .social-media-wrapper {
               display: none !important;
             }
+
+            h2 {
+              font-weight: 500 !important;
+            }
           }
 
           #purchase-button-wrapper-large {
