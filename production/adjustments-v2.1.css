@@ -245,13 +245,13 @@ body.sj-page-detail-course {
           color: black !important;
         }
 
-        a {
+        /* a {
           color: black !important;
         }
 
         a:hover {
           color: white !important;
-        }
+        } */
       }
     }
   }

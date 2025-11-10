@@ -84,7 +84,7 @@ label {
 
 .button,
 .button-prev-title {
-  color: var(--white);
+  color: var(--white) !important;
   background-color: var(--blurple);
   border: 0;
   font-family: Gellix;
@@ -98,11 +98,11 @@ label {
   color: inherit;
 }
 
-/* .button:hover {
-  background-color: var(--primary-blue-hex) !important;
-  color: var(--primary-white-hex) !important;
+.button:hover {
+  color: var(--white) !important;
+  background-color: var(--blurple);
   border-color: var(--primary-blue-hex) !important;
-} */
+}
 
 /* SPECIFIC STYLING */
 
