@@ -263,11 +263,11 @@ body.sj-page-detail-course {
   }
 
   #main-container {
-    background: linear-gradient(
+    /* background: linear-gradient(
       180deg,
       rgba(20, 0, 255, 0.16) 0%,
       rgba(170, 0, 255, 0) 23%
-    );
+    ); */
 
     #header {
       background: transparent !important; /* Hide background */
