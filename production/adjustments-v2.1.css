@@ -432,7 +432,7 @@ body.sj-page-signup {
         padding: 8px 16px;
         align-items: center;
         border-radius: 100px;
-        font-family: Space Mono, monospace;
+        font-family: Roobert, monospace;
         font-weight: 700;
         font-size: 18px;
         line-height: 24px;
@@ -561,7 +561,7 @@ body.sj-page-login {
     button#button-sign-in {
       /* Forgot password text + login button */
       font-size: 16px;
-      font-family: Space Mono;
+      font-family: Roobert;
       margin-bottom: 2px;
     }
 
