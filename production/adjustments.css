@@ -64,6 +64,10 @@ sjwc-lesson-content-item p,
 sjwc-lesson-content-item li {
     font-family: Gellix !important;
     font-size: 1.2em !important;
+
+    em, a, strong {
+        font-family: Gellix !important;
+    }
 }
 
 sjwc-lesson-content-item p.lead {
