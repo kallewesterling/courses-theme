@@ -52,6 +52,7 @@
     height: 60px;
     font-size: 85%;
     border-left: 1px solid var(--neutral-border);
+    padding: 0 10px;
   }
 
   .headerheight.align-vertical {
