@@ -83,7 +83,8 @@ label {
 }
 
 .button,
-.button-prev-title {
+.button-prev-title,
+#header-right .login-link {
   color: var(--white) !important;
   background-color: var(--blurple);
   border: 0;
@@ -93,12 +94,14 @@ label {
   padding: 10px 20px;
 }
 
-.button span {
+.button span,
+#header-right .login-link span {
   font-family: inherit;
   color: inherit;
 }
 
-.button:hover {
+.button:hover,
+#header-right .login-link:hover {
   color: var(--white) !important;
   background-color: var(--blurple);
   /* border-color: var(--blurple) !important; */
@@ -108,7 +111,7 @@ label {
 
 /* CUR PAGE NAV START */
 
-#header-right .login-link {
+/* #header-right .login-link {
   transition: all 0.2s ease-in;
   font-size: 14px;
   font-weight: 700;
@@ -119,7 +122,7 @@ label {
   background-color: var(--blurple) !important;
   color: var(--primary-white-hex) !important;
   border-color: var(--blurple) !important;
-}
+} */
 
 /* CUR PAGE NAV END */
 
@@ -799,7 +802,7 @@ sjwc-lesson-content-item pre code {
 
   h2 {
     margin: 0 0 15px 0;
-    font-family: 'Roobert';
+    font-family: "Roobert";
     text-transform: uppercase;
     font-size: 12px;
     color: var(--ink-40);
