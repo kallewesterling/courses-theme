@@ -84,11 +84,10 @@ label {
 
 .button,
 .button-prev-title {
-  color: var(--primary-dark-purple-hex);
-  background-color: transparent;
-  border: 2px solid var(--primary-blue-hex);
-  border-radius: 999px;
-  font-family: Roobert;
+  color: var(--white);
+  background-color: var(--blurple);
+  border: 0;
+  font-family: Gellix;
   font-size: 14px;
   font-weight: 700;
   padding: 10px 20px;
@@ -99,11 +98,11 @@ label {
   color: inherit;
 }
 
-.button:hover {
+/* .button:hover {
   background-color: var(--primary-blue-hex) !important;
   color: var(--primary-white-hex) !important;
   border-color: var(--primary-blue-hex) !important;
-}
+} */
 
 /* SPECIFIC STYLING */
 
