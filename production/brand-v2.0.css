@@ -78,9 +78,14 @@ h6 {
   font-weight: 700;
 }
 
-.footer-col, .logo-col-content {
+.footer-col,
+.logo-col-content {
   a,
   p {
     font-family: Gellix !important;
   }
+}
+
+.search-container {
+  display: none !important;
 }

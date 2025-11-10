@@ -2612,7 +2612,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // DEBUG: adding info box for internal users
   if (isAdmin) {
-    let innerHTML = `<p style="margin:0">
+    let innerHTML = [`<p style="margin:0">
         ${page.isLanding ? "styleLanding" : ""}
         ${page.isCourseDetails ? "styleCourseDetails" : ""}
         ${page.isPageDetail ? "stylePathCourseDetails" : ""}
@@ -2630,26 +2630,28 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         ${page.isLesson ? "styleLesson" : ""}
         ${page.isPageCatalog ? "stylePathCatalogPage" : ""}
-      </p>`;
+      </p>`];
 
     // Add course edit link
     if (course.id) {
-      innerHTML += `<p style="margin:0"><a href="https://dashboard.skilljar.com/course/${course.id}/">Edit Course</a></p>`;
+      innerHTML.append(`<p style="margin:0"><a href="https://dashboard.skilljar.com/course/${course.id}/">Edit Course</a></p>`);
     }
 
     // Add path edit link
     if (course.path.id && DOMAIN.current) {
-      innerHTML += `<p style="margin:0"><a href="https://dashboard.skilljar.com/publishing/domains/${DOMAIN.current.id}/published-paths/${course.path.id}/edit">Edit Path</a></p>`;
+      innerHTML.append(`<p style="margin:0"><a href="https://dashboard.skilljar.com/publishing/domains/${DOMAIN.current.id}/published-paths/${course.path.id}/edit">Edit Path</a></p>`);
     }
 
-    const infoBox = Object.assign(document.createElement("div"), {
+    const infoBoxes = innerHTML.map((innerHTML) => Object.assign(document.createElement("div"), {
       innerHTML,
       className: "info-box",
-    });
+    }));
     document.querySelector(".search-container")?.remove();
 
     const headerContainer = document.querySelector("#header-right");
-    headerContainer.insertBefore(infoBox, headerContainer.firstChild);
+    infoBoxes.forEach(infoBox => {
+      headerContainer.insertBefore(infoBox, headerContainer.firstChild);
+    });
   } else {
     document.querySelector(".search-container")?.remove();
   }
