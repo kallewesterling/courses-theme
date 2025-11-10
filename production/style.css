@@ -101,7 +101,7 @@ label {
 .button:hover {
   color: var(--white) !important;
   background-color: var(--blurple);
-  border-color: var(--primary-blue-hex) !important;
+  /* border-color: var(--primary-blue-hex) !important; */
 }
 
 /* SPECIFIC STYLING */
