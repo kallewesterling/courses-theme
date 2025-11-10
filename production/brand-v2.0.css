@@ -32,10 +32,10 @@
   --neutral-border: rgb(218, 218, 218);
 }
 
-#main-container, #footer-container, header {
+#main-container, #footer-container, #header {
   background-color: var(--white);
 }
 
-header {
+#header {
   border-bottom: 1px solid var(--neutral-border);
 }
