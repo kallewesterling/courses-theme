@@ -1518,7 +1518,7 @@ body.sj-page-lesson {
 }
 
 .headline {
-  font-family: inherit;
+  font-family: Gellix;
   margin: 0 0 var(--space-4);
   font-weight: 800;
   font-size: 2.25rem;
@@ -1526,6 +1526,7 @@ body.sj-page-lesson {
 }
 
 .subhead {
+  font-family: Gellix;
   margin: 0 0 var(--space-3);
   color: var(--ink-dim);
 }
@@ -1637,6 +1638,7 @@ body.sj-page-lesson {
   line-height: 35px;
 }
 .card__text {
+  font-family: Gellix;
   margin: 0 0 var(--space-2);
   font-size: 1rem;
 
