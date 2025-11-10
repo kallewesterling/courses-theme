@@ -32,7 +32,7 @@ body {
 /*
 #header #header-right .login-link {
   border-radius: 4px !important;
-  color: var(--primary-blue-hex) !important;
+  color: var(--blurple) !important;
   outline: solid 1px #c2c7fc !important;
 }
 */
@@ -75,7 +75,7 @@ span {
 
 a,
 #curriculum-list-2 a {
-  color: var(--primary-blue-hex);
+  color: var(--blurple);
 }
 
 label {
@@ -101,7 +101,7 @@ label {
 .button:hover {
   color: var(--white) !important;
   background-color: var(--blurple);
-  /* border-color: var(--primary-blue-hex) !important; */
+  /* border-color: var(--blurple) !important; */
 }
 
 /* SPECIFIC STYLING */
@@ -116,9 +116,9 @@ label {
 }
 
 #header-right .login-link:hover {
-  background-color: var(--primary-blue-hex) !important;
+  background-color: var(--blurple) !important;
   color: var(--primary-white-hex) !important;
-  border-color: var(--primary-blue-hex) !important;
+  border-color: var(--blurple) !important;
 }
 
 /* CUR PAGE NAV END */
@@ -224,7 +224,7 @@ label {
 
 #button-sign-in:hover,
 #button-sign-up:hover {
-  background-color: var(--primary-blue-hex) !important;
+  background-color: var(--blurple) !important;
   color: var(--primary-white-hex) !important;
 }
 
@@ -269,7 +269,7 @@ label {
   margin-bottom: 50px !important;
   border-radius: 8px !important;
   background-color: var(--primary-white-hex) !important;
-  border: 2px solid var(--primary-blue-hex) !important;
+  border: 2px solid var(--blurple) !important;
   display: flex !important;
   flex-direction: column !important;
   color: inherit !important;
@@ -284,7 +284,7 @@ label {
   font-family: Gellix;
   line-height: 20px;
   letter-spacing: -0.01em;
-  border-bottom: 2px solid var(--primary-blue-hex) !important;
+  border-bottom: 2px solid var(--blurple) !important;
   padding: 24px;
 }
 
@@ -310,7 +310,7 @@ label {
 }
 
 .course-details-card-link {
-  background-color: var(--primary-blue-hex) !important;
+  background-color: var(--blurple) !important;
   color: var(--primary-white-hex) !important;
   padding: 12px 20px !important;
   text-align: center !important;
@@ -428,13 +428,13 @@ body .lesson-page #lp-wrapper #lesson-body .lesson-top {
 }
 
 .course-details-card-link:visited {
-  background-color: var(--primary-blue-hex);
+  background-color: var(--blurple);
   color: var(--primary-white-hex);
 }
 
 .course-details-card-link:hover,
 .course-details-card-link:active {
-  background-color: var(--primary-blue-hex);
+  background-color: var(--blurple);
   color: var(--primary-white-hex);
 }
 
@@ -473,7 +473,7 @@ pre[class*="language-"] {
 }
 
 .bullet .fa.fa-check-circle {
-  color: var(--primary-blue-hex);
+  color: var(--blurple);
 }
 
 #lp-footer .left .prev-lesson-button .button-content .fa.fa-angle-left {
