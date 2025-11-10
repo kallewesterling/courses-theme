@@ -1503,7 +1503,7 @@ body.sj-page-lesson {
 
 .featured-courses__intro {
   padding-right: 32px;
-  font-family: Lato;
+  font-family: inherit;
 }
 
 .eyebrow {
@@ -1657,7 +1657,7 @@ body.sj-page-lesson {
   color: var(--primary-dark-purple-hex) !important;
 }
 .card__eyebrow {
-  font-family: Lato;
+  font-family: inherit;
   text-transform: uppercase;
   font-size: 0.8em;
   font-weight: 700;
