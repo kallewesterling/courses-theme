@@ -746,7 +746,7 @@ sjwc-lesson-content-item pre code {
       }
     }
 
-    .cta-contact-us {
+    /* .cta-contact-us {
       transition: all 0.2s ease-in;
       border: 2px solid #3443f4;
       display: inline-block;
@@ -757,7 +757,7 @@ sjwc-lesson-content-item pre code {
         background-color: #3443f4;
         color: #fff;
       }
-    }
+    } */
   }
 }
 

@@ -200,7 +200,7 @@ function generateFooter(data, containerId = "footer-container") {
       "div",
       { className: "ctas" },
       el("a", {
-        className: "cta-contact-us",
+        className: "button",
         href: data.contact.href,
         target: "_blank",
         text: data.contact.label,
