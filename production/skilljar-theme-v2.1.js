@@ -1388,13 +1388,6 @@ function style404() {
 }
 
 /**
- * This function applies desktop-specific styling to the landing page.
- */
-function styleLanding() {
-  log("Running styleLanding");
-}
-
-/**
  * This function applies general styling to the course details page.
  */
 function styleCourseDetails() {
