@@ -611,6 +611,8 @@ pathSections = {
   ],
 };
 
+const showBody = () => setStyle(v.global.body, { display: undefined });
+
 /*
  * Renders a breadcrumb navigation element.
  * @param {HTMLElement} targetElement - The target element to replace with the breadcrumb navigation.
@@ -2656,22 +2658,22 @@ document.addEventListener("DOMContentLoaded", () => {
       innerHTML,
       className: "info-box",
     }));
-    document.querySelector(".search-container")?.remove();
 
     const headerContainer = document.querySelector("#header-right");
     infoBoxes.forEach(infoBox => {
       headerContainer.insertBefore(infoBox, headerContainer.firstChild);
     });
-  } else {
-    document.querySelector(".search-container")?.remove();
   }
+
+  // remove search container
+  document.querySelector(".search-container")?.remove();
 
   // render + set initalLoadComplete
   render();
   // initialLoadComplete = true;
 
   // show all
-  setStyle(v.global.body, { display: undefined });
+  showBody();
 });
 
 /* 
