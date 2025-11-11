@@ -1103,14 +1103,14 @@ function createCourseDetailsCard(
 
   // Header
   const header = Object.assign(document.createElement("div"), {
-    className: "course-details-card-header",
+    className: "course-details-card-header no-select",
     textContent: "Course Details",
   });
   card.appendChild(header);
 
   // List
   const list = Object.assign(document.createElement("ul"), {
-    className: "course-details-card-list",
+    className: "course-details-card-list no-select",
   });
 
   // Audience
