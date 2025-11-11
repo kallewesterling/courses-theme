@@ -2663,7 +2663,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  if (innerHTML.length === 0) {
+  if (innerHTML.length) {
     const infoBoxes = innerHTML.map((innerHTML) => Object.assign(document.createElement("div"), {
       innerHTML,
       className: "info-box",
