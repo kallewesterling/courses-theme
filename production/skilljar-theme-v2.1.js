@@ -1418,6 +1418,21 @@ function styleCourseDetails() {
     },
   };
 
+  // Add course order
+  [...v.local.header.courseInfo.children]
+    .filter((elem) => elem.textContent.search(/Course \d+ of \d+ in/) !== -1)
+    .forEach((elem) => elem.classList.add("course-order"));
+
+  // Add path registration info
+  [...v.local.header.courseInfo.children]
+    .filter(
+      (elem) =>
+        elem.textContent.search(
+          /Register for the learning path to register for this course/
+        ) !== -1
+    )
+    .forEach((elem) => elem.classList.add("path-registration"));
+
   let btnText = "Register",
     btnHref = "#";
 
