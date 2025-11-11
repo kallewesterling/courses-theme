@@ -1060,13 +1060,13 @@ function getCurriculumElements(curriculumParentContainer) {
     });
 
     const header = Object.assign(document.createElement("div"), {
-      className: "curriculum-header",
+      className: "curriculum-header no-select",
       textContent: section.heading,
     });
 
     const lessons = section.lessons.map((lesson, ix) => {
       const a = Object.assign(document.createElement("a"), {
-        className: "curriculum-lesson" /* lesson-row */,
+        className: "curriculum-lesson no-select" /* lesson-row */,
         textContent: lesson,
         href: section.links[ix] || "#",
       });
