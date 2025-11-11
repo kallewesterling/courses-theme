@@ -107,6 +107,13 @@ if (Array.from(document.querySelectorAll(".coursebox-container")).length)
     ).map((el) => Object.assign({ ...el.dataset })),
   };
 
+if (course.inPartnerPath) {
+  crumbs.push([
+    "Partner Courses",
+    `${baseURL}/page/partners`,
+  ]);
+}
+
 if (typeof skilljarCourseSeries !== "undefined") {
   course.path.edit = `https://dashboard.skilljar.com/publishing/domains/${DOMAIN.current.id}/published-paths/${skilljarCourseSeries.id}/edit`;
   crumbs.push([
