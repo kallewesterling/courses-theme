@@ -122,6 +122,11 @@
       background-color: var(--gradient-end);
     }
 
+    &:last-child {
+      border-bottom: 0;
+      border-radius: 8px;
+    }
+
     i {
       margin-right: 12px;
       color: var(--blurple);
