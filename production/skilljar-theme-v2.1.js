@@ -108,10 +108,7 @@ if (Array.from(document.querySelectorAll(".coursebox-container")).length)
   };
 
 if (inPartnerPath) {
-  crumbs.push([
-    "Partner Courses",
-    `${baseURL}/page/partners`,
-  ]);
+  crumbs.push(["Partner Courses", `${baseURL}/page/partners`]);
 }
 
 if (typeof skilljarCourseSeries !== "undefined") {
@@ -1418,12 +1415,26 @@ function styleCourseDetails() {
     },
   };
 
-  const btnText = v.local.header.ctaBtnWrapper
-    ? v.local.header.registerBtn.textContent
-    : "Register";
-  const btnHref = v.local.header.ctaBtnWrapper
-    ? v.local.header.registerBtn.href
-    : "#"; // TODO: fix this link
+  let btnText = "Register", btnHref = "#";
+  
+  if (v.local.header.ctaBtnWrapper) {
+    btnText = v.local.header.registerBtn.textContent;
+    btnHref = v.local.header.registerBtn.href;
+  } else {
+    const links = [...v.local.header.courseInfo.querySelectorAll("p")]
+      .filter((d) => d.textContent.toLowerCase().includes("learning path"))
+      .map((p) =>
+        [...p.querySelectorAll("a")].filter(
+          (a) => a.innerHTML === "learning path"
+        )
+      )
+      .flat();
+
+      if (links.length > 0) {
+        btnText = "Register for Learning Path";
+        btnHref = links[0].href;
+      }
+  }
 
   if (typeof courseDetails !== "undefined") {
     v.local.card.details ? v.local.card.details.remove() : null; // remove existing card if present
