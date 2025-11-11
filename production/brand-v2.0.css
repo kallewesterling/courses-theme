@@ -96,3 +96,8 @@ h6 {
   -ms-user-select: none;
   user-select: none;
 }
+
+.related-parent-objects {
+  /* Hide the "Also available as part of" section for Learning Paths */
+  display: none !important;
+}
