@@ -81,7 +81,7 @@ if (window.location.hostname === "chainguard-test.skilljar.com") {
   isStaging = true;
 }
 
-course.inPartnerPath = PARTNERPATHS.map((d) => d === course.path.id).filter(
+const inPartnerPath = PARTNERPATHS.map((d) => d === course.path.id).filter(
   Boolean
 ).length
   ? true
@@ -107,7 +107,7 @@ if (Array.from(document.querySelectorAll(".coursebox-container")).length)
     ).map((el) => Object.assign({ ...el.dataset })),
   };
 
-if (course.inPartnerPath) {
+if (inPartnerPath) {
   crumbs.push([
     "Partner Courses",
     `${baseURL}/page/partners`,
