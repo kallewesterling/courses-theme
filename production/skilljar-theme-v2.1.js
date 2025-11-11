@@ -1405,12 +1405,16 @@ function styleCourseDetails() {
     v.local.card.link = document.querySelector(".course-details-card-link"); // re-query link
   }
 
-  const curriculumElements = getCurriculumElements(
-    v.local.curriculum.container
-  );
+  try {
+    const curriculumElements = getCurriculumElements(
+      v.local.curriculum.container
+    );
 
-  v.local.curriculum.container.innerHTML = ""; // Clear the container
-  v.local.curriculum.container.append(...curriculumElements);
+    v.local.curriculum.container.innerHTML = ""; // Clear the container
+    v.local.curriculum.container.append(...curriculumElements);
+  } catch (error) {
+    console.error("Error processing curriculum elements:", error);
+  }
 
   // append card
   v.local.body.container.append(...[v.local.card.details].filter(Boolean));
