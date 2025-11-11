@@ -364,7 +364,7 @@ pathSections = {
         {
           isPath: true,
           isCourse: false,
-          hasBadge: false,
+          hasBadge: true,
           title: "Chainguard Discovery: Partner Sales Foundations",
           slug: "path/chainguard-discovery-partner-sales-foundations",
           icon: icons.burger,
