@@ -55,6 +55,8 @@ if (typeof skilljarUser !== "undefined") {
   isAdmin = skilljarUser.email === "kalle.westerling@chainguard.dev";
 }
 
+const isPartner = typeof skilljarUserStudentGroups !== "undefined" ? skilljarUserStudentGroups.map(d => d.id).includes("1axsvmzhtbb95") : false;
+
 DOMAIN.current = isAdmin ? DOMAIN.stage : DOMAIN.prod;
 
 const baseURL = `https://${DOMAIN.current.url}`;
