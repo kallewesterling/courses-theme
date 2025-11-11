@@ -131,13 +131,7 @@ if (typeof skilljarCourse !== "undefined") {
   course.long_description_html = skilljarCourse.long_description_html;
   course.edit = `https://dashboard.skilljar.com/course/${skilljarCourse.id}`;
 
-  let courseURL = "#";
-  if (typeof skilljarCourseSeries !== "undefined") {
-    // courseURL = `${baseURL}/path/${skilljarCourseSeries.slug}/courses/${skilljarCourse.publishedCourseId}`;
-  } else {
-    // courseURL = `${baseURL}/courses/${skilljarCourse.publishedCourseId}`;
-  }
-  crumbs.push([skilljarCourse.title, courseURL]);
+  crumbs.push([skilljarCourse.title, "#"]);
 }
 
 if (typeof skilljarCourseProgress !== "undefined") {
