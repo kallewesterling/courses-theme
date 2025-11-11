@@ -27,7 +27,16 @@ const DOMAIN = {
   stage: { url: "chainguard-test.skilljar.com", id: "ix1ljpxex6xd" },
 };
 
-const PARTNERPATHS = ["53njmyk25y3v", "1w57muf27zdg1"];
+const PARTNERS = {
+  "chainguard-discovery-partner-sales-foundations": {
+    id: "53njmyk25y3v",
+    checkout: "19bn1isfg4c3t",
+  },
+  "chainguard-advanced-partner-sales-accelerator": {
+    id: "1w57muf27zdg1",
+    checkout: "3em1yw57v5d30",
+  },
+};
 
 // confetti defaults
 const AUTOHIDE_COMPLETION = 6000;
@@ -81,9 +90,10 @@ if (window.location.hostname === "chainguard-test.skilljar.com") {
   isStaging = true;
 }
 
-const inPartnerPath = PARTNERPATHS.map((d) => d === course.path.id).filter(
-  Boolean
-).length
+const inPartnerPath = Object.entries(PARTNERS)
+  .map((a) => a[1].id)
+  .map((d) => d === course.path.id)
+  .filter(Boolean).length
   ? true
   : false;
 
@@ -1103,14 +1113,14 @@ function createCourseDetailsCard(
 
   // Header
   const header = Object.assign(document.createElement("div"), {
-    className: "course-details-card-header",
+    className: "course-details-card-header no-select",
     textContent: "Course Details",
   });
   card.appendChild(header);
 
   // List
   const list = Object.assign(document.createElement("ul"), {
-    className: "course-details-card-list",
+    className: "course-details-card-list no-select",
   });
 
   // Audience
@@ -1378,13 +1388,6 @@ function style404() {
 }
 
 /**
- * This function applies desktop-specific styling to the landing page.
- */
-function styleLanding() {
-  log("Running styleLanding");
-}
-
-/**
  * This function applies general styling to the course details page.
  */
 function styleCourseDetails() {
@@ -1415,8 +1418,9 @@ function styleCourseDetails() {
     },
   };
 
-  let btnText = "Register", btnHref = "#";
-  
+  let btnText = "Register",
+    btnHref = "#";
+
   if (v.local.header.ctaBtnWrapper) {
     btnText = v.local.header.registerBtn.textContent;
     btnHref = v.local.header.registerBtn.href;
@@ -1430,10 +1434,12 @@ function styleCourseDetails() {
       )
       .flat();
 
-      if (links.length > 0) {
-        btnText = "Register for Learning Path";
-        btnHref = links[0].href;
-      }
+    if (links.length > 0) {
+      btnText = "Register for Learning Path";
+      btnHref = PARTNERS[skilljarCourseSeries.slug]?.checkout
+        ? `/checkout/${PARTNERS[skilljarCourseSeries.slug]?.checkout}`
+        : links[0].href;
+    }
   }
 
   if (typeof courseDetails !== "undefined") {
