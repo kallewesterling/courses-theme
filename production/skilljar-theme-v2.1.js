@@ -27,6 +27,8 @@ const DOMAIN = {
   stage: { url: "chainguard-test.skilljar.com", id: "ix1ljpxex6xd" },
 };
 
+const PARTNERPATHS = ["53njmyk25y3v", "1w57muf27zdg1"];
+
 // confetti defaults
 const AUTOHIDE_COMPLETION = 6000;
 const particles = {
@@ -55,7 +57,10 @@ if (typeof skilljarUser !== "undefined") {
   isAdmin = skilljarUser.email === "kalle.westerling@chainguard.dev";
 }
 
-const isPartner = typeof skilljarUserStudentGroups !== "undefined" ? skilljarUserStudentGroups.map(d => d.id).includes("1axsvmzhtbb95") : false;
+const isPartner =
+  typeof skilljarUserStudentGroups !== "undefined"
+    ? skilljarUserStudentGroups.map((d) => d.id).includes("1axsvmzhtbb95")
+    : false;
 
 DOMAIN.current = isAdmin ? DOMAIN.stage : DOMAIN.prod;
 
@@ -76,6 +81,12 @@ if (window.location.hostname === "chainguard-test.skilljar.com") {
   isStaging = true;
 }
 
+course.inPartnerPath = PARTNERPATHS.map((d) => d === course.path.id).filter(
+  Boolean
+).length
+  ? true
+  : false;
+
 // set up userCourseJourney global variable
 if (Array.from(document.querySelectorAll(".coursebox-container")).length)
   userCourseJourney = {
@@ -95,6 +106,13 @@ if (Array.from(document.querySelectorAll(".coursebox-container")).length)
       )
     ).map((el) => Object.assign({ ...el.dataset })),
   };
+
+if (course.inPartnerPath) {
+  crumbs.push([
+    "Partner Courses",
+    `${baseURL}/page/partners`,
+  ]);
+}
 
 if (typeof skilljarCourseSeries !== "undefined") {
   course.path.edit = `https://dashboard.skilljar.com/publishing/domains/${DOMAIN.current.id}/published-paths/${skilljarCourseSeries.id}/edit`;
@@ -2645,9 +2663,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let innerHTML = [];
 
   if (isPartner) {
-    innerHTML.push(`<p style="margin:0"><a href="/page/partners">Partner Courses</a></p>`);
+    innerHTML.push(
+      `<p style="margin:0"><a href="/page/partners">Partner Courses</a></p>`
+    );
   }
-  
+
   // DEBUG: adding info box for internal users
   if (isAdmin) {
     innerHTML.push(`<p style="margin:0">
@@ -2672,23 +2692,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add course edit link
     if (course.id) {
-      innerHTML.push(`<p style="margin:0"><a href="https://dashboard.skilljar.com/course/${course.id}/">Edit Course</a></p>`);
+      innerHTML.push(
+        `<p style="margin:0"><a href="https://dashboard.skilljar.com/course/${course.id}/">Edit Course</a></p>`
+      );
     }
 
     // Add path edit link
     if (course.path.id && DOMAIN.current) {
-      innerHTML.push(`<p style="margin:0"><a href="https://dashboard.skilljar.com/publishing/domains/${DOMAIN.current.id}/published-paths/${course.path.id}/edit">Edit Path</a></p>`);
+      innerHTML.push(
+        `<p style="margin:0"><a href="https://dashboard.skilljar.com/publishing/domains/${DOMAIN.current.id}/published-paths/${course.path.id}/edit">Edit Path</a></p>`
+      );
     }
   }
 
   if (innerHTML.length) {
-    const infoBoxes = innerHTML.map((innerHTML) => Object.assign(document.createElement("div"), {
-      innerHTML,
-      className: "info-box",
-    }));
+    const infoBoxes = innerHTML.map((innerHTML) =>
+      Object.assign(document.createElement("div"), {
+        innerHTML,
+        className: "info-box",
+      })
+    );
 
     const headerContainer = document.querySelector("#header-right");
-    infoBoxes.forEach(infoBox => {
+    infoBoxes.forEach((infoBox) => {
       headerContainer.insertBefore(infoBox, headerContainer.firstChild);
     });
   }
