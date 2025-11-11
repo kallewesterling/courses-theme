@@ -2624,9 +2624,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // DEBUG: adding "cg-staging" for staging server
   isStaging ? v.global.body.classList.add("cg-staging") : null;
 
+  let innerHTML = [];
+
+  if (isPartner) {
+    innerHTML.push(`<p style="margin:0"><a href="/page/partners">Partner Courses</a></p>`);
+  }
+  
   // DEBUG: adding info box for internal users
   if (isAdmin) {
-    let innerHTML = [`<p style="margin:0">
+    innerHTML.push(`<p style="margin:0">
         ${page.isLanding ? "styleLanding" : ""}
         ${page.isCourseDetails ? "styleCourseDetails" : ""}
         ${page.isPageDetail ? "stylePathCourseDetails" : ""}
@@ -2644,7 +2650,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         ${page.isLesson ? "styleLesson" : ""}
         ${page.isPageCatalog ? "stylePathCatalogPage" : ""}
-      </p>`];
+      </p>`);
 
     // Add course edit link
     if (course.id) {
@@ -2655,7 +2661,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (course.path.id && DOMAIN.current) {
       innerHTML.push(`<p style="margin:0"><a href="https://dashboard.skilljar.com/publishing/domains/${DOMAIN.current.id}/published-paths/${course.path.id}/edit">Edit Path</a></p>`);
     }
+  }
 
+  if (innerHTML.length === 0) {
     const infoBoxes = innerHTML.map((innerHTML) => Object.assign(document.createElement("div"), {
       innerHTML,
       className: "info-box",
