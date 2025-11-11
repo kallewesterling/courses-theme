@@ -81,7 +81,7 @@ if (window.location.hostname === "chainguard-test.skilljar.com") {
   isStaging = true;
 }
 
-course.inPartnerPath = PARTNERPATHS.map((d) => d === course.path.id).filter(
+const inPartnerPath = PARTNERPATHS.map((d) => d === course.path.id).filter(
   Boolean
 ).length
   ? true
@@ -107,7 +107,7 @@ if (Array.from(document.querySelectorAll(".coursebox-container")).length)
     ).map((el) => Object.assign({ ...el.dataset })),
   };
 
-if (course.inPartnerPath) {
+if (inPartnerPath) {
   crumbs.push([
     "Partner Courses",
     `${baseURL}/page/partners`,
@@ -131,13 +131,7 @@ if (typeof skilljarCourse !== "undefined") {
   course.long_description_html = skilljarCourse.long_description_html;
   course.edit = `https://dashboard.skilljar.com/course/${skilljarCourse.id}`;
 
-  let courseURL = "#";
-  if (typeof skilljarCourseSeries !== "undefined") {
-    // courseURL = `${baseURL}/path/${skilljarCourseSeries.slug}/courses/${skilljarCourse.publishedCourseId}`;
-  } else {
-    // courseURL = `${baseURL}/courses/${skilljarCourse.publishedCourseId}`;
-  }
-  crumbs.push([skilljarCourse.title, courseURL]);
+  crumbs.push([skilljarCourse.title, "#"]);
 }
 
 if (typeof skilljarCourseProgress !== "undefined") {
@@ -370,7 +364,7 @@ pathSections = {
         {
           isPath: true,
           isCourse: false,
-          hasBadge: false,
+          hasBadge: true,
           title: "Chainguard Discovery: Partner Sales Foundations",
           slug: "path/chainguard-discovery-partner-sales-foundations",
           icon: icons.burger,
