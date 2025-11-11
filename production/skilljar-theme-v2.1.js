@@ -535,10 +535,10 @@ pathSections = {
   // Partner intro
   "chainguard-discovery-partner-sales-foundations": [
     {
-      eyebrow: "XYZ XYZ XYZ",
+      eyebrow: "Vulnerability Management",
       title: "Chainguard Value Proposition",
       description:
-        "We can have a short description here for introduction to Chainguard's value prop or whatever this section will be",
+        "Lay the foundations for your understanding of how to best position Chainguard in the open source space with consideration for vulnerability management pain.",
       links: [
         {
           isPath: false,
@@ -591,10 +591,10 @@ pathSections = {
       ],
     },
     {
-      eyebrow: "Something else here",
+      eyebrow: "Public Sector Partner Sales Engagements",
       title: "Federal Government Overview",
       description:
-        "This is another description for the second section in this partner intro example",
+        "Take a quick read of the process we aim to follow with Carahsoft to ensure no delays in deal lifecycles in the federal government sector.",
       links: [
         {
           isPath: false,
