@@ -610,6 +610,24 @@ pathSections = {
         },
       ],
     },
+    {
+      eyebrow: "Show off your skills",
+      title: "Claim your badge",
+      description:
+        "After completing this learning path, don't forget to claim your Chainguard Partner Sales Foundations badge to showcase your expertise.",
+      links: [
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: true,
+          title: "Chainguard Discovery: Partner Sales Feedback and Support",
+          slug: "chainguard-discovery-partner-sales-feedback-and-support",
+          description:
+            "Provide feedback, find support resources, and claim your badge after completing the Chainguard Partner Sales Foundations learning path.",
+          icon: icons.bookmark,
+        },
+      ],
+    },
   ],
 };
 
