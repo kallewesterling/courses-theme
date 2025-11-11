@@ -2687,14 +2687,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add course edit link
     if (course.id) {
       innerHTML.push(
-        `<p style="margin:0"><a href="https://dashboard.skilljar.com/course/${course.id}/">Edit Course</a></p>`
+        `<p style="margin:0"><a href="${course.edit}">Edit Course</a></p>`
       );
     }
 
     // Add path edit link
     if (course.path.id && DOMAIN.current) {
       innerHTML.push(
-        `<p style="margin:0"><a href="https://dashboard.skilljar.com/publishing/domains/${DOMAIN.current.id}/published-paths/${course.path.id}/edit">Edit Path</a></p>`
+        `<p style="margin:0"><a href="${course.path.edit}">Edit Path</a></p>`
       );
     }
   }
