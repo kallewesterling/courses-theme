@@ -1030,7 +1030,7 @@ function getCurriculumElements(curriculumParentContainer) {
       return [
         currentSection,
         isHeader,
-        elem.textContent.replace("optional", "").trim(),
+        elem.textContent.trim().split("\n")[0], // keep only first line
         elem.href || null,
         elem.querySelector(".bullet i"),
       ];
