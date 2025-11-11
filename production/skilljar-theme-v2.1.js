@@ -605,19 +605,19 @@ pathSections = {
       ],
     },
     {
-      eyebrow: "Public Sector Partner Sales Engagements",
-      title: "Federal Government Overview",
+      eyebrow: "Selling Chainguard",
+      title: "Quoting Chainguard Products",
       description:
-        "Take a quick read of the process we aim to follow with Carahsoft to ensure no delays in deal lifecycles in the federal government sector.",
+        "Learn how to effectively quote Chainguard products and solutions to customers.",
       links: [
         {
           isPath: false,
           isCourse: true,
           hasBadge: false,
-          title: "Getting Started with Carahsoft: How to Quote Chainguard",
-          slug: "getting-started-with-carahsoft-how-to-quote-chainguard",
+          title: "Partner Guide to Chainguard Pricing",
+          slug: "partner-guide-to-chainguard-pricing",
           description:
-            "Understand the basics of quoting Chainguard through Carahsoft.",
+            "Understand the basics of quoting Chainguard products and solutions to customers.",
           icon: icons.bookmark,
         },
       ],
