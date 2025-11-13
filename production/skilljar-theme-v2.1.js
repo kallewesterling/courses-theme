@@ -2716,6 +2716,8 @@ document.addEventListener("DOMContentLoaded", () => {
         ${page.isPageCatalog ? "stylePathCatalogPage" : ""}
       </p>`);
 
+    innerHTML.push(`<input type="checkbox" id="cg-baseurl-staging" />`);
+
     // Add course edit link
     if (course.id) {
       innerHTML.push(
@@ -2933,3 +2935,30 @@ function shoot() {
     },
   });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  const checkbox = document.getElementById('cg-baseurl-staging');
+
+  if (checkbox) {
+    function updateLinks(useTestDomain) {
+      const links = document.querySelectorAll('a[href*="' + DOMAIN.prod.url + '"], a[href*="' + DOMAIN.stage.url + '"]');
+      links.forEach(link => {
+        const url = new URL(link.href);
+        if (useTestDomain && url.hostname === DOMAIN.prod.url) {
+          url.hostname = DOMAIN.stage.url;
+        } else if (!useTestDomain && url.hostname === DOMAIN.stage.url) {
+          url.hostname = DOMAIN.prod.url;
+        }
+        link.href = url.toString();
+      });
+    }
+
+    // initial state update if needed
+    updateLinks(checkbox.checked);
+
+    // toggle behavior
+    checkbox.addEventListener('change', function() {
+      updateLinks(this.checked);
+    });
+  }
+});
