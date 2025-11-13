@@ -302,7 +302,7 @@ pathSections = {
         }
       : undefined,
   ].filter(Boolean),
-  "chainguard-vulnslayer": [
+  "painless-vulnerability-management": [
     {
       eyebrow: "",
       title: "Painless Vulnerability Management",
