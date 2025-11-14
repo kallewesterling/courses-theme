@@ -9,9 +9,9 @@
     background-color: #ecffec;
   }
 
-  #purchase-button {
+  /* #purchase-button {
     display: none !important;
-  }
+  } */
 }
 
 .callout {
@@ -691,7 +691,7 @@ body.sj-page-detail-course {
           }
 
           .sj-course-info-wrapper {
-            display: none !important;
+            /* display: none !important; */
 
             .social-media-wrapper {
               display: none !important;
