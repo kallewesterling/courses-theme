@@ -1259,6 +1259,30 @@ body.sj-page-lesson {
                   minmax(min-content, max-content)
                 ) !important;
               }
+              
+              .three-col-table {
+                /* Three column table */
+                grid-template-columns: repeat(
+                  3,
+                  minmax(min-content, max-content)
+                ) !important;
+              }
+              
+              .four-col-table {
+                /* Four column table */
+                grid-template-columns: repeat(
+                  4,
+                  minmax(min-content, max-content)
+                ) !important;
+              }
+              
+              .five-col-table {
+                /* Five column table */
+                grid-template-columns: repeat(
+                  5,
+                  minmax(min-content, max-content)
+                ) !important;
+              }
 
               blockquote.cg {
                 cite {
