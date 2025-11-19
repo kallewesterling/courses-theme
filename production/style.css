@@ -374,6 +374,7 @@ label {
 
   p {
     font-size: inherit !important;
+    font-weight: inherit !important;
     margin: 3px 0;
   }
 }
