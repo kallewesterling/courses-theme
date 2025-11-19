@@ -372,8 +372,9 @@ label {
     border-bottom: 1px solid #dcdcdc;
   }
 
-  p {
+  p, li {
     font-size: inherit !important;
+    font-weight: inherit !important;
     margin: 3px 0;
   }
 }
