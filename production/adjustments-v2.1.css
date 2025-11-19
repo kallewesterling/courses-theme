@@ -1258,30 +1258,46 @@ body.sj-page-lesson {
                   2,
                   minmax(min-content, max-content)
                 ) !important;
+
+                .table-row:nth-last-child(-n + 2) {
+                  border: unset !important;
+                }
               }
-              
+
               .three-col-table {
                 /* Three column table */
                 grid-template-columns: repeat(
                   3,
                   minmax(min-content, max-content)
                 ) !important;
+
+                .table-row:nth-last-child(-n + 3) {
+                  border: unset !important;
+                }
               }
-              
+
               .four-col-table {
                 /* Four column table */
                 grid-template-columns: repeat(
                   4,
                   minmax(min-content, max-content)
                 ) !important;
+
+                .table-row:nth-last-child(-n + 4) {
+                  border: unset !important;
+                }
               }
-              
+
               .five-col-table {
                 /* Five column table */
                 grid-template-columns: repeat(
                   5,
                   minmax(min-content, max-content)
                 ) !important;
+
+                .table-row:nth-last-child(-n + 5) {
+                  border: unset !important;
+                }
               }
 
               blockquote.cg {
