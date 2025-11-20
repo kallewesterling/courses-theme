@@ -2688,7 +2688,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let innerHTML = [];
 
-  if (isPartner) {
+  if (isPartner || isInternal) {
     innerHTML.push(
       `<p style="margin:0"><a href="/page/partners">Partner Courses</a></p>`
     );
