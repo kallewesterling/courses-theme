@@ -1361,10 +1361,13 @@ function styleCatalog() {
     catalogContainer: document.querySelector("#catalog-courses"),
   };
 
-  if (page.isLanding) {
-    sectionName = "home";
-  } else if (skilljarCatalogPage.slug) {
+  if (skilljarCatalogPage.slug) {
     sectionName = skilljarCatalogPage.slug; // ex. "partners"
+  } else if (page.isLanding) {
+    sectionName = "home";
+  } else {
+    console.warn("Could not determine catalog section name, defaulting to home");
+    sectionName = "home";
   }
 
   if (sectionName) {
