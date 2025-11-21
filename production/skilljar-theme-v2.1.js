@@ -1374,6 +1374,10 @@ function styleCatalog() {
       .querySelector("#skilljar-content")
       .append(v.global.footerContainer);
 
+    document
+      .querySelector("#skilljar-content")
+      .prepend(document.querySelector("#messages"));
+
     v.local.catalogBodyParentContainer.append(v.local.catalogContainer);
 
     hide(v.local.catalogBodyParentContainer);
@@ -1556,6 +1560,10 @@ function stylePathCourseDetails() {
     document
       .querySelector("#skilljar-content")
       .append(v.global.footerContainer);
+
+    document
+      .querySelector("#skilljar-content")
+      .prepend(document.querySelector("#messages"));
   } else {
     console.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
   }
@@ -1653,6 +1661,10 @@ function stylePathCatalogPage() {
     document
       .querySelector("#skilljar-content")
       .append(v.global.footerContainer);
+
+    document
+      .querySelector("#skilljar-content")
+      .prepend(document.querySelector("#messages"));
   } else {
     console.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
   }
@@ -2936,13 +2948,19 @@ function shoot() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  const checkbox = document.getElementById('cg-baseurl-staging');
+document.addEventListener("DOMContentLoaded", function () {
+  const checkbox = document.getElementById("cg-baseurl-staging");
 
   if (checkbox) {
     function updateLinks(useTestDomain) {
-      const links = document.querySelectorAll('a[href*="' + DOMAIN.prod.url + '"], a[href*="' + DOMAIN.stage.url + '"]');
-      links.forEach(link => {
+      const links = document.querySelectorAll(
+        'a[href*="' +
+          DOMAIN.prod.url +
+          '"], a[href*="' +
+          DOMAIN.stage.url +
+          '"]'
+      );
+      links.forEach((link) => {
         const url = new URL(link.href);
         if (useTestDomain && url.hostname === DOMAIN.prod.url) {
           url.hostname = DOMAIN.stage.url;
@@ -2957,7 +2975,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateLinks(checkbox.checked);
 
     // toggle behavior
-    checkbox.addEventListener('change', function() {
+    checkbox.addEventListener("change", function () {
       updateLinks(this.checked);
     });
   }
