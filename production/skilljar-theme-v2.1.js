@@ -69,7 +69,9 @@ if (typeof skilljarUser !== "undefined") {
 }
 
 if (typeof skilljarUserStudentGroups !== "undefined") {
-  isPartner = skilljarUserStudentGroups.map((d) => d.id).includes("1axsvmzhtbb95");
+  isPartner = skilljarUserStudentGroups
+    .map((d) => d.id)
+    .includes("1axsvmzhtbb95");
   isOnlyPartner = isPartner && skilljarUserStudentGroups.length === 1;
 }
 
@@ -380,17 +382,19 @@ pathSections = {
           description:
             "A comprehensive learning path designed to provide partners with the foundational knowledge needed to effectively sell Chainguard's products and solutions.",
         },
-        {
-          isPath: true,
-          isCourse: false,
-          hasBadge: false,
-          title: "Chainguard Advanced: Partner Sales Accelerator",
-          slug: "path/chainguard-advanced-partner-sales-accelerator",
-          icon: icons.burger,
-          description:
-            "An advanced learning path aimed at equipping partners with the skills and knowledge to accelerate their sales efforts for Chainguard's products and solutions.",
-        },
-      ],
+        isInternal
+          ? {
+              isPath: true,
+              isCourse: false,
+              hasBadge: false,
+              title: "Chainguard Advanced: Partner Sales Accelerator",
+              slug: "path/chainguard-advanced-partner-sales-accelerator",
+              icon: icons.burger,
+              description:
+                "An advanced learning path aimed at equipping partners with the skills and knowledge to accelerate their sales efforts for Chainguard's products and solutions.",
+            }
+          : undefined,
+      ].filter(Boolean),
     },
   ],
   "chainguard-containers-onboarding-guide": [
