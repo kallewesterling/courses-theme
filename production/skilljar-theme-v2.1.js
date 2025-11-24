@@ -59,17 +59,19 @@ const confettiDefaults = {
 // baseURL settings
 
 let isInternal = false,
-  isAdmin = false;
+  isAdmin = false,
+  isPartner = false,
+  isOnlyPartner = false;
 
 if (typeof skilljarUser !== "undefined") {
   isInternal = skilljarUser.email.includes("@chainguard.dev");
   isAdmin = skilljarUser.email === "kalle.westerling@chainguard.dev";
 }
 
-const isPartner =
-  typeof skilljarUserStudentGroups !== "undefined"
-    ? skilljarUserStudentGroups.map((d) => d.id).includes("1axsvmzhtbb95")
-    : false;
+if (typeof skilljarUserStudentGroups !== "undefined") {
+  isPartner = skilljarUserStudentGroups.map((d) => d.id).includes("1axsvmzhtbb95");
+  isOnlyPartner = isPartner && skilljarUserStudentGroups.length === 1;
+}
 
 DOMAIN.current = isAdmin ? DOMAIN.stage : DOMAIN.prod;
 
@@ -1366,7 +1368,9 @@ function styleCatalog() {
   } else if (page.isLanding) {
     sectionName = "home";
   } else {
-    console.warn("Could not determine catalog section name, defaulting to home");
+    console.warn(
+      "Could not determine catalog section name, defaulting to home"
+    );
     sectionName = "home";
   }
 
