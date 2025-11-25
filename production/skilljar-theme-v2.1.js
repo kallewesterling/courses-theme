@@ -713,7 +713,7 @@ function renderBreadcrumbs(targetElement, crumbs) {
       role: "navigation",
     },
     [
-      el("ol", [
+      el("ol", {}, [
         CG.state.crumbs.map(([textContent, href], ix) => {
           const isLast = ix === CG.state.crumbs.length - 1;
           const hasLink = href !== "#";
@@ -730,7 +730,7 @@ function renderBreadcrumbs(targetElement, crumbs) {
       ]),
     ]
   );
-  
+
   targetElement?.replaceChildren(nav);
 }
 
