@@ -9,7 +9,9 @@ const el = (tag, props = {}, children = []) => {
   }
   for (const [k, v] of Object.entries(props)) {
     if (k === "className") n.className = v;
+    else if (k === "textContent") n.textContent = v;
     else if (k === "text") n.textContent = v;
+    else if (k === "innerHTML") n.innerHTML = v;
     else n.setAttribute(k, v);
   }
   (Array.isArray(children) ? children : [children])

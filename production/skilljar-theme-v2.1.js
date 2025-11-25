@@ -707,7 +707,7 @@ function renderBreadcrumbs(targetElement, crumbs) {
   // Create the breadcrumb navigation elements
   const nav = el("nav", {
     className: "breadcrumb",
-    "aria-label": "Breadcrumb",
+    ariaLabel: "Breadcrumb",
     role: "navigation",
   });
 
@@ -778,41 +778,30 @@ function makeSections(
   );
 
   sections.forEach((section) => {
-    const sectionElement = el("section", {
-      className: "featured-courses",
-    });
+    const sectionElement = el("section", { className: "featured-courses" });
 
     if (section.classNames) {
       sectionElement.classList.add(...section.classNames);
     }
 
-    const grid = el("div", {
-      className: "featured-courses__grid",
-    });
+    const grid = el("div", { className: "featured-courses__grid" });
 
-    const intro = el("div", {
-      className: "featured-courses__intro",
-    });
+    const intro = el("div", { className: "featured-courses__intro" });
 
-    const eyebrow = el("h2", {
-      className: "eyebrow",
-      textContent: section.eyebrow || "",
-    });
+    let textContent = section.eyebrow || "";
+    const eyebrow = el("h2", { className: "eyebrow", textContent });
 
-    const headline = el("p", {
-      className: "headline",
-      textContent: section.title || "",
-    });
+    textContent = section.title || "";
+    const headline = el("p", { className: "headline", textContent });
 
-    const subhead = el("p", {
-      className: "subhead",
-      textContent: section.description || "",
-    });
+    textContent = section.description || "";
+    const subhead = el("p", { className: "subhead", textContent });
 
+    // textContent = "Browse all courses";
     // const cta = el("a", {
     //     className: "btn btn--primary",
     //     href: "/",
-    //     textContent: "Browse all courses",
+    //     textContent
     // });
 
     intro.append(...[eyebrow, headline, subhead /*cta*/]);
@@ -822,18 +811,18 @@ function makeSections(
       ...[document.querySelector("#messages"), grid].filter(Boolean)
     );
 
-    const cardsElem = el("div", {
-      className: "cards",
-    });
+    const cardsElem = el("div", { className: "cards" });
 
     section.links.forEach((link) => {
-      const isRegistered = registeredCourses.includes(link.slug);
-      const isCompleted = completedCourses.includes(link.slug);
+      const isRegistered = registeredCourses.includes(link.slug)
+        ? "card--in-progress"
+        : "";
+      const isCompleted = completedCourses.includes(link.slug)
+        ? "card--completed"
+        : "";
 
       article = el("article", {
-        className: `card ${isCompleted ? "card--completed" : ""} ${
-          isRegistered ? "card--in-progress" : ""
-        }`,
+        className: `card ${isCompleted} ${isRegistered}`,
       });
 
       innerContainer = el("div", {
@@ -856,51 +845,37 @@ function makeSections(
         innerContainer.append(pill);
       }
 
-      iconContainer = el("div", {
-        className: "card__icon",
-        innerHTML: link.icon || "",
-      });
+      let innerHTML = link.icon || "";
+      iconContainer = el("div", { className: "card__icon", innerHTML });
 
-      titleEyebrow = el("h5", {
-        className: "card__eyebrow",
-        textContent: link.isCourse ? "Course" : "Learning Path",
-      });
+      textContent = link.isCourse ? "Course" : "Learning Path";
+      titleEyebrow = el("h5", { className: "card__eyebrow", textContent });
 
-      const price = el("span", {
-        textContent: " | Free",
-      });
+      const price = el("span", { textContent: " | Free" });
 
       titleEyebrow.append(price);
 
-      title = el("h3", {
-        className: "card__title",
-        textContent: link.title || "",
-      });
+      textContent = link.title || "";
+      title = el("h3", { className: "card__title", textContent });
 
-      description = el("p", {
-        className: "card__text",
-        textContent: link.description || "",
-      });
+      textContent = link.description || "";
+      description = el("p", { className: "card__text", textContent });
 
       innerContainer.append(
         ...[iconContainer, titleEyebrow, title, description]
       );
 
       if (link.hasBadge && !isCompleted) {
-        pill = el("span", {
-          className: "pill badged",
-          textContent: "Get a Badge",
-        });
+        textContent = "Get a Badge";
+        pill = el("span", { className: "pill badged", textContent });
         innerContainer.append(pill);
       }
 
       article.append(innerContainer);
 
-      cardLink = el("a", {
-        className: "card__link",
-        href: `${baseURL}/${link.slug}`,
-        title: link.isCourse ? "Start course" : "Start path",
-      });
+      let title = link.isCourse ? "Start course" : "Start path";
+      let href = `${baseURL}/${link.slug}`;
+      cardLink = el("a", { className: "card__link", href, title });
 
       cardLink.append(article);
 
