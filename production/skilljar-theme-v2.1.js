@@ -122,17 +122,17 @@ if (Array.from(document.querySelectorAll(".coursebox-container")).length)
       document.querySelectorAll(
         ".coursebox-container[data-course-status='unregistered']"
       )
-    ).map((el) => Object.assign({ ...el.dataset })),
+    ).map((elem) => Object.assign({ ...elem.dataset })),
     registered: Array.from(
       document.querySelectorAll(
         ".coursebox-container[data-course-status='registered']"
       )
-    ).map((el) => Object.assign({ ...el.dataset })),
+    ).map((elem) => Object.assign({ ...elem.dataset })),
     completed: Array.from(
       document.querySelectorAll(
         ".coursebox-container[data-course-status='complete']"
       )
-    ).map((el) => Object.assign({ ...el.dataset })),
+    ).map((elem) => Object.assign({ ...elem.dataset })),
   };
 
 if (CG.page.inPartnerPath) {
@@ -915,11 +915,11 @@ function makeSections(
 
 function createClone(type = "checkbox") {
   function createSvgElement(tag, attrs = {}) {
-    const el = document.createElementNS("http://www.w3.org/2000/svg", tag);
+    const elem = document.createElementNS("http://www.w3.org/2000/svg", tag);
     Object.entries(attrs).forEach(([key, value]) => {
-      el.setAttribute(key, value);
+      elem.setAttribute(key, value);
     });
-    return el;
+    return elem;
   }
 
   const attrs = {
@@ -1224,13 +1224,13 @@ function setStyle(target, style) {
     n.nodeType === 1 &&
     typeof n.style?.setProperty === "function";
 
-  const apply = (el) => {
+  const apply = (elem) => {
     for (const [prop, raw] of Object.entries(style)) {
       const cssProp = toKebab(prop);
 
       // If undefined → unset
       if (raw === undefined) {
-        el.style.removeProperty(cssProp);
+        elem.style.removeProperty(cssProp);
         continue;
       }
 
@@ -1243,16 +1243,16 @@ function setStyle(target, style) {
       }
 
       if (value.trim()) {
-        el.style.setProperty(cssProp, value.trim(), priority);
+        elem.style.setProperty(cssProp, value.trim(), priority);
       }
     }
-    return el;
+    return elem;
   };
 
   // selector string → first match
   if (typeof target === "string") {
-    const el = document.querySelector(target);
-    return el ? apply(el) : null;
+    const elem = document.querySelector(target);
+    return elem ? apply(elem) : null;
   }
 
   // Iterable? (NodeList, HTMLCollection, Array, Set, etc.)
@@ -1759,15 +1759,15 @@ function styleLesson() {
     v.local.nav.backToCurriculumText.textContent = "Back to Course Overview";
 
   // Makes lesson links pop up in new tab
-  v.local.lesson.content.links.forEach((el) => {
-    el.target = "_blank";
+  v.local.lesson.content.links.forEach((elem) => {
+    elem.target = "_blank";
     // we also want to set some utm_source, utm_medium here if it's a link to a certain set of domains (domain name includes chainguard.dev)
-    if (el.href.includes("chainguard.dev")) {
-      const url = new URL(el.href);
+    if (elem.href.includes("chainguard.dev")) {
+      const url = new URL(elem.href);
       url.searchParams.set("utm_source", CONFIG.utm.source);
       url.searchParams.set("utm_medium", CONFIG.utm.medium);
       url.searchParams.set("utm_campaign", CONFIG.utm.campaign);
-      el.href = url.toString();
+      elem.href = url.toString();
     }
   });
 
@@ -1860,8 +1860,8 @@ function styleLesson() {
 
   v.local.lesson.content.codeBlocks
     .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
-    .forEach((el) => {
-      const codeEl = el.querySelector("code");
+    .forEach((elem) => {
+      const codeEl = elem.querySelector("code");
       const iconClone = createClone("copy");
 
       const copyText = codeEl.textContent
@@ -1881,8 +1881,8 @@ function styleLesson() {
 
       // add elements
       container.append(iconClone);
-      el.append(tooltipContainer);
-      el.prepend(container);
+      elem.append(tooltipContainer);
+      elem.prepend(container);
 
       // add event listener to cloned icon to copy block into clipboard
       iconClone.addEventListener(
@@ -1891,12 +1891,12 @@ function styleLesson() {
       );
 
       // Mark that copy icon was added to this code block
-      el.dataset.copyAdded = "true";
+      elem.dataset.copyAdded = "true";
     });
 
   // Make section titles normal h3 elements
-  Array.from(document.querySelectorAll("h3.sjwc-section-title")).map((el) =>
-    el.classList.remove("sjwc-section-title")
+  Array.from(document.querySelectorAll("h3.sjwc-section-title")).map((elem) =>
+    elem.classList.remove("sjwc-section-title")
   );
 
   if (typeof resources !== "undefined") {
@@ -2855,17 +2855,17 @@ document.addEventListener("DOMContentLoaded", () => {
  * Inject overlay HTML once
  */
 function ensureCompletionPopup() {
-  let el = document.getElementById("completion-popup");
-  if (el) return el;
+  let elem = document.getElementById("completion-popup");
+  if (elem) return elem;
 
-  el = Object.assign(document.createElement("div"), {
+  elem = Object.assign(document.createElement("div"), {
     id: "completion-popup",
     role: "dialog",
     "aria-modal": "true",
     "aria-hidden": "true",
   });
 
-  el.addEventListener("click", () => hideCompletion(el));
+  elem.addEventListener("click", () => hideCompletion(elem));
 
   const content = Object.assign(document.createElement("div"), {
     id: "completion-content",
@@ -2893,31 +2893,31 @@ function ensureCompletionPopup() {
 
   card.append(h1, p, notice);
   content.append(card);
-  el.append(content);
-  document.body.appendChild(el);
+  elem.append(content);
+  document.body.appendChild(elem);
 
   // ESC to close
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && el.getAttribute("aria-hidden") === "false")
-      hideCompletion(el);
+  document.addEventListener("keydown", (evt) => {
+    if (evt.key === "Escape" && elem.getAttribute("aria-hidden") === "false")
+      hideCompletion(elem);
   });
 
-  return el;
+  return elem;
 }
 
 /**
  * Show / hide with fade
  */
-function showCompletion(el) {
-  el.setAttribute("aria-hidden", "false");
-  setStyle(el, { display: "block" });
+function showCompletion(elem) {
+  elem.setAttribute("aria-hidden", "false");
+  setStyle(elem, { display: "block" });
   // Next paint to trigger transition
-  requestAnimationFrame(() => setStyle(el, { opacity: "1" }));
+  requestAnimationFrame(() => setStyle(elem, { opacity: "1" }));
   // focus for accessibility
-  const focusTarget = el.querySelector("#completion-card");
+  const focusTarget = elem.querySelector("#completion-card");
   if (focusTarget) focusTarget.focus({ preventScroll: true });
 
-  const countdownEl = el.querySelector("#completion-countdown");
+  const countdownEl = elem.querySelector("#completion-countdown");
   if (countdownEl) {
     let remaining = CONFIG.confetti.autoHideMs / 1000;
     countdownEl.textContent = remaining;
@@ -2932,14 +2932,14 @@ function showCompletion(el) {
   }
 }
 
-function hideCompletion(el) {
-  setStyle(el, { opacity: "0" });
+function hideCompletion(elem) {
+  setStyle(elem, { opacity: "0" });
   const finish = () => {
-    el.setAttribute("aria-hidden", "true");
-    setStyle(el, { display: "none" });
-    el.removeEventListener("transitionend", finish);
+    elem.setAttribute("aria-hidden", "true");
+    setStyle(elem, { display: "none" });
+    elem.removeEventListener("transitionend", finish);
   };
-  el.addEventListener("transitionend", finish);
+  elem.addEventListener("transitionend", finish);
   // Safety timeout in case transitionend doesn’t fire
   setTimeout(finish, 300);
 }
@@ -2950,8 +2950,8 @@ function hideCompletion(el) {
  *   window.animateCompletion();
  */
 window.animateCompletion = function animateCompletion() {
-  const el = ensureCompletionPopup();
-  showCompletion(el);
+  const elem = ensureCompletionPopup();
+  showCompletion(elem);
 
   // Confetti bursts
   setTimeout(shoot, 0);
@@ -2959,7 +2959,7 @@ window.animateCompletion = function animateCompletion() {
   setTimeout(shoot, 200);
 
   // Auto-hide
-  setTimeout(() => hideCompletion(el), CONFIG.confetti.autoHideMs);
+  setTimeout(() => hideCompletion(elem), CONFIG.confetti.autoHideMs);
 };
 
 function shoot() {
