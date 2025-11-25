@@ -8,6 +8,7 @@ const el = (tag, props = {}, children = []) => {
     n = document.createElement(tag);
   }
   for (const [k, v] of Object.entries(props)) {
+    if (!v) continue;
     if (k === "className") n.className = v;
     else if (k === "textContent") n.textContent = v;
     else if (k === "text") n.textContent = v;
