@@ -705,26 +705,26 @@ function renderBreadcrumbs(targetElement, crumbs) {
     return;
 
   // Create the breadcrumb navigation elements
-  const nav = Object.assign(document.createElement("nav"), {
+  const nav = el("nav", {
     className: "breadcrumb",
     "aria-label": "Breadcrumb",
     role: "navigation",
   });
 
-  const ol = document.createElement("ol");
+  const ol = el("ol");
 
   crumbs.forEach(([textContent, href], i) => {
-    const li = document.createElement("li");
+    const li = el("li");
     let element;
     if (i < crumbs.length - 1 && href && href !== "#") {
-      element = Object.assign(document.createElement("a"), {
+      element = el("a", {
         href,
         textContent,
         className: "crumb",
         title: textContent,
       });
     } else {
-      element = Object.assign(document.createElement("span"), {
+      element = el("span", {
         textContent,
         className: "crumb",
         title: textContent,
@@ -778,7 +778,7 @@ function makeSections(
   );
 
   sections.forEach((section) => {
-    const sectionElement = Object.assign(document.createElement("section"), {
+    const sectionElement = el("section", {
       className: "featured-courses",
     });
 
@@ -786,30 +786,30 @@ function makeSections(
       sectionElement.classList.add(...section.classNames);
     }
 
-    const grid = Object.assign(document.createElement("div"), {
+    const grid = el("div", {
       className: "featured-courses__grid",
     });
 
-    const intro = Object.assign(document.createElement("div"), {
+    const intro = el("div", {
       className: "featured-courses__intro",
     });
 
-    const eyebrow = Object.assign(document.createElement("h2"), {
+    const eyebrow = el("h2", {
       className: "eyebrow",
       textContent: section.eyebrow || "",
     });
 
-    const headline = Object.assign(document.createElement("p"), {
+    const headline = el("p", {
       className: "headline",
       textContent: section.title || "",
     });
 
-    const subhead = Object.assign(document.createElement("p"), {
+    const subhead = el("p", {
       className: "subhead",
       textContent: section.description || "",
     });
 
-    // const cta = Object.assign(document.createElement("a"), {
+    // const cta = el("a", {
     //     className: "btn btn--primary",
     //     href: "/",
     //     textContent: "Browse all courses",
@@ -822,7 +822,7 @@ function makeSections(
       ...[document.querySelector("#messages"), grid].filter(Boolean)
     );
 
-    const cardsElem = Object.assign(document.createElement("div"), {
+    const cardsElem = el("div", {
       className: "cards",
     });
 
@@ -830,18 +830,18 @@ function makeSections(
       const isRegistered = registeredCourses.includes(link.slug);
       const isCompleted = completedCourses.includes(link.slug);
 
-      article = Object.assign(document.createElement("article"), {
+      article = el("article", {
         className: `card ${isCompleted ? "card--completed" : ""} ${
           isRegistered ? "card--in-progress" : ""
         }`,
       });
 
-      innerContainer = Object.assign(document.createElement("div"), {
+      innerContainer = el("div", {
         className: "card__inner",
       });
 
       if (isCompleted) {
-        pill = Object.assign(document.createElement("span"), {
+        pill = el("span", {
           className: "pill completed",
           textContent: "Completed",
         });
@@ -849,35 +849,35 @@ function makeSections(
       }
 
       if (isRegistered && !isCompleted) {
-        pill = Object.assign(document.createElement("span"), {
+        pill = el("span", {
           className: "pill in-progress",
           textContent: "In Progress",
         });
         innerContainer.append(pill);
       }
 
-      iconContainer = Object.assign(document.createElement("div"), {
+      iconContainer = el("div", {
         className: "card__icon",
         innerHTML: link.icon || "",
       });
 
-      titleEyebrow = Object.assign(document.createElement("h5"), {
+      titleEyebrow = el("h5", {
         className: "card__eyebrow",
         textContent: link.isCourse ? "Course" : "Learning Path",
       });
 
-      const price = Object.assign(document.createElement("span"), {
+      const price = el("span", {
         textContent: " | Free",
       });
 
       titleEyebrow.append(price);
 
-      title = Object.assign(document.createElement("h3"), {
+      title = el("h3", {
         className: "card__title",
         textContent: link.title || "",
       });
 
-      description = Object.assign(document.createElement("p"), {
+      description = el("p", {
         className: "card__text",
         textContent: link.description || "",
       });
@@ -887,7 +887,7 @@ function makeSections(
       );
 
       if (link.hasBadge && !isCompleted) {
-        pill = Object.assign(document.createElement("span"), {
+        pill = el("span", {
           className: "pill badged",
           textContent: "Get a Badge",
         });
@@ -896,7 +896,7 @@ function makeSections(
 
       article.append(innerContainer);
 
-      cardLink = Object.assign(document.createElement("a"), {
+      cardLink = el("a", {
         className: "card__link",
         href: `${baseURL}/${link.slug}`,
         title: link.isCourse ? "Start course" : "Start path",
@@ -914,13 +914,13 @@ function makeSections(
 }
 
 function createClone(type = "checkbox") {
-  function createSvgElement(tag, attrs = {}) {
-    const elem = document.createElementNS("http://www.w3.org/2000/svg", tag);
-    Object.entries(attrs).forEach(([key, value]) => {
-      elem.setAttribute(key, value);
-    });
-    return elem;
-  }
+  // function createSvgElement(tag, attrs = {}) {
+  //   const elem = document.createElementNS("http://www.w3.org/2000/svg", tag);
+  //   Object.entries(attrs).forEach(([key, value]) => {
+  //     elem.setAttribute(key, value);
+  //   });
+  //   return elem;
+  // }
 
   const attrs = {
     className: `${type}-icon`,
@@ -936,18 +936,18 @@ function createClone(type = "checkbox") {
       (type === "checkbox" ? "flex-shrink: 0;" : ""),
   };
 
-  const svg = createSvgElement("svg", attrs);
+  const svg = el("svg", attrs);
 
   let path;
   switch (type) {
     case "checkbox":
-      path = createSvgElement("path", {
+      path = el("path", {
         d: "M8.22948 14.021L5.02148 10.792L5.75048 10.042L8.22948 12.5L14.2505 6.5L14.9795 7.271L8.22948 14.021Z",
       });
       break;
 
     case "copy":
-      path = createSvgElement("path", {
+      path = el("path", {
         d: "M5.12597 18.0835C4.75064 18.0835 4.43464 17.9548 4.17797 17.6975C3.9213 17.4408 3.79297 17.1248 3.79297 16.7495V6.3335H4.87597V16.7495C4.87597 16.8195 4.9003 16.8785 4.94897 16.9265C4.99764 16.9752 5.05664 16.9995 5.12597 16.9995H13.543V18.0835H5.12597ZM7.70897 15.4995C7.3343 15.4995 7.0183 15.3712 6.76097 15.1145C6.5043 14.8572 6.37597 14.5412 6.37597 14.1665V4.6875C6.37597 4.31216 6.5043 3.99283 6.76097 3.7295C7.0183 3.4655 7.3343 3.3335 7.70897 3.3335H15.189C15.5636 3.3335 15.883 3.4655 16.147 3.7295C16.411 3.99283 16.543 4.31216 16.543 4.6875V14.1665C16.543 14.5412 16.411 14.8572 16.147 15.1145C15.883 15.3712 15.5636 15.4995 15.189 15.4995H7.70897ZM7.70897 14.4165H15.189C15.2583 14.4165 15.3206 14.3922 15.376 14.3435C15.4313 14.2948 15.459 14.2358 15.459 14.1665V4.6875C15.459 4.61816 15.4313 4.5555 15.376 4.4995C15.3206 4.44416 15.2583 4.4165 15.189 4.4165H7.70897C7.63964 4.4165 7.58064 4.44416 7.53197 4.4995C7.4833 4.5555 7.45897 4.61816 7.45897 4.6875V14.1665C7.45897 14.2358 7.4833 14.2948 7.53197 14.3435C7.58064 14.3922 7.63964 14.4165 7.70897 14.4165Z",
       });
       break;
@@ -972,29 +972,29 @@ function createResourceCard(resource) {
   }
 
   // ---- Outer link wrapper ----
-  const linkWrapper = Object.assign(document.createElement("a"), {
+  const linkWrapper = el("a", {
     href: link,
     target: "_blank",
     className: "resource-link-wrapper", // style like a block if needed
   });
 
   // ---- Card container ----
-  const card = Object.assign(document.createElement("div"), {
+  const card = el("div", {
     className: "resource-card",
   });
 
-  const cardWrapper = Object.assign(document.createElement("div"), {
+  const cardWrapper = el("div", {
     className: "card-body",
   });
 
   // ---- Badges before title ----
   if (Array.isArray(resource.tags) && resource.tags.length > 0) {
-    const badgeContainer = Object.assign(document.createElement("div"), {
+    const badgeContainer = el("div", {
       className: "badge-container",
     });
 
     resource.tags.forEach((tag) => {
-      const badge = Object.assign(document.createElement("div"), {
+      const badge = el("div", {
         className: "badge",
         textContent: tag,
       });
@@ -1005,7 +1005,7 @@ function createResourceCard(resource) {
   }
 
   // ---- Title ----
-  const titleEl = Object.assign(document.createElement("h5"), {
+  const titleEl = el("h5", {
     className: "card-title",
     textContent: resource.title,
   });
@@ -1084,17 +1084,17 @@ function getCurriculumElements(curriculumParentContainer) {
   }
 
   return a.map((section) => {
-    const wrapper = Object.assign(document.createElement("div"), {
+    const wrapper = el("div", {
       className: "curriculum-wrapper",
     });
 
-    const header = Object.assign(document.createElement("div"), {
+    const header = el("div", {
       className: "curriculum-header no-select",
       textContent: section.heading,
     });
 
     const lessons = section.lessons.map((lesson, ix) => {
-      const a = Object.assign(document.createElement("a"), {
+      const a = el("a", {
         className: "curriculum-lesson no-select" /* lesson-row */,
         textContent: lesson,
         href: section.links[ix] || "#",
@@ -1126,36 +1126,36 @@ function createCourseDetailsCard(
   );
 
   // Create main container
-  const card = Object.assign(document.createElement("div"), {
+  const card = el("div", {
     className: "course-details-card",
   });
 
   // Header
-  const header = Object.assign(document.createElement("div"), {
+  const header = el("div", {
     className: "course-details-card-header no-select",
     textContent: "Course Details",
   });
   card.appendChild(header);
 
   // List
-  const list = Object.assign(document.createElement("ul"), {
+  const list = el("ul", {
     className: "course-details-card-list no-select",
   });
 
   // Audience
-  const audienceItem = Object.assign(document.createElement("li"), {
+  const audienceItem = el("li", {
     innerHTML: `<p>${details.audience}</p>`,
   });
   list.appendChild(audienceItem);
 
   // Time
-  const timeItem = Object.assign(document.createElement("li"), {
+  const timeItem = el("li", {
     innerHTML: `<p>${details.time}</p>`,
   });
   list.appendChild(timeItem);
 
   // Lessons
-  const lessonsItem = Object.assign(document.createElement("li"), {
+  const lessonsItem = el("li", {
     innerHTML: `<p>${details.lessons} Lessons</p>`,
   });
   list.appendChild(lessonsItem);
@@ -1163,7 +1163,7 @@ function createCourseDetailsCard(
   card.appendChild(list);
 
   // Link
-  const link = Object.assign(document.createElement("a"), {
+  const link = el("a", {
     href: options.completed ? "#" : options.btnHref,
     textContent: options.completed ? "🎉 Completed" : options.btnText,
     className: `button ${
@@ -1181,7 +1181,7 @@ function createCourseDetailsCard(
 
   if (options.completed) {
     card.append(
-      Object.assign(document.createElement("p"), {
+      el("p", {
         textContent: "Click on any lesson that you want to revisit.",
         className: "completed-subtext",
       })
@@ -1419,10 +1419,8 @@ function style404() {
   console.log("Running style404");
 
   if (window.location.href.includes("/page/partners")) {
-    let hr = Object.assign(document.createElement("hr"), {
-      style: "width: 100%",
-    });
-    let p = Object.assign(document.createElement("p"), {
+    let hr = el("hr", { style: "width: 100%" });
+    let p = el("p", {
       classList: "sj-text-page-not-found-explanation",
       innerHTML: `If you are a partner and trying to access our Partner courses, you have to first <a href="/auth/login?next=%2Fpage%2Fpartners">sign in or sign up for our Courses platform</a>.`,
       style: "margin-top: 5px",
@@ -1530,10 +1528,7 @@ function styleCourseDetails() {
   v.local.body.container.append(...[v.local.card.details].filter(Boolean));
 
   // add a breadcrumb to a div with id "breadcrumb" added to .dp-summary-wrapper
-  const breadcrumb = Object.assign(document.createElement("div"), {
-    id: "breadcrumb",
-    className: "",
-  });
+  const breadcrumb = el("div", { id: "breadcrumb" });
   renderBreadcrumbs(breadcrumb, CG.state.crumbs);
 
   // append elements to header
@@ -1571,10 +1566,7 @@ function stylePathCourseDetails() {
     skilljarCourseSeries.short_description || "";
 
   // add a breadcrumb to a div with id "" added to .cp-summary-row-v2
-  const breadcrumb = Object.assign(document.createElement("div"), {
-    id: "breadcrumb",
-    className: "",
-  });
+  const breadcrumb = el("div", { id: "breadcrumb" });
   renderBreadcrumbs(breadcrumb, CG.state.crumbs);
 
   // move elements
@@ -1617,24 +1609,24 @@ function stylePathCatalogPage() {
 
   hide(".path-curriculum-resume-wrapper");
 
-  const topRow = Object.assign(document.createElement("div"), {
+  const topRow = el("div", {
     className: "top-row-grey top-row-white-v2 padding-top padding-side row-v2",
   });
-  const topRowInner = Object.assign(document.createElement("div"), {
+  const topRowInner = el("div", {
     className: "row dp-row-flex-v2",
   });
-  const topRowLeft = Object.assign(document.createElement("div"), {
+  const topRowLeft = el("div", {
     className: "columns text-center large-6 dp-summary-wrapper text-left-v2",
   });
-  const floaterText = Object.assign(document.createElement("div"), {
+  const floaterText = el("div", {
     className: "sj-floater-text",
     textContent: "Learning Path",
   });
-  const mainHeading = Object.assign(document.createElement("h1"), {
+  const mainHeading = el("h1", {
     className: "break-word",
     textContent: skilljarCourseSeries.title || "",
   });
-  const courseInfo = Object.assign(document.createElement("p"), {
+  const courseInfo = el("p", {
     className: "sj-heading-paragraph",
     textContent: skilljarCourseSeries.short_description || "",
   });
@@ -1658,27 +1650,28 @@ function stylePathCatalogPage() {
   );
   topRowInner.append(topRowLeft);
 
-  const breadcrumb = Object.assign(document.createElement("div"), {
+  const breadcrumb = el("div", {
     className: "row dp-row-flex-v2",
     id: "breadcrumb",
   });
   renderBreadcrumbs(breadcrumb, CG.state.crumbs);
   topRow.append(breadcrumb, topRowInner);
 
-  const detailsBundle = Object.assign(document.createElement("div"), {
+  const detailsBundle = el("div", {
     id: "dp-details-bundle",
   });
-  const detailsBundleRow = Object.assign(document.createElement("div"), {
+  const detailsBundleRow = el("div", {
     className: "row padding-side",
   });
-  const detailsBundleCol = Object.assign(document.createElement("div"), {
+  const detailsBundleCol = el("div", {
     className: "columns",
   });
-  const longDescription = Object.assign(document.createElement("div"), {
+  const longDescription = el("div", {
     className: "dp-long-description",
   });
-  const longDescPara = Object.assign(document.createElement("p"));
-  longDescPara.innerHTML = skilljarCourseSeries.long_description_html;
+  const longDescPara = el("p", {
+    innerHTML: skilljarCourseSeries.long_description_html,
+  });
   longDescription.append(longDescPara);
   detailsBundleCol.append(longDescription);
   detailsBundleRow.append(detailsBundleCol);
@@ -1798,7 +1791,7 @@ function styleLesson() {
   const nextTrack = footerNext?.getAttribute("data-track-click");
 
   // 4) Build buttons
-  const prevBtn = Object.assign(document.createElement("a"), {
+  const prevBtn = el("a", {
     className: "lesson-btn prev",
     rel: "prev",
     role: "button",
@@ -1808,7 +1801,7 @@ function styleLesson() {
   });
   if (prevTrack) prevBtn.setAttribute("data-track-click", prevTrack);
 
-  const nextBtn = Object.assign(document.createElement("a"), {
+  const nextBtn = el("a", {
     className: "lesson-btn next",
     rel: "next",
     role: "button",
@@ -1848,7 +1841,7 @@ function styleLesson() {
   }
 
   // 6) Build wrapper
-  const btnWrapper = Object.assign(document.createElement("nav"), {
+  const btnWrapper = el("nav", {
     className: "lesson-floater",
     role: "navigation",
     ariaLabel: "Lesson navigation",
@@ -1856,7 +1849,7 @@ function styleLesson() {
 
   btnWrapper.append(prevBtn, nextBtn);
 
-  v.local.lesson.innerBody.append(document.createElement("hr"), btnWrapper);
+  v.local.lesson.innerBody.append(el("hr"), btnWrapper);
 
   v.local.lesson.content.codeBlocks
     .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
@@ -1869,12 +1862,12 @@ function styleLesson() {
         .replace(/\r?\n\$ /g, " && ")
         .replace(/^\$ /g, "");
 
-      const container = Object.assign(document.createElement("div"), {
+      const container = el("div", {
         style: `display: flex; justify-content: end; border-bottom: 1px solid gainsboro; padding: 12px 24px;`,
       });
 
       // create 'copied' tooltip
-      const tooltipContainer = Object.assign(document.createElement("div"), {
+      const tooltipContainer = el("div", {
         textContent: "Copied",
         style: `position: absolute; top: -24px; right: 10px; text-shadow: none; background-color: var(--answer-option); color: var(--primary-white-hex); padding: 5px 10px; border-radius: 4px; opacity: 0; transition: opacity .2s ease-in;`,
       });
@@ -1906,15 +1899,9 @@ function styleLesson() {
       console.info(
         "No resource boxes found to add resources to. Adding automatically!"
       );
-      const box = Object.assign(document.createElement("div"), {
-        className: "resource-box",
-      });
-      const header = Object.assign(document.createElement("h3"), {
-        textContent: "📘 More Resources",
-      });
-      const wrapper = Object.assign(document.createElement("div"), {
-        className: "resource-wrapper",
-      });
+      const box = el("div", { className: "resource-box" });
+      const header = el("h3", { textContent: "📘 More Resources" });
+      const wrapper = el("div", { className: "resource-wrapper" });
 
       box.append(header, wrapper);
       v.local.lesson.body.append(box);
@@ -2030,15 +2017,13 @@ function styleAuth() {
     document.querySelector("#login-content"),
   ]);
 
-  const authContainer = Object.assign(document.createElement("div"), {
+  const authContainer = el("div", {
     id: "auth-container",
     style: "flex-grow: 1; min-height: 100vh;",
   });
 
   // create new auth card
-  const authCard = Object.assign(document.createElement("div"), {
-    className: "auth-card",
-  });
+  const authCard = el("div", { className: "auth-card" });
 
   // append existing elements to it
   let form, orSignUpWith;
@@ -2151,10 +2136,7 @@ function styleCurriculumPageNoCertificate() {
   v.local.header.courseInfo.textContent = skilljarCourse.short_description;
 
   // add a breadcrumb to a div with id "" added to .cp-summary-row-v2
-  const breadcrumb = Object.assign(document.createElement("div"), {
-    id: "breadcrumb",
-    className: "",
-  });
+  const breadcrumb = el("div", { id: "breadcrumb" });
   renderBreadcrumbs(breadcrumb, CG.state.crumbs);
 
   // move elements
@@ -2791,7 +2773,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (innerHTML.length) {
     const infoBoxes = innerHTML.map((innerHTML) =>
-      Object.assign(document.createElement("div"), {
+      el("div", {
         innerHTML,
         className: "info-box",
       })
@@ -2858,7 +2840,7 @@ function ensureCompletionPopup() {
   let elem = document.getElementById("completion-popup");
   if (elem) return elem;
 
-  elem = Object.assign(document.createElement("div"), {
+  elem = el("div", {
     id: "completion-popup",
     role: "dialog",
     "aria-modal": "true",
@@ -2867,24 +2849,22 @@ function ensureCompletionPopup() {
 
   elem.addEventListener("click", () => hideCompletion(elem));
 
-  const content = Object.assign(document.createElement("div"), {
-    id: "completion-content",
-  });
-  const card = Object.assign(document.createElement("div"), {
+  const content = el("div", { id: "completion-content" });
+  const card = el("div", {
     id: "completion-card",
     tabIndex: -1,
   });
-  const h1 = Object.assign(document.createElement("h1"), {
+  const h1 = el("h1", {
     id: "completion-title",
     textContent: `Hooray! You finished ${
       CG.state.course?.title ? CG.state.course?.title : "the course!"
     }`,
   });
-  const p = Object.assign(document.createElement("p"), {
+  const p = el("p", {
     id: "completion-sub",
     textContent: "Seriously, nice work!",
   });
-  const notice = Object.assign(document.createElement("p"), {
+  const notice = el("p", {
     id: "completion-notice",
     innerHTML: `You can close this popup by clicking outside of it or press ESC to dismiss. It will also disappear automatically in <span id="completion-countdown">${
       CONFIG.confetti.autoHideMs / 1000
