@@ -711,14 +711,16 @@ function renderBreadcrumbs(targetElement, crumbs) {
     const elem = isLast || !hasLink ? "span" : "a";
     const ariaCurrent = isLast ? "page" : undefined;
     href = href === "#" ? undefined : href;
-    return el(elem, {
-      className: "crumb",
-      textContent,
-      href,
-      ariaCurrent,
-    });
+    return el("li", {}, [
+      el(elem, {
+        className: "crumb",
+        textContent,
+        href,
+        ariaCurrent,
+      }),
+    ]);
   });
-  
+
   const nav = el(
     "nav",
     {
