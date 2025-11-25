@@ -1,4 +1,15 @@
-/* eslint-disable no-undef */
+const el = (tag, props = {}, children = []) => {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(props)) {
+    if (k === "className") n.className = v;
+    else if (k === "text") n.textContent = v;
+    else n.setAttribute(k, v);
+  }
+  (Array.isArray(children) ? children : [children])
+    .filter(Boolean)
+    .forEach((child) => n.appendChild(child));
+  return n;
+};
 
 const columnData = {
   logo: {
