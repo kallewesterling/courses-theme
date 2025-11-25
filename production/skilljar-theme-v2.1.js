@@ -15,45 +15,52 @@
  * @see {@link https://courses.chainguard.com|Chainguard Courses}
  */
 
-// UTM settings
-const UTM = {
-  SOURCE: "courses",
-  MEDIUM: "referral",
-  CAMPAIGN: "dev-enablement",
-};
-
-const DOMAIN = {
-  prod: { url: "courses.chainguard.dev", id: "3glgawqmzatte" },
-  stage: { url: "chainguard-test.skilljar.com", id: "ix1ljpxex6xd" },
-};
-
-const PARTNERS = {
-  "chainguard-discovery-partner-sales-foundations": {
-    id: "53njmyk25y3v",
-    checkout: "19bn1isfg4c3t",
+const CONFIG = {
+  utm: {
+    source: "courses",
+    medium: "referral",
+    campaign: "dev-enablement",
   },
-  "chainguard-advanced-partner-sales-accelerator": {
-    id: "1w57muf27zdg1",
-    checkout: "3em1yw57v5d30",
+  domains: {
+    prod: { url: "courses.chainguard.dev", id: "3glgawqmzatte" },
+    stage: { url: "chainguard-test.skilljar.com", id: "ix1ljpxex6xd" },
+  },
+  partners: {
+    "chainguard-discovery-partner-sales-foundations": {
+      id: "53njmyk25y3v",
+      checkout: "19bn1isfg4c3t",
+    },
+    "chainguard-advanced-partner-sales-accelerator": {
+      id: "1w57muf27zdg1",
+      checkout: "3em1yw57v5d30",
+    },
+  },
+  confetti: {
+    autoHideMs: 6000,
+    particles: {
+      stars: { count: 40, scalar: 1.2 },
+      circles: { count: 10, scalar: 0.75 },
+      logos: { count: 50, scalar: 3.0 },
+    },
+    defaults: {
+      spread: 360,
+      ticks: 50,
+      gravity: 1,
+      decay: 0.94,
+      startVelocity: 40,
+      shapes: ["star"],
+      colors: ["#C6FF50", "#50FFE1"],
+    },
   },
 };
 
-// confetti defaults
-const AUTOHIDE_COMPLETION = 6000;
-const particles = {
-  stars: { counts: 40, scalar: 1.2 },
-  circles: { counts: 10, scalar: 0.75 },
-  logos: { counts: 50, scalar: 3.0 },
-};
-
-const confettiDefaults = {
-  spread: 360,
-  ticks: 50,
-  gravity: 1,
-  decay: 0.94,
-  startVelocity: 40,
-  shapes: ["star"],
-  colors: ["#C6FF50", "#50FFE1"],
+const CGCourses = {
+  env: {},
+  page: {},
+  state: {
+    domain: CONFIG.domains.prod,
+  },
+  dom: {},
 };
 
 // baseURL settings
@@ -75,9 +82,11 @@ if (typeof skilljarUserStudentGroups !== "undefined") {
   isOnlyPartner = isPartner && skilljarUserStudentGroups.length === 1;
 }
 
-DOMAIN.current = isAdmin ? DOMAIN.stage : DOMAIN.prod;
+if (isAdmin) {
+  CGCourses.state.domain = CONFIG.domains.stage;
+}
 
-const baseURL = `https://${DOMAIN.current.url}`;
+const baseURL = `https://${CGCourses.state.domain.url}`;
 
 // let initialLoadComplete = false,
 let isStaging = false,
@@ -94,7 +103,7 @@ if (window.location.hostname === "chainguard-test.skilljar.com") {
   isStaging = true;
 }
 
-const inPartnerPath = Object.entries(PARTNERS)
+const inPartnerPath = Object.entries(CONFIG.partners)
   .map((a) => a[1].id)
   .map((d) => d === course.path.id)
   .filter(Boolean).length
@@ -126,7 +135,7 @@ if (inPartnerPath) {
 }
 
 if (typeof skilljarCourseSeries !== "undefined") {
-  course.path.edit = `https://dashboard.skilljar.com/publishing/domains/${DOMAIN.current.id}/published-paths/${skilljarCourseSeries.id}/edit`;
+  course.path.edit = `https://dashboard.skilljar.com/publishing/domains/${CGCourses.state.domain.id}/published-paths/${skilljarCourseSeries.id}/edit`;
   crumbs.push([
     skilljarCourseSeries.title,
     `${baseURL}/path/${skilljarCourseSeries.slug}`,
@@ -1410,7 +1419,7 @@ function style404() {
       innerHTML: `If you are a partner and trying to access our Partner courses, you have to first <a href="/auth/login?next=%2Fpage%2Fpartners">sign in or sign up for our Courses platform</a>.`,
       style: "margin-top: 5px",
     });
-    document.querySelector(".message").append(...[hr, p])
+    document.querySelector(".message").append(...[hr, p]);
   }
 }
 
@@ -1478,8 +1487,8 @@ function styleCourseDetails() {
 
     if (links.length > 0) {
       btnText = "Register for Learning Path";
-      btnHref = PARTNERS[skilljarCourseSeries.slug]?.checkout
-        ? `/checkout/${PARTNERS[skilljarCourseSeries.slug]?.checkout}`
+      btnHref = CONFIG.partners[skilljarCourseSeries.slug]?.checkout
+        ? `/checkout/${CONFIG.partners[skilljarCourseSeries.slug]?.checkout}`
         : links[0].href;
     }
   }
@@ -1747,9 +1756,9 @@ function styleLesson() {
     // we also want to set some utm_source, utm_medium here if it's a link to a certain set of domains (domain name includes chainguard.dev)
     if (el.href.includes("chainguard.dev")) {
       const url = new URL(el.href);
-      url.searchParams.set("utm_source", UTM.SOURCE);
-      url.searchParams.set("utm_medium", UTM.MEDIUM);
-      url.searchParams.set("utm_campaign", UTM.CAMPAIGN);
+      url.searchParams.set("utm_source", CONFIG.utm.source);
+      url.searchParams.set("utm_medium", CONFIG.utm.medium);
+      url.searchParams.set("utm_campaign", CONFIG.utm.campaign);
       el.href = url.toString();
     }
   });
@@ -2761,7 +2770,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Add path edit link
-    if (course.path.id && DOMAIN.current) {
+    if (course.path.id && CGCourses.state.domain) {
       innerHTML.push(
         `<p style="margin:0"><a href="${course.path.edit}">Edit Path</a></p>`
       );
@@ -2866,7 +2875,7 @@ function ensureCompletionPopup() {
   const notice = Object.assign(document.createElement("p"), {
     id: "completion-notice",
     innerHTML: `You can close this popup by clicking outside of it or press ESC to dismiss. It will also disappear automatically in <span id="completion-countdown">${
-      AUTOHIDE_COMPLETION / 1000
+      CONFIG.confetti.autoHideMs / 1000
     }</span> seconds.`,
   });
 
@@ -2898,7 +2907,7 @@ function showCompletion(el) {
 
   const countdownEl = el.querySelector("#completion-countdown");
   if (countdownEl) {
-    let remaining = AUTOHIDE_COMPLETION / 1000;
+    let remaining = CONFIG.confetti.autoHideMs / 1000;
     countdownEl.textContent = remaining;
     const interval = setInterval(() => {
       remaining -= 1;
@@ -2938,26 +2947,26 @@ window.animateCompletion = function animateCompletion() {
   setTimeout(shoot, 200);
 
   // Auto-hide
-  setTimeout(() => hideCompletion(el), AUTOHIDE_COMPLETION);
+  setTimeout(() => hideCompletion(el), CONFIG.confetti.autoHideMs);
 };
 
 function shoot() {
   confetti({
-    ...confettiDefaults,
-    particleCount: particles.stars.counts,
-    scalar: particles.stars.scalar,
+    ...CONFIG.confetti.defaults,
+    particleCount: CONFIG.confetti.particles.stars.counts,
+    scalar: CONFIG.confetti.particles.stars.scalar,
     shapes: ["star"],
   });
   confetti({
-    ...confettiDefaults,
-    particleCount: particles.circles.counts,
-    scalar: particles.circles.scalar,
+    ...CONFIG.confetti.defaults,
+    particleCount: CONFIG.confetti.particles.circles.counts,
+    scalar: CONFIG.confetti.particles.circles.scalar,
     shapes: ["circle"],
   });
   confetti({
-    ...confettiDefaults,
-    particleCount: particles.logos.counts,
-    scalar: particles.logos.scalar,
+    ...CONFIG.confetti.defaults,
+    particleCount: CONFIG.confetti.particles.logos.counts,
+    scalar: CONFIG.confetti.particles.logos.scalar,
     shapes: ["image"],
     shapeOptions: {
       image: [
@@ -2978,17 +2987,20 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateLinks(useTestDomain) {
       const links = document.querySelectorAll(
         'a[href*="' +
-          DOMAIN.prod.url +
+          CONFIG.domains.prod.url +
           '"], a[href*="' +
-          DOMAIN.stage.url +
+          CONFIG.domains.stage.url +
           '"]'
       );
       links.forEach((link) => {
         const url = new URL(link.href);
-        if (useTestDomain && url.hostname === DOMAIN.prod.url) {
-          url.hostname = DOMAIN.stage.url;
-        } else if (!useTestDomain && url.hostname === DOMAIN.stage.url) {
-          url.hostname = DOMAIN.prod.url;
+        if (useTestDomain && url.hostname === CONFIG.domains.prod.url) {
+          url.hostname = CONFIG.domains.stage.url;
+        } else if (
+          !useTestDomain &&
+          url.hostname === CONFIG.domains.stage.url
+        ) {
+          url.hostname = CONFIG.domains.prod.url;
         }
         link.href = url.toString();
       });
