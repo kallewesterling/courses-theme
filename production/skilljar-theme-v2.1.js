@@ -106,9 +106,8 @@ if (typeof skilljarUser !== "undefined") {
 
 CG.state.crumbs = [["Home", CG.state.baseURL]];
 
-CG.page.inPartnerPath = Object.entries(CONFIG.partners)
-  .map((a) => a[1].id)
-  .map((d) => d === CG.state.course.path.id)
+CG.page.inPartnerPath = Object.values(CONFIG.partners)
+  .map((a) => a.id === CG.state.course.path.id)
   .filter(Boolean).length
   ? true
   : false;
