@@ -705,37 +705,32 @@ function renderBreadcrumbs(targetElement, crumbs) {
     return;
 
   // Create the breadcrumb navigation elements
-  const nav = el("nav", {
-    className: "breadcrumb",
-    ariaLabel: "Breadcrumb",
-    role: "navigation",
-  });
-
-  const ol = el("ol");
-
-  crumbs.forEach(([textContent, href], i) => {
-    const li = el("li");
-    let element;
-    if (i < crumbs.length - 1 && href && href !== "#") {
-      element = el("a", {
-        href,
-        textContent,
-        className: "crumb",
-        title: textContent,
-      });
-    } else {
-      element = el("span", {
-        textContent,
-        className: "crumb",
-        title: textContent,
-        ariaCurrent: "page",
-      });
-    }
-    li.appendChild(element);
-    ol.appendChild(li);
-  });
-
-  nav.appendChild(ol);
+  const nav = el(
+    "nav",
+    {
+      className: "breadcrumb",
+      ariaLabel: "Breadcrumb",
+      role: "navigation",
+    },
+    [
+      el("ol", [
+        CG.state.crumbs.map(([textContent, href], ix) => {
+          const isLast = ix === CG.state.crumbs.length - 1;
+          const hasLink = href !== "#";
+          const elem = isLast || !hasLink ? "span" : "a";
+          const ariaCurrent = isLast ? "page" : undefined;
+          href = href === "#" ? undefined : href;
+          return el(elem, {
+            className: "crumb",
+            textContent,
+            href,
+            ariaCurrent,
+          });
+        }),
+      ]),
+    ]
+  );
+  
   targetElement?.replaceChildren(nav);
 }
 
