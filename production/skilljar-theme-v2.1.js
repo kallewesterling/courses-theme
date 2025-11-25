@@ -705,6 +705,20 @@ function renderBreadcrumbs(targetElement, crumbs) {
     return;
 
   // Create the breadcrumb navigation elements
+  const parts = CG.state.crumbs.map(([textContent, href], ix) => {
+    const isLast = ix === CG.state.crumbs.length - 1;
+    const hasLink = href !== "#";
+    const elem = isLast || !hasLink ? "span" : "a";
+    const ariaCurrent = isLast ? "page" : undefined;
+    href = href === "#" ? undefined : href;
+    return el(elem, {
+      className: "crumb",
+      textContent,
+      href,
+      ariaCurrent,
+    });
+  });
+  
   const nav = el(
     "nav",
     {
@@ -712,23 +726,7 @@ function renderBreadcrumbs(targetElement, crumbs) {
       ariaLabel: "Breadcrumb",
       role: "navigation",
     },
-    [
-      el("ol", {}, [
-        CG.state.crumbs.map(([textContent, href], ix) => {
-          const isLast = ix === CG.state.crumbs.length - 1;
-          const hasLink = href !== "#";
-          const elem = isLast || !hasLink ? "span" : "a";
-          const ariaCurrent = isLast ? "page" : undefined;
-          href = href === "#" ? undefined : href;
-          return el(elem, {
-            className: "crumb",
-            textContent,
-            href,
-            ariaCurrent,
-          });
-        }),
-      ]),
-    ]
+    [el("ol", {}, parts)]
   );
 
   targetElement?.replaceChildren(nav);
