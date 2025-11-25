@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 const columnData = {
   logo: {
     href: "https://www.chainguard.dev/?utm_source=courses",
@@ -162,19 +164,6 @@ const columnData = {
       ],
     },
   ],
-};
-
-const el = (tag, props = {}, kids = []) => {
-  const n = document.createElement(tag);
-  for (const [k, v] of Object.entries(props)) {
-    if (k === "className") n.className = v;
-    else if (k === "text") n.textContent = v;
-    else n.setAttribute(k, v);
-  }
-  (Array.isArray(kids) ? kids : [kids])
-    .filter(Boolean)
-    .forEach((k) => n.appendChild(k));
-  return n;
 };
 
 function generateFooter(data, containerId = "footer-container") {
