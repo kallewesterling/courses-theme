@@ -15,6 +15,8 @@
  * @see {@link https://courses.chainguard.com|Chainguard Courses}
  */
 
+const c = (selector) => (document.querySelector(selector) ? true : false);
+
 const CONFIG = {
   utm: {
     source: "courses",
@@ -54,65 +56,76 @@ const CONFIG = {
   },
 };
 
-const CGCourses = {
-  env: {},
-  page: {},
+const CG = {
+  env: {
+    isInternal: false,
+    isAdmin: false,
+    isPartner: false,
+    isOnlyPartner: false,
+    isStaging: false,
+  },
+  page: {
+    isCatalog: c(".sj-page-catalog"),
+    isLanding: c(".sj-page-catalog-root"),
+    isCurriculum: c(".sj-page-curriculum"),
+    isCourseDetails: c(".sj-page-detail-course"),
+    isLesson: c(".sj-page-lesson"),
+    isLogin: c(".sj-page-login"),
+    isSignup: c(".sj-page-signup"),
+    isPageDetail: c(".sj-page-detail-bundle.sj-page-detail-path"),
+    isPageCatalog: c(".sj-page-series.sj-page-path"),
+    is404: c(".sj-page-error-404"),
+    // hasCertificate: c(".cp-certificate"),
+  },
   state: {
     domain: CONFIG.domains.prod,
+    baseURL: `https://${CONFIG.domains.prod.url}`,
+    userCourseJourney: {},
+    course: { progress: {}, path: {}, completed: false },
+    crumbs: [["Home", ""]],
   },
-  dom: {},
+  dom: {
+    body: document.body,
+  },
 };
 
-// baseURL settings
-
-let isInternal = false,
-  isAdmin = false,
-  isPartner = false,
-  isOnlyPartner = false;
+CG.state.isStaging =
+  window.location.hostname === "chainguard-test.skilljar.com";
 
 if (typeof skilljarUser !== "undefined") {
-  isInternal = skilljarUser.email.includes("@chainguard.dev");
-  isAdmin = skilljarUser.email === "kalle.westerling@chainguard.dev";
+  if (skilljarUser.email.includes("@chainguard.dev")) {
+    CG.env.isInternal = true;
+    CG.env.isPartner = true; // internal users get partner access
+  }
+  if (skilljarUser.email === "kalle.westerling@chainguard.dev") {
+    CG.env.isAdmin = true;
+    CG.state.domain = CONFIG.domains.stage;
+    CG.state.baseURL = `https://${CG.state.domain.url}`;
+  }
 }
 
-if (typeof skilljarUserStudentGroups !== "undefined") {
-  isPartner = skilljarUserStudentGroups
-    .map((d) => d.id)
-    .includes("1axsvmzhtbb95");
-  isOnlyPartner = isPartner && skilljarUserStudentGroups.length === 1;
-}
+CG.state.crumbs = [["Home", CG.state.baseURL]];
 
-if (isAdmin) {
-  CGCourses.state.domain = CONFIG.domains.stage;
-}
-
-const baseURL = `https://${CGCourses.state.domain.url}`;
-
-// let initialLoadComplete = false,
-let isStaging = false,
-  userCourseJourney = {},
-  course = {
-    progress: {},
-    path:
-      typeof skilljarCourseSeries !== "undefined" ? skilljarCourseSeries : {},
-    completed: false,
-  },
-  crumbs = [["Home", baseURL]];
-
-if (window.location.hostname === "chainguard-test.skilljar.com") {
-  isStaging = true;
-}
-
-const inPartnerPath = Object.entries(CONFIG.partners)
+CG.page.inPartnerPath = Object.entries(CONFIG.partners)
   .map((a) => a[1].id)
-  .map((d) => d === course.path.id)
+  .map((d) => d === CG.state.course.path.id)
   .filter(Boolean).length
   ? true
   : false;
 
+if (typeof skilljarUserStudentGroups !== "undefined") {
+  CG.env.isPartner = skilljarUserStudentGroups
+    .map((d) => d.id)
+    .includes("1axsvmzhtbb95");
+
+  if (CG.env.isPartner && skilljarUserStudentGroups.length === 1) {
+    CG.env.isOnlyPartner = true;
+  }
+}
+
 // set up userCourseJourney global variable
 if (Array.from(document.querySelectorAll(".coursebox-container")).length)
-  userCourseJourney = {
+  CG.state.userCourseJourney = {
     unregistered: Array.from(
       document.querySelectorAll(
         ".coursebox-container[data-course-status='unregistered']"
@@ -130,33 +143,36 @@ if (Array.from(document.querySelectorAll(".coursebox-container")).length)
     ).map((el) => Object.assign({ ...el.dataset })),
   };
 
-if (inPartnerPath) {
-  crumbs.push(["Partner Courses", `${baseURL}/page/partners`]);
+if (CG.page.inPartnerPath) {
+  CG.state.crumbs.push([
+    "Partner Courses",
+    `${CG.state.baseURL}/page/partners`,
+  ]);
 }
 
 if (typeof skilljarCourseSeries !== "undefined") {
-  course.path.edit = `https://dashboard.skilljar.com/publishing/domains/${CGCourses.state.domain.id}/published-paths/${skilljarCourseSeries.id}/edit`;
-  crumbs.push([
+  CG.state.course.path.edit = `https://dashboard.skilljar.com/publishing/domains/${CG.state.domain.id}/published-paths/${skilljarCourseSeries.id}/edit`;
+  CG.state.crumbs.push([
     skilljarCourseSeries.title,
-    `${baseURL}/path/${skilljarCourseSeries.slug}`,
+    `${CG.state.baseURL}/path/${skilljarCourseSeries.slug}`,
   ]);
 }
 
 if (typeof skilljarCourse !== "undefined") {
-  course.id = skilljarCourse.id;
-  course.publishedCourseId = skilljarCourse.publishedCourseId;
-  course.tags = skilljarCourse.tags;
-  course.title = skilljarCourse.title;
-  course.short_description = skilljarCourse.short_description;
-  course.long_description_html = skilljarCourse.long_description_html;
-  course.edit = `https://dashboard.skilljar.com/course/${skilljarCourse.id}`;
+  CG.state.course.id = skilljarCourse.id;
+  CG.state.course.publishedCourseId = skilljarCourse.publishedCourseId;
+  CG.state.course.tags = skilljarCourse.tags;
+  CG.state.course.title = skilljarCourse.title;
+  CG.state.course.short_description = skilljarCourse.short_description;
+  CG.state.course.long_description_html = skilljarCourse.long_description_html;
+  CG.state.course.edit = `https://dashboard.skilljar.com/course/${skilljarCourse.id}`;
 
-  crumbs.push([skilljarCourse.title, "#"]);
+  CG.state.crumbs.push([skilljarCourse.title, "#"]);
 }
 
 if (typeof skilljarCourseProgress !== "undefined") {
-  course.progress = skilljarCourseProgress;
-  course.completed = skilljarCourseProgress.completed_at !== "";
+  CG.state.course.progress = skilljarCourseProgress;
+  CG.state.course.completed = skilljarCourseProgress.completed_at !== "";
 }
 
 // path settings
@@ -167,7 +183,7 @@ const icons = {
 
 pathSections = {
   home: [
-    isInternal
+    CG.env.isInternal
       ? {
           eyebrow: "🔓 Internal Training",
           title: "For Chainguardians",
@@ -184,7 +200,7 @@ pathSections = {
                 "This course is designed to teach new Chainguard engineers how to build container images.",
               icon: `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="27" viewBox="0 0 30 27" fill="none"><path class="fill-current text-[#14003D] group-hover:text-white" fill-rule="evenodd" clip-rule="evenodd" d="M24.7199 16.1854C24.9569 15.368 25.0857 14.4724 25.0857 13.4982C25.0857 7.40502 20.047 0.546799 15.0146 0.546799C9.98217 0.546799 4.94345 7.40502 4.94345 13.4982C4.94345 14.8267 5.18298 16.0092 5.60976 17.0461L2.58476 16.876C1.35268 16.8067 0.217578 17.6851 0.409743 18.9041C0.484274 19.3769 0.626315 19.8608 0.879992 20.2788C0.0236265 20.8812 -0.326192 21.9885 0.367699 22.8564C1.06428 23.7277 2.08704 24.5305 3.49093 24.5305C5.01364 24.5305 5.93005 24.137 6.48659 23.6428C6.52721 23.8586 6.61101 24.0711 6.7433 24.2719C7.42673 25.3095 8.55862 26.4501 10.232 26.4501C13.0786 26.4501 13.3961 24.6622 13.5554 23.765C13.5679 23.6948 13.5794 23.6301 13.591 23.572L15.4933 22.6207L17.3956 23.572C17.4072 23.63 17.4187 23.6947 17.4312 23.7648L17.4312 23.765C17.5905 24.6622 17.908 26.4501 20.7546 26.4501C22.428 26.4501 23.5599 25.3095 24.2433 24.2719C24.2702 24.2311 24.2951 24.1898 24.318 24.1481C24.8542 24.38 25.5641 24.5305 26.506 24.5305C27.9099 24.5305 28.9327 23.7277 29.6292 22.8564C30.4824 21.7893 29.7577 20.3602 28.4536 19.9528L28.0227 19.8181C29.2881 19.1624 29.4743 17.9255 29.3387 16.8418C29.1856 15.6172 27.8516 15.0879 26.687 15.496L24.7199 16.1854ZM15.4951 22.603C15.494 22.603 15.4929 22.603 15.4917 22.6031L15.4933 22.6039L15.4951 22.603Z" fill="#14003D"></path></svg>`,
             },
-            isAdmin
+            CG.env.isAdmin
               ? {
                   isPath: true,
                   isCourse: false,
@@ -294,7 +310,7 @@ pathSections = {
         },
       ],
     },
-    isInternal
+    CG.env.isInternal
       ? {
           eyebrow: "Deep-Dive Paths",
           title: "Master Containers",
@@ -391,7 +407,7 @@ pathSections = {
           description:
             "A comprehensive learning path designed to provide partners with the foundational knowledge needed to effectively sell Chainguard's products and solutions.",
         },
-        isInternal
+        CG.env.isInternal
           ? {
               isPath: true,
               isCourse: false,
@@ -735,7 +751,7 @@ function renderBreadcrumbs(targetElement, crumbs) {
  * log({ key: "value" }, "Additional info");
  */
 const log = (message, ...args) => {
-  if ((!message || !isStaging) && !isAdmin) return;
+  if ((!message || !CG.state.isStaging) && !CG.env.isAdmin) return;
 
   const style = "color: var(--primary-blue-hex); font-weight: 600;";
 
@@ -754,8 +770,12 @@ function makeSections(
   parentSelector = "#skilljar-content",
   baseURL = "https://courses.chainguard.dev"
 ) {
-  const registeredCourses = userCourseJourney.registered.map((d) => d.course);
-  const completedCourses = userCourseJourney.completed.map((d) => d.course);
+  const registeredCourses = CG.state.userCourseJourney.registered.map(
+    (d) => d.course
+  );
+  const completedCourses = CG.state.userCourseJourney.completed.map(
+    (d) => d.course
+  );
 
   sections.forEach((section) => {
     const sectionElement = Object.assign(document.createElement("section"), {
@@ -998,22 +1018,6 @@ function createResourceCard(resource) {
   return linkWrapper;
 }
 
-const c = (selector) => (document.querySelector(selector) ? true : false);
-
-const page = {
-  isCatalog: c(".sj-page-catalog"),
-  isLanding: c(".sj-page-catalog-root"),
-  isCurriculum: c(".sj-page-curriculum"),
-  isCourseDetails: c(".sj-page-detail-course"),
-  isLesson: c(".sj-page-lesson"),
-  isLogin: c(".sj-page-login"),
-  isSignup: c(".sj-page-signup"),
-  isPageDetail: c(".sj-page-detail-bundle.sj-page-detail-path"),
-  isPageCatalog: c(".sj-page-series.sj-page-path"),
-  is404: c(".sj-page-error-404"),
-  // hasCertificate: c(".cp-certificate"),
-};
-
 let v = {
   viewport: "", // "mobile" or "desktop"
   width: 0, // current viewport width
@@ -1027,7 +1031,7 @@ let v = {
       "#footer-container .global-footer-column"
     ),
     epFooter: document.querySelector("#ep-footer"),
-    contentContainer: page.isLesson
+    contentContainer: CG.page.isLesson
       ? document.querySelector(".sj-page-lesson")
       : document.querySelector("#skilljar-content"),
   },
@@ -1378,7 +1382,7 @@ function styleCatalog() {
 
   if (skilljarCatalogPage.slug) {
     sectionName = skilljarCatalogPage.slug; // ex. "partners"
-  } else if (page.isLanding) {
+  } else if (CG.page.isLanding) {
     sectionName = "home";
   } else {
     console.warn(
@@ -1388,7 +1392,11 @@ function styleCatalog() {
   }
 
   if (sectionName) {
-    makeSections(pathSections[sectionName], "#skilljar-content", baseURL);
+    makeSections(
+      pathSections[sectionName],
+      "#skilljar-content",
+      CG.state.baseURL
+    );
 
     document
       .querySelector("#skilljar-content")
@@ -1500,7 +1508,7 @@ function styleCourseDetails() {
         createCourseDetailsCard(courseDetails, {
           btnText,
           btnHref,
-          completed: course.completed,
+          completed: CG.state.course.completed,
         }),
       ].filter(Boolean)
     );
@@ -1526,7 +1534,7 @@ function styleCourseDetails() {
     id: "breadcrumb",
     className: "",
   });
-  renderBreadcrumbs(breadcrumb, crumbs);
+  renderBreadcrumbs(breadcrumb, CG.state.crumbs);
 
   // append elements to header
   v.local.header.mainHeadingContainer.append(
@@ -1567,7 +1575,7 @@ function stylePathCourseDetails() {
     id: "breadcrumb",
     className: "",
   });
-  renderBreadcrumbs(breadcrumb, crumbs);
+  renderBreadcrumbs(breadcrumb, CG.state.crumbs);
 
   // move elements
   v.local.header.mainHeadingContainer.append(
@@ -1586,7 +1594,7 @@ function stylePathCourseDetails() {
     makeSections(
       pathSections[skilljarPath.slug],
       "#skilljar-content",
-      `${baseURL}/path/${skilljarPath.slug}`
+      `${CG.state.baseURL}/path/${skilljarPath.slug}`
     );
 
     document
@@ -1654,7 +1662,7 @@ function stylePathCatalogPage() {
     className: "row dp-row-flex-v2",
     id: "breadcrumb",
   });
-  renderBreadcrumbs(breadcrumb, crumbs);
+  renderBreadcrumbs(breadcrumb, CG.state.crumbs);
   topRow.append(breadcrumb, topRowInner);
 
   const detailsBundle = Object.assign(document.createElement("div"), {
@@ -1687,7 +1695,7 @@ function stylePathCatalogPage() {
     makeSections(
       pathSections[skilljarPath.slug],
       "#skilljar-content",
-      `${baseURL}/path/${skilljarPath.slug}`
+      `${CG.state.baseURL}/path/${skilljarPath.slug}`
     );
 
     document
@@ -1992,7 +2000,7 @@ function styleAuth() {
     signupBtnText: document.querySelector("#button-sign-up span"),
   };
 
-  if (page.isLogin) {
+  if (CG.page.isLogin) {
     v.local.loginText.textContent = "Log In";
     v.local.signupTabTextSpan.textContent = "Sign Up";
     v.local.altMethod.textContent = "Or Log In With";
@@ -2033,10 +2041,14 @@ function styleAuth() {
   });
 
   // append existing elements to it
-  const form = page.isLogin ? v.local.loginForm : v.local.signupForm;
-  const orSignUpWith = page.isLogin
-    ? document.querySelector(".sj-text-sign-in-with")
-    : document.querySelector(".sj-text-sign-up-with");
+  let form, orSignUpWith;
+  if (CG.page.isLogin) {
+    form = v.local.loginForm;
+    orSignUpWith = document.querySelector(".sj-text-sign-in-with");
+  } else {
+    form = v.local.signupForm;
+    orSignUpWith = document.querySelector(".sj-text-sign-up-with");
+  }
 
   authCard.append(
     ...[form, orSignUpWith, v.local.googleBtn, v.local.termsAndServices]
@@ -2108,7 +2120,7 @@ function styleCurriculumPageNoCertificate() {
         createCourseDetailsCard(courseDetails, {
           btnText,
           btnHref,
-          completed: course.completed,
+          completed: CG.state.course.completed,
         }),
       ].filter(Boolean)
     );
@@ -2124,7 +2136,7 @@ function styleCurriculumPageNoCertificate() {
     v.local.card.link.href = btnHref;
   } else if (v.local.card.link) {
     log("Hiding resume button as it could not be found");
-    if (!course.completed) {
+    if (!CG.state.course.completed) {
       hide(v.local.card.link); // Hide resume button if it doesn't exist
     }
   }
@@ -2143,7 +2155,7 @@ function styleCurriculumPageNoCertificate() {
     id: "breadcrumb",
     className: "",
   });
-  renderBreadcrumbs(breadcrumb, crumbs);
+  renderBreadcrumbs(breadcrumb, CG.state.crumbs);
 
   // move elements
   v.local.body.mainContainer.append(...[v.local.card.details].filter(Boolean));
@@ -2648,40 +2660,40 @@ function styleCurriculumPageNoCertificate() {
  * It also checks for the presence of a certificate and applies styles accordingly.
  */
 function handlePageStyling() {
-  if (page.isLogin || page.isSignup)
+  if (CG.page.isLogin || CG.page.isSignup)
     // we are on the login or signup page
     return styleAuth();
 
-  if (page.isCourseDetails)
+  if (CG.page.isCourseDetails)
     // we are on a course page but not logged in
     return styleCourseDetails();
 
-  if (page.isCurriculum)
-    // && !page.hasCertificate)
+  if (CG.page.isCurriculum)
+    // && !CGCourses.page.hasCertificate)
     // we are on a course page (without a certificate) and logged in
     return styleCurriculumPageNoCertificate();
 
-  if (page.isPageDetail)
+  if (CG.page.isPageDetail)
     // we are on the page that shows courses for a given learning path
     return stylePathCourseDetails();
 
-  if (page.isPageCatalog)
+  if (CG.page.isPageCatalog)
     // we are on a learning path and registered for it
     return stylePathCatalogPage();
 
-  if (page.isLesson)
+  if (CG.page.isLesson)
     // we are on a lesson page
     return styleLesson();
 
-  if (page.isCatalog || page.isLanding)
+  if (CG.page.isCatalog || CG.page.isLanding)
     // we are on a catalog page (not currently in use)
     return styleCatalog();
 
-  if (page.is404)
+  if (CG.page.is404)
     // we are on a 404 page
     return style404();
 
-  // if (page.isCurriculum && page.hasCertificate)
+  // if (CGCourses.page.isCurriculum && CGCourses.page.hasCertificate)
   //   // we are on a course page (with a certificate) and logged in
   //   // n.b. this function is not edited and/or tested (and not in use)
   //   return v.viewport === "desktop"
@@ -2716,7 +2728,7 @@ function render() {
 
   handlePageStyling();
 
-  !page.isLesson ? hide(v.global.epFooter) : null;
+  !CG.page.isLesson ? hide(v.global.epFooter) : null;
 }
 
 /**
@@ -2728,51 +2740,51 @@ document.addEventListener("DOMContentLoaded", () => {
   hide(v.global.body);
 
   // DEBUG: adding "cg-staging" for staging server
-  isStaging ? v.global.body.classList.add("cg-staging") : null;
+  CG.state.isStaging ? v.global.body.classList.add("cg-staging") : null;
 
   let innerHTML = [];
 
-  if (isPartner || isInternal) {
+  if (CG.env.isPartner) {
     innerHTML.push(
       `<p style="margin:0"><a href="/page/partners">Partner Courses</a></p>`
     );
   }
 
   // DEBUG: adding info box for internal users
-  if (isAdmin) {
+  if (CG.env.isAdmin) {
     innerHTML.push(`<p style="margin:0">
-        ${page.isLanding ? "styleLanding" : ""}
-        ${page.isCourseDetails ? "styleCourseDetails" : ""}
-        ${page.isPageDetail ? "stylePathCourseDetails" : ""}
-        ${page.isLogin ? "styleAuth" : ""}
-        ${page.isSignup ? "styleAuth" : ""}
+        ${CG.page.isLanding ? "styleLanding" : ""}
+        ${CG.page.isCourseDetails ? "styleCourseDetails" : ""}
+        ${CG.page.isPageDetail ? "stylePathCourseDetails" : ""}
+        ${CG.page.isLogin ? "styleAuth" : ""}
+        ${CG.page.isSignup ? "styleAuth" : ""}
         ${
-          page.isCurriculum && !page.hasCertificate
+          CG.page.isCurriculum && !CG.page.hasCertificate
             ? "styleCurriculumPageNoCertificate"
             : ""
         }
         ${
-          page.isCurriculum && page.hasCertificate
+          CG.page.isCurriculum && CG.page.hasCertificate
             ? "styleCurriculumPageHasCertification"
             : ""
         }
-        ${page.isLesson ? "styleLesson" : ""}
-        ${page.isPageCatalog ? "stylePathCatalogPage" : ""}
+        ${CG.page.isLesson ? "styleLesson" : ""}
+        ${CG.page.isPageCatalog ? "stylePathCatalogPage" : ""}
       </p>`);
 
     innerHTML.push(`<input type="checkbox" id="cg-baseurl-staging" />`);
 
     // Add course edit link
-    if (course.id) {
+    if (CG.state.course.id) {
       innerHTML.push(
-        `<p style="margin:0"><a href="${course.edit}">Edit Course</a></p>`
+        `<p style="margin:0"><a href="${CG.state.course.edit}">Edit Course</a></p>`
       );
     }
 
     // Add path edit link
-    if (course.path.id && CGCourses.state.domain) {
+    if (CG.state.course.path.id && CG.state.domain) {
       innerHTML.push(
-        `<p style="margin:0"><a href="${course.path.edit}">Edit Path</a></p>`
+        `<p style="margin:0"><a href="${CG.state.course.path.edit}">Edit Path</a></p>`
       );
     }
   }
@@ -2808,20 +2820,20 @@ document.addEventListener("DOMContentLoaded", () => {
 */
 // window.addEventListener("resize", () => {
 //   // no need to re-apply styles on resize for the following pages
-//   if (page.isLanding) return;
-//   if (page.isCourseDetails) return;
-//   if (page.isPageDetail) return;
-//   if (page.isLogin) return;
-//   if (page.isSignup) return;
-//   if (page.isCurriculum) return; // && !page.hasCertificate) return;
-//   if (page.isLesson) return;
-//   if (page.isPageCatalog) return;
+//   if (CGCourses.page.isLanding) return;
+//   if (CGCourses.page.isCourseDetails) return;
+//   if (CGCourses.page.isPageDetail) return;
+//   if (CGCourses.page.isLogin) return;
+//   if (CGCourses.page.isSignup) return;
+//   if (CGCourses.page.isCurriculum) return; // && !CGCourses.page.hasCertificate) return;
+//   if (CGCourses.page.isLesson) return;
+//   if (CGCourses.page.isPageCatalog) return;
 
 //   render();
 // });
 
 // Make header white on scroll
-// if (!page.isLesson) {
+// if (!CGCourses.page.isLesson) {
 //   $(document).ready(function () {
 //     v.global.scroll_pos = 0;
 //     $(document).scroll(function () {
@@ -2865,7 +2877,7 @@ function ensureCompletionPopup() {
   const h1 = Object.assign(document.createElement("h1"), {
     id: "completion-title",
     textContent: `Hooray! You finished ${
-      course?.title ? course?.title : "the course!"
+      CG.state.course?.title ? CG.state.course?.title : "the course!"
     }`,
   });
   const p = Object.assign(document.createElement("p"), {
