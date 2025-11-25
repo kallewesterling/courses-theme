@@ -89,8 +89,7 @@ const CG = {
   },
 };
 
-CG.state.isStaging =
-  window.location.hostname === "chainguard-test.skilljar.com";
+CG.state.isStaging = window.location.href.includes("chainguard-test");
 
 if (typeof skilljarUser !== "undefined") {
   if (skilljarUser.email.includes("@chainguard.dev")) {
@@ -105,12 +104,6 @@ if (typeof skilljarUser !== "undefined") {
 }
 
 CG.state.crumbs = [["Home", CG.state.baseURL]];
-
-CG.page.inPartnerPath = Object.values(CONFIG.partners)
-  .map((a) => a.id === CG.state.course.path.id)
-  .filter(Boolean).length
-  ? true
-  : false;
 
 if (typeof skilljarUserStudentGroups !== "undefined") {
   CG.env.isPartner = skilljarUserStudentGroups
@@ -150,7 +143,9 @@ if (CG.page.inPartnerPath) {
 }
 
 if (typeof skilljarCourseSeries !== "undefined") {
-  CG.state.course.path.edit = `https://dashboard.skilljar.com/publishing/domains/${CG.state.domain.id}/published-paths/${skilljarCourseSeries.id}/edit`;
+  CG.state.course.path = Object.assign(skilljarCourseSeries, {
+    edit: `https://dashboard.skilljar.com/publishing/domains/${CG.state.domain.id}/published-paths/${skilljarCourseSeries.id}/edit`,
+  });
   CG.state.crumbs.push([
     skilljarCourseSeries.title,
     `${CG.state.baseURL}/path/${skilljarCourseSeries.slug}`,
@@ -173,6 +168,12 @@ if (typeof skilljarCourseProgress !== "undefined") {
   CG.state.course.progress = skilljarCourseProgress;
   CG.state.course.completed = skilljarCourseProgress.completed_at !== "";
 }
+
+CG.page.inPartnerPath = Object.values(CONFIG.partners)
+  .map((a) => a.id === CG.state.course.path.id)
+  .filter(Boolean).length
+  ? true
+  : false;
 
 // path settings
 const icons = {
