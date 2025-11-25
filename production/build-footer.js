@@ -1,5 +1,12 @@
 const el = (tag, props = {}, children = []) => {
-  const n = document.createElement(tag);
+  if (!tag) return null;
+
+  let n;
+  if (tag === "svg" || tag === "path" || tag === "g" || tag === "defs" || tag === "clipPath") {
+    n = document.createElementNS("http://www.w3.org/2000/svg", tag);
+  } else {
+    n = document.createElement(tag);
+  }
   for (const [k, v] of Object.entries(props)) {
     if (k === "className") n.className = v;
     else if (k === "text") n.textContent = v;
