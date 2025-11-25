@@ -1400,6 +1400,18 @@ function styleCatalog() {
  */
 function style404() {
   console.log("Running style404");
+
+  if (window.location.href.includes("/page/partners")) {
+    let hr = Object.assign(document.createElement("hr"), {
+      style: "width: 100%",
+    });
+    let p = Object.assign(document.createElement("p"), {
+      classList: "sj-text-page-not-found-explanation",
+      innerHTML: `If you are a partner and trying to access our Partner courses, you have to first <a href="/auth/login?next=%2Fpage%2Fpartners">sign in or sign up for our Courses platform</a>.`,
+      style: "margin-top: 5px",
+    });
+    document.querySelector(".message").append(...[hr, p])
+  }
 }
 
 /**
