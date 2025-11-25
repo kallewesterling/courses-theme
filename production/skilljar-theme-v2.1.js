@@ -106,6 +106,10 @@ if (typeof skilljarUser !== "undefined") {
 CG.state.crumbs = [["Home", CG.state.baseURL]];
 
 if (typeof skilljarUserStudentGroups !== "undefined") {
+  CG.env.isInternal = skilljarUserStudentGroups
+    .map((d) => d.id)
+    .includes("a7iai6t7agi9");
+
   CG.env.isPartner = skilljarUserStudentGroups
     .map((d) => d.id)
     .includes("1axsvmzhtbb95");
