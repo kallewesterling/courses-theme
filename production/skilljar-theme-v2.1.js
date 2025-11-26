@@ -82,12 +82,17 @@ const CG = {
     baseURL: `https://${CONFIG.domains.prod.url}`,
     userCourseJourney: {},
     course: { progress: {}, path: {}, completed: false },
-    crumbs: [["Home", ""]],
+    crumbs: [],
   },
   dom: {
     body: document.body,
   },
 };
+
+function addCrumb(label, href, prependBase = false) {
+  if (prependBase) href = `${CG.state.baseURL}${href}`;
+  CG.state.crumbs.push([label, href]);
+}
 
 CG.state.isStaging = window.location.href.includes("chainguard-test");
 
@@ -103,7 +108,7 @@ if (typeof skilljarUser !== "undefined") {
   }
 }
 
-CG.state.crumbs = [["Home", CG.state.baseURL]];
+addCrumb("Home", CG.state.baseURL);
 
 if (typeof skilljarUserStudentGroups !== "undefined") {
   CG.env.isInternal = skilljarUserStudentGroups
@@ -140,20 +145,18 @@ if (Array.from(document.querySelectorAll(".coursebox-container")).length)
   };
 
 if (CG.page.inPartnerPath) {
-  CG.state.crumbs.push([
-    "Partner Courses",
-    `${CG.state.baseURL}/page/partners`,
-  ]);
+  addCrumb("Partner Courses", "/page/partners", true);
 }
 
 if (typeof skilljarCourseSeries !== "undefined") {
   CG.state.course.path = Object.assign(skilljarCourseSeries, {
     edit: `https://dashboard.skilljar.com/publishing/domains/${CG.state.domain.id}/published-paths/${skilljarCourseSeries.id}/edit`,
   });
-  CG.state.crumbs.push([
+  addCrumb(
     skilljarCourseSeries.title,
-    `${CG.state.baseURL}/path/${skilljarCourseSeries.slug}`,
-  ]);
+    `/path/${skilljarCourseSeries.slug}`,
+    true
+  );
 }
 
 if (typeof skilljarCourse !== "undefined") {
@@ -165,7 +168,7 @@ if (typeof skilljarCourse !== "undefined") {
   CG.state.course.long_description_html = skilljarCourse.long_description_html;
   CG.state.course.edit = `https://dashboard.skilljar.com/course/${skilljarCourse.id}`;
 
-  CG.state.crumbs.push([skilljarCourse.title, "#"]);
+  addCrumb(skilljarCourse.title, "#");
 }
 
 if (typeof skilljarCourseProgress !== "undefined") {
