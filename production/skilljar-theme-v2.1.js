@@ -63,6 +63,11 @@ const CG = {
     isPartner: false,
     isOnlyPartner: false,
     isStaging: window.location.href.includes("chainguard-test"),
+    hasUser: typeof skilljarUser !== "undefined",
+    hasGroups: typeof skilljarUserStudentGroups !== "undefined",
+    hasCourseSeries: typeof skilljarCourseSeries !== "undefined",
+    hasCourse: typeof skilljarCourse !== "undefined",
+    hasCourseProgress: typeof skilljarCourseProgress !== "undefined",
   },
   page: {
     isCatalog: c(".sj-page-catalog"),
@@ -86,6 +91,14 @@ const CG = {
   },
   dom: {
     body: document.body,
+    footerContainer: document.querySelector("#footer-container"),
+    contentContainer: CG.page.isLesson
+      ? document.querySelector(".sj-page-lesson")
+      : document.querySelector("#skilljar-content"),
+    epFooter: document.querySelector("#ep-footer"),
+    footerCols: document.querySelectorAll(
+      "#footer-container .global-footer-column"
+    ),
   },
 };
 
@@ -94,7 +107,7 @@ function addCrumb(label, href, prependBase = false) {
   CG.state.crumbs.push([label, href]);
 }
 
-if (typeof skilljarUser !== "undefined") {
+if (CG.env.hasUser) {
   if (skilljarUser.email.includes("@chainguard.dev")) {
     CG.env.isInternal = true;
     CG.env.isPartner = true; // internal users get partner access
@@ -108,7 +121,7 @@ if (typeof skilljarUser !== "undefined") {
 
 addCrumb("Home", CG.state.baseURL);
 
-if (typeof skilljarUserStudentGroups !== "undefined") {
+if (CG.env.hasGroups) {
   CG.env.isInternal = skilljarUserStudentGroups
     .map((d) => d.id)
     .includes("a7iai6t7agi9");
@@ -146,7 +159,7 @@ if (CG.page.inPartnerPath) {
   addCrumb("Partner Courses", "/page/partners", true);
 }
 
-if (typeof skilljarCourseSeries !== "undefined") {
+if (CG.env.hasCourseSeries) {
   CG.state.course.path = Object.assign(skilljarCourseSeries, {
     edit: `https://dashboard.skilljar.com/publishing/domains/${CG.state.domain.id}/published-paths/${skilljarCourseSeries.id}/edit`,
   });
@@ -157,7 +170,7 @@ if (typeof skilljarCourseSeries !== "undefined") {
   );
 }
 
-if (typeof skilljarCourse !== "undefined") {
+if (CG.env.hasCourse) {
   CG.state.course.id = skilljarCourse.id;
   CG.state.course.publishedCourseId = skilljarCourse.publishedCourseId;
   CG.state.course.tags = skilljarCourse.tags;
@@ -169,7 +182,7 @@ if (typeof skilljarCourse !== "undefined") {
   addCrumb(skilljarCourse.title, "#");
 }
 
-if (typeof skilljarCourseProgress !== "undefined") {
+if (CG.env.hasCourseProgress) {
   CG.state.course.progress = skilljarCourseProgress;
   CG.state.course.completed = skilljarCourseProgress.completed_at !== "";
 }
@@ -686,7 +699,7 @@ pathSections = {
   ],
 };
 
-const showBody = () => setStyle(v.global.body, { display: undefined });
+const showBody = () => setStyle(CG.dom.body, { display: undefined });
 
 /*
  * Renders a breadcrumb navigation element.
@@ -970,20 +983,6 @@ function createResourceCard(resource) {
 let v = {
   viewport: "", // "mobile" or "desktop"
   width: 0, // current viewport width
-
-  // elements
-  global: {
-    body: document.querySelector("body"),
-    logo: document.querySelector(".header-center-img"),
-    footerContainer: document.querySelector("#footer-container"),
-    footerCols: document.querySelectorAll(
-      "#footer-container .global-footer-column"
-    ),
-    epFooter: document.querySelector("#ep-footer"),
-    contentContainer: CG.page.isLesson
-      ? document.querySelector(".sj-page-lesson")
-      : document.querySelector("#skilljar-content"),
-  },
 };
 
 function getCurriculumElements(curriculumParentContainer) {
@@ -1347,12 +1346,10 @@ function styleCatalog() {
       CG.state.baseURL
     );
 
-    document
-      .querySelector("#skilljar-content")
-      .append(v.global.footerContainer);
+    CG.dom.contentContainer
+      .append(CG.dom.footerContainer);
 
-    document
-      .querySelector("#skilljar-content")
+    CG.dom.contentContainer
       .prepend(document.querySelector("#messages"));
 
     v.local.catalogBodyParentContainer.append(v.local.catalogContainer);
@@ -1538,13 +1535,9 @@ function stylePathCourseDetails() {
       `${CG.state.baseURL}/path/${skilljarPath.slug}`
     );
 
-    document
-      .querySelector("#skilljar-content")
-      .append(v.global.footerContainer);
+    CG.dom.contentContainer.append(CG.dom.footerContainer);
 
-    document
-      .querySelector("#skilljar-content")
-      .prepend(document.querySelector("#messages"));
+    CG.dom.contentContainer.prepend(document.querySelector("#messages"));
   } else {
     console.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
   }
@@ -1627,9 +1620,7 @@ function stylePathCatalogPage() {
   detailsBundle.append(detailsBundleRow);
 
   // prepend topRow and detailsBundle to content
-  document
-    .querySelector("#skilljar-content")
-    .prepend(...[topRow, detailsBundle].filter(Boolean));
+  CG.dom.contentContainer.prepend(...[topRow, detailsBundle].filter(Boolean));
 
   if (pathSections[skilljarPath.slug]) {
     hide(".sj-courseboxes-v2");
@@ -1640,13 +1631,9 @@ function stylePathCatalogPage() {
       `${CG.state.baseURL}/path/${skilljarPath.slug}`
     );
 
-    document
-      .querySelector("#skilljar-content")
-      .append(v.global.footerContainer);
+    CG.dom.contentContainer.append(CG.dom.footerContainer);
 
-    document
-      .querySelector("#skilljar-content")
-      .prepend(document.querySelector("#messages"));
+    CG.dom.contentContainer.prepend(document.querySelector("#messages"));
   } else {
     console.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
   }
@@ -1990,9 +1977,7 @@ function styleAuth() {
 
   authContainer.append(...[document.querySelector("#tabs"), authCard]);
 
-  document
-    .querySelector("#skilljar-content")
-    .append(...[authContainer, v.global.footerContainer]);
+  CG.dom.contentContainer.append(...[authContainer, CG.dom.footerContainer]);
 }
 
 function styleCurriculumPageNoCertificate() {
@@ -2616,21 +2601,21 @@ function render() {
   // set current view based on width
   v.viewport = v.width <= 991 ? "mobile" : "desktop";
 
-  setStyle(v.global.footerContainer, {
+  setStyle(CG.dom.footerContainer, {
     display: "flex",
     paddingLeft: v.viewport === "desktop" ? "40px" : "0",
     paddingRight: v.viewport === "desktop" ? "40px" : "0",
   });
 
-  setStyle(v.global.footerCols, {
+  setStyle(CG.dom.footerCols, {
     width: v.viewport === "desktop" ? "270px" : "212px",
   });
 
-  v.global.contentContainer.append(v.global.footerContainer);
+  CG.dom.contentContainer.append(CG.dom.footerContainer);
 
   handlePageStyling();
 
-  !CG.page.isLesson ? hide(v.global.epFooter) : null;
+  !CG.page.isLesson ? hide(CG.dom.epFooter) : null;
 }
 
 /**
@@ -2639,10 +2624,10 @@ function render() {
 */
 document.addEventListener("DOMContentLoaded", () => {
   // hide all
-  hide(v.global.body);
+  hide(CG.dom.body);
 
   // DEBUG: adding "cg-staging" for staging server
-  CG.state.isStaging ? v.global.body.classList.add("cg-staging") : null;
+  CG.state.isStaging ? CG.dom.body.classList.add("cg-staging") : null;
 
   let innerHTML = [];
 
