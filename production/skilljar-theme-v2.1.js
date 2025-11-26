@@ -932,7 +932,7 @@ function createClone(
   return el(
     "svg",
     attrs,
-    CONFIG.paths[type].map((d) => el("path", { d }))
+    CONFIG.iconPaths[type].map((d) => el("path", { d }))
   );
 }
 
