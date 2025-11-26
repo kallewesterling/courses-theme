@@ -780,7 +780,7 @@ const logger = {
     if (!this.enabled()) return;
     const style = "color: darkred; font-weight: 600;";
     console.error(`%c[CG] ${message}`, style, ...args);
-  }
+  },
 };
 
 /*
@@ -930,63 +930,43 @@ function createClone(type = "checkbox") {
 }
 
 function createResourceCard(resource) {
-  // ---- Link with optional UTM ----
-  let link;
+  let href;
   if (resource.addUTM) {
     const url = new URL(resource.link);
     url.searchParams.set("utm_source", "courses");
     url.searchParams.set("utm_medium", "referral");
     url.searchParams.set("utm_campaign", "dev-enablement");
-    link = url.toString();
+    href = url.toString();
   } else {
-    link = resource.link;
+    href = resource.link;
   }
 
-  // ---- Outer link wrapper ----
-  const linkWrapper = el("a", {
-    href: link,
-    target: "_blank",
-    className: "resource-link-wrapper", // style like a block if needed
-  });
+  return el(
+    "a",
+    { href, target: "_blank", className: "resource-link-wrapper" },
+    [
+      el("div", { className: "resource-card" }, [
+        el(
+          "div",
+          { className: "card-body" },
+          [
+            Array.isArray(resource.tags) && resource.tags.length > 0
+              ? el(
+                  "div",
+                  { className: "badge-container" },
+                  resource.tags.forEach((tag) =>
+                    el("div", { className: "badge", text: tag })
+                  )
+                )
+              : undefined,
 
-  // ---- Card container ----
-  const card = el("div", {
-    className: "resource-card",
-  });
-
-  const cardWrapper = el("div", {
-    className: "card-body",
-  });
-
-  // ---- Badges before title ----
-  if (Array.isArray(resource.tags) && resource.tags.length > 0) {
-    const badgeContainer = el("div", {
-      className: "badge-container",
-    });
-
-    resource.tags.forEach((tag) => {
-      const badge = el("div", {
-        className: "badge",
-        textContent: tag,
-      });
-      badgeContainer.appendChild(badge);
-    });
-
-    cardWrapper.appendChild(badgeContainer);
-  }
-
-  // ---- Title ----
-  const titleEl = el("h5", {
-    className: "card-title",
-    textContent: resource.title,
-  });
-  cardWrapper.appendChild(titleEl);
-
-  // ---- Assemble ----
-  card.appendChild(cardWrapper);
-  linkWrapper.appendChild(card);
-
-  return linkWrapper;
+            // title
+            el("h5", { className: "card-title", text: resource.title }),
+          ].filter(Boolean)
+        ),
+      ]),
+    ]
+  );
 }
 
 let v = {
@@ -1342,9 +1322,7 @@ function styleCatalog() {
   } else if (CG.page.isLanding) {
     sectionName = "home";
   } else {
-    logger.warn(
-      "Could not determine catalog section name, defaulting to home"
-    );
+    logger.warn("Could not determine catalog section name, defaulting to home");
     sectionName = "home";
   }
 
