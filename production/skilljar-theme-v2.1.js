@@ -993,7 +993,7 @@ function createClone(
     width: "20",
     height: "21",
     viewBox: "0 0 20 21",
-    fill: "none",
+    // fill: "none",
   }
 ) {
   if (!CONFIG.icons[type]) {
