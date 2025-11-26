@@ -2215,3 +2215,17 @@ body.sj-page-signup {
     transition: none;
   }
 }
+
+svg.clone-icon {
+  display: block;
+
+  & .copy-icon {
+    fill: var(--primary-blue-hex);
+    cursor: pointer;
+  }
+
+  & .checkbox-icon {
+    fill: var(--answer-option);
+    flex-shrink: 0;
+  }
+}
