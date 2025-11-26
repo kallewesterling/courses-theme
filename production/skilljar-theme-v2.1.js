@@ -162,10 +162,6 @@ if (Array.from(document.querySelectorAll(".coursebox-container")).length)
     ).map((elem) => elem.dataset.course),
   };
 
-if (CG.page.inPartnerPath) {
-  addCrumb("Partner Courses", "/page/partners", true);
-}
-
 if (CG.env.hasCourseSeries) {
   CG.state.course.path = Object.assign(skilljarCourseSeries, {
     edit: `https://dashboard.skilljar.com/publishing/domains/${CG.state.domain.id}/published-paths/${skilljarCourseSeries.id}/edit`,
@@ -199,6 +195,10 @@ CG.page.inPartnerPath = Object.values(CONFIG.partners)
   .filter(Boolean).length
   ? true
   : false;
+
+if (CG.page.inPartnerPath) {
+  addCrumb("Partner Courses", "/page/partners", true);
+}
 
 // path settings
 const icons = {
