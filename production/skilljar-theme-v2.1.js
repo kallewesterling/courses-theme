@@ -68,7 +68,6 @@ const CONFIG = {
     bookmark: {
       attrs: {
         version: "1.1",
-        xmlns: "http://www.w3.org/2000/svg",
         "xmlns:xlink": "http://www.w3.org/1999/xlink",
         viewBox: "0 0 963.4 963.4",
         xmlSpace: "preserve",
@@ -80,12 +79,64 @@ const CONFIG = {
     },
     burger: {
       attrs: {
-        xmlns: "http://www.w3.org/2000/svg",
         width: "24",
         height: "24",
-        fill: "currentColor",
       },
       paths: ["M4 4h16v2H4V4Zm0 7h16v2H4v-2Zm0 7h16v2H4v-2Z"],
+    },
+    chainguard: {
+      attrs: {
+        width: "30",
+        height: "27",
+        viewBox: "0 0 30 27",
+      },
+      paths: [
+        "M24.7199 16.1854C24.9569 15.368 25.0857 14.4724 25.0857 13.4982C25.0857 7.40502 20.047 0.546799 15.0146 0.546799C9.98217 0.546799 4.94345 7.40502 4.94345 13.4982C4.94345 14.8267 5.18298 16.0092 5.60976 17.0461L2.58476 16.876C1.35268 16.8067 0.217578 17.6851 0.409743 18.9041C0.484274 19.3769 0.626315 19.8608 0.879992 20.2788C0.0236265 20.8812 -0.326192 21.9885 0.367699 22.8564C1.06428 23.7277 2.08704 24.5305 3.49093 24.5305C5.01364 24.5305 5.93005 24.137 6.48659 23.6428C6.52721 23.8586 6.61101 24.0711 6.7433 24.2719C7.42673 25.3095 8.55862 26.4501 10.232 26.4501C13.0786 26.4501 13.3961 24.6622 13.5554 23.765C13.5679 23.6948 13.5794 23.6301 13.591 23.572L15.4933 22.6207L17.3956 23.572C17.4072 23.63 17.4187 23.6947 17.4312 23.7648L17.4312 23.765C17.5905 24.6622 17.908 26.4501 20.7546 26.4501C22.428 26.4501 23.5599 25.3095 24.2433 24.2719C24.2702 24.2311 24.2951 24.1898 24.318 24.1481C24.8542 24.38 25.5641 24.5305 26.506 24.5305C27.9099 24.5305 28.9327 23.7277 29.6292 22.8564C30.4824 21.7893 29.7577 20.3602 28.4536 19.9528L28.0227 19.8181C29.2881 19.1624 29.4743 17.9255 29.3387 16.8418C29.1856 15.6172 27.8516 15.0879 26.687 15.496L24.7199 16.1854ZM15.4951 22.603C15.494 22.603 15.4929 22.603 15.4917 22.6031L15.4933 22.6039L15.4951 22.603Z",
+      ],
+    },
+    lightning: {
+      attrs: {
+        width: "24",
+        height: "24",
+        viewBox: "0 0 24 24",
+      },
+      paths: ["M13.5 2 5 13h6l-1.2 9L19 11h-6l.5-9z"],
+    },
+    star: {
+      attrs: {
+        width: "24",
+        height: "24",
+      },
+      paths: ["M12 2 15 8 22 9 17 14l1 7-6-3-6 3 1-7-5-5 7-1 3-6Z"],
+    },
+    shield: {
+      attrs: {
+        width: "21",
+        height: "25",
+        viewBox: "0 0 21 25",
+      },
+      paths: [
+        "M10.5 0.309998L0.748047 3.967V11.3907C0.748047 17.5467 4.90484 23.2881 10.5 24.69C16.0953 23.2881 20.252 17.5467 20.252 11.3907V3.967L10.5 0.309998ZM17.814 11.3907C17.814 16.2667 14.7056 20.777 10.5 22.1545C6.2945 20.777 3.18605 16.2789 3.18605 11.3907V5.66141L10.5 2.91866L17.814 5.66141V11.3907Z",
+      ],
+    },
+    frames: {
+      attrs: {
+        width: "29",
+        height: "29",
+        viewBox: "0 0 29 29",
+      },
+      paths: [
+        "M14.9488 28.3542C14.2121 28.3542 13.5886 28.099 13.0782 27.5885C12.5677 27.0781 12.3125 26.4546 12.3125 25.7179V14.9488C12.3125 14.2121 12.5677 13.5885 13.0782 13.0781C13.5886 12.5677 14.2121 12.3125 14.9488 12.3125H25.7179C26.4546 12.3125 27.0782 12.5677 27.5886 13.0781C28.099 13.5885 28.3542 14.2121 28.3542 14.9488V25.7179C28.3542 26.4546 28.099 27.0781 27.5886 27.5885C27.0782 28.099 26.4546 28.3542 25.7179 28.3542H14.9488ZM14.9488 26.1667H25.7179C25.8302 26.1667 25.933 26.1199 26.0263 26.0263C26.1199 25.933 26.1667 25.8302 26.1667 25.7179V14.9488C26.1667 14.8365 26.1199 14.7337 26.0263 14.6404C25.933 14.5468 25.8302 14.5 25.7179 14.5H14.9488C14.8366 14.5 14.7337 14.5468 14.6404 14.6404C14.5468 14.7337 14.5 14.8365 14.5 14.9488V25.7179C14.5 25.8302 14.5468 25.933 14.6404 26.0263C14.7337 26.1199 14.8366 26.1667 14.9488 26.1667ZM6.47921 22.6889V9.11546C6.47921 8.37876 6.73442 7.7552 7.24483 7.24479C7.75525 6.73437 8.37881 6.47916 9.11551 6.47916H22.6889V8.66666H9.11551C9.00322 8.66666 8.90041 8.71345 8.80707 8.80703C8.7135 8.90036 8.66671 9.00317 8.66671 9.11546V22.6889H6.47921ZM0.645874 16.8556V3.28213C0.645874 2.54543 0.901082 1.92187 1.4115 1.41145C1.92192 0.901037 2.54547 0.645828 3.28218 0.645828H16.8556V2.83333H3.28218C3.16988 2.83333 3.06707 2.88012 2.97374 2.97369C2.88016 3.06703 2.83337 3.16984 2.83337 3.28213V16.8556H0.645874Z",
+      ],
+    },
+    classBurger: {
+      attrs: {
+        width: "24",
+        height: "24",
+      },
+      paths: [
+        "M4 6h16v2H4V6Zm0 5h16v2H4v-2Zm0 5h16v2H4v-2Z",
+      ],
     },
   },
 };
@@ -259,14 +310,14 @@ pathSections = {
               slug: "build-your-first-chainguard-container",
               description:
                 "This course is designed to teach new Chainguard engineers how to build container images.",
-              icon: `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="27" viewBox="0 0 30 27" fill="none"><path class="fill-current text-[#14003D] group-hover:text-white" fill-rule="evenodd" clip-rule="evenodd" d="M24.7199 16.1854C24.9569 15.368 25.0857 14.4724 25.0857 13.4982C25.0857 7.40502 20.047 0.546799 15.0146 0.546799C9.98217 0.546799 4.94345 7.40502 4.94345 13.4982C4.94345 14.8267 5.18298 16.0092 5.60976 17.0461L2.58476 16.876C1.35268 16.8067 0.217578 17.6851 0.409743 18.9041C0.484274 19.3769 0.626315 19.8608 0.879992 20.2788C0.0236265 20.8812 -0.326192 21.9885 0.367699 22.8564C1.06428 23.7277 2.08704 24.5305 3.49093 24.5305C5.01364 24.5305 5.93005 24.137 6.48659 23.6428C6.52721 23.8586 6.61101 24.0711 6.7433 24.2719C7.42673 25.3095 8.55862 26.4501 10.232 26.4501C13.0786 26.4501 13.3961 24.6622 13.5554 23.765C13.5679 23.6948 13.5794 23.6301 13.591 23.572L15.4933 22.6207L17.3956 23.572C17.4072 23.63 17.4187 23.6947 17.4312 23.7648L17.4312 23.765C17.5905 24.6622 17.908 26.4501 20.7546 26.4501C22.428 26.4501 23.5599 25.3095 24.2433 24.2719C24.2702 24.2311 24.2951 24.1898 24.318 24.1481C24.8542 24.38 25.5641 24.5305 26.506 24.5305C27.9099 24.5305 28.9327 23.7277 29.6292 22.8564C30.4824 21.7893 29.7577 20.3602 28.4536 19.9528L28.0227 19.8181C29.2881 19.1624 29.4743 17.9255 29.3387 16.8418C29.1856 15.6172 27.8516 15.0879 26.687 15.496L24.7199 16.1854ZM15.4951 22.603C15.494 22.603 15.4929 22.603 15.4917 22.6031L15.4933 22.6039L15.4951 22.603Z" fill="#14003D"></path></svg>`,
+              icon: "chainguard",
             },
             CG.env.isAdmin
               ? {
                   isPath: true,
                   isCourse: false,
                   hasBadge: true,
-                  icon: icons.burger,
+                  icon: "burger",
                   title: "Painless Vulnerability Management",
                   slug: "path/painless-vulnerability-management",
                   description:
@@ -291,7 +342,7 @@ pathSections = {
           slug: "linkys-crash-course-on-chainguard-images",
           description:
             "A fast, focused overview to get you started—from setup and registry basics to vulnerability management and support.",
-          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 2 5 13h6l-1.2 9L19 11h-6l.5-9z"/></svg>`,
+          icon: "lightning",
         },
         {
           isPath: true,
@@ -301,7 +352,7 @@ pathSections = {
           slug: "path/chainguard-containers-onboarding-guide",
           description:
             "A full 14-course path taking you from container image basics through migration, debugging, and registry mirroring.",
-          icon: icons.burger,
+          icon: "burger",
         },
       ],
     },
@@ -319,7 +370,7 @@ pathSections = {
           slug: "getting-started-with-chainguards-custom-assembly",
           description:
             "Quickly and securely customize your Chainguard Images—no Dockerfile required.",
-          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M12 2 15 8 22 9 17 14l1 7-6-3-6 3 1-7-5-5 7-1 3-6Z"/></svg>`,
+          icon: "star",
         },
         {
           isPath: false,
@@ -329,7 +380,7 @@ pathSections = {
           slug: "getting-started-with-chainguards-dockerfile-converter",
           description:
             "Convert Dockerfiles to secure, minimal Chainguard Containers with the Dockerfile Converter CLI.",
-          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M12 2 15 8 22 9 17 14l1 7-6-3-6 3 1-7-5-5 7-1 3-6Z"/></svg>`,
+          icon: "star",
         },
       ],
     },
@@ -357,7 +408,7 @@ pathSections = {
           slug: "get-spicy-with-slsa-securing-your-supply-chain-one-level-at-a-time",
           description:
             "Understand SLSA, how Chainguard helps you meet it, and why it matters now more than ever.",
-          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="21" height="25" viewBox="0 0 21 25" fill="none"><path class="fill-current text-[#14003D] group-hover:text-white" d="M10.5 0.309998L0.748047 3.967V11.3907C0.748047 17.5467 4.90484 23.2881 10.5 24.69C16.0953 23.2881 20.252 17.5467 20.252 11.3907V3.967L10.5 0.309998ZM17.814 11.3907C17.814 16.2667 14.7056 20.777 10.5 22.1545C6.2945 20.777 3.18605 16.2789 3.18605 11.3907V5.66141L10.5 2.91866L17.814 5.66141V11.3907Z" fill="#14003D"></path></svg>`,
+          icon: "shield",
         },
         {
           isPath: false,
@@ -367,7 +418,7 @@ pathSections = {
           slug: "securing-ai",
           description:
             "Unpack threats, tools, and standards shaping MLSecOps—protect models, datasets, and AI/ML pipelines.",
-          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none"><path class="fill-current text-[#14003D] group-hover:text-white" d="M14.9488 28.3542C14.2121 28.3542 13.5886 28.099 13.0782 27.5885C12.5677 27.0781 12.3125 26.4546 12.3125 25.7179V14.9488C12.3125 14.2121 12.5677 13.5885 13.0782 13.0781C13.5886 12.5677 14.2121 12.3125 14.9488 12.3125H25.7179C26.4546 12.3125 27.0782 12.5677 27.5886 13.0781C28.099 13.5885 28.3542 14.2121 28.3542 14.9488V25.7179C28.3542 26.4546 28.099 27.0781 27.5886 27.5885C27.0782 28.099 26.4546 28.3542 25.7179 28.3542H14.9488ZM14.9488 26.1667H25.7179C25.8302 26.1667 25.933 26.1199 26.0263 26.0263C26.1199 25.933 26.1667 25.8302 26.1667 25.7179V14.9488C26.1667 14.8365 26.1199 14.7337 26.0263 14.6404C25.933 14.5468 25.8302 14.5 25.7179 14.5H14.9488C14.8366 14.5 14.7337 14.5468 14.6404 14.6404C14.5468 14.7337 14.5 14.8365 14.5 14.9488V25.7179C14.5 25.8302 14.5468 25.933 14.6404 26.0263C14.7337 26.1199 14.8366 26.1667 14.9488 26.1667ZM6.47921 22.6889V9.11546C6.47921 8.37876 6.73442 7.7552 7.24483 7.24479C7.75525 6.73437 8.37881 6.47916 9.11551 6.47916H22.6889V8.66666H9.11551C9.00322 8.66666 8.90041 8.71345 8.80707 8.80703C8.7135 8.90036 8.66671 9.00317 8.66671 9.11546V22.6889H6.47921ZM0.645874 16.8556V3.28213C0.645874 2.54543 0.901082 1.92187 1.4115 1.41145C1.92192 0.901037 2.54547 0.645828 3.28218 0.645828H16.8556V2.83333H3.28218C3.16988 2.83333 3.06707 2.88012 2.97374 2.97369C2.88016 3.06703 2.83337 3.16984 2.83337 3.28213V16.8556H0.645874Z" fill="#14003D"></path></svg>`,
+          icon: "frames",
         },
       ],
     },
@@ -386,7 +437,7 @@ pathSections = {
               slug: "path/linkys-guide-to-chainguard-images",
               description:
                 "This learning path is being sunset. An 8-course path covering implementation, management, and best practices for Chainguard Containers.",
-              icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M4 6h16v2H4V6Zm0 5h16v2H4v-2Zm0 5h16v2H4v-2Z"/></svg>`,
+              icon: "classBurger",
             },
           ],
         }
@@ -938,6 +989,7 @@ function makeSections(
 function createClone(
   type = "checkbox",
   attrs = {
+    xmlns: "http://www.w3.org/2000/svg",
     width: "20",
     height: "21",
     viewBox: "0 0 20 21",
