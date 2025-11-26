@@ -201,9 +201,7 @@ if (CG.env.hasCourseProgress) {
 
 CG.page.inPartnerPath = Object.values(CONFIG.partners)
   .map((a) => a.id === CG.state.course.path.id)
-  .filter(Boolean).length
-  ? true
-  : false;
+  .filter(Boolean).length > 0;
 
 if (CG.page.inPartnerPath) {
   addCrumb("Partner Courses", "/page/partners", true);
