@@ -954,7 +954,7 @@ function createResourceCard(resource) {
               ? el(
                   "div",
                   { className: "badge-container" },
-                  resource.tags.forEach((tag) =>
+                  resource.tags.map((tag) =>
                     el("div", { className: "badge", text: tag })
                   )
                 )
