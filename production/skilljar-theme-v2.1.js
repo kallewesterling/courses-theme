@@ -2650,43 +2650,6 @@ document.addEventListener("DOMContentLoaded", () => {
   showBody();
 });
 
-/* 
-  This event is fired when the entire page is fully loaded, including all dependent resources such as stylesheets and images.
-  It is a good place to run scripts that need to ensure all resources are available before executing.
-*/
-// window.addEventListener("resize", () => {
-//   // no need to re-apply styles on resize for the following pages
-//   if (CGCourses.page.isLanding) return;
-//   if (CGCourses.page.isCourseDetails) return;
-//   if (CGCourses.page.isPageDetail) return;
-//   if (CGCourses.page.isLogin) return;
-//   if (CGCourses.page.isSignup) return;
-//   if (CGCourses.page.isCurriculum) return; // && !CGCourses.page.hasCertificate) return;
-//   if (CGCourses.page.isLesson) return;
-//   if (CGCourses.page.isPageCatalog) return;
-
-//   render();
-// });
-
-// Make header white on scroll
-// if (!CGCourses.page.isLesson) {
-//   $(document).ready(function () {
-//     v.global.scroll_pos = 0;
-//     $(document).scroll(function () {
-//       v.global.scroll_pos = $(this).scrollTop();
-//       if (v.global.scroll_pos > 60) {
-//         setStyle(document.querySelector("header"), {
-//           backgroundColor: "white !important",
-//         });
-//       } else {
-//         setStyle(document.querySelector("header"), {
-//           backgroundColor: "transparent !important",
-//         });
-//       }
-//     });
-//   });
-// }
-
 /**
  * Inject overlay HTML once
  */
