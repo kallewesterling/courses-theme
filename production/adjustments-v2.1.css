@@ -2229,3 +2229,15 @@ svg.clone-icon {
     flex-shrink: 0;
   }
 }
+
+.sj-page-error-404 {
+  .message {
+    hr {
+      width: 100% !important;
+    }
+
+    .sj-text-page-not-found-explanation {
+      margin-top: 5px !important;
+    }
+  }
+}

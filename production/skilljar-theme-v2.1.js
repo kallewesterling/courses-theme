@@ -150,6 +150,7 @@ const CG = {
     hasGroups: typeof skilljarUserStudentGroups !== "undefined",
     hasCourseSeries: typeof skilljarCourseSeries !== "undefined",
     hasCourse: typeof skilljarCourse !== "undefined",
+    hasCatalogPage: typeof skilljarCatalogPage !== "undefined",
     hasCourseProgress: typeof skilljarCourseProgress !== "undefined",
     hasCourseBoxes: [...document.querySelectorAll(".coursebox-container")]
       .length,
@@ -1416,13 +1417,15 @@ function style404() {
   logger.info("Running style404");
 
   if (CG.page.isPartner404) {
-    let hr = el("hr", { style: "width: 100%" });
-    let p = el("p", {
-      classList: "sj-text-page-not-found-explanation",
-      innerHTML: `If you are a partner and trying to access our Partner courses, you have to first <a href="/auth/login?next=%2Fpage%2Fpartners">sign in or sign up for our Courses platform</a>.`,
-      style: "margin-top: 5px",
-    });
-    document.querySelector(".message").append(...[hr, p]);
+    document.querySelector(".message").append(
+      ...[
+        el("hr"),
+        el("p", {
+          classList: "sj-text-page-not-found-explanation",
+          innerHTML: `If you are a partner and trying to access our Partner courses, you have to first <a href="/auth/login?next=%2Fpage%2Fpartners">sign in or sign up for our Courses platform</a>.`,
+        }),
+      ]
+    );
   }
 }
 
