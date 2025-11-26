@@ -970,7 +970,6 @@ function createResourceCard(resource) {
 }
 
 let v = {
-  viewport: "", // "mobile" or "desktop"
   width: 0, // current viewport width
 };
 
@@ -1333,8 +1332,6 @@ function styleCatalog() {
       CG.state.baseURL
     );
 
-    CG.dom.contentContainer.append(CG.dom.footerContainer);
-
     CG.dom.contentContainer.prepend(document.querySelector("#messages"));
 
     v.local.catalogBodyParentContainer.append(v.local.catalogContainer);
@@ -1520,8 +1517,6 @@ function stylePathCourseDetails() {
       `${CG.state.baseURL}/path/${skilljarPath.slug}`
     );
 
-    CG.dom.contentContainer.append(CG.dom.footerContainer);
-
     CG.dom.contentContainer.prepend(document.querySelector("#messages"));
   } else {
     logger.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
@@ -1615,8 +1610,6 @@ function stylePathCatalogPage() {
       "#skilljar-content",
       `${CG.state.baseURL}/path/${skilljarPath.slug}`
     );
-
-    CG.dom.contentContainer.append(CG.dom.footerContainer);
 
     CG.dom.contentContainer.prepend(document.querySelector("#messages"));
   } else {
@@ -1962,7 +1955,7 @@ function styleAuth() {
 
   authContainer.append(...[document.querySelector("#tabs"), authCard]);
 
-  CG.dom.contentContainer.append(...[authContainer, CG.dom.footerContainer]);
+  CG.dom.contentContainer.append(authContainer);
 }
 
 function styleCurriculumPageNoCertificate() {
@@ -2571,36 +2564,9 @@ function handlePageStyling() {
   const match = pageHandlers.find(({ test }) => test());
   if (match) match.handler();
   else logger.warn("No page styling handler matched for this page.");
-}
-
-/**
- * This function renders the course page based on the current view (desktop or mobile).
- * It checks the window width and applies appropriate styles for different page types.
- */
-function render() {
-  v.width =
-    window.innerWidth ||
-    document.documentElement.clientWidth ||
-    document.body.clientWidth;
-
-  // set current view based on width
-  v.viewport = v.width <= 991 ? "mobile" : "desktop";
-
-  setStyle(CG.dom.footerContainer, {
-    display: "flex",
-    paddingLeft: v.viewport === "desktop" ? "40px" : "0",
-    paddingRight: v.viewport === "desktop" ? "40px" : "0",
-  });
-
-  setStyle(CG.dom.footerCols, {
-    width: v.viewport === "desktop" ? "270px" : "212px",
-  });
 
   CG.dom.contentContainer.append(CG.dom.footerContainer);
-
-  handlePageStyling();
-
-  !CG.page.isLesson ? hide(CG.dom.epFooter) : null;
+  hide(CG.dom.epFooter)
 }
 
 /**
@@ -2610,6 +2576,9 @@ function render() {
 document.addEventListener("DOMContentLoaded", () => {
   // hide all
   hide(CG.dom.body);
+  
+  // remove search container
+  document.querySelector(".search-container")?.remove();
 
   // DEBUG: adding "cg-staging" for staging server
   CG.state.isStaging ? CG.dom.body.classList.add("cg-staging") : null;
@@ -2675,12 +2644,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // remove search container
-  document.querySelector(".search-container")?.remove();
-
-  // render + set initalLoadComplete
-  render();
-  // initialLoadComplete = true;
+  handlePageStyling();
 
   // show all
   showBody();
