@@ -877,14 +877,6 @@ function makeSections(
 }
 
 function createClone(type = "checkbox") {
-  // function createSvgElement(tag, attrs = {}) {
-  //   const elem = document.createElementNS("http://www.w3.org/2000/svg", tag);
-  //   Object.entries(attrs).forEach(([key, value]) => {
-  //     elem.setAttribute(key, value);
-  //   });
-  //   return elem;
-  // }
-
   const attrs = {
     className: `${type}-icon`,
     width: "20",
@@ -898,8 +890,6 @@ function createClone(type = "checkbox") {
       (type === "copy" ? "cursor: pointer;" : "") +
       (type === "checkbox" ? "flex-shrink: 0;" : ""),
   };
-
-  const svg = el("svg", attrs);
 
   let path;
   switch (type) {
@@ -916,9 +906,7 @@ function createClone(type = "checkbox") {
       break;
   }
 
-  svg.appendChild(path);
-
-  return svg;
+  return el("svg", attrs, [path]);
 }
 
 function createResourceCard(resource) {
