@@ -62,7 +62,7 @@ const CG = {
     isAdmin: false,
     isPartner: false,
     isOnlyPartner: false,
-    isStaging: false,
+    isStaging: window.location.href.includes("chainguard-test"),
   },
   page: {
     isCatalog: c(".sj-page-catalog"),
@@ -93,8 +93,6 @@ function addCrumb(label, href, prependBase = false) {
   if (prependBase) href = `${CG.state.baseURL}${href}`;
   CG.state.crumbs.push([label, href]);
 }
-
-CG.state.isStaging = window.location.href.includes("chainguard-test");
 
 if (typeof skilljarUser !== "undefined") {
   if (skilljarUser.email.includes("@chainguard.dev")) {
@@ -2588,7 +2586,10 @@ function styleCurriculumPageNoCertificate() {
 const pageHandlers = [
   { test: () => CG.page.isLogin || CG.page.isSignup, handler: styleAuth },
   { test: () => CG.page.isCourseDetails, handler: styleCourseDetails },
-  { test: () => CG.page.isCurriculum, handler: styleCurriculumPageNoCertificate },
+  {
+    test: () => CG.page.isCurriculum,
+    handler: styleCurriculumPageNoCertificate,
+  },
   { test: () => CG.page.isPageDetail, handler: stylePathCourseDetails },
   { test: () => CG.page.isPageCatalog, handler: stylePathCatalogPage },
   { test: () => CG.page.isLesson, handler: styleLesson },
@@ -2598,7 +2599,7 @@ const pageHandlers = [
 
 function handlePageStyling() {
   const match = pageHandlers.find(({ test }) => test());
-  if (match) match.handler()
+  if (match) match.handler();
   else logger.warn("No page styling handler matched for this page.");
 }
 
