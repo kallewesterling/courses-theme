@@ -1002,7 +1002,7 @@ function createClone(
   }
 
   if (CONFIG.icons[type].attrs) {
-    Object.assign(attrs, CONFIG.icons[type].attrs);
+    attrs = CONFIG.icons[type].attrs;
   }
 
   if (!attrs["className"]) attrs.className = `clone-icon ${type}-icon`;
