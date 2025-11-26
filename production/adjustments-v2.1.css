@@ -2219,12 +2219,12 @@ body.sj-page-signup {
 svg.clone-icon {
   display: block;
 
-  & .copy-icon {
+  &.copy-icon {
     fill: var(--primary-blue-hex);
     cursor: pointer;
   }
 
-  & .checkbox-icon {
+  &.checkbox-icon {
     fill: var(--answer-option);
     flex-shrink: 0;
   }
