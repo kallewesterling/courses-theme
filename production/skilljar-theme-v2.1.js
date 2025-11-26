@@ -787,9 +787,9 @@ function makeSections(
         el("div", { className: "featured-courses__grid" }, [
           // Intro
           el("div", { className: "featured-courses__intro" }, [
-            el("h2", { className: "eyebrow", text: section.eyebrow || "" }),
-            el("p", { className: "headline", text: section.title || "" }),
-            el("p", { className: "subhead", text: section.description || "" }),
+            el("h2", { className: "eyebrow", text: section.eyebrow }),
+            el("p", { className: "headline", text: section.title }),
+            el("p", { className: "subhead", text: section.description }),
           ]),
 
           // Courses grid
