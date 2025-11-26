@@ -216,6 +216,8 @@ const CG = {
     epFooter: document.querySelector("#ep-footer"),
     messages: document.querySelector("#messages"),
     courseBoxes: [...document.querySelectorAll(".coursebox-container")],
+    catalogContent: document.querySelector("#catalog-content"),
+    catalogCourses: document.querySelector("#catalog-courses"),
 
     get contentContainer() {
       return CG.page.isLesson
@@ -1393,33 +1395,18 @@ function animateCopiedTooltip(tooltipEl) {
  */
 function styleCatalog() {
   logger.info("Running styleCatalog");
-  let sectionName = "";
+  let sections = pathSections[skilljarCatalogPage.slug]; // ex. "partners"
 
-  v.local = {
-    catalogBodyParentContainer: document.querySelector("#catalog-content"),
-    catalogContainer: document.querySelector("#catalog-courses"),
-  };
+  if (!sections) sections = pathSections["home"];
 
-  if (skilljarCatalogPage.slug) {
-    sectionName = skilljarCatalogPage.slug; // ex. "partners"
-  } else if (CG.page.isLanding) {
-    sectionName = "home";
-  } else {
+  if (!sections && !CG.page.isLanding)
     logger.warn("Could not determine catalog section name, defaulting to home");
-    sectionName = "home";
-  }
 
-  if (sectionName) {
-    makeSections(
-      pathSections[sectionName],
-      "#skilljar-content",
-      CG.state.baseURL
-    );
+  // hide existing content
+  hide(CG.dom.catalogContent);
 
-    v.local.catalogBodyParentContainer.append(v.local.catalogContainer);
-
-    hide(v.local.catalogBodyParentContainer);
-  }
+  // create new sections
+  makeSections(sections, "#skilljar-content", CG.state.baseURL);
 }
 
 /**
