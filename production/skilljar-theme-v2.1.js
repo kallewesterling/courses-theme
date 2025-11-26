@@ -68,6 +68,8 @@ const CG = {
     hasCourseSeries: typeof skilljarCourseSeries !== "undefined",
     hasCourse: typeof skilljarCourse !== "undefined",
     hasCourseProgress: typeof skilljarCourseProgress !== "undefined",
+    hasCourseBoxes: [...document.querySelectorAll(".coursebox-container")]
+      .length,
   },
   page: {
     isCatalog: c(".sj-page-catalog"),
@@ -85,22 +87,48 @@ const CG = {
   state: {
     domain: CONFIG.domains.prod,
     baseURL: `https://${CONFIG.domains.prod.url}`,
-    userCourseJourney: {},
     course: { progress: {}, path: {}, completed: false },
     crumbs: [],
 
     get user() {
       return skilljarUser;
     },
+
+    get unregistered() {
+      if (!CG.dom.courseBoxes) logger.warn("No course boxes found");
+      return CG.dom.courseBoxes.filter(
+        (d) => d.dataset.courseStatus === "unregistered"
+      );
+    },
+
+    get registered() {
+      if (!CG.dom.courseBoxes) logger.warn("No course boxes found");
+      return CG.dom.courseBoxes.filter(
+        (d) => d.dataset.courseStatus === "registered"
+      );
+    },
+
+    get complete() {
+      if (!CG.dom.courseBoxes) logger.warn("No course boxes found");
+      return CG.dom.courseBoxes.filter(
+        (d) => d.dataset.courseStatus === "complete"
+      );
+    },
+
+    get userCourseJourney() {
+      return {
+        unregistered: this.unregistered.map((elem) => elem.dataset.course),
+        registered: this.registered.map((elem) => elem.dataset.course),
+        complete: this.complete.map((elem) => elem.dataset.course),
+      };
+    }
   },
   dom: {
     body: document.body,
     footerContainer: document.querySelector("#footer-container"),
     epFooter: document.querySelector("#ep-footer"),
-    footerCols: document.querySelectorAll(
-      "#footer-container .global-footer-column"
-    ),
     messages: document.querySelector("#messages"),
+    courseBoxes: [...document.querySelectorAll(".coursebox-container")],
 
     get contentContainer() {
       return CG.page.isLesson
@@ -142,26 +170,6 @@ if (CG.env.hasGroups) {
     CG.env.isOnlyPartner = true;
   }
 }
-
-// set up userCourseJourney global variable
-if (Array.from(document.querySelectorAll(".coursebox-container")).length)
-  CG.state.userCourseJourney = {
-    unregistered: Array.from(
-      document.querySelectorAll(
-        ".coursebox-container[data-course-status='unregistered']"
-      )
-    ).map((elem) => elem.dataset.course),
-    registered: Array.from(
-      document.querySelectorAll(
-        ".coursebox-container[data-course-status='registered']"
-      )
-    ).map((elem) => elem.dataset.course),
-    completed: Array.from(
-      document.querySelectorAll(
-        ".coursebox-container[data-course-status='complete']"
-      )
-    ).map((elem) => elem.dataset.course),
-  };
 
 if (CG.env.hasCourseSeries) {
   CG.state.course.path = Object.assign(skilljarCourseSeries, {
@@ -969,9 +977,7 @@ function createResourceCard(resource) {
   );
 }
 
-let v = {
-  width: 0, // current viewport width
-};
+let v = {};
 
 function getCurriculumElements(curriculumParentContainer) {
   let currentSection = 0,
@@ -1514,7 +1520,6 @@ function stylePathCourseDetails() {
       "#skilljar-content",
       `${CG.state.baseURL}/path/${skilljarPath.slug}`
     );
-
   } else {
     logger.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
   }
@@ -1607,7 +1612,6 @@ function stylePathCatalogPage() {
       "#skilljar-content",
       `${CG.state.baseURL}/path/${skilljarPath.slug}`
     );
-
   } else {
     logger.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
   }
