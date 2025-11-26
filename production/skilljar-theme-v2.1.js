@@ -1399,7 +1399,7 @@ function styleCatalog() {
 
   if (!sections) sections = pathSections["home"];
 
-  if (!sections && !CG.page.isLanding)
+  if (!pathSections[skilljarCatalogPage.slug] && !CG.page.isLanding)
     logger.warn("Could not determine catalog section name, defaulting to home");
 
   // hide existing content
