@@ -92,15 +92,16 @@ const CG = {
   dom: {
     body: document.body,
     footerContainer: document.querySelector("#footer-container"),
-    contentContainer: CG.page.isLesson
-      ? document.querySelector(".sj-page-lesson")
-      : document.querySelector("#skilljar-content"),
     epFooter: document.querySelector("#ep-footer"),
     footerCols: document.querySelectorAll(
       "#footer-container .global-footer-column"
     ),
   },
 };
+
+CG.dom.contentContainer = CG.page.isLesson
+  ? document.querySelector(".sj-page-lesson")
+  : document.querySelector("#skilljar-content");
 
 function addCrumb(label, href, prependBase = false) {
   if (prependBase) href = `${CG.state.baseURL}${href}`;
@@ -1346,11 +1347,9 @@ function styleCatalog() {
       CG.state.baseURL
     );
 
-    CG.dom.contentContainer
-      .append(CG.dom.footerContainer);
+    CG.dom.contentContainer.append(CG.dom.footerContainer);
 
-    CG.dom.contentContainer
-      .prepend(document.querySelector("#messages"));
+    CG.dom.contentContainer.prepend(document.querySelector("#messages"));
 
     v.local.catalogBodyParentContainer.append(v.local.catalogContainer);
 
