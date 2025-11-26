@@ -121,7 +121,7 @@ const CG = {
         registered: this.registered.map((elem) => elem.dataset.course),
         completed: this.completed.map((elem) => elem.dataset.course),
       };
-    }
+    },
   },
   dom: {
     body: document.body,
@@ -199,9 +199,10 @@ if (CG.env.hasCourseProgress) {
   CG.state.course.completed = skilljarCourseProgress.completed_at !== "";
 }
 
-CG.page.inPartnerPath = Object.values(CONFIG.partners)
-  .map((a) => a.id === CG.state.course.path.id)
-  .filter(Boolean).length > 0;
+CG.page.inPartnerPath =
+  Object.values(CONFIG.partners)
+    .map((a) => a.id === CG.state.course.path.id)
+    .filter(Boolean).length > 0;
 
 if (CG.page.inPartnerPath) {
   addCrumb("Partner Courses", "/page/partners", true);
@@ -736,23 +737,6 @@ function renderBreadcrumbs(targetElement, crumbs) {
   )
     return;
 
-  // Create the breadcrumb navigation elements
-  const parts = CG.state.crumbs.map(([textContent, href], ix) => {
-    const isLast = ix === CG.state.crumbs.length - 1;
-    const hasLink = href !== "#";
-    const elem = isLast || !hasLink ? "span" : "a";
-    const ariaCurrent = isLast ? "page" : undefined;
-    href = href === "#" ? undefined : href;
-    return el("li", {}, [
-      el(elem, {
-        className: "crumb",
-        textContent,
-        href,
-        ariaCurrent,
-      }),
-    ]);
-  });
-
   const nav = el(
     "nav",
     {
@@ -760,7 +744,25 @@ function renderBreadcrumbs(targetElement, crumbs) {
       ariaLabel: "Breadcrumb",
       role: "navigation",
     },
-    [el("ol", {}, parts)]
+    [
+      el(
+        "ol",
+        {},
+        CG.state.crumbs.map(([text, href], ix, arr) => {
+          const isLast = ix === arr.length - 1;
+          const hasLink = href !== "#";
+          const tag = isLast || !hasLink ? "span" : "a";
+          return el("li", {}, [
+            el(tag, {
+              className: "crumb",
+              text,
+              href: href === "#" ? undefined : href,
+              ariaCurrent: isLast ? "page" : undefined,
+            }),
+          ]);
+        })
+      ),
+    ]
   );
 
   targetElement?.replaceChildren(nav);
