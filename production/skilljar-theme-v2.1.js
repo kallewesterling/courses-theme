@@ -149,17 +149,17 @@ if (Array.from(document.querySelectorAll(".coursebox-container")).length)
       document.querySelectorAll(
         ".coursebox-container[data-course-status='unregistered']"
       )
-    ).map((elem) => Object.assign({ ...elem.dataset })),
+    ).map((elem) => elem.dataset.course),
     registered: Array.from(
       document.querySelectorAll(
         ".coursebox-container[data-course-status='registered']"
       )
-    ).map((elem) => Object.assign({ ...elem.dataset })),
+    ).map((elem) => elem.dataset.course),
     completed: Array.from(
       document.querySelectorAll(
         ".coursebox-container[data-course-status='complete']"
       )
-    ).map((elem) => Object.assign({ ...elem.dataset })),
+    ).map((elem) => elem.dataset.course),
   };
 
 if (CG.page.inPartnerPath) {
@@ -785,12 +785,8 @@ function makeSections(
   parentSelector = "#skilljar-content",
   baseURL = "https://courses.chainguard.dev"
 ) {
-  const registeredCourses = CG.state.userCourseJourney.registered.map(
-    (d) => d.course
-  );
-  const completedCourses = CG.state.userCourseJourney.completed.map(
-    (d) => d.course
-  );
+  const registeredCourses = CG.state.userCourseJourney.registered;
+  const completedCourses = CG.state.userCourseJourney.completed;
 
   sections.forEach((section) => {
     const sectionElement = el(
