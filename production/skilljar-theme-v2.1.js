@@ -773,8 +773,14 @@ const logger = {
   },
   warn(message, ...args) {
     if (!this.enabled()) return;
-    console.warn("[CG]", message, ...args);
+    const style = "color: darkorange; font-weight: 600;";
+    console.warn(`%c[CG] ${message}`, style, ...args);
   },
+  error(message, ...args) {
+    if (!this.enabled()) return;
+    const style = "color: darkred; font-weight: 600;";
+    console.error(`%c[CG] ${message}`, style, ...args);
+  }
 };
 
 /*
@@ -1070,7 +1076,7 @@ function createCourseDetailsCard(
     completed: false,
   }
 ) {
-  console.info(
+  logger.info(
     "Creating course details card with details and options:",
     details,
     options
@@ -1154,7 +1160,7 @@ function toClipboard(copyText, tooltipContainer) {
       await navigator.clipboard.writeText(copyText);
       animateCopiedTooltip(tooltipContainer);
     } catch (err) {
-      console.error("Failed to copy codeblock to clipboard: ", err);
+      logger.error("Failed to copy codeblock to clipboard: ", err);
     }
   };
 }
@@ -1336,7 +1342,7 @@ function styleCatalog() {
   } else if (CG.page.isLanding) {
     sectionName = "home";
   } else {
-    console.warn(
+    logger.warn(
       "Could not determine catalog section name, defaulting to home"
     );
     sectionName = "home";
@@ -1468,7 +1474,7 @@ function styleCourseDetails() {
     v.local.curriculum.container.innerHTML = ""; // Clear the container
     v.local.curriculum.container.append(...curriculumElements);
   } catch (error) {
-    console.error("Error processing curriculum elements:", error);
+    logger.error("Error processing curriculum elements:", error);
   }
 
   // append card
@@ -1540,7 +1546,7 @@ function stylePathCourseDetails() {
 
     CG.dom.contentContainer.prepend(document.querySelector("#messages"));
   } else {
-    console.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
+    logger.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
   }
 }
 
@@ -1636,7 +1642,7 @@ function stylePathCatalogPage() {
 
     CG.dom.contentContainer.prepend(document.querySelector("#messages"));
   } else {
-    console.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
+    logger.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
   }
 }
 
@@ -1833,7 +1839,7 @@ function styleLesson() {
     const numBoxes = v.local.lesson.content.resources.boxes.length;
 
     if (typeof resources.resources !== "undefined" && numBoxes === 0) {
-      console.info(
+      logger.info(
         "No resource boxes found to add resources to. Adding automatically!"
       );
       const box = el("div", { className: "resource-box" });
@@ -1862,7 +1868,7 @@ function styleLesson() {
         // we have groups of resources to drop in each box
         v.local.lesson.content.resources.boxes.forEach((box) => {
           if (!box.dataset.group) {
-            console.warn(
+            logger.warn(
               "Resource box is missing data-group attribute, skipping:",
               box
             );
