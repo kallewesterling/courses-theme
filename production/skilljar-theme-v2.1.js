@@ -2597,53 +2597,21 @@ function styleCurriculumPageNoCertificate() {
 //   hide([...pageIcons]);
 // }
 
-/**
- * This function handles the styling of the page based on the current page type.
- * It applies different styles for landing, login, signup, course details, curriculum pages,
- * lesson pages, catalog pages, and page details.
- *
- * It also checks for the presence of a certificate and applies styles accordingly.
- */
+const pageHandlers = [
+  { test: () => CG.page.isLogin || CG.page.isSignup, handler: styleAuth },
+  { test: () => CG.page.isCourseDetails, handler: styleCourseDetails },
+  { test: () => CG.page.isCurriculum, handler: styleCurriculumPageNoCertificate },
+  { test: () => CG.page.isPageDetail, handler: stylePathCourseDetails },
+  { test: () => CG.page.isPageCatalog, handler: stylePathCatalogPage },
+  { test: () => CG.page.isLesson, handler: styleLesson },
+  { test: () => CG.page.isCatalog || CG.page.isLanding, handler: styleCatalog },
+  { test: () => CG.page.is404, handler: style404 },
+];
+
 function handlePageStyling() {
-  if (CG.page.isLogin || CG.page.isSignup)
-    // we are on the login or signup page
-    return styleAuth();
-
-  if (CG.page.isCourseDetails)
-    // we are on a course page but not logged in
-    return styleCourseDetails();
-
-  if (CG.page.isCurriculum)
-    // && !CGCourses.page.hasCertificate)
-    // we are on a course page (without a certificate) and logged in
-    return styleCurriculumPageNoCertificate();
-
-  if (CG.page.isPageDetail)
-    // we are on the page that shows courses for a given learning path
-    return stylePathCourseDetails();
-
-  if (CG.page.isPageCatalog)
-    // we are on a learning path and registered for it
-    return stylePathCatalogPage();
-
-  if (CG.page.isLesson)
-    // we are on a lesson page
-    return styleLesson();
-
-  if (CG.page.isCatalog || CG.page.isLanding)
-    // we are on a catalog page (not currently in use)
-    return styleCatalog();
-
-  if (CG.page.is404)
-    // we are on a 404 page
-    return style404();
-
-  // if (CGCourses.page.isCurriculum && CGCourses.page.hasCertificate)
-  //   // we are on a course page (with a certificate) and logged in
-  //   // n.b. this function is not edited and/or tested (and not in use)
-  //   return v.viewport === "desktop"
-  //     ? styleCurriculumPageHasCertificationDesktop()
-  //     : styleCurriculumPageHasCertificationMobile();
+  const match = pageHandlers.find(({ test }) => test());
+  if (match) match.handler()
+  else logger.warn("No page styling handler matched for this page.");
 }
 
 /**
