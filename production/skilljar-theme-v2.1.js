@@ -88,6 +88,10 @@ const CG = {
     userCourseJourney: {},
     course: { progress: {}, path: {}, completed: false },
     crumbs: [],
+
+    get user() {
+      return skilljarUser;
+    },
   },
   dom: {
     body: document.body,
@@ -96,7 +100,7 @@ const CG = {
     footerCols: document.querySelectorAll(
       "#footer-container .global-footer-column"
     ),
-    
+
     get contentContainer() {
       return CG.page.isLesson
         ? document.querySelector(".sj-page-lesson")
@@ -111,11 +115,11 @@ function addCrumb(label, href, prependBase = false) {
 }
 
 if (CG.env.hasUser) {
-  if (skilljarUser.email.includes("@chainguard.dev")) {
+  if (CG.state.user.email.includes("@chainguard.dev")) {
     CG.env.isInternal = true;
     CG.env.isPartner = true; // internal users get partner access
   }
-  if (skilljarUser.email === "kalle.westerling@chainguard.dev") {
+  if (CG.state.user.email === "kalle.westerling@chainguard.dev") {
     CG.env.isAdmin = true;
     CG.state.domain = CONFIG.domains.stage;
     CG.state.baseURL = `https://${CG.state.domain.url}`;
