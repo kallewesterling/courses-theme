@@ -777,112 +777,101 @@ function makeSections(
   );
 
   sections.forEach((section) => {
-    const sectionElement = el("section", { className: "featured-courses" });
+    const sectionElement = el(
+      "section",
+      {
+        className: `featured-courses ${section.classNames.join(" ")}`,
+      },
+      [
+        document.querySelector("#messages"),
+        el("div", { className: "featured-courses__grid" }, [
+          // Intro
+          el("div", { className: "featured-courses__intro" }, [
+            el("h2", { className: "eyebrow", text: section.eyebrow || "" }),
+            el("p", { className: "headline", text: section.title || "" }),
+            el("p", { className: "subhead", text: section.description || "" }),
+          ]),
 
-    if (section.classNames) {
-      sectionElement.classList.add(...section.classNames);
-    }
+          // Courses grid
+          el("div", { className: "cards" }, [
+            section.links.map((link) => {
+              const isRegistered = registeredCourses.includes(link.slug)
+                ? "card--in-progress"
+                : "";
+              const isCompleted = completedCourses.includes(link.slug)
+                ? "card--completed"
+                : "";
 
-    const grid = el("div", { className: "featured-courses__grid" });
-
-    const intro = el("div", { className: "featured-courses__intro" });
-
-    let textContent = section.eyebrow || "";
-    const eyebrow = el("h2", { className: "eyebrow", textContent });
-
-    textContent = section.title || "";
-    const headline = el("p", { className: "headline", textContent });
-
-    textContent = section.description || "";
-    const subhead = el("p", { className: "subhead", textContent });
-
-    // textContent = "Browse all courses";
-    // const cta = el("a", {
-    //     className: "btn btn--primary",
-    //     href: "/",
-    //     textContent
-    // });
-
-    intro.append(...[eyebrow, headline, subhead /*cta*/]);
-    grid.append(intro);
-
-    sectionElement.append(
-      ...[document.querySelector("#messages"), grid].filter(Boolean)
+              return el(
+                "a",
+                {
+                  className: "card__link",
+                  href: `${baseURL}/${link.slug}`,
+                  title: link.isCourse ? "Start course" : "Start path",
+                },
+                [
+                  el(
+                    "article",
+                    {
+                      className: `card ${isCompleted} ${isRegistered}`,
+                    },
+                    [
+                      el(
+                        "div",
+                        {
+                          className: "card__inner",
+                        },
+                        [
+                          isCompleted
+                            ? el("span", {
+                                className: "pill completed",
+                                textContent: "Completed",
+                              })
+                            : undefined,
+                          isRegistered && !isCompleted
+                            ? el("span", {
+                                className: "pill in-progress",
+                                textContent: "In Progress",
+                              })
+                            : undefined,
+                          el("div", {
+                            className: "card__icon",
+                            innerHTML: link.icon,
+                          }),
+                          el(
+                            "h5",
+                            {
+                              className: "card__eyebrow",
+                              text: link.isCourse ? "Course" : "Learning Path",
+                            },
+                            [el("span", { textContent: " | Free" })]
+                          ),
+                          el("h3", {
+                            className: "card__title",
+                            text: link.title,
+                          }),
+                          el("p", {
+                            className: "card__text",
+                            text: link.description,
+                          }),
+                          link.hasBadge && !isCompleted
+                            ? el("span", {
+                                className: "pill badged",
+                                text: "Get a Badge",
+                              })
+                            : undefined,
+                        ].filter(Boolean)
+                      ),
+                    ]
+                  ),
+                ]
+              );
+            }),
+          ]),
+        ]),
+      ].filter(Boolean)
     );
 
-    const cardsElem = el("div", { className: "cards" });
-
-    section.links.forEach((link) => {
-      const isRegistered = registeredCourses.includes(link.slug)
-        ? "card--in-progress"
-        : "";
-      const isCompleted = completedCourses.includes(link.slug)
-        ? "card--completed"
-        : "";
-
-      article = el("article", {
-        className: `card ${isCompleted} ${isRegistered}`,
-      });
-
-      innerContainer = el("div", {
-        className: "card__inner",
-      });
-
-      if (isCompleted) {
-        pill = el("span", {
-          className: "pill completed",
-          textContent: "Completed",
-        });
-        innerContainer.append(pill);
-      }
-
-      if (isRegistered && !isCompleted) {
-        pill = el("span", {
-          className: "pill in-progress",
-          textContent: "In Progress",
-        });
-        innerContainer.append(pill);
-      }
-
-      let innerHTML = link.icon || "";
-      iconContainer = el("div", { className: "card__icon", innerHTML });
-
-      textContent = link.isCourse ? "Course" : "Learning Path";
-      titleEyebrow = el("h5", { className: "card__eyebrow", textContent });
-
-      const price = el("span", { textContent: " | Free" });
-
-      titleEyebrow.append(price);
-
-      textContent = link.title || "";
-      title = el("h3", { className: "card__title", textContent });
-
-      textContent = link.description || "";
-      description = el("p", { className: "card__text", textContent });
-
-      innerContainer.append(
-        ...[iconContainer, titleEyebrow, title, description]
-      );
-
-      if (link.hasBadge && !isCompleted) {
-        textContent = "Get a Badge";
-        pill = el("span", { className: "pill badged", textContent });
-        innerContainer.append(pill);
-      }
-
-      article.append(innerContainer);
-
-      let title = link.isCourse ? "Start course" : "Start path";
-      let href = `${baseURL}/${link.slug}`;
-      cardLink = el("a", { className: "card__link", href, title });
-
-      cardLink.append(article);
-
-      cardsElem.append(cardLink);
-    });
-
-    grid.append(cardsElem);
-    sectionElement.append(grid);
     document.querySelector(parentSelector).append(sectionElement);
   });
 }
