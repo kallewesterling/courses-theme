@@ -1302,7 +1302,6 @@ function animateCopiedTooltip(tooltipEl) {
 //   setStyle(groupHeadingContainer, {
 //     padding: "24px",
 //     margin: "0",
-//     fontFamily: "Fusiona",
 //     fontSize: "16px",
 //     fontWeight: "500",
 //     lineHeight: "125%",
