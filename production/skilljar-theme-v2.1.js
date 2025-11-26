@@ -780,7 +780,7 @@ function makeSections(
     const sectionElement = el(
       "section",
       {
-        className: `featured-courses ${section.classNames.join(" ")}`,
+        className: `featured-courses ${section.classNames?.join(" ") || ""}`,
       },
       [
         document.querySelector("#messages"),
