@@ -2566,7 +2566,7 @@ function handlePageStyling() {
   else logger.warn("No page styling handler matched for this page.");
 
   CG.dom.contentContainer.append(CG.dom.footerContainer);
-  hide(CG.dom.epFooter)
+  hide(CG.dom.epFooter);
 }
 
 /**
@@ -2576,7 +2576,7 @@ function handlePageStyling() {
 document.addEventListener("DOMContentLoaded", () => {
   // hide all
   hide(CG.dom.body);
-  
+
   // remove search container
   document.querySelector(".search-container")?.remove();
 
@@ -2657,40 +2657,46 @@ function ensureCompletionPopup() {
   let elem = document.getElementById("completion-popup");
   if (elem) return elem;
 
-  elem = el("div", {
-    id: "completion-popup",
-    role: "dialog",
-    "aria-modal": "true",
-    "aria-hidden": "true",
-  });
+  elem = el(
+    "div",
+    {
+      id: "completion-popup",
+      role: "dialog",
+      "aria-modal": "true",
+      "aria-hidden": "true",
+    },
+    [
+      el("div", { id: "completion-content" }, [
+        el(
+          "div",
+          {
+            id: "completion-card",
+            tabIndex: -1,
+          },
+          [
+            el("h1", {
+              id: "completion-title",
+              textContent: `Hooray! You finished ${
+                CG.state.course?.title ? CG.state.course?.title : "the course!"
+              }`,
+            }),
+            el("p", {
+              id: "completion-sub",
+              textContent: "Seriously, nice work!",
+            }),
+            el("p", {
+              id: "completion-notice",
+              innerHTML: `You can close this popup by clicking outside of it or press ESC to dismiss. It will also disappear automatically in <span id="completion-countdown">${
+                CONFIG.confetti.autoHideMs / 1000
+              }</span> seconds.`,
+            }),
+          ]
+        ),
+      ]),
+    ]
+  );
 
   elem.addEventListener("click", () => hideCompletion(elem));
-
-  const content = el("div", { id: "completion-content" });
-  const card = el("div", {
-    id: "completion-card",
-    tabIndex: -1,
-  });
-  const h1 = el("h1", {
-    id: "completion-title",
-    textContent: `Hooray! You finished ${
-      CG.state.course?.title ? CG.state.course?.title : "the course!"
-    }`,
-  });
-  const p = el("p", {
-    id: "completion-sub",
-    textContent: "Seriously, nice work!",
-  });
-  const notice = el("p", {
-    id: "completion-notice",
-    innerHTML: `You can close this popup by clicking outside of it or press ESC to dismiss. It will also disappear automatically in <span id="completion-countdown">${
-      CONFIG.confetti.autoHideMs / 1000
-    }</span> seconds.`,
-  });
-
-  card.append(h1, p, notice);
-  content.append(card);
-  elem.append(content);
   document.body.appendChild(elem);
 
   // ESC to close
