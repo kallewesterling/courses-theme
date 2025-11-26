@@ -739,26 +739,21 @@ function renderBreadcrumbs(targetElement, crumbs) {
 }
 
 /**
- * This function logs messages to the console with a specific style.
- * It only logs messages if the hostname includes "chainguard-test.skilljar.com".
- * It supports both string messages and objects.
- * @param {string|object} message - The message to log.
- * @param {...*} args - Additional arguments to log.
- * @return {void}
- * @example
- * log("This is a test message");
- * log({ key: "value" }, "Additional info");
+ * TODO: docstring
  */
-const log = (message, ...args) => {
-  if ((!message || !CG.state.isStaging) && !CG.env.isAdmin) return;
-
-  const style = "color: var(--primary-blue-hex); font-weight: 600;";
-
-  if (typeof message === "string") {
-    console.info(`%c${message}`, style, ...args);
-  } else {
-    console.info("%c", style, message, ...args);
-  }
+const logger = {
+  enabled() {
+    return CG.env.isStaging || CG.env.isAdmin;
+  },
+  info(message, ...args) {
+    if (!this.enabled()) return;
+    const style = "color: var(--primary-blue-hex); font-weight: 600;";
+    console.info(`%c[CG] ${message}`, style, ...args);
+  },
+  warn(message, ...args) {
+    if (!this.enabled()) return;
+    console.warn("[CG]", message, ...args);
+  },
 };
 
 /*
@@ -1270,7 +1265,7 @@ function animateCopiedTooltip(tooltipEl) {
  * @return {void}
  */
 // function styleGroupContainer(container, border = "b") {
-//   log("Running styleGroupContainer with setStyle");
+//   logger.info("Running styleGroupContainer with setStyle");
 //   setStyle(container, {
 //     border:
 //       border === "b"
@@ -1293,7 +1288,7 @@ function animateCopiedTooltip(tooltipEl) {
  * @return {void}
  */
 // function styleListItem(lessonItem, isLastChild, hideIcon = true, border = "b") {
-//   log("Running styleListItem with setStyle");
+//   logger.info("Running styleListItem with setStyle");
 //   if (hideIcon) {
 //     hide(lessonItem.querySelector(".type-icon"));
 //   }
@@ -1317,7 +1312,7 @@ function animateCopiedTooltip(tooltipEl) {
  * @param {HTMLElement} groupHeadingContainer - The group heading container to style.
  */
 // function styleGroupHeading(groupHeadingContainer, border = "b") {
-//   log("Running styleGroupHeading with setStyle");
+//   logger.info("Running styleGroupHeading with setStyle");
 //   setStyle(groupHeadingContainer, {
 //     padding: "24px",
 //     margin: "0",
@@ -1337,7 +1332,7 @@ function animateCopiedTooltip(tooltipEl) {
  * This function applies desktop-specific styling to a catalog page.
  */
 function styleCatalog() {
-  log("Running styleCatalog");
+  logger.info("Running styleCatalog");
   let sectionName = "";
 
   v.local = {
@@ -1381,7 +1376,7 @@ function styleCatalog() {
  * This function applies styling to the 404 error page.
  */
 function style404() {
-  console.log("Running style404");
+  logger.info("Running style404");
 
   if (window.location.href.includes("/page/partners")) {
     let hr = el("hr", { style: "width: 100%" });
@@ -1398,7 +1393,7 @@ function style404() {
  * This function applies general styling to the course details page.
  */
 function styleCourseDetails() {
-  log("Running styleCourseDetails");
+  logger.info("Running styleCourseDetails");
 
   v.local = {
     header: {
@@ -1512,7 +1507,7 @@ function styleCourseDetails() {
  * This function applies general styling to the path course details page.
  */
 function stylePathCourseDetails() {
-  log("Running stylePathCourseDetails");
+  logger.info("Running stylePathCourseDetails");
 
   v.local = {
     header: {
@@ -1570,7 +1565,7 @@ function stylePathCourseDetails() {
  * This function applies desktop-specific styling to the path catalog page.
  */
 function stylePathCatalogPage() {
-  log("Running stylePathCatalogPage");
+  logger.info("Running stylePathCatalogPage");
 
   hide(".path-curriculum-resume-wrapper");
 
@@ -1669,7 +1664,7 @@ function stylePathCatalogPage() {
 }
 
 function styleLesson() {
-  log("Running styleLesson");
+  logger.info("Running styleLesson");
 
   /**
    * This function processes code blocks by adding a copy icon and functionality to copy the code to the clipboard.
@@ -1917,7 +1912,7 @@ function styleLesson() {
 }
 
 function styleAuth() {
-  log("Running styleAuth");
+  logger.info("Running styleAuth");
 
   v.local = {
     googleBtn: document.querySelector("#google_login"),
@@ -2012,7 +2007,7 @@ function styleAuth() {
 }
 
 function styleCurriculumPageNoCertificate() {
-  log("Running styleCurriculumPageNoCertificate");
+  logger.info("Running styleCurriculumPageNoCertificate");
 
   v.local = {
     body: {
@@ -2085,7 +2080,7 @@ function styleCurriculumPageNoCertificate() {
     v.local.card.link.textContent = btnText;
     v.local.card.link.href = btnHref;
   } else if (v.local.card.link) {
-    log("Hiding resume button as it could not be found");
+    logger.warn("Hiding resume button as it could not be found");
     if (!CG.state.course.completed) {
       hide(v.local.card.link); // Hide resume button if it doesn't exist
     }
@@ -2123,7 +2118,7 @@ function styleCurriculumPageNoCertificate() {
  */
 // function styleCurriculumPageHasCertificationDesktop() {
 //   // TODO: Clean up this function
-//   log("Running styleCurriculumPageHasCertificationDesktop");
+//   logger.info("Running styleCurriculumPageHasCertificationDesktop");
 //   const courseDescription = skilljarCourse.short_description;
 
 //   // HEADER VARIABLES
@@ -2364,7 +2359,7 @@ function styleCurriculumPageNoCertificate() {
  */
 // function styleCurriculumPageHasCertificationMobile() {
 //   // TODO: Clean up this function
-//   log("Running styleCurriculumPageHasCertificateMobile");
+//   logger.info("Running styleCurriculumPageHasCertificateMobile");
 
 //   const headingParagraph = document.querySelector(".sj-heading-paragraph");
 //   const headingFloaterText = document.querySelector(".sj-floater-text");
