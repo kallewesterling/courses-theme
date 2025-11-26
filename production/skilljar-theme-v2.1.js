@@ -793,7 +793,9 @@ function makeSections(
           ]),
 
           // Courses grid
-          el("div", { className: "cards" }, [
+          el(
+            "div",
+            { className: "cards" },
             section.links.map((link) => {
               const isRegistered = registeredCourses.includes(link.slug)
                 ? "card--in-progress"
@@ -866,8 +868,8 @@ function makeSections(
                   ),
                 ]
               );
-            }),
-          ]),
+            })
+          ),
         ]),
       ].filter(Boolean)
     );
