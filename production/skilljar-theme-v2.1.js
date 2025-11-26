@@ -134,9 +134,7 @@ const CONFIG = {
         width: "24",
         height: "24",
       },
-      paths: [
-        "M4 6h16v2H4V6Zm0 5h16v2H4v-2Zm0 5h16v2H4v-2Z",
-      ],
+      paths: ["M4 6h16v2H4V6Zm0 5h16v2H4v-2Zm0 5h16v2H4v-2Z"],
     },
   },
 };
@@ -168,6 +166,10 @@ const CG = {
     isPageCatalog: c(".sj-page-series.sj-page-path"),
     is404: c(".sj-page-error-404"),
     // hasCertificate: c(".cp-certificate"),
+    isPartner404: [
+      "/page/partners",
+      ...Object.keys(CONFIG.partners).map((d) => `/path/${d}`),
+    ].find((d) => window.location.href.includes(d)),
   },
   state: {
     domain: CONFIG.domains.prod,
@@ -1426,7 +1428,7 @@ function styleCatalog() {
 function style404() {
   logger.info("Running style404");
 
-  if (window.location.href.includes("/page/partners")) {
+  if (CG.page.isPartner404) {
     let hr = el("hr", { style: "width: 100%" });
     let p = el("p", {
       classList: "sj-text-page-not-found-explanation",
