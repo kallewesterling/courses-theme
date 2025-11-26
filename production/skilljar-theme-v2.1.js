@@ -2791,6 +2791,7 @@ function shoot() {
 
 document.addEventListener("DOMContentLoaded", function () {
   const checkbox = document.getElementById("cg-baseurl-staging");
+  if (CG.env.isStaging) checkbox.checked = true;
 
   if (checkbox) {
     function updateLinks(useTestDomain) {
