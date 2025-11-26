@@ -1,15 +1,22 @@
 const el = (tag, props = {}, children = []) => {
   if (!tag) return null;
+  const svgTags =
+    tag === "svg" ||
+    tag === "path" ||
+    tag === "g" ||
+    tag === "defs" ||
+    tag === "clipPath";
 
   let n;
-  if (tag === "svg" || tag === "path" || tag === "g" || tag === "defs" || tag === "clipPath") {
+  if (svgTags) {
     n = document.createElementNS("http://www.w3.org/2000/svg", tag);
   } else {
     n = document.createElement(tag);
   }
   for (const [k, v] of Object.entries(props)) {
     if (!v) continue;
-    if (k === "className") n.className = v;
+    if (k === "className" && !svgTags) n.className = v;
+    else if (k === "className" && svgTags) n.className.baseVal = v;
     else if (k === "textContent") n.textContent = v;
     else if (k === "text") n.textContent = v;
     else if (k === "innerHTML") n.innerHTML = v;
@@ -235,18 +242,17 @@ function generateFooter(data, containerId = "footer-container") {
       el(
         "div",
         { className: "legal-links" },
-        data.copyright.links.map((l) =>
-          el("a", { href: l.href, text: l.label })
-        )
+        data.copyright.links
+          .map((l) => el("a", { href: l.href, text: l.label }))
 
-        // in-between every link we want a | separator except after the last one
-        .reduce((acc, elem, idx, arr) => {
-          acc.push(elem);
-          if (idx < arr.length - 1) {
-            acc.push(el("span", { text: " | " }));
-          }
-          return acc;
-        }, []),
+          // in-between every link we want a | separator except after the last one
+          .reduce((acc, elem, idx, arr) => {
+            acc.push(elem);
+            if (idx < arr.length - 1) {
+              acc.push(el("span", { text: " | " }));
+            }
+            return acc;
+          }, [])
       ),
     ]);
     left.appendChild(copy);
