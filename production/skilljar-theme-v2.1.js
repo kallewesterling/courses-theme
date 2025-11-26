@@ -96,12 +96,14 @@ const CG = {
     footerCols: document.querySelectorAll(
       "#footer-container .global-footer-column"
     ),
+    
+    get contentContainer() {
+      return CG.page.isLesson
+        ? document.querySelector(".sj-page-lesson")
+        : document.querySelector("#skilljar-content");
+    },
   },
 };
-
-CG.dom.contentContainer = CG.page.isLesson
-  ? document.querySelector(".sj-page-lesson")
-  : document.querySelector("#skilljar-content");
 
 function addCrumb(label, href, prependBase = false) {
   if (prependBase) href = `${CG.state.baseURL}${href}`;
