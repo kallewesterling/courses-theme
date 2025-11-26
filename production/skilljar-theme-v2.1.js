@@ -100,6 +100,7 @@ const CG = {
     footerCols: document.querySelectorAll(
       "#footer-container .global-footer-column"
     ),
+    messages: document.querySelector("#messages"),
 
     get contentContainer() {
       return CG.page.isLesson
@@ -801,7 +802,6 @@ function makeSections(
         className: `featured-courses ${section.classNames?.join(" ") || ""}`,
       },
       [
-        document.querySelector("#messages"),
         el("div", { className: "featured-courses__grid" }, [
           // Intro
           el("div", { className: "featured-courses__intro" }, [
@@ -1332,8 +1332,6 @@ function styleCatalog() {
       CG.state.baseURL
     );
 
-    CG.dom.contentContainer.prepend(document.querySelector("#messages"));
-
     v.local.catalogBodyParentContainer.append(v.local.catalogContainer);
 
     hide(v.local.catalogBodyParentContainer);
@@ -1517,7 +1515,6 @@ function stylePathCourseDetails() {
       `${CG.state.baseURL}/path/${skilljarPath.slug}`
     );
 
-    CG.dom.contentContainer.prepend(document.querySelector("#messages"));
   } else {
     logger.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
   }
@@ -1611,7 +1608,6 @@ function stylePathCatalogPage() {
       `${CG.state.baseURL}/path/${skilljarPath.slug}`
     );
 
-    CG.dom.contentContainer.prepend(document.querySelector("#messages"));
   } else {
     logger.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
   }
@@ -2566,6 +2562,7 @@ function handlePageStyling() {
   else logger.warn("No page styling handler matched for this page.");
 
   CG.dom.contentContainer.append(CG.dom.footerContainer);
+  CG.dom.contentContainer.prepend(CG.dom.messages);
   hide(CG.dom.epFooter);
 }
 
