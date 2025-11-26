@@ -919,7 +919,7 @@ function createClone(type = "checkbox") {
       (type === "checkbox" ? "flex-shrink: 0;" : ""),
   };
 
-  let paths;
+  let paths = [];
   switch (type) {
     case "checkbox":
       paths.push(
