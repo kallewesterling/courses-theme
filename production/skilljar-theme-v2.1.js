@@ -225,6 +225,18 @@ const CG = {
         ? document.querySelector(".sj-page-lesson")
         : document.querySelector("#skilljar-content");
     },
+
+    header: {
+      mainHeadingContainer:
+        document.querySelector(".cp-summary-wrapper") ||
+        document.querySelector(".dp-summary-wrapper"),
+      floaterText: document.querySelector(".sj-floater-text"),
+      mainHeading: document.querySelector(".break-word"),
+      courseInfo: document.querySelector(".sj-heading-paragraph"),
+      ctaBtnWrapper: document.querySelector("#resume-button"),
+      ctaBtn: document.querySelector("#resume-button a"),
+      ctaBtnText: document.querySelector("#resume-button a span"),
+    },
   },
 };
 
@@ -1527,14 +1539,9 @@ function styleCourseDetails() {
   // append card
   v.local.body.container.append(...[v.local.card.details].filter(Boolean));
 
-  // add a breadcrumb to a div with id "breadcrumb" added to .dp-summary-wrapper
-  const breadcrumb = el("div", { id: "breadcrumb" });
-  renderBreadcrumbs(breadcrumb, CG.state.crumbs);
-
   // append elements to header
   v.local.header.mainHeadingContainer.append(
     ...[
-      breadcrumb,
       v.local.header.floaterText,
       v.local.header.mainHeading,
       v.local.header.courseInfo,
@@ -1565,14 +1572,9 @@ function stylePathCourseDetails() {
   v.local.header.courseInfo.textContent =
     skilljarCourseSeries.short_description || "";
 
-  // add a breadcrumb to a div with id "" added to .cp-summary-row-v2
-  const breadcrumb = el("div", { id: "breadcrumb" });
-  renderBreadcrumbs(breadcrumb, CG.state.crumbs);
-
   // move elements
   v.local.header.mainHeadingContainer.append(
     ...[
-      breadcrumb,
       v.local.header.floaterText,
       v.local.header.mainHeading,
       v.local.header.courseInfo,
@@ -2115,15 +2117,10 @@ function styleCurriculumPageNoCertificate() {
 
   v.local.header.courseInfo.textContent = skilljarCourse.short_description;
 
-  // add a breadcrumb to a div with id "" added to .cp-summary-row-v2
-  const breadcrumb = el("div", { id: "breadcrumb" });
-  renderBreadcrumbs(breadcrumb, CG.state.crumbs);
-
   // move elements
   v.local.body.mainContainer.append(...[v.local.card.details].filter(Boolean));
   v.local.header.mainHeadingContainer.append(
     ...[
-      breadcrumb,
       v.local.header.floaterText,
       v.local.header.mainHeading,
       v.local.header.courseInfo,
@@ -2632,6 +2629,13 @@ function handlePageStyling() {
   const match = pageHandlers.find(({ test }) => test());
   if (match) match.handler();
   else logger.warn("No page styling handler matched for this page.");
+
+  // make breadcrums
+  if (CG.page.isPageDetail || CG.page.isCourseDetails || CG.page.isCurriculum) {
+    const breadcrumb = el("div", { id: "breadcrumb" }); // CG.page.isPageDetail
+    renderBreadcrumbs(breadcrumb, CG.state.crumbs);
+    CG.dom.header.mainHeadingContainer.prepend(breadcrumb);
+  }
 
   CG.dom.contentContainer.append(CG.dom.footerContainer);
   CG.dom.contentContainer.prepend(CG.dom.messages);
