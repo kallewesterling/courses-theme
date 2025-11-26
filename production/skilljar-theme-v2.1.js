@@ -54,6 +54,40 @@ const CONFIG = {
       colors: ["#C6FF50", "#50FFE1"],
     },
   },
+  icons: {
+    checkbox: {
+      paths: [
+        "M8.22948 14.021L5.02148 10.792L5.75048 10.042L8.22948 12.5L14.2505 6.5L14.9795 7.271L8.22948 14.021Z",
+      ],
+    },
+    copy: {
+      paths: [
+        "M5.12597 18.0835C4.75064 18.0835 4.43464 17.9548 4.17797 17.6975C3.9213 17.4408 3.79297 17.1248 3.79297 16.7495V6.3335H4.87597V16.7495C4.87597 16.8195 4.9003 16.8785 4.94897 16.9265C4.99764 16.9752 5.05664 16.9995 5.12597 16.9995H13.543V18.0835H5.12597ZM7.70897 15.4995C7.3343 15.4995 7.0183 15.3712 6.76097 15.1145C6.5043 14.8572 6.37597 14.5412 6.37597 14.1665V4.6875C6.37597 4.31216 6.5043 3.99283 6.76097 3.7295C7.0183 3.4655 7.3343 3.3335 7.70897 3.3335H15.189C15.5636 3.3335 15.883 3.4655 16.147 3.7295C16.411 3.99283 16.543 4.31216 16.543 4.6875V14.1665C16.543 14.5412 16.411 14.8572 16.147 15.1145C15.883 15.3712 15.5636 15.4995 15.189 15.4995H7.70897ZM7.70897 14.4165H15.189C15.2583 14.4165 15.3206 14.3922 15.376 14.3435C15.4313 14.2948 15.459 14.2358 15.459 14.1665V4.6875C15.459 4.61816 15.4313 4.5555 15.376 4.4995C15.3206 4.44416 15.2583 4.4165 15.189 4.4165H7.70897C7.63964 4.4165 7.58064 4.44416 7.53197 4.4995C7.4833 4.5555 7.45897 4.61816 7.45897 4.6875V14.1665C7.45897 14.2358 7.4833 14.2948 7.53197 14.3435C7.58064 14.3922 7.63964 14.4165 7.70897 14.4165Z",
+      ],
+    },
+    bookmark: {
+      attrs: {
+        version: "1.1",
+        xmlns: "http://www.w3.org/2000/svg",
+        "xmlns:xlink": "http://www.w3.org/1999/xlink",
+        viewBox: "0 0 963.4 963.4",
+        xmlSpace: "preserve",
+      },
+      paths: [
+        "M114.3,59.2H69.7c-33.1,0-60,26.9-60,60V903.4c0,33.1,26.9,60,60,60h824c33.1,0,60-26.9,60-60V119.2c0-33.1-26.9-60-60-60   H568.9c0,0.3,0,0.5,0,0.8v420.3c0,25.6-10.2,49.2-28.8,66.5c-17,15.799-39.2,24.5-62.4,24.5c-12.4,0-24.4-2.5-35.7-7.301   c-11.899-5.1-22.399-12.6-31.2-22.301L341.601,466.1l-69.2,75.599C263.5,551.4,253,558.9,241.2,564   c-11.3,4.9-23.3,7.301-35.7,7.301c-23.2,0-45.4-8.701-62.4-24.5c-18.6-17.301-28.8-40.9-28.8-66.5V60   C114.3,59.7,114.3,59.4,114.3,59.2z",
+        "M228.2,501.1l90.6-99.1c6.101-6.699,14.5-10.1,22.9-10.1s16.7,3.4,22.9,10.1l90.6,99.1c6.4,7,14.6,10.1,22.6,10.1   c15.9,0,31.301-12.299,31.301-31.099V60c0-0.3,0-0.5,0-0.8C508.7,26.4,482,0,449.101,0H234.3c-32.9,0-59.6,26.4-60,59.2   c0,0.3,0,0.5,0,0.8v420.3c0,18.799,15.3,31.1,31.3,31.1C213.6,511.301,221.7,508.199,228.2,501.1z",
+      ],
+    },
+    burger: {
+      attrs: {
+        xmlns: "http://www.w3.org/2000/svg",
+        width: "24",
+        height: "24",
+        fill: "currentColor",
+      },
+      paths: ["M4 4h16v2H4V4Zm0 7h16v2H4v-2Zm0 7h16v2H4v-2Z"],
+    },
+  },
 };
 
 const CG = {
@@ -207,12 +241,6 @@ CG.page.inPartnerPath =
 if (CG.page.inPartnerPath) {
   addCrumb("Partner Courses", "/page/partners", true);
 }
-
-// path settings
-const icons = {
-  bookmark: `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 963.4 963.4" xml:space="preserve" width="30" height="27"><path d="M114.3,59.2H69.7c-33.1,0-60,26.9-60,60V903.4c0,33.1,26.9,60,60,60h824c33.1,0,60-26.9,60-60V119.2c0-33.1-26.9-60-60-60   H568.9c0,0.3,0,0.5,0,0.8v420.3c0,25.6-10.2,49.2-28.8,66.5c-17,15.799-39.2,24.5-62.4,24.5c-12.4,0-24.4-2.5-35.7-7.301   c-11.899-5.1-22.399-12.6-31.2-22.301L341.601,466.1l-69.2,75.599C263.5,551.4,253,558.9,241.2,564   c-11.3,4.9-23.3,7.301-35.7,7.301c-23.2,0-45.4-8.701-62.4-24.5c-18.6-17.301-28.8-40.9-28.8-66.5V60   C114.3,59.7,114.3,59.4,114.3,59.2z"/><path d="M228.2,501.1l90.6-99.1c6.101-6.699,14.5-10.1,22.9-10.1s16.7,3.4,22.9,10.1l90.6,99.1c6.4,7,14.6,10.1,22.6,10.1   c15.9,0,31.301-12.299,31.301-31.099V60c0-0.3,0-0.5,0-0.8C508.7,26.4,482,0,449.101,0H234.3c-32.9,0-59.6,26.4-60,59.2   c0,0.3,0,0.5,0,0.8v420.3c0,18.799,15.3,31.1,31.3,31.1C213.6,511.301,221.7,508.199,228.2,501.1z"/></svg>`,
-  burger: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M4 4h16v2H4V4Zm0 7h16v2H4v-2Zm0 7h16v2H4v-2Z"/></svg>`,
-};
 
 pathSections = {
   home: [
@@ -374,7 +402,7 @@ pathSections = {
           slug: "software-vulnerabilities-what-are-they",
           isPath: false,
           isCourse: true,
-          icon: icons.bookmark,
+          icon: "bookmark",
           hasBadge: false,
           title: "Software Vulnerabilities: What Are They?",
           description:
@@ -384,7 +412,7 @@ pathSections = {
           slug: "how-to-manage-cves",
           isPath: false,
           isCourse: true,
-          icon: icons.bookmark,
+          icon: "bookmark",
           hasBadge: false,
           title: "How to Manage CVEs",
           description:
@@ -394,7 +422,7 @@ pathSections = {
           slug: "more-secure-base-images",
           isPath: false,
           isCourse: true,
-          icon: icons.bookmark,
+          icon: "bookmark",
           hasBadge: false,
           title: "More Secure Base Images",
           description:
@@ -404,7 +432,7 @@ pathSections = {
           slug: "chainguard-containers-to-the-rescue",
           isPath: false,
           isCourse: true,
-          icon: icons.bookmark,
+          icon: "bookmark",
           hasBadge: false,
           title: "Chainguard Containers To the Rescue!",
           description:
@@ -414,7 +442,7 @@ pathSections = {
           slug: "painless-vulnerability-management-final-exercise",
           isPath: false,
           isCourse: true,
-          icon: icons.bookmark,
+          icon: "bookmark",
           hasBadge: false,
           title: "Painless Vulnerability Management: Final Exercise",
           description:
@@ -436,7 +464,7 @@ pathSections = {
           hasBadge: true,
           title: "Chainguard Discovery: Partner Sales Foundations",
           slug: "path/chainguard-discovery-partner-sales-foundations",
-          icon: icons.burger,
+          icon: "burger",
           description:
             "A comprehensive learning path designed to provide partners with the foundational knowledge needed to effectively sell Chainguard's products and solutions.",
         },
@@ -447,7 +475,7 @@ pathSections = {
               hasBadge: false,
               title: "Chainguard Advanced: Partner Sales Accelerator",
               slug: "path/chainguard-advanced-partner-sales-accelerator",
-              icon: icons.burger,
+              icon: "burger",
               description:
                 "An advanced learning path aimed at equipping partners with the skills and knowledge to accelerate their sales efforts for Chainguard's products and solutions.",
             }
@@ -471,7 +499,7 @@ pathSections = {
           slug: "kickoff-guide-to-chainguard",
           description:
             "A fast, guided kickoff to help you hit the ground running with Chainguard.",
-          icon: icons.bookmark,
+          icon: "bookmark",
         },
         {
           isPath: false,
@@ -481,7 +509,7 @@ pathSections = {
           slug: "getting-started-with-chainguards-console",
           description:
             "Learn how to explore, manage, and provision container images through Chainguard’s Console.",
-          icon: icons.bookmark,
+          icon: "bookmark",
         },
         {
           isPath: false,
@@ -491,7 +519,7 @@ pathSections = {
           slug: "shared-responsibility-model",
           description:
             "See how Chainguard divides security responsibilities so you can focus on building applications while we handle the undifferentiated heavy lifting.",
-          icon: icons.bookmark,
+          icon: "bookmark",
         },
         {
           isPath: false,
@@ -501,7 +529,7 @@ pathSections = {
           slug: "chainguards-superstar-support",
           description:
             "Skip the stress and get answers fast. Learn how to navigate Chainguard’s support like a superstar and keep your supply chain secure with zero ticket anxiety.",
-          icon: icons.bookmark,
+          icon: "bookmark",
         },
       ],
     },
@@ -520,7 +548,7 @@ pathSections = {
           slug: "chainguard-101",
           description:
             "Learn how to build, run, and maintain apps on secure, minimal Chainguard Containers with confidence.",
-          icon: icons.bookmark,
+          icon: "bookmark",
         },
         {
           isPath: false,
@@ -530,7 +558,7 @@ pathSections = {
           slug: "integrating-sso-and-idps-with-chainguard-registry",
           description:
             "Connect your identity provider and streamline secure access to Chainguard’s registry.",
-          icon: icons.bookmark,
+          icon: "bookmark",
         },
         {
           isPath: false,
@@ -540,7 +568,7 @@ pathSections = {
           slug: "registry-mirroring",
           description:
             "Mirror Chainguard images and packages into your internal registry to simplify access, improve reliability, and strengthen control.",
-          icon: icons.bookmark,
+          icon: "bookmark",
         },
         {
           isPath: false,
@@ -551,7 +579,7 @@ pathSections = {
           slug: "keeping-up-with-latest",
           description:
             "Stay secure and compliant by keeping your Chainguard images up to date—without the chaos.",
-          icon: icons.bookmark,
+          icon: "bookmark",
         },
         {
           isPath: false,
@@ -561,7 +589,7 @@ pathSections = {
           slug: "managing-end-of-life-grace-periods-with-chainguard",
           description:
             "Navigate Chainguard’s EOL Grace Period to keep workloads secure while you plan upgrades.",
-          icon: icons.bookmark,
+          icon: "bookmark",
         },
         {
           isPath: false,
@@ -571,7 +599,7 @@ pathSections = {
           slug: "getting-started-with-chainguards-custom-assembly",
           description:
             "Quickly and securely customize your Chainguard Images—no Dockerfile required.",
-          icon: icons.bookmark,
+          icon: "bookmark",
         },
         {
           isPath: false,
@@ -581,7 +609,7 @@ pathSections = {
           slug: "migrating-to-chainguard-application-images",
           description:
             "Replace vulnerable upstream images with secure, drop-in Chainguard application images in just a few steps.",
-          icon: icons.bookmark,
+          icon: "bookmark",
         },
         {
           isPath: false,
@@ -601,7 +629,7 @@ pathSections = {
           slug: "containers-102",
           description:
             "Hands-on tactics to keep images small, secure, and portable while you migrate to Chainguard.",
-          icon: icons.bookmark,
+          icon: "bookmark",
         },
         {
           isPath: false,
@@ -611,7 +639,7 @@ pathSections = {
           slug: "debugging-chainguard-containers",
           description:
             "Practical strategies to debug Chainguard’s minimal, secure container images in Docker and Kubernetes—without breaking their security model.",
-          icon: icons.bookmark,
+          icon: "bookmark",
         },
       ],
     },
@@ -633,7 +661,7 @@ pathSections = {
           slug: "software-vulnerabilities-what-are-they",
           description:
             "Understand the basics of software vulnerabilities, including common types and their implications.",
-          icon: icons.bookmark,
+          icon: "bookmark",
         },
         {
           isPath: false,
@@ -643,7 +671,7 @@ pathSections = {
           slug: "how-to-manage-cves",
           description:
             "Learn best practices for managing Common Vulnerabilities and Exposures (CVEs) in your software supply chain.",
-          icon: icons.bookmark,
+          icon: "bookmark",
         },
         {
           isPath: false,
@@ -653,7 +681,7 @@ pathSections = {
           slug: "linkys-crash-course-on-chainguard-images",
           description:
             "A comprehensive introduction to Chainguard Containers and their benefits.",
-          icon: icons.bookmark,
+          icon: "bookmark",
         },
       ],
     },
@@ -671,7 +699,7 @@ pathSections = {
           slug: "pitching-the-chainguard-way",
           description:
             "A walk-through of key points for pitching Chainguard solutions.",
-          icon: icons.bookmark,
+          icon: "bookmark",
         },
       ],
     },
@@ -689,7 +717,7 @@ pathSections = {
           slug: "partner-guide-to-chainguard-pricing",
           description:
             "Understand the basics of quoting Chainguard products and solutions to customers.",
-          icon: icons.bookmark,
+          icon: "bookmark",
         },
       ],
     },
@@ -707,7 +735,7 @@ pathSections = {
           slug: "chainguard-discovery-partner-sales-feedback-and-support",
           description:
             "Provide feedback, find support resources, and claim your badge after completing the Chainguard Partner Sales Foundations learning path.",
-          icon: icons.bookmark,
+          icon: "bookmark",
         },
       ],
     },
@@ -862,10 +890,13 @@ function makeSections(
                                 textContent: "In Progress",
                               })
                             : undefined,
-                          el("div", {
-                            className: "card__icon",
-                            innerHTML: link.icon,
-                          }),
+                          el(
+                            "div",
+                            {
+                              className: "card__icon",
+                            },
+                            [createClone(link.icon)]
+                          ),
                           el(
                             "h5",
                             {
@@ -903,41 +934,6 @@ function makeSections(
     document.querySelector(parentSelector).append(sectionElement);
   });
 }
-
-CONFIG.icons = {
-  checkbox: {
-    paths: [
-      "M8.22948 14.021L5.02148 10.792L5.75048 10.042L8.22948 12.5L14.2505 6.5L14.9795 7.271L8.22948 14.021Z",
-    ],
-  },
-  copy: {
-    paths: [
-      "M5.12597 18.0835C4.75064 18.0835 4.43464 17.9548 4.17797 17.6975C3.9213 17.4408 3.79297 17.1248 3.79297 16.7495V6.3335H4.87597V16.7495C4.87597 16.8195 4.9003 16.8785 4.94897 16.9265C4.99764 16.9752 5.05664 16.9995 5.12597 16.9995H13.543V18.0835H5.12597ZM7.70897 15.4995C7.3343 15.4995 7.0183 15.3712 6.76097 15.1145C6.5043 14.8572 6.37597 14.5412 6.37597 14.1665V4.6875C6.37597 4.31216 6.5043 3.99283 6.76097 3.7295C7.0183 3.4655 7.3343 3.3335 7.70897 3.3335H15.189C15.5636 3.3335 15.883 3.4655 16.147 3.7295C16.411 3.99283 16.543 4.31216 16.543 4.6875V14.1665C16.543 14.5412 16.411 14.8572 16.147 15.1145C15.883 15.3712 15.5636 15.4995 15.189 15.4995H7.70897ZM7.70897 14.4165H15.189C15.2583 14.4165 15.3206 14.3922 15.376 14.3435C15.4313 14.2948 15.459 14.2358 15.459 14.1665V4.6875C15.459 4.61816 15.4313 4.5555 15.376 4.4995C15.3206 4.44416 15.2583 4.4165 15.189 4.4165H7.70897C7.63964 4.4165 7.58064 4.44416 7.53197 4.4995C7.4833 4.5555 7.45897 4.61816 7.45897 4.6875V14.1665C7.45897 14.2358 7.4833 14.2948 7.53197 14.3435C7.58064 14.3922 7.63964 14.4165 7.70897 14.4165Z",
-    ],
-  },
-  bookmark: {
-    attrs: {
-      version: "1.1",
-      xmlns: "http://www.w3.org/2000/svg",
-      "xmlns:xlink": "http://www.w3.org/1999/xlink",
-      viewBox: "0 0 963.4 963.4",
-      xmlSpace: "preserve",
-    },
-    paths: [
-      "M114.3,59.2H69.7c-33.1,0-60,26.9-60,60V903.4c0,33.1,26.9,60,60,60h824c33.1,0,60-26.9,60-60V119.2c0-33.1-26.9-60-60-60   H568.9c0,0.3,0,0.5,0,0.8v420.3c0,25.6-10.2,49.2-28.8,66.5c-17,15.799-39.2,24.5-62.4,24.5c-12.4,0-24.4-2.5-35.7-7.301   c-11.899-5.1-22.399-12.6-31.2-22.301L341.601,466.1l-69.2,75.599C263.5,551.4,253,558.9,241.2,564   c-11.3,4.9-23.3,7.301-35.7,7.301c-23.2,0-45.4-8.701-62.4-24.5c-18.6-17.301-28.8-40.9-28.8-66.5V60   C114.3,59.7,114.3,59.4,114.3,59.2z",
-      "M228.2,501.1l90.6-99.1c6.101-6.699,14.5-10.1,22.9-10.1s16.7,3.4,22.9,10.1l90.6,99.1c6.4,7,14.6,10.1,22.6,10.1   c15.9,0,31.301-12.299,31.301-31.099V60c0-0.3,0-0.5,0-0.8C508.7,26.4,482,0,449.101,0H234.3c-32.9,0-59.6,26.4-60,59.2   c0,0.3,0,0.5,0,0.8v420.3c0,18.799,15.3,31.1,31.3,31.1C213.6,511.301,221.7,508.199,228.2,501.1z",
-    ],
-  },
-  burger: {
-    attrs: {
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "24",
-      height: "24",
-      fill: "currentColor",
-    },
-    paths: ["M4 4h16v2H4V4Zm0 7h16v2H4v-2Zm0 7h16v2H4v-2Z"],
-  },
-};
 
 function createClone(
   type = "checkbox",
