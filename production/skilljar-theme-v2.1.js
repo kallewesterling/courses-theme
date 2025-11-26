@@ -108,7 +108,7 @@ const CG = {
       );
     },
 
-    get complete() {
+    get completed() {
       if (!CG.dom.courseBoxes) logger.warn("No course boxes found");
       return CG.dom.courseBoxes.filter(
         (d) => d.dataset.courseStatus === "complete"
@@ -119,7 +119,7 @@ const CG = {
       return {
         unregistered: this.unregistered.map((elem) => elem.dataset.course),
         registered: this.registered.map((elem) => elem.dataset.course),
-        complete: this.complete.map((elem) => elem.dataset.course),
+        completed: this.completed.map((elem) => elem.dataset.course),
       };
     }
   },
