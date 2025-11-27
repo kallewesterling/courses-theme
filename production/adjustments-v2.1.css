@@ -2218,14 +2218,14 @@ body.sj-page-signup {
 
 svg.clone-icon {
   display: block;
-  fill: var(--primary-blue-hex);
+  fill: var(--answer-option);
 
   &.copy-icon {
+    fill: var(--primary-blue-hex);
     cursor: pointer;
   }
 
   &.checkbox-icon {
-    fill: var(--answer-option);
     flex-shrink: 0;
   }
 }
