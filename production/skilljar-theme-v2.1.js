@@ -19,9 +19,9 @@ const c = (selector) => (document.querySelector(selector) ? true : false);
 
 const CONFIG = {
   utm: {
-    source: "courses",
-    medium: "referral",
-    campaign: "dev-enablement",
+    utm_source: "courses",
+    utm_medium: "referral",
+    utm_campaign: "dev-enablement",
   },
   domains: {
     prod: { url: "courses.chainguard.dev", id: "3glgawqmzatte" },
@@ -1033,21 +1033,23 @@ function createClone(
   );
 }
 
-function createResourceCard(resource) {
-  let href;
-  if (resource.addUTM) {
-    const url = new URL(resource.link);
-    url.searchParams.set("utm_source", "courses");
-    url.searchParams.set("utm_medium", "referral");
-    url.searchParams.set("utm_campaign", "dev-enablement");
-    href = url.toString();
-  } else {
-    href = resource.link;
-  }
+function getCorrectURL(link) {
+  let url = new URL(link);
 
-  return el(
+  // add UTM params for tracking if specified
+  CONFIG.utm ? Object.assign(url.searchParams, CONFIG.utm) : undefined;
+
+  return url.toString();
+}
+
+const createResourceCard = (resource) =>
+  el(
     "a",
-    { href, target: "_blank", className: "resource-link-wrapper" },
+    {
+      href: getCorrectURL(resource.link),
+      target: "_blank",
+      className: "resource-link-wrapper",
+    },
     [
       el("div", { className: "resource-card" }, [
         el(
@@ -1071,7 +1073,6 @@ function createResourceCard(resource) {
       ]),
     ]
   );
-}
 
 let v = {};
 
@@ -1742,11 +1743,7 @@ function styleLesson() {
     elem.target = "_blank";
     // we also want to set some utm_source, utm_medium here if it's a link to a certain set of domains (domain name includes chainguard.dev)
     if (elem.href.includes("chainguard.dev")) {
-      const url = new URL(elem.href);
-      url.searchParams.set("utm_source", CONFIG.utm.source);
-      url.searchParams.set("utm_medium", CONFIG.utm.medium);
-      url.searchParams.set("utm_campaign", CONFIG.utm.campaign);
-      elem.href = url.toString();
+      elem.href = getCorrectURL(elem.href);
     }
   });
 
