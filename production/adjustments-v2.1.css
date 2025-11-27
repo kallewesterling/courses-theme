@@ -2054,7 +2054,6 @@ body.sj-page-signup {
     font-weight: 800;
     color: #fff;
     background: var(--grad);
-    border: 1px solid transparent;
     box-shadow: 0 8px 20px rgba(129, 61, 243, 0.18);
     transition: transform 0.05s ease, filter 0.15s ease, box-shadow 0.15s ease;
   }
