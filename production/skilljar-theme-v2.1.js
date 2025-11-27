@@ -896,9 +896,11 @@ const hide = (element) => setStyle(element, { display: "none !important" });
 const showBody = () => setStyle(CG.dom.body, { display: undefined });
 
 const text = (element, value, auto = "") => {
-  if (element && value !== undefined && value !== null)
+  if (element && value !== undefined && value !== null) {
     element.textContent = value;
-  if (element) element.textContent = auto;
+  } else if (element) {
+    element.textContent = auto;
+  }
 };
 
 const placeholder = (element, value) => {
@@ -1951,7 +1953,10 @@ function styleAuth() {
   text(CG.dom.auth.signup, "Sign Up");
   text(CG.dom.auth.google, "Continue with Google");
   text(CG.dom.auth.button, CG.page.isLogin ? "Log In" : "Sign Up");
-  text(CG.dom.auth.altMethod, CG.page.isLogin ? "Or Log In With" : "Or Sign Up With");
+  text(
+    CG.dom.auth.altMethod,
+    CG.page.isLogin ? "Or Log In With" : "Or Sign Up With"
+  );
   if (!CG.page.isLogin) {
     text(CG.dom.auth.fNameLabel, "First Name");
     text(CG.dom.auth.lNameLabel, "Last Name");
