@@ -15,6 +15,29 @@
  * @see {@link https://courses.chainguard.com|Chainguard Courses}
  */
 
+document.querySelector("body").style.setProperty("display", "none")
+
+/**
+ * This function hides the given element by setting its display style to "none".
+ * @param {HTMLElement} element - The element to hide.
+ */
+const hide = (element) => setStyle(element, { display: "none !important" });
+
+const showBody = () => setStyle(CG.dom.body, { display: undefined });
+
+const text = (element, value, auto = "") => {
+  if (element && value !== undefined && value !== null) {
+    element.textContent = value;
+  } else if (element) {
+    element.textContent = auto;
+  }
+};
+
+const placeholder = (element, value) => {
+  if (element && value !== undefined && value !== null)
+    element.setAttribute("placeholder", value);
+};
+
 const c = (selector) => (document.querySelector(selector) ? true : false);
 
 const CONFIG = {
@@ -885,27 +908,6 @@ pathSections = {
       ],
     },
   ],
-};
-
-/**
- * This function hides the given element by setting its display style to "none".
- * @param {HTMLElement} element - The element to hide.
- */
-const hide = (element) => setStyle(element, { display: "none !important" });
-
-const showBody = () => setStyle(CG.dom.body, { display: undefined });
-
-const text = (element, value, auto = "") => {
-  if (element && value !== undefined && value !== null) {
-    element.textContent = value;
-  } else if (element) {
-    element.textContent = auto;
-  }
-};
-
-const placeholder = (element, value) => {
-  if (element && value !== undefined && value !== null)
-    element.setAttribute("placeholder", value);
 };
 
 function debugHeading() {
