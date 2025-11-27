@@ -15,7 +15,7 @@
  * @see {@link https://courses.chainguard.com|Chainguard Courses}
  */
 
-document.querySelector("body").style.setProperty("display", "none")
+document.querySelector("body").style.setProperty("display", "none");
 
 /**
  * This function hides the given element by setting its display style to "none".
@@ -238,6 +238,7 @@ const CG = {
   },
   dom: {
     body: document.body,
+    siteHeader: document.querySelector("#header-right"),
     footerContainer: document.querySelector("#footer-container"),
     epFooter: document.querySelector("#ep-footer"),
     messages: document.querySelector("#messages"),
@@ -958,17 +959,44 @@ function debugHeading() {
     }
   }
 
-  if (innerHTML.length) {
-    const infoBoxes = innerHTML.map((innerHTML) =>
-      el("div", {
-        innerHTML,
-        className: "info-box",
-      })
-    );
+  innerHTML
+    .map((innerHTML) => el("div", { innerHTML, className: "info-box" }))
+    .forEach((infoBox) => {
+      CG.dom.siteHeader.insertBefore(infoBox, CG.dom.siteHeader.firstChild);
+    });
 
-    const headerContainer = document.querySelector("#header-right");
-    infoBoxes.forEach((infoBox) => {
-      headerContainer.insertBefore(infoBox, headerContainer.firstChild);
+  const checkbox = document.querySelector("#cg-baseurl-staging");
+  if (CG.env.isStaging) checkbox.checked = true;
+
+  if (checkbox) {
+    function updateLinks(useTestDomain) {
+      const links = document.querySelectorAll(
+        'a[href*="' +
+          CONFIG.domains.prod.url +
+          '"], a[href*="' +
+          CONFIG.domains.stage.url +
+          '"]'
+      );
+      links.forEach((link) => {
+        const url = new URL(link.href);
+        if (useTestDomain && url.hostname === CONFIG.domains.prod.url) {
+          url.hostname = CONFIG.domains.stage.url;
+        } else if (
+          !useTestDomain &&
+          url.hostname === CONFIG.domains.stage.url
+        ) {
+          url.hostname = CONFIG.domains.prod.url;
+        }
+        link.href = url.toString();
+      });
+    }
+
+    // initial state update if needed
+    updateLinks(checkbox.checked);
+
+    // toggle behavior
+    checkbox.addEventListener("change", function () {
+      updateLinks(this.checked);
     });
   }
 }
@@ -2112,9 +2140,6 @@ function handlePageStyling() {
   It is a good place to run scripts that need to manipulate the DOM or set up event listeners.
 */
 document.addEventListener("DOMContentLoaded", () => {
-  // hide all
-  hide(CG.dom.body);
-
   // remove search container
   document.querySelector(".search-container")?.remove();
 
@@ -2290,39 +2315,4 @@ function shoot() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const checkbox = document.getElementById("cg-baseurl-staging");
-  if (CG.env.isStaging) checkbox.checked = true;
-
-  if (checkbox) {
-    function updateLinks(useTestDomain) {
-      const links = document.querySelectorAll(
-        'a[href*="' +
-          CONFIG.domains.prod.url +
-          '"], a[href*="' +
-          CONFIG.domains.stage.url +
-          '"]'
-      );
-      links.forEach((link) => {
-        const url = new URL(link.href);
-        if (useTestDomain && url.hostname === CONFIG.domains.prod.url) {
-          url.hostname = CONFIG.domains.stage.url;
-        } else if (
-          !useTestDomain &&
-          url.hostname === CONFIG.domains.stage.url
-        ) {
-          url.hostname = CONFIG.domains.prod.url;
-        }
-        link.href = url.toString();
-      });
-    }
-
-    // initial state update if needed
-    updateLinks(checkbox.checked);
-
-    // toggle behavior
-    checkbox.addEventListener("change", function () {
-      updateLinks(this.checked);
-    });
-  }
-});
+document.addEventListener("DOMContentLoaded", function () {});
