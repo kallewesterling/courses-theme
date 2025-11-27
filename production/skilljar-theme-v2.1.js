@@ -268,6 +268,53 @@ const CG = {
         );
       },
     },
+
+    auth: {
+      inputs: {
+        password2: document.querySelector("#id_password2"), // signup specific
+        email: document.querySelector("#id_email"), // signup specific
+      },
+
+      // login specific
+      loginForm: document.querySelector("#login_form"),
+      loginText: document.querySelector("#login-tab-left span span"),
+      signupTabTextSpan: document.querySelector("#login-tab-right span"),
+
+      // signup-specific
+      loginTabTextSpan: document.querySelector("#login-tab-left a span"),
+      signupForm: document.querySelector("#signup_form"),
+      signupTabText:
+        document.querySelector("#login-tab-right a") ||
+        document.querySelector("#login-tab-right span"),
+      passwordConfirm: document.querySelector(
+        "label[for=id_password2] .input-label-text span"
+      ),
+      fNameLabel: document.querySelector(
+        'label[for="id_first_name"] span span'
+      ),
+      lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
+      emailLabel: document.querySelector('label[for="id_email"]'),
+      signupBtnText: document.querySelector("#button-sign-up span"),
+
+      google: document.querySelector("#google_login"),
+      TOS: document.querySelector("#access-message"),
+      
+      form:
+        document.querySelector("#login_form") ||
+        document.querySelector("#signup_form"),
+
+      button:
+        document.querySelector("#button-sign-in") ||
+        document.querySelector("#button-sign-up"),
+
+      method:
+        document.querySelector(".sj-text-sign-in-with") ||
+        document.querySelector(".sj-text-sign-up-with"),
+
+      get altMethod() {
+        return CG.dom.auth.method("span");
+      },
+    },
   },
 };
 
@@ -839,6 +886,17 @@ pathSections = {
 const hide = (element) => setStyle(element, { display: "none !important" });
 
 const showBody = () => setStyle(CG.dom.body, { display: undefined });
+
+const text = (element, value, auto = "") => {
+  if (element && value !== undefined && value !== null)
+    element.textContent = value;
+  if (element) element.textContent = auto;
+};
+
+const placeholder = (element, value) => {
+  if (element && value !== undefined && value !== null)
+    element.setAttribute("placeholder", value);
+};
 
 function debugHeading() {
   let innerHTML = [];
@@ -1528,9 +1586,8 @@ function tryPathSections() {
  */
 function stylePathCourseDetails() {
   // set content
-  CG.dom.header.floaterText.textContent = "Learning Path";
-  CG.dom.header.courseInfo.textContent =
-    skilljarCourseSeries.short_description || "";
+  text(CG.dom.header.floaterText, "Learning Path");
+  text(CG.dom.header.courseInfo, skilljarCourseSeries.short_description);
 
   // move elements
   CG.dom.header.wrapper.append(
@@ -1686,8 +1743,7 @@ function styleLesson() {
 
   // content
   if (CG.dom.local.nav.backToCurriculumText)
-    CG.dom.local.nav.backToCurriculumText.textContent =
-      "Back to Course Overview";
+    text(CG.dom.local.nav.backToCurriculumText, "Back to Course Overview");
 
   // Makes lesson links pop up in new tab
   CG.dom.local.lesson.content.links.forEach((elem) => {
@@ -1883,61 +1939,27 @@ function styleLesson() {
 }
 
 function styleAuth() {
-  CG.dom.local = {
-    googleBtn: document.querySelector("#google_login"),
-    termsAndServices: document.querySelector("#access-message"),
-    altMethod:
-      document.querySelector(".sj-text-sign-in-with span") ||
-      document.querySelector(".sj-text-sign-up-with span"),
-
-    inputs: {
-      password2: document.querySelector("#id_password2"), // signup specific
-      email: document.querySelector("#id_email"), // signup specific
-    },
-
-    // login specific
-    loginBtn: document.querySelector("#button-sign-in"),
-    loginForm: document.querySelector("#login_form"),
-    loginText: document.querySelector("#login-tab-left span span"),
-    signupTabTextSpan: document.querySelector("#login-tab-right span"),
-
-    // signup-specific
-    loginTabTextSpan: document.querySelector("#login-tab-left a span"),
-    signupForm: document.querySelector("#signup_form"),
-    signupTabText:
-      document.querySelector("#login-tab-right a") ||
-      document.querySelector("#login-tab-right span"),
-    passwordConfirm: document.querySelector(
-      "label[for=id_password2] .input-label-text span"
-    ),
-    fNameLabel: document.querySelector('label[for="id_first_name"] span span'),
-    lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
-    emailLabel: document.querySelector('label[for="id_email"]'),
-    signupBtnText: document.querySelector("#button-sign-up span"),
-  };
-
   if (CG.page.isLogin) {
-    CG.dom.local.loginText.textContent = "Log In";
-    CG.dom.local.signupTabTextSpan.textContent = "Sign Up";
-    CG.dom.local.altMethod.textContent = "Or Log In With";
-    CG.dom.local.loginBtn.textContent = "Log In";
-    CG.dom.local.googleBtn.textContent = "Continue with Google";
-
-    CG.dom.local.loginForm.append(CG.dom.local.termsAndServices);
+    text(CG.dom.auth.loginText, "Log In");
+    text(CG.dom.auth.signupTabTextSpan, "Sign Up");
+    text(CG.dom.auth.altMethod, "Or Log In With");
+    text(CG.dom.auth.button, "Log In");
+    text(CG.dom.auth.google, "Continue with Google");
+    CG.dom.auth.loginForm.append(CG.dom.auth.TOS);
   } else {
-    CG.dom.local.loginTabTextSpan.textContent = "Log In";
-    CG.dom.local.signupTabText.textContent = "Sign Up";
-    CG.dom.local.altMethod.textContent = "Or Sign Up With";
-    CG.dom.local.fNameLabel.textContent = "First Name";
-    CG.dom.local.googleBtn.textContent = "Continue with Google";
-    CG.dom.local.lNameLabel.textContent = "Last Name";
-    CG.dom.local.signupBtnText.textContent = "Sign Up";
-    CG.dom.local.passwordConfirm.textContent = "Password Confirm";
-    CG.dom.local.emailLabel.textContent = "Work Email";
-    CG.dom.local.inputs.email.placeholder = "Work Email";
-    CG.dom.local.inputs.password2.placeholder = "Password Confirm";
+    text(CG.dom.auth.loginTabTextSpan, "Log In");
+    text(CG.dom.auth.signupTabText, "Sign Up");
+    text(CG.dom.auth.altMethod, "Or Sign Up With");
+    text(CG.dom.auth.fNameLabel, "First Name");
+    text(CG.dom.auth.google, "Continue with Google");
+    text(CG.dom.auth.lNameLabel, "Last Name");
+    text(CG.dom.auth.button, "Sign Up"); // was the span element (TODO: test)
+    text(CG.dom.auth.passwordConfirm, "Password Confirm");
+    text(CG.dom.auth.emailLabel, "Work Email");
+    placeholder(CG.dom.auth.inputs.email, "Work Email");
+    placeholder(CG.dom.auth.inputs.password2, "Password Confirm");
 
-    CG.dom.local.signupForm.append(CG.dom.local.termsAndServices);
+    CG.dom.auth.signupForm.append(CG.dom.auth.TOS);
   }
 
   // hide existing login content
@@ -1955,12 +1977,10 @@ function styleAuth() {
     [
       document.querySelector("#tabs"),
       el("div", { className: "auth-card" }, [
-        CG.page.isLogin ? CG.dom.local.loginForm : CG.dom.local.signupForm,
-        CG.page.isLogin
-          ? document.querySelector(".sj-text-sign-in-with")
-          : document.querySelector(".sj-text-sign-up-with"),
-        CG.dom.local.googleBtn,
-        CG.dom.local.termsAndServices,
+        CG.page.isLogin ? CG.dom.auth.loginForm : CG.dom.auth.signupForm,
+        CG.dom.auth.method,
+        CG.dom.auth.google,
+        CG.dom.auth.TOS,
       ]),
     ]
   );
@@ -2020,7 +2040,7 @@ function styleCurriculumPageNoCertificate() {
   CG.dom.curriculumContainer.replaceChildren(
     ...getCurriculumElements(CG.dom.curriculumContainer)
   );
-  CG.dom.header.courseInfo.textContent = skilljarCourse.short_description;
+  text(CG.dom.header.courseInfo, skilljarCourse.short_description);
 
   // move elements
   CG.dom.courseContainer.append(...[CG.dom.local.card.details].filter(Boolean));
@@ -2198,11 +2218,11 @@ function showCompletion(elem) {
   const countdownEl = elem.querySelector("#completion-countdown");
   if (countdownEl) {
     let remaining = CONFIG.confetti.autoHideMs / 1000;
-    countdownEl.textContent = remaining;
+    text(countdownEl, remaining);
     const interval = setInterval(() => {
       remaining -= 1;
       if (remaining > 0) {
-        countdownEl.textContent = remaining;
+        text(countdownEl, remaining);
       } else {
         clearInterval(interval);
       }
