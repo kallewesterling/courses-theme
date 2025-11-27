@@ -256,15 +256,15 @@ const CG = {
 
       get curriculumSection() {
         return (
-          CG.dom.container.querySelector("section #curriculumSection") ||
-          CG.dom.container.querySelector("section:nth-child(1)")
+          CG.dom.tabs.container.querySelector("section #curriculumSection") ||
+          CG.dom.tabs.container.querySelector("section:nth-child(1)")
         );
       },
 
       get aboutSection() {
         return (
-          CG.dom.container.querySelector("section #aboutSection") ||
-          CG.dom.container.querySelector("section:nth-child(2)")
+          CG.dom.tabs.container.querySelector("section #aboutSection") ||
+          CG.dom.tabs.container.querySelector("section:nth-child(2)")
         );
       },
     },
