@@ -76,7 +76,8 @@
     }
   }
 
-  .course-details-card-link.completed {
+  .course-details-card-link.completed,
+  .button.completed {
     background-color: green !important;
     cursor: default !important;
   }
