@@ -2218,9 +2218,9 @@ body.sj-page-signup {
 
 svg.clone-icon {
   display: block;
+  fill: var(--primary-blue-hex);
 
   &.copy-icon {
-    fill: var(--primary-blue-hex);
     cursor: pointer;
   }
 
