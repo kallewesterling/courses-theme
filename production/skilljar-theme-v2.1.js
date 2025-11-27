@@ -154,8 +154,8 @@ const CG = {
     hasCourse: typeof skilljarCourse !== "undefined",
     hasCatalogPage: typeof skilljarCatalogPage !== "undefined",
     hasCourseProgress: typeof skilljarCourseProgress !== "undefined",
-    hasCourseBoxes: [...document.querySelectorAll(".coursebox-container")]
-      .length,
+    hasCourseBoxes:
+      [...document.querySelectorAll(".coursebox-container")].length > 0,
   },
   page: {
     isCatalog: c(".sj-page-catalog"),
@@ -205,7 +205,7 @@ const CG = {
       );
     },
 
-    get userCourseJourney() {
+    get courses() {
       return {
         unregistered: this.unregistered.map((elem) => elem.dataset.course),
         registered: this.registered.map((elem) => elem.dataset.course),
@@ -229,16 +229,23 @@ const CG = {
     },
 
     header: {
-      mainHeadingContainer:
+      wrapper:
         document.querySelector(".cp-summary-wrapper") ||
         document.querySelector(".dp-summary-wrapper"),
       floaterText: document.querySelector(".sj-floater-text"),
       mainHeading: document.querySelector(".break-word"),
-      courseInfo: document.querySelector(".sj-heading-paragraph"),
-      ctaBtnWrapper: document.querySelector("#resume-button"),
+      courseInfo:
+        document.querySelector(".sj-course-info-wrapper") ||
+        document.querySelector(".sj-heading-paragraph"),
+      ctaBtnWrapper:
+        document.querySelector("#resume-button") ||
+        document.querySelector("#purchase-button-wrapper-large"),
+      registerBtn: document.querySelector("#purchase-button-wrapper-large a"),
       ctaBtn: document.querySelector("#resume-button a"),
       ctaBtnText: document.querySelector("#resume-button a span"),
     },
+    courseContainer: document.querySelector("#dp-details"),
+    curriculumContainer: document.querySelectorAll(".dp-curriculum")[0],
   },
 };
 
@@ -259,8 +266,6 @@ if (CG.env.hasUser) {
   }
 }
 
-addCrumb("Home", CG.state.baseURL);
-
 if (CG.env.hasGroups) {
   CG.env.isInternal = skilljarUserStudentGroups
     .map((d) => d.id)
@@ -279,11 +284,6 @@ if (CG.env.hasCourseSeries) {
   CG.state.course.path = Object.assign(skilljarCourseSeries, {
     edit: `https://dashboard.skilljar.com/publishing/domains/${CG.state.domain.id}/published-paths/${skilljarCourseSeries.id}/edit`,
   });
-  addCrumb(
-    skilljarCourseSeries.title,
-    `/path/${skilljarCourseSeries.slug}`,
-    true
-  );
 }
 
 if (CG.env.hasCourse) {
@@ -294,8 +294,6 @@ if (CG.env.hasCourse) {
   CG.state.course.short_description = skilljarCourse.short_description;
   CG.state.course.long_description_html = skilljarCourse.long_description_html;
   CG.state.course.edit = `https://dashboard.skilljar.com/course/${skilljarCourse.id}`;
-
-  addCrumb(skilljarCourse.title, "#");
 }
 
 if (CG.env.hasCourseProgress) {
@@ -307,10 +305,6 @@ CG.page.inPartnerPath =
   Object.values(CONFIG.partners)
     .map((a) => a.id === CG.state.course.path.id)
     .filter(Boolean).length > 0;
-
-if (CG.page.inPartnerPath) {
-  addCrumb("Partner Courses", "/page/partners", true);
-}
 
 pathSections = {
   home: [
@@ -814,6 +808,69 @@ pathSections = {
 
 const showBody = () => setStyle(CG.dom.body, { display: undefined });
 
+function debugHeading() {
+  let innerHTML = [];
+
+  if (CG.env.isPartner) {
+    innerHTML.push(
+      `<p style="margin:0"><a href="/page/partners">Partner Courses</a></p>`
+    );
+  }
+
+  // DEBUG: adding info box for internal users
+  if (CG.env.isAdmin) {
+    innerHTML.push(`<p style="margin:0">
+        ${CG.page.isLanding ? "styleLanding" : ""}
+        ${CG.page.isCourseDetails ? "styleCourseDetails" : ""}
+        ${CG.page.isPageDetail ? "stylePathCourseDetails" : ""}
+        ${CG.page.isLogin ? "styleAuth" : ""}
+        ${CG.page.isSignup ? "styleAuth" : ""}
+        ${
+          CG.page.isCurriculum && !CG.page.hasCertificate
+            ? "styleCurriculumPageNoCertificate"
+            : ""
+        }
+        ${
+          CG.page.isCurriculum && CG.page.hasCertificate
+            ? "styleCurriculumPageHasCertification"
+            : ""
+        }
+        ${CG.page.isLesson ? "styleLesson" : ""}
+        ${CG.page.isPageCatalog ? "stylePathCatalogPage" : ""}
+      </p>`);
+
+    innerHTML.push(`<input type="checkbox" id="cg-baseurl-staging" />`);
+
+    // Add course edit link
+    if (CG.state.course.id) {
+      innerHTML.push(
+        `<p style="margin:0"><a href="${CG.state.course.edit}">Edit Course</a></p>`
+      );
+    }
+
+    // Add path edit link
+    if (CG.state.course.path.id && CG.state.domain) {
+      innerHTML.push(
+        `<p style="margin:0"><a href="${CG.state.course.path.edit}">Edit Path</a></p>`
+      );
+    }
+  }
+
+  if (innerHTML.length) {
+    const infoBoxes = innerHTML.map((innerHTML) =>
+      el("div", {
+        innerHTML,
+        className: "info-box",
+      })
+    );
+
+    const headerContainer = document.querySelector("#header-right");
+    infoBoxes.forEach((infoBox) => {
+      headerContainer.insertBefore(infoBox, headerContainer.firstChild);
+    });
+  }
+}
+
 /*
  * Renders a breadcrumb navigation element.
  * @param {HTMLElement} targetElement - The target element to replace with the breadcrumb navigation.
@@ -898,9 +955,6 @@ function makeSections(
   parentSelector = "#skilljar-content",
   baseURL = "https://courses.chainguard.dev"
 ) {
-  const registeredCourses = CG.state.userCourseJourney.registered;
-  const completedCourses = CG.state.userCourseJourney.completed;
-
   sections.forEach((section) => {
     const sectionElement = el(
       "section",
@@ -921,10 +975,12 @@ function makeSections(
             "div",
             { className: "cards" },
             section.links.map((link) => {
-              const isRegistered = registeredCourses.includes(link.slug)
+              const isRegistered = CG.state.courses.registered.includes(
+                link.slug
+              )
                 ? "card--in-progress"
                 : "";
-              const isCompleted = completedCourses.includes(link.slug)
+              const isCompleted = CG.state.courses.completed.includes(link.slug)
                 ? "card--completed"
                 : "";
 
@@ -1073,8 +1129,6 @@ const createResourceCard = (resource) =>
       ]),
     ]
   );
-
-let v = {};
 
 function getCurriculumElements(curriculumParentContainer) {
   let currentSection = 0,
@@ -1237,6 +1291,19 @@ function createCourseDetailsCard(
  * @return {Function} - A function that, when called, will copy the text and animate the tooltip.
  */
 function toClipboard(copyText, tooltipContainer) {
+  /**
+   * This function animates the tooltip that appears when code is copied.
+   * It sets the opacity to 1, waits for 400ms, and then sets the opacity to 0.
+   * @param {HTMLElement} tooltipEl - The tooltip element to animate.
+   */
+  function animateCopiedTooltip(tooltipEl) {
+    setStyle(tooltipEl, { opacity: "1" });
+
+    setTimeout(() => {
+      setStyle(tooltipEl, { opacity: "0" });
+    }, 400);
+  }
+
   return async () => {
     try {
       await navigator.clipboard.writeText(copyText);
@@ -1319,92 +1386,7 @@ function setStyle(target, style) {
  * This function hides the given element by setting its display style to "none".
  * @param {HTMLElement} element - The element to hide.
  */
-function hide(element) {
-  setStyle(element, { display: "none !important" });
-}
-
-/**
- * This function animates the tooltip that appears when code is copied.
- * It sets the opacity to 1, waits for 400ms, and then sets the opacity to 0.
- * @param {HTMLElement} tooltipEl - The tooltip element to animate.
- */
-function animateCopiedTooltip(tooltipEl) {
-  setStyle(tooltipEl, { opacity: "1" });
-
-  setTimeout(() => {
-    setStyle(tooltipEl, { opacity: "0" });
-  }, 400);
-}
-
-/**
- * This function styles the group container for curriculum sections.
- * It sets the border, border radius, margin, and padding.
- * @param {HTMLElement} container - The container element to style.
- * @param {string} border - The border style to apply. Default is "b" for blue.
- * @return {void}
- */
-// function styleGroupContainer(container, border = "b") {
-//   logger.info("Running styleGroupContainer with setStyle");
-//   setStyle(container, {
-//     border:
-//       border === "b"
-//         ? "2px solid var(--primary-blue-hex)"
-//         : "1px solid var(--detail-medium-contrast)",
-//     borderRadius: "8px",
-//     marginBottom: "48px",
-//     padding: "0",
-//   });
-// }
-
-/**
- * This function styles the list item for lessons.
- * It hides the type icon, sets padding, font size, font weight, and line height.
- * If the item is not the last child, it adds a bottom border.
- * @param {HTMLElement} lessonItem - The list item element to style.
- * @param {boolean} isLastChild - Indicates if the item is the last child.
- * @param {boolean} hideIcon - Whether to hide the type icon. Default is true.
- * @param {string} border - The border style to apply. Default is "b" for blue.
- * @return {void}
- */
-// function styleListItem(lessonItem, isLastChild, hideIcon = true, border = "b") {
-//   logger.info("Running styleListItem with setStyle");
-//   if (hideIcon) {
-//     hide(lessonItem.querySelector(".type-icon"));
-//   }
-
-//   setStyle(lessonItem, {
-//     padding: "24px",
-//     fontSize: "16px",
-//     fontWeight: "400",
-//     lineHeight: "150%",
-//     borderBottom: isLastChild
-//       ? "none"
-//       : border === "b"
-//       ? "2px solid var(--primary-blue-hex)"
-//       : "1px solid var(--detail-medium-contrast)",
-//   });
-// }
-
-/**
- * This function styles the group heading container.
- * It sets padding, border bottom, and styles the actual group heading.
- * @param {HTMLElement} groupHeadingContainer - The group heading container to style.
- */
-// function styleGroupHeading(groupHeadingContainer, border = "b") {
-//   logger.info("Running styleGroupHeading with setStyle");
-//   setStyle(groupHeadingContainer, {
-//     padding: "24px",
-//     margin: "0",
-//     fontSize: "16px",
-//     fontWeight: "500",
-//     lineHeight: "125%",
-//     letterSpacing: "-.16px",
-//     borderBottom:
-//       border === "b"
-//         ? "2px solid var(--primary-blue-hex)"
-//         : "1px solid var(--detail-medium-contrast)",
-//   });
-// }
+const hide = (element) => setStyle(element, { display: "none !important" });
 
 /**
  * This function applies desktop-specific styling to a catalog page.
@@ -1450,24 +1432,7 @@ function style404() {
 function styleCourseDetails() {
   logger.info("Running styleCourseDetails");
 
-  v.local = {
-    header: {
-      container: document.querySelector(".top-row-grey"),
-      floaterText: document.querySelector(".sj-floater-text"),
-      mainHeading: document.querySelector(".break-word"),
-      courseInfo:
-        document.querySelector(".sj-course-info-wrapper") ||
-        document.querySelector(".sj-heading-paragraph"),
-      ctaBtnWrapper: document.querySelector("#purchase-button-wrapper-large"),
-      registerBtn: document.querySelector("#purchase-button-wrapper-large a"),
-      mainHeadingContainer: document.querySelector(".dp-summary-wrapper"),
-    },
-    body: {
-      container: document.querySelector("#dp-details"),
-    },
-    curriculum: {
-      container: document.querySelectorAll(".dp-curriculum")[0], // note: this is the desktop version
-    },
+  CG.dom.local = {
     card: {
       details: document.querySelector(".course-details-card"),
       detailItems: document.querySelectorAll(".course-details-card li"),
@@ -1476,12 +1441,12 @@ function styleCourseDetails() {
   };
 
   // Add course order
-  [...v.local.header.courseInfo.children]
+  [...CG.dom.header.courseInfo.children]
     .filter((elem) => elem.textContent.search(/Course \d+ of \d+ in/) !== -1)
     .forEach((elem) => elem.classList.add("course-order"));
 
   // Add path registration info
-  [...v.local.header.courseInfo.children]
+  [...CG.dom.header.courseInfo.children]
     .filter(
       (elem) =>
         elem.textContent.search(
@@ -1490,14 +1455,11 @@ function styleCourseDetails() {
     )
     .forEach((elem) => elem.classList.add("path-registration"));
 
-  let btnText = "Register",
-    btnHref = "#";
-
-  if (v.local.header.ctaBtnWrapper) {
-    btnText = v.local.header.registerBtn.textContent;
-    btnHref = v.local.header.registerBtn.href;
+  let btnHref = "#";
+  if (CG.dom.header.ctaBtnWrapper) {
+    btnHref = CG.dom.header.registerBtn.href;
   } else {
-    const links = [...v.local.header.courseInfo.querySelectorAll("p")]
+    const links = [...CG.dom.header.courseInfo.querySelectorAll("p")]
       .filter((d) => d.textContent.toLowerCase().includes("learning path"))
       .map((p) =>
         [...p.querySelectorAll("a")].filter(
@@ -1507,7 +1469,6 @@ function styleCourseDetails() {
       .flat();
 
     if (links.length > 0) {
-      btnText = "Register for Learning Path";
       btnHref = CONFIG.partners[skilljarCourseSeries.slug]?.checkout
         ? `/checkout/${CONFIG.partners[skilljarCourseSeries.slug]?.checkout}`
         : links[0].href;
@@ -1515,41 +1476,60 @@ function styleCourseDetails() {
   }
 
   if (typeof courseDetails !== "undefined") {
-    v.local.card.details ? v.local.card.details.remove() : null; // remove existing card if present
-    v.local.body.container.append(
+    CG.dom.local.card.details ? CG.dom.local.card.details.remove() : null; // remove existing card if present
+    CG.dom.courseContainer.append(
       ...[
         createCourseDetailsCard(courseDetails, {
-          btnText,
+          btnText: CG.dom.header.ctaBtnWrapper
+            ? CG.dom.header.registerBtn.textContent
+            : "Register for Learning Path",
           btnHref,
           completed: CG.state.course.completed,
         }),
       ].filter(Boolean)
     );
-    v.local.card.link = document.querySelector(".course-details-card-link"); // re-query link
+    CG.dom.local.card.link = document.querySelector(
+      ".course-details-card-link"
+    ); // re-query link
   }
 
   try {
     const curriculumElements = getCurriculumElements(
-      v.local.curriculum.container
+      CG.dom.curriculumContainer
     );
 
-    v.local.curriculum.container.innerHTML = ""; // Clear the container
-    v.local.curriculum.container.append(...curriculumElements);
+    CG.dom.curriculumContainer.innerHTML = ""; // Clear the container
+    CG.dom.curriculumContainer.append(...curriculumElements);
   } catch (error) {
     logger.error("Error processing curriculum elements:", error);
   }
 
   // append card
-  v.local.body.container.append(...[v.local.card.details].filter(Boolean));
+  CG.dom.courseContainer(...[CG.dom.local.card.details].filter(Boolean));
 
   // append elements to header
-  v.local.header.mainHeadingContainer.append(
+  CG.dom.header.wrapper.append(
     ...[
-      v.local.header.floaterText,
-      v.local.header.mainHeading,
-      v.local.header.courseInfo,
-      v.local.header.ctaBtnWrapper,
+      CG.dom.header.floaterText,
+      CG.dom.header.mainHeading,
+      CG.dom.header.courseInfo,
+      CG.dom.header.ctaBtnWrapper,
     ].filter(Boolean)
+  );
+}
+
+function tryPathSections() {
+  if (!pathSections[skilljarPath.slug]) {
+    logger.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
+    return;
+  }
+
+  hide(".sj-courseboxes-v2");
+
+  makeSections(
+    pathSections[skilljarPath.slug],
+    "#skilljar-content",
+    `${CG.state.baseURL}/path/${skilljarPath.slug}`
   );
 }
 
@@ -1559,43 +1539,23 @@ function styleCourseDetails() {
 function stylePathCourseDetails() {
   logger.info("Running stylePathCourseDetails");
 
-  v.local = {
-    header: {
-      mainHeadingContainer: document.querySelector(".dp-summary-wrapper"),
-      floaterText: document.querySelector(".sj-floater-text"),
-      mainHeading: document.querySelector(".break-word"),
-      courseInfo: document.querySelector(".sj-heading-paragraph"),
-      ctaBtnWrapper: document.querySelector("#purchase-button-wrapper-large"),
-    },
-    catalog: document.querySelector(".catalog-center-width"),
-  };
-
   // set content
-  v.local.header.floaterText.textContent = "Learning Path";
-  v.local.header.courseInfo.textContent =
+  CG.dom.header.floaterText.textContent = "Learning Path";
+  CG.dom.header.courseInfo.textContent =
     skilljarCourseSeries.short_description || "";
 
   // move elements
-  v.local.header.mainHeadingContainer.append(
+  CG.dom.header.wrapper.append(
     ...[
-      v.local.header.floaterText,
-      v.local.header.mainHeading,
-      v.local.header.courseInfo,
-      v.local.header.ctaBtnWrapper,
+      CG.dom.header.floaterText,
+      CG.dom.header.mainHeading,
+      CG.dom.header.courseInfo,
+      CG.dom.header.ctaBtnWrapper,
     ].filter(Boolean)
   );
 
-  if (pathSections[skilljarPath.slug]) {
-    hide(".sj-courseboxes-v2");
-
-    makeSections(
-      pathSections[skilljarPath.slug],
-      "#skilljar-content",
-      `${CG.state.baseURL}/path/${skilljarPath.slug}`
-    );
-  } else {
-    logger.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
-  }
+  // make path sections
+  tryPathSections();
 }
 
 /**
@@ -1604,48 +1564,47 @@ function stylePathCourseDetails() {
 function stylePathCatalogPage() {
   logger.info("Running stylePathCatalogPage");
 
-  hide(".path-curriculum-resume-wrapper");
+  hide([
+    ".path-curriculum-resume-wrapper",
+    "#path-curriculum-progress-bar-annotation",
+    "#path-curriculum-progress-bar",
+  ]);
 
   const topRow = el("div", {
     className: "top-row-grey top-row-white-v2 padding-top padding-side row-v2",
   });
-  const topRowInner = el("div", {
-    className: "row dp-row-flex-v2",
-  });
-  const topRowLeft = el("div", {
-    className: "columns text-center large-6 dp-summary-wrapper text-left-v2",
-  });
-  const floaterText = el("div", {
-    className: "sj-floater-text",
-    textContent: "Learning Path",
-  });
-  const mainHeading = el("h1", {
-    className: "break-word",
-    textContent: skilljarCourseSeries.title || "",
-  });
-  const courseInfo = el("p", {
-    className: "sj-heading-paragraph",
-    textContent: skilljarCourseSeries.short_description || "",
-  });
-  const ctaBtnWrapper = document.querySelector(
-    ".path-curriculum-button-wrapper a"
+
+  const topRowInner = el(
+    "div",
+    {
+      className: "row dp-row-flex-v2",
+    },
+    [
+      // top row left
+      el(
+        "div",
+        {
+          className:
+            "columns text-center large-6 dp-summary-wrapper text-left-v2",
+        },
+        [
+          el("div", {
+            className: "sj-floater-text",
+            textContent: "Learning Path",
+          }),
+          el("h1", {
+            className: "break-word",
+            textContent: skilljarCourseSeries.title || "",
+          }),
+          el("p", {
+            className: "sj-heading-paragraph",
+            textContent: skilljarCourseSeries.short_description || "",
+          }),
+          document.querySelector(".path-curriculum-button-wrapper a"),
+        ]
+      ),
+    ]
   );
-  const progressAnnotation = document.querySelector(
-    "#path-curriculum-progress-bar-annotation"
-  );
-  const progressBar = document.querySelector("#path-curriculum-progress-bar");
-  hide([progressAnnotation, progressBar]); // temporarily
-  topRowLeft.append(
-    ...[
-      floaterText,
-      mainHeading,
-      courseInfo,
-      ctaBtnWrapper,
-      progressAnnotation,
-      progressBar,
-    ].filter(Boolean)
-  );
-  topRowInner.append(topRowLeft);
 
   const breadcrumb = el("div", {
     className: "row dp-row-flex-v2",
@@ -1654,40 +1613,47 @@ function stylePathCatalogPage() {
   renderBreadcrumbs(breadcrumb, CG.state.crumbs);
   topRow.append(breadcrumb, topRowInner);
 
-  const detailsBundle = el("div", {
-    id: "dp-details-bundle",
-  });
-  const detailsBundleRow = el("div", {
-    className: "row padding-side",
-  });
-  const detailsBundleCol = el("div", {
-    className: "columns",
-  });
-  const longDescription = el("div", {
-    className: "dp-long-description",
-  });
-  const longDescPara = el("p", {
-    innerHTML: skilljarCourseSeries.long_description_html,
-  });
-  longDescription.append(longDescPara);
-  detailsBundleCol.append(longDescription);
-  detailsBundleRow.append(detailsBundleCol);
-  detailsBundle.append(detailsBundleRow);
+  const detailsBundle = el(
+    "div",
+    {
+      id: "dp-details-bundle",
+    },
+    [
+      el(
+        "div",
+        {
+          className: "row padding-side",
+        },
+        [
+          el(
+            "div",
+            {
+              className: "columns",
+            },
+            [
+              el(
+                "div",
+                {
+                  className: "dp-long-description",
+                },
+                [
+                  el("p", {
+                    innerHTML: skilljarCourseSeries.long_description_html,
+                  }),
+                ]
+              ),
+            ]
+          ),
+        ]
+      ),
+    ]
+  );
 
   // prepend topRow and detailsBundle to content
   CG.dom.contentContainer.prepend(...[topRow, detailsBundle].filter(Boolean));
 
-  if (pathSections[skilljarPath.slug]) {
-    hide(".sj-courseboxes-v2");
-
-    makeSections(
-      pathSections[skilljarPath.slug],
-      "#skilljar-content",
-      `${CG.state.baseURL}/path/${skilljarPath.slug}`
-    );
-  } else {
-    logger.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
-  }
+  // make path sections
+  tryPathSections();
 }
 
 function styleLesson() {
@@ -1699,7 +1665,7 @@ function styleLesson() {
    * @param {NodeList} codeBlocks - A list of code block elements to process.
    * @return {void}
    */
-  v.local = {
+  CG.dom.local = {
     body: {
       mainContainer: document.querySelector("#lp-wrapper"),
       innerContainer: document.querySelector("#lesson-body"),
@@ -1735,11 +1701,12 @@ function styleLesson() {
   };
 
   // content
-  if (v.local.nav.backToCurriculumText)
-    v.local.nav.backToCurriculumText.textContent = "Back to Course Overview";
+  if (CG.dom.local.nav.backToCurriculumText)
+    CG.dom.local.nav.backToCurriculumText.textContent =
+      "Back to Course Overview";
 
   // Makes lesson links pop up in new tab
-  v.local.lesson.content.links.forEach((elem) => {
+  CG.dom.local.lesson.content.links.forEach((elem) => {
     elem.target = "_blank";
     // we also want to set some utm_source, utm_medium here if it's a link to a certain set of domains (domain name includes chainguard.dev)
     if (elem.href.includes("chainguard.dev")) {
@@ -1748,11 +1715,11 @@ function styleLesson() {
   });
 
   // move elements
-  v.local.body.mainContainer.append(v.local.footer.container);
-  v.local.body.innerContainer.prepend(
+  CG.dom.local.body.mainContainer.append(CG.dom.local.footer.container);
+  CG.dom.local.body.innerContainer.prepend(
     ...[
-      v.local.lesson.content.internalCourseWarning,
-      v.local.nav.toggleWrapper,
+      CG.dom.local.lesson.content.internalCourseWarning,
+      CG.dom.local.nav.toggleWrapper,
     ].filter(Boolean)
   );
 
@@ -1832,9 +1799,9 @@ function styleLesson() {
 
   btnWrapper.append(prevBtn, nextBtn);
 
-  v.local.lesson.innerBody.append(el("hr"), btnWrapper);
+  CG.dom.local.lesson.innerBody.append(el("hr"), btnWrapper);
 
-  v.local.lesson.content.codeBlocks
+  CG.dom.local.lesson.content.codeBlocks
     .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
     .forEach((elem) => {
       const codeEl = elem.querySelector("code");
@@ -1876,7 +1843,7 @@ function styleLesson() {
   );
 
   if (typeof resources !== "undefined") {
-    const numBoxes = v.local.lesson.content.resources.boxes.length;
+    const numBoxes = CG.dom.local.lesson.content.resources.boxes.length;
 
     if (typeof resources.resources !== "undefined" && numBoxes === 0) {
       logger.info(
@@ -1887,15 +1854,18 @@ function styleLesson() {
       const wrapper = el("div", { className: "resource-wrapper" });
 
       box.append(header, wrapper);
-      v.local.lesson.body.append(box);
+      CG.dom.local.lesson.body.append(box);
     }
 
-    if (v.local.lesson.content.resources && typeof resources !== "undefined") {
+    if (
+      CG.dom.local.lesson.content.resources &&
+      typeof resources !== "undefined"
+    ) {
       if (typeof resources.resources !== "undefined" && numBoxes === 1) {
         // we have a list of resources and will drop that in the first box
         const cards = resources.resources.map((r) => createResourceCard(r));
 
-        const box = v.local.lesson.content.resources.boxes[0];
+        const box = CG.dom.local.lesson.content.resources.boxes[0];
 
         const wrapper = box.querySelector(".resource-wrapper");
 
@@ -1906,7 +1876,7 @@ function styleLesson() {
         wrapper.append(...cards);
       } else if (typeof resources.groups !== "undefined") {
         // we have groups of resources to drop in each box
-        v.local.lesson.content.resources.boxes.forEach((box) => {
+        CG.dom.local.lesson.content.resources.boxes.forEach((box) => {
           if (!box.dataset.group) {
             logger.warn(
               "Resource box is missing data-group attribute, skipping:",
@@ -1937,7 +1907,7 @@ function styleLesson() {
 function styleAuth() {
   logger.info("Running styleAuth");
 
-  v.local = {
+  CG.dom.local = {
     googleBtn: document.querySelector("#google_login"),
     termsAndServices: document.querySelector("#access-message"),
     altMethod:
@@ -1971,27 +1941,27 @@ function styleAuth() {
   };
 
   if (CG.page.isLogin) {
-    v.local.loginText.textContent = "Log In";
-    v.local.signupTabTextSpan.textContent = "Sign Up";
-    v.local.altMethod.textContent = "Or Log In With";
-    v.local.loginBtn.textContent = "Log In";
-    v.local.googleBtn.textContent = "Continue with Google";
+    CG.dom.local.loginText.textContent = "Log In";
+    CG.dom.local.signupTabTextSpan.textContent = "Sign Up";
+    CG.dom.local.altMethod.textContent = "Or Log In With";
+    CG.dom.local.loginBtn.textContent = "Log In";
+    CG.dom.local.googleBtn.textContent = "Continue with Google";
 
-    v.local.loginForm.append(v.local.termsAndServices);
+    CG.dom.local.loginForm.append(CG.dom.local.termsAndServices);
   } else {
-    v.local.loginTabTextSpan.textContent = "Log In";
-    v.local.signupTabText.textContent = "Sign Up";
-    v.local.altMethod.textContent = "Or Sign Up With";
-    v.local.fNameLabel.textContent = "First Name";
-    v.local.googleBtn.textContent = "Continue with Google";
-    v.local.lNameLabel.textContent = "Last Name";
-    v.local.signupBtnText.textContent = "Sign Up";
-    v.local.passwordConfirm.textContent = "Password Confirm";
-    v.local.emailLabel.textContent = "Work Email";
-    v.local.inputs.email.placeholder = "Work Email";
-    v.local.inputs.password2.placeholder = "Password Confirm";
+    CG.dom.local.loginTabTextSpan.textContent = "Log In";
+    CG.dom.local.signupTabText.textContent = "Sign Up";
+    CG.dom.local.altMethod.textContent = "Or Sign Up With";
+    CG.dom.local.fNameLabel.textContent = "First Name";
+    CG.dom.local.googleBtn.textContent = "Continue with Google";
+    CG.dom.local.lNameLabel.textContent = "Last Name";
+    CG.dom.local.signupBtnText.textContent = "Sign Up";
+    CG.dom.local.passwordConfirm.textContent = "Password Confirm";
+    CG.dom.local.emailLabel.textContent = "Work Email";
+    CG.dom.local.inputs.email.placeholder = "Work Email";
+    CG.dom.local.inputs.password2.placeholder = "Password Confirm";
 
-    v.local.signupForm.append(v.local.termsAndServices);
+    CG.dom.local.signupForm.append(CG.dom.local.termsAndServices);
   }
 
   // hide existing login content
@@ -2000,29 +1970,24 @@ function styleAuth() {
     document.querySelector("#login-content"),
   ]);
 
-  const authContainer = el("div", {
-    id: "auth-container",
-    style: "flex-grow: 1; min-height: 100vh;",
-  });
-
-  // create new auth card
-  const authCard = el("div", { className: "auth-card" });
-
-  // append existing elements to it
-  let form, orSignUpWith;
-  if (CG.page.isLogin) {
-    form = v.local.loginForm;
-    orSignUpWith = document.querySelector(".sj-text-sign-in-with");
-  } else {
-    form = v.local.signupForm;
-    orSignUpWith = document.querySelector(".sj-text-sign-up-with");
-  }
-
-  authCard.append(
-    ...[form, orSignUpWith, v.local.googleBtn, v.local.termsAndServices]
+  const authContainer = el(
+    "div",
+    {
+      id: "auth-container",
+      style: "flex-grow: 1; min-height: 100vh;",
+    },
+    [
+      document.querySelector("#tabs"),
+      el("div", { className: "auth-card" }, [
+        CG.page.isLogin ? CG.dom.local.loginForm : CG.dom.local.signupForm,
+        CG.page.isLogin
+          ? document.querySelector(".sj-text-sign-in-with")
+          : document.querySelector(".sj-text-sign-up-with"),
+        CG.dom.local.googleBtn,
+        CG.dom.local.termsAndServices,
+      ]),
+    ]
   );
-
-  authContainer.append(...[document.querySelector("#tabs"), authCard]);
 
   CG.dom.contentContainer.append(authContainer);
 }
@@ -2030,18 +1995,9 @@ function styleAuth() {
 function styleCurriculumPageNoCertificate() {
   logger.info("Running styleCurriculumPageNoCertificate");
 
-  v.local = {
+  CG.dom.local = {
     body: {
       mainContainer: document.querySelector("#cp-content"),
-    },
-    header: {
-      mainHeadingContainer: document.querySelector(".cp-summary-wrapper"),
-      floaterText: document.querySelector(".sj-floater-text"),
-      mainHeading: document.querySelector(".break-word"),
-      courseInfo: document.querySelector(".sj-heading-paragraph"),
-      ctaBtnWrapper: document.querySelector("#resume-button"),
-      ctaBtn: document.querySelector("#resume-button a"),
-      ctaBtnText: document.querySelector("#resume-button a span"),
     },
     curriculum: {
       container: document.querySelector("#curriculum-list"),
@@ -2062,553 +2018,72 @@ function styleCurriculumPageNoCertificate() {
     },
   };
 
-  v.local.tabs.aboutSection?.classList.add("active");
+  CG.dom.local.tabs.aboutSection?.classList.add("active");
 
-  v.local.tabs.aboutSection.id = "aboutSection";
-  v.local.tabs.curriculumSection.id = "curriculumSection";
+  CG.dom.local.tabs.aboutSection.id = "aboutSection";
+  CG.dom.local.tabs.curriculumSection.id = "curriculumSection";
 
-  v.local.tabs.container.append(
-    v.local.tabs.aboutSection,
-    v.local.tabs.curriculumSection
+  CG.dom.local.tabs.container.append(
+    CG.dom.local.tabs.aboutSection,
+    CG.dom.local.tabs.curriculumSection
   );
 
-  const btnText = v.local.header.ctaBtnWrapper
-    ? v.local.header.ctaBtnText.textContent
-    : "Resume";
-  const btnHref = v.local.header.ctaBtnText
-    ? v.local.header.ctaBtn.getAttribute("href")
-    : "resume";
-
   if (typeof courseDetails !== "undefined") {
-    v.local.card.details ? v.local.card.details.remove() : null; // remove existing card if present
-    v.local.body.mainContainer.append(
+    CG.dom.local.card.details ? CG.dom.local.card.details.remove() : null; // remove existing card if present
+    CG.dom.local.body.mainContainer.append(
       ...[
         createCourseDetailsCard(courseDetails, {
-          btnText,
-          btnHref,
+          btnText: CG.dom.header.ctaBtnWrapper
+            ? CG.dom.header.ctaBtnText.textContent
+            : "Resume",
+          btnHref: CG.dom.header.ctaBtnText
+            ? CG.dom.header.ctaBtn.getAttribute("href")
+            : "resume",
           completed: CG.state.course.completed,
         }),
       ].filter(Boolean)
     );
-    v.local.card.link = document.querySelector(".course-details-card-link"); // re-query link
+    CG.dom.local.card.link = document.querySelector(
+      ".course-details-card-link"
+    ); // re-query link
   }
 
   // update resume button text and href (with auto-value fallback)
-  if (v.local.header.ctaBtnWrapper && v.local.card.link) {
-    const btnText = v.local.header.ctaBtnText.textContent || "Resume";
-    const btnHref = v.local.header.ctaBtn.getAttribute("href") || "resume";
+  if (CG.dom.header.ctaBtnWrapper && CG.dom.local.card.link) {
+    const btnText = CG.dom.header.ctaBtnText.textContent || "Resume";
+    const btnHref = CG.dom.header.ctaBtn.getAttribute("href") || "resume";
 
-    v.local.card.link.textContent = btnText;
-    v.local.card.link.href = btnHref;
-  } else if (v.local.card.link) {
+    CG.dom.local.card.link.textContent = btnText;
+    CG.dom.local.card.link.href = btnHref;
+  } else if (CG.dom.local.card.link) {
     logger.warn("Hiding resume button as it could not be found");
     if (!CG.state.course.completed) {
-      hide(v.local.card.link); // Hide resume button if it doesn't exist
+      hide(CG.dom.local.card.link); // Hide resume button if it doesn't exist
     }
   }
 
   const curriculumElements = getCurriculumElements(
-    v.local.curriculum.container
+    CG.dom.local.curriculum.container
   );
 
-  v.local.curriculum.container.innerHTML = ""; // Clear the container
-  v.local.curriculum.container.append(...curriculumElements);
+  CG.dom.local.curriculum.container.innerHTML = ""; // Clear the container
+  CG.dom.local.curriculum.container.append(...curriculumElements);
 
-  v.local.header.courseInfo.textContent = skilljarCourse.short_description;
+  CG.dom.header.courseInfo.textContent = skilljarCourse.short_description;
 
   // move elements
-  v.local.body.mainContainer.append(...[v.local.card.details].filter(Boolean));
-  v.local.header.mainHeadingContainer.append(
+  CG.dom.local.body.mainContainer.append(
+    ...[CG.dom.local.card.details].filter(Boolean)
+  );
+  CG.dom.header.wrapper.append(
     ...[
-      v.local.header.floaterText,
-      v.local.header.mainHeading,
-      v.local.header.courseInfo,
-      v.local.header.ctaBtnWrapper,
+      CG.dom.header.floaterText,
+      CG.dom.header.mainHeading,
+      CG.dom.header.courseInfo,
+      CG.dom.header.ctaBtnWrapper,
     ].filter(Boolean)
   );
 }
-
-/**
- * This function applies desktop-specific styling to the curriculum page when a certificate is available.
- * It modifies the layout and appearance of various elements on the page.
- */
-// function styleCurriculumPageHasCertificationDesktop() {
-//   // TODO: Clean up this function
-//   logger.info("Running styleCurriculumPageHasCertificationDesktop");
-//   const courseDescription = skilljarCourse.short_description;
-
-//   // HEADER VARIABLES
-//   const headingParagraph = document.querySelector(".sj-heading-paragraph");
-//   const headingFloaterText = document.querySelector(".sj-floater-text");
-//   const container = document.querySelector(".cp-summary-wrapper"); // DUPLICATE VAR
-//   const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR
-//   const backToCatalogLink = document.querySelector(".back-to-catalog");
-
-//   hide(backToCatalogLink);
-
-//   const curriculumPageHeader = document.querySelector(".top-row-grey");
-//   const headerTextAndImgContainer = document.querySelector(".dp-row-flex-v2");
-//   const sjHeaderTextContainer = document.querySelector(".cp-summary-wrapper");
-//   const sjHeaderTextHeading = document.querySelector(".break-word");
-//   const sjHeaderTextSubheading = document.querySelector(".cp-lessons");
-//   const sjHeaderTextProgressBar = document.querySelector(
-//     ".progress-bar.button-border-color"
-//   );
-//   const certificateEl = document.querySelector(".cp-certificate");
-//   const sjHeaderImgContainer = document.querySelector(
-//     ".large-4.pull-8.columns.cp-promo-image-wrapper"
-//   );
-//   const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image");
-//   const sjHeaderImg = document.querySelector(".cp-promo-image img");
-
-//   // BODY VARIABLES
-//   const bodyMainContainer = document.querySelector("#cp-content");
-//   const innerContentContainer = bodyMainContainer.querySelector(".columns");
-//   const tabsContainer = document.querySelector(".section-container.tabs");
-//   let [curriculumSection, aboutSection] =
-//     tabsContainer.querySelectorAll("section");
-
-//   // STYLE LOGO
-//   v.global.logo.style.height = "24px";
-
-//   // TEST
-//   if (initialLoadComplete) {
-//     curriculumSection = v.global.curriculumSection;
-//     aboutSection = v.global.aboutSection;
-//     tabsContainer.append(curriculumSection, aboutSection);
-//   }
-
-//   const pageIcons = document.querySelectorAll(".type-icon.hide-for-small");
-//   const lessonListItems = document.querySelectorAll(".lesson-row");
-//   const curriculumParentContainer = document.querySelector("#curriculum-list");
-//   const curriculumItemsListLIVE = new Array(
-//     ...curriculumParentContainer.childNodes
-//   );
-//   const curriculumOutsideContainer =
-//     curriculumParentContainer.closest(".content");
-
-//   // CARD VARIABLES
-//   const courseDetailsCard = document.querySelector(".course-details-card");
-//   // const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li");
-//   const courseDetailsCardLink = document.querySelector(
-//     ".course-details-card-link"
-//   );
-
-//   // STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
-//   bodyMainContainer.style.display = "grid";
-//   bodyMainContainer.style.marginTop = "96px";
-//   bodyMainContainer.style.gridTemplateColumns =
-//     "minmax(100px, 760px) minmax(100px, 368px)";
-
-//   bodyMainContainer.append(...(courseDetailsCard ? [courseDetailsCard] : []));
-
-//   courseDetailsCard.style.margin = "96px 0 46px 0";
-
-//   hide(courseDetailsCardLink);
-
-//   // if (!initialLoadComplete) {
-//   //   courseDetailCardListItems.forEach((li) =>
-//   //     li.prepend(createClone("checkbox"))
-//   //   );
-//   // }
-
-//   bodyMainContainer.style.columnGap = "24px";
-//   innerContentContainer.style.width = "100%";
-
-//   // STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-//   sjHeaderTextHeading.style.fontWeight = "600";
-//   sjHeaderTextHeading.style.fontSize = "36px";
-//   sjHeaderTextHeading.style.lineHeight = "43.2px";
-//   sjHeaderTextHeading.style.letterSpacing = "-0.5px";
-//   sjHeaderTextHeading.style.marginTop = "0";
-//   hide(sjHeaderTextSubheading);
-//   hide(sjHeaderTextProgressBar);
-
-//   // STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
-//   curriculumPageHeader.style.maxWidth = "none";
-//   curriculumPageHeader.style.padding = "0";
-//   curriculumPageHeader.style.backgroundImage =
-//     "linear-gradient(315deg, var(--gradient-start), var(--gradient-end) 72%)";
-//   curriculumPageHeader.style.border = "0";
-
-//   // STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
-//   // TEXT CONTAINER
-//   sjHeaderTextContainer.style.position = "static";
-//   sjHeaderTextContainer.style.padding = "0";
-//   sjHeaderTextContainer.style.maxWidth = "564px";
-//   sjHeaderTextContainer.style.border = "0";
-//   sjHeaderTextContainer.style.textAlign = "left";
-//   // IMG CONTAINER
-//   sjHeaderImgContainer.style.position = "static";
-//   sjHeaderImgContainer.style.padding = "0";
-//   sjHeaderImgContainer.style.width = "564px";
-//   sjHeaderImgContainer.style.height = "auto";
-//   sjHeaderImgDirectContainer.style.maxHeight = "none";
-//   sjHeaderImg.style.maxHeight = "none";
-//   sjHeaderImg.style.height = "auto";
-//   sjHeaderImg.style.maxWidth = "100%";
-//   // PARENT CONTAINER
-//   headerTextAndImgContainer.style.margin = "96px 0";
-//   headerTextAndImgContainer.style.justifyContent = "center";
-//   headerTextAndImgContainer.style.flexWrap = "nowrap";
-//   headerTextAndImgContainer.style.gap = "24px";
-
-//   // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-//   headingParagraph.textContent = courseDescription;
-//   headingParagraph.style.display = "block";
-//   headingFloaterText.style.display = "block";
-//   container.append(
-//     ...(headingFloaterText ? [headingFloaterText] : []),
-//     ...(mainHeading ? [mainHeading] : []),
-//     ...(headingParagraph ? [headingParagraph] : []),
-//     ...(certificateEl ? [certificateEl] : [])
-//   );
-
-//   // CURRICULUM PAGE BODY STYLING
-//   tabsContainer.append(curriculumSection);
-//   tabsContainer.style.margin = "0 0 46px 0";
-//   bodyMainContainer.style.paddingTop = "0";
-//   bodyMainContainer.style.paddingBottom = "0";
-//   aboutSection.classList.add("active");
-//   curriculumSection.style.marginTop = "48px";
-
-//   aboutSection.querySelector("h3").style.fontWeight = "600";
-//   hide(aboutSection.querySelector(".title"));
-//   aboutSection.querySelector(".content").style.border = "0";
-//   aboutSection.querySelector(".content").style.padding = "0";
-//   hide(curriculumSection.querySelector(".title"));
-//   curriculumSection.querySelector("h2").style.fontWeight = "600";
-//   curriculumSection.querySelector(".content").style.border = "0";
-//   curriculumSection.querySelector(".content").style.padding = "0";
-
-//   /*
-//   ------------------------------
-//   NEW CURRICULUM DISPLAY STYLING
-//   ------------------------------
-//   */
-//   if (!initialLoadComplete) {
-//     // Set global curriculum and about section vars
-//     v.global.curriculumSection = curriculumSection;
-//     v.global.aboutSection = aboutSection;
-
-//     const hasSections = curriculumParentContainer.querySelector("h3")
-//       ? true
-//       : false;
-//     let curContainer = document.createElement("div");
-
-//     if (!hasSections) {
-//       styleGroupContainer(curContainer);
-//     }
-
-//     curriculumItemsListLIVE.forEach((el) => {
-//       if (el?.tagName) {
-//         el.classList.add("curriculumItem");
-//       }
-//     });
-
-//     const curriculumItemsListNonLive =
-//       curriculumParentContainer.querySelectorAll(".curriculumItem");
-
-//     curriculumItemsListNonLive.forEach((el, i, curArr) => {
-//       if (el.tagName === "DIV") {
-//         // Yes? push curContainer into parent container
-//         curriculumParentContainer.append(curContainer);
-//         // Reset curContainer while pushing current new heading & icon in there for the next iteration
-//         curContainer = document.createElement("div");
-//         styleGroupContainer(curContainer);
-
-//         const newGroupHeading = document.createElement("div");
-//         newGroupHeading.style.display = "flex";
-//         newGroupHeading.style.gap = "12px";
-
-//         newGroupHeading.textContent =
-//           el.querySelector("h3")?.textContent?.trim() || "Module";
-
-//         styleGroupHeading(newGroupHeading);
-
-//         curContainer.append(newGroupHeading);
-//         hide(el);
-//       } else {
-//         // Else, normal/expected behaviour
-//         // Transfer inner html of current list item to new created div
-//         const isLastChild = curArr[i + 1]
-//           ? curArr[i + 1].tagName === "DIV"
-//           : true;
-
-//         const newListEl = document.createElement("div");
-//         styleListItem(newListEl, isLastChild, false);
-
-//         newListEl.append(el);
-//         curContainer.append(newListEl);
-//       }
-//     });
-
-//     curriculumParentContainer.append(curContainer);
-
-//     hide(curriculumOutsideContainer.querySelector("h2"));
-//     hide(curriculumOutsideContainer.querySelector("hr"));
-//   }
-
-//   // CURRICULUM ITSELF STYLING
-//   hide(...pageIcons);
-
-//   lessonListItems.forEach((item) => {
-//     const titleEl = item.querySelector(".title");
-//     item.style.display = "flex";
-//     item.style.alignItems = "center";
-//     item.style.gap = "12px";
-
-//     item.querySelector(".bullet").style.position = "static";
-
-//     titleEl.style.position = "static";
-//     titleEl.style.color = "var(--answer-option)";
-//     titleEl.style.display = "flex";
-//     titleEl.style.alignItems = "center";
-//     titleEl.style.margin = "0";
-//     titleEl.style.transform = "translateY(2px)";
-//   });
-// }
-
-/**
- * This function applies mobile-specific styling to the curriculum page when a certificate is present.
- * It modifies the layout and appearance of various elements on the page.
- */
-// function styleCurriculumPageHasCertificationMobile() {
-//   // TODO: Clean up this function
-//   logger.info("Running styleCurriculumPageHasCertificateMobile");
-
-//   const headingParagraph = document.querySelector(".sj-heading-paragraph");
-//   const headingFloaterText = document.querySelector(".sj-floater-text");
-//   const container = document.querySelector(".cp-summary-wrapper"); // DUPLICATE VAR
-//   const mainHeading = document.querySelector(".break-word"); // DUPLICATE VAR
-//   const backToCatalogLink = document.querySelector(".back-to-catalog");
-
-//   hide(backToCatalogLink);
-
-//   const curriculumPageHeader = document.querySelector(".top-row-grey");
-//   const headerTextAndImgContainer = document.querySelector(".dp-row-flex-v2");
-//   const sjHeaderTextContainer = document.querySelector(".cp-summary-wrapper");
-//   const sjHeaderTextHeading = document.querySelector(".break-word");
-//   const sjHeaderTextSubheading = document.querySelector(".cp-lessons");
-//   const sjHeaderTextProgressBar = document.querySelector(
-//     ".progress-bar.button-border-color"
-//   );
-//   const certificateEl = document.querySelector(".cp-certificate");
-//   const sjHeaderImgContainer = document.querySelector(
-//     ".large-4.pull-8.columns.cp-promo-image-wrapper"
-//   );
-//   const sjHeaderImgDirectContainer = document.querySelector(".cp-promo-image");
-//   const sjHeaderImg = document.querySelector(".cp-promo-image img");
-
-//   // BODY VARIABLES
-//   const bodyMainContainer = document.querySelector("#cp-content");
-//   const innerContentContainer = bodyMainContainer.querySelector(".columns");
-//   const tabsContainer = document.querySelector(".section-container.tabs");
-//   let [curriculumSection, aboutSection] =
-//     tabsContainer.querySelectorAll("section");
-
-//   // TEST
-//   if (initialLoadComplete) {
-//     curriculumSection = v.global.curriculumSection;
-//     aboutSection = v.global.aboutSection;
-//     tabsContainer.append(curriculumSection, aboutSection);
-//   }
-
-//   const pageIcons = document.querySelectorAll(".type-icon.hide-for-small");
-//   const lessonListItems = document.querySelectorAll(".lesson-row");
-//   const curriculumParentContainer = document.querySelector("#curriculum-list");
-//   const curriculumItemsListLIVE = curriculumParentContainer.childNodes;
-//   const curriculumOutsideContainer =
-//     curriculumParentContainer.closest(".content");
-
-//   // CARD VARIABLES
-//   const courseDetailsCard = document.querySelector(".course-details-card");
-//   // const courseDetailCardListItems = courseDetailsCard.querySelectorAll("li");
-//   const courseDetailsCardLink = document.querySelector(
-//     ".course-details-card-link"
-//   );
-
-//   // NAV STYLING
-//   v.global.logo.style.maxHeight = "48px";
-
-//   // STYLING OF CURRICULUM PAGE GRID AND DETAILS CARD
-//   bodyMainContainer.style.display = "grid";
-//   bodyMainContainer.style.gridTemplateColumns = "1fr";
-//   bodyMainContainer.style.width = "90%";
-//   bodyMainContainer.style.columnGap = "24px";
-
-//   courseDetailsCard.style.margin = "32px 0 56px 0";
-//   courseDetailsCard.style.justifySelf = "center";
-//   bodyMainContainer.append(courseDetailsCard);
-
-//   hide(courseDetailsCardLink);
-
-//   // if (!initialLoadComplete) {
-//   //   courseDetailCardListItems.forEach((li) =>
-//   //     li.prepend(createClone("checkbox"))
-//   //   );
-//   // }
-
-//   innerContentContainer.style.width = "100%";
-
-//   // STYLING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-//   sjHeaderTextHeading.style.fontWeight = "600";
-//   sjHeaderTextHeading.style.fontSize = "36px";
-//   sjHeaderTextHeading.style.lineHeight = "43.2px";
-//   sjHeaderTextHeading.style.letterSpacing = "-0.5px";
-//   sjHeaderTextHeading.style.marginTop = "0";
-//   hide(sjHeaderTextSubheading);
-//   hide(sjHeaderTextProgressBar);
-
-//   // STYLING OF CURRICULUM PAGE TEXT HEADER BACKGROUND CONTAINER
-//   curriculumPageHeader.style.maxWidth = "none";
-//   curriculumPageHeader.style.padding = "0";
-//   curriculumPageHeader.style.backgroundImage =
-//     "linear-gradient(315deg, var(--gradient-start), var(--gradient-end) 72%)";
-//   curriculumPageHeader.style.border = "0";
-
-//   // STYLING OF CURRICULUM PAGE TWO HEADER CONTAINERS
-//   // TEXT CONTAINER
-//   sjHeaderTextContainer.style.position = "static";
-//   sjHeaderTextContainer.style.padding = "0";
-//   sjHeaderTextContainer.style.maxWidth = "none";
-//   sjHeaderTextContainer.style.width = "100%";
-//   sjHeaderTextContainer.style.marginBottom = "32px";
-//   sjHeaderTextContainer.style.border = "0";
-//   sjHeaderTextContainer.style.textAlign = "left";
-//   // IMG CONTAINER
-//   sjHeaderImgContainer.style.position = "static";
-//   sjHeaderImgContainer.style.padding = "0";
-//   sjHeaderImgContainer.style.width = "90%";
-//   sjHeaderImgContainer.style.maxWidth = "564px";
-//   sjHeaderImgContainer.style.height = "auto";
-//   sjHeaderImgDirectContainer.style.maxHeight = "none";
-//   sjHeaderImg.style.maxHeight = "none";
-//   sjHeaderImg.style.height = "auto";
-//   sjHeaderImg.style.maxWidth = "100%";
-//   // PARENT CONTAINER
-//   container.style.width = "90%";
-//   headerTextAndImgContainer.style.margin = "96px 0";
-//   headerTextAndImgContainer.style.justifyContent = "center";
-//   headerTextAndImgContainer.style.flexWrap = "wrap";
-//   headerTextAndImgContainer.style.gap = "24px";
-
-//   // RENDERING OF CURRICULUM PAGE TEXT HEADING ON LEFT
-//   headingParagraph.style.display = "block";
-//   headingFloaterText.style.display = "block";
-//   container.append(
-//     headingFloaterText,
-//     mainHeading,
-//     headingParagraph,
-//     certificateEl
-//   );
-//   // CURRICULUM PAGE BODY STYLING
-//   tabsContainer.append(curriculumSection);
-//   tabsContainer.style.margin = "96px 0 46px 0";
-//   bodyMainContainer.style.paddingTop = "0";
-//   bodyMainContainer.style.paddingBottom = "0";
-//   aboutSection.classList.add("active");
-//   curriculumSection.style.marginTop = "48px";
-
-//   aboutSection.querySelector("h3").style.fontWeight = "600";
-//   hide(aboutSection.querySelector(".title"));
-//   aboutSection.querySelector(".content").style.border = "0";
-//   aboutSection.querySelector(".content").style.padding = "0";
-//   hide(curriculumSection.querySelector(".title"));
-//   curriculumSection.querySelector("h2").style.fontWeight = "600";
-//   curriculumSection.querySelector(".content").style.border = "0";
-//   curriculumSection.querySelector(".content").style.padding = "0";
-
-//   /*
-//   ------------------------------
-//   NEW CURRICULUM DISPLAY STYLING
-//   ------------------------------
-//   */
-//   if (!initialLoadComplete) {
-//     // Set global curriculum and about section vars
-//     v.global.curriculumSection = curriculumSection;
-//     v.global.aboutSection = aboutSection;
-
-//     const hasSections = curriculumParentContainer.querySelector("h3")
-//       ? true
-//       : false;
-//     let curContainer = document.createElement("div");
-
-//     if (!hasSections) {
-//       styleGroupContainer(curContainer, "g");
-//     }
-
-//     curriculumItemsListLIVE.forEach((el) => {
-//       if (el?.tagName) {
-//         el.classList.add("curriculumItem");
-//       }
-//     });
-
-//     const curriculumItemsListNonLive =
-//       curriculumParentContainer.querySelectorAll(".curriculumItem");
-
-//     curriculumItemsListNonLive.forEach((el, i, curArr) => {
-//       if (el.tagName === "DIV") {
-//         // Yes? push curContainer into parent container
-//         curriculumParentContainer.append(curContainer);
-//         // Reset curContainer while pushing current new heading & icon in there for the next iteration
-//         curContainer = document.createElement("div");
-//         styleGroupContainer(curContainer);
-
-//         const newGroupHeading = document.createElement("div");
-//         newGroupHeading.style.display = "flex";
-//         newGroupHeading.style.gap = "12px";
-
-//         newGroupHeading.textContent =
-//           el.querySelector("h3")?.textContent?.trim() || "Module";
-
-//         styleGroupHeading(newGroupHeading, "c");
-
-//         curContainer.append(newGroupHeading);
-//         hide(el);
-//       } else {
-//         // Else, normal/expected behaviour
-//         // Transfer inner html of current list item to new created div
-//         const isLastChild = curArr[i + 1]
-//           ? curArr[i + 1].tagName === "DIV"
-//           : true;
-
-//         const newListEl = document.createElement("div");
-//         styleListItem(newListEl, isLastChild, false, "g");
-
-//         // Styling for mobile
-//         el.querySelector(".title").style.textWrap = "wrap";
-
-//         newListEl.append(el);
-//         curContainer.append(newListEl);
-//       }
-//     });
-
-//     curriculumParentContainer.append(curContainer);
-
-//     hide(curriculumOutsideContainer.querySelector("h2"));
-//     hide(curriculumOutsideContainer.querySelector("hr"));
-//   }
-
-//   // CURRICULUM ITSELF STYLING
-//   lessonListItems.forEach((item) => {
-//     const titleEl = item.querySelector(".title");
-//     item.style.display = "flex";
-//     item.style.alignItems = "center";
-//     item.style.gap = "12px";
-
-//     item.querySelector(".bullet").style.position = "static";
-
-//     titleEl.style.position = "static";
-//     titleEl.style.color = "var(--answer-option)";
-//     titleEl.style.display = "flex";
-//     titleEl.style.alignItems = "center";
-//     titleEl.style.margin = "0";
-//     titleEl.style.transform = "translateY(2px)";
-//   });
-
-//   hide([...pageIcons]);
-// }
 
 const pageHandlers = [
   { test: () => CG.page.isLogin || CG.page.isSignup, handler: styleAuth },
@@ -2625,19 +2100,41 @@ const pageHandlers = [
 ];
 
 function handlePageStyling() {
+  // find first matching handler
   const match = pageHandlers.find(({ test }) => test());
-  if (match) match.handler();
-  else logger.warn("No page styling handler matched for this page.");
 
-  // make breadcrums
-  if (CG.page.isPageDetail || CG.page.isCourseDetails || CG.page.isCurriculum) {
-    const breadcrumb = el("div", { id: "breadcrumb" }); // CG.page.isPageDetail
-    renderBreadcrumbs(breadcrumb, CG.state.crumbs);
-    CG.dom.header.mainHeadingContainer.prepend(breadcrumb);
+  // run handler if found
+  if (match) {
+    logger.info(`Running page styling handler: ${match.handler.name}`);
+    match.handler();
+  } else { 
+    logger.warn("No page styling handler matched for this page.");
   }
 
+  if (CG.page.isPageDetail || CG.page.isCourseDetails || CG.page.isCurriculum) {
+    // make breadcrumbs
+    const breadcrumb = el("div", { id: "breadcrumb" }); // CG.page.isPageDetail
+    renderBreadcrumbs(breadcrumb, CG.state.crumbs);
+    CG.dom.header.wrapper.prepend(breadcrumb);
+
+    // append elements to header
+    CG.dom.header.wrapper.append(
+      ...[
+        CG.dom.header.floaterText,
+        CG.dom.header.mainHeading,
+        CG.dom.header.courseInfo,
+        CG.dom.header.ctaBtnWrapper,
+      ].filter(Boolean)
+    );
+  }
+
+  // move footer
   CG.dom.contentContainer.append(CG.dom.footerContainer);
+
+  // move messages
   CG.dom.contentContainer.prepend(CG.dom.messages);
+
+  // hide Skilljar footer
   hide(CG.dom.epFooter);
 }
 
@@ -2652,69 +2149,26 @@ document.addEventListener("DOMContentLoaded", () => {
   // remove search container
   document.querySelector(".search-container")?.remove();
 
-  // DEBUG: adding "cg-staging" for staging server
-  CG.state.isStaging ? CG.dom.body.classList.add("cg-staging") : null;
+  // setup breadcrumbs
+  addCrumb("Home", CG.state.baseURL);
 
-  let innerHTML = [];
-
-  if (CG.env.isPartner) {
-    innerHTML.push(
-      `<p style="margin:0"><a href="/page/partners">Partner Courses</a></p>`
+  if (CG.env.hasCourseSeries) {
+    addCrumb(
+      skilljarCourseSeries.title,
+      `/path/${skilljarCourseSeries.slug}`,
+      true
     );
   }
 
-  // DEBUG: adding info box for internal users
-  if (CG.env.isAdmin) {
-    innerHTML.push(`<p style="margin:0">
-        ${CG.page.isLanding ? "styleLanding" : ""}
-        ${CG.page.isCourseDetails ? "styleCourseDetails" : ""}
-        ${CG.page.isPageDetail ? "stylePathCourseDetails" : ""}
-        ${CG.page.isLogin ? "styleAuth" : ""}
-        ${CG.page.isSignup ? "styleAuth" : ""}
-        ${
-          CG.page.isCurriculum && !CG.page.hasCertificate
-            ? "styleCurriculumPageNoCertificate"
-            : ""
-        }
-        ${
-          CG.page.isCurriculum && CG.page.hasCertificate
-            ? "styleCurriculumPageHasCertification"
-            : ""
-        }
-        ${CG.page.isLesson ? "styleLesson" : ""}
-        ${CG.page.isPageCatalog ? "stylePathCatalogPage" : ""}
-      </p>`);
-
-    innerHTML.push(`<input type="checkbox" id="cg-baseurl-staging" />`);
-
-    // Add course edit link
-    if (CG.state.course.id) {
-      innerHTML.push(
-        `<p style="margin:0"><a href="${CG.state.course.edit}">Edit Course</a></p>`
-      );
-    }
-
-    // Add path edit link
-    if (CG.state.course.path.id && CG.state.domain) {
-      innerHTML.push(
-        `<p style="margin:0"><a href="${CG.state.course.path.edit}">Edit Path</a></p>`
-      );
-    }
+  if (CG.env.hasCourse) {
+    addCrumb(skilljarCourse.title, "#");
   }
 
-  if (innerHTML.length) {
-    const infoBoxes = innerHTML.map((innerHTML) =>
-      el("div", {
-        innerHTML,
-        className: "info-box",
-      })
-    );
-
-    const headerContainer = document.querySelector("#header-right");
-    infoBoxes.forEach((infoBox) => {
-      headerContainer.insertBefore(infoBox, headerContainer.firstChild);
-    });
+  if (CG.page.inPartnerPath) {
+    addCrumb("Partner Courses", "/page/partners", true);
   }
+
+  debugHeading();
 
   handlePageStyling();
 
