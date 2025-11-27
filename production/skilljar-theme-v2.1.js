@@ -244,8 +244,30 @@ const CG = {
       ctaBtn: document.querySelector("#resume-button a"),
       ctaBtnText: document.querySelector("#resume-button a span"),
     },
-    courseContainer: document.querySelector("#dp-details"),
-    curriculumContainer: document.querySelectorAll(".dp-curriculum")[0],
+    courseContainer:
+      document.querySelector("#dp-details") ||
+      document.querySelector("#cp-content"),
+    curriculumContainer:
+      document.querySelectorAll(".dp-curriculum")[0] ||
+      document.querySelector("#curriculum-list"),
+
+    tabs: {
+      container: document.querySelector(".tabs"),
+
+      get curriculumSection() {
+        return (
+          CG.dom.container.querySelector("section #curriculumSection") ||
+          CG.dom.container.querySelector("section:nth-child(1)")
+        );
+      },
+
+      get aboutSection() {
+        return (
+          CG.dom.container.querySelector("section #aboutSection") ||
+          CG.dom.container.querySelector("section:nth-child(2)")
+        );
+      },
+    },
   },
 };
 
@@ -1488,24 +1510,21 @@ function styleCourseDetails() {
         }),
       ].filter(Boolean)
     );
-    CG.dom.local.card.link = document.querySelector(
-      ".course-details-card-link"
-    ); // re-query link
+  } else {
+    logger.warn("courseDetails is undefined, skipping course details card.");
+    CG.dom.courseContainer.append(
+      ...[CG.dom.local.card.details].filter(Boolean)
+    );
   }
 
   try {
-    const curriculumElements = getCurriculumElements(
-      CG.dom.curriculumContainer
-    );
+    const curriculumElements = getCurriculumElements(CG.dom.curriculumContainer);
 
     CG.dom.curriculumContainer.innerHTML = ""; // Clear the container
     CG.dom.curriculumContainer.append(...curriculumElements);
   } catch (error) {
     logger.error("Error processing curriculum elements:", error);
   }
-
-  // append card
-  CG.dom.courseContainer.append(...[CG.dom.local.card.details].filter(Boolean));
 
   // append elements to header
   CG.dom.header.wrapper.append(
@@ -1996,21 +2015,6 @@ function styleCurriculumPageNoCertificate() {
   logger.info("Running styleCurriculumPageNoCertificate");
 
   CG.dom.local = {
-    body: {
-      mainContainer: document.querySelector("#cp-content"),
-    },
-    curriculum: {
-      container: document.querySelector("#curriculum-list"),
-    },
-    tabs: {
-      container: document.querySelector(".tabs"),
-      curriculumSection:
-        document.querySelector(".tabs section #curriculumSection") ||
-        document.querySelector(".tabs section:nth-child(1)"),
-      aboutSection:
-        document.querySelector(".tabs section #aboutSection") ||
-        document.querySelector(".tabs section:nth-child(2)"),
-    },
     card: {
       details: document.querySelector(".course-details-card"),
       detailItems: document.querySelectorAll(".course-details-card li"),
@@ -2018,19 +2022,16 @@ function styleCurriculumPageNoCertificate() {
     },
   };
 
-  CG.dom.local.tabs.aboutSection?.classList.add("active");
+  CG.dom.tabs.aboutSection?.classList.add("active");
 
-  CG.dom.local.tabs.aboutSection.id = "aboutSection";
-  CG.dom.local.tabs.curriculumSection.id = "curriculumSection";
-
-  CG.dom.local.tabs.container.append(
-    CG.dom.local.tabs.aboutSection,
-    CG.dom.local.tabs.curriculumSection
+  CG.dom.tabs.container.append(
+    Object.assign(CG.dom.tabs.aboutSection, { id: "aboutSection" }),
+    Object.assign(CG.dom.tabs.curriculumSection, { id: "curriculumSection" })
   );
 
   if (typeof courseDetails !== "undefined") {
     CG.dom.local.card.details ? CG.dom.local.card.details.remove() : null; // remove existing card if present
-    CG.dom.local.body.mainContainer.append(
+    CG.dom.courseContainer.append(
       ...[
         createCourseDetailsCard(courseDetails, {
           btnText: CG.dom.header.ctaBtnWrapper
@@ -2043,36 +2044,34 @@ function styleCurriculumPageNoCertificate() {
         }),
       ].filter(Boolean)
     );
+
+    // re-query link
     CG.dom.local.card.link = document.querySelector(
       ".course-details-card-link"
-    ); // re-query link
+    );
   }
 
   // update resume button text and href (with auto-value fallback)
   if (CG.dom.header.ctaBtnWrapper && CG.dom.local.card.link) {
-    const btnText = CG.dom.header.ctaBtnText.textContent || "Resume";
-    const btnHref = CG.dom.header.ctaBtn.getAttribute("href") || "resume";
-
-    CG.dom.local.card.link.textContent = btnText;
-    CG.dom.local.card.link.href = btnHref;
-  } else if (CG.dom.local.card.link) {
+    Object.assign(CG.dom.local.card.link, {
+      textContent: CG.dom.header.ctaBtnText.textContent || "Resume",
+      href: CG.dom.header.ctaBtn.getAttribute("href") || "resume",
+    });
+  } else if (CG.dom.local.card.link && !CG.state.course.completed) {
     logger.warn("Hiding resume button as it could not be found");
-    if (!CG.state.course.completed) {
-      hide(CG.dom.local.card.link); // Hide resume button if it doesn't exist
-    }
+    hide(CG.dom.local.card.link); // Hide resume button if it doesn't exist
   }
 
   const curriculumElements = getCurriculumElements(
-    CG.dom.local.curriculum.container
+    CG.dom.curriculumContainer
   );
 
-  CG.dom.local.curriculum.container.innerHTML = ""; // Clear the container
-  CG.dom.local.curriculum.container.append(...curriculumElements);
-
+  CG.dom.curriculumContainer.innerHTML = ""; // Clear the container
+  CG.dom.curriculumContainer.append(...curriculumElements);
   CG.dom.header.courseInfo.textContent = skilljarCourse.short_description;
 
   // move elements
-  CG.dom.local.body.mainContainer.append(
+  CG.dom.courseContainer.append(
     ...[CG.dom.local.card.details].filter(Boolean)
   );
   CG.dom.header.wrapper.append(
