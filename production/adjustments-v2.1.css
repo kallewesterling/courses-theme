@@ -1912,6 +1912,8 @@ body.sj-page-signup {
     justify-content: center;
     padding: 24px 16px;
     gap: 12px;
+    flex-grow: 1;
+    min-height: 100vh;
   }
 
   /* -------- Tabs (Log In / Sign Up) -------- */

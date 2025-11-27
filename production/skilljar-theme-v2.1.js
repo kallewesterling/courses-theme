@@ -1973,22 +1973,15 @@ function styleAuth() {
     document.querySelector("#login-content"),
   ]);
 
-  const authContainer = el(
-    "div",
-    {
-      id: "auth-container",
-      style: "flex-grow: 1; min-height: 100vh;",
-    },
-    [
-      document.querySelector("#tabs"),
-      el("div", { className: "auth-card" }, [
-        CG.page.isLogin ? CG.dom.auth.loginForm : CG.dom.auth.signupForm,
-        CG.dom.auth.method,
-        CG.dom.auth.google,
-        CG.dom.auth.TOS,
-      ]),
-    ]
-  );
+  const authContainer = el("div", { id: "auth-container" }, [
+    document.querySelector("#tabs"),
+    el("div", { className: "auth-card" }, [
+      CG.page.isLogin ? CG.dom.auth.loginForm : CG.dom.auth.signupForm,
+      CG.dom.auth.method,
+      CG.dom.auth.google,
+      CG.dom.auth.TOS,
+    ]),
+  ]);
 
   CG.dom.contentContainer.append(authContainer);
 }
