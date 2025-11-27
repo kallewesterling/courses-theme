@@ -320,7 +320,7 @@ const CG = {
         document.querySelector("#login-tab-right span"),
 
       get altMethod() {
-        return CG.dom.auth.querySelector("span");
+        return CG.dom.auth.method.querySelector("span");
       },
     },
   },
