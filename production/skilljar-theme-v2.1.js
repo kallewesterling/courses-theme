@@ -1505,7 +1505,7 @@ function styleCourseDetails() {
   }
 
   // append card
-  CG.dom.courseContainer(...[CG.dom.local.card.details].filter(Boolean));
+  CG.dom.courseContainer.append(...[CG.dom.local.card.details].filter(Boolean));
 
   // append elements to header
   CG.dom.header.wrapper.append(
@@ -2107,7 +2107,7 @@ function handlePageStyling() {
   if (match) {
     logger.info(`Running page styling handler: ${match.handler.name}`);
     match.handler();
-  } else { 
+  } else {
     logger.warn("No page styling handler matched for this page.");
   }
 
