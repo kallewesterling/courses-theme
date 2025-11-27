@@ -309,18 +309,22 @@ if (CG.env.hasCourseSeries) {
 }
 
 if (CG.env.hasCourse) {
-  CG.state.course.id = skilljarCourse.id;
-  CG.state.course.publishedCourseId = skilljarCourse.publishedCourseId;
-  CG.state.course.tags = skilljarCourse.tags;
-  CG.state.course.title = skilljarCourse.title;
-  CG.state.course.short_description = skilljarCourse.short_description;
-  CG.state.course.long_description_html = skilljarCourse.long_description_html;
-  CG.state.course.edit = `https://dashboard.skilljar.com/course/${skilljarCourse.id}`;
+  Object.assign(CG.state.course, {
+    id: skilljarCourse.id,
+    publishedCourseId: skilljarCourse.publishedCourseId,
+    tags: skilljarCourse.tags,
+    title: skilljarCourse.title,
+    short_description: skilljarCourse.short_description,
+    long_description_html: skilljarCourse.long_description_html,
+    edit: `https://dashboard.skilljar.com/course/${skilljarCourse.id}`,
+  });
 }
 
 if (CG.env.hasCourseProgress) {
-  CG.state.course.progress = skilljarCourseProgress;
-  CG.state.course.completed = skilljarCourseProgress.completed_at !== "";
+  Object.assign(CG.state.course, {
+    progress: skilljarCourseProgress,
+    completed: skilljarCourseProgress.completed_at !== "",
+  });
 }
 
 CG.page.inPartnerPath =
@@ -828,6 +832,12 @@ pathSections = {
   ],
 };
 
+/**
+ * This function hides the given element by setting its display style to "none".
+ * @param {HTMLElement} element - The element to hide.
+ */
+const hide = (element) => setStyle(element, { display: "none !important" });
+
 const showBody = () => setStyle(CG.dom.body, { display: undefined });
 
 function debugHeading() {
@@ -896,21 +906,15 @@ function debugHeading() {
 /*
  * Renders a breadcrumb navigation element.
  * @param {HTMLElement} targetElement - The target element to replace with the breadcrumb navigation.
- * @param {Array} crumbs - An array of arrays, where each sub-array contains two elements: the label (string) and the href (string) for each breadcrumb item.
- *                         The last item in the array is considered the current page and will not be a link.
  * @example
- * renderBreadcrumbs('#breadcrumb-container', [
- *   ['Home', '/'],
- *   ['Section', '/section'],
- *   ['Current Page', '']
- * ]);
+ * renderBreadcrumbs('#breadcrumb-container');
  */
-function renderBreadcrumbs(targetElement, crumbs) {
+function renderBreadcrumbs(targetElement) {
   if (
     !targetElement ||
-    !crumbs ||
-    !Array.isArray(crumbs) ||
-    crumbs.length === 0
+    !CG.state.crumbs ||
+    !Array.isArray(CG.state.crumbs) ||
+    CG.state.crumbs.length === 0
   )
     return;
 
@@ -1234,48 +1238,30 @@ function createCourseDetailsCard(
     completed: false,
   }
 ) {
-  logger.info(
-    "Creating course details card with details and options:",
-    details,
-    options
-  );
-
   // Create main container
-  const card = el("div", {
-    className: "course-details-card",
-  });
-
-  // Header
-  const header = el("div", {
-    className: "course-details-card-header no-select",
-    textContent: "Course Details",
-  });
-  card.appendChild(header);
-
-  // List
-  const list = el("ul", {
-    className: "course-details-card-list no-select",
-  });
-
-  // Audience
-  const audienceItem = el("li", {
-    innerHTML: `<p>${details.audience}</p>`,
-  });
-  list.appendChild(audienceItem);
-
-  // Time
-  const timeItem = el("li", {
-    innerHTML: `<p>${details.time}</p>`,
-  });
-  list.appendChild(timeItem);
-
-  // Lessons
-  const lessonsItem = el("li", {
-    innerHTML: `<p>${details.lessons} Lessons</p>`,
-  });
-  list.appendChild(lessonsItem);
-
-  card.appendChild(list);
+  const card = el(
+    "div",
+    {
+      className: "course-details-card",
+    },
+    [
+      el("div", {
+        className: "course-details-card-header no-select",
+        textContent: "Course Details",
+      }),
+      el(
+        "ul",
+        {
+          className: "course-details-card-list no-select",
+        },
+        [
+          el("li", {}, [el("p", { text: details.audience })]),
+          el("li", {}, [el("p", { text: details.time })]),
+          el("li", {}, [el("p", { text: details.lessons + " Lessons" })]),
+        ]
+      ),
+    ]
+  );
 
   // Link
   const link = el("a", {
@@ -1287,10 +1273,7 @@ function createCourseDetailsCard(
   });
 
   // add margin to link button
-  setStyle(link, {
-    marginLeft: "20px",
-    marginRight: "20px",
-  });
+  setStyle(link, { marginLeft: "20px", marginRight: "20px" });
 
   card.appendChild(link);
 
@@ -1405,16 +1388,9 @@ function setStyle(target, style) {
 }
 
 /**
- * This function hides the given element by setting its display style to "none".
- * @param {HTMLElement} element - The element to hide.
- */
-const hide = (element) => setStyle(element, { display: "none !important" });
-
-/**
  * This function applies desktop-specific styling to a catalog page.
  */
 function styleCatalog() {
-  logger.info("Running styleCatalog");
   let sections = pathSections[skilljarCatalogPage.slug]; // ex. "partners"
 
   if (!sections) sections = pathSections["home"];
@@ -1433,8 +1409,6 @@ function styleCatalog() {
  * This function applies styling to the 404 error page.
  */
 function style404() {
-  logger.info("Running style404");
-
   if (CG.page.isPartner404) {
     document.querySelector(".message").append(
       ...[
@@ -1452,8 +1426,6 @@ function style404() {
  * This function applies general styling to the course details page.
  */
 function styleCourseDetails() {
-  logger.info("Running styleCourseDetails");
-
   CG.dom.local = {
     card: {
       details: document.querySelector(".course-details-card"),
@@ -1518,10 +1490,9 @@ function styleCourseDetails() {
   }
 
   try {
-    const curriculumElements = getCurriculumElements(CG.dom.curriculumContainer);
-
-    CG.dom.curriculumContainer.innerHTML = ""; // Clear the container
-    CG.dom.curriculumContainer.append(...curriculumElements);
+    CG.dom.curriculumContainer.replaceChildren(
+      ...getCurriculumElements(CG.dom.curriculumContainer)
+    );
   } catch (error) {
     logger.error("Error processing curriculum elements:", error);
   }
@@ -1556,8 +1527,6 @@ function tryPathSections() {
  * This function applies general styling to the path course details page.
  */
 function stylePathCourseDetails() {
-  logger.info("Running stylePathCourseDetails");
-
   // set content
   CG.dom.header.floaterText.textContent = "Learning Path";
   CG.dom.header.courseInfo.textContent =
@@ -1581,8 +1550,6 @@ function stylePathCourseDetails() {
  * This function applies desktop-specific styling to the path catalog page.
  */
 function stylePathCatalogPage() {
-  logger.info("Running stylePathCatalogPage");
-
   hide([
     ".path-curriculum-resume-wrapper",
     "#path-curriculum-progress-bar-annotation",
@@ -1629,7 +1596,7 @@ function stylePathCatalogPage() {
     className: "row dp-row-flex-v2",
     id: "breadcrumb",
   });
-  renderBreadcrumbs(breadcrumb, CG.state.crumbs);
+  renderBreadcrumbs(breadcrumb);
   topRow.append(breadcrumb, topRowInner);
 
   const detailsBundle = el(
@@ -1675,15 +1642,13 @@ function stylePathCatalogPage() {
   tryPathSections();
 }
 
+/**
+ * This function processes code blocks by adding a copy icon and functionality to copy the code to the clipboard.
+ * It filters out code blocks that have the 'noCopy' or 'copyAdded' data attributes.
+ * @param {NodeList} codeBlocks - A list of code block elements to process.
+ * @return {void}
+ */
 function styleLesson() {
-  logger.info("Running styleLesson");
-
-  /**
-   * This function processes code blocks by adding a copy icon and functionality to copy the code to the clipboard.
-   * It filters out code blocks that have the 'noCopy' or 'copyAdded' data attributes.
-   * @param {NodeList} codeBlocks - A list of code block elements to process.
-   * @return {void}
-   */
   CG.dom.local = {
     body: {
       mainContainer: document.querySelector("#lp-wrapper"),
@@ -1888,11 +1853,8 @@ function styleLesson() {
 
         const wrapper = box.querySelector(".resource-wrapper");
 
-        // Clear existing content
-        wrapper.innerHTML = "";
-
         // Add cards
-        wrapper.append(...cards);
+        wrapper.replaceChildren(...cards);
       } else if (typeof resources.groups !== "undefined") {
         // we have groups of resources to drop in each box
         CG.dom.local.lesson.content.resources.boxes.forEach((box) => {
@@ -1910,12 +1872,9 @@ function styleLesson() {
 
           const wrapper = box.querySelector(".resource-wrapper");
 
-          // Clear existing content
-          wrapper.innerHTML = "";
-
           // Add cards
           if (resources.groups[box.dataset.group]) {
-            wrapper.append(...cards);
+            wrapper.replaceChildren(...cards);
           }
         });
       }
@@ -1924,8 +1883,6 @@ function styleLesson() {
 }
 
 function styleAuth() {
-  logger.info("Running styleAuth");
-
   CG.dom.local = {
     googleBtn: document.querySelector("#google_login"),
     termsAndServices: document.querySelector("#access-message"),
@@ -2012,8 +1969,6 @@ function styleAuth() {
 }
 
 function styleCurriculumPageNoCertificate() {
-  logger.info("Running styleCurriculumPageNoCertificate");
-
   CG.dom.local = {
     card: {
       details: document.querySelector(".course-details-card"),
@@ -2062,18 +2017,13 @@ function styleCurriculumPageNoCertificate() {
     hide(CG.dom.local.card.link); // Hide resume button if it doesn't exist
   }
 
-  const curriculumElements = getCurriculumElements(
-    CG.dom.curriculumContainer
+  CG.dom.curriculumContainer.replaceChildren(
+    ...getCurriculumElements(CG.dom.curriculumContainer)
   );
-
-  CG.dom.curriculumContainer.innerHTML = ""; // Clear the container
-  CG.dom.curriculumContainer.append(...curriculumElements);
   CG.dom.header.courseInfo.textContent = skilljarCourse.short_description;
 
   // move elements
-  CG.dom.courseContainer.append(
-    ...[CG.dom.local.card.details].filter(Boolean)
-  );
+  CG.dom.courseContainer.append(...[CG.dom.local.card.details].filter(Boolean));
   CG.dom.header.wrapper.append(
     ...[
       CG.dom.header.floaterText,
@@ -2113,7 +2063,7 @@ function handlePageStyling() {
   if (CG.page.isPageDetail || CG.page.isCourseDetails || CG.page.isCurriculum) {
     // make breadcrumbs
     const breadcrumb = el("div", { id: "breadcrumb" }); // CG.page.isPageDetail
-    renderBreadcrumbs(breadcrumb, CG.state.crumbs);
+    renderBreadcrumbs(breadcrumb);
     CG.dom.header.wrapper.prepend(breadcrumb);
 
     // append elements to header
