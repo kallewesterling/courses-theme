@@ -298,6 +298,8 @@ const CG = {
         );
       },
     },
+    
+    local: {},
 
     auth: {
       inputs: {
@@ -353,6 +355,10 @@ const CG = {
         return CG.dom.auth.method.querySelector("span");
       },
     },
+  },
+  
+  data: {
+    partnerErrorMessage: `If you are a partner and trying to access our Partner courses, you have to first <a href="/auth/login?next=%2Fpage%2Fpartners">sign in or sign up for our Courses platform</a>.`,
   },
 };
 
@@ -936,12 +942,7 @@ function debugHeading() {
         ${CG.page.isSignup ? "styleAuth" : ""}
         ${
           CG.page.isCurriculum && !CG.page.hasCertificate
-            ? "styleCurriculumPageNoCertificate"
-            : ""
-        }
-        ${
-          CG.page.isCurriculum && CG.page.hasCertificate
-            ? "styleCurriculumPageHasCertification"
+            ? "styleCurriculumPage" // f.k.a. styleCurriculumPageNoCertificate
             : ""
         }
         ${CG.page.isLesson ? "styleLesson" : ""}
@@ -1474,13 +1475,28 @@ function setStyle(target, style) {
   return null;
 }
 
+function tryPathSections() {
+  if (!pathSections[skilljarPath.slug]) {
+    logger.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
+    return;
+  }
+
+  hide(".sj-courseboxes-v2");
+
+  makeSections(
+    pathSections[skilljarPath.slug],
+    "#skilljar-content",
+    `${CG.state.baseURL}/path/${skilljarPath.slug}`
+  );
+}
+
 /**
  * This function applies desktop-specific styling to a catalog page.
  */
 function styleCatalog() {
-  let sections = pathSections[skilljarCatalogPage.slug]; // ex. "partners"
+  CG.data.sections = pathSections[skilljarCatalogPage.slug]; // ex. "partners"
 
-  if (!sections) sections = pathSections["home"];
+  if (!CG.data.sections) CG.data.sections = pathSections["home"];
 
   if (!pathSections[skilljarCatalogPage.slug] && !CG.page.isLanding)
     logger.warn("Could not determine catalog section name, defaulting to home");
@@ -1489,7 +1505,7 @@ function styleCatalog() {
   hide(CG.dom.catalogContent);
 
   // create new sections
-  makeSections(sections, "#skilljar-content", CG.state.baseURL);
+  makeSections(CG.data.sections, "#skilljar-content", CG.state.baseURL);
 }
 
 /**
@@ -1502,7 +1518,7 @@ function style404() {
         el("hr"),
         el("p", {
           classList: "sj-text-page-not-found-explanation",
-          innerHTML: `If you are a partner and trying to access our Partner courses, you have to first <a href="/auth/login?next=%2Fpage%2Fpartners">sign in or sign up for our Courses platform</a>.`,
+          innerHTML: CG.data.partnerErrorMessage,
         }),
       ]
     );
@@ -1514,11 +1530,7 @@ function style404() {
  */
 function styleCourseDetails() {
   CG.dom.local = {
-    card: {
-      details: document.querySelector(".course-details-card"),
-      detailItems: document.querySelectorAll(".course-details-card li"),
-      link: document.querySelector(".course-details-card-link"),
-    },
+    card: document.querySelector(".course-details-card"),
   };
 
   // Add course order
@@ -1556,30 +1568,27 @@ function styleCourseDetails() {
     }
   }
 
-  if (typeof courseDetails !== "undefined") {
-    CG.dom.local.card.details ? CG.dom.local.card.details.remove() : null; // remove existing card if present
-    CG.dom.courseContainer.append(
-      ...[
-        createCourseDetailsCard(courseDetails, {
+  CG.data.card =
+    typeof courseDetails !== "undefined"
+      ? createCourseDetailsCard(courseDetails, {
           btnText: CG.dom.header.ctaBtnWrapper
             ? CG.dom.header.registerBtn.textContent
             : "Register for Learning Path",
           btnHref,
           completed: CG.state.course.completed,
-        }),
-      ].filter(Boolean)
-    );
-  } else {
-    logger.warn("courseDetails is undefined, skipping course details card.");
-    CG.dom.courseContainer.append(
-      ...[CG.dom.local.card.details].filter(Boolean)
-    );
-  }
+        })
+      : CG.dom.local.card;
 
+  // remove existing card if present
+  CG.dom.local.card ? CG.dom.local.card.remove() : null;
+  CG.dom.courseContainer.append(...[CG.data.card].filter(Boolean));
+
+  // process curriculum elements
   try {
-    CG.dom.curriculumContainer.replaceChildren(
-      ...getCurriculumElements(CG.dom.curriculumContainer)
+    CG.data.curriculumElements = getCurriculumElements(
+      CG.dom.curriculumContainer
     );
+    CG.dom.curriculumContainer.replaceChildren(...CG.data.curriculumElements);
   } catch (error) {
     logger.error("Error processing curriculum elements:", error);
   }
@@ -1592,21 +1601,6 @@ function styleCourseDetails() {
       CG.dom.header.courseInfo,
       CG.dom.header.ctaBtnWrapper,
     ].filter(Boolean)
-  );
-}
-
-function tryPathSections() {
-  if (!pathSections[skilljarPath.slug]) {
-    logger.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
-    return;
-  }
-
-  hide(".sj-courseboxes-v2");
-
-  makeSections(
-    pathSections[skilljarPath.slug],
-    "#skilljar-content",
-    `${CG.state.baseURL}/path/${skilljarPath.slug}`
   );
 }
 
@@ -1642,42 +1636,39 @@ function stylePathCatalogPage() {
     "#path-curriculum-progress-bar",
   ]);
 
-  const topRow = el("div", {
-    className: "top-row-grey top-row-white-v2 padding-top padding-side row-v2",
-  });
-
-  const topRowInner = el("div", { className: "row dp-row-flex-v2" }, [
-    // top row left
-    el(
-      "div",
-      {
-        className:
-          "columns text-center large-6 dp-summary-wrapper text-left-v2",
-      },
-      [
-        el("div", {
-          className: "sj-floater-text",
-          textContent: "Learning Path",
-        }),
-        el("h1", {
-          className: "break-word",
-          textContent: skilljarCourseSeries.title || "",
-        }),
-        el("p", {
-          className: "sj-heading-paragraph",
-          textContent: skilljarCourseSeries.short_description || "",
-        }),
-        document.querySelector(".path-curriculum-button-wrapper a"),
-      ]
-    ),
-  ]);
-
-  // const breadcrumb = el("div", {
-  //   className: "row dp-row-flex-v2",
-  //   id: "breadcrumb",
-  // });
-  // renderBreadcrumbs(breadcrumb);
-  topRow.append(topRowInner);
+  const topRow = el(
+    "div",
+    {
+      className:
+        "top-row-grey top-row-white-v2 padding-top padding-side row-v2",
+    },
+    [
+      el("div", { className: "row dp-row-flex-v2" }, [
+        el(
+          "div",
+          {
+            className:
+              "columns text-center large-6 dp-summary-wrapper text-left-v2",
+          },
+          [
+            el("div", {
+              className: "sj-floater-text",
+              textContent: "Learning Path",
+            }),
+            el("h1", {
+              className: "break-word",
+              textContent: skilljarCourseSeries.title || "",
+            }),
+            el("p", {
+              className: "sj-heading-paragraph",
+              textContent: skilljarCourseSeries.short_description || "",
+            }),
+            document.querySelector(".path-curriculum-button-wrapper a"),
+          ]
+        ),
+      ]),
+    ]
+  );
 
   const detailsBundle = el("div", { id: "dp-details-bundle" }, [
     el("div", { className: "row padding-side" }, [
@@ -1975,11 +1966,11 @@ function styleAuth() {
   CG.dom.contentContainer.append(authContainer);
 }
 
-function styleCurriculumPageNoCertificate() {
+function styleCurriculumPage() {
+  // f.k.a. styleCurriculumPageNoCertificate
   CG.dom.local = {
     card: {
       details: document.querySelector(".course-details-card"),
-      detailItems: document.querySelectorAll(".course-details-card li"),
       link: document.querySelector(".course-details-card-link"),
     },
   };
@@ -2046,7 +2037,7 @@ const pageHandlers = [
   { test: () => CG.page.isCourseDetails, handler: styleCourseDetails },
   {
     test: () => CG.page.isCurriculum,
-    handler: styleCurriculumPageNoCertificate,
+    handler: styleCurriculumPage,
   },
   { test: () => CG.page.isPageDetail, handler: stylePathCourseDetails },
   { test: () => CG.page.isPageCatalog, handler: stylePathCatalogPage },
@@ -2076,10 +2067,14 @@ function handlePageStyling() {
 
     renderBreadcrumbs(breadcrumb);
 
-    // append elements to header
     if (CG.page.isCoursePage) {
       CG.dom.header.wrapper.prepend(breadcrumb);
+    } else if (CG.page.isPageCatalog) {
+      document.querySelector(".top-row-grey").prepend(breadcrumb);
+    }
 
+    // append elements to header
+    if (CG.page.isCoursePage) {
       CG.dom.header.wrapper.append(
         ...[
           CG.dom.header.floaterText,
@@ -2088,8 +2083,6 @@ function handlePageStyling() {
           CG.dom.header.ctaBtnWrapper,
         ].filter(Boolean)
       );
-    } else if (CG.page.isPageCatalog) {
-      document.querySelector(".top-row-grey").prepend(breadcrumb);
     }
   }
 
