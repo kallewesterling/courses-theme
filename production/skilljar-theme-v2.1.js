@@ -356,7 +356,7 @@ const CG = {
       },
     },
   },
-  
+
   data: {
     partnerErrorMessage: `If you are a partner and trying to access our Partner courses, you have to first <a href="/auth/login?next=%2Fpage%2Fpartners">sign in or sign up for our Courses platform</a>.`,
   },
@@ -1594,14 +1594,14 @@ function styleCourseDetails() {
   }
 
   // append elements to header
-  CG.dom.header.wrapper.append(
-    ...[
-      CG.dom.header.floaterText,
-      CG.dom.header.mainHeading,
-      CG.dom.header.courseInfo,
-      CG.dom.header.ctaBtnWrapper,
-    ].filter(Boolean)
-  );
+  // CG.dom.header.wrapper.append(
+  //   ...[
+  //     CG.dom.header.floaterText,
+  //     CG.dom.header.mainHeading,
+  //     CG.dom.header.courseInfo,
+  //     CG.dom.header.ctaBtnWrapper,
+  //   ].filter(Boolean)
+  // );
 }
 
 /**
@@ -1613,14 +1613,14 @@ function stylePathCourseDetails() {
   text(CG.dom.header.courseInfo, skilljarCourseSeries.short_description);
 
   // move elements
-  CG.dom.header.wrapper.append(
-    ...[
-      CG.dom.header.floaterText,
-      CG.dom.header.mainHeading,
-      CG.dom.header.courseInfo,
-      CG.dom.header.ctaBtnWrapper,
-    ].filter(Boolean)
-  );
+  // CG.dom.header.wrapper.append(
+  //   ...[
+  //     CG.dom.header.floaterText,
+  //     CG.dom.header.mainHeading,
+  //     CG.dom.header.courseInfo,
+  //     CG.dom.header.ctaBtnWrapper,
+  //   ].filter(Boolean)
+  // );
 
   // make path sections
   tryPathSections();
@@ -1937,7 +1937,7 @@ function styleAuth() {
     CG.dom.auth.altMethod,
     CG.page.isLogin ? "Or Log In With" : "Or Sign Up With"
   );
-  if (!CG.page.isLogin) {
+  if (CG.page.isSignup) {
     text(CG.dom.auth.fNameLabel, "First Name");
     text(CG.dom.auth.lNameLabel, "Last Name");
     text(CG.dom.auth.passwordConfirm, "Password Confirm");
@@ -2022,14 +2022,14 @@ function styleCurriculumPage() {
 
   // move elements
   CG.dom.courseContainer.append(...[CG.dom.local.card.details].filter(Boolean));
-  CG.dom.header.wrapper.append(
-    ...[
-      CG.dom.header.floaterText,
-      CG.dom.header.mainHeading,
-      CG.dom.header.courseInfo,
-      CG.dom.header.ctaBtnWrapper,
-    ].filter(Boolean)
-  );
+  // CG.dom.header.wrapper.append(
+  //   ...[
+  //     CG.dom.header.floaterText,
+  //     CG.dom.header.mainHeading,
+  //     CG.dom.header.courseInfo,
+  //     CG.dom.header.ctaBtnWrapper,
+  //   ].filter(Boolean)
+  // );
 }
 
 const pageHandlers = [
@@ -2059,6 +2059,8 @@ function handlePageStyling() {
   }
 
   if (CG.page.isCoursePage || CG.page.isPageCatalog) {
+    // isCoursePage = isPageDetail || isCourseDetails || isCurriculum
+
     // make breadcrumbs
     const breadcrumb = el("div", {
       id: "breadcrumb",
