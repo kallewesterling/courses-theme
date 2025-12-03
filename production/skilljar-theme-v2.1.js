@@ -2066,30 +2066,30 @@ function handlePageStyling() {
     logger.warn("No page styling handler matched for this page.");
   }
 
-  // make breadcrumbs
   if (CG.page.isCoursePage || CG.page.isPageCatalog) {
+    // make breadcrumbs
     const breadcrumb = el("div", {
       id: "breadcrumb",
       className: CG.page.isPageCatalog ? "row dp-row-flex-v2" : "",
     });
 
     renderBreadcrumbs(breadcrumb);
-  }
 
-  // append elements to header
-  if (CG.page.isCoursePage) {
-    CG.dom.header.wrapper.prepend(breadcrumb);
+    // append elements to header
+    if (CG.page.isCoursePage) {
+      CG.dom.header.wrapper.prepend(breadcrumb);
 
-    CG.dom.header.wrapper.append(
-      ...[
-        CG.dom.header.floaterText,
-        CG.dom.header.mainHeading,
-        CG.dom.header.courseInfo,
-        CG.dom.header.ctaBtnWrapper,
-      ].filter(Boolean)
-    );
-  } else if (CG.page.isPageCatalog) {
-    document.querySelector(".top-row-grey").prepend(breadcrumb);
+      CG.dom.header.wrapper.append(
+        ...[
+          CG.dom.header.floaterText,
+          CG.dom.header.mainHeading,
+          CG.dom.header.courseInfo,
+          CG.dom.header.ctaBtnWrapper,
+        ].filter(Boolean)
+      );
+    } else if (CG.page.isPageCatalog) {
+      document.querySelector(".top-row-grey").prepend(breadcrumb);
+    }
   }
 
   // move footer
