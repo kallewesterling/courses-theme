@@ -2064,7 +2064,7 @@ function handlePageStyling() {
 
   if (CG.page.isPageDetail || CG.page.isCourseDetails || CG.page.isCurriculum) {
     // make breadcrumbs
-    const breadcrumb = el("div", { id: "breadcrumb" }); // CG.page.isPageDetail
+    const breadcrumb = el("div", { id: "breadcrumb" });
     renderBreadcrumbs(breadcrumb);
     CG.dom.header.wrapper.prepend(breadcrumb);
 
