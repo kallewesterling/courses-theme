@@ -15,6 +15,7 @@
  * @see {@link https://courses.chainguard.com|Chainguard Courses}
  */
 
+// hide all before making adjustments
 document.querySelector("body").style.setProperty("display", "none");
 
 /**
@@ -24,6 +25,7 @@ document.querySelector("body").style.setProperty("display", "none");
 const hide = (element) => setStyle(element, { display: "none !important" });
 
 const showBody = () => setStyle(CG.dom.body, { display: undefined });
+
 
 const text = (element, value, auto = "") => {
   if (element && value !== undefined && value !== null) {
