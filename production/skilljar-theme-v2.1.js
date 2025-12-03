@@ -26,7 +26,6 @@ const hide = (element) => setStyle(element, { display: "none !important" });
 
 const showBody = () => setStyle(CG.dom.body, { display: undefined });
 
-
 const text = (element, value, auto = "") => {
   if (element && value !== undefined && value !== null) {
     element.textContent = value;
@@ -1208,11 +1207,8 @@ function createClone(
 
   if (!attrs["className"]) attrs.className = `clone-icon ${type}-icon`;
 
-  return el(
-    "svg",
-    attrs,
-    CONFIG.icons[type].paths.map((d) => el("path", { d }))
-  );
+  const paths = CONFIG.icons[type].paths.map((d) => el("path", { d }));
+  return el("svg", attrs, paths);
 }
 
 function getCorrectURL(link) {
@@ -1303,9 +1299,7 @@ function getCurriculumElements(curriculumParentContainer) {
   }
 
   return a.map((section) => {
-    const wrapper = el("div", {
-      className: "curriculum-wrapper",
-    });
+    const wrapper = el("div", { className: "curriculum-wrapper" });
 
     const header = el("div", {
       className: "curriculum-header no-select",
@@ -1339,29 +1333,17 @@ function createCourseDetailsCard(
   }
 ) {
   // Create main container
-  const card = el(
-    "div",
-    {
-      className: "course-details-card",
-    },
-    [
-      el("div", {
-        className: "course-details-card-header no-select",
-        textContent: "Course Details",
-      }),
-      el(
-        "ul",
-        {
-          className: "course-details-card-list no-select",
-        },
-        [
-          el("li", {}, [el("p", { text: details.audience })]),
-          el("li", {}, [el("p", { text: details.time })]),
-          el("li", {}, [el("p", { text: details.lessons + " Lessons" })]),
-        ]
-      ),
-    ]
-  );
+  const card = el("div", { className: "course-details-card" }, [
+    el("div", {
+      className: "course-details-card-header no-select",
+      textContent: "Course Details",
+    }),
+    el("ul", { className: "course-details-card-list no-select" }, [
+      el("li", {}, [el("p", { text: details.audience })]),
+      el("li", {}, [el("p", { text: details.time })]),
+      el("li", {}, [el("p", { text: details.lessons + " Lessons" })]),
+    ]),
+  ]);
 
   // Link
   const link = el("a", {
@@ -1659,37 +1641,31 @@ function stylePathCatalogPage() {
     className: "top-row-grey top-row-white-v2 padding-top padding-side row-v2",
   });
 
-  const topRowInner = el(
-    "div",
-    {
-      className: "row dp-row-flex-v2",
-    },
-    [
-      // top row left
-      el(
-        "div",
-        {
-          className:
-            "columns text-center large-6 dp-summary-wrapper text-left-v2",
-        },
-        [
-          el("div", {
-            className: "sj-floater-text",
-            textContent: "Learning Path",
-          }),
-          el("h1", {
-            className: "break-word",
-            textContent: skilljarCourseSeries.title || "",
-          }),
-          el("p", {
-            className: "sj-heading-paragraph",
-            textContent: skilljarCourseSeries.short_description || "",
-          }),
-          document.querySelector(".path-curriculum-button-wrapper a"),
-        ]
-      ),
-    ]
-  );
+  const topRowInner = el("div", { className: "row dp-row-flex-v2" }, [
+    // top row left
+    el(
+      "div",
+      {
+        className:
+          "columns text-center large-6 dp-summary-wrapper text-left-v2",
+      },
+      [
+        el("div", {
+          className: "sj-floater-text",
+          textContent: "Learning Path",
+        }),
+        el("h1", {
+          className: "break-word",
+          textContent: skilljarCourseSeries.title || "",
+        }),
+        el("p", {
+          className: "sj-heading-paragraph",
+          textContent: skilljarCourseSeries.short_description || "",
+        }),
+        document.querySelector(".path-curriculum-button-wrapper a"),
+      ]
+    ),
+  ]);
 
   const breadcrumb = el("div", {
     className: "row dp-row-flex-v2",
@@ -1698,41 +1674,17 @@ function stylePathCatalogPage() {
   renderBreadcrumbs(breadcrumb);
   topRow.append(breadcrumb, topRowInner);
 
-  const detailsBundle = el(
-    "div",
-    {
-      id: "dp-details-bundle",
-    },
-    [
-      el(
-        "div",
-        {
-          className: "row padding-side",
-        },
-        [
-          el(
-            "div",
-            {
-              className: "columns",
-            },
-            [
-              el(
-                "div",
-                {
-                  className: "dp-long-description",
-                },
-                [
-                  el("p", {
-                    innerHTML: skilljarCourseSeries.long_description_html,
-                  }),
-                ]
-              ),
-            ]
-          ),
-        ]
-      ),
-    ]
-  );
+  const detailsBundle = el("div", { id: "dp-details-bundle" }, [
+    el("div", { className: "row padding-side" }, [
+      el("div", { className: "columns" }, [
+        el("div", { className: "dp-long-description" }, [
+          el("p", {
+            innerHTML: skilljarCourseSeries.long_description_html,
+          }),
+        ]),
+      ]),
+    ]),
+  ]);
 
   // prepend topRow and detailsBundle to content
   CG.dom.contentContainer.prepend(...[topRow, detailsBundle].filter(Boolean));
