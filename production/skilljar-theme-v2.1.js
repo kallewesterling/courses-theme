@@ -197,6 +197,10 @@ const CG = {
       "/page/partners",
       ...Object.keys(CONFIG.partners).map((d) => `/path/${d}`),
     ].find((d) => window.location.href.includes(d)),
+
+    get isCoursePage() {
+      return this.isPageDetail || this.isCourseDetails || this.isCurriculum;
+    },
   },
   state: {
     domain: CONFIG.domains.prod,
@@ -1667,12 +1671,12 @@ function stylePathCatalogPage() {
     ),
   ]);
 
-  const breadcrumb = el("div", {
-    className: "row dp-row-flex-v2",
-    id: "breadcrumb",
-  });
-  renderBreadcrumbs(breadcrumb);
-  topRow.append(breadcrumb, topRowInner);
+  // const breadcrumb = el("div", {
+  //   className: "row dp-row-flex-v2",
+  //   id: "breadcrumb",
+  // });
+  // renderBreadcrumbs(breadcrumb);
+  topRow.append(topRowInner);
 
   const detailsBundle = el("div", { id: "dp-details-bundle" }, [
     el("div", { className: "row padding-side" }, [
@@ -2062,13 +2066,20 @@ function handlePageStyling() {
     logger.warn("No page styling handler matched for this page.");
   }
 
-  if (CG.page.isPageDetail || CG.page.isCourseDetails || CG.page.isCurriculum) {
-    // make breadcrumbs
-    const breadcrumb = el("div", { id: "breadcrumb" });
+  // make breadcrumbs
+  if (CG.page.isCoursePage || CG.page.isPageCatalog) {
+    const breadcrumb = el("div", {
+      id: "breadcrumb",
+      className: CG.page.isPageCatalog ? "row dp-row-flex-v2" : "",
+    });
+
     renderBreadcrumbs(breadcrumb);
+  }
+
+  // append elements to header
+  if (CG.page.isCoursePage) {
     CG.dom.header.wrapper.prepend(breadcrumb);
 
-    // append elements to header
     CG.dom.header.wrapper.append(
       ...[
         CG.dom.header.floaterText,
@@ -2077,6 +2088,8 @@ function handlePageStyling() {
         CG.dom.header.ctaBtnWrapper,
       ].filter(Boolean)
     );
+  } else if (CG.page.isPageCatalog) {
+    document.querySelector(".top-row-grey").prepend(breadcrumb);
   }
 
   // move footer
