@@ -193,10 +193,11 @@ const CG = {
     isPageCatalog: c(".sj-page-series.sj-page-path"),
     is404: c(".sj-page-error-404"),
     // hasCertificate: c(".cp-certificate"),
-    isPartner404: [
-      "/page/partners",
-      ...Object.keys(CONFIG.partners).map((d) => `/path/${d}`),
-    ].find((d) => window.location.href.includes(d)),
+    isPartner404:
+      [
+        "/page/partners",
+        ...Object.keys(CONFIG.partners).map((d) => `/path/${d}`),
+      ].find((d) => window.location.href.includes(d)) || false,
 
     get isCoursePage() {
       return this.isPageDetail || this.isCourseDetails || this.isCurriculum;
