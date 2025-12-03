@@ -265,6 +265,11 @@ body.sj-page-detail-course {
   .tabs {
     .content {
       background-color: transparent !important;
+
+      ul {
+        list-style-position: outside;
+        padding-inline-start: 30px;
+      }
     }
   }
 
