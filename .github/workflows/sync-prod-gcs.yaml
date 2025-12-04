@@ -1,0 +1,47 @@
+name: Sync to PROD GCS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'production/**'
+      - 'fonts/**'
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  sync-to-gcs:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: 'Github Actions Runner'
+        uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
+        with:
+          egress-policy: audit
+
+      - name: Checkout code
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: step-security/google-github-auth@f0e5c257a9534a30b5df12f43329c1eb7b85a5be # v3.0.0
+        with:
+          service_account: "github-chainguard-academy@chainguard-academy.iam.gserviceaccount.com"
+          workload_identity_provider: "projects/456977358484/locations/global/workloadIdentityPools/chainguard-academy/providers/chainguard-edu"
+
+      - name: Setup G Cloud SDK
+        uses: 'google-github-actions/setup-gcloud@aa5489c8933f4cc7a4f7d45035b3b1440c9c10db' # v2.0.11
+
+      - name: Sync production directory to GCS
+        run: |
+          gsutil -m rsync -r -d production/ gs://chainguard-courses-theme/production/
+
+      - name: Sync fonts directory to GCS
+        run: |
+          gsutil -m rsync -r -d fonts/ gs://chainguard-courses-theme/fonts/
