@@ -1585,6 +1585,12 @@ body.sj-page-lesson {
   font-family: inherit;
 }
 
+@keyframes cursor-blink {
+  0% {
+    opacity: 0;
+  }
+}
+
 .eyebrow {
   color: var(--blurple);
   font-family: inherit;
@@ -1594,6 +1600,16 @@ body.sj-page-lesson {
   font-weight: 600;
   font-size: 0.9rem;
   letter-spacing: 0.04em;
+
+  ::after {
+    content: "";
+    width: 11px;
+    height: 18px;
+    background: rgb(98 38 251);
+    display: inline-block;
+    transform: translate(7px, 3px);
+    animation: cursor-blink 1.5s steps(2) infinite;
+  }
 }
 
 .headline {
