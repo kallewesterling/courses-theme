@@ -1589,6 +1589,10 @@ body.sj-page-lesson {
   0% {
     opacity: 0;
   }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 .eyebrow {
@@ -1608,7 +1612,7 @@ body.sj-page-lesson {
     background: rgb(98 38 251);
     display: inline-block;
     transform: translate(7px, 3px);
-    animation: cursor-blink 1.5s steps(2) infinite;
+    animation: cursor-blink 1.5s steps(1) infinite;
   }
 }
 
