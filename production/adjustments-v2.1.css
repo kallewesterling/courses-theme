@@ -1601,7 +1601,7 @@ body.sj-page-lesson {
   font-size: 0.9rem;
   letter-spacing: 0.04em;
 
-  ::after {
+  &::after {
     content: "";
     width: 11px;
     height: 18px;
