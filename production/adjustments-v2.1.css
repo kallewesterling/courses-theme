@@ -1627,12 +1627,14 @@ body.sj-page-lesson {
 }
 
 .featured-courses.internal {
-  background-color: #f7f7f7;
+  background-color: #ffffff00;
   border-radius: 20px;
   padding: 60px;
+  backdrop-filter: blur(25px);
+  border: 1px solid #d6d6d6;
 
   .card {
-    background-color: white;
+    background-color: #1694d114;
   }
 }
 
