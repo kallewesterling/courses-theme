@@ -298,7 +298,7 @@ const CG = {
         );
       },
     },
-    
+
     local: {},
 
     auth: {
@@ -1258,7 +1258,10 @@ const createResourceCard = (resource) =>
     ]
   );
 
-function getCurriculumElements(curriculumParentContainer) {
+function getCurriculumElements(curriculumParentContainer = null) {
+  if (!curriculumParentContainer)
+    curriculumParentContainer = CG.dom.curriculumContainer;
+
   let currentSection = 0,
     elements = Array.from(
       curriculumParentContainer.querySelectorAll("[class^='lesson-'],.section")
@@ -1585,9 +1588,7 @@ function styleCourseDetails() {
 
   // process curriculum elements
   try {
-    CG.data.curriculumElements = getCurriculumElements(
-      CG.dom.curriculumContainer
-    );
+    CG.data.curriculumElements = getCurriculumElements();
     CG.dom.curriculumContainer.replaceChildren(...CG.data.curriculumElements);
   } catch (error) {
     logger.error("Error processing curriculum elements:", error);
@@ -2015,9 +2016,8 @@ function styleCurriculumPage() {
     hide(CG.dom.local.card.link); // Hide resume button if it doesn't exist
   }
 
-  CG.dom.curriculumContainer.replaceChildren(
-    ...getCurriculumElements(CG.dom.curriculumContainer)
-  );
+  CG.data.curriculumElements = getCurriculumElements();
+  CG.dom.curriculumContainer.replaceChildren(...CG.data.curriculumElements);
   text(CG.dom.header.courseInfo, skilljarCourse.short_description);
 
   // move elements
