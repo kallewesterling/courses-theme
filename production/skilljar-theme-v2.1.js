@@ -1497,6 +1497,7 @@ function tryPathSections() {
  * This function applies desktop-specific styling to a catalog page.
  */
 function styleCatalog() {
+  CG.dom.body.prepend(el("div", { id: "cg-bg" }));
   CG.data.sections = pathSections[skilljarCatalogPage.slug]; // ex. "partners"
 
   if (!CG.data.sections) CG.data.sections = pathSections["home"];
