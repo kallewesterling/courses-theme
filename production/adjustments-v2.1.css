@@ -1801,12 +1801,12 @@ body.sj-page-lesson {
     padding-bottom: 80px;
   }
   .featured-courses__grid {
-    grid-template-columns: 38% calc(62% - 24px);
+    grid-template-columns: 38% calc(62% - 24px) !important;
   }
 }
 @media (min-width: 1536px) {
   .featured-courses__grid {
-    grid-template-columns: 34% calc(66% - 24px);
+    grid-template-columns: 34% calc(66% - 24px) !important;
   }
   .cards {
     grid-template-columns: 1fr 1fr;
