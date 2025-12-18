@@ -234,6 +234,12 @@ body.sj-page-detail-course {
     background-size: cover;
   }
 
+  #cta-bottom {
+    background-color: var(--blurple);
+    width: 100%;
+    min-height: 200px;
+  }
+
   .top-row-grey {
     /* Header container */
     background-color: transparent !important;
