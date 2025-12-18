@@ -1568,6 +1568,10 @@ function style404() {
         }),
       ]
     );
+
+    window.location.replace(
+      `/auth/login?next=${encodeURIComponent(window.location.pathname)}`
+    );
   }
 }
 
