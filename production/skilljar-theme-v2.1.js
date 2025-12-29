@@ -42,11 +42,7 @@ const placeholder = (element, value) => {
 const c = (selector) => (document.querySelector(selector) ? true : false);
 
 const CONFIG = {
-  utm: {
-    utm_source: "courses",
-    utm_medium: "referral",
-    utm_campaign: "dev-enablement",
-  },
+  utm: UTM,
   domains: {
     prod: { url: "courses.chainguard.dev", id: "3glgawqmzatte" },
     stage: { url: "chainguard-test.skilljar.com", id: "ix1ljpxex6xd" },
@@ -1240,20 +1236,6 @@ function createClone(
 
   const paths = CONFIG.icons[type].paths.map((d) => el("path", { d }));
   return el("svg", attrs, paths);
-}
-
-function getCorrectURL(link) {
-  let url = new URL(link);
-
-  // add UTM params for tracking if specified
-
-  CONFIG.utm
-    ? Object.entries(CONFIG.utm).forEach(([key, value]) => {
-        url.searchParams.set(key, value);
-      })
-    : undefined;
-
-  return url.toString();
 }
 
 const createResourceCard = (resource) =>

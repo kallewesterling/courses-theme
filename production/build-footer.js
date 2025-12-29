@@ -1,3 +1,23 @@
+const UTM = {
+    utm_source: "courses",
+    utm_medium: "referral",
+    utm_campaign: "dev-enablement",
+  }
+
+function getCorrectURL(link) {
+  let url = new URL(link);
+
+  // add UTM params for tracking if specified
+
+  UTM
+    ? Object.entries(UTM).forEach(([key, value]) => {
+        url.searchParams.set(key, value);
+      })
+    : undefined;
+
+  return url.toString();
+}
+
 const el = (tag, props = {}, children = []) => {
   if (!tag) return null;
   const svgTags =
