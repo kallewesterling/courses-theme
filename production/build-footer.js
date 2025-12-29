@@ -118,7 +118,7 @@ const columnData = {
       ],
     },
     {
-      className: "why-chainguard-col",
+      className: "solutions-col",
       groups: [
         {
           title: "Solutions",
@@ -229,7 +229,7 @@ function generateFooter(data, containerId = "footer-container") {
   const fc = el("div", { className: "footer-content-container" });
 
   // Left logo + socials + contact + copyright
-  const left = el("div", { className: "logo-col-content" });
+  const left = el("div", { className: "primary-col" });
 
   if (data.logo) {
     const logoContainer = el("div", { className: "logo-container" });
