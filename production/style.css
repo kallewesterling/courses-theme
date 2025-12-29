@@ -205,53 +205,53 @@ label {
   align-self: start !important;
   position: sticky !important;
   top: 100px !important;
-}
 
-.course-details-card-header {
-  font-size: 16px;
-  font-weight: 500;
-  font-family: Gellix;
-  line-height: 20px;
-  letter-spacing: -0.01em;
-  border-bottom: 2px solid var(--blurple) !important;
-  padding: 24px;
-}
+  .course-details-card-header {
+    font-size: 16px;
+    font-weight: 500;
+    font-family: Gellix;
+    line-height: 20px;
+    letter-spacing: -0.01em;
+    border-bottom: 2px solid var(--blurple) !important;
+    padding: 24px;
+  }
 
-.course-details-card-list {
-  list-style: none;
-  padding: 24px 24px 0 24px;
-  margin: 0;
-  margin-bottom: 16px;
-}
+  .course-details-card-list {
+    list-style: none;
+    padding: 24px 24px 0 24px;
+    margin: 0;
+    margin-bottom: 16px;
 
-.course-details-card-list li {
-  margin-bottom: 8px;
-  display: flex;
-  align-items: start !important;
-  gap: 12px;
-}
+    li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: start !important;
+      gap: 12px;
 
-.course-details-card-list li p {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  margin: 0;
-}
+      p {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        margin: 0;
+      }
+    }
+  }
 
-.course-details-card-link {
-  background-color: var(--blurple) !important;
-  color: var(--primary-white-hex) !important;
-  padding: 12px 20px !important;
-  text-align: center !important;
-  text-decoration: none !important;
-  display: inline-block;
-  font-size: 16px !important;
-  font-family: Roobert !important;
-  border-radius: 999px !important;
-  cursor: pointer !important;
-  margin: 0 24px !important;
-  margin-bottom: 24px !important;
-  transition: all 0.2s !important;
+  .course-details-card-link {
+    background-color: var(--blurple) !important;
+    color: var(--primary-white-hex) !important;
+    padding: 12px 20px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    display: inline-block;
+    font-size: 16px !important;
+    font-family: Roobert !important;
+    border-radius: 999px !important;
+    cursor: pointer !important;
+    margin: 0 24px !important;
+    margin-bottom: 24px !important;
+    transition: all 0.2s !important;
+  }
 }
 
 #cp-content::before,
@@ -280,6 +280,7 @@ label {
     letter-spacing: -0.01em;
     padding: 12px;
   }
+  
   .table-row {
     padding: 24px 12px;
     font-weight: 400;
