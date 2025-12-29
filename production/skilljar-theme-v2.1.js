@@ -75,7 +75,6 @@ const CONFIG = {
     },
   },
   icons: {
-    attrs: {},
     checkbox: {
       paths: [
         "M8.22948 14.021L5.02148 10.792L5.75048 10.042L8.22948 12.5L14.2505 6.5L14.9795 7.271L8.22948 14.021Z",
@@ -165,6 +164,23 @@ const CONFIG = {
         viewBox: "0 0 24 24",
       },
       paths: ["M4 6h16v2H4V6Zm0 5h16v2H4v-2Zm0 5h16v2H4v-2Z"],
+    },
+    rightArrow: {
+      attrs: {
+        viewBox: "0 0 14 14",
+        fill: "white",
+        xmlns: "http://www.w3.org/2000/svg",
+        ariaHidden: "true",
+      },
+      paths: [
+        "M11.2 5.6L11.2 2.8L8.4 2.8L8.4 5.6L11.2 5.6Z",
+        "M11.2 11.2L11.2 8.4L8.4 8.4L8.4 11.2L11.2 11.2Z",
+        "M8.4 2.8L8.4 -2.44784e-07L5.6 -3.67176e-07L5.6 2.8L8.4 2.8Z",
+        "M8.4 14L8.4 11.2L5.6 11.2L5.6 14L8.4 14Z",
+        "M8.4 8.4L8.4 5.6L5.6 5.6L5.6 8.4L8.4 8.4Z",
+        "M14 8.4L14 5.6L11.2 5.6L11.2 8.4L14 8.4Z",
+        "M2.8 8.4L2.8 5.6L-2.15213e-06 5.6L-2.27452e-06 8.4L2.8 8.4Z",
+      ],
     },
   },
 };
@@ -1537,35 +1553,7 @@ function styleCatalog() {
           className: "button white",
           text: "Contact Us",
         },
-        [
-          // TODO: Make the below SVG into an icon?
-          el(
-            "svg",
-            {
-              viewBox: "0 0 14 14",
-              fill: "white",
-              xmlns: "http://www.w3.org/2000/svg",
-              ariaHidden: "true",
-            },
-            [
-                el("path", {
-                  d: "M11.2 5.6L11.2 2.8L8.4 2.8L8.4 5.6L11.2 5.6Z",
-                }),
-              el("path", {
-                d: "M11.2 11.2L11.2 8.4L8.4 8.4L8.4 11.2L11.2 11.2Z",
-              }),
-              el("path", {
-                d: "M8.4 2.8L8.4 -2.44784e-07L5.6 -3.67176e-07L5.6 2.8L8.4 2.8Z",
-              }),
-              el("path", { d: "M8.4 14L8.4 11.2L5.6 11.2L5.6 14L8.4 14Z" }),
-              el("path", { d: "M8.4 8.4L8.4 5.6L5.6 5.6L5.6 8.4L8.4 8.4Z" }),
-              el("path", { d: "M14 8.4L14 5.6L11.2 5.6L11.2 8.4L14 8.4Z" }),
-              el("path", {
-                d: "M2.8 8.4L2.8 5.6L-2.15213e-06 5.6L-2.27452e-06 8.4L2.8 8.4Z",
-              }),
-            ]
-          ),
-        ]
+          [createClone("rightArrow")]
       ),
         createClone("chainguard", { width: "83", height: "72" }),
       ]),
