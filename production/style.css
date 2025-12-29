@@ -251,6 +251,17 @@ label {
     margin: 0 24px !important;
     margin-bottom: 24px !important;
     transition: all 0.2s !important;
+
+    &:visited {
+      background-color: var(--blurple);
+      color: var(--primary-white-hex);
+    }
+
+    &:hover,
+    &:active {
+      background-color: var(--blurple);
+      color: var(--primary-white-hex);
+    }
   }
 }
 
@@ -280,7 +291,7 @@ label {
     letter-spacing: -0.01em;
     padding: 12px;
   }
-  
+
   .table-row {
     padding: 24px 12px;
     font-weight: 400;
@@ -318,16 +329,16 @@ label {
   margin-bottom: 48px;
 }
 
-body .lesson-page #lp-wrapper #lesson-body .lesson-top {
+.lesson-page #lp-wrapper #lesson-body .lesson-top {
   border: 0;
   display: block !important;
-}
 
-.lesson-page #lp-wrapper #lesson-body .lesson-top h2 {
-  font-weight: 600;
-  font-size: 36px;
-  line-height: 43.2px;
-  color: var(--ink);
+  h2 {
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 43.2px;
+    color: var(--ink);
+  }
 }
 
 .content-img-outer-container {
@@ -345,21 +356,10 @@ body .lesson-page #lp-wrapper #lesson-body .lesson-top {
   padding: 24px;
   margin: 64px;
   border-radius: 8px;
-}
 
-.content-img-inner-container img {
-  border-radius: 4px;
-}
-
-.course-details-card-link:visited {
-  background-color: var(--blurple);
-  color: var(--primary-white-hex);
-}
-
-.course-details-card-link:hover,
-.course-details-card-link:active {
-  background-color: var(--blurple);
-  color: var(--primary-white-hex);
+  img {
+    border-radius: 4px;
+  }
 }
 
 .video-player.flex-video.widescreen {
@@ -367,15 +367,17 @@ body .lesson-page #lp-wrapper #lesson-body .lesson-top {
   border-radius: 8px;
 }
 
-#lp-left-nav .lesson-active {
-  background-color: #eaeaea;
-  color: var(--ink);
-  margin: 0 12px;
-  border-radius: 4px;
-}
+#lp-left-nav {
+  .lesson-active {
+    background-color: #eaeaea;
+    color: var(--ink);
+    margin: 0 12px;
+    border-radius: 4px;
+  }
 
-#lp-left-nav .lesson:hover {
-  background-color: transparent;
+  .lesson:hover {
+    background-color: transparent;
+  }
 }
 
 pre[class*="language-"] {
