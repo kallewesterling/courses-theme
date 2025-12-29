@@ -629,10 +629,6 @@ sjwc-lesson-content-item pre code {
     margin: 14px 0;
     color: inherit;
     font-weight: 500px;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 
   h2 {
