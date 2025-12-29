@@ -231,13 +231,20 @@ function generateFooter(data, containerId = "footer-container") {
   // Left logo + socials + contact + copyright
   const left = el("div", { className: "primary-col" });
 
-  if (data.logo) {
-    const logoContainer = el("div", { className: "logo-container" });
-    const a = el("a", { href: getCorrectURL(data.logo.href), target: "_blank" });
-    a.innerHTML = data.logo.svg; // inject SVG
-    logoContainer.appendChild(a);
-    left.appendChild(logoContainer);
-  }
+  // if (data.logo) {
+  //   const logoContainer = el("div", { className: "logo-container" });
+  //   const a = el("a", { href: getCorrectURL(data.logo.href), target: "_blank" });
+  //   a.innerHTML = data.logo.svg; // inject SVG
+  //   logoContainer.appendChild(a);
+  //   left.appendChild(logoContainer);
+  // }
+
+  // instead of logo, add a h4 with "The trusted source for open source"
+
+  const tagline = el("div", { className: "tagline" });
+  const p = el("p", { text: "The trusted source for open source" });
+  tagline.appendChild(p);
+  left.appendChild(tagline);
 
   if (data.contact) {
     const ctas = el(
@@ -251,16 +258,6 @@ function generateFooter(data, containerId = "footer-container") {
       })
     );
     left.appendChild(ctas);
-  }
-
-  if (data.socials?.length) {
-    const socials = el("div", { className: "social-icons" });
-    data.socials.forEach((s) => {
-      const a = el("a", { href: getCorrectURL(s.href), target: "_blank" });
-      a.innerHTML = s.svg;
-      socials.appendChild(a);
-    });
-    left.appendChild(socials);
   }
 
   if (data.copyright) {
@@ -306,6 +303,19 @@ function generateFooter(data, containerId = "footer-container") {
   });
 
   container.appendChild(fc);
+
+
+  // TODO: Socials row at bottom
+
+  // if (data.socials?.length) {
+  //   const socials = el("div", { className: "social-icons" });
+  //   data.socials.forEach((s) => {
+  //     const a = el("a", { href: getCorrectURL(s.href), target: "_blank" });
+  //     a.innerHTML = s.svg;
+  //     socials.appendChild(a);
+  //   });
+  //   left.appendChild(socials);
+  // }
 }
 
 // Run
