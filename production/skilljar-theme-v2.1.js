@@ -107,6 +107,7 @@ const CONFIG = {
       attrs: {
         width: "24",
         height: "24",
+        viewBox: "0 0 24 24",
       },
       paths: ["M4 4h16v2H4V4Zm0 7h16v2H4v-2Zm0 7h16v2H4v-2Z"],
     },
@@ -132,6 +133,7 @@ const CONFIG = {
       attrs: {
         width: "24",
         height: "24",
+        viewBox: "0 0 24 24",
       },
       paths: ["M12 2 15 8 22 9 17 14l1 7-6-3-6 3 1-7-5-5 7-1 3-6Z"],
     },
@@ -159,6 +161,7 @@ const CONFIG = {
       attrs: {
         width: "24",
         height: "24",
+        viewBox: "0 0 24 24",
       },
       paths: ["M4 6h16v2H4V6Zm0 5h16v2H4v-2Zm0 5h16v2H4v-2Z"],
     },
