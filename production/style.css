@@ -540,7 +540,7 @@ sjwc-lesson-content-item pre code {
     justify-content: space-between;
 
     .primary-col {
-      max-width: 224px;
+      max-width: 300px;
       flex-shrink: 1;
 
       .tagline {
