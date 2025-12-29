@@ -250,30 +250,35 @@ body.sj-page-detail-course {
       margin-bottom: 48px;
     }
 
-    svg {
-      fill: white;
-    }
-
-    a.button {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 1.5rem;
-      min-width: 180px;
-      border-width: 1px;
-      white-space: nowrap;
-      align-self: flex-start;
-      column-gap: 8px;
-      justify-content: center;
-      flex-shrink: 0;
-      background: white;
-      color: var(--blurple) !important;
-      padding: 24px;
+    div {
+      display: flex;
+      justify-content: space-between;
 
       svg {
-        fill: var(--blurple);
-        width: 1rem;
-        height: 1rem;
+        fill: white;
+      }
+
+      a.button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 1.5rem;
+        min-width: 180px;
+        border-width: 1px;
+        white-space: nowrap;
+        align-self: flex-start;
+        column-gap: 8px;
+        justify-content: center;
+        flex-shrink: 0;
+        background: white;
+        color: var(--blurple) !important;
+        padding: 24px;
+
+        svg {
+          fill: var(--blurple);
+          width: 1rem;
+          height: 1rem;
+        }
       }
     }
   }
