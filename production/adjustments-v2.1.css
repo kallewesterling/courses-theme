@@ -254,7 +254,7 @@ body.sj-page-detail-course {
       display: none;
     }
 
-    @media screen and (min-width: 767px) {
+    @media screen and (max-width: 767px) {
       svg {
         display: block;
       }
