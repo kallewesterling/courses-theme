@@ -53,7 +53,7 @@ const columnData = {
   ],
   contact: {
     href: "https://www.chainguard.dev/contact?utm_source=courses",
-    label: "Contact Us",
+    label: "Talk to an expert",
   },
   copyright: {
     text: "©2025 Chainguard. All Rights Reserved.",
