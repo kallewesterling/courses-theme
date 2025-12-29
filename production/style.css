@@ -185,10 +185,10 @@ label {
 
 .lesson-row {
   cursor: pointer;
-}
 
-.lesson-row:hover {
-  background-color: var(--white);
+  &:hover {
+    background-color: var(--white);
+  }
 }
 
 .course-details-card {
@@ -404,162 +404,103 @@ pre[class*="language-"] {
   display: none;
 }
 
-.course-scrollable-content.course-text-content.quiz .start-quiz {
-  border: 1px solid #dcdcdc;
-  border-radius: 8px;
-  padding: 48px;
-}
+.course-scrollable-content.course-text-content.quiz {
+  .start-quiz {
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    padding: 48px;
 
-.course-scrollable-content.course-text-content.quiz .start-quiz .row {
-  display: none;
-}
+    .row {
+      display: none;
+    }
 
-.course-scrollable-content.course-text-content.quiz .start-quiz .text-center {
-  text-align: left !important;
-  margin: 0;
-}
+    .text-center {
+      text-align: left !important;
+      margin: 0;
 
-.course-scrollable-content.course-text-content.quiz
-  .start-quiz
-  .text-center
-  h1 {
-  margin: 0 0 12px 0;
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 31.2px;
-  letter-spacing: -0.02em;
-}
+      h1 {
+        margin: 0 0 12px 0;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 31.2px;
+        letter-spacing: -0.02em;
+      }
 
-.course-scrollable-content.course-text-content.quiz
-  .start-quiz
-  .text-center
-  .fa.fa-check-square-o.quiz-icon {
-  display: none;
-}
+      .fa.fa-check-square-o.quiz-icon {
+        display: none;
+      }
 
-.course-scrollable-content.course-text-content.quiz
-  .start-quiz
-  .text-center.length {
-  margin: 0 0 48px 0;
-}
+      .length {
+        margin: 0 0 48px 0;
+      }
+    }
 
-.course-scrollable-content.course-text-content.quiz
-  .start-quiz
-  .create_quiz.text-center {
-  margin: 0;
-  text-align: right !important;
-}
+    .create_quiz.text-center {
+      margin: 0;
+      text-align: right !important;
 
-.course-scrollable-content.course-text-content.quiz
-  .start-quiz
-  .create_quiz.text-center
-  .button.sj-text-quiz-start {
-  margin: 0;
-}
+      .button.sj-text-quiz-start {
+        margin: 0;
+      }
+    }
 
-.course-scrollable-content.course-text-content.quiz .question {
-  border: 1px solid #dcdcdc;
-  border-radius: 8px;
-  padding: 48px;
-}
+    .question {
+      border: 1px solid #dcdcdc;
+      border-radius: 8px;
+      padding: 48px;
 
-.course-scrollable-content.course-text-content.quiz
-  .question
-  .row
-  .large-8.large-centered.columns.question-text {
-  text-align: left !important;
-  width: 100%;
-}
+      .row .large-8.large-centered.columns.question-text {
+        text-align: left !important;
+        width: 100%;
 
-.course-scrollable-content.course-text-content.quiz
-  .question
-  .row
-  .large-8.large-centered.columns.question-text
-  p {
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 31.2px;
-  letter-spacing: -0.02em;
-}
+        p {
+          font-weight: 600;
+          font-size: 24px;
+          line-height: 31.2px;
+          letter-spacing: -0.02em;
+        }
+      }
 
-.course-scrollable-content.course-text-content.quiz
-  .question
-  .row
-  .form-answers.large-8.large-centered.columns {
-  text-align: left !important;
-  margin: 0;
-  width: 100%;
-}
+      .row .form-answers.large-8.large-centered.columns {
+        text-align: left !important;
+        margin: 0;
+        width: 100%;
 
-.course-scrollable-content.course-text-content.quiz
-  .question
-  .row
-  .form-answers.large-8.large-centered.columns
-  #id_chosen_answers
-  div
-  label {
-  line-height: 24px;
-  font-weight: 400;
-  font-size: 16px;
-  color: var(--answer-option);
-}
+        #id_chosen_answers div label,
+        #id_answer div label {
+          line-height: 24px;
+          font-weight: 400;
+          font-size: 16px;
+          color: var(--answer-option);
 
-.course-scrollable-content.course-text-content.quiz
-  .question
-  .row
-  .form-answers.large-8.large-centered.columns
-  #id_answer
-  div
-  label {
-  line-height: 24px;
-  font-weight: 400;
-  font-size: 16px;
-  color: var(--answer-option);
-}
+          input {
+            top: 3px;
+          }
+        }
+      }
 
-.course-scrollable-content.course-text-content.quiz
-  .question
-  .row
-  .form-answers.large-8.large-centered.columns
-  #id_chosen_answers
-  div
-  label
-  input {
-  top: 3px;
-}
+      .text-center.next-prev {
+        margin: 32px 0 0 0;
+        text-align: right !important;
 
-.course-scrollable-content.course-text-content.quiz
-  .question
-  .text-center.next-prev {
-  margin: 32px 0 0 0;
-  text-align: right !important;
-}
+        #answer_question {
+          margin: 0;
+          font-size: 14px;
 
-.course-scrollable-content.course-text-content.quiz
-  .question
-  .text-center.next-prev
-  #answer_question
-  .button.small.sj-text-quiz-next {
-  margin: 0;
-  font-size: 14px;
-}
+          .button.small.sj-text-quiz-next,
+          .button.small.sj-text-quiz-submit {
+            margin: 0;
+            font-size: 14px;
+          }
+        }
 
-.course-scrollable-content.course-text-content.quiz
-  .question
-  .text-center.next-prev
-  #prev_question
-  .button.small.secondary.sj-text-quiz-previous {
-  margin: 0;
-  font-size: 14px;
-}
-
-.course-scrollable-content.course-text-content.quiz
-  .question
-  .text-center.next-prev
-  #answer_question
-  .button.small.sj-text-quiz-submit {
-  margin: 0;
-  font-size: 14px;
+        #prev_question .button.small.secondary.sj-text-quiz-previous {
+          margin: 0;
+          font-size: 14px;
+        }
+      }
+    }
+  }
 }
 
 .button.tiny[title="Download certificate PDF"] {
