@@ -1512,7 +1512,7 @@ function styleCatalog() {
   makeSections(CG.data.sections, "#skilljar-content", CG.state.baseURL);
   CG.dom.contentContainer.append(
     el("div", { className: "full-width", id: "cta-bottom" }, [
-      createClone("chainguard"),
+      createClone("chainguard", { width: "83", height: "72" }),
       el("h2", { text: "Want to learn more about Chainguard?" }),
       el("div", {}, [
       el(
