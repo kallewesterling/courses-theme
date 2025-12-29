@@ -238,6 +238,8 @@ body.sj-page-detail-course {
     background-color: var(--blurple);
     width: 100%;
     min-height: 200px;
+    padding-left: 32px;
+    padding-right: 32px;
 
     h2 {
       color: white;
