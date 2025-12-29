@@ -1310,18 +1310,11 @@ body.sj-page-lesson {
           position: sticky;
           z-index: 1;
           top: 12px;
+          left: 12px;
           float: none;
 
           @media screen and (max-width: 767px) {
             top: 24px;
-          }
-
-          @media screen and (max-width: 991px) {
-            /* Responsive styles for left nav button */
-            overflow-x: clip;
-            top: 56px;
-            float: right;
-            padding-right: 12px;
           }
 
           .fa-bars,
