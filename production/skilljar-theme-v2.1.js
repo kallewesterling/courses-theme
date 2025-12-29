@@ -1552,7 +1552,7 @@ function styleCatalog() {
           ),
         ]
       ),
-        createClone("chainguard"),
+        createClone("chainguard", { width: "83", height: "72" }),
       ]),
     ])
   );
