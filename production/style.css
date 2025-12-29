@@ -1,15 +1,5 @@
 @import url("colors.css");
 
-#header {
-  .header-center-img.header-logo-svg {
-    width: 230px !important;
-  }
-
-  #header-right .login-link:hover {
-    color: var(--primary-white-hex) !important;
-  }
-}
-
 * {
   font-family: "Lato", sans-serif;
 }
@@ -56,20 +46,36 @@ label {
   padding: 10px 20px;
 }
 
-.button span,
-#header-right .login-link span {
-  font-family: inherit;
-  color: inherit;
+.button {
+  &:hover {
+    color: var(--white) !important;
+    background-color: var(--blurple);
+  }
+
+  span {
+    font-family: inherit;
+    color: inherit;
+  }
 }
 
-.button:hover,
-#header-right .login-link:hover {
-  color: var(--white) !important;
-  background-color: var(--blurple);
-}
+#header {
+  .header-center-img.header-logo-svg {
+    width: 230px !important;
+  }
 
-#header-right .login-link {
-  margin-left: 14px;
+  #header-right .login-link {
+    margin-left: 14px;
+
+    &:hover {
+      color: var(--primary-white-hex) !important;
+      background-color: var(--blurple);
+    }
+
+    span {
+      font-family: inherit;
+      color: inherit;
+    }
+  }
 }
 
 #skilljar-content
@@ -82,12 +88,12 @@ label {
 
   h1,
   h2,
-  p {
+  p,
+  .button {
     color: var(--primary-white-hex);
   }
 
   .button {
-    color: var(--primary-white-hex);
     border-color: var(--primary-cyan-hex);
   }
 }
@@ -132,17 +138,6 @@ label {
   inset: 0;
 }
 
-.sj-page-catalog .no-catalog-filters .catalog-center-width,
-.catalog-filters .catalog-center-width {
-  width: 100% !important;
-  min-height: auto !important;
-  padding: 0;
-}
-
-#catalog-content #catalog-courses {
-  justify-content: start;
-}
-
 .expandable-view
   a.coursebox-container[title="Claim your Container Crusader Credential"]::after {
   content: none;
@@ -151,12 +146,11 @@ label {
 #button-sign-in,
 #button-sign-up {
   transition: all 0.2s ease-in;
-}
 
-#button-sign-in:hover,
-#button-sign-up:hover {
-  background-color: var(--blurple) !important;
-  color: var(--primary-white-hex) !important;
+  &:hover {
+    background-color: var(--blurple) !important;
+    color: var(--primary-white-hex) !important;
+  }
 }
 
 .global-footer-column {
@@ -272,13 +266,6 @@ label {
   content: none;
 }
 
-.lp-color-scheme-light #lp-wrapper #lesson-body h4 {
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 32.1px;
-  letter-spacing: -0.02em;
-}
-
 .content-table {
   display: grid;
   margin-bottom: 48px;
@@ -329,15 +316,26 @@ label {
   margin-bottom: 48px;
 }
 
-.lesson-page #lp-wrapper #lesson-body .lesson-top {
-  border: 0;
-  display: block !important;
+.lesson-page #lp-wrapper #lesson-body {
+  color: var(--ink) !important;
 
-  h2 {
+  .lesson-top {
+    border: 0;
+    display: block !important;
+
+    h2 {
+      font-weight: 600;
+      font-size: 36px;
+      line-height: 43.2px;
+      color: var(--ink);
+    }
+  }
+
+  h4 {
     font-weight: 600;
-    font-size: 36px;
-    line-height: 43.2px;
-    color: var(--ink);
+    font-size: 24px;
+    line-height: 32.1px;
+    letter-spacing: -0.02em;
   }
 }
 
@@ -384,15 +382,13 @@ pre[class*="language-"] {
   background: none;
 }
 
-.lp-color-scheme-light .lp-left-nav .course-title,
-.lp-color-scheme-light .lp-left-nav .section-title,
-.lesson-page #lp-wrapper #lesson-body,
 .course-text-content {
   color: var(--ink) !important;
 }
 
 .lp-color-scheme-light .lp-left-nav .course-title,
 .lp-color-scheme-light .lp-left-nav .section-title {
+  color: var(--ink) !important;
   font-family: Gellix;
 }
 
@@ -656,11 +652,6 @@ sjwc-lesson-content-item pre code {
   }
 }
 
-.outlink {
-  display: flex !important;
-  gap: 14px;
-}
-
 .why-chainguard-content,
 .company-content {
   display: none;
@@ -724,10 +715,7 @@ sjwc-lesson-content-item pre code {
 
   #catalog-content #catalog-courses {
     gap: 24px;
-  }
-
-  .catalog-hero {
-    padding: 0 24px;
+    justify-content: start;
   }
 
   .badge-box {
@@ -752,6 +740,12 @@ sjwc-lesson-content-item pre code {
 
   .sj-course-ribbon-complete {
     color: white !important;
+  }
+
+  .catalog-center-width {
+    width: 100% !important;
+    min-height: auto !important;
+    padding: 0;
   }
 
   @media (max-width: 600px) {
