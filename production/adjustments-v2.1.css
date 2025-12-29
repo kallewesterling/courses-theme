@@ -185,6 +185,17 @@ body {
       border-radius: 999px;
       padding: 10px 20px !important;
     }
+
+    #header-right {
+      .info-box {
+        display: none !important;
+      }
+
+      @media screen and (min-width: 767px) {
+        .info-box {
+          display: flex;
+        }
+    }
   }
 }
 
