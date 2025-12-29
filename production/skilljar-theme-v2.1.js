@@ -1246,7 +1246,12 @@ function getCorrectURL(link) {
   let url = new URL(link);
 
   // add UTM params for tracking if specified
-  CONFIG.utm ? Object.assign(url.searchParams, CONFIG.utm) : undefined;
+
+  CONFIG.utm
+    ? Object.entries(CONFIG.utm).forEach(([key, value]) => {
+        url.searchParams.set(key, value);
+      })
+    : undefined;
 
   return url.toString();
 }
