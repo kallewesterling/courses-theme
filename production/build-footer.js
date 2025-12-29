@@ -213,7 +213,7 @@ function generateFooter(data, containerId = "footer-container") {
 
   if (data.logo) {
     const logoContainer = el("div", { className: "logo-container" });
-    const a = el("a", { href: data.logo.href, target: "_blank" });
+    const a = el("a", { href: getCorrectURL(data.logo.href), target: "_blank" });
     a.innerHTML = data.logo.svg; // inject SVG
     logoContainer.appendChild(a);
     left.appendChild(logoContainer);
@@ -225,7 +225,7 @@ function generateFooter(data, containerId = "footer-container") {
       { className: "ctas" },
       el("a", {
         className: "button",
-        href: data.contact.href,
+        href: getCorrectURL(data.contact.href),
         target: "_blank",
         text: data.contact.label,
       })
@@ -236,7 +236,7 @@ function generateFooter(data, containerId = "footer-container") {
   if (data.socials?.length) {
     const socials = el("div", { className: "social-icons" });
     data.socials.forEach((s) => {
-      const a = el("a", { href: s.href, target: "_blank" });
+      const a = el("a", { href: getCorrectURL(s.href), target: "_blank" });
       a.innerHTML = s.svg;
       socials.appendChild(a);
     });
@@ -250,7 +250,7 @@ function generateFooter(data, containerId = "footer-container") {
         "div",
         { className: "legal-links" },
         data.copyright.links
-          .map((l) => el("a", { href: l.href, text: l.label }))
+          .map((l) => el("a", { href: getCorrectURL(l.href), text: l.label }))
 
           // in-between every link we want a | separator except after the last one
           .reduce((acc, elem, idx, arr) => {
@@ -277,7 +277,7 @@ function generateFooter(data, containerId = "footer-container") {
       if (g.title) gDiv.appendChild(el("h2", { text: g.title }));
       (g.links || []).forEach((link) =>
         gDiv.appendChild(
-          el("a", { href: link.href, target: "_blank", text: link.label })
+          el("a", { href: getCorrectURL(link.href), target: "_blank", text: link.label })
         )
       );
       colDiv.appendChild(gDiv);
