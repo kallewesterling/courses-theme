@@ -529,7 +529,7 @@ sjwc-lesson-content-item pre code {
 
 .footer {
   border-top: 1px solid #d0cfee;
-  padding: 63px 0 96px 0;
+  padding: 63px 0 40px 0;
 
   .footer-content-container,
   .footer-bottom-bar {
@@ -580,13 +580,6 @@ sjwc-lesson-content-item pre code {
           text-decoration: none;
           color: inherit;
         }
-      }
-
-      .social-icons {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 16px;
       }
 
       .copyright {
@@ -648,6 +641,17 @@ sjwc-lesson-content-item pre code {
       a {
         display: block;
       }
+    }
+  }
+
+  .footer-bottom-bar {
+    align-items: center;
+    
+    .social-icons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
     }
   }
 
