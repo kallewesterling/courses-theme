@@ -1008,6 +1008,23 @@ function debugHeading() {
   }
 }
 
+function remove(selector) {
+  if (!selector) return;
+
+  if (Array.isArray(selector)) {
+    selector.forEach((sel) => remove(sel));
+    return;
+  }
+
+  document.querySelectorAll(selector).forEach((el) => {
+    try {
+      el.remove();
+    } catch (e) {
+      console.warn("Could not remove element:", el, e);
+    }
+  });
+}
+
 /*
  * Renders a breadcrumb navigation element.
  * @param {HTMLElement} targetElement - The target element to replace with the breadcrumb navigation.
@@ -1507,6 +1524,9 @@ function styleCatalog() {
 
   // hide existing content
   hide(CG.dom.catalogContent);
+
+  // remove search functionality
+  remove([".catalog-left-nav", "#left-nav-button", ".back-to-catalog"]);
 
   // create new sections
   makeSections(CG.data.sections, "#skilljar-content", CG.state.baseURL);
