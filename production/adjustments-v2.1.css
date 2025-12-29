@@ -250,12 +250,12 @@ body.sj-page-detail-course {
       margin-bottom: 48px;
     }
 
-    svg {
+    > svg {
       display: none;
     }
 
     @media screen and (max-width: 767px) {
-      svg {
+      > svg {
         display: block;
       }
     }
