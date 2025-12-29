@@ -531,13 +531,17 @@ sjwc-lesson-content-item pre code {
   border-top: 1px solid #d0cfee;
   padding: 63px 0 96px 0;
 
-  .footer-content-container {
+  .footer-content-container,
+  .footer-bottom-bar {
     width: 90%;
     display: flex;
-    gap: 12px;
     max-width: 1232px;
     margin: 0 auto;
     justify-content: space-between;
+  }
+
+  .footer-content-container {
+    gap: 12px;
 
     .primary-col {
       max-width: 300px;
