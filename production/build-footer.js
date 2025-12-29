@@ -1,8 +1,8 @@
 const UTM = {
-    utm_source: "courses",
-    utm_medium: "referral",
-    utm_campaign: "dev-enablement",
-  }
+  utm_source: "courses",
+  utm_medium: "referral",
+  utm_campaign: "dev-enablement",
+};
 
 function getCorrectURL(link) {
   let url = new URL(link);
@@ -294,7 +294,11 @@ function generateFooter(data, containerId = "footer-container") {
       if (g.title) gDiv.appendChild(el("h2", { text: g.title }));
       (g.links || []).forEach((link) =>
         gDiv.appendChild(
-          el("a", { href: getCorrectURL(link.href), target: "_blank", text: link.label })
+          el("a", {
+            href: getCorrectURL(link.href),
+            target: "_blank",
+            text: link.label,
+          })
         )
       );
       colDiv.appendChild(gDiv);
@@ -304,18 +308,37 @@ function generateFooter(data, containerId = "footer-container") {
 
   container.appendChild(fc);
 
+  const hr = el("hr");
+  container.appendChild(hr);
 
-  // TODO: Socials row at bottom
+  const bottomBar = el("div", { className: "footer-bottom-bar" }, [
+    // logo
+    data.logo
+      ? el("div", { className: "logo-container" }, [
+          el("a", {
+            href: getCorrectURL(data.logo.href),
+            target: "_blank",
+            innerHTML: data.logo.svg,
+          }),
+        ])
+      : undefined,
 
-  // if (data.socials?.length) {
-  //   const socials = el("div", { className: "social-icons" });
-  //   data.socials.forEach((s) => {
-  //     const a = el("a", { href: getCorrectURL(s.href), target: "_blank" });
-  //     a.innerHTML = s.svg;
-  //     socials.appendChild(a);
-  //   });
-  //   left.appendChild(socials);
-  // }
+    // socials
+    data.socials?.length
+      ? el(
+          "div",
+          { className: "social-icons" },
+          data.socials.map((s) =>
+            el("a", {
+              href: getCorrectURL(s.href),
+              target: "_blank",
+              innerHTML: s.svg,
+            })
+          )
+        )
+      : undefined,
+  ]);
+  container.appendChild(bottomBar);
 }
 
 // Run
