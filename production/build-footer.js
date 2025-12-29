@@ -112,6 +112,10 @@ const columnData = {
               href: "https://www.chainguard.dev/solutions/pci",
             },
             {
+              label: "CMMC 2.0",
+              href: "https://www.chainguard.dev/solutions/cmmc",
+            },
+            {
               label: "Golden Images",
               href: "https://www.chainguard.dev/solutions/golden-images",
             },
@@ -123,23 +127,9 @@ const columnData = {
               label: "Public Sector",
               href: "https://www.chainguard.dev/solutions/public-sector",
             },
-          ],
-        },
-      ],
-    },
-    {
-      className: "customers-col",
-      groups: [
-        {
-          title: "Customers",
-          links: [
             {
-              label: "Customer Stories",
-              href: "https://www.chainguard.dev/customers",
-            },
-            {
-              label: "Chainguard Reviews",
-              href: "https://www.chainguard.dev/chainguard-love",
+              label: "Startups",
+              href: "https://www.chainguard.dev/solutions/startups",
             },
           ],
         },
@@ -165,6 +155,23 @@ const columnData = {
             },
             { label: "Documentation", href: "https://edu.chainguard.dev/" },
             { label: "Trust Center", href: "https://edu.chainguard.dev/" },
+            {
+              label: "Chainguard Slack Community",
+              href: "https://communityinviter.com/apps/chainguardcommunity/invite",
+            },
+          ],
+        },
+        {
+          title: "Customers",
+          links: [
+            {
+              label: "Customer Stories",
+              href: "https://www.chainguard.dev/customers",
+            },
+            {
+              label: "Chainguard Reviews",
+              href: "https://www.chainguard.dev/chainguard-love",
+            },
           ],
         },
       ],
