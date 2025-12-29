@@ -1514,13 +1514,13 @@ function styleCatalog() {
     el("div", { className: "full-width", id: "cta-bottom" }, [
       createClone("chainguard"),
       el("h2", { text: "Want to learn more about Chainguard?" }),
+      el("div", {}, [
       el(
         "a",
         {
           href: "https://www.chainguard.dev/contact",
           className: "button white",
           text: "Contact Us",
-          style: "display: inline-flex; align-items: center; gap: 8px;",
         },
         [
           // TODO: Make the below SVG into an icon?
@@ -1533,7 +1533,9 @@ function styleCatalog() {
               ariaHidden: "true",
             },
             [
-              el("path", { d: "M11.2 5.6L11.2 2.8L8.4 2.8L8.4 5.6L11.2 5.6Z" }),
+                el("path", {
+                  d: "M11.2 5.6L11.2 2.8L8.4 2.8L8.4 5.6L11.2 5.6Z",
+                }),
               el("path", {
                 d: "M11.2 11.2L11.2 8.4L8.4 8.4L8.4 11.2L11.2 11.2Z",
               }),
@@ -1550,6 +1552,8 @@ function styleCatalog() {
           ),
         ]
       ),
+        createClone("chainguard"),
+      ]),
     ])
   );
 }
