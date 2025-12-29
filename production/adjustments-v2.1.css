@@ -252,6 +252,8 @@ body.sj-page-detail-course {
     min-height: 200px;
     padding-left: 32px;
     padding-right: 32px;
+    max-width: 1232px;
+    margin: 0 auto;
 
     h2 {
       color: white;
