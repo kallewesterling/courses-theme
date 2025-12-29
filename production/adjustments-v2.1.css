@@ -238,6 +238,41 @@ body.sj-page-detail-course {
     background-color: var(--blurple);
     width: 100%;
     min-height: 200px;
+
+    h2 {
+      color: white;
+      font-size: 6rem;
+      margin-top: 96px;
+      letter-spacing: -3.84px;
+      line-height: 88px;
+      margin-bottom: 48px;
+    }
+
+    svg {
+      fill: white;
+    }
+
+    a.button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.5rem;
+      min-width: 180px;
+      border-width: 1px;
+      white-space: nowrap;
+      align-self: flex-start;
+      column-gap: 8px;
+      justify-content: center;
+      flex-shrink: 0;
+      background: white;
+      color: var(--blurple) !important;
+
+      svg {
+        fill: var(--blurple);
+        width: 1rem;
+        height: 1rem;
+      }
+    }
   }
 
   .top-row-grey {
