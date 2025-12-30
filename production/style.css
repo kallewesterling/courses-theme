@@ -182,7 +182,7 @@ label {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   #header {
     font-size: 80%;
 
