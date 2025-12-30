@@ -212,7 +212,7 @@ label {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 808px) {
   #header .info-circle-menu {
     position: absolute;
     top: 38.5px;
@@ -223,6 +223,21 @@ label {
 
   .headers {
     font-size: 80% !important;
+  }
+}
+
+#mobile-header {
+  display: none;
+}
+
+@media (max-width: 690px) {
+  #mobile-header {
+    display: block;
+  }
+  
+  #header #header-left > a,
+  #header #header-right #to-chainguard {
+    display: none;
   }
 }
 
