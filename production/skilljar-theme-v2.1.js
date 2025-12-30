@@ -289,7 +289,8 @@ const CG = {
   },
   dom: {
     body: document.body,
-    siteHeader: document.querySelector("#header-right"),
+    headerLeft: document.querySelector("#header-left"),
+    headerRight: document.querySelector("#header-right"),
     footerContainer: document.querySelector("#footer-container"),
     epFooter: document.querySelector("#ep-footer"),
     messages: document.querySelector("#messages"),
@@ -1002,7 +1003,7 @@ function addPartnerMenu() {
     href: "/page/partners",
     text: "Partner Courses",
   });
-  CG.dom.siteHeader.insertBefore(partnerItem, CG.dom.siteHeader.lastChild);
+  CG.dom.headerRight.insertBefore(partnerItem, CG.dom.headerRight.lastChild);
 }
 
 function debugHeading() {
@@ -1012,7 +1013,7 @@ function debugHeading() {
     { class: "align-vertical info-circle-wrapper" },
     [el("div", { class: "info-circle", text: "I" })]
   );
-  CG.dom.siteHeader.insertBefore(infoCircle, CG.dom.siteHeader.firstChild);
+  CG.dom.headerRight.insertBefore(infoCircle, CG.dom.headerRight.firstChild);
 
   let dropdownOptions = [
     el("span", {
@@ -1043,9 +1044,9 @@ function debugHeading() {
     dropdownOptions
   );
 
-  CG.dom.siteHeader.parentElement.insertBefore(
+  CG.dom.headerRight.parentElement.insertBefore(
     dropdownMenu,
-    CG.dom.siteHeader.parentElement.firstChild
+    CG.dom.headerRight.parentElement.firstChild
   );
 
   const trigger = document.querySelector(".info-circle-wrapper");
@@ -2210,7 +2211,7 @@ function addToChainguard() {
     }),
   ]);
 
-  CG.dom.siteHeader.insertBefore(toChainguard, CG.dom.siteHeader.firstChild);
+  CG.dom.headerRight.insertBefore(toChainguard, CG.dom.headerRight.firstChild);
 }
 
 /**
