@@ -59,10 +59,9 @@ label {
 }
 
 #header {
-  overflow: hidden;
-
   #header-left {
     padding-left: 0px !important;
+    overflow: hidden;
 
     #logo-wrapper {
       height: 100%;
