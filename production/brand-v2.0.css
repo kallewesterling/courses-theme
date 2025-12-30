@@ -40,10 +40,6 @@
 #header {
   border-bottom: 1px solid var(--neutral-border);
 
-  .header-center-img.header-logo-svg {
-    width: 300px !important;
-  }
-
   .info-box {
     float: left;
     display: flex;

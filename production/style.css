@@ -60,19 +60,28 @@ label {
 
 #header {
   overflow: hidden;
-  
+
   #header-left {
+    padding-left: 0px !important;
+
     #logo-wrapper {
       height: 100%;
       display: flex;
       align-items: center;
       padding: 0 20px;
       background-color: var(--blurple);
+
+      a {
+        height: 100% !important;
+        display: flex;
+        align-items: center;
+
+        svg {
+          fill: white !important;
+          height: 60%;
+        }
+      }
     }
-  }
-  
-  .header-center-img.header-logo-svg {
-    width: 230px !important;
   }
 
   #header-right .login-link {
