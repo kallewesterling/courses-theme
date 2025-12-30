@@ -963,6 +963,16 @@ sjwc-lesson-content-item pre code {
     }
   }
 
+  .message {
+    hr {
+      width: 100% !important;
+    }
+
+    .sj-text-page-not-found-explanation {
+      margin-top: 5px !important;
+    }
+  }
+
   footer {
     width: 100%;
   }
