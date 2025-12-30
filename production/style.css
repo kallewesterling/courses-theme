@@ -78,66 +78,6 @@ label {
   }
 }
 
-#skilljar-content
-  .top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2[style="background-color: rgb(208, 207, 238); margin: 0px; max-width: none; padding-top: 96px; padding-bottom: 96px; border: 0px;"] {
-  position: relative;
-
-  .sj-floater-text {
-    color: var(--primary-cyan-hex);
-  }
-
-  h1,
-  h2,
-  p,
-  .button {
-    color: var(--primary-white-hex);
-  }
-
-  .button {
-    border-color: var(--primary-cyan-hex);
-  }
-}
-
-#skilljar-content
-  .top-row-grey.top-row-white-v2.padding-top.padding-side.row-v2[style="background-color: rgb(208, 207, 238); margin: 0px; max-width: none; padding-top: 96px; padding-bottom: 96px; border: 0px;"]::before {
-  background-image: url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png);
-  background-size: cover;
-  mix-blend-mode: multiply;
-  content: "";
-  position: absolute;
-  inset: 0;
-}
-
-#skilljar-content
-  .top-row-grey.top-row-white-v2.padding-side.row-v2[style="max-width: none; padding: 0px; background-color: rgb(208, 207, 238); border: 0px;"] {
-  position: relative;
-
-  .sj-floater-text {
-    color: var(--primary-cyan-hex);
-  }
-
-  h1,
-  h2,
-  p {
-    color: var(--primary-white-hex);
-  }
-
-  .button {
-    color: var(--primary-white-hex);
-    border-color: var(--primary-cyan-hex);
-  }
-}
-
-#skilljar-content
-  .top-row-grey.top-row-white-v2.padding-side.row-v2[style="max-width: none; padding: 0px; background-color: rgb(208, 207, 238); border: 0px;"]::before {
-  background-image: url(https://images.ctfassets.net/l47ir7rfykkn/5zE7elBMFe1MmuhPIeWd9G/e09a10e4d4c081b9ca86a879b6984049/Main_BG.png);
-  background-size: cover;
-  mix-blend-mode: multiply;
-  content: "";
-  position: absolute;
-  inset: 0;
-}
-
 .expandable-view
   a.coursebox-container[title="Claim your Container Crusader Credential"]::after {
   content: none;
@@ -646,7 +586,7 @@ sjwc-lesson-content-item pre code {
 
   .footer-bottom-bar {
     align-items: center;
-    
+
     .social-icons {
       display: flex;
       align-items: center;
