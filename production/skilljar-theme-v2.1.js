@@ -979,6 +979,14 @@ pathSections = {
 };
 
 function debugHeading() {
+  // adding a dropdown info circle
+  const infoCircle = el(
+    "div",
+    { class: "align-vertical info-circle-wrapper" },
+    [el("div", { class: "info-circle", text: "I" })]
+  );
+  CG.dom.siteHeader.insertBefore(infoCircle, CG.dom.siteHeader.firstChild);
+
   let innerHTML = [];
 
   if (CG.env.isPartner) {
@@ -1021,17 +1029,19 @@ function debugHeading() {
     }
   }
 
-  // adding a dropdown info circle
-  const infoCircle = el("div", { class: "align-vertical info-circle-wrapper" }, [
-    el("div", { class: "info-circle", text: "I" }),
-  ]);
-  CG.dom.siteHeader.insertBefore(infoCircle, CG.dom.siteHeader.firstChild);
+  const dropdownMenu = el(
+    "ul",
+    { class: "info-circle-menu" },
+    innerHTML.map((html) => el("li", { innerHTML: html }))
+  );
 
-  innerHTML
-    .map((innerHTML) => el("div", { innerHTML, className: "info-box" }))
-    .forEach((infoBox) => {
-      CG.dom.siteHeader.insertBefore(infoBox, CG.dom.siteHeader.firstChild);
-    });
+  CG.dom.siteHeader.insertBefore(dropdownMenu, CG.dom.siteHeader.firstChild);
+
+  // innerHTML
+  //   .map((innerHTML) => el("div", { innerHTML, className: "info-box" }))
+  //   .forEach((infoBox) => {
+  //     CG.dom.siteHeader.insertBefore(infoBox, CG.dom.siteHeader.firstChild);
+  //   });
 
   const checkbox = document.querySelector("#cg-baseurl-staging");
   if (CG.env.isStaging) checkbox.checked = true;
@@ -2218,17 +2228,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // setup breadcrumbs
   addCrumb("Home", CG.state.baseURL);
 
+  debugHeading();
+
   const toChainguard = el("div", { id: "to-chainguard" }, [
-    el(
-      "a",
-      {
-        href: getCorrectURL("https://www.chainguard.dev"),
-        target: "_blank",
-        rel: "noopener noreferrer",
-        title: "Go to chainguard.dev",
-        text: "Go to Chainguard →"
-      }
-    ),
+    el("a", {
+      href: getCorrectURL("https://www.chainguard.dev"),
+      target: "_blank",
+      rel: "noopener noreferrer",
+      title: "Go to chainguard.dev",
+      text: "Go to Chainguard →",
+    }),
   ]);
   CG.dom.siteHeader.insertBefore(toChainguard, CG.dom.siteHeader.firstChild);
 
@@ -2247,8 +2256,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (CG.page.inPartnerPath) {
     addCrumb("Partner Courses", "/page/partners", true);
   }
-
-  debugHeading();
 
   handlePageStyling();
 
