@@ -1021,6 +1021,12 @@ function debugHeading() {
     }
   }
 
+  // adding a dropdown info circle
+  const infoCircle = el("div", { class: "align-vertical info-circle-wrapper" }, [
+    el("div", { class: "info-circle", text: "I" }),
+  ]);
+  CG.dom.siteHeader.insertBefore(infoCircle, CG.dom.siteHeader.firstChild);
+
   innerHTML
     .map((innerHTML) => el("div", { innerHTML, className: "info-box" }))
     .forEach((infoBox) => {

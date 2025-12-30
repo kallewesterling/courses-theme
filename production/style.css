@@ -83,17 +83,39 @@ label {
     }
   }
 
-  #header-right .login-link {
-    margin-left: 14px;
+  #header-right {
+    .info-circle-wrapper {
+      border-left: 1px solid var(--neutral-border);
+      padding: 0 10px;
 
-    &:hover {
-      color: var(--primary-white-hex) !important;
-      background-color: var(--blurple);
+      .info-circle {
+        float: left;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--blurple);
+        color: white;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 1;
+      }
     }
 
-    span {
-      font-family: inherit;
-      color: inherit;
+    .login-link {
+      margin-left: 14px;
+
+      &:hover {
+        color: var(--primary-white-hex) !important;
+        background-color: var(--blurple);
+      }
+
+      span {
+        font-family: inherit;
+        color: inherit;
+      }
     }
   }
 }
