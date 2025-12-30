@@ -1037,7 +1037,11 @@ function debugHeading() {
     .filter(Boolean)
     .map((html) => el("li", {}, [html]));
 
-  const dropdownMenu = el("ul", { class: "info-circle-menu" }, dropdownOptions);
+  const dropdownMenu = el(
+    "ul",
+    { class: "info-circle-menu", hidden: true },
+    dropdownOptions
+  );
 
   CG.dom.siteHeader.parentElement.insertBefore(
     dropdownMenu,
@@ -2236,7 +2240,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // setup breadcrumbs
   addCrumb("Home", CG.state.baseURL);
-  
+
   // add partner menu item
   if (CG.env.isPartner) addPartnerMenu();
 
