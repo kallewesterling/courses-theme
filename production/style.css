@@ -473,7 +473,7 @@ sjwc-lesson-content-item pre code {
 
 .footer {
   border-top: 1px solid #d0cfee;
-  padding: 63px 0 40px 0;
+  padding: 63px 0 0 0;
 
   .footer-content-container,
   .footer-bottom-bar {
@@ -578,16 +578,15 @@ sjwc-lesson-content-item pre code {
 
   .footer-bottom-bar {
     align-items: center;
+    height: 100px;
 
     .logo-container {
-      margin-bottom: 28px;
       display: flex;
       flex-direction: column;
       align-items: center;
 
-      img {
-        width: 100%;
-        height: auto;
+      svg {
+        fill: var(--blurple) !important;
       }
     }
 
@@ -595,7 +594,6 @@ sjwc-lesson-content-item pre code {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 16px;
     }
   }
 
