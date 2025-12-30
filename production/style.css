@@ -88,7 +88,7 @@ label {
     top: 60px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 690px) {
     height: 45px !important;
 
     + #mobile-header {
@@ -234,7 +234,7 @@ label {
   #mobile-header {
     display: block;
   }
-  
+
   #header #header-left > a,
   #header #header-right #to-chainguard {
     display: none;
