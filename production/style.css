@@ -236,7 +236,22 @@ label {
 
 @media (max-width: 690px) {
   #mobile-header {
-    display: block;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+
+    #mobile-header-left {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      margin: 0 20px;
+    }
+    #mobile-header-right {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      margin: 0 20px;
+    }
   }
 
   #header #header-left > a,
