@@ -353,7 +353,7 @@ function generateFooter(data, containerId = "footer-container") {
 
   const copyrightFooter = el(
     "div",
-    { className: "footer-copyright-footer" },
+    { className: "footer-copyright" },
     copyrightContent
   );
   container.appendChild(copyrightFooter);
