@@ -1,11 +1,7 @@
 @import url("colors.css");
 
 * {
-  font-family: "Lato", sans-serif;
-}
-
-body {
-  color: var(--ink);
+  font-family: Roobert, Lato;
 }
 
 h1,
@@ -18,6 +14,12 @@ h4,
 .h4-style,
 h5,
 h6 {
+  font-family: Gellix;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+body {
   color: var(--ink);
 }
 
@@ -259,7 +261,8 @@ label {
     display: none;
   }
 
-  #skilljar-content {
+  #skilljar-content,
+  #lp-wrapper {
     padding-top: 90px;
   }
 }
