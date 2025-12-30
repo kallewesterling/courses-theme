@@ -607,7 +607,10 @@ sjwc-lesson-content-item pre code {
         }
 
         .tagline p {
+          letter-spacing: -0.08rem;
+          line-height: 30px;
           font-size: 1.875rem;
+          max-width: 250px;
         }
 
         .ctas .button {
