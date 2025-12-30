@@ -236,12 +236,36 @@ function generateFooter(data, containerId = "footer-container") {
         ? el(
             "div",
             { className: "ctas" },
-            el("a", {
-              className: "button",
-              href: getCorrectURL(data.contact.href),
-              target: "_blank",
-              text: data.contact.label,
-            })
+            el(
+              "a",
+              {
+                className: "button",
+                href: getCorrectURL(data.contact.href),
+                target: "_blank",
+                text: data.contact.label,
+              },
+              [
+                el(
+                  "svg",
+                  {
+                    viewBox: "0 0 14 14",
+                    width: "20",
+                    height: "20",
+                    fill: "white",
+                    ariaHidden: "true",
+                  },
+                  [
+                    "M11.2 5.6L11.2 2.8L8.4 2.8L8.4 5.6L11.2 5.6Z",
+                    "M11.2 11.2L11.2 8.4L8.4 8.4L8.4 11.2L11.2 11.2Z",
+                    "M8.4 2.8L8.4 -2.44784e-07L5.6 -3.67176e-07L5.6 2.8L8.4 2.8Z",
+                    "M8.4 14L8.4 11.2L5.6 11.2L5.6 14L8.4 14Z",
+                    "M8.4 8.4L8.4 5.6L5.6 5.6L5.6 8.4L8.4 8.4Z",
+                    "M14 8.4L14 5.6L11.2 5.6L11.2 8.4L14 8.4Z",
+                    "M2.8 8.4L2.8 5.6L-2.15213e-06 5.6L-2.27452e-06 8.4L2.8 8.4Z",
+                  ].map((d) => el("path", { d }))
+                ),
+              ]
+            )
           )
         : undefined,
 
