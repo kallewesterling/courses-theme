@@ -667,14 +667,6 @@ pre[class*="language-"] {
   display: none;
 }
 
-.v1.sj-page-certificate #main-container #skilljar-content::after {
-  content: none;
-}
-
-.curriculumItem .lesson-row:hover {
-  background-color: var(--primary-white-hex) !important;
-}
-
 sjwc-lesson-content-item {
   pre code {
     scrollbar-width: none;
