@@ -48,6 +48,9 @@ const CONFIG = {
       xmlns: "http://www.w3.org/2000/svg",
       viewBox: "38 45 402 41",
       fill: "#6226FB",
+      class: "header-center-img header-logo-svg loading",
+      alt: "Go home",
+      "data-was-processed": "true",
     },
     [
       el("path", {
@@ -2189,6 +2192,10 @@ function handlePageStyling() {
   It is a good place to run scripts that need to manipulate the DOM or set up event listeners.
 */
 document.addEventListener("DOMContentLoaded", () => {
+  // replace logo
+  document.querySelector(".header-center-img").outerHTML =
+    CONFIG.logo.outerHTML;
+
   // remove search container
   document.querySelector(".search-container")?.remove();
 
