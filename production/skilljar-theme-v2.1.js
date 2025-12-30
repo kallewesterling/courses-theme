@@ -2193,16 +2193,8 @@ function handlePageStyling() {
 */
 document.addEventListener("DOMContentLoaded", () => {
   // replace logo
-  document.querySelector(".header-left").innerHTML = el(
-    "div",
-    {
-      height: "100%",
-      display: "flex",
-      "align-items": "center",
-      padding: "0 20px",
-      "background-color": "var(--blurple)",
-    },
-    [
+  document.querySelector(".header-left").replaceChildren(
+    el("div", { id: "logo-wrapper" }, [
       el(
         "a",
         {
@@ -2211,8 +2203,8 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         [CONFIG.logo]
       ),
-    ]
-  ).outerHTML;
+    ])
+  );
 
   // remove search container
   document.querySelector(".search-container")?.remove();
