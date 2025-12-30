@@ -143,8 +143,18 @@ label {
     border: 1px solid #5a697c;
     box-shadow: 0 6px 12px 1px rgba(0, 0, 0, 0.1);
     position: absolute;
-    top: 252.969px;
+    top: 52px;
     left: -999999px;
+    z-index: 200;
+
+    li {
+      display: block;
+      padding: 0.625em 0.625em;
+      font-size: 0.875em;
+      cursor: pointer;
+      line-height: 1.125em;
+      margin: 0;
+    }
   }
 }
 

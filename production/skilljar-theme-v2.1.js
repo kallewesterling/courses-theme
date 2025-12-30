@@ -1052,17 +1052,14 @@ function debugHeading() {
   const dropdown = document.querySelector(".info-circle-menu");
 
   trigger.addEventListener("click", () => {
-    const rect = trigger.getBoundingClientRect();
+    const x = trigger.getBoundingClientRect().x;
 
     const dropdownWidth = 200;
-    const alignmentFactor = 0.7; // your idea
+    const alignmentFactor = 0.7;
 
-    const left = rect.x + window.scrollX - dropdownWidth * alignmentFactor;
-
-    const top = rect.bottom + window.scrollY;
+    const left = x - dropdownWidth * alignmentFactor;
 
     dropdown.style.left = `${left}px`;
-    dropdown.style.top = `${top}px`;
 
     dropdown.hidden = !dropdown.hidden;
   });
