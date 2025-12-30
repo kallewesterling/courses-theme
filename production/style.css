@@ -473,7 +473,6 @@ sjwc-lesson-content-item pre code {
 
 .footer {
   border-top: 1px solid #d0cfee;
-  padding: 63px 0 0 0;
   margin: 63px 0 0;
 
   .footer-content-container,
@@ -486,6 +485,7 @@ sjwc-lesson-content-item pre code {
   }
 
   .footer-content-container {
+    margin: 63px auto;
     gap: 12px;
 
     .primary-col {
