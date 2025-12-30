@@ -1002,8 +1002,9 @@ function addPartnerMenu() {
   const partnerItem = el("a", {
     href: "/page/partners",
     text: "Partner Courses",
+    class: "headerheight align-vertical",
   });
-  CG.dom.headerRight.insertBefore(partnerItem, CG.dom.headerRight.lastChild);
+  CG.dom.headerLeft.appendChild(partnerItem);
 }
 
 function debugHeading() {
