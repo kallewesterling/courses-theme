@@ -586,7 +586,7 @@ sjwc-lesson-content-item pre code {
       align-items: center;
 
       svg {
-        fill: var(--blurple) !important;
+        fill: #14003D !important;
       }
     }
 
