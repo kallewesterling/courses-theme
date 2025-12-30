@@ -502,18 +502,6 @@ sjwc-lesson-content-item pre code {
         }
       }
 
-      .logo-container {
-        margin-bottom: 28px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        img {
-          width: 100%;
-          height: auto;
-        }
-      }
-
       .ctas {
         margin-bottom: 16px;
         font-family: Roobert, monospace;
@@ -590,6 +578,18 @@ sjwc-lesson-content-item pre code {
 
   .footer-bottom-bar {
     align-items: center;
+
+    .logo-container {
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
 
     .social-icons {
       display: flex;
