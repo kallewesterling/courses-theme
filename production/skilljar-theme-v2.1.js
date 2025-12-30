@@ -1040,6 +1040,25 @@ function debugHeading() {
     CG.dom.siteHeader.parentElement.firstChild
   );
 
+  const trigger = document.querySelector(".info-circle-wrapper");
+  const dropdown = document.querySelector(".info-circle-menu");
+
+  trigger.addEventListener("click", () => {
+    const rect = trigger.getBoundingClientRect();
+
+    const dropdownWidth = 200;
+    const alignmentFactor = 0.7; // your idea
+
+    const left = rect.x + window.scrollX - dropdownWidth * alignmentFactor;
+
+    const top = rect.bottom + window.scrollY;
+
+    dropdown.style.left = `${left}px`;
+    dropdown.style.top = `${top}px`;
+
+    dropdown.hidden = !dropdown.hidden;
+  });
+
   // innerHTML
   //   .map((innerHTML) => el("div", { innerHTML, className: "info-box" }))
   //   .forEach((infoBox) => {
