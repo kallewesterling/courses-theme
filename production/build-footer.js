@@ -226,52 +226,49 @@ function generateFooter(data, containerId = "footer-container") {
   if (!container) return;
   container.innerHTML = "";
 
-  const fc = el("div", { className: "footer-content-container" });
+  const fc = el("div", { className: "footer-content-container" }, [
+    el("div", { className: "primary-col" }, [
+      el("div", { className: "tagline" }, [
+        el("p", { text: "The trusted source for open source" }),
+      ]),
 
-  const primaryCol = el("div", { className: "primary-col" });
+      data.contact
+        ? el(
+            "div",
+            { className: "ctas" },
+            el("a", {
+              className: "button",
+              href: getCorrectURL(data.contact.href),
+              target: "_blank",
+              text: data.contact.label,
+            })
+          )
+        : undefined,
 
-  const tagline = el("div", { className: "tagline" });
-  const p = el("p", { text: "The trusted source for open source" });
-  tagline.appendChild(p);
-  primaryCol.appendChild(tagline);
+      data.copyright
+        ? el("div", { className: "copyright" }, [
+            el("p", { text: data.copyright.text }),
+            el(
+              "div",
+              { className: "legal-links" },
+              data.copyright.links
+                .map((l) =>
+                  el("a", { href: getCorrectURL(l.href), text: l.label })
+                )
 
-  if (data.contact) {
-    const ctas = el(
-      "div",
-      { className: "ctas" },
-      el("a", {
-        className: "button",
-        href: getCorrectURL(data.contact.href),
-        target: "_blank",
-        text: data.contact.label,
-      })
-    );
-    primaryCol.appendChild(ctas);
-  }
-
-  if (data.copyright) {
-    const copyright = el("div", { className: "copyright" }, [
-      el("p", { text: data.copyright.text }),
-      el(
-        "div",
-        { className: "legal-links" },
-        data.copyright.links
-          .map((l) => el("a", { href: getCorrectURL(l.href), text: l.label }))
-
-          // in-between every link we want a | separator except after the last one
-          .reduce((acc, elem, idx, arr) => {
-            acc.push(elem);
-            if (idx < arr.length - 1) {
-              acc.push(el("span", { text: " | " }));
-            }
-            return acc;
-          }, [])
-      ),
-    ]);
-    primaryCol.appendChild(copyright);
-  }
-
-  fc.appendChild(primaryCol);
+                // in-between every link we want a | separator except after the last one
+                .reduce((acc, elem, idx, arr) => {
+                  acc.push(elem);
+                  if (idx < arr.length - 1) {
+                    acc.push(el("span", { text: " | " }));
+                  }
+                  return acc;
+                }, [])
+            ),
+          ])
+        : undefined,
+    ]),
+  ]);
 
   // Columns
   (data.columns || []).forEach((col) => {
