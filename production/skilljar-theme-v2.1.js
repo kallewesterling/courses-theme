@@ -2214,7 +2214,7 @@ function fixHeader() {
     }),
   ]);
 
-  const mobileHeader = el("div", { id: "mobile-header", class: "headers" }, [
+  const mobileHeader = el("header", { id: "mobile-header", class: "headers" }, [
     toChainguard,
   ]);
 
