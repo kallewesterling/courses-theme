@@ -249,8 +249,8 @@ function generateFooter(data, containerId = "footer-container") {
                   "svg",
                   {
                     viewBox: "0 0 14 14",
-                    width: "20",
-                    height: "20",
+                    width: "14",
+                    height: "14",
                     fill: "white",
                     ariaHidden: "true",
                   },
