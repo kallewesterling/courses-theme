@@ -46,7 +46,7 @@ const CONFIG = {
     "svg",
     {
       xmlns: "http://www.w3.org/2000/svg",
-      viewBox: "35 35 405 60",
+      viewBox: "38 45 402 41",
       fill: "#6226FB",
     },
     [
