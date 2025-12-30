@@ -18,10 +18,6 @@
     opacity: 0.4;
     background-color: #ecffec;
   }
-
-  /* #purchase-button {
-    display: none !important;
-  } */
 }
 
 .callout {
@@ -161,14 +157,6 @@
 #skilljar-content::after {
   height: 0px;
 }
-
-/* #footer-container {
-  background: linear-gradient(
-    0deg,
-    rgba(20, 0, 255, 0.07) 0%,
-    rgba(170, 0, 255, 0) 100%
-  );
-} */
 
 body {
   header {
@@ -366,14 +354,6 @@ body.sj-page-detail-course {
         h1.break-word {
           color: black !important;
         }
-
-        /* a {
-          color: black !important;
-        }
-
-        a:hover {
-          color: white !important;
-        } */
       }
     }
   }
@@ -388,19 +368,6 @@ body.sj-page-detail-course {
       }
     }
   }
-
-  /* #main-container {
-    background: linear-gradient(
-      180deg,
-      rgba(20, 0, 255, 0.16) 0%,
-      rgba(170, 0, 255, 0) 23%
-    );
-
-    #header {
-      background: transparent !important;
-      border-bottom: unset !important;
-    }
-  } */
 
   .catalog-header {
     .catalog-hero {
@@ -429,10 +396,6 @@ body.sj-page-detail-course {
 
   #catalog-content,
   .sj-courseboxes-v2 {
-    /* max-width: min(1232px, 90%); */
-    /* margin: 0px auto; */
-    /* padding-bottom: 100px; */
-
     .course-listing-header.technical-onboarding {
       margin-top: 3em;
     }
@@ -934,7 +897,6 @@ body.sj-page-catalog.sj-page-series {
 
         .sj-floater-text {
           display: block;
-          /* margin-bottom: 24px; */
         }
 
         h1.break-word {
@@ -1000,7 +962,6 @@ body.sj-page-curriculum:not(:has(.cp-certificate)) {
 
   .top-row-grey {
     /* Header container */
-    /* background-color: var(--form-bg) !important; */
     max-width: none;
     padding: 0;
     border: 0;
@@ -1365,10 +1326,6 @@ body.sj-page-lesson {
               h4 {
                 font-weight: 400;
                 font-size: 24px;
-              }
-
-              #internal-course-warning {
-                /* Internal course warning */
               }
 
               .one-col-table {
