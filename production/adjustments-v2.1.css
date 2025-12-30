@@ -8,12 +8,6 @@
   }
 }
 
-#main-container .coursebox-container[data-course-status="complete"] {
-  /* Completed courses are dimmed and get a green background */
-  opacity: 0.4;
-  background-color: #ecffec;
-}
-
 .callout {
   background-color: rgba(52, 68, 244, 0.05) !important;
   box-shadow: unset !important;
@@ -2292,17 +2286,5 @@ svg.clone-icon {
 
   &.checkbox-icon {
     flex-shrink: 0;
-  }
-}
-
-.sj-page-error-404 {
-  .message {
-    hr {
-      width: 100% !important;
-    }
-
-    .sj-text-page-not-found-explanation {
-      margin-top: 5px !important;
-    }
   }
 }
