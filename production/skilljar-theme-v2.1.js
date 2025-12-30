@@ -996,37 +996,36 @@ function debugHeading() {
   }
 
   // DEBUG: adding info box for internal users
-  if (CG.env.isAdmin) {
-    innerHTML.push(`<p style="margin:0">
-        ${CG.page.isLanding ? "styleLanding" : ""}
-        ${CG.page.isCourseDetails ? "styleCourseDetails" : ""}
-        ${CG.page.isPageDetail ? "stylePathCourseDetails" : ""}
-        ${CG.page.isLogin ? "styleAuth" : ""}
-        ${CG.page.isSignup ? "styleAuth" : ""}
-        ${
-          CG.page.isCurriculum && !CG.page.hasCertificate
-            ? "styleCurriculumPage" // f.k.a. styleCurriculumPageNoCertificate
-            : ""
-        }
-        ${CG.page.isLesson ? "styleLesson" : ""}
-        ${CG.page.isPageCatalog ? "stylePathCatalogPage" : ""}
-      </p>`);
 
-    innerHTML.push(`<input type="checkbox" id="cg-baseurl-staging" />`);
+  innerHTML.push(`<p style="margin:0">
+      ${CG.page.isLanding ? "styleLanding" : ""}
+      ${CG.page.isCourseDetails ? "styleCourseDetails" : ""}
+      ${CG.page.isPageDetail ? "stylePathCourseDetails" : ""}
+      ${CG.page.isLogin ? "styleAuth" : ""}
+      ${CG.page.isSignup ? "styleAuth" : ""}
+      ${
+        CG.page.isCurriculum && !CG.page.hasCertificate
+          ? "styleCurriculumPage" // f.k.a. styleCurriculumPageNoCertificate
+          : ""
+      }
+      ${CG.page.isLesson ? "styleLesson" : ""}
+      ${CG.page.isPageCatalog ? "stylePathCatalogPage" : ""}
+    </p>`);
 
-    // Add course edit link
-    if (CG.state.course.id) {
-      innerHTML.push(
-        `<p style="margin:0"><a href="${CG.state.course.edit}">Edit Course</a></p>`
-      );
-    }
+  innerHTML.push(`<input type="checkbox" id="cg-baseurl-staging" />`);
 
-    // Add path edit link
-    if (CG.state.course.path.id && CG.state.domain) {
-      innerHTML.push(
-        `<p style="margin:0"><a href="${CG.state.course.path.edit}">Edit Path</a></p>`
-      );
-    }
+  // Add course edit link
+  if (CG.state.course.id) {
+    innerHTML.push(
+      `<p style="margin:0"><a href="${CG.state.course.edit}">Edit Course</a></p>`
+    );
+  }
+
+  // Add path edit link
+  if (CG.state.course.path.id && CG.state.domain) {
+    innerHTML.push(
+      `<p style="margin:0"><a href="${CG.state.course.path.edit}">Edit Path</a></p>`
+    );
   }
 
   const dropdownMenu = el(
@@ -1058,12 +1057,6 @@ function debugHeading() {
 
     dropdown.hidden = !dropdown.hidden;
   });
-
-  // innerHTML
-  //   .map((innerHTML) => el("div", { innerHTML, className: "info-box" }))
-  //   .forEach((infoBox) => {
-  //     CG.dom.siteHeader.insertBefore(infoBox, CG.dom.siteHeader.firstChild);
-  //   });
 
   const checkbox = document.querySelector("#cg-baseurl-staging");
   if (CG.env.isStaging) checkbox.checked = true;
@@ -2250,7 +2243,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // setup breadcrumbs
   addCrumb("Home", CG.state.baseURL);
 
-  debugHeading();
+  if (CG.env.isAdmin) debugHeading();
 
   const toChainguard = el("div", { id: "to-chainguard" }, [
     el("a", {
