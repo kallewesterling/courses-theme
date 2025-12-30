@@ -59,12 +59,14 @@ label {
 }
 
 .headers {
-  height: 45px;
+  height: 60px;
   left: 0;
   overflow: visible;
   position: fixed;
   width: 100%;
   z-index: 5;
+  background-color: white !important;
+  border-bottom: 1px solid #d5d4d4 !important;
 
   #to-chainguard {
     height: 100%;
@@ -81,9 +83,17 @@ label {
   + #header {
     top: 0;
   }
-  
+
   + #mobile-header {
-    top: 45px;
+    top: 60px;
+  }
+
+  @media (max-width: 480px) {
+    height: 45px !important;
+
+    + #mobile-header {
+      top: 45px;
+    }
   }
 }
 
@@ -204,12 +214,11 @@ label {
 
 @media (max-width: 768px) {
   #header .info-circle-menu {
-
-      position: absolute;
-      top: 38.5px;
-      left: 2.5%;
-      width: 95%;
-      max-width: none;
+    position: absolute;
+    top: 38.5px;
+    left: 2.5%;
+    width: 95%;
+    max-width: none;
   }
 
   .headers {
