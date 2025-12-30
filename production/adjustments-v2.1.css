@@ -1208,7 +1208,7 @@ body.sj-page-lesson {
     background-color: #f9f9f9;
     width: 320px;
     position: absolute;
-    margin-bottom: 0px;
+    margin-bottom: -63px; /* To counteract padding in #footer-container */
 
     @media screen and (max-width: 767px) {
       /* Responsive styles for left nav menu */
