@@ -298,6 +298,7 @@ const CG = {
     courseBoxes: [...document.querySelectorAll(".coursebox-container")],
     catalogContent: document.querySelector("#catalog-content"),
     catalogCourses: document.querySelector("#catalog-courses"),
+    mainContainer: document.querySelector("#main-container"),
 
     get contentContainer() {
       return CG.page.isLesson
