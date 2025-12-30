@@ -59,6 +59,8 @@ label {
 }
 
 #header {
+  overflow: hidden;
+  
   .header-center-img.header-logo-svg {
     width: 230px !important;
   }
