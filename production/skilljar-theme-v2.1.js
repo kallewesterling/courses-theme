@@ -168,8 +168,9 @@ const CONFIG = {
     rightArrow: {
       attrs: {
         viewBox: "0 0 14 14",
+        width: "20",
+        height: "20",
         fill: "white",
-        xmlns: "http://www.w3.org/2000/svg",
         ariaHidden: "true",
       },
       paths: [
@@ -1242,10 +1243,10 @@ function makeSections(
 function createClone(
   type = "checkbox",
   attrs = {
-    xmlns: "http://www.w3.org/2000/svg",
+    // xmlns: "http://www.w3.org/2000/svg",
     // width: "20",
     // height: "21",
-    viewBox: "0 0 20 21",
+    // viewBox: "0 0 20 21",
     // fill: "none",
   }
 ) {
