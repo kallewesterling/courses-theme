@@ -2212,7 +2212,7 @@ document.addEventListener("DOMContentLoaded", () => {
         [CONFIG.logo]
       ),
     ]
-  );
+  ).outerHTML;
 
   // remove search container
   document.querySelector(".search-container")?.remove();
