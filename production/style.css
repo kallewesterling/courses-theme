@@ -735,7 +735,7 @@ sjwc-lesson-content-item pre code {
       display: grid;
       grid-template-columns: 1fr;
       gap: 32px;
-      width: 200px;
+      width: 100% !important;
     }
   }
 }
