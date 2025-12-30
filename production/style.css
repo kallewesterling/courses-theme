@@ -154,6 +154,16 @@ label {
       cursor: pointer;
       line-height: 1.125em;
       margin: 0;
+
+      &:hover {
+        background: #e7eaee;
+      }
+
+      a {
+        display: block;
+        padding: 0.625em 0.625em;
+        color: #4d4d4d;
+      }
     }
   }
 }
