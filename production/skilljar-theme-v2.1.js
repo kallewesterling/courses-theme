@@ -2214,8 +2214,6 @@ function fixHeader() {
     }),
   ]);
 
-  CG.dom.bodyHeader.classList.add("headers");
-
   const mobileHeader = el("div", { id: "mobile-header", class: "headers" }, [
     toChainguard,
   ]);
@@ -2260,6 +2258,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // admin debug heading
   if (CG.env.isAdmin) debugHeading();
+
+  CG.dom.bodyHeader.classList.add("headers");
 
   // add chainguard link
   if (!CG.page.isSignup && !CG.page.isLogin) fixHeader();

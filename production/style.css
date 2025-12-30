@@ -58,18 +58,51 @@ label {
   }
 }
 
+.headers {
+  height: 45px;
+  left: 0;
+  overflow: visible;
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+
+  #to-chainguard {
+    height: 100%;
+    float: left;
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+
+    a {
+      color: var(--ink);
+    }
+  }
+
+  + #header {
+    top: 0;
+  }
+  
+  + #mobile-header {
+    top: 45px;
+  }
+}
+
+#header #header-left,
+#mobile-header {
+  overflow: hidden;
+
+  > a {
+    padding: 20px;
+    border-right: 1px solid var(--neutral-border);
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+  }
+}
+
 #header {
   #header-left {
     padding-left: 0px !important;
-    overflow: hidden;
-
-    > a {
-      padding: 20px;
-      border-right: 1px solid var(--neutral-border);
-      min-height: 100%;
-      display: flex;
-      align-items: center;
-    }
 
     #logo-wrapper {
       height: 100%;
@@ -98,18 +131,6 @@ label {
   }
 
   #header-right {
-    #to-chainguard {
-      height: 100%;
-      float: left;
-      display: flex;
-      align-items: center;
-      margin: 0 20px;
-
-      a {
-        color: var(--ink);
-      }
-    }
-
     .info-circle-wrapper {
       border-left: 1px solid var(--neutral-border);
       padding: 0 10px;
@@ -150,7 +171,6 @@ label {
   }
 
   .info-circle-menu {
-    /* TODO: fix dropdown here + in JS code */
     max-width: 200px;
     list-style: none;
     background: #fff;
@@ -183,16 +203,17 @@ label {
 }
 
 @media (max-width: 768px) {
-  #header {
-    font-size: 80%;
+  #header .info-circle-menu {
 
-    .info-circle-menu {
       position: absolute;
       top: 38.5px;
       left: 2.5%;
       width: 95%;
       max-width: none;
-    }
+  }
+
+  .headers {
+    font-size: 80% !important;
   }
 }
 
