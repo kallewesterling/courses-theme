@@ -84,7 +84,7 @@ label {
     margin: 0 20px;
 
     a {
-      color: var(--ink);
+      color: var(--ink) !important;
     }
   }
 
@@ -505,7 +505,7 @@ label {
 #lp-left-nav {
   .lesson-active {
     background-color: #eaeaea;
-    color: var(--ink);
+    color: var(--ink) !important;
     margin: 0 12px;
     border-radius: 4px;
   }
@@ -523,10 +523,12 @@ pre[class*="language-"] {
   color: var(--ink) !important;
 }
 
-.lp-color-scheme-light .lp-left-nav .course-title,
-.lp-color-scheme-light .lp-left-nav .section-title {
-  color: var(--ink) !important;
-  font-family: Gellix;
+.lp-left-nav {
+  .course-title,
+  .section-title {
+    color: var(--ink) !important;
+    font-family: Gellix;
+  }
 }
 
 .bullet .fa.fa-check-circle {

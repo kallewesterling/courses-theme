@@ -1621,7 +1621,7 @@ body.sj-page-lesson {
                 font: 500 14px/1 system-ui, -apple-system, Segoe UI, Roboto,
                   Arial, sans-serif;
                 text-decoration: none;
-                color: #111;
+                color: var(--ink) !important;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
                 transition: transform 0.06s ease, box-shadow 0.2s ease;
               }
@@ -1741,7 +1741,6 @@ body.sj-page-lesson {
     .card__link {
       display: inline-block;
       margin-top: 4px;
-      color: var(--blurple);
       text-decoration: none;
       border-bottom: 2px solid transparent;
       color: var(--ink) !important;
