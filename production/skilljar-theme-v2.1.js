@@ -1035,7 +1035,10 @@ function debugHeading() {
     innerHTML.map((html) => el("li", { innerHTML: html }))
   );
 
-  CG.dom.siteHeader.insertBefore(dropdownMenu, CG.dom.siteHeader.firstChild);
+  CG.dom.siteHeader.parentElement.insertBefore(
+    dropdownMenu,
+    CG.dom.siteHeader.parentElement.firstChild
+  );
 
   // innerHTML
   //   .map((innerHTML) => el("div", { innerHTML, className: "info-box" }))
