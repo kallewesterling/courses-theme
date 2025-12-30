@@ -53,10 +53,10 @@
   #cp-content {
     flex: 1;
   }
-}
 
-#skilljar-content::after {
-  height: 0px;
+  &::after {
+    height: 0px;
+  }
 }
 
 body {
