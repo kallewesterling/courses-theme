@@ -89,6 +89,12 @@ label {
         }
       }
     }
+
+    @media (max-width: 480px) {
+      #logo-wrapper {
+        padding: 0 10px;
+      }
+    }
   }
 
   #header-right {
@@ -172,6 +178,19 @@ label {
         padding: 0.625em 0.625em;
         color: #4d4d4d;
       }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  #header {
+    font-size: 80%;
+    .info-circle-menu {
+      position: absolute;
+      top: 38.5px;
+      left: 2.5%;
+      width: 95%;
+      max-width: none;
     }
   }
 }
