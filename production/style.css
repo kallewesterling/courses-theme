@@ -239,6 +239,10 @@ label {
   #header #header-right #to-chainguard {
     display: none;
   }
+
+  #skilljar-content {
+    padding-top: 90px;
+  }
 }
 
 #skilljar-content .top-row-grey {
