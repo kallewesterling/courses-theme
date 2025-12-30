@@ -2220,7 +2220,7 @@ function addToChainguard() {
 */
 document.addEventListener("DOMContentLoaded", () => {
   // replace logo
-  document.querySelector(".header-left").replaceChildren(
+  CONFIG.dom.headerLeft.replaceChildren(
     el("div", { id: "logo-wrapper" }, [
       el(
         "a",
