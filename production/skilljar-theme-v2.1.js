@@ -2240,6 +2240,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // setup breadcrumbs
   addCrumb("Home", CG.state.baseURL);
 
+  CONFIG.dom.bodyHeader.classList.add("headers");
+
   // add partner menu item
   if (CG.env.isPartner) addPartnerMenu();
 
