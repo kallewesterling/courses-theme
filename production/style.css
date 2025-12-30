@@ -474,6 +474,7 @@ sjwc-lesson-content-item pre code {
 .footer {
   border-top: 1px solid #d0cfee;
   padding: 63px 0 0 0;
+  margin: 63px 0 0;
 
   .footer-content-container,
   .footer-bottom-bar {
@@ -516,22 +517,15 @@ sjwc-lesson-content-item pre code {
 
       .copyright {
         font-size: 12px;
+        font-family: Gellix;
 
         a {
           text-decoration: none;
           color: inherit;
         }
 
-        .privacy {
-          margin-right: 2px;
-          display: inline-block;
-          padding-right: 4px;
-          border-right: 1px solid #14003d;
-        }
-
-        .terms {
-          display: inline-block;
-          padding-left: 6px;
+        .legal-links {
+          font-family: Gellix;
         }
       }
     }
@@ -586,7 +580,7 @@ sjwc-lesson-content-item pre code {
       align-items: center;
 
       svg {
-        fill: #14003D !important;
+        fill: #14003d !important;
       }
     }
 
