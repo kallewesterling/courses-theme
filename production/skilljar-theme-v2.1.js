@@ -289,6 +289,7 @@ const CG = {
   },
   dom: {
     body: document.body,
+    bodyHeader: document.querySelector("#header"),
     headerLeft: document.querySelector("#header-left"),
     headerRight: document.querySelector("#header-right"),
     footerContainer: document.querySelector("#footer-container"),
