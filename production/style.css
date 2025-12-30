@@ -87,6 +87,7 @@ label {
     .info-circle-wrapper {
       border-left: 1px solid var(--neutral-border);
       padding: 0 10px;
+      cursor: pointer;
 
       .info-circle {
         float: left;
