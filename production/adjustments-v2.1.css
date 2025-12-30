@@ -61,8 +61,6 @@
 
 body {
   header {
-    transition: background-color 0.2s linear;
-
     .back-to-catalog {
       /* Back to catalog button */
       display: none !important;
@@ -73,18 +71,6 @@ body {
       border: 2px solid var(--ring);
       border-radius: 999px;
       padding: 10px 20px !important;
-    }
-
-    #header-right {
-      .info-box {
-        display: none;
-      }
-
-      @media screen and (min-width: 991px) {
-        .info-box {
-          display: flex;
-        }
-      }
     }
   }
 }
