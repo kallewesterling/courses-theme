@@ -596,7 +596,7 @@ sjwc-lesson-content-item pre code {
     .footer-content-container {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      width: 80%;
+      width: 90%;
       gap: 24px;
 
       .primary-col {
@@ -611,6 +611,11 @@ sjwc-lesson-content-item pre code {
     .copyright-separator,
     .footer-copyright {
       display: block;
+    }
+
+    .footer-copyright {
+      margin: 63px auto;
+      width: 80%;
     }
   }
 
