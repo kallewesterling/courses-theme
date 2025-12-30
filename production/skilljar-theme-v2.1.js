@@ -2193,8 +2193,26 @@ function handlePageStyling() {
 */
 document.addEventListener("DOMContentLoaded", () => {
   // replace logo
-  document.querySelector(".header-center-img").outerHTML =
-    CONFIG.logo.outerHTML;
+  document.querySelector(".header-left").innerHTML = el(
+    "div",
+    {
+      height: "100%",
+      display: "flex",
+      "align-items": "center",
+      padding: "0 20px",
+      "background-color": "var(--blurple)",
+    },
+    [
+      el(
+        "a",
+        {
+          className: "header-logo-link focus-link-v2",
+          href: CG.state.baseURL,
+        },
+        [CONFIG.logo]
+      ),
+    ]
+  );
 
   // remove search container
   document.querySelector(".search-container")?.remove();
