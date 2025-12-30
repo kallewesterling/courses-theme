@@ -1006,6 +1006,7 @@ function addPartnerMenu() {
     text: "Partner Courses",
   });
   CG.dom.headerLeft.appendChild(partnerItem);
+  CG.dom.mobileHeader.appendChild(partnerItem.cloneNode(true));
 }
 
 function debugHeading() {
@@ -2202,7 +2203,7 @@ function handlePageStyling() {
   hide(CG.dom.epFooter);
 }
 
-function addToChainguard() {
+function fixHeader() {
   const toChainguard = el("div", { id: "to-chainguard" }, [
     el("a", {
       href: getCorrectURL("https://www.chainguard.dev"),
@@ -2213,7 +2214,20 @@ function addToChainguard() {
     }),
   ]);
 
+  CG.dom.bodyHeader.classList.add("headers");
+
+  const mobileHeader = el("div", { id: "mobile-header", class: "headers" }, [
+    toChainguard,
+  ]);
+
+  CG.dom.mainContainer.insertBefore(
+    mobileHeader,
+    CG.dom.bodyHeader.nextSibling
+  );
+
   CG.dom.headerRight.insertBefore(toChainguard, CG.dom.headerRight.firstChild);
+
+  CG.dom.mobileHeader = mobileHeader;
 }
 
 /**
@@ -2241,16 +2255,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // setup breadcrumbs
   addCrumb("Home", CG.state.baseURL);
 
-  CG.dom.bodyHeader.classList.add("headers");
-
-  // add partner menu item
-  if (CG.env.isPartner) addPartnerMenu();
-
   // admin debug heading
   if (CG.env.isAdmin) debugHeading();
 
   // add chainguard link
-  if (!CG.page.isSignup && !CG.page.isLogin) addToChainguard();
+  if (!CG.page.isSignup && !CG.page.isLogin) fixHeader();
+
+  // add partner menu item
+  if (CG.env.isPartner) addPartnerMenu();
 
   if (CG.env.hasCourseSeries) {
     addCrumb(
