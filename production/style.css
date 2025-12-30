@@ -120,18 +120,6 @@ label {
       }
     }
 
-    .info-circle-menu {
-      /* TODO: fix dropdown here + in JS code */
-      max-width: 200px;
-      list-style: none;
-      background: #fff;
-      border: 1px solid #5a697c;
-      box-shadow: 0 6px 12px 1px rgba(0, 0, 0, .1);
-      position: absolute;
-      top: 252.969px;
-      left: -999999px;
-    }
-
     .login-link {
       margin-left: 14px;
 
@@ -145,6 +133,18 @@ label {
         color: inherit;
       }
     }
+  }
+
+  .info-circle-menu {
+    /* TODO: fix dropdown here + in JS code */
+    max-width: 200px;
+    list-style: none;
+    background: #fff;
+    border: 1px solid #5a697c;
+    box-shadow: 0 6px 12px 1px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 252.969px;
+    left: -999999px;
   }
 }
 
