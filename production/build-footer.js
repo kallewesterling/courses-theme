@@ -226,6 +226,25 @@ function generateFooter(data, containerId = "footer-container") {
   if (!container) return;
   container.innerHTML = "";
 
+  const copyrightContent = [
+    el("p", { text: data.copyright.text }),
+    el(
+      "div",
+      { className: "legal-links" },
+      data.copyright.links
+        .map((l) => el("a", { href: getCorrectURL(l.href), text: l.label }))
+
+        // in-between every link we want a | separator except after the last one
+        .reduce((acc, elem, idx, arr) => {
+          acc.push(elem);
+          if (idx < arr.length - 1) {
+            acc.push(el("span", { text: " | " }));
+          }
+          return acc;
+        }, [])
+    ),
+  ];
+
   const fc = el("div", { className: "footer-content-container" }, [
     el("div", { className: "primary-col" }, [
       el("div", { className: "tagline" }, [
@@ -270,26 +289,7 @@ function generateFooter(data, containerId = "footer-container") {
         : undefined,
 
       data.copyright
-        ? el("div", { className: "copyright" }, [
-            el("p", { text: data.copyright.text }),
-            el(
-              "div",
-              { className: "legal-links" },
-              data.copyright.links
-                .map((l) =>
-                  el("a", { href: getCorrectURL(l.href), text: l.label })
-                )
-
-                // in-between every link we want a | separator except after the last one
-                .reduce((acc, elem, idx, arr) => {
-                  acc.push(elem);
-                  if (idx < arr.length - 1) {
-                    acc.push(el("span", { text: " | " }));
-                  }
-                  return acc;
-                }, [])
-            ),
-          ])
+        ? el("div", { className: "copyright" }, copyrightContent)
         : undefined,
     ]),
   ]);
@@ -349,6 +349,14 @@ function generateFooter(data, containerId = "footer-container") {
       : undefined,
   ]);
   container.appendChild(bottomBar);
+  container.appendChild(el("hr", { className: "copyright-separator" }));
+
+  const copyrightFooter = el(
+    "div",
+    { className: "footer-copyright-footer" },
+    copyrightContent
+  );
+  container.appendChild(copyrightFooter);
 }
 
 // Run

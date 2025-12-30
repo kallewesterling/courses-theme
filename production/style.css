@@ -591,10 +591,14 @@ sjwc-lesson-content-item pre code {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       width: 80%;
-      margin: 0 auto;
+      gap: 24px;
 
       .primary-col {
         max-width: 100%;
+
+        .copyright {
+          display: none;
+        }
       }
     }
   }
