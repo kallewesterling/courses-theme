@@ -675,16 +675,15 @@ pre[class*="language-"] {
   background-color: var(--primary-white-hex) !important;
 }
 
-sjwc-lesson-content-item pre code::-webkit-scrollbar {
-  display: none;
-}
+sjwc-lesson-content-item {
+  pre code {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 
-sjwc-lesson-content-item pre code {
-  scrollbar-width: none;
-}
-
-sjwc-lesson-content-item pre code {
-  -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }
 
 .lp-footer {
