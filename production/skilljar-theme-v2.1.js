@@ -2225,7 +2225,10 @@ function fixHeader() {
     CG.dom.bodyHeader.nextSibling
   );
 
-  CG.dom.headerRight.insertBefore(toChainguard, CG.dom.headerRight.firstChild);
+  CG.dom.headerRight.insertBefore(
+    toChainguard.cloneNode(true),
+    CG.dom.headerRight.firstChild
+  );
 
   CG.dom.mobileHeader = mobileHeader;
 }
