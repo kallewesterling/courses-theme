@@ -185,6 +185,7 @@ label {
 @media (max-width: 480px) {
   #header {
     font-size: 80%;
+
     .info-circle-menu {
       position: absolute;
       top: 38.5px;
@@ -768,17 +769,15 @@ sjwc-lesson-content-item pre code {
         margin-bottom: 10px;
       }
     }
-  }
-}
 
-@media (max-width: 480px) {
-  .footer-bottom-bar {
-    .logo-container {
-      display: none !important;
-    }
+    .footer-bottom-bar {
+      .logo-container {
+        display: none !important;
+      }
 
-    .social-icons {
-      margin: 0 auto !important;
+      .social-icons {
+        margin: 0 auto !important;
+      }
     }
   }
 }
