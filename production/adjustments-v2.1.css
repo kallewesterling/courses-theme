@@ -291,7 +291,7 @@ body.sj-page-detail-course {
         justify-content: center;
         flex-shrink: 0;
         background: white;
-        color: var(--blurple) !important;
+        color: var(--ink) !important;
         padding: 24px;
 
         svg {
