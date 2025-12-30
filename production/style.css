@@ -593,13 +593,19 @@ sjwc-lesson-content-item pre code {
       flex-direction: column;
       grid-column: 1 / -1;
 
-      .tagline p {
-        letter-spacing: -0.12rem;
-        line-height: 44px;
-        font-size: 3rem;
-        max-width: 400px;
-        font-family: Gellix;
-        font-weight: 800;
+      .tagline {
+        p {
+          letter-spacing: -0.12rem;
+          line-height: 44px;
+          font-size: 3rem;
+          max-width: 400px;
+          font-family: Gellix;
+          font-weight: 800;
+        }
+
+        .small-logo {
+          display: none;
+        }
       }
 
       .ctas .button {
@@ -737,6 +743,22 @@ sjwc-lesson-content-item pre code {
       gap: 32px;
       width: 100% !important;
       padding: 0 20px 0 20px;
+
+      .primary-col .small-logo {
+        display: block;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-bottom-bar {
+    .logo-container {
+      display: none;
+    }
+
+    .social-icons {
+      margin: 0 auto;
     }
   }
 }

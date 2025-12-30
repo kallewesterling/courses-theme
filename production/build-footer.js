@@ -248,6 +248,12 @@ function generateFooter(data, containerId = "footer-container") {
   const fc = el("div", { className: "footer-content-container" }, [
     el("div", { className: "primary-col" }, [
       el("div", { className: "tagline" }, [
+        el("a", {
+          href: getCorrectURL(data.logo.href),
+          target: "_blank",
+          innerHTML: data.logo.svg,
+          class: "small-logo"
+        }),
         el("p", { text: "The trusted source for open source" }),
       ]),
 
