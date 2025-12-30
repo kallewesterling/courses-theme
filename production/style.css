@@ -78,6 +78,10 @@ label {
   }
 }
 
+#skilljar-content .top-row-grey {
+  background-color: #fef6ff9c !important;
+}
+
 .expandable-view
   a.coursebox-container[title="Claim your Container Crusader Credential"]::after {
   content: none;
