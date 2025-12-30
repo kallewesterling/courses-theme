@@ -2218,6 +2218,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // setup breadcrumbs
   addCrumb("Home", CG.state.baseURL);
 
+  const toChainguard = el("div", { id: "to-chainguard", style: "" }, [
+    el(
+      "a",
+      {
+        href: getCorrectURL("https://www.chainguard.dev"),
+        target: "_blank",
+        rel: "noopener noreferrer",
+        title: "Go to chainguard.dev",
+        text: "Go to Chainguard →"
+      }
+    ),
+  ]);
+  CG.dom.siteHeader.insertBefore(toChainguard, CG.dom.siteHeader.firstChild);
+
   if (CG.env.hasCourseSeries) {
     addCrumb(
       skilljarCourseSeries.title,
