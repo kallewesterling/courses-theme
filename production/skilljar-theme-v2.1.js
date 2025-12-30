@@ -2218,7 +2218,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // setup breadcrumbs
   addCrumb("Home", CG.state.baseURL);
 
-  const toChainguard = el("div", { id: "to-chainguard", style: "" }, [
+  const toChainguard = el("div", { id: "to-chainguard" }, [
     el(
       "a",
       {

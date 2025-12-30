@@ -100,9 +100,12 @@ label {
       border-left: 1px solid var(--neutral-border);
       padding: 0 10px;
       cursor: pointer;
+      float: left;
+      height: 100%;
+      display: flex;
+      align-items: center;
 
       .info-circle {
-        float: left;
         width: 32px;
         height: 32px;
         border-radius: 50%;
