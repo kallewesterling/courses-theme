@@ -1560,7 +1560,7 @@ function styleCatalog() {
         el(
           "a",
           {
-            href: "https://www.chainguard.dev/contact",
+            href: getCorrectURL("https://www.chainguard.dev/contact"),
             className: "button white",
             text: "Contact Us",
           },
