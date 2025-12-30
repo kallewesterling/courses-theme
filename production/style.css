@@ -605,6 +605,16 @@ sjwc-lesson-content-item pre code {
         .copyright {
           display: none;
         }
+
+        .tagline p {
+          font-size: 1.875rem;
+        }
+
+        .ctas .button {
+          padding: 24px;
+          font-size: 20px;
+          margin-bottom: 32px;
+        }
       }
     }
 
