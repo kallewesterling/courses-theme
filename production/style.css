@@ -120,6 +120,13 @@ label {
       }
     }
 
+    .info-circle-menu {
+      /* TODO: fix dropdown here + in JS code */
+      position: absolute;
+      top: 252.969px;
+      left: -999999px;
+    }
+
     .login-link {
       margin-left: 14px;
 
