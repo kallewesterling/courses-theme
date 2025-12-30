@@ -794,7 +794,7 @@ sjwc-lesson-content-item {
         text-decoration: none;
         display: block;
         margin: 14px 0;
-        color: rgb(13 22 28 / 0.9);
+        color: rgb(13 22 28 / 0.9) !important;
         font-weight: 400;
       }
 
@@ -803,7 +803,7 @@ sjwc-lesson-content-item {
         font-family: "Roobert";
         text-transform: uppercase;
         font-size: 0.75rem;
-        color: rgb(13 22 28 / 0.7);
+        color: rgb(13 22 28 / 0.7) !important;
         font-weight: 400;
       }
     }
