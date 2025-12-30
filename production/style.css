@@ -684,6 +684,51 @@ sjwc-lesson-content-item {
       display: none;
     }
   }
+
+  .callout {
+    background-color: rgba(52, 68, 244, 0.05) !important;
+    box-shadow: unset !important;
+    border: 1px solid var(--blurple) !important;
+    opacity: 1 !important;
+    padding: 20px !important;
+    margin: 45px 0px !important;
+    width: 100% !important;
+    font-size: 90% !important;
+    border-radius: 5px;
+
+    .callout-header {
+      background-color: transparent !important;
+      text-transform: uppercase !important;
+      padding: 10px 20px 10px 20px;
+      border-radius: 5px 5px 0 0;
+      font-size: 1.2em !important;
+      font-weight: 700;
+
+      i {
+        padding-right: 0.5em;
+        display: none !important;
+      }
+    }
+
+    .callout-body {
+      padding: 10px 20px 10px 20px;
+
+      ul {
+        li::marker {
+          color: var(--blurple) !important;
+        }
+      }
+
+      code {
+        background-color: #3443f421;
+      }
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
 }
 
 .lp-footer {
