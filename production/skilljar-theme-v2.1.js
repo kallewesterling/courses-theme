@@ -1006,7 +1006,7 @@ function addPartnerMenu() {
     text: "Partner Courses",
   });
   CG.dom.headerLeft.appendChild(partnerItem);
-  CG.dom.mobileHeader.right.appendChild(partnerItem.cloneNode(true));
+  CG.dom.mobileHeader.left.appendChild(partnerItem.cloneNode(true));
 }
 
 function debugHeading() {
@@ -2215,8 +2215,8 @@ function fixHeader() {
   ]);
 
   const mobileHeader = el("header", { id: "mobile-header", class: "headers" }, [
-    el("div", { id: "mobile-header-left" }, [toChainguard]),
-    el("div", { id: "mobile-header-right" }, []),
+    el("div", { id: "mobile-header-left" }, []),
+    el("div", { id: "mobile-header-right" }, [toChainguard]),
   ]);
 
   CG.dom.mainContainer.insertBefore(
