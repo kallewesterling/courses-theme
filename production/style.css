@@ -745,7 +745,8 @@ sjwc-lesson-content-item pre code {
       padding: 0 20px 0 20px;
 
       .primary-col .small-logo {
-        display: block;
+        display: block !important;
+        margin-bottom: 10px;
       }
     }
   }
@@ -754,11 +755,11 @@ sjwc-lesson-content-item pre code {
 @media (max-width: 480px) {
   .footer-bottom-bar {
     .logo-container {
-      display: none;
+      display: none !important;
     }
 
     .social-icons {
-      margin: 0 auto;
+      margin: 0 auto !important;
     }
   }
 }
