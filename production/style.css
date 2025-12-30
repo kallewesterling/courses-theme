@@ -508,11 +508,6 @@ sjwc-lesson-content-item pre code {
         font-family: Roobert, monospace;
         font-weight: 700;
         font-size: 14px;
-
-        a {
-          text-decoration: none;
-          color: inherit;
-        }
       }
 
       .copyright {
