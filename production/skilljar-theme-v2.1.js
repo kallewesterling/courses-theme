@@ -2218,6 +2218,20 @@ function handlePageStyling() {
   hide(CG.dom.epFooter);
 }
 
+function addToChainguard() {
+  const toChainguard = el("div", { id: "to-chainguard" }, [
+    el("a", {
+      href: getCorrectURL("https://www.chainguard.dev"),
+      target: "_blank",
+      rel: "noopener noreferrer",
+      title: "Go to chainguard.dev",
+      text: "Go to Chainguard →",
+    }),
+  ]);
+
+  CG.dom.siteHeader.insertBefore(toChainguard, CG.dom.siteHeader.firstChild);
+}
+
 /**
   This event is fired when the DOM is fully loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading.
   It is a good place to run scripts that need to manipulate the DOM or set up event listeners.
@@ -2245,16 +2259,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (CG.env.isAdmin) debugHeading();
 
-  const toChainguard = el("div", { id: "to-chainguard" }, [
-    el("a", {
-      href: getCorrectURL("https://www.chainguard.dev"),
-      target: "_blank",
-      rel: "noopener noreferrer",
-      title: "Go to chainguard.dev",
-      text: "Go to Chainguard →",
-    }),
-  ]);
-  CG.dom.siteHeader.insertBefore(toChainguard, CG.dom.siteHeader.firstChild);
+  if (!CG.page.isSignup && !CG.page.isLogin) addToChainguard();
 
   if (CG.env.hasCourseSeries) {
     addCrumb(
