@@ -978,6 +978,33 @@ pathSections = {
   ],
 };
 
+function updateLinks(useTestDomain) {
+  const links = document.querySelectorAll(
+    'a[href*="' +
+      CONFIG.domains.prod.url +
+      '"], a[href*="' +
+      CONFIG.domains.stage.url +
+      '"]'
+  );
+  links.forEach((link) => {
+    const url = new URL(link.href);
+    if (useTestDomain && url.hostname === CONFIG.domains.prod.url) {
+      url.hostname = CONFIG.domains.stage.url;
+    } else if (!useTestDomain && url.hostname === CONFIG.domains.stage.url) {
+      url.hostname = CONFIG.domains.prod.url;
+    }
+    link.href = url.toString();
+  });
+}
+
+function addPartnerMenu() {
+  const partnerItem = el("a", {
+    href: "/page/partners",
+    text: "Partner Courses",
+  });
+  CG.dom.siteHeader.insertBefore(partnerItem, CG.dom.siteHeader.lastChild);
+}
+
 function debugHeading() {
   // adding a dropdown info circle
   const infoCircle = el(
@@ -987,52 +1014,30 @@ function debugHeading() {
   );
   CG.dom.siteHeader.insertBefore(infoCircle, CG.dom.siteHeader.firstChild);
 
-  let innerHTML = [];
+  let dropdownOptions = [
+    el("span", {
+      text: "Handler: " + pageHandlers.find(({ test }) => test).handler.name,
+    }),
+    el("input", {
+      type: "checkbox",
+      id: "cg-baseurl-staging",
+      checked: CG.env.isStaging ? true : false,
+    }),
 
-  if (CG.env.isPartner) {
-    innerHTML.push(
-      `<p style="margin:0"><a href="/page/partners">Partner Courses</a></p>`
-    );
-  }
+    // Add course edit link
+    CG.state.course.id
+      ? el("a", { href: CG.state.course.edit, text: "Edit Course" })
+      : null,
 
-  // DEBUG: adding info box for internal users
+    // Add path edit link
+    CG.state.course.path.id && CG.state.domain
+      ? el("a", { href: CG.state.course.path.edit, text: "Edit Path" })
+      : null,
+  ]
+    .filter(Boolean)
+    .map((html) => el("li", {}, [html]));
 
-  innerHTML.push(`<p style="margin:0">
-      ${CG.page.isLanding ? "styleLanding" : ""}
-      ${CG.page.isCourseDetails ? "styleCourseDetails" : ""}
-      ${CG.page.isPageDetail ? "stylePathCourseDetails" : ""}
-      ${CG.page.isLogin ? "styleAuth" : ""}
-      ${CG.page.isSignup ? "styleAuth" : ""}
-      ${
-        CG.page.isCurriculum && !CG.page.hasCertificate
-          ? "styleCurriculumPage" // f.k.a. styleCurriculumPageNoCertificate
-          : ""
-      }
-      ${CG.page.isLesson ? "styleLesson" : ""}
-      ${CG.page.isPageCatalog ? "stylePathCatalogPage" : ""}
-    </p>`);
-
-  innerHTML.push(`<input type="checkbox" id="cg-baseurl-staging" />`);
-
-  // Add course edit link
-  if (CG.state.course.id) {
-    innerHTML.push(
-      `<p style="margin:0"><a href="${CG.state.course.edit}">Edit Course</a></p>`
-    );
-  }
-
-  // Add path edit link
-  if (CG.state.course.path.id && CG.state.domain) {
-    innerHTML.push(
-      `<p style="margin:0"><a href="${CG.state.course.path.edit}">Edit Path</a></p>`
-    );
-  }
-
-  const dropdownMenu = el(
-    "ul",
-    { class: "info-circle-menu" },
-    innerHTML.map((html) => el("li", { innerHTML: html }))
-  );
+  const dropdownMenu = el("ul", { class: "info-circle-menu" }, dropdownOptions);
 
   CG.dom.siteHeader.parentElement.insertBefore(
     dropdownMenu,
@@ -1059,39 +1064,14 @@ function debugHeading() {
   });
 
   const checkbox = document.querySelector("#cg-baseurl-staging");
-  if (CG.env.isStaging) checkbox.checked = true;
 
-  if (checkbox) {
-    function updateLinks(useTestDomain) {
-      const links = document.querySelectorAll(
-        'a[href*="' +
-          CONFIG.domains.prod.url +
-          '"], a[href*="' +
-          CONFIG.domains.stage.url +
-          '"]'
-      );
-      links.forEach((link) => {
-        const url = new URL(link.href);
-        if (useTestDomain && url.hostname === CONFIG.domains.prod.url) {
-          url.hostname = CONFIG.domains.stage.url;
-        } else if (
-          !useTestDomain &&
-          url.hostname === CONFIG.domains.stage.url
-        ) {
-          url.hostname = CONFIG.domains.prod.url;
-        }
-        link.href = url.toString();
-      });
-    }
+  // initial state update if needed
+  updateLinks(checkbox.checked);
 
-    // initial state update if needed
-    updateLinks(checkbox.checked);
-
-    // toggle behavior
-    checkbox.addEventListener("change", function () {
-      updateLinks(this.checked);
-    });
-  }
+  // toggle behavior
+  checkbox.addEventListener("change", function () {
+    updateLinks(this.checked);
+  });
 }
 
 function remove(selector) {
@@ -2256,9 +2236,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // setup breadcrumbs
   addCrumb("Home", CG.state.baseURL);
+  
+  // add partner menu item
+  if (CG.env.isPartner) addPartnerMenu();
 
+  // admin debug heading
   if (CG.env.isAdmin) debugHeading();
 
+  // add chainguard link
   if (!CG.page.isSignup && !CG.page.isLogin) addToChainguard();
 
   if (CG.env.hasCourseSeries) {
