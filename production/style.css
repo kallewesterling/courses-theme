@@ -951,6 +951,79 @@ sjwc-lesson-content-item pre code {
   }
 }
 
+/* Breadcrumb styling */
+#breadcrumb {
+  margin: 20px auto;
+  justify-content: start;
+
+  .breadcrumb {
+    --ink: #14003d;
+    --muted: #6b6a78;
+    --border: #d8d5e0;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 10px 14px;
+    box-shadow: 0 8px 24px rgba(20, 0, 61, 0.06);
+    width: max-content;
+    max-width: 100%;
+
+    &[aria-current="page"] {
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    ol {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+        color: var(--muted);
+
+        a {
+          color: var(--ink);
+          text-decoration: none;
+          font-weight: 600;
+
+          &:hover {
+            color: var(--ink) !important;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+          }
+        }
+
+        + li::before {
+          /* chevron separator */
+          content: "";
+          width: 14px;
+          height: 14px;
+          flex: 0 0 14px;
+          background: #8c8aa4;
+          -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 5l7 7-7 7'/></svg>")
+            center/contain no-repeat;
+          mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 5l7 7-7 7'/></svg>")
+            center/contain no-repeat;
+        }
+      }
+    }
+
+    .crumb {
+      max-width: min-content;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
 .sj-page-error-404 {
   .row.padded-side-bottom {
     flex-grow: 1;
