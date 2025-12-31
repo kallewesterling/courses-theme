@@ -1,0 +1,20 @@
+repos:
+  - repo: local
+    hooks:
+      - id: css-syntax-check
+        name: CSS syntax check
+        entry: npx stylelint production/style.css production/adjustments.css production/adjustments-v2.1.css
+        language: system
+        files: \.css$
+
+      - id: js-syntax-check
+        name: JavaScript syntax check
+        entry: node --check production/build-footer.js production/skilljar-theme-v2.1.js
+        language: system
+        files: \.js$
+
+      - id: js-minify-check
+        name: JavaScript minification
+        entry: npx terser production/skilljar-theme-v2.1.js -c -m -o production/skilljar-theme-v2.1.min.js --source-map "content='production/skilljar-theme-v2.1.js.map',url='skilljar-theme-v2.1.min.js.map'"
+        language: system
+        files: \.js$
