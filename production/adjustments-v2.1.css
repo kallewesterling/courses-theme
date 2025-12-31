@@ -76,6 +76,7 @@ body {
 }
 
 body.sj-page-detail-course {
+  /* body.sj-page-detail-course = course description page (not logged in) */
   .large-6 {
     width: 100% !important;
     border: unset !important;
@@ -108,7 +109,14 @@ body.sj-page-curriculum,
 body.sj-page-detail-bundle.sj-page-detail-path,
 body.sj-page-catalog.sj-page-series,
 body.sj-page-detail-course {
-  /* Landing page styles */
+  /*
+  Landing page styles:
+  - body.sj-page-catalog-root = main catalog page
+  - body.sj-page-curriculum = course description page (logged in)
+  - body.sj-page-detail-bundle.sj-page-detail-path = learning path detail page (not logged in)
+  - body.sj-page-catalog.sj-page-series = learning path detail page (logged in)
+  - body.sj-page-detail-course = course description page (not logged in)
+  */
 
   #cg-bg {
     width: 100%;
@@ -360,6 +368,7 @@ body.sj-page-detail-course {
 }
 
 body.sj-page-lesson {
+  /* body.sj-page-lesson = lesson page (logged in) */
   #header {
     background-color: #fff !important; /* Make header white on lessons */
   }
