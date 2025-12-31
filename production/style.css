@@ -258,6 +258,7 @@ label {
     display: flex !important;
     justify-content: space-between;
     align-items: center;
+    z-index: 0;
 
     #mobile-header-left {
       height: 100%;
