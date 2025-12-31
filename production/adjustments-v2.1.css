@@ -2077,23 +2077,25 @@ body.sj-page-signup {
     box-shadow: 0 8px 20px rgba(129, 61, 243, 0.18);
     transition: transform 0.05s ease, filter 0.15s ease, box-shadow 0.15s ease;
     font-family: Gellix;
-  }
-  #google_login::before {
-    display: inline-block;
-    font-family: FontAwesome;
-    font-size: 1.25rem;
-    text-align: left;
-    width: 27px;
-  }
-  #google_login:hover {
-    filter: brightness(0.98);
-  }
-  #google_login:active {
-    transform: translateY(1px);
-  }
-  #google_login:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 4px var(--ring);
+
+    &::before {
+      display: inline-block;
+      font-family: FontAwesome;
+      font-size: 1.25rem;
+      text-align: left;
+      width: 27px;
+    }
+
+    &:hover {
+      filter: brightness(0.98);
+    }
+    &:active {
+      transform: translateY(1px);
+    }
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 4px var(--ring);
+    }
   }
 
   /* Terms */
