@@ -351,8 +351,9 @@ const CG = {
 
     auth: {
       inputs: {
-        password2: document.querySelector("#id_password2"), // signup specific
-        email: document.querySelector("#id_email"), // signup specific
+        // signup specific
+        password2: document.querySelector("#id_password2"),
+        email: document.querySelector("#id_email"),
       },
 
       // login specific
@@ -1323,7 +1324,7 @@ function makeSections(
  * @param {string} type - The type of icon to create (e.g., "checkbox", "burger").
  * @param {Object} attrs - Additional attributes to apply to the SVG element.
  * @returns {SVGElement} The created SVG icon element.
-*/
+ */
 function createClone(
   type = "checkbox",
   attrs = {
@@ -1381,11 +1382,11 @@ const createResourceCard = (resource) =>
     ]
   );
 
- /**
+/**
  * Extracts curriculum elements from the given container and organizes them into sections and lessons.
  * @param {HTMLElement} curriculumParentContainer - The container element holding the curriculum structure.
  * @returns {Array} An array of section elements with their respective lessons.
-*/
+ */
 function getCurriculumElements(curriculumParentContainer = null) {
   if (!curriculumParentContainer)
     curriculumParentContainer = CG.dom.curriculumContainer;
@@ -1472,7 +1473,7 @@ function getCurriculumElements(curriculumParentContainer = null) {
  * @param {string} [options.btnHref="#"] - The URL for the action button.
  * @param {boolean} [options.completed=false] - Indicates if the course is completed.
  * @returns {HTMLElement} The created course details card element.
-*/
+ */
 function createCourseDetailsCard(
   details,
   options = {
