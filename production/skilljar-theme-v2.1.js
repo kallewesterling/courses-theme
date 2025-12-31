@@ -1143,7 +1143,8 @@ function renderBreadcrumbs(targetElement) {
 }
 
 /**
- * TODO: docstring
+ * Simple logger utility for console messages with styling.
+ * Logs messages only if in staging or admin environment.
  */
 const logger = {
   enabled() {
