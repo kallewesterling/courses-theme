@@ -744,7 +744,7 @@ body.sj-page-login {
 
     #id_password {
       @media screen and (max-width: 991px) {
-        margin-bottom: 24px;
+        margin-bottom: 0px;
       }
     }
   }
@@ -2037,15 +2037,19 @@ body.sj-page-signup {
 
   /* Forgot password */
   .forgot-password {
-    display: inline-block;
-    margin-left: 14px;
+    font-size: 12px;
+    float: right;
     font-weight: 700;
     color: var(--brand-ink);
     text-decoration: none;
     border-bottom: 2px solid transparent;
-  }
-  .forgot-password:hover {
-    border-bottom-color: var(--brand-ink);
+    margin: 24px 0 6px 0;
+    opacity: 60%;
+
+    &:hover {
+      opacity: 100%;
+      border-bottom-color: var(--brand-ink);
+    }
   }
 
   /* Divider heading */

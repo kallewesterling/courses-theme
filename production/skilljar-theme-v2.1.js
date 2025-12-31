@@ -351,6 +351,9 @@ const CG = {
 
     auth: {
       inputs: {
+        // login specific
+        password: document.querySelector("#id_password"),
+        
         // signup specific
         password2: document.querySelector("#id_password2"),
         email: document.querySelector("#id_email"),
@@ -360,6 +363,7 @@ const CG = {
       loginForm: document.querySelector("#login_form"),
       loginText: document.querySelector("#login-tab-left span span"),
       signupTabTextSpan: document.querySelector("#login-tab-right span"),
+      forgotPasswordLink: document.querySelector("a.forgot-password"),
 
       // signup-specific
       loginTabTextSpan: document.querySelector("#login-tab-left a span"),
@@ -2138,6 +2142,9 @@ function styleAuth() {
   ]);
 
   CG.dom.contentContainer.append(authContainer);
+
+  // move "Forgot Password?" to after Password
+  CG.dom.auth.inputs.password.parentElement.append(CG.dom.auth.forgotPasswordLink);
 }
 
 /**
