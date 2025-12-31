@@ -410,6 +410,12 @@ const CG = {
   },
 };
 
+/**
+ * Add a breadcrumb to the global state
+ * @param {string} label - The label for the breadcrumb
+ * @param {string} href - The href for the breadcrumb
+ * @param {boolean} prependBase - Whether to prepend the base URL to the href
+ */
 function addCrumb(label, href, prependBase = false) {
   if (prependBase) href = `${CG.state.baseURL}${href}`;
   CG.state.crumbs.push([label, href]);
@@ -981,6 +987,16 @@ pathSections = {
   ],
 };
 
+/**
+ * Update all links on the page to use either the production or staging domain.
+ * @param {boolean} useTestDomain - If true, update links to use the staging domain; otherwise, use the production domain.
+ * @example
+ * // Update links to use the staging domain
+ * updateLinks(true);
+ *
+ * // Update links to use the production domain
+ * updateLinks(false);
+ */
 function updateLinks(useTestDomain) {
   const links = document.querySelectorAll(
     'a[href*="' +
@@ -1000,6 +1016,9 @@ function updateLinks(useTestDomain) {
   });
 }
 
+/**
+ * Add a "Partner Courses" menu item to the header if the user is a partner.
+ */
 function addPartnerMenu() {
   const partnerItem = el("a", {
     href: "/page/partners",
@@ -1009,6 +1028,9 @@ function addPartnerMenu() {
   CG.dom.mobileHeader.left.appendChild(partnerItem.cloneNode(true));
 }
 
+/**
+ * Adds a debug heading with environment information and a staging toggle.
+ */
 function debugHeading() {
   // adding a dropdown info circle
   const infoCircle = el(
@@ -1079,6 +1101,16 @@ function debugHeading() {
   });
 }
 
+/**
+ * Removes elements from the DOM based on the provided selector(s).
+ * @param {string|string[]} selector - A CSS selector string or an array of selector strings.
+ * @example
+ * // Remove a single element
+ * remove('.ad-banner');
+ *
+ * // Remove multiple elements
+ * remove(['.ad-banner', '#popup', '.sponsored-content']);
+ */
 function remove(selector) {
   if (!selector) return;
 
@@ -1096,7 +1128,7 @@ function remove(selector) {
   });
 }
 
-/*
+/**
  * Renders a breadcrumb navigation element.
  * @param {HTMLElement} targetElement - The target element to replace with the breadcrumb navigation.
  * @example
@@ -1167,8 +1199,13 @@ const logger = {
   },
 };
 
-/*
- * TODO: docstring
+/**
+ * Generates and appends course sections to a specified parent element.
+ * @param {Array} sections - An array of section objects containing details for each section.
+ * @param {string} parentSelector - The CSS selector of the parent element to which sections will be appended.
+ * @param {string} baseURL - The base URL for course links.
+ * @example
+ * makeSections(sectionsData, '#main-content', 'https://courses.example.com');
  */
 function makeSections(
   sections,
@@ -1281,6 +1318,12 @@ function makeSections(
   });
 }
 
+/**
+ * Creates an SVG icon element based on the specified type and attributes.
+ * @param {string} type - The type of icon to create (e.g., "checkbox", "burger").
+ * @param {Object} attrs - Additional attributes to apply to the SVG element.
+ * @returns {SVGElement} The created SVG icon element.
+*/
 function createClone(
   type = "checkbox",
   attrs = {
@@ -1338,6 +1381,11 @@ const createResourceCard = (resource) =>
     ]
   );
 
+ /**
+ * Extracts curriculum elements from the given container and organizes them into sections and lessons.
+ * @param {HTMLElement} curriculumParentContainer - The container element holding the curriculum structure.
+ * @returns {Array} An array of section elements with their respective lessons.
+*/
 function getCurriculumElements(curriculumParentContainer = null) {
   if (!curriculumParentContainer)
     curriculumParentContainer = CG.dom.curriculumContainer;
@@ -1413,6 +1461,18 @@ function getCurriculumElements(curriculumParentContainer = null) {
   });
 }
 
+/**
+ * Creates a course details card element with provided details and options.
+ * @param {Object} details - An object containing course details.
+ * @param {string} details.audience - The target audience for the course.
+ * @param {string} details.time - The estimated time to complete the course.
+ * @param {number} details.lessons - The number of lessons in the course.
+ * @param {Object} options - An object containing options for the card.
+ * @param {string} [options.btnText="Register"] - The text for the action button.
+ * @param {string} [options.btnHref="#"] - The URL for the action button.
+ * @param {boolean} [options.completed=false] - Indicates if the course is completed.
+ * @returns {HTMLElement} The created course details card element.
+*/
 function createCourseDetailsCard(
   details,
   options = {
@@ -1461,15 +1521,14 @@ function createCourseDetailsCard(
 }
 
 /**
- * This function copies the given text to the clipboard and animates a tooltip indicating success.
+ * Creates a function to copy text to the clipboard and animate a tooltip.
  * @param {string} copyText - The text to copy to the clipboard.
  * @param {HTMLElement} tooltipContainer - The element to animate as a tooltip.
  * @return {Function} - A function that, when called, will copy the text and animate the tooltip.
  */
 function toClipboard(copyText, tooltipContainer) {
   /**
-   * This function animates the tooltip that appears when code is copied.
-   * It sets the opacity to 1, waits for 400ms, and then sets the opacity to 0.
+   * Animates the tooltip by changing its opacity.
    * @param {HTMLElement} tooltipEl - The tooltip element to animate.
    */
   function animateCopiedTooltip(tooltipEl) {
@@ -1558,6 +1617,10 @@ function setStyle(target, style) {
   return null;
 }
 
+/**
+ * Attempts to load and display sections for the current learning path.
+ * Logs a warning if the path sections are not found.
+ */
 function tryPathSections() {
   if (!pathSections[skilljarPath.slug]) {
     logger.warn(`Tried to load ${skilljarPath.slug} path unsuccessfully.`);
@@ -2035,6 +2098,9 @@ function styleLesson() {
   }
 }
 
+/**
+ * This function applies styling to the authentication (login/signup) pages.
+ */
 function styleAuth() {
   text(CG.dom.auth.login, "Log In");
   text(CG.dom.auth.signup, "Sign Up");
@@ -2073,6 +2139,9 @@ function styleAuth() {
   CG.dom.contentContainer.append(authContainer);
 }
 
+/**
+ * This function applies styling to the curriculum page.
+ */
 function styleCurriculumPage() {
   // f.k.a. styleCurriculumPageNoCertificate
   CG.dom.local = {
@@ -2152,6 +2221,10 @@ const pageHandlers = [
   { test: () => CG.page.is404, handler: style404 },
 ];
 
+/**
+ * This function handles the overall page styling by determining the appropriate handler for the current page and executing it.
+ * It also manages the placement of breadcrumbs, header elements, footer, and messages on course-related pages.
+ */
 function handlePageStyling() {
   // find first matching handler
   const match = pageHandlers.find(({ test }) => test());
@@ -2204,6 +2277,10 @@ function handlePageStyling() {
   hide(CG.dom.epFooter);
 }
 
+/**
+ * This function modifies the header to include a link to Chainguard's main website.
+ * It creates a mobile header and adds the link to both mobile and desktop headers.
+ */
 function fixHeader() {
   const toChainguard = el("div", { id: "to-chainguard" }, [
     el("a", {
@@ -2296,7 +2373,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /**
- * Inject overlay HTML once
+ * Ensure the completion popup element exists, creating it if necessary.
+ * @returns {HTMLElement} The completion popup element.
  */
 function ensureCompletionPopup() {
   let elem = document.getElementById("completion-popup");
@@ -2354,7 +2432,8 @@ function ensureCompletionPopup() {
 }
 
 /**
- * Show / hide with fade
+ * Show the completion popup with animation and focus management.
+ * @param {HTMLElement} elem - The completion popup element to show.
  */
 function showCompletion(elem) {
   elem.setAttribute("aria-hidden", "false");
@@ -2380,6 +2459,10 @@ function showCompletion(elem) {
   }
 }
 
+/**
+ * Hide the completion popup with animation.
+ * @param {HTMLElement} elem - The completion popup element to hide.
+ */
 function hideCompletion(elem) {
   setStyle(elem, { opacity: "0" });
   const finish = () => {
@@ -2393,9 +2476,7 @@ function hideCompletion(elem) {
 }
 
 /**
- * Public trigger (call this from Skilljar when course completes)
- * Example usage:
- *   window.animateCompletion();
+ * Animate the completion popup with confetti and auto-hide functionality.
  */
 window.animateCompletion = function animateCompletion() {
   const elem = ensureCompletionPopup();
@@ -2410,6 +2491,9 @@ window.animateCompletion = function animateCompletion() {
   setTimeout(() => hideCompletion(elem), CONFIG.confetti.autoHideMs);
 };
 
+/**
+ * Shoot confetti bursts with stars, circles, and logos.
+ */
 function shoot() {
   confetti({
     ...CONFIG.confetti.defaults,
