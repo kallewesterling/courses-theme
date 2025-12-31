@@ -279,9 +279,22 @@ label {
     display: none;
   }
 
-  #skilljar-content,
-  #lp-wrapper {
-    padding-top: 90px;
+  body.sj-page-catalog-root,
+  body.sj-page-curriculum,
+  body.sj-page-detail-bundle.sj-page-detail-path,
+  body.sj-page-catalog.sj-page-series,
+  body.sj-page-detail-course {
+    #skilljar-content,
+    #lp-wrapper {
+      padding-top: 90px;
+    }
+  }
+
+  body.sj-page-login,
+  body.sj-page-signup {
+    #skilljar-content {
+      padding-top: 45px;
+    }
   }
 }
 
