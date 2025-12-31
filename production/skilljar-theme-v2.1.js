@@ -2256,7 +2256,7 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   // remove search container
-  document.querySelector(".search-container")?.remove();
+  remove(".search-container");
 
   // setup breadcrumbs
   addCrumb("Home", CG.state.baseURL);
