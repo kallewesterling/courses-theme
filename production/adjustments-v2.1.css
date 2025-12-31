@@ -367,13 +367,6 @@ body.sj-page-detail-course {
   }
 }
 
-body.sj-page-lesson {
-  /* body.sj-page-lesson = lesson page (logged in) */
-  #header {
-    background-color: #fff !important; /* Make header white on lessons */
-  }
-}
-
 body.sj-page-login,
 body.sj-page-signup {
   /* Login and Signup pages shared styles */
@@ -1050,7 +1043,7 @@ body.sj-page-lesson:not(.cbp-spmenu-open) {
 }
 
 body.sj-page-lesson {
-  /* Lesson page styles */
+  /* body.sj-page-lesson = lesson page (logged in) */
 
   @media screen and (max-width: 991px) {
     /* Responsive styles for lesson page */
