@@ -13,8 +13,19 @@ repos:
         language: system
         files: \.js$
 
-      - id: js-minify-check
-        name: JavaScript minification
-        entry: npx terser production/skilljar-theme-v2.1.js -c -m -o production/skilljar-theme-v2.1.min.js --source-map "content='production/skilljar-theme-v2.1.js.map',url='skilljar-theme-v2.1.min.js.map'"
+      - id: js-minify
+        name: JavaScript minify (with sourcemap)
+        entry: >
+          npx terser production/skilljar-theme-v2.1.js
+          -c -m
+          -o production/skilljar-theme-v2.1.min.js
+          --source-map "filename='skilljar-theme-v2.1.min.js',url='skilljar-theme-v2.1.min.js.map'"
         language: system
-        files: \.js$
+        files: ^production/skilljar-theme-v2\.1\.js$
+        pass_filenames: false
+
+      - id: stage-minified
+        name: Stage minified JS + sourcemap
+        entry: sh -c "git add production/skilljar-theme-v2.1.min.js production/skilljar-theme-v2.1.min.js.map"
+        language: system
+        pass_filenames: false
