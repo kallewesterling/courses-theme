@@ -730,7 +730,6 @@ body.sj-page-login {
   #login_form {
     /* Login form elements */
 
-    a.sj-text-forgot-password,
     button#button-sign-in {
       /* Forgot password text + login button */
       font-size: 16px;
@@ -2043,7 +2042,7 @@ body.sj-page-signup {
     color: var(--brand-ink);
     text-decoration: none;
     border-bottom: 2px solid transparent;
-    margin: 24px 0 6px 0;
+    margin: 6px 0 24px 0;
     opacity: 60%;
 
     &:hover {
