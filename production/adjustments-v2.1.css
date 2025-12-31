@@ -2105,11 +2105,12 @@ body.sj-page-signup {
     p {
       color: var(--ink-dim);
       margin: 0px;
+
+      a {
+        color: var(--brand-ink);
+        text-underline-offset: 3px;
+      }
     }
-  }
-  #access-message #access-message a {
-    color: var(--brand-ink);
-    text-underline-offset: 3px;
   }
 
   /* Reduced motion */
