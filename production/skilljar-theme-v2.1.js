@@ -380,6 +380,8 @@ const CG = {
     local: {},
 
     auth: {
+      rows: [],
+      
       inputs: {
         email:
           document.querySelector("#id_email") ||
@@ -416,6 +418,9 @@ const CG = {
         email:
           document.querySelector("label[for=id_email]") ||
           document.querySelector("label[for=id_login]"),
+        accessCode: document.querySelector(
+          "label[for=id_access_code] span span"
+        ),
       },
 
       google: document.querySelector("#google_login"),
@@ -2143,6 +2148,7 @@ function styleAuth() {
     placeholder(CG.dom.auth.inputs.lName, "Last Name");
     placeholder(CG.dom.auth.inputs.password2, "Password Confirm");
     text(CG.dom.auth.labels.passwordConfirm, "Password Confirm");
+    text(CG.dom.auth.labels.accessCode, "Access Code (optional)");
   }
 
   const authContainer = el("div", { id: "auth-container" }, [
@@ -2175,6 +2181,11 @@ function styleAuth() {
       "afterend",
       CG.dom.auth.rows.id_access_code
     );
+
+    // add focus listeners to fade in labels
+    CG.dom.auth.inputs.accessCode.addEventListener("focus", () => {
+      setStyle(CG.dom.auth.rows.id_access_code, { opacity: "1" });
+    });
   }
 
   remove(CG.dom.auth.method);
