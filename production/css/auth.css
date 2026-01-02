@@ -16,12 +16,10 @@ body.sj-page-signup {
 
   #access-message {
     /* Agree to our Terms & Privacy text */
-    max-width: 368px;
-    color: #545454;
-    font-size: 14px;
-    transform: translateX(-13px);
+    max-width: 100%;
     font-size: 14px;
     margin: 62px 0 0;
+    opacity: 0.5;
 
     @media screen and (max-width: 767px) {
       margin: 32px 0 0;
@@ -39,10 +37,10 @@ body.sj-page-signup {
     }
   }
 
-  .columns:has(#tabs) {
+  /* .columns:has(#tabs) { */
     /* Wrapper for Login/Signup buttons */
 
-    #tabs {
+    /* #tabs {
       display: flex;
 
       .login-tab {
@@ -57,7 +55,7 @@ body.sj-page-signup {
         line-height: 24px;
       }
     }
-  }
+  } */
 
   #login-content {
     /* Wrapper for all login content */
