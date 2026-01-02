@@ -1,6 +1,12 @@
 /* Styles for the lesson pages */
 
 body.sj-page-lesson {
+  /* Hide elements that we don't want shown */
+  #lp-footer {
+    /* Lesson footer */
+    display: none !important;
+  }
+
   /* Handle open/close menu buttons */
   &.cbp-spmenu-open {
     .fa-bars {
@@ -474,27 +480,6 @@ body.sj-page-lesson {
               }
             }
           }
-        }
-      }
-    }
-
-    #lp-footer {
-      /* Lesson footer */
-      position: relative;
-      border: 0px;
-      background-color: transparent;
-      display: none !important;
-
-      .toggle-fullscreen {
-        display: none !important;
-      }
-
-      .button-prev-title span {
-        /* Previous button title */
-        color: var(--blurple);
-
-        @media screen and (max-width: 991px) {
-          color: inherit;
         }
       }
     }
