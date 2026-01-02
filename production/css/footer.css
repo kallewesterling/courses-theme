@@ -24,6 +24,7 @@ footer {
 
       .tagline {
         p {
+          color: inherit !important;
           letter-spacing: -0.12rem;
           line-height: 44px !important;
           font-size: 3rem !important;
