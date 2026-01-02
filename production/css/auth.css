@@ -14,16 +14,6 @@ body.sj-page-signup {
     display: none !important;
   }
 
-  #google_login {
-    /* Google login button */
-    width: auto;
-    text-align: center;
-
-    @media only screen and (max-width: 991px) {
-      width: 100%;
-    }
-  }
-
   #access-message {
     /* Agree to our Terms & Privacy text */
     max-width: 368px;
@@ -151,6 +141,11 @@ body.sj-page-signup {
       transition: transform 0.05s ease, filter 0.15s ease, box-shadow 0.15s ease;
       font-family: Gellix;
       border: 1px solid #c6c6c6;
+      text-align: center;
+
+      @media only screen and (max-width: 991px) {
+        width: 100%;
+      }
 
       &::before {
         display: inline-block;
