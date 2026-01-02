@@ -704,7 +704,7 @@ body.sj-page-signup #signup_form {
   }
 
   label {
-    margin-bottom: 12px;
+    margin-bottom: 0px;
     font-weight: 500;
     font-size: 16px;
     font-family: Gellix;
@@ -1906,6 +1906,10 @@ body.sj-page-signup {
     color: #8c8aa4;
     text-decoration: none;
     font-weight: 800;
+  }
+
+  input[type="password"] {
+
   }
 }
 
