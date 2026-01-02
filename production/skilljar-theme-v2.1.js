@@ -2136,6 +2136,7 @@ function styleAuth() {
     el("div", { className: "auth-card" }, [
       CG.page.isLogin ? CG.dom.auth.loginForm : CG.dom.auth.signupForm,
       CG.dom.auth.method,
+      el("div", { className: "divider" }, [el("span", { textContent: "or" })]),
       CG.dom.auth.google,
       CG.dom.auth.TOS,
     ]),
