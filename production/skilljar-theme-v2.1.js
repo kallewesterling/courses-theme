@@ -1712,7 +1712,7 @@ function styleCatalog() {
  * This function applies styling to the 404 error page.
  */
 function style404() {
-  if (CG.page.isPartner404) {
+  if (CG.page.isPartner404 && !CG.env.hasUser) {
     document.querySelector(".message").append(
       ...[
         el("hr"),
@@ -2198,7 +2198,7 @@ function styleAuth() {
         setStyle(CG.dom.auth.rows.id_access_code, { opacity: "0.4" });
       }
     });
-    
+
     setStyle(CG.dom.auth.rows.id_access_code, { opacity: "0.4" });
   }
 
