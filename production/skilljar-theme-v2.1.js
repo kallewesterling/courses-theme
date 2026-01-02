@@ -2190,8 +2190,17 @@ function styleAuth() {
 
     // add focus listeners to fade in labels
     CG.dom.auth.inputs.accessCode.addEventListener("focus", () => {
+      logger.info("Focusing on Access Code input");
       setStyle(CG.dom.auth.rows.id_access_code, { opacity: "1" });
     });
+    
+    CG.dom.auth.inputs.accessCode.addEventListener("blur", () => {
+      logger.info("Blurring Access Code input");
+      if (CG.dom.auth.inputs.accessCode.value === "") {
+        setStyle(CG.dom.auth.rows.id_access_code, { opacity: "0.6" });
+      }
+    });
+
   }
 
   remove(CG.dom.auth.method);
