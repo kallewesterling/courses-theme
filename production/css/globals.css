@@ -1,0 +1,41 @@
+* {
+  font-family: Roobert, Lato;
+}
+
+body {
+  color: var(--ink);
+}
+
+span {
+  font-family: inherit;
+}
+
+h1,
+.h1-style,
+h2,
+.h2-style,
+h3,
+.h3-style,
+h4,
+.h4-style,
+h5,
+h6 {
+  font-family: Gellix;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+a {
+  color: var(--blurple) !important;
+}
+
+label {
+  color: var(--ink);
+}
