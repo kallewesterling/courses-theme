@@ -353,7 +353,7 @@ const CG = {
       inputs: {
         // login specific
         password: document.querySelector("#id_password"),
-        
+
         // signup specific
         password2: document.querySelector("#id_password2"),
         email: document.querySelector("#id_email"),
@@ -2144,7 +2144,10 @@ function styleAuth() {
   CG.dom.contentContainer.append(authContainer);
 
   // move "Forgot Password?" to after Password
-  CG.dom.auth.inputs.password.parentElement.append(CG.dom.auth.forgotPasswordLink);
+  if (CG.dom.auth.inputs.password)
+    CG.dom.auth.inputs.password.parentElement.append(
+      CG.dom.auth.forgotPasswordLink
+    );
 }
 
 /**
