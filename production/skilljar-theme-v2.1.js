@@ -2198,9 +2198,10 @@ function styleAuth() {
         setStyle(CG.dom.auth.rows.id_access_code, { opacity: "0.4" });
       }
     });
+    
+    setStyle(CG.dom.auth.rows.id_access_code, { opacity: "0.4" });
   }
 
-  setStyle(CG.dom.auth.rows.id_access_code, { opacity: "0.4" });
 
   remove(CG.dom.auth.method);
 }
