@@ -2077,7 +2077,8 @@ function styleLesson() {
     ].filter(Boolean)
   );
 
-  CG.dom.local.lesson.innerBody.append(el("hr"), setupLessonNav());
+  // CG.dom.local.lesson.innerBody.append(el("hr"));
+  CG.dom.local.nav.toggleWrapper.append(setupLessonNav());
 
   CG.dom.local.lesson.content.codeBlocks
     .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
