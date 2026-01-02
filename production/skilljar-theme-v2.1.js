@@ -2173,6 +2173,8 @@ function styleAuth() {
   if (CG.page.isSignup) {
     // add aria-labels to inputs' parent .row elements
     document.querySelectorAll("input").forEach((elem) => {
+      if (!elem.getAttribute("id")) return;
+
       CG.dom.auth.rows[elem.getAttribute("id")] = elem.closest(".row");
       CG.dom.auth.rows[elem.getAttribute("id")].setAttribute(
         "aria-label",
