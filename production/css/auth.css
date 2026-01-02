@@ -327,7 +327,7 @@ body.sj-page-login {
       height: 44px;
       padding: 0 18px;
       border-radius: 999px;
-      color: #8c8aa4;
+      color: rgba(52, 67, 244, 0.4) !important;
       text-decoration: none;
       font-weight: 800;
     }
@@ -372,8 +372,9 @@ body.sj-page-signup {
   }
 
   .auth-card {
-    .divider, #google_login {
-        padding: 0 0.9375em;
+    .divider,
+    #google_login {
+      padding: 0 0.9375em;
     }
   }
 
