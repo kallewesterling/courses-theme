@@ -198,8 +198,10 @@ footer {
   }
 }
 
-@media screen and (max-width: 991px) {
-  body.sj-page-lesson footer {
+body.sj-page-lesson footer {
+  margin: 0;
+  
+  @media screen and (max-width: 991px) {
     /* Hide footer on lesson pages when on smaller devices */
     display: none !important;
   }
