@@ -182,6 +182,8 @@ body.sj-page-lesson {
           backdrop-filter: blur(1.5px);
           width: 100%;
           overflow-x: hidden;
+          border-bottom: 1px solid #d5d4d4;
+          min-height: 55px;
 
           .fa-bars,
           .fa-times {
