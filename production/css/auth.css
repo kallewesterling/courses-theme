@@ -65,150 +65,111 @@ body.sj-page-signup {
         border: 1px solid transparent;
       }
     }
-  }
 
-  #access-message {
-    /* Agree to our Terms & Privacy text */
-    max-width: 100%;
-    font-size: 14px;
-    margin: 62px 0 0;
-    opacity: 0.5;
+    .auth-card {
+      flex-direction: column;
+      align-items: center;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 28px 26px 22px;
 
-    @media screen and (max-width: 767px) {
-      margin: 32px 0 0;
-      font-size: 12px;
-    }
-
-    p {
-      color: var(--ink-dim);
-      margin: 0px;
-
-      a {
-        color: var(--brand-ink);
-        text-underline-offset: 3px;
-      }
-    }
-  }
-
-  #login-content {
-    /* Wrapper for all login content */
-    border: 0px;
-    flex-grow: 1;
-
-    .large-6.columns {
-      width: 50%;
-
-      @media screen and (max-width: 991px) {
+      .divider {
+        /* "or" divider before "login with google" button */
+        position: relative;
+        text-align: center;
+        margin: 24px 0;
         width: 100%;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background-color: #ccc;
+          z-index: 20;
+        }
+
+        span {
+          position: relative;
+          padding: 0 12px;
+          background: #ffffff;
+          color: #666;
+          font-size: 14px;
+          z-index: 20;
+        }
       }
-    }
 
-    .large-6.columns:has(div.socialaccount_providers) {
-      /* The social login providers (we only use Google) */
+      /* Google button */
+      #google_login {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        width: 100%;
+        height: 52px;
+        color: var(--ink);
+        background: var(--primary-white-hex);
+        transition: transform 0.05s ease, filter 0.15s ease,
+          box-shadow 0.15s ease;
+        font-family: Gellix;
+        border: 1px solid #c6c6c6;
+        text-align: center;
 
-      div.socialaccount_providers {
-        ul {
-          padding: 0 0 0 125px;
+        @media only screen and (max-width: 991px) {
+          width: 100%;
+        }
 
-          @media screen and (max-width: 991px) {
-            padding: 0;
-          }
+        &::before {
+          display: inline-block;
+          font-family: FontAwesome;
+          font-size: 1.25rem;
+          text-align: left;
+          width: 27px;
+        }
 
-          li {
-            padding-bottom: 0;
+        &:hover {
+          filter: brightness(0.98);
+        }
+        &:active {
+          transform: translateY(1px);
+        }
+        &:focus-visible {
+          outline: none;
+          box-shadow: 0 0 0 4px var(--ring);
+        }
+      }
 
-            h4 {
-              margin-bottom: 12px;
-              font-weight: 500;
-              font-size: 16px;
-              line-height: 20px;
-            }
+      #access-message {
+        /* Agree to our Terms & Privacy text */
+        max-width: 100%;
+        font-size: 14px;
+        margin: 62px 0 0;
+        opacity: 0.5;
+
+        @media screen and (max-width: 767px) {
+          margin: 32px 0 0;
+          font-size: 12px;
+        }
+
+        p {
+          color: var(--ink-dim);
+          margin: 0px;
+
+          a {
+            color: var(--brand-ink);
+            text-underline-offset: 3px;
           }
         }
       }
     }
   }
-}
 
-body.sj-page-login,
-body.sj-page-signup {
-  /* Center the stack */
-
-  .auth-card {
-    flex-direction: column;
-    align-items: center;
-    background: var(--paper);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow);
-    padding: 28px 26px 22px;
-
-    .divider {
-      /* "or" divider before "login with google" button */
-      position: relative;
-      text-align: center;
-      margin: 24px 0;
-      width: 100%;
-
-      &::before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background-color: #ccc;
-        z-index: 20;
-      }
-
-      span {
-        position: relative;
-        padding: 0 12px;
-        background: #ffffff;
-        color: #666;
-        font-size: 14px;
-        z-index: 20;
-      }
-    }
-
-    /* Google button */
-    #google_login {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      width: 100%;
-      height: 52px;
-      color: var(--ink);
-      background: var(--primary-white-hex);
-      transition: transform 0.05s ease, filter 0.15s ease, box-shadow 0.15s ease;
-      font-family: Gellix;
-      border: 1px solid #c6c6c6;
-      text-align: center;
-
-      @media only screen and (max-width: 991px) {
-        width: 100%;
-      }
-
-      &::before {
-        display: inline-block;
-        font-family: FontAwesome;
-        font-size: 1.25rem;
-        text-align: left;
-        width: 27px;
-      }
-
-      &:hover {
-        filter: brightness(0.98);
-      }
-      &:active {
-        transform: translateY(1px);
-      }
-      &:focus-visible {
-        outline: none;
-        box-shadow: 0 0 0 4px var(--ring);
-      }
-    }
+  #login-content {
+    display: none !important;
   }
 
   /* Inputs */
