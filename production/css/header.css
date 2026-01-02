@@ -172,6 +172,10 @@
       }
     }
   }
+
+  .header-dropdown-button-v2 {
+    margin-right: 10px;
+  }
 }
 
 @media screen and (max-width: 808px) {
