@@ -16,6 +16,11 @@ body.sj-page-lesson {
     .fa-times {
       display: inline-block !important;
     }
+
+    #lpLeftNavBackground {
+      background: white;
+      opacity: 0.8;
+    }
   }
 
   &:not(.cbp-spmenu-open) {
