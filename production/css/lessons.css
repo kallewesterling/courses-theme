@@ -21,6 +21,14 @@ body.sj-page-lesson {
       background: white;
       opacity: 0.8;
     }
+
+    #lp-wrapper {
+      margin-left: 292px;
+
+      #lesson-main-inner {
+        width: 100% !important;
+      }
+    }
   }
 
   &:not(.cbp-spmenu-open) {
