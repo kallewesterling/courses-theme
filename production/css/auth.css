@@ -295,7 +295,7 @@ body.sj-page-signup #tabs #login-tab-right {
 
   a,
   span {
-    color: rgba(52, 67, 244, 1);
+    color: var(--ink-dim);
   }
 }
 
