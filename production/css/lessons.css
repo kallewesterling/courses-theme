@@ -49,18 +49,24 @@ body.sj-page-lesson {
       }
     }
 
+    h1.course-title {
+      color: var(--ink) !important;
+      font-family: Gellix;
+    }
+
     .lessons-wrapper {
       /* Menu content: lessons */
       padding-bottom: 32px;
 
-      /* a is actually parent element, .lesson-row inside */
       a.lesson {
         /* Lesson link */
-        color: var(--blurple);
-        cursor: pointer;
 
         @media screen and (max-width: 991px) {
           color: var(--answer-option);
+        }
+
+        &:hover {
+          background-color: transparent;
         }
 
         .lesson-row {
@@ -74,6 +80,17 @@ body.sj-page-lesson {
           font-size: 14px;
           line-height: 20px;
 
+          &.lesson-active {
+            background-color: #eaeaea;
+            color: var(--ink) !important;
+            margin: 0 12px;
+            border-radius: 4px;
+          }
+
+          &:hover {
+            background-color: var(--white);
+          }
+
           .type-icon {
             /* Lesson icons */
             display: none !important;
@@ -83,6 +100,7 @@ body.sj-page-lesson {
 
       h3.section-title {
         /* Section title */
+        color: var(--ink) !important;
         background-color: transparent;
         padding: 12px;
         padding-left: 24px;
@@ -90,14 +108,13 @@ body.sj-page-lesson {
         margin-top: 12px;
         margin-bottom: 12px;
         border: 0;
-        font-family: Gellix;
+        font-family: Roobert;
         font-size: 16px;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.05em;
 
         @media screen and (max-width: 991px) {
-          font-family: Roobert;
           font-size: 12px;
         }
       }
@@ -215,6 +232,7 @@ body.sj-page-lesson {
 
             sjwc-lesson-content-item {
               /* Lesson content item */
+              color: var(--ink) !important;
 
               h3 {
                 font-weight: 600;
@@ -661,5 +679,106 @@ sjwc-lesson-content-item {
     border: 1px solid #dcdcdc !important;
     border-radius: 8px !important;
     margin: 1em 0 !important;
+  }
+}
+
+sjwc-lesson-content-item {
+  .quiz {
+    .start-quiz {
+      border: 1px solid #dcdcdc;
+      border-radius: 8px;
+      padding: 48px;
+
+      .row {
+        display: none;
+      }
+
+      .text-center {
+        text-align: left !important;
+        margin: 0;
+
+        h1 {
+          margin: 0 0 12px 0;
+          font-weight: 600;
+          font-size: 24px;
+          line-height: 31.2px;
+          letter-spacing: -0.02em;
+        }
+
+        .fa.fa-check-square-o.quiz-icon {
+          display: none;
+        }
+
+        .length {
+          margin: 0 0 48px 0;
+        }
+      }
+
+      .create_quiz.text-center {
+        margin: 0;
+        text-align: right !important;
+
+        .button.sj-text-quiz-start {
+          margin: 0;
+        }
+      }
+
+      .question {
+        border: 1px solid #dcdcdc;
+        border-radius: 8px;
+        padding: 48px;
+
+        .row .large-8.large-centered.columns.question-text {
+          text-align: left !important;
+          width: 100%;
+
+          p {
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 31.2px;
+            letter-spacing: -0.02em;
+          }
+        }
+
+        .row .form-answers.large-8.large-centered.columns {
+          text-align: left !important;
+          margin: 0;
+          width: 100%;
+
+          #id_chosen_answers div label,
+          #id_answer div label {
+            line-height: 24px;
+            font-weight: 400;
+            font-size: 16px;
+            color: var(--answer-option);
+
+            input {
+              top: 3px;
+            }
+          }
+        }
+
+        .text-center.next-prev {
+          margin: 32px 0 0 0;
+          text-align: right !important;
+
+          #answer_question {
+            margin: 0;
+            font-size: 14px;
+
+            .button.small.sj-text-quiz-next,
+            .button.small.sj-text-quiz-submit {
+              margin: 0;
+              font-size: 14px;
+            }
+          }
+
+          #prev_question .button.small.secondary.sj-text-quiz-previous {
+            margin: 0;
+            font-size: 14px;
+          }
+        }
+      }
+    }
   }
 }

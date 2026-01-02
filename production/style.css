@@ -44,14 +44,6 @@
   pointer-events: none;
 }
 
-.lesson-row {
-  cursor: pointer;
-
-  &:hover {
-    background-color: var(--white);
-  }
-}
-
 .course-details-card {
   font-family: inherit !important;
   max-width: 368px !important;
@@ -172,140 +164,8 @@
   border-radius: 8px;
 }
 
-#lp-left-nav {
-  .lesson-active {
-    background-color: #eaeaea;
-    color: var(--ink) !important;
-    margin: 0 12px;
-    border-radius: 4px;
-  }
-
-  .lesson:hover {
-    background-color: transparent;
-  }
-}
-
-pre[class*="language-"] {
-  background: none;
-}
-
-.course-text-content {
-  color: var(--ink) !important;
-}
-
-.lp-left-nav {
-  .course-title,
-  .section-title {
-    color: var(--ink) !important;
-    font-family: Gellix;
-  }
-}
-
 .bullet .fa.fa-check-circle {
   color: var(--blurple);
-}
-
-#lp-footer .left .prev-lesson-button .button-content .fa.fa-angle-left {
-  display: none;
-}
-
-.course-scrollable-content.course-text-content.quiz {
-  .start-quiz {
-    border: 1px solid #dcdcdc;
-    border-radius: 8px;
-    padding: 48px;
-
-    .row {
-      display: none;
-    }
-
-    .text-center {
-      text-align: left !important;
-      margin: 0;
-
-      h1 {
-        margin: 0 0 12px 0;
-        font-weight: 600;
-        font-size: 24px;
-        line-height: 31.2px;
-        letter-spacing: -0.02em;
-      }
-
-      .fa.fa-check-square-o.quiz-icon {
-        display: none;
-      }
-
-      .length {
-        margin: 0 0 48px 0;
-      }
-    }
-
-    .create_quiz.text-center {
-      margin: 0;
-      text-align: right !important;
-
-      .button.sj-text-quiz-start {
-        margin: 0;
-      }
-    }
-
-    .question {
-      border: 1px solid #dcdcdc;
-      border-radius: 8px;
-      padding: 48px;
-
-      .row .large-8.large-centered.columns.question-text {
-        text-align: left !important;
-        width: 100%;
-
-        p {
-          font-weight: 600;
-          font-size: 24px;
-          line-height: 31.2px;
-          letter-spacing: -0.02em;
-        }
-      }
-
-      .row .form-answers.large-8.large-centered.columns {
-        text-align: left !important;
-        margin: 0;
-        width: 100%;
-
-        #id_chosen_answers div label,
-        #id_answer div label {
-          line-height: 24px;
-          font-weight: 400;
-          font-size: 16px;
-          color: var(--answer-option);
-
-          input {
-            top: 3px;
-          }
-        }
-      }
-
-      .text-center.next-prev {
-        margin: 32px 0 0 0;
-        text-align: right !important;
-
-        #answer_question {
-          margin: 0;
-          font-size: 14px;
-
-          .button.small.sj-text-quiz-next,
-          .button.small.sj-text-quiz-submit {
-            margin: 0;
-            font-size: 14px;
-          }
-        }
-
-        #prev_question .button.small.secondary.sj-text-quiz-previous {
-          margin: 0;
-          font-size: 14px;
-        }
-      }
-    }
-  }
 }
 
 .button.tiny[title="Download certificate PDF"] {
