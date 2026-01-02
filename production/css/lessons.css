@@ -50,7 +50,10 @@ body.sj-page-lesson {
     /* Left hand nav menu */
     background-color: #f9f9f9;
     width: 292px; /* formerly 320px; */
+    height: 100vh;
+    overflow-y: scroll;
     position: absolute;
+    top: 0;
     /* To counteract padding in footer, add margin-bottom: -63px; here if we add footer back! */
 
     @media screen and (max-width: 767px) {
