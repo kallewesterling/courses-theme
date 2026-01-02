@@ -2363,10 +2363,6 @@ function handlePageStyling() {
  * It creates a mobile header and adds the link to both mobile and desktop headers.
  */
 function fixHeader() {
-  if (CG.page.isLesson)
-    // if a lesson page, we need to clone the nav button before we modify the header
-    CG.dom._cloned.nav = document.querySelector("#left-nav-button").cloneNode(true);
-
   const toChainguard = el("div", { id: "to-chainguard" }, [
     el("a", {
       href: getCorrectURL("https://www.chainguard.dev"),
@@ -2404,6 +2400,12 @@ function fixHeader() {
   It is a good place to run scripts that need to manipulate the DOM or set up event listeners.
 */
 document.addEventListener("DOMContentLoaded", () => {
+  if (CG.page.isLesson)
+    // if a lesson page, we need to clone the nav button before we modify the header
+    CG.dom._cloned.nav = document
+      .querySelector("#left-nav-button")
+      .cloneNode(true);
+
   // replace logo
   CG.dom.headerLeft.replaceChildren(
     el("div", { id: "logo-wrapper" }, [
