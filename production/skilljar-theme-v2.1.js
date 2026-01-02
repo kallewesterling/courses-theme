@@ -381,7 +381,7 @@ const CG = {
 
     auth: {
       rows: [],
-      
+
       inputs: {
         email:
           document.querySelector("#id_email") ||
@@ -2172,8 +2172,11 @@ function styleAuth() {
   if (CG.page.isSignup) {
     // add aria-labels to inputs' parent .row elements
     document.querySelectorAll("input").forEach((elem) => {
-      elem.closest(".row").setAttribute("aria-label", elem.getAttribute("id"));
-      CG.dom.auth.rows[elem.getAttribute("id")] = elem;
+      CG.dom.auth.rows[elem.getAttribute("id")] = elem.closest(".row");
+      CG.dom.auth.rows[elem.getAttribute("id")].setAttribute(
+        "aria-label",
+        elem.getAttribute("id")
+      );
     });
 
     // move Access Code field to after Password Confirm
