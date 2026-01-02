@@ -19,6 +19,31 @@
 document.querySelector("body").style.setProperty("display", "none");
 
 /**
+ * Simple logger utility for console messages with styling.
+ * Logs messages only if in staging or admin environment.
+ */
+const logger = {
+  enabled() {
+    return CG.env.isStaging || CG.env.isAdmin;
+  },
+  info(message, ...args) {
+    if (!this.enabled()) return;
+    const style = "color: var(--primary-blue-hex); font-weight: 600;";
+    console.info(`%c[CG] ${message}`, style, ...args);
+  },
+  warn(message, ...args) {
+    if (!this.enabled()) return;
+    const style = "color: darkorange; font-weight: 600;";
+    console.warn(`%c[CG] ${message}`, style, ...args);
+  },
+  error(message, ...args) {
+    if (!this.enabled()) return;
+    const style = "color: darkred; font-weight: 600;";
+    console.error(`%c[CG] ${message}`, style, ...args);
+  },
+};
+
+/**
  * This function hides the given element by setting its display style to "none".
  * @param {HTMLElement} element - The element to hide.
  */
@@ -31,12 +56,17 @@ const text = (element, value, auto = "") => {
     element.textContent = value;
   } else if (element) {
     element.textContent = auto;
+  } else {
+    logger.warn("text(): Element is null or undefined.");
   }
 };
 
 const placeholder = (element, value) => {
-  if (element && value !== undefined && value !== null)
+  if (element && value !== undefined && value !== null) {
     element.setAttribute("placeholder", value);
+  } else {
+    logger.warn("placeholder(): Element is null or undefined.");
+  }
 };
 
 const c = (selector) => (document.querySelector(selector) ? true : false);
@@ -1196,31 +1226,6 @@ function renderBreadcrumbs(targetElement) {
 }
 
 /**
- * Simple logger utility for console messages with styling.
- * Logs messages only if in staging or admin environment.
- */
-const logger = {
-  enabled() {
-    return CG.env.isStaging || CG.env.isAdmin;
-  },
-  info(message, ...args) {
-    if (!this.enabled()) return;
-    const style = "color: var(--primary-blue-hex); font-weight: 600;";
-    console.info(`%c[CG] ${message}`, style, ...args);
-  },
-  warn(message, ...args) {
-    if (!this.enabled()) return;
-    const style = "color: darkorange; font-weight: 600;";
-    console.warn(`%c[CG] ${message}`, style, ...args);
-  },
-  error(message, ...args) {
-    if (!this.enabled()) return;
-    const style = "color: darkred; font-weight: 600;";
-    console.error(`%c[CG] ${message}`, style, ...args);
-  },
-};
-
-/**
  * Generates and appends course sections to a specified parent element.
  * @param {Array} sections - An array of section objects containing details for each section.
  * @param {string} parentSelector - The CSS selector of the parent element to which sections will be appended.
@@ -2146,9 +2151,7 @@ function styleAuth() {
   CG.dom.auth.form.append(CG.dom.auth.TOS);
 
   // hide existing login content
-  hide([
-    document.querySelector(".white-bg"),
-  ]);
+  hide([document.querySelector(".white-bg")]);
 
   const authContainer = el("div", { id: "auth-container" }, [
     document.querySelector("#tabs"),
