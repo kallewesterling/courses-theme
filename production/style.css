@@ -331,16 +331,6 @@ label {
   pointer-events: none;
 }
 
-.sj-text-email,
-.sj-text-password,
-.sj-text-sign-in-with {
-  margin-bottom: 12px;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-  font-family: Gellix;
-}
-
 .lesson-row {
   cursor: pointer;
 
