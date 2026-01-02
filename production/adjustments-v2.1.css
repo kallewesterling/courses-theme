@@ -2018,11 +2018,15 @@ body.sj-page-signup {
   }
 
   /* Labels */
-  .auth-card label span {
-    display: block;
-    margin-bottom: 8px;
-    color: var(--brand-ink);
+  .auth-card label {
     font-weight: 700;
+    margin-bottom: 8px;
+
+    span {
+      display: block;
+      color: var(--brand-ink);
+      font-weight: inherit;
+    }
   }
 
   /* Inputs */
