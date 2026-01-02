@@ -1,31 +1,23 @@
-/* Handle open/close menu buttons */
-body.sj-page-lesson.cbp-spmenu-open {
-  .fa-bars {
-    display: none !important;
-  }
-
-  .fa-times {
-    display: inline-block !important;
-  }
-}
-
-body.sj-page-lesson:not(.cbp-spmenu-open) {
-  .fa-bars {
-    display: inline-block !important;
-  }
-
-  .fa-times {
-    display: none !important;
-  }
-}
+/* Styles for the lesson pages */
 
 body.sj-page-lesson {
-  /* body.sj-page-lesson = lesson page (logged in) */
+  /* Handle open/close menu buttons */
+  &.cbp-spmenu-open {
+    .fa-bars {
+      display: none !important;
+    }
 
-  @media screen and (max-width: 991px) {
-    /* Responsive styles for lesson page */
-    #footer-container {
-      /* hide footer on mobile devices and lesson pages */
+    .fa-times {
+      display: inline-block !important;
+    }
+  }
+
+  &:not(.cbp-spmenu-open) {
+    .fa-bars {
+      display: inline-block !important;
+    }
+
+    .fa-times {
       display: none !important;
     }
   }
@@ -129,8 +121,21 @@ body.sj-page-lesson {
 
       #lesson-body {
         /* Lesson body */
+        color: var(--ink) !important;
         margin: 0;
         max-width: none;
+
+        .lesson-top {
+          border: 0;
+          display: block !important;
+
+          h2 {
+            font-weight: 600;
+            font-size: 36px;
+            line-height: 43.2px;
+            color: var(--ink);
+          }
+        }
 
         a#left-nav-button {
           /* Left nav button (open/close menu) */
@@ -169,6 +174,15 @@ body.sj-page-lesson {
           }
         }
 
+        #internal-course-warning {
+          padding: 18px;
+          background-image: linear-gradient(315deg, #fde1fe, #f5f6fe 72%);
+          box-shadow: 0 0 6px 6px #0000001a !important;
+          margin-bottom: 50px;
+          line-height: 1.5em;
+          font-size: 0.9em;
+        }
+        
         #lesson-main {
           /* Lesson main content */
           position: relative;
@@ -190,8 +204,10 @@ body.sj-page-lesson {
               }
 
               h4 {
-                font-weight: 400;
+                font-weight: 600;
                 font-size: 24px;
+                line-height: 32.1px;
+                letter-spacing: -0.02em;
               }
 
               .one-col-table {
@@ -481,38 +497,6 @@ body.sj-page-lesson {
         }
       }
     }
-  }
-}
-
-.lesson-page #lp-wrapper #lesson-body {
-  color: var(--ink) !important;
-
-  .lesson-top {
-    border: 0;
-    display: block !important;
-
-    h2 {
-      font-weight: 600;
-      font-size: 36px;
-      line-height: 43.2px;
-      color: var(--ink);
-    }
-  }
-
-  h4 {
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 32.1px;
-    letter-spacing: -0.02em;
-  }
-
-  #internal-course-warning {
-    padding: 18px;
-    background-image: linear-gradient(315deg, #fde1fe, #f5f6fe 72%);
-    box-shadow: 0 0 6px 6px #0000001a !important;
-    margin-bottom: 50px;
-    line-height: 1.5em;
-    font-size: 0.9em;
   }
 }
 

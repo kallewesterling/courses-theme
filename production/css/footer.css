@@ -197,3 +197,10 @@ footer {
     }
   }
 }
+
+@media screen and (max-width: 991px) {
+  body.sj-page-lesson footer {
+    /* Hide footer on lesson pages when on smaller devices */
+    display: none !important;
+  }
+}
