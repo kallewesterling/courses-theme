@@ -1,5 +1,5 @@
-@import url("colors.css");
-@import url("animations.css");
+@import url("css/_colors.css");
+@import url("css/_animations.css");
 @import url("css/globals.css");
 
 .button,
