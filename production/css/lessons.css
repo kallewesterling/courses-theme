@@ -173,11 +173,6 @@ body.sj-page-lesson {
             /* Search icon */
             display: none !important;
           }
-
-          .burger-text {
-            /* Burger menu text */
-            display: none !important;
-          }
         }
 
         #internal-course-warning {
