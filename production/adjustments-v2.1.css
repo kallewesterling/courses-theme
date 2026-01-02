@@ -269,13 +269,15 @@ body.sj-page-detail-course {
 }
 
 body.sj-page-catalog-root,
+body.sj-page-catalog,
 body.sj-page-curriculum,
 body.sj-page-detail-bundle.sj-page-detail-path,
 body.sj-page-catalog.sj-page-series,
 body.sj-page-detail-course {
   /*
   Landing page styles:
-  - body.sj-page-catalog-root = main catalog page
+  - body.sj-page-catalog-root = main landing page
+  - body.sj-page-catalog = course catalog page
   - body.sj-page-curriculum = course description page (logged in)
   - body.sj-page-detail-bundle.sj-page-detail-path = learning path detail page (not logged in)
   - body.sj-page-catalog.sj-page-series = learning path detail page (logged in)
@@ -1156,7 +1158,6 @@ body.sj-page-curriculum:not(:has(.cp-certificate)) {
   --shadow: 0 12px 30px rgba(20, 0, 61, 0.08);
   --grad: linear-gradient(90deg, #57c6ff 0%, #5b6bff 50%, #813df3 100%);
 }
-
 
 #completion-popup {
   position: fixed; /* covers viewport */
