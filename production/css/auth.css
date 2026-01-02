@@ -384,6 +384,10 @@ body.sj-page-signup {
     .text-center {
       text-align: left !important;
     }
+
+    .row .row {
+        padding: 0 .9375em;
+    }
   }
 
   #tabs {
