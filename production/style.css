@@ -1,6 +1,7 @@
 @import url("css/_colors.css");
 @import url("css/_animations.css");
 @import url("css/globals.css");
+@import url("css/auth.css");
 
 .button,
 .button-prev-title,
