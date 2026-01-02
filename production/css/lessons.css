@@ -80,6 +80,10 @@ body.sj-page-lesson {
       &:hover {
         text-decoration: none !important;
       }
+
+      > span.left-nav-return-text {
+        text-decoration: none !important;
+      }
     }
 
     h1.course-title {
