@@ -406,17 +406,17 @@ const CG = {
       signupTabText:
         document.querySelector("#login-tab-right a") ||
         document.querySelector("#login-tab-right span"),
-      passwordConfirm: document.querySelector(
-        "label[for=id_password2] .input-label-text span"
-      ),
-      fNameLabel: document.querySelector(
-        'label[for="id_first_name"] span span'
-      ),
-      lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
-      emailLabel:
-        document.querySelector('label[for="id_email"]') ||
-        document.querySelector('label[for="id_login"]'),
-      signupBtnText: document.querySelector("#button-sign-up span"),
+
+      labels: {
+        passwordConfirm: document.querySelector(
+          "label[for=id_password2] .input-label-text span"
+        ),
+        fName: document.querySelector("label[for=id_first_name] span span"),
+        lName: document.querySelector("label[for=id_last_name] span span"),
+        email:
+          document.querySelector("label[for=id_email]") ||
+          document.querySelector("label[for=id_login]"),
+      },
 
       google: document.querySelector("#google_login"),
       TOS: document.querySelector("#access-message"),
@@ -2132,21 +2132,17 @@ function styleAuth() {
   text(CG.dom.auth.signup, "Sign Up");
   text(CG.dom.auth.google, "Continue with Google");
   text(CG.dom.auth.button, CG.page.isLogin ? "Log In" : "Sign Up");
-  text(CG.dom.auth.emailLabel, "Work Email");
-  text(
-    CG.dom.auth.altMethod,
-    CG.page.isLogin ? "Or Log In With" : "Or Sign Up With"
-  );
+  text(CG.dom.auth.labels.email, "Work Email");
 
   placeholder(CG.dom.auth.inputs.email, "Work Email");
 
   if (CG.page.isSignup) {
-    text(CG.dom.auth.fNameLabel, "First Name");
-    text(CG.dom.auth.lNameLabel, "Last Name");
+    text(CG.dom.auth.labels.fName, "First Name");
+    text(CG.dom.auth.labels.lName, "Last Name");
     placeholder(CG.dom.auth.inputs.fName, "First Name");
     placeholder(CG.dom.auth.inputs.lName, "Last Name");
     placeholder(CG.dom.auth.inputs.password2, "Password Confirm");
-    text(CG.dom.auth.passwordConfirm, "Password Confirm");
+    text(CG.dom.auth.labels.passwordConfirm, "Password Confirm");
   }
 
   const authContainer = el("div", { id: "auth-container" }, [
@@ -2167,13 +2163,22 @@ function styleAuth() {
       CG.dom.auth.forgotPasswordLink
     );
 
-  if (CG.page.isSignup)
+  if (CG.page.isSignup) {
     // add aria-labels to inputs' parent .row elements
     document
       .querySelectorAll("input")
       .forEach((elem) =>
         elem.closest(".row").setAttribute("aria-label", elem.getAttribute("id"))
       );
+
+    // move Access Code field to after Password Confirm
+    document
+      .querySelector(".row[aria-label=id_password2]")
+      .insertAdjacentElement(
+        "afterend",
+        document.querySelector(".row[aria-label=id_access_code]")
+      );
+  }
 
   remove(CG.dom.auth.method);
 }
