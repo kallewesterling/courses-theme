@@ -2195,12 +2195,12 @@ function styleAuth() {
 
     CG.dom.auth.inputs.accessCode.addEventListener("blur", () => {
       if (CG.dom.auth.inputs.accessCode.value === "") {
-        setStyle(CG.dom.auth.rows.id_access_code, { opacity: "0.6" });
+        setStyle(CG.dom.auth.rows.id_access_code, { opacity: "0.4" });
       }
     });
   }
-  
-  setStyle(CG.dom.auth.rows.id_access_code, { opacity: "0.6" });
+
+  setStyle(CG.dom.auth.rows.id_access_code, { opacity: "0.4" });
 
   remove(CG.dom.auth.method);
 }
