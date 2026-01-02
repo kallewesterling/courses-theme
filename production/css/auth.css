@@ -129,6 +129,10 @@ body.sj-page-signup {
           width: 100%;
         }
 
+        @media (prefers-reduced-motion: reduce) {
+          transition: none;
+        }
+
         &::before {
           display: inline-block;
           font-family: FontAwesome;
@@ -254,6 +258,10 @@ body.sj-page-signup {
         outline: none;
         box-shadow: 0 0 0 4px var(--ring);
       }
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
     }
   }
 
@@ -277,19 +285,11 @@ body.sj-page-signup {
       border-bottom-color: var(--brand-ink);
     }
   }
-
-  /* Reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    #button-sign-in,
-    #google_login {
-      transition: none;
-    }
-  }
 }
 
 /* Handle signup/login buttons */
-body.sj-page-login #login-tab-left,
-body.sj-page-signup #login-tab-right {
+body.sj-page-login #tabs #login-tab-left,
+body.sj-page-signup #tabs #login-tab-right {
   /* Active tab ("Login" on login page, "Sign up" on signup page) */
   background-color: rgba(52, 67, 244, 0.09);
 
@@ -299,40 +299,39 @@ body.sj-page-signup #login-tab-right {
   }
 }
 
-body.sj-page-login #login-tab-right,
-body.sj-page-signup #login-tab-left {
+body.sj-page-login #tabs #login-tab-right,
+body.sj-page-signup #tabs #login-tab-left {
   /* Inactive tab ("Sign up" on login page, "Login" on signup page) */
   background-color: rgba(52, 67, 244, 0.09);
 
   a,
   span {
-    color: rgba(52, 67, 244, 0.4);
+    color: rgba(52, 67, 244, 0.4) !important;
   }
+
+  a.sj-text-sign-in,
+  a.sj-text-sign-up {
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+    color: rgba(52, 67, 244, 0.4) !important;
+    text-decoration: none;
+    font-weight: 800;
+  }
+}
+
+body.sj-page-login #tabs #login-tab-left,
+body.sj-page-signup #tabs #login-tab-right {
+  background: rgba(60, 68, 247, 0.12);
+  color: var(--brand-ink);
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(201, 209, 255, 0.65) inset;
 }
 
 body.sj-page-login {
   /* Login page specific styles */
-
-  #tabs {
-    #login-tab-left {
-      background: rgba(60, 68, 247, 0.12);
-      color: var(--brand-ink);
-      border-color: var(--brand);
-      box-shadow: 0 0 0 3px rgba(201, 209, 255, 0.65) inset;
-    }
-
-    #login-tab-right a.sj-text-sign-up {
-      display: inline-flex;
-      align-items: center;
-      height: 44px;
-      padding: 0 18px;
-      border-radius: 999px;
-      color: rgba(52, 67, 244, 0.4) !important;
-      text-decoration: none;
-      font-weight: 800;
-    }
-  }
-
   #login_form {
     /* Login form elements */
 
@@ -368,33 +367,6 @@ body.sj-page-signup {
 
     .text-center {
       text-align: left !important;
-    }
-  }
-
-  .auth-card {
-    .divider,
-    #google_login {
-      padding: 0 0.9375em;
-    }
-  }
-
-  #tabs {
-    #login-tab-right {
-      background: rgba(60, 68, 247, 0.12);
-      color: var(--brand-ink);
-      border-color: var(--brand);
-      box-shadow: 0 0 0 3px rgba(201, 209, 255, 0.65) inset;
-    }
-
-    #login-tab-left a.sj-text-sign-in {
-      display: inline-flex;
-      align-items: center;
-      height: 44px;
-      padding: 0 18px;
-      border-radius: 999px;
-      color: #8c8aa4;
-      text-decoration: none;
-      font-weight: 800;
     }
   }
 }
