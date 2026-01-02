@@ -20,7 +20,6 @@ function getCorrectURL(link) {
 
 const el = (tag, props = {}, children = []) => {
   if (!tag) return null;
-
   const svgTags =
     tag === "svg" ||
     tag === "path" ||
@@ -28,35 +27,30 @@ const el = (tag, props = {}, children = []) => {
     tag === "defs" ||
     tag === "clipPath";
 
-  const n = svgTags
-    ? document.createElementNS("http://www.w3.org/2000/svg", tag)
-    : document.createElement(tag);
-
+  let n;
+  if (svgTags) {
+    n = document.createElementNS("http://www.w3.org/2000/svg", tag);
+  } else {
+    n = document.createElement(tag);
+  }
   for (const [k, v] of Object.entries(props)) {
-    if (v == null || v === false) continue; // allow 0/"" but skip null/false
+    if (!v) continue;
 
-    // 1) Event handlers: onclick / oninput / onkeydown, etc.
     if (/^on[A-Za-z]+$/.test(k) && typeof v === "function") {
       const eventName = k.slice(2).toLowerCase(); // "onclick" -> "click"
       n.addEventListener(eventName, v);
       continue;
     }
 
-    // 2) Special props
     if (k === "className" && !svgTags) n.className = v;
     else if (k === "className" && svgTags) n.className.baseVal = v;
     else if (k === "textContent" || k === "text") n.textContent = v;
     else if (k === "innerHTML") n.innerHTML = v;
-    // 3) Set properties when they exist (href, value, checked, tabIndex, etc.)
-    else if (k in n) n[k] = v;
-    // 4) Fallback to attribute
-    else n.setAttribute(k, String(v));
+    else n.setAttribute(k, v);
   }
-
   (Array.isArray(children) ? children : [children])
     .filter(Boolean)
     .forEach((child) => n.appendChild(child));
-
   return n;
 };
 
