@@ -1119,6 +1119,15 @@ function debugHeading() {
 function remove(selector) {
   if (!selector) return;
 
+  if (selector instanceof HTMLElement) {
+    try {
+      selector.remove();
+    } catch (e) {
+      console.warn("Could not remove element:", selector, e);
+    }
+    return;
+  }
+
   if (Array.isArray(selector)) {
     selector.forEach((sel) => remove(sel));
     return;
@@ -2131,11 +2140,12 @@ function styleAuth() {
     document.querySelector("#login-content"),
   ]);
 
+  remove(CG.dom.auth.method);
+
   const authContainer = el("div", { id: "auth-container" }, [
     document.querySelector("#tabs"),
     el("div", { className: "auth-card" }, [
       CG.page.isLogin ? CG.dom.auth.loginForm : CG.dom.auth.signupForm,
-      CG.dom.auth.method,
       el("div", { className: "divider" }, [el("span", { textContent: "or" })]),
       CG.dom.auth.google,
       CG.dom.auth.TOS,
