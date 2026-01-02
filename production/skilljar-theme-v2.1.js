@@ -351,12 +351,15 @@ const CG = {
 
     auth: {
       inputs: {
-        // login specific
-        password: document.querySelector("#id_password"),
+        email:
+          document.querySelector("#id_email") ||
+          document.querySelector("#id_login"),
+        password:
+          document.querySelector("#id_password") ||
+          document.querySelector("#id_password1"),
 
         // signup specific
         password2: document.querySelector("#id_password2"),
-        email: document.querySelector("#id_email"),
       },
 
       // login specific
@@ -378,7 +381,9 @@ const CG = {
         'label[for="id_first_name"] span span'
       ),
       lNameLabel: document.querySelector('label[for="id_last_name"] span span'),
-      emailLabel: document.querySelector('label[for="id_email"]'),
+      emailLabel:
+        document.querySelector('label[for="id_email"]') ||
+        document.querySelector('label[for="id_login"]'),
       signupBtnText: document.querySelector("#button-sign-up span"),
 
       google: document.querySelector("#google_login"),
