@@ -699,8 +699,8 @@ body.sj-page-signup #signup_form {
   }
 
   label {
-    margin-bottom: 0px;
-    font-weight: 500;
+    margin-bottom: 8px;
+    font-weight: 700;
     font-size: 16px;
     font-family: Gellix;
     line-height: 20px;
@@ -2015,18 +2015,6 @@ body.sj-page-signup {
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow);
     padding: 28px 26px 22px;
-  }
-
-  /* Labels */
-  .auth-card label {
-    font-weight: 700;
-    margin-bottom: 8px;
-
-    span {
-      display: block;
-      color: var(--brand-ink);
-      font-weight: inherit;
-    }
   }
 
   /* Inputs */
