@@ -2199,6 +2199,8 @@ function styleAuth() {
       }
     });
   }
+  
+  setStyle(CG.dom.auth.rows.id_access_code, { opacity: "0.6" });
 
   remove(CG.dom.auth.method);
 }

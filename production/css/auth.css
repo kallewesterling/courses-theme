@@ -371,11 +371,6 @@ body.sj-page-signup {
     .row .row {
       padding: 0 0.9375em;
     }
-
-    .row[aria-label="id_access_code"] {
-      /* optional */
-      opacity: 0.5;
-    }
   }
 
   #tabs {
