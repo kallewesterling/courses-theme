@@ -20,6 +20,23 @@ body.sj-page-signup {
     color: #545454;
     font-size: 14px;
     transform: translateX(-13px);
+    font-size: 14px;
+    margin: 62px 0 0;
+
+    @media screen and (max-width: 767px) {
+      margin: 32px 0 0;
+      font-size: 12px;
+    }
+
+    p {
+      color: var(--ink-dim);
+      margin: 0px;
+
+      a {
+        color: var(--brand-ink);
+        text-underline-offset: 3px;
+      }
+    }
   }
 
   .columns:has(#tabs) {
@@ -307,27 +324,6 @@ body.sj-page-signup {
     font-weight: 800;
     color: #d3c6e8;
     text-transform: uppercase;
-  }
-
-  /* Terms */
-  #access-message {
-    font-size: 14px;
-    margin: 62px 0 0;
-
-    @media screen and (max-width: 767px) {
-      margin: 32px 0 0;
-      font-size: 12px;
-    }
-
-    p {
-      color: var(--ink-dim);
-      margin: 0px;
-
-      a {
-        color: var(--brand-ink);
-        text-underline-offset: 3px;
-      }
-    }
   }
 
   /* Reduced motion */
