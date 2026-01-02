@@ -2165,19 +2165,16 @@ function styleAuth() {
 
   if (CG.page.isSignup) {
     // add aria-labels to inputs' parent .row elements
-    document
-      .querySelectorAll("input")
-      .forEach((elem) =>
-        elem.closest(".row").setAttribute("aria-label", elem.getAttribute("id"))
-      );
+    document.querySelectorAll("input").forEach((elem) => {
+      elem.closest(".row").setAttribute("aria-label", elem.getAttribute("id"));
+      CG.dom.auth.rows[elem.getAttribute("id")] = elem;
+    });
 
     // move Access Code field to after Password Confirm
-    document
-      .querySelector(".row[aria-label=id_password2]")
-      .insertAdjacentElement(
-        "afterend",
-        document.querySelector(".row[aria-label=id_access_code]")
-      );
+    CG.dom.auth.rows.id_password2.insertAdjacentElement(
+      "afterend",
+      CG.dom.auth.rows.id_access_code
+    );
   }
 
   remove(CG.dom.auth.method);
