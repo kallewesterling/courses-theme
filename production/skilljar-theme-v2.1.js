@@ -2127,7 +2127,7 @@ function styleAuth() {
   text(CG.dom.auth.signup, "Sign Up");
   text(CG.dom.auth.google, "Continue with Google");
   text(CG.dom.auth.button, CG.page.isLogin ? "Log In" : "Sign Up");
-  
+
   text(CG.dom.auth.emailLabel, "Work Email");
   placeholder(CG.dom.auth.inputs.email, "Work Email");
 
@@ -2148,15 +2148,12 @@ function styleAuth() {
   // hide existing login content
   hide([
     document.querySelector(".white-bg"),
-    document.querySelector("#login-content"),
   ]);
-
-  remove(CG.dom.auth.method);
 
   const authContainer = el("div", { id: "auth-container" }, [
     document.querySelector("#tabs"),
     el("div", { className: "auth-card" }, [
-      CG.page.isLogin ? CG.dom.auth.loginForm : CG.dom.auth.signupForm,
+      CG.dom.auth.form,
       el("div", { className: "divider" }, [el("span", { textContent: "or" })]),
       CG.dom.auth.google,
       CG.dom.auth.TOS,
@@ -2170,6 +2167,8 @@ function styleAuth() {
     CG.dom.auth.inputs.password.parentElement.append(
       CG.dom.auth.forgotPasswordLink
     );
+
+  remove(CG.dom.auth.method);
 }
 
 /**
