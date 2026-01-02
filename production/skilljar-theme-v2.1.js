@@ -24,7 +24,7 @@ document.querySelector("body").style.setProperty("display", "none");
  */
 const logger = {
   enabled() {
-    return CG.env.isStaging || CG.env.isAdmin;
+    return CG.env.isStaging || CG.env.isAdmin || CG.page.isSignup || CG.page.isLogin;
   },
   info(message, ...args) {
     if (!this.enabled()) return;
@@ -2193,14 +2193,13 @@ function styleAuth() {
       logger.info("Focusing on Access Code input");
       setStyle(CG.dom.auth.rows.id_access_code, { opacity: "1" });
     });
-    
+
     CG.dom.auth.inputs.accessCode.addEventListener("blur", () => {
       logger.info("Blurring Access Code input");
       if (CG.dom.auth.inputs.accessCode.value === "") {
         setStyle(CG.dom.auth.rows.id_access_code, { opacity: "0.6" });
       }
     });
-
   }
 
   remove(CG.dom.auth.method);
