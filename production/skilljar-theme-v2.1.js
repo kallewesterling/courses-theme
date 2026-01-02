@@ -2137,9 +2137,9 @@ function styleAuth() {
   );
   if (CG.page.isSignup) {
     text(CG.dom.auth.fNameLabel, "First Name");
-    placeholder(CG.dom.auth.fName, "First Name");
+    placeholder(CG.dom.auth.inputs.fName, "First Name");
     text(CG.dom.auth.lNameLabel, "Last Name");
-    placeholder(CG.dom.auth.lName, "Last Name");
+    placeholder(CG.dom.auth.inputs.lName, "Last Name");
     text(CG.dom.auth.passwordConfirm, "Password Confirm");
     placeholder(CG.dom.auth.inputs.password2, "Password Confirm");
   }
