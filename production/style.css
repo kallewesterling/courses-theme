@@ -6,17 +6,6 @@
 @import url("css/lessons.css");
 @import url("css/footer.css");
 
-.button,
-.button-prev-title {
-  color: var(--white) !important;
-  background-color: var(--blurple);
-  border: 0;
-  font-family: Gellix;
-  font-size: 14px;
-  font-weight: 700;
-  padding: 10px 20px;
-}
-
 #skilljar-content .top-row-grey {
   background-color: #fef6ff9c !important;
 }

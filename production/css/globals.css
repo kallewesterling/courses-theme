@@ -41,6 +41,14 @@ label {
 }
 
 .button {
+  color: var(--white) !important;
+  background-color: var(--blurple);
+  border: 0;
+  font-family: Gellix;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 20px;
+
   &:hover {
     color: var(--white) !important;
     background-color: var(--blurple);
