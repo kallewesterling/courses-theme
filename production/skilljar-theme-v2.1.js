@@ -360,6 +360,8 @@ const CG = {
 
         // signup specific
         password2: document.querySelector("#id_password2"),
+        fName: document.querySelector("#id_first_name"),
+        lName: document.querySelector("#id_last_name"),
       },
 
       // login specific
@@ -2125,16 +2127,20 @@ function styleAuth() {
   text(CG.dom.auth.signup, "Sign Up");
   text(CG.dom.auth.google, "Continue with Google");
   text(CG.dom.auth.button, CG.page.isLogin ? "Log In" : "Sign Up");
+  
+  text(CG.dom.auth.emailLabel, "Work Email");
+  placeholder(CG.dom.auth.inputs.email, "Work Email");
+
   text(
     CG.dom.auth.altMethod,
     CG.page.isLogin ? "Or Log In With" : "Or Sign Up With"
   );
   if (CG.page.isSignup) {
     text(CG.dom.auth.fNameLabel, "First Name");
+    placeholder(CG.dom.auth.fName, "First Name");
     text(CG.dom.auth.lNameLabel, "Last Name");
+    placeholder(CG.dom.auth.lName, "Last Name");
     text(CG.dom.auth.passwordConfirm, "Password Confirm");
-    text(CG.dom.auth.emailLabel, "Work Email");
-    placeholder(CG.dom.auth.inputs.email, "Work Email");
     placeholder(CG.dom.auth.inputs.password2, "Password Confirm");
   }
   CG.dom.auth.form.append(CG.dom.auth.TOS);
