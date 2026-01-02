@@ -394,6 +394,7 @@ const CG = {
         password2: document.querySelector("#id_password2"),
         fName: document.querySelector("#id_first_name"),
         lName: document.querySelector("#id_last_name"),
+        accessCode: document.querySelector("#id_access_code"),
       },
 
       // login specific
