@@ -360,6 +360,8 @@ body.sj-page-signup {
   /* ... */
 
   #signup_form {
+    padding: 0 0.9375em;
+
     #id_password2 {
       margin-bottom: 24px;
     }
@@ -367,9 +369,11 @@ body.sj-page-signup {
     .text-center {
       text-align: left !important;
     }
+  }
 
-    .row .row {
-      padding: 0 0.9375em;
+  .auth-card {
+    .divider, #google_login {
+        padding: 0 0.9375em;
     }
   }
 
