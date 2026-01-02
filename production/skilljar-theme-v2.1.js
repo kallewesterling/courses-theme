@@ -1684,7 +1684,7 @@ function styleCatalog() {
   hide(CG.dom.catalogContent);
 
   // remove search functionality
-  remove([".catalog-left-nav", "#left-nav-button", ".back-to-catalog"]);
+  remove([".catalog-left-nav", ".back-to-catalog"]);
 
   // create new sections
   makeSections(CG.data.sections, "#skilljar-content", CG.state.baseURL);
