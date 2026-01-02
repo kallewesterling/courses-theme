@@ -1923,6 +1923,7 @@ function setupLessonNav() {
     href: prevHref,
     textContent: "← Previous",
     title: prevTitle,
+    onclick: (e) => e.stopPropagation(),
   });
   if (prevTrack) prevBtn.setAttribute("data-track-click", prevTrack);
 
@@ -1935,6 +1936,7 @@ function setupLessonNav() {
     textContent: "Next →",
     title: nextTitle,
     tabindex: 0,
+    onclick: (e) => e.stopPropagation(),
   });
   if (nextTrack) nextBtn.setAttribute("data-track-click", nextTrack);
 
