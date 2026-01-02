@@ -181,6 +181,7 @@ body.sj-page-lesson {
           background: rgba(255, 255, 255, 0.8);
           backdrop-filter: blur(1.5px);
           width: 100%;
+          overflow-x: hidden;
 
           .fa-bars,
           .fa-times {
@@ -207,6 +208,7 @@ body.sj-page-lesson {
             gap: 0.5rem;
             z-index: 10;
             margin-left: auto;
+            margin-right: 12px;
 
             .lesson-btn {
               border: 1px solid rgba(0, 0, 0, 0.12);
