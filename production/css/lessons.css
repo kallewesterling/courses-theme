@@ -209,6 +209,10 @@ body.sj-page-lesson {
             width: 80%;
             margin: 0 auto;
 
+            @media screen and (max-width: 991px) {
+              width: 90%;
+            }
+
             sjwc-lesson-content-item {
               /* Lesson content item */
 
