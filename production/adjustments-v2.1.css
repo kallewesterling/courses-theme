@@ -705,22 +705,6 @@ body.sj-page-signup #signup_form {
     font-family: Gellix;
     line-height: 20px;
   }
-
-  button#button-sign-in,
-  button#button-sign-up {
-    /* Sign in button */
-    width: 368px;
-    height: 48px;
-    color: var(--blurple);
-    background-color: transparent;
-    border: 2px solid var(--blurple);
-    border-radius: 999px;
-
-    @media screen and (max-width: 991px) {
-      width: 100%;
-      margin-bottom: 12px;
-    }
-  }
 }
 
 body.sj-page-login {
@@ -2083,23 +2067,19 @@ body.sj-page-signup {
       border-radius: 999px;
       font-weight: 800;
       letter-spacing: 0.02em;
-      background: var(--brand);
-      color: #fff;
-      border: 1px solid var(--brand);
+      border: 2px solid var(--blurple);
       transition: transform 0.05s ease, filter 0.15s ease, box-shadow 0.15s ease;
-    }
-    #button-sign-in:hover,
-    #button-sign-up:hover {
-      filter: brightness(0.96);
-    }
-    #button-sign-in:active,
-    #button-sign-up:active {
-      transform: translateY(1px);
-    }
-    #button-sign-in:focus-visible,
-    #button-sign-up:focus-visible {
-      outline: none;
-      box-shadow: 0 0 0 4px var(--ring);
+      color: var(--blurple);
+      background-color: transparent;
+
+      @media screen and (max-width: 991px) {
+        margin-bottom: 12px;
+      }
+
+      &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 4px var(--ring);
+      }
     }
   }
 
