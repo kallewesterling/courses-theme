@@ -102,24 +102,6 @@ body.sj-page-lesson {
           background-color: transparent;
         }
 
-        h3.section-title {
-          /* Section title */
-          color: var(--ink) !important;
-          background-color: transparent;
-          padding: 0px 14px;
-          margin: 10px 0 0px 0;
-          border: 0;
-          font-family: Roobert;
-          font-size: 14px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-
-          @media screen and (max-width: 991px) {
-            font-size: 12px;
-          }
-        }
-
         .lesson-row {
           /* Individual lesson */
           display: flex;
@@ -145,6 +127,24 @@ body.sj-page-lesson {
             /* Lesson icons */
             display: none !important;
           }
+        }
+      }
+
+      h3.section-title {
+        /* Section title */
+        color: var(--ink) !important;
+        background-color: transparent;
+        padding: 0px 14px;
+        margin: 10px 0 0px 0;
+        border: 0;
+        font-family: Roobert;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+
+        @media screen and (max-width: 991px) {
+          font-size: 12px;
         }
       }
     }
