@@ -2061,7 +2061,7 @@ body.sj-page-signup {
     margin: -6px 0 24px 0;
     opacity: 60%;
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 991px) {
       margin: 6px 0 14px 0;
     }
 
