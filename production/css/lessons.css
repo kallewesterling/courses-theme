@@ -119,8 +119,6 @@ body.sj-page-lesson {
           &.lesson-active {
             background-color: #eaeaea;
             color: var(--ink) !important;
-            margin: 0 12px;
-            border-radius: 4px;
           }
 
           &:hover {
@@ -658,7 +656,8 @@ sjwc-lesson-content-item {
   p,
   li {
     font-family: Gellix !important;
-    font-size: 1.2em !important;
+    font-size: 1.4em !important;
+    line-height: 1.75em;
 
     em,
     a,
@@ -668,7 +667,7 @@ sjwc-lesson-content-item {
   }
 
   p.lead {
-    font-size: 1.6em !important;
+    font-size: 1.8em !important;
   }
 
   ul,
