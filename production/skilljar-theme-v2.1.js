@@ -2167,6 +2167,14 @@ function styleAuth() {
       CG.dom.auth.forgotPasswordLink
     );
 
+  if (CG.page.isSignup)
+    // add aria-labels to inputs' parent .row elements
+    document
+      .querySelectorAll("input")
+      .forEach((elem) =>
+        elem.closest(".row").setAttribute("aria-label", elem.getAttribute("id"))
+      );
+
   remove(CG.dom.auth.method);
 }
 
