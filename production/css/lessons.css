@@ -79,6 +79,7 @@ body.sj-page-lesson {
       justify-content: center;
       font-size: 0.8em;
       font-weight: 600;
+      margin-top: 16px;
 
       &:hover {
         text-decoration: none !important;
