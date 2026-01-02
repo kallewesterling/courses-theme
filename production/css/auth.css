@@ -2,6 +2,10 @@ body.sj-page-login,
 body.sj-page-signup {
   /* Login and Signup pages shared styles */
 
+  #skilljar-content {
+    padding-top: 45px;
+  }
+
   /* Hide unwanted elements */
   #facebook_login,
   .loginNote.sj-text-login-note,
@@ -85,143 +89,6 @@ body.sj-page-signup {
         }
       }
     }
-  }
-}
-
-/* Handle signup/login buttons */
-body.sj-page-login #login-tab-left,
-body.sj-page-signup #login-tab-right {
-  /* Active login, inactive signup */
-  background-color: rgba(52, 67, 244, 0.09);
-
-  a,
-  span {
-    color: rgba(52, 67, 244, 1);
-  }
-}
-
-body.sj-page-login #login-tab-right,
-body.sj-page-signup #login-tab-left {
-  /* Inactive login, active signup */
-  background-color: rgba(52, 67, 244, 0.09);
-
-  a,
-  span {
-    color: rgba(52, 67, 244, 0.4);
-  }
-}
-
-body.sj-page-login #login-tab-right,
-body.sj-page-signup #login-tab-left {
-  background-color: unset;
-}
-
-body.sj-page-login #login_form,
-body.sj-page-signup #signup_form {
-  /* Login/signup form styles */
-
-  input {
-    border-radius: 4px;
-    border: 2px solid var(--blurple);
-    padding: 20px 15px;
-    font-size: 14px;
-    line-height: 24px;
-
-    @media screen and (max-width: 991px) {
-      border: 2px solid var(--detail-medium-contrast);
-      padding: 12px;
-      margin-bottom: 24px;
-    }
-
-    @media screen and (max-width: 767px) {
-      margin-bottom: 12px;
-    }
-  }
-
-  label {
-    margin-bottom: 8px;
-    font-weight: 700;
-    font-size: 16px;
-    font-family: Gellix;
-    line-height: 20px;
-  }
-}
-
-body.sj-page-login {
-  /* Login page specific styles */
-
-  #login_form {
-    /* Login form elements */
-
-    button#button-sign-in {
-      /* Forgot password text + login button */
-      font-size: 16px;
-      font-family: Roobert;
-      margin-bottom: 2px;
-    }
-
-    .large-12.columns:has(#button-sign-in) {
-      margin-bottom: 24px;
-    }
-
-    #id_password {
-      @media screen and (max-width: 991px) {
-        margin-bottom: 0px;
-      }
-    }
-  }
-}
-
-body.sj-page-signup {
-  /* Signup page specific styles */
-  /* ... */
-
-  #signup_form {
-    #id_password2 {
-      margin-bottom: 24px;
-    }
-
-    .text-center {
-      text-align: left !important;
-    }
-  }
-}
-
-body.sj-page-login {
-  #tabs #login-tab-left {
-    background: rgba(60, 68, 247, 0.12);
-    color: var(--brand-ink);
-    border-color: var(--brand);
-    box-shadow: 0 0 0 3px rgba(201, 209, 255, 0.65) inset;
-  }
-  #tabs #login-tab-right a.sj-text-sign-up {
-    display: inline-flex;
-    align-items: center;
-    height: 44px;
-    padding: 0 18px;
-    border-radius: 999px;
-    color: #8c8aa4;
-    text-decoration: none;
-    font-weight: 800;
-  }
-}
-
-body.sj-page-signup {
-  #tabs #login-tab-right {
-    background: rgba(60, 68, 247, 0.12);
-    color: var(--brand-ink);
-    border-color: var(--brand);
-    box-shadow: 0 0 0 3px rgba(201, 209, 255, 0.65) inset;
-  }
-  #tabs #login-tab-left a.sj-text-sign-in {
-    display: inline-flex;
-    align-items: center;
-    height: 44px;
-    padding: 0 18px;
-    border-radius: 999px;
-    color: #8c8aa4;
-    text-decoration: none;
-    font-weight: 800;
   }
 }
 
@@ -474,5 +341,138 @@ body.sj-page-signup {
     #google_login {
       transition: none;
     }
+  }
+}
+
+/* Handle signup/login buttons */
+body.sj-page-login #login-tab-left,
+body.sj-page-signup #login-tab-right {
+  /* Active login, inactive signup */
+  background-color: rgba(52, 67, 244, 0.09);
+
+  a,
+  span {
+    color: rgba(52, 67, 244, 1);
+  }
+}
+
+body.sj-page-login #login-tab-right,
+body.sj-page-signup #login-tab-left {
+  /* Inactive login, active signup */
+  background-color: rgba(52, 67, 244, 0.09);
+
+  a,
+  span {
+    color: rgba(52, 67, 244, 0.4);
+  }
+}
+
+body.sj-page-login #login-tab-right,
+body.sj-page-signup #login-tab-left {
+  background-color: unset;
+}
+
+body.sj-page-login #login_form,
+body.sj-page-signup #signup_form {
+  /* Login/signup form styles */
+
+  input {
+    border-radius: 4px;
+    border: 2px solid var(--blurple);
+    padding: 20px 15px;
+    font-size: 14px;
+    line-height: 24px;
+
+    @media screen and (max-width: 991px) {
+      border: 2px solid var(--detail-medium-contrast);
+      padding: 12px;
+      margin-bottom: 24px;
+    }
+
+    @media screen and (max-width: 767px) {
+      margin-bottom: 12px;
+    }
+  }
+
+  label {
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    font-family: Gellix;
+    line-height: 20px;
+  }
+}
+
+body.sj-page-login {
+  /* Login page specific styles */
+
+  #tabs #login-tab-left {
+    background: rgba(60, 68, 247, 0.12);
+    color: var(--brand-ink);
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(201, 209, 255, 0.65) inset;
+  }
+  #tabs #login-tab-right a.sj-text-sign-up {
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+    color: #8c8aa4;
+    text-decoration: none;
+    font-weight: 800;
+  }
+
+  #login_form {
+    /* Login form elements */
+
+    button#button-sign-in {
+      /* Forgot password text + login button */
+      font-size: 16px;
+      font-family: Roobert;
+      margin-bottom: 2px;
+    }
+
+    .large-12.columns:has(#button-sign-in) {
+      margin-bottom: 24px;
+    }
+
+    #id_password {
+      @media screen and (max-width: 991px) {
+        margin-bottom: 0px;
+      }
+    }
+  }
+}
+
+body.sj-page-signup {
+  /* Signup page specific styles */
+  /* ... */
+
+  #signup_form {
+    #id_password2 {
+      margin-bottom: 24px;
+    }
+
+    .text-center {
+      text-align: left !important;
+    }
+  }
+
+  #tabs #login-tab-right {
+    background: rgba(60, 68, 247, 0.12);
+    color: var(--brand-ink);
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(201, 209, 255, 0.65) inset;
+  }
+  #tabs #login-tab-left a.sj-text-sign-in {
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+    color: #8c8aa4;
+    text-decoration: none;
+    font-weight: 800;
   }
 }

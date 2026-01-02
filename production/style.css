@@ -249,13 +249,6 @@
       padding-top: 90px;
     }
   }
-
-  body.sj-page-login,
-  body.sj-page-signup {
-    #skilljar-content {
-      padding-top: 45px;
-    }
-  }
 }
 
 #skilljar-content .top-row-grey {
