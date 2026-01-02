@@ -8,6 +8,7 @@ body.sj-page-signup {
   }
 
   /* Hide unwanted elements */
+  .white-bg,
   #facebook_login,
   .loginNote.sj-text-login-note,
   #tab-marker-login,

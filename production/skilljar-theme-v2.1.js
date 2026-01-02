@@ -2132,26 +2132,22 @@ function styleAuth() {
   text(CG.dom.auth.signup, "Sign Up");
   text(CG.dom.auth.google, "Continue with Google");
   text(CG.dom.auth.button, CG.page.isLogin ? "Log In" : "Sign Up");
-
   text(CG.dom.auth.emailLabel, "Work Email");
-  placeholder(CG.dom.auth.inputs.email, "Work Email");
-
   text(
     CG.dom.auth.altMethod,
     CG.page.isLogin ? "Or Log In With" : "Or Sign Up With"
   );
+
+  placeholder(CG.dom.auth.inputs.email, "Work Email");
+
   if (CG.page.isSignup) {
     text(CG.dom.auth.fNameLabel, "First Name");
-    placeholder(CG.dom.auth.inputs.fName, "First Name");
     text(CG.dom.auth.lNameLabel, "Last Name");
+    placeholder(CG.dom.auth.inputs.fName, "First Name");
     placeholder(CG.dom.auth.inputs.lName, "Last Name");
-    text(CG.dom.auth.passwordConfirm, "Password Confirm");
     placeholder(CG.dom.auth.inputs.password2, "Password Confirm");
+    text(CG.dom.auth.passwordConfirm, "Password Confirm");
   }
-  CG.dom.auth.form.append(CG.dom.auth.TOS);
-
-  // hide existing login content
-  hide([document.querySelector(".white-bg")]);
 
   const authContainer = el("div", { id: "auth-container" }, [
     document.querySelector("#tabs"),
