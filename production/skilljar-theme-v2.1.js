@@ -2047,8 +2047,10 @@ function styleLesson() {
       },
     },
     nav: {
+      menu: document.querySelector("#lp-left-nav"),
       toggleWrapper: document.querySelector("#left-nav-button"),
       backToCurriculumText: document.querySelector("#left-nav-return-text"),
+      backBtn: document.querySelector("#returnToOverview"),
     },
     footer: {
       container: document.querySelector("#lp-footer"),
@@ -2056,8 +2058,10 @@ function styleLesson() {
   };
 
   // content
-  if (CG.dom.local.nav.backToCurriculumText)
-    text(CG.dom.local.nav.backToCurriculumText, "Back to Course Overview");
+  if (CG.dom.local.nav.backToCurriculumText) {
+    text(CG.dom.local.nav.backToCurriculumText, "← Back to Course Description");
+    CG.dom.local.nav.menu.prepend(CG.dom.local.nav.backBtn);
+  }
 
   // Makes lesson links pop up in new tab
   CG.dom.local.lesson.content.links.forEach((elem) => {
