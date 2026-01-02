@@ -320,7 +320,6 @@ const CG = {
     },
   },
   dom: {
-    _cloned: {},
     body: document.body,
     bodyHeader: document.querySelector("#header"),
     headerLeft: document.querySelector("#header-left"),
@@ -2048,7 +2047,7 @@ function styleLesson() {
       },
     },
     nav: {
-      toggleWrapper: CG.dom._cloned.nav,
+      toggleWrapper: document.querySelector("#left-nav-button"),
       backToCurriculumText: document.querySelector("#left-nav-return-text"),
     },
     footer: {
@@ -2401,10 +2400,8 @@ function fixHeader() {
 */
 document.addEventListener("DOMContentLoaded", () => {
   if (CG.page.isLesson)
-    // if a lesson page, we need to clone the nav button before we modify the header
-    CG.dom._cloned.nav = document
-      .querySelector("#left-nav-button")
-      .cloneNode(true);
+    // if a lesson page, we need to move the nav button before we modify the header
+    CG.dom.contentContainer.append(document.querySelector("#left-nav-button"));
 
   // replace logo
   CG.dom.headerLeft.replaceChildren(
