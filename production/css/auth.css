@@ -3,6 +3,7 @@ body.sj-page-signup {
   /* Login and Signup pages shared styles */
 
   #skilljar-content {
+    /* Globally, since we only have one header, set the padding-top accordingly */
     padding-top: 45px;
   }
 
@@ -11,6 +12,10 @@ body.sj-page-signup {
   .loginNote.sj-text-login-note,
   #tab-marker-login,
   #tab-marker-signup {
+    display: none !important;
+  }
+
+  #login-content {
     display: none !important;
   }
 
@@ -166,10 +171,6 @@ body.sj-page-signup {
         }
       }
     }
-  }
-
-  #login-content {
-    display: none !important;
   }
 
   /* Inputs */
