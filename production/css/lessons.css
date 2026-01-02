@@ -36,7 +36,7 @@ body.sj-page-lesson {
   #lp-left-nav {
     /* Left hand nav menu */
     background-color: #f9f9f9;
-    width: 320px;
+    width: 292px; /* formerly 320px; */
     position: absolute;
     margin-bottom: -63px; /* To counteract padding in #footer-container */
 
