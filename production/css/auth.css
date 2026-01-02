@@ -14,6 +14,59 @@ body.sj-page-signup {
     display: none !important;
   }
 
+  #auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    gap: 12px;
+    flex-grow: 1;
+    min-height: 100vh;
+
+    @media screen and (max-width: 500px) {
+      min-height: 90vh;
+    }
+
+    #tabs,
+    .auth-card {
+      /* Shared styles for tabs + auth card */
+      display: flex;
+      width: min(560px, 94vw);
+      margin: 18px auto 0;
+
+      @media screen and (max-width: 767px) {
+        margin: 8px auto 0;
+      }
+    }
+
+    #tabs {
+      /* Tabs specific styles ("Log In" / "Sign Up" buttons) */
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 2px;
+
+      .tab-marker {
+        display: none; /* hide old pointer image */
+      }
+
+      .login-tab {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        height: 44px;
+        padding: 0 18px;
+        border-radius: 999px;
+        font-weight: 800;
+        background: #f0eeff;
+        color: #8c8aa4;
+        border: 1px solid transparent;
+      }
+    }
+  }
+
   #access-message {
     /* Agree to our Terms & Privacy text */
     max-width: 100%;
@@ -36,26 +89,6 @@ body.sj-page-signup {
       }
     }
   }
-
-  /* .columns:has(#tabs) { */
-    /* Wrapper for Login/Signup buttons */
-
-    /* #tabs {
-      display: flex;
-
-      .login-tab {
-        border: 0px;
-        display: flex;
-        padding: 8px 16px;
-        align-items: center;
-        border-radius: 100px;
-        font-family: Roobert, monospace;
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 24px;
-      }
-    }
-  } */
 
   #login-content {
     /* Wrapper for all login content */
@@ -100,20 +133,15 @@ body.sj-page-signup {
 body.sj-page-login,
 body.sj-page-signup {
   /* Center the stack */
-  #tabs,
-  .auth-card {
-    display: flex;
-    width: min(560px, 94vw);
-    margin: 18px auto 0;
-
-    @media screen and (max-width: 767px) {
-      margin: 8px auto 0;
-    }
-  }
 
   .auth-card {
     flex-direction: column;
     align-items: center;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow);
+    padding: 28px 26px 22px;
 
     .divider {
       /* "or" divider before "login with google" button */
@@ -181,54 +209,6 @@ body.sj-page-signup {
         box-shadow: 0 0 0 4px var(--ring);
       }
     }
-  }
-
-  #auth-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 24px 16px;
-    gap: 12px;
-    flex-grow: 1;
-    min-height: 100vh;
-
-    @media screen and (max-width: 500px) {
-      min-height: 90vh;
-    }
-  }
-
-  /* -------- Tabs (Log In / Sign Up) -------- */
-  #tabs {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0 2px;
-  }
-  #tabs .login-tab {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    height: 44px;
-    padding: 0 18px;
-    border-radius: 999px;
-    font-weight: 800;
-    background: #f0eeff;
-    color: #8c8aa4;
-    border: 1px solid transparent;
-  }
-  #tabs .tab-marker {
-    display: none;
-  } /* hide old pointer image */
-
-  /* -------- Card -------- */
-  .auth-card {
-    background: var(--paper);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow);
-    padding: 28px 26px 22px;
   }
 
   /* Inputs */
@@ -314,16 +294,6 @@ body.sj-page-signup {
     }
   }
 
-  /* Divider heading */
-  .sj-text-sign-in-with span,
-  .sj-text-sign-up-with span {
-    display: block;
-    margin: 16px 0 -5px;
-    font-weight: 800;
-    color: #d3c6e8;
-    text-transform: uppercase;
-  }
-
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
     #button-sign-in,
@@ -395,21 +365,24 @@ body.sj-page-signup #signup_form {
 body.sj-page-login {
   /* Login page specific styles */
 
-  #tabs #login-tab-left {
-    background: rgba(60, 68, 247, 0.12);
-    color: var(--brand-ink);
-    border-color: var(--brand);
-    box-shadow: 0 0 0 3px rgba(201, 209, 255, 0.65) inset;
-  }
-  #tabs #login-tab-right a.sj-text-sign-up {
-    display: inline-flex;
-    align-items: center;
-    height: 44px;
-    padding: 0 18px;
-    border-radius: 999px;
-    color: #8c8aa4;
-    text-decoration: none;
-    font-weight: 800;
+  #tabs {
+    #login-tab-left {
+      background: rgba(60, 68, 247, 0.12);
+      color: var(--brand-ink);
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(201, 209, 255, 0.65) inset;
+    }
+
+    #login-tab-right a.sj-text-sign-up {
+      display: inline-flex;
+      align-items: center;
+      height: 44px;
+      padding: 0 18px;
+      border-radius: 999px;
+      color: #8c8aa4;
+      text-decoration: none;
+      font-weight: 800;
+    }
   }
 
   #login_form {
@@ -448,20 +421,23 @@ body.sj-page-signup {
     }
   }
 
-  #tabs #login-tab-right {
-    background: rgba(60, 68, 247, 0.12);
-    color: var(--brand-ink);
-    border-color: var(--brand);
-    box-shadow: 0 0 0 3px rgba(201, 209, 255, 0.65) inset;
-  }
-  #tabs #login-tab-left a.sj-text-sign-in {
-    display: inline-flex;
-    align-items: center;
-    height: 44px;
-    padding: 0 18px;
-    border-radius: 999px;
-    color: #8c8aa4;
-    text-decoration: none;
-    font-weight: 800;
+  #tabs {
+    #login-tab-right {
+      background: rgba(60, 68, 247, 0.12);
+      color: var(--brand-ink);
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(201, 209, 255, 0.65) inset;
+    }
+
+    #login-tab-left a.sj-text-sign-in {
+      display: inline-flex;
+      align-items: center;
+      height: 44px;
+      padding: 0 18px;
+      border-radius: 999px;
+      color: #8c8aa4;
+      text-decoration: none;
+      font-weight: 800;
+    }
   }
 }
