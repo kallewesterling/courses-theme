@@ -228,56 +228,88 @@ body.sj-page-lesson {
                 letter-spacing: -0.02em;
               }
 
-              .one-col-table {
-                /* One column table */
-                grid-template-columns: 1fr !important;
-              }
+              .content-table {
+                display: grid;
+                margin-bottom: 48px;
+                font-size: 16px;
 
-              .two-col-table {
-                /* Two column table */
-                grid-template-columns: repeat(
-                  2,
-                  minmax(min-content, max-content)
-                ) !important;
-
-                .table-row:nth-last-child(-n + 2) {
-                  border: unset !important;
+                &.one-col-table {
+                  /* One column table */
+                  grid-template-columns: 1fr !important;
                 }
-              }
 
-              .three-col-table {
-                /* Three column table */
-                grid-template-columns: repeat(
-                  3,
-                  minmax(min-content, max-content)
-                ) !important;
+                &.two-col-table {
+                  /* Two column table */
+                  grid-template-columns: repeat(
+                    2,
+                    minmax(min-content, max-content)
+                  ) !important;
 
-                .table-row:nth-last-child(-n + 3) {
-                  border: unset !important;
+                  .table-row:nth-last-child(-n + 2) {
+                    border: unset !important;
+                  }
                 }
-              }
 
-              .four-col-table {
-                /* Four column table */
-                grid-template-columns: repeat(
-                  4,
-                  minmax(min-content, max-content)
-                ) !important;
+                &.three-col-table {
+                  /* Three column table */
+                  grid-template-columns: repeat(
+                    3,
+                    minmax(min-content, max-content)
+                  ) !important;
 
-                .table-row:nth-last-child(-n + 4) {
-                  border: unset !important;
+                  .table-row:nth-last-child(-n + 3) {
+                    border: unset !important;
+                  }
                 }
-              }
 
-              .five-col-table {
-                /* Five column table */
-                grid-template-columns: repeat(
-                  5,
-                  minmax(min-content, max-content)
-                ) !important;
+                &.four-col-table {
+                  /* Four column table */
+                  grid-template-columns: repeat(
+                    4,
+                    minmax(min-content, max-content)
+                  ) !important;
 
-                .table-row:nth-last-child(-n + 5) {
-                  border: unset !important;
+                  .table-row:nth-last-child(-n + 4) {
+                    border: unset !important;
+                  }
+                }
+
+                &.five-col-table {
+                  /* Five column table */
+                  grid-template-columns: repeat(
+                    5,
+                    minmax(min-content, max-content)
+                  ) !important;
+
+                  .table-row:nth-last-child(-n + 5) {
+                    border: unset !important;
+                  }
+                }
+
+                .table-header {
+                  border-bottom: 1px solid #dcdcdc;
+                  font-weight: 600;
+                  line-height: 20px;
+                  letter-spacing: -0.01em;
+                  padding: 12px;
+                }
+
+                .table-row {
+                  padding: 24px 12px;
+                  font-weight: 400;
+                  line-height: 24px;
+                  border-bottom: 1px solid #dcdcdc;
+
+                  ul:first-child {
+                    margin-top: 0;
+                  }
+                }
+
+                p,
+                li {
+                  font-size: inherit !important;
+                  font-weight: inherit !important;
+                  margin: 3px 0;
                 }
               }
 
