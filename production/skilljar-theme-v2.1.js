@@ -2163,7 +2163,7 @@ function styleAuth() {
   CG.dom.contentContainer.append(authContainer);
 
   // move "Forgot Password?" to after Password
-  if (CG.dom.auth.inputs.password)
+  if (CG.page.isLogin && CG.dom.auth.inputs.password)
     CG.dom.auth.inputs.password.parentElement.append(
       CG.dom.auth.forgotPasswordLink
     );
