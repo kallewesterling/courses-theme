@@ -157,46 +157,6 @@
   content: none;
 }
 
-.content-table {
-  display: grid;
-  margin-bottom: 48px;
-  font-size: 16px;
-
-  .table-header {
-    border-bottom: 1px solid #dcdcdc;
-    font-weight: 600;
-    line-height: 20px;
-    letter-spacing: -0.01em;
-    padding: 12px;
-  }
-
-  .table-row {
-    padding: 24px 12px;
-    font-weight: 400;
-    line-height: 24px;
-    border-bottom: 1px solid #dcdcdc;
-
-    ul:first-child {
-      margin-top: 0;
-    }
-  }
-
-  p,
-  li {
-    font-size: inherit !important;
-    font-weight: inherit !important;
-    margin: 3px 0;
-  }
-}
-
-.intro-table {
-  grid-template-rows: 2;
-}
-
-.learning-outcomes {
-  margin: 48px 0;
-}
-
 .module-heading {
   font-weight: 500;
   line-height: 20px;
