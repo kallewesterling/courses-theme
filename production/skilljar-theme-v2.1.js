@@ -24,7 +24,9 @@ document.querySelector("body").style.setProperty("display", "none");
  */
 const logger = {
   enabled() {
-    return CG.env.isStaging || CG.env.isAdmin || CG.page.isSignup || CG.page.isLogin;
+    return (
+      CG.env.isStaging || CG.env.isAdmin || CG.page.isSignup || CG.page.isLogin
+    );
   },
   info(message, ...args) {
     if (!this.enabled()) return;
@@ -318,6 +320,7 @@ const CG = {
     },
   },
   dom: {
+    _cloned: {},
     body: document.body,
     bodyHeader: document.querySelector("#header"),
     headerLeft: document.querySelector("#header-left"),
@@ -1684,7 +1687,7 @@ function styleCatalog() {
   hide(CG.dom.catalogContent);
 
   // remove search functionality
-  remove([".catalog-left-nav", ".back-to-catalog"]);
+  remove([".catalog-left-nav", "#left-nav-button", ".back-to-catalog"]);
 
   // create new sections
   makeSections(CG.data.sections, "#skilljar-content", CG.state.baseURL);
@@ -1892,69 +1895,10 @@ function stylePathCatalogPage() {
 }
 
 /**
- * This function processes code blocks by adding a copy icon and functionality to copy the code to the clipboard.
- * It filters out code blocks that have the 'noCopy' or 'copyAdded' data attributes.
- * @param {NodeList} codeBlocks - A list of code block elements to process.
- * @return {void}
+ * Sets up floating lesson navigation buttons based on existing footer controls.
+ * @returns {HTMLElement} The navigation wrapper element containing the previous and next buttons.
  */
-function styleLesson() {
-  CG.dom.local = {
-    body: {
-      mainContainer: document.querySelector("#lp-wrapper"),
-      innerContainer: document.querySelector("#lesson-body"),
-    },
-    lesson: {
-      body: document.querySelector("#lesson-body"),
-      innerBody: document.querySelector("#lesson-main-inner"),
-      content: {
-        codeBlocks: new Array(
-          ...document.querySelectorAll("pre:has(code):not(.language-ansi)")
-        ),
-        internalCourseWarning: document.querySelector(
-          "#internal-course-warning"
-        ),
-        links: document.querySelectorAll("sjwc-lesson-content-item a"),
-        resources: {
-          boxes: document.querySelectorAll(
-            "sjwc-lesson-content-item .resource-box"
-          ),
-          wrapper: document.querySelector(
-            "sjwc-lesson-content-item .resource-box .resource-wrapper"
-          ),
-        },
-      },
-    },
-    nav: {
-      toggleWrapper: document.querySelector("#left-nav-button"),
-      backToCurriculumText: document.querySelector("#left-nav-return-text"),
-    },
-    footer: {
-      container: document.querySelector("#lp-footer"),
-    },
-  };
-
-  // content
-  if (CG.dom.local.nav.backToCurriculumText)
-    text(CG.dom.local.nav.backToCurriculumText, "Back to Course Overview");
-
-  // Makes lesson links pop up in new tab
-  CG.dom.local.lesson.content.links.forEach((elem) => {
-    elem.target = "_blank";
-    // we also want to set some utm_source, utm_medium here if it's a link to a certain set of domains (domain name includes chainguard.dev)
-    if (elem.href.includes("chainguard.dev")) {
-      elem.href = getCorrectURL(elem.href);
-    }
-  });
-
-  // move elements
-  CG.dom.local.body.mainContainer.append(CG.dom.local.footer.container);
-  CG.dom.local.body.innerContainer.prepend(
-    ...[
-      CG.dom.local.lesson.content.internalCourseWarning,
-      CG.dom.local.nav.toggleWrapper,
-    ].filter(Boolean)
-  );
-
+function setupLessonNav() {
   // 1) Find canonical footer controls
   const footerPrev = document.querySelector("#lp-footer .prev-lesson-button");
   const footerNext = document.querySelector("#lp-footer .next-lesson-link");
@@ -2031,43 +1975,114 @@ function styleLesson() {
 
   btnWrapper.append(prevBtn, nextBtn);
 
-  CG.dom.local.lesson.innerBody.append(el("hr"), btnWrapper);
+  return btnWrapper;
+}
+
+/**
+ * This function processes a code block element by adding a copy icon and functionality to copy the code to the clipboard.
+ * @param {HTMLElement} elem - The code block element to process.
+ * @return {void}
+ */
+function processCodeBlock(elem) {
+  const codeEl = elem.querySelector("code");
+  const iconClone = createClone("copy");
+
+  const copyText = codeEl.textContent
+    .trim()
+    .replace(/\r?\n\$ /g, " && ")
+    .replace(/^\$ /g, "");
+
+  const container = el("div", {
+    style: `display: flex; justify-content: end; border-bottom: 1px solid gainsboro; padding: 12px 24px;`,
+  });
+
+  // create 'copied' tooltip
+  const tooltipContainer = el("div", {
+    textContent: "Copied",
+    style: `position: absolute; top: -24px; right: 10px; text-shadow: none; background-color: var(--answer-option); color: var(--primary-white-hex); padding: 5px 10px; border-radius: 4px; opacity: 0; transition: opacity .2s ease-in;`,
+  });
+
+  // add elements
+  container.append(iconClone);
+  elem.append(tooltipContainer);
+  elem.prepend(container);
+
+  // add event listener to cloned icon to copy block into clipboard
+  iconClone.addEventListener("click", toClipboard(copyText, tooltipContainer));
+
+  // Mark that copy icon was added to this code block
+  elem.dataset.copyAdded = "true";
+}
+
+/**
+ * This function processes code blocks by adding a copy icon and functionality to copy the code to the clipboard.
+ * It filters out code blocks that have the 'noCopy' or 'copyAdded' data attributes.
+ * @param {NodeList} codeBlocks - A list of code block elements to process.
+ * @return {void}
+ */
+function styleLesson() {
+  CG.dom.local = {
+    body: {
+      mainContainer: document.querySelector("#lp-wrapper"),
+      innerContainer: document.querySelector("#lesson-body"),
+    },
+    lesson: {
+      body: document.querySelector("#lesson-body"),
+      innerBody: document.querySelector("#lesson-main-inner"),
+      content: {
+        codeBlocks: new Array(
+          ...document.querySelectorAll("pre:has(code):not(.language-ansi)")
+        ),
+        internalCourseWarning: document.querySelector(
+          "#internal-course-warning"
+        ),
+        links: document.querySelectorAll("sjwc-lesson-content-item a"),
+        resources: {
+          boxes: document.querySelectorAll(
+            "sjwc-lesson-content-item .resource-box"
+          ),
+          wrapper: document.querySelector(
+            "sjwc-lesson-content-item .resource-box .resource-wrapper"
+          ),
+        },
+      },
+    },
+    nav: {
+      toggleWrapper: CG.dom._cloned.nav,
+      backToCurriculumText: document.querySelector("#left-nav-return-text"),
+    },
+    footer: {
+      container: document.querySelector("#lp-footer"),
+    },
+  };
+
+  // content
+  if (CG.dom.local.nav.backToCurriculumText)
+    text(CG.dom.local.nav.backToCurriculumText, "Back to Course Overview");
+
+  // Makes lesson links pop up in new tab
+  CG.dom.local.lesson.content.links.forEach((elem) => {
+    elem.target = "_blank";
+    // we also want to set some utm_source, utm_medium here if it's a link to a certain set of domains (domain name includes chainguard.dev)
+    if (elem.href.includes("chainguard.dev")) {
+      elem.href = getCorrectURL(elem.href);
+    }
+  });
+
+  // move elements
+  CG.dom.local.body.mainContainer.append(CG.dom.local.footer.container);
+  CG.dom.local.body.innerContainer.prepend(
+    ...[
+      CG.dom.local.lesson.content.internalCourseWarning,
+      CG.dom.local.nav.toggleWrapper,
+    ].filter(Boolean)
+  );
+
+  CG.dom.local.lesson.innerBody.append(el("hr"), setupLessonNav());
 
   CG.dom.local.lesson.content.codeBlocks
     .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
-    .forEach((elem) => {
-      const codeEl = elem.querySelector("code");
-      const iconClone = createClone("copy");
-
-      const copyText = codeEl.textContent
-        .trim()
-        .replace(/\r?\n\$ /g, " && ")
-        .replace(/^\$ /g, "");
-
-      const container = el("div", {
-        style: `display: flex; justify-content: end; border-bottom: 1px solid gainsboro; padding: 12px 24px;`,
-      });
-
-      // create 'copied' tooltip
-      const tooltipContainer = el("div", {
-        textContent: "Copied",
-        style: `position: absolute; top: -24px; right: 10px; text-shadow: none; background-color: var(--answer-option); color: var(--primary-white-hex); padding: 5px 10px; border-radius: 4px; opacity: 0; transition: opacity .2s ease-in;`,
-      });
-
-      // add elements
-      container.append(iconClone);
-      elem.append(tooltipContainer);
-      elem.prepend(container);
-
-      // add event listener to cloned icon to copy block into clipboard
-      iconClone.addEventListener(
-        "click",
-        toClipboard(copyText, tooltipContainer)
-      );
-
-      // Mark that copy icon was added to this code block
-      elem.dataset.copyAdded = "true";
-    });
+    .forEach((elem) => processCodeBlock(elem));
 
   // Make section titles normal h3 elements
   Array.from(document.querySelectorAll("h3.sjwc-section-title")).map((elem) =>
@@ -2201,7 +2216,6 @@ function styleAuth() {
 
     setStyle(CG.dom.auth.rows.id_access_code, { opacity: "0.4" });
   }
-
 
   remove(CG.dom.auth.method);
 }
@@ -2349,6 +2363,10 @@ function handlePageStyling() {
  * It creates a mobile header and adds the link to both mobile and desktop headers.
  */
 function fixHeader() {
+  if (CG.page.isLesson)
+    // if a lesson page, we need to clone the nav button before we modify the header
+    CG.dom._cloned.nav = document.querySelector("#left-nav-button").cloneNode(true);
+
   const toChainguard = el("div", { id: "to-chainguard" }, [
     el("a", {
       href: getCorrectURL("https://www.chainguard.dev"),
