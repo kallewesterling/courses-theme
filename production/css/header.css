@@ -1,0 +1,238 @@
+header {
+  .back-to-catalog {
+    /* Back to catalog button */
+    display: none !important;
+  }
+
+  .header-link.login-link {
+    background-color: white;
+    border: 2px solid var(--ring);
+    border-radius: 999px;
+    padding: 10px 20px !important;
+  }
+}
+
+.headers {
+  height: 60px;
+  left: 0;
+  overflow: visible;
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+  border-bottom: 1px solid #d5d4d4 !important;
+  background-color: var(--white) !important;
+
+  #to-chainguard {
+    height: 100%;
+    float: left;
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+
+    a {
+      color: var(--ink) !important;
+    }
+  }
+
+  + #header {
+    top: 0;
+  }
+
+  + #mobile-header {
+    top: 60px;
+  }
+
+  @media screen and (max-width: 690px) {
+    height: 45px !important;
+
+    + #mobile-header {
+      top: 45px;
+    }
+  }
+}
+
+#header #header-left,
+#mobile-header {
+  overflow: hidden;
+
+  > a {
+    padding: 20px;
+    border-right: 1px solid var(--neutral-border);
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width: 690px) {
+      padding: 0px;
+    }
+  }
+}
+
+#header {
+  border-bottom: 1px solid var(--neutral-border);
+
+  .headerheight.align-vertical {
+    border-left: 1px solid var(--neutral-border);
+  }
+
+  #header-left {
+    padding-left: 0px !important;
+
+    #logo-wrapper {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      background-color: var(--blurple);
+
+      a {
+        height: 100% !important;
+        display: flex;
+        align-items: center;
+
+        svg {
+          fill: white !important;
+          height: 40%;
+        }
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      #logo-wrapper {
+        padding: 0 10px;
+      }
+    }
+  }
+
+  #header-right {
+    .search-container {
+      display: none !important;
+    }
+
+    .info-circle-wrapper {
+      border-left: 1px solid var(--neutral-border);
+      padding: 0 10px;
+      cursor: pointer;
+      float: left;
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      .info-circle {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--blurple);
+        color: white;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 1;
+      }
+    }
+
+    .login-link {
+      margin-left: 14px;
+
+      &:hover {
+        color: var(--primary-white-hex) !important;
+        background-color: var(--blurple);
+      }
+
+      span {
+        font-family: inherit;
+        color: inherit;
+      }
+    }
+  }
+
+  .info-circle-menu {
+    max-width: 200px;
+    list-style: none;
+    background: #fff;
+    border: 1px solid #5a697c;
+    box-shadow: 0 6px 12px 1px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 52px;
+    left: -999999px;
+    z-index: 200;
+
+    li {
+      display: block;
+      padding: 0.625em 0.625em;
+      font-size: 0.875em;
+      cursor: pointer;
+      line-height: 1.125em;
+      margin: 0;
+
+      &:hover {
+        background: #e7eaee;
+      }
+
+      a {
+        display: block;
+        padding: 0.625em 0.625em;
+        color: #4d4d4d;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 808px) {
+  #header .info-circle-menu {
+    position: absolute;
+    top: 38.5px;
+    left: 2.5%;
+    width: 95%;
+    max-width: none;
+  }
+
+  .headers {
+    font-size: 80% !important;
+  }
+}
+
+#mobile-header {
+  display: none;
+}
+
+@media screen and (max-width: 690px) {
+  #mobile-header {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 0;
+
+    #mobile-header-left {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      margin: 0 20px;
+    }
+    #mobile-header-right {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      margin: 0 20px;
+    }
+  }
+
+  #header #header-left > a,
+  #header #header-right #to-chainguard {
+    display: none;
+  }
+
+  body.sj-page-catalog-root,
+  body.sj-page-curriculum,
+  body.sj-page-detail-bundle.sj-page-detail-path,
+  body.sj-page-catalog.sj-page-series,
+  body.sj-page-detail-course {
+    #skilljar-content,
+    #lp-wrapper {
+      padding-top: 90px;
+    }
+  }
+}
+

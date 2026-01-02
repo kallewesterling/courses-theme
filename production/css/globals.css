@@ -39,3 +39,15 @@ a {
 label {
   color: var(--ink);
 }
+
+.button {
+  &:hover {
+    color: var(--white) !important;
+    background-color: var(--blurple);
+  }
+
+  span {
+    font-family: inherit;
+    color: inherit;
+  }
+}
