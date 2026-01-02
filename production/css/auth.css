@@ -79,7 +79,7 @@ body.sj-page-signup {
       border: 1px solid var(--border);
       border-radius: var(--radius-xl);
       box-shadow: var(--shadow);
-      padding: 28px 26px 22px;
+      padding: 28px 41px 22px;
 
       .divider {
         /* "or" divider before "login with google" button */
@@ -351,6 +351,11 @@ body.sj-page-login {
         margin-bottom: 0px;
       }
     }
+
+    .columns {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 }
 
@@ -359,8 +364,6 @@ body.sj-page-signup {
   /* ... */
 
   #signup_form {
-    padding: 0 0.9375em;
-
     #id_password2 {
       margin-bottom: 24px;
     }
