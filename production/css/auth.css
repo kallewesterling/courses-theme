@@ -249,9 +249,15 @@ body.sj-page-signup {
       transition: transform 0.05s ease, filter 0.15s ease, box-shadow 0.15s ease;
       color: var(--blurple);
       background-color: transparent;
+      transition: all 0.2s ease-in;
 
       @media screen and (max-width: 991px) {
         margin-bottom: 12px;
+      }
+
+      &:hover {
+        background-color: var(--blurple) !important;
+        color: var(--primary-white-hex) !important;
       }
 
       &:focus-visible {

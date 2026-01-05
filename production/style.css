@@ -14,16 +14,6 @@
   content: none;
 }
 
-#button-sign-in,
-#button-sign-up {
-  transition: all 0.2s ease-in;
-
-  &:hover {
-    background-color: var(--blurple) !important;
-    color: var(--primary-white-hex) !important;
-  }
-}
-
 .focus-link-v2::before,
 .course-text-content a::before,
 #profile-course-table td > a::before,
