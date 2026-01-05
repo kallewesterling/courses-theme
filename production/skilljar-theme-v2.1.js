@@ -281,7 +281,6 @@ const CONFIG = {
 
 const CG = {
   env: {
-    isOnlyPartner: false,
     isStaging: window.location.href.includes("chainguard-test"),
     hasUser: typeof skilljarUser !== "undefined",
     hasGroups: typeof skilljarUserStudentGroups !== "undefined",
@@ -321,6 +320,10 @@ const CG = {
         .map((d) => d.id)
         .includes("1axsvmzhtbb95");
     },
+
+    get isOnlyPartner() {
+      return this.isPartner && skilljarUserStudentGroups.length === 1;
+    }
   },
   page: {
     isCatalog: c(".sj-page-catalog"),
