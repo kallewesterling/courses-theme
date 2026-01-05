@@ -281,7 +281,7 @@ const CONFIG = {
 
 const CG = {
   env: {
-    isInternal: false,
+    // isInternal: false,
     isAdmin: false,
     isPartner: false,
     isOnlyPartner: false,
@@ -293,6 +293,18 @@ const CG = {
     hasCatalogPage: typeof skilljarCatalogPage !== "undefined",
     hasCourseProgress: typeof skilljarCourseProgress !== "undefined",
     hasCourseBoxes: [...A(".coursebox-container")].length > 0,
+
+    get isInternal() {
+      if (!this.hasUser) return false;
+
+      if (CG.state.user.email.includes("@chainguard.dev")) return true;
+
+      if (!this.hasGroups) return false;
+
+      return skilljarUserStudentGroups
+        .map((d) => d.id)
+        .includes("a7iai6t7agi9");
+    },
   },
   page: {
     isCatalog: c(".sj-page-catalog"),
@@ -483,7 +495,7 @@ function addCrumb(label, href, prependBase = false) {
 
 if (CG.env.hasUser) {
   if (CG.state.user.email.includes("@chainguard.dev")) {
-    CG.env.isInternal = true;
+    // CG.env.isInternal = true;
     CG.env.isPartner = true; // internal users get partner access
   }
   if (CG.state.user.email === "kalle.westerling@chainguard.dev") {
@@ -494,9 +506,9 @@ if (CG.env.hasUser) {
 }
 
 if (CG.env.hasGroups) {
-  CG.env.isInternal = skilljarUserStudentGroups
-    .map((d) => d.id)
-    .includes("a7iai6t7agi9");
+  // CG.env.isInternal = skilljarUserStudentGroups
+  //   .map((d) => d.id)
+  //   .includes("a7iai6t7agi9");
 
   CG.env.isPartner = skilljarUserStudentGroups
     .map((d) => d.id)
