@@ -1,0 +1,13 @@
+/* This is where we put legacy styles that we want to freeze and not update, but potentially remove */
+
+.module-heading {
+  /* TODO: Legacy? */
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+}
+
+.module-list {
+  /* TODO: Legacy? */
+  margin-bottom: 48px;
+}

@@ -1,5 +1,6 @@
 @import url("css/_colors.css");
 @import url("css/_animations.css");
+@import url("css/_freezebox.css");
 @import url("css/globals.css");
 @import url("css/header.css");
 @import url("css/auth.css");
@@ -29,15 +30,6 @@
   content: none;
 }
 
-.module-heading {
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: -0.01em;
-}
-
-.module-list {
-  margin-bottom: 48px;
-}
 
 .video-player.flex-video.widescreen {
   padding: 0;
@@ -54,21 +46,6 @@
 
 .lp-footer {
   position: relative;
-}
-
-.sj-heading-paragraph {
-  display: none;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-}
-.sj-floater-text {
-  display: none;
-  font-family: Roobert;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 23.7px;
-  color: #7545fb;
 }
 
 /* Breadcrumb styling */

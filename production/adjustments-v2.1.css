@@ -41,11 +41,19 @@ body.sj-page-detail-course {
 
         .sj-floater-text {
           display: block !important;
+          font-family: Roobert;
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 23.7px;
+          color: #7545fb;
         }
 
         .sj-heading-paragraph {
           max-width: 80%;
           color: black !important;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 24px;
         }
 
         h1.break-word {
@@ -209,6 +217,11 @@ body.sj-page-catalog.sj-page-series {
 
         .sj-floater-text {
           display: block;
+          font-family: Roobert;
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 23.7px;
+          color: #7545fb;
         }
 
         h1.break-word {
@@ -224,6 +237,9 @@ body.sj-page-catalog.sj-page-series {
           color: var(--primary-white-hex);
           display: block;
           margin: 0 0 24px 0;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 24px;
         }
 
         .sj-course-info-wrapper {

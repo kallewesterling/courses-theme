@@ -80,3 +80,9 @@ label {
     background-color: #fef6ff9c !important;
   }
 }
+
+.sj-heading-paragraph,
+.sj-floater-text {
+  /* TODO: Legacy, but still remains hardcoded so need to be here for now. */
+  display: none;
+}
