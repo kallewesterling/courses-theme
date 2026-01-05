@@ -446,6 +446,20 @@ const CG = {
       return (slug) => this.courses.completed.includes(slug);
     },
   },
+  el: {
+    floaterText: el("div", {
+      className: "sj-floater-text",
+      text: "Course",
+    }),
+    headingParagraph: el("div", {
+      className: "sj-heading-paragraph",
+      text: skilljarCourse
+        ? skilljarCourse.short_description
+        : skilljarCourseSeries
+        ? skilljarCourseSeries.short_description
+        : "",
+    }),
+  },
   dom: {
     body: document.body,
     bodyHeader: Q("#header"),
@@ -1752,12 +1766,14 @@ function styleCourseDetails() {
   };
 
   // Add course order
-  [...CG.dom.header.courseInfo.children]
+  let courseInfo = CG.dom.header.courseInfo || CG.el.headingParagraph;
+
+  [...courseInfo.children]
     .filter((elem) => elem.textContent.search(/Course \d+ of \d+ in/) !== -1)
     .forEach((elem) => elem.classList.add("course-order"));
 
   // Add path registration info
-  [...CG.dom.header.courseInfo.children]
+  [...courseInfo.children]
     .filter(
       (elem) =>
         elem.textContent.search(
@@ -1770,7 +1786,7 @@ function styleCourseDetails() {
   if (CG.dom.header.ctaBtnWrapper) {
     btnHref = CG.dom.header.registerBtn.href;
   } else {
-    const links = [...A("p", CG.dom.header.courseInfo)]
+    const links = [...A("p", courseInfo)]
       .filter((d) => d.textContent.toLowerCase().includes("learning path"))
       .map((p) => [...A("a", p)].filter((a) => a.innerHTML === "learning path"))
       .flat();
@@ -1810,10 +1826,6 @@ function styleCourseDetails() {
  * This function applies general styling to the path course details page.
  */
 function stylePathCourseDetails() {
-  // set content
-  text(CG.dom.header.floaterText, "Learning Path");
-  text(CG.dom.header.courseInfo, skilljarCourseSeries.short_description);
-
   // make path sections
   tryPathSections();
 }
@@ -2258,7 +2270,6 @@ function styleCurriculumPage() {
 
   CG.data.curriculumElements = getCurriculumElements();
   CG.dom.curriculumContainer.replaceChildren(...CG.data.curriculumElements);
-  text(CG.dom.header.courseInfo, skilljarCourse.short_description);
 
   // move elements
   CG.dom.courseContainer.append(...[CG.dom.local.card.details].filter(Boolean));
@@ -2304,9 +2315,9 @@ function handlePageStyling() {
 
       CG.dom.header.wrapper.append(
         ...[
-          CG.dom.header.floaterText,
+          CG.dom.header.floaterText || CG.el.floaterText,
           CG.dom.header.mainHeading,
-          CG.dom.header.courseInfo,
+          CG.dom.header.courseInfo || CG.el.headingParagraph,
           CG.dom.header.ctaBtnWrapper,
         ].filter(Boolean)
       );
