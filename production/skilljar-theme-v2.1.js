@@ -1524,16 +1524,17 @@ function getCurriculumElements(curriculumParentContainer = null) {
 
     let headingElement;
     if (d.heading) {
-      headingElement = el("div", {
+      headingElement = el("h3", {
         className: "curriculum-header no-select",
         textContent: lessons.length > 1 ? d.heading : "Lessons",
       });
     } else if (!headingElement && lessons.length === 1) {
-      headingElement = el("a", {
-        className: "curriculum-header no-select",
-        textContent: lessons[0].text, // use first lesson as header if no section heading and only one lesson
-        href: lessons[0].href,
-      });
+      headingElement = el("h3", { className: "curriculum-header no-select" }, [
+        el("a", {
+          textContent: lessons[0].text, // use first lesson as header if no section heading and only one lesson
+          href: lessons[0].href,
+        }),
+      ]);
 
       lessons.shift(); // remove the first lesson since it's now the header
     } else {
