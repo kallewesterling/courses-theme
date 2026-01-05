@@ -1267,76 +1267,74 @@ function makeSections(
   const reg = (slug) => (CG.state.isRegistered(slug) ? "in-progress" : "");
   const compl = (slug) => (CG.state.isCompleted(slug) ? "completed" : "");
 
-  sections.forEach((section) => {
-    const sectionElement = el(
+  sections.forEach((s) => {
+    const card = (link) => {
+      const r = reg(link.slug);
+      const c = compl(link.slug);
+      const className = `${c} ${r}`;
+      const text = c ? "Completed" : r ? "In Progress" : "";
+      const pill =
+        c || r
+          ? el("span", { className: `pill ${className}`, text })
+          : undefined;
+
+      return el(
+        "a",
+        {
+          href: `${baseURL}/${link.slug}`,
+          title: link.isCourse ? "Start course" : "Start path",
+        },
+        [
+          el("article", { className }, [
+            el(
+              "div",
+              { className: "inner" },
+              [
+                pill,
+                el("div", { className: "icon" }, [createClone(link.icon)]),
+                el("h5", { text: link.isCourse ? "Course" : "Learning Path" }, [
+                  el("span", { textContent: " | Free" }),
+                ]),
+                el("h3", { text: link.title }),
+                el("p", { text: link.description }),
+                link.hasBadge && !c
+                  ? el("span", {
+                      className: "pill badged",
+                      text: "Get a Badge",
+                    })
+                  : undefined,
+              ].filter(Boolean)
+            ),
+          ]),
+        ]
+      );
+    };
+
+    const section = el(
       "section",
       {
-        className: `featured-courses ${section.classNames?.join(" ") || ""}`,
+        className: `featured-courses ${s.classNames?.join(" ") || ""}`,
       },
       [
         el("div", { className: "grid" }, [
           // Intro
           el("div", { className: "intro" }, [
-            el("h2", { className: "eyebrow", text: section.eyebrow }),
-            el("p", { className: "headline", text: section.title }),
-            el("p", { className: "subhead", text: section.description }),
+            el("h2", { className: "eyebrow", text: s.eyebrow }),
+            el("p", { className: "headline", text: s.title }),
+            el("p", { className: "subhead", text: s.description }),
           ]),
 
           // Courses grid
           el(
             "div",
             { className: "cards" },
-            section.links.map((link) => {
-              const r = reg(link.slug);
-              const c = compl(link.slug);
-              const hasPill = c || r;
-
-              return el(
-                "a",
-                {
-                  href: `${baseURL}/${link.slug}`,
-                  title: link.isCourse ? "Start course" : "Start path",
-                },
-                [
-                  el("article", { className: `${c} ${r}` }, [
-                    el(
-                      "div",
-                      { className: "inner" },
-                      [
-                        hasPill
-                          ? el("span", {
-                              className: `pill ${c} ${r}`,
-                              text: c ? "Completed" : r ? "In Progress" : "",
-                            })
-                          : undefined,
-                        el("div", { className: "icon" }, [
-                          createClone(link.icon),
-                        ]),
-                        el(
-                          "h5",
-                          { text: link.isCourse ? "Course" : "Learning Path" },
-                          [el("span", { textContent: " | Free" })]
-                        ),
-                        el("h3", { text: link.title }),
-                        el("p", { text: link.description }),
-                        link.hasBadge && !c
-                          ? el("span", {
-                              className: "pill badged",
-                              text: "Get a Badge",
-                            })
-                          : undefined,
-                      ].filter(Boolean)
-                    ),
-                  ]),
-                ]
-              );
-            })
+            s.links.map((link) => card(link))
           ),
         ]),
       ].filter(Boolean)
     );
 
-    Q(parentSelector).append(sectionElement);
+    Q(parentSelector).append(section);
   });
 }
 
