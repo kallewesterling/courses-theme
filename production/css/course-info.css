@@ -24,6 +24,10 @@ body.sj-page-curriculum {
         /* Special case: header when no lessons */
         font-weight: inherit;
         padding: 0;
+
+        &:hover {
+          background-color: none;
+        }
       }
     }
 
