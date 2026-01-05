@@ -3,7 +3,7 @@
 body.sj-page-detail-course,
 body.sj-page-curriculum,
 body.sj-page-catalog {
-  #breadcrumb {
+  #breadcrumbs {
     margin: 20px auto;
     justify-content: start;
 

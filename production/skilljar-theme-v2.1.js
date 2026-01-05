@@ -2297,7 +2297,7 @@ function handlePageStyling() {
 
     // make breadcrumbs
     const breadcrumb = el("div", {
-      id: "breadcrumb",
+      id: "breadcrumbs",
       className: CG.page.isPageCatalog ? "row dp-row-flex-v2" : "",
     });
 
