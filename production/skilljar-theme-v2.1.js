@@ -281,9 +281,6 @@ const CONFIG = {
 
 const CG = {
   env: {
-    // isInternal: false,
-    isAdmin: false,
-    isPartner: false,
     isOnlyPartner: false,
     isStaging: window.location.href.includes("chainguard-test"),
     hasUser: typeof skilljarUser !== "undefined",
@@ -293,6 +290,12 @@ const CG = {
     hasCatalogPage: typeof skilljarCatalogPage !== "undefined",
     hasCourseProgress: typeof skilljarCourseProgress !== "undefined",
     hasCourseBoxes: [...A(".coursebox-container")].length > 0,
+
+    get isAdmin() {
+      if (!this.hasUser) return false;
+
+      return CG.state.user.email === "kalle.westerling@chainguard.dev";
+    },
 
     get isInternal() {
       if (!this.hasUser) return false;
@@ -304,6 +307,19 @@ const CG = {
       return skilljarUserStudentGroups
         .map((d) => d.id)
         .includes("a7iai6t7agi9");
+    },
+
+    get isPartner() {
+      if (!this.hasUser) return false;
+
+      // all internal users get partner access
+      if (CG.state.user.email.includes("@chainguard.dev")) return true;
+
+      if (!this.hasGroups) return false;
+
+      return skilljarUserStudentGroups
+        .map((d) => d.id)
+        .includes("1axsvmzhtbb95");
     },
   },
   page: {
@@ -494,25 +510,20 @@ function addCrumb(label, href, prependBase = false) {
 }
 
 if (CG.env.hasUser) {
-  if (CG.state.user.email.includes("@chainguard.dev")) {
-    // CG.env.isInternal = true;
-    CG.env.isPartner = true; // internal users get partner access
-  }
+  // if (CG.state.user.email.includes("@chainguard.dev")) {
+    // CG.env.isPartner = true; // internal users get partner access
+  // }
   if (CG.state.user.email === "kalle.westerling@chainguard.dev") {
-    CG.env.isAdmin = true;
+    // CG.env.isAdmin = true;
     CG.state.domain = CONFIG.domains.stage;
     CG.state.baseURL = `https://${CG.state.domain.url}`;
   }
 }
 
 if (CG.env.hasGroups) {
-  // CG.env.isInternal = skilljarUserStudentGroups
+  // CG.env.isPartner = skilljarUserStudentGroups
   //   .map((d) => d.id)
-  //   .includes("a7iai6t7agi9");
-
-  CG.env.isPartner = skilljarUserStudentGroups
-    .map((d) => d.id)
-    .includes("1axsvmzhtbb95");
+  //   .includes("1axsvmzhtbb95");
 
   if (CG.env.isPartner && skilljarUserStudentGroups.length === 1) {
     CG.env.isOnlyPartner = true;
