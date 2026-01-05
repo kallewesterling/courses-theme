@@ -1,0 +1,26 @@
+.sj-page-error-404 {
+  .row.padded-side-bottom {
+    flex-grow: 1;
+
+    .small-12 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 50vh;
+    }
+  }
+
+  .message {
+    hr {
+      width: 100% !important;
+    }
+
+    .sj-text-page-not-found-explanation {
+      margin-top: 5px !important;
+    }
+  }
+
+  footer {
+    width: 100%;
+  }
+}

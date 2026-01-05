@@ -261,7 +261,7 @@ const CG = {
   page: {
     isCatalog: c(".sj-page-catalog"),
     isLanding: c(".sj-page-catalog-root"),
-    isCurriculum: c(".sj-page-curriculum"),
+    isSignedUp: c(".sj-page-curriculum"),
     isCourseDetails: c(".sj-page-detail-course"),
     isLesson: c(".sj-page-lesson"),
     isLogin: c(".sj-page-login"),
@@ -277,7 +277,7 @@ const CG = {
       ].find((d) => window.location.href.includes(d)) || false,
 
     get isCoursePage() {
-      return this.isPageDetail || this.isCourseDetails || this.isCurriculum;
+      return this.isPageDetail || this.isCourseDetails || this.isSignedUp;
     },
   },
   state: {
@@ -2298,7 +2298,7 @@ const pageHandlers = [
   { test: () => CG.page.isLogin || CG.page.isSignup, handler: styleAuth },
   { test: () => CG.page.isCourseDetails, handler: styleCourseDetails },
   {
-    test: () => CG.page.isCurriculum,
+    test: () => CG.page.isSignedUp,
     handler: styleCurriculumPage,
   },
   { test: () => CG.page.isPageDetail, handler: stylePathCourseDetails },
@@ -2325,7 +2325,7 @@ function handlePageStyling() {
   }
 
   if (CG.page.isCoursePage || CG.page.isPageCatalog) {
-    // isCoursePage = isPageDetail || isCourseDetails || isCurriculum
+    // isCoursePage = isPageDetail || isCourseDetails || isSignedUp
 
     // make breadcrumbs
     const breadcrumb = el("div", {

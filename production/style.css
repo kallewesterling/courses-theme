@@ -3,12 +3,11 @@
 @import url("css/globals.css");
 @import url("css/header.css");
 @import url("css/auth.css");
+@import url("css/course-info.css");
 @import url("css/lessons.css");
+@import url("css/404.css");
 @import url("css/footer.css");
-
-#skilljar-content .top-row-grey {
-  background-color: #fef6ff9c !important;
-}
+@import url("css/completion.css");
 
 .expandable-view
   a.coursebox-container[title="Claim your Container Crusader Credential"]::after {
@@ -180,54 +179,6 @@
   color: #7545fb;
 }
 
-.sj-page-catalog {
-  .coursebox-container {
-    width: calc(50% - 24px) !important;
-    margin: 0;
-  }
-
-  #catalog-content #catalog-courses {
-    gap: 24px;
-    justify-content: start;
-  }
-
-  .badge-box {
-    font-weight: 800 !important;
-    background-image: linear-gradient(
-      315deg,
-      rgb(253, 225, 254),
-      rgb(245, 246, 254) 72%
-    ) !important;
-    padding: 12px 12px 12px 24px !important;
-    margin-top: 0 !important;
-    font-size: 1em !important;
-    text-transform: uppercase !important;
-    color: #c0a200 !important;
-    left: 0 !important;
-    top: 0 !important;
-    position: absolute !important;
-    z-index: 1 !important;
-    width: 100% !important;
-    box-shadow: 0 0 7px #0000003d !important;
-  }
-
-  .sj-course-ribbon-complete {
-    color: white !important;
-  }
-
-  .catalog-center-width {
-    width: 100% !important;
-    min-height: auto !important;
-    padding: 0;
-  }
-
-  @media screen and (max-width: 600px) {
-    .coursebox-container {
-      width: 100% !important;
-    }
-  }
-}
-
 /* Breadcrumb styling */
 #breadcrumb {
   margin: 20px auto;
@@ -298,33 +249,6 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-  }
-}
-
-.sj-page-error-404 {
-  .row.padded-side-bottom {
-    flex-grow: 1;
-
-    .small-12 {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 50vh;
-    }
-  }
-
-  .message {
-    hr {
-      width: 100% !important;
-    }
-
-    .sj-text-page-not-found-explanation {
-      margin-top: 5px !important;
-    }
-  }
-
-  footer {
-    width: 100%;
   }
 }
 

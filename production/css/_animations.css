@@ -7,3 +7,15 @@
     opacity: 1;
   }
 }
+
+/* Motion/accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .card__link {
+    transition: none;
+  }
+
+  #completion-popup {
+    transition: none;
+  }
+}
