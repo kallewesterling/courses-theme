@@ -105,7 +105,7 @@ body.sj-page-curriculum {
     }
 
     a {
-      background-color: var(--blurple) !important;
+      /* background-color: var(--blurple) !important;
       color: var(--primary-white-hex) !important;
       padding: 12px 20px !important;
       text-align: center !important;
@@ -128,7 +128,8 @@ body.sj-page-curriculum {
       &:active {
         background-color: var(--blurple);
         color: var(--primary-white-hex);
-      }
+      } */
+      margin: 0 20px 1.25em;
     }
 
     .course-details-card-link.completed,
