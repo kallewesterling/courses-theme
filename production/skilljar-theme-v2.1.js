@@ -1189,7 +1189,8 @@ function remove(selector) {
 
 /**
  * Renders a breadcrumb navigation element.
- * @param {HTMLElement} targetElement - The target element to replace with the breadcrumb navigation.
+ * @param {HTMLElement} [targetElement] - The target element to render the breadcrumbs into. If not provided, a new div will be created.
+ * @return {HTMLElement} The rendered breadcrumb navigation element.
  * @example
  * renderBreadcrumbs('#breadcrumb-container');
  */
@@ -1236,6 +1237,8 @@ function renderBreadcrumbs(targetElement) {
   );
 
   targetElement?.replaceChildren(nav);
+
+  return targetElement;
 }
 
 /**
@@ -2298,19 +2301,13 @@ function handlePageStyling() {
   }
 
   if (CG.page.isCoursePage || CG.page.isPageCatalog) {
-    // isCoursePage = isPageDetail || isCourseDetails || isSignedUp
-
     // make breadcrumbs
-    renderBreadcrumbs();
-
-    if (CG.page.isCoursePage) {
-      CG.dom.header.wrapper.prepend(breadcrumb);
-    } else if (CG.page.isPageCatalog) {
-      document.querySelector(".top-row-grey").prepend(breadcrumb);
-    }
+    const breadcrumbs = renderBreadcrumbs();
 
     // append elements to header
     if (CG.page.isCoursePage) {
+      CG.dom.header.wrapper.prepend(breadcrumbs);
+
       CG.dom.header.wrapper.append(
         ...[
           CG.dom.header.floaterText,
@@ -2319,6 +2316,8 @@ function handlePageStyling() {
           CG.dom.header.ctaBtnWrapper,
         ].filter(Boolean)
       );
+    } else if (CG.page.isPageCatalog) {
+      document.querySelector(".top-row-grey").prepend(breadcrumbs);
     }
   }
 
