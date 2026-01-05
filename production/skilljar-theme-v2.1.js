@@ -1370,7 +1370,9 @@ function makeSections(
         el("div", { className: "grid" }, [
           // Intro
           el("div", { className: "intro" }, [
-            el("h2", { className: "eyebrow", text: s.eyebrow }),
+            s.eyebrow
+              ? el("h2", { className: "eyebrow", text: s.eyebrow })
+              : null,
             el("p", { className: "headline", text: s.title }),
             el("p", { className: "subhead", text: s.description }),
           ]),
