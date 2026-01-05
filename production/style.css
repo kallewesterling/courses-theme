@@ -10,6 +10,7 @@
 @import url("css/404.css");
 @import url("css/footer.css");
 @import url("css/completion.css");
+@import url("css/adjustments.css");
 
 .expandable-view
   a.coursebox-container[title="Claim your Container Crusader Credential"]::after {
