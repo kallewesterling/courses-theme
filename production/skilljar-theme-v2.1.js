@@ -1510,7 +1510,8 @@ function getCurriculumElements(curriculumParentContainer = null) {
       const text = l[2],
         icon = l[4],
         href = l[3] || "#";
-      el(
+
+      return el(
         "a",
         {
           className: "curriculum-lesson no-select",
