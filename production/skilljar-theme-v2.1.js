@@ -1516,12 +1516,12 @@ function createCourseDetailsCard(
   }
 ) {
   // Create main container
-  const card = el("div", { className: "course-details-card" }, [
-    el("div", {
-      className: "course-details-card-header no-select",
+  const card = el("div", { className: "course-card" }, [
+    el("h3", {
+      className: "no-select",
       textContent: "Course Details",
     }),
-    el("ul", { className: "course-details-card-list no-select" }, [
+    el("ul", { className: "no-select" }, [
       el("li", {}, [el("p", { text: details.audience })]),
       el("li", {}, [el("p", { text: details.time })]),
       el("li", {}, [el("p", { text: details.lessons + " Lessons" })]),
@@ -1533,7 +1533,7 @@ function createCourseDetailsCard(
     href: options.completed ? "#" : options.btnHref,
     textContent: options.completed ? "🎉 Completed" : options.btnText,
     className: `button ${
-      options.completed ? "completed" : "" // course-details-card-link
+      options.completed ? "completed" : ""
     }`,
   });
 
