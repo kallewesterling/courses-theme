@@ -2335,10 +2335,10 @@ function fixHeader() {
   };
 }
 
-/**
-  This event is fired when the DOM is fully loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading.
-  It is a good place to run scripts that need to manipulate the DOM or set up event listeners.
-*/
+document.addEventListener("load", () => {
+  logger.info("CG Desktop Script Loaded (load event)");
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   logger.info("CG Desktop Script Loaded");
 
