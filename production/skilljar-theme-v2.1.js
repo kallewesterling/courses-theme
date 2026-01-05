@@ -356,11 +356,11 @@ const CG = {
     },
 
     get isRegistered() {
-      return (slug) => this.registered.includes(slug);
+      return (slug) => this.courses.registered.includes(slug);
     },
 
     get isCompleted() {
-      return (slug) => this.completed.includes(slug);
+      return (slug) => this.courses.completed.includes(slug);
     },
   },
   dom: {
