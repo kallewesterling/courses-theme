@@ -1,68 +1,70 @@
 body.sj-page-detail-course,
 body.sj-page-curriculum {
-  .curriculum-wrapper {
-    /* Each section of the curriculum has it's own wrapper */
-    border-radius: 8px;
-    margin-bottom: 48px;
-    padding: 0px;
-    border: 2px solid var(--blurple);
+  #curriculumSection {
+    .curriculum-wrapper {
+      /* Each section of the curriculum has it's own wrapper */
+      border-radius: 8px;
+      margin-bottom: 28px;
+      padding: 0px;
+      border: 2px solid var(--blurple);
 
-    h3 {
-      /* Section heading */
-      display: flex;
-      align-items: center;
-      padding: 24px;
-      margin: 0px;
-      font-family: Gellix;
-      color: var(--ink) !important;
-      font-size: 16px !important;
-      font-weight: 700 !important;
-      line-height: 125%;
-      border-bottom: 2px solid var(--blurple);
+      h3 {
+        /* Section heading */
+        display: flex;
+        align-items: center;
+        padding: 24px;
+        margin: 0px;
+        font-family: Gellix;
+        color: var(--ink) !important;
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        line-height: 125%;
+        border-bottom: 2px solid var(--blurple);
 
-      > a {
-        /* Special case: header when no lessons */
-        font-weight: inherit;
-        padding: 0;
+        > a {
+          /* Special case: header when no lessons */
+          font-weight: inherit;
+          padding: 0;
 
-        &:hover {
-          background-color: none;
+          &:hover {
+            background-color: none;
+          }
         }
       }
-    }
 
-    a {
-      /* Section lesson */
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: flex-end;
-      align-items: center;
-      font-family: inherit;
-      color: var(--ink) !important;
-      padding: 24px;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 150%;
-      border-bottom: 2px solid var(--blurple);
-      height: 100%;
+      a {
+        /* Section lesson */
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        align-items: center;
+        font-family: inherit;
+        color: var(--ink) !important;
+        padding: 24px;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 150%;
+        border-bottom: 2px solid var(--blurple);
+        height: 100%;
 
-      .fa-check-circle {
-        color: green !important;
-      }
+        .fa-check-circle {
+          color: green !important;
+        }
 
-      &:hover {
-        background-color: var(--gradient-end);
-      }
+        &:hover {
+          background-color: var(--gradient-end);
+        }
 
-      &:last-child {
-        border-bottom: 0;
-        border-radius: 8px;
-      }
+        &:last-child {
+          border-bottom: 0;
+          border-radius: 8px;
+        }
 
-      i {
-        /* TODO: is this legacy? */
-        margin-right: 12px;
-        color: var(--blurple);
+        i {
+          /* TODO: is this legacy? */
+          margin-right: 12px;
+          color: var(--blurple);
+        }
       }
     }
   }
