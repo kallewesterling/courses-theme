@@ -1288,7 +1288,7 @@ function renderBreadcrumbs(targetElement) {
               className: "crumb",
               text,
               href: href === "#" ? undefined : href,
-              ariaCurrent: isLast ? "page" : undefined,
+              "aria-current": isLast ? "page" : undefined,
             }),
           ]);
         })
