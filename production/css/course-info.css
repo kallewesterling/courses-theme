@@ -19,6 +19,12 @@ body.sj-page-curriculum {
       font-weight: 700 !important;
       line-height: 125%;
       border-bottom: 2px solid var(--blurple);
+
+      > a {
+        /* Special case: header when no lessons */
+        font-weight: inherit;
+        padding: 0;
+      }
     }
 
     a {
