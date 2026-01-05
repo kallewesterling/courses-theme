@@ -28,7 +28,7 @@ body.sj-page-curriculum {
           font-size: 18px !important;
 
           &:hover {
-            background-color: none;
+            background-color: unset;
           }
         }
       }
