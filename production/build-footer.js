@@ -4,6 +4,11 @@ const UTM = {
   utm_campaign: "dev-enablement",
 };
 
+/**
+ * Returns the correct URL with UTM parameters appended.
+ * @param {string} link - The base URL to which UTM parameters will be added.
+ * @returns {string} - The URL with UTM parameters.
+ */
 function getCorrectURL(link) {
   let url = new URL(link);
 
@@ -18,6 +23,21 @@ function getCorrectURL(link) {
   return url.toString();
 }
 
+/**
+ * Creates a DOM element with specified tag, properties, and children.
+ * Supports event listeners by using "onEventName" properties (e.g., "onclick").
+ * Supports both HTML and SVG elements.
+ * @param {string} tag - The HTML/SVG tag name.
+ * @param {Object} props - An object containing properties and attributes for the element.
+ * @param {Array} children - An array of child nodes to append to the element.
+ * @returns {HTMLElement|SVGElement|null} - The created DOM element or null if no tag is provided.
+ * 
+ * @example
+ * const button = el('button', { className: 'btn', onclick: () => alert('Clicked!') }, [
+ *  el('span', { textContent: 'Click Me' })
+ * ]);
+ * document.body.appendChild(button);
+ */
 const el = (tag, props = {}, children = []) => {
   if (!tag) return null;
   const svgTags =
@@ -54,6 +74,9 @@ const el = (tag, props = {}, children = []) => {
   return n;
 };
 
+/**
+ * Data for building the footer section of the webpage.
+ */
 const footerData = {
   logo: {
     href: "https://www.chainguard.dev/?utm_source=courses",
@@ -227,6 +250,12 @@ const footerData = {
   ],
 };
 
+/**
+ * Generates the footer HTML and appends it to the specified container.
+ * @param {Object} data - The footer data object.
+ * @param {string} containerId - The ID of the container to append the footer to.
+ * @returns {void}
+ */
 function generateFooter(data, containerId = "footer-container") {
   const container = document.getElementById(containerId);
   if (!container) return;
