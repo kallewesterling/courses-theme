@@ -94,14 +94,14 @@ const placeholder = (element, value) => {
  * @param {string} selector - The CSS selector to query.
  * @returns {HTMLElement|null} The first matching element or null if not found.
  */
-const Q = (selector) => document.querySelector(selector);
+const Q = (selector, root = document) => root.querySelector(selector);
 
 /**
  * Shortcut to querySelectorAll function.
  * @param {string} selector - The CSS selector to query.
  * @returns {NodeListOf<HTMLElement>} A list of matching elements.
  */
-const A = (selector) => document.querySelectorAll(selector);
+const A = (selector, root = document) => root.querySelectorAll(selector);
 
 /**
  * Shortcut to verifying the existence of an element.
