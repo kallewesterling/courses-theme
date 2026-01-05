@@ -1531,9 +1531,14 @@ function getCurriculumElements(curriculumParentContainer = null) {
               className: "curriculum-header no-select",
               textContent: d.heading,
             })
-          : el("div", {
+          : lessons.length > 1
+          ? el("div", {
               className: "curriculum-header no-select",
               textContent: "Lessons",
+            })
+          : el("div", {
+              className: "curriculum-header no-select",
+              textContent: lessons.pop(0).text, // use first lesson as header if no section heading and only one lesson
             }),
         ...lessons,
       ].filter(Boolean)
