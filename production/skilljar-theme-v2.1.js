@@ -74,7 +74,7 @@ const placeholder = (element, value) => {
 const Q = (selector) => document.querySelector(selector);
 const A = (selector) => document.querySelectorAll(selector);
 
-const c = (selector) => (Q(selector) ? true : false);
+const c = (selector) => Q(selector) || false;
 
 const CONFIG = {
   logo: el(
