@@ -17,3 +17,18 @@
   padding: 0;
   border-radius: 8px;
 }
+
+.sj-heading-paragraph,
+.sj-floater-text {
+  /* TODO: Legacy, but still remains hardcoded so need to be here for now. */
+  display: none;
+}
+
+.expandable-view
+  a.coursebox-container[title="Claim your Container Crusader Credential"]::after {
+  content: none;
+}
+
+.button.tiny[title="Download certificate PDF"] {
+  display: none;
+}

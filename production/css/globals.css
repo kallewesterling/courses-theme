@@ -81,8 +81,16 @@ label {
   }
 }
 
-.sj-heading-paragraph,
-.sj-floater-text {
-  /* TODO: Legacy, but still remains hardcoded so need to be here for now. */
-  display: none;
+svg.clone-icon {
+  display: block;
+  fill: var(--answer-option);
+
+  &.copy-icon {
+    fill: var(--primary-blue-hex);
+    cursor: pointer;
+  }
+
+  &.checkbox-icon {
+    flex-shrink: 0;
+  }
 }
