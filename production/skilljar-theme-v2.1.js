@@ -452,7 +452,7 @@ const CG = {
       text: "Course",
     }),
 
-    get descriptionParagraph() {
+    get shortDescription() {
       if (!CG.env.hasCourse && !CG.env.hasCourseSeries) return "";
 
       if (CG.env.hasCourseSeries) return skilljarCourseSeries.short_description;
@@ -463,8 +463,10 @@ const CG = {
     },
 
     get headingParagraph() {
-      const text = this.descriptionParagraph;
-      return el("div", { className: "sj-heading-paragraph", text });
+      return el("div", {
+        className: "sj-heading-paragraph",
+        text: this.shortDescription,
+      });
     },
   },
   dom: {
