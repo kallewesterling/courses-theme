@@ -201,7 +201,7 @@
     display: flex !important;
     justify-content: space-between;
     align-items: center;
-    z-index: 0;
+    z-index: 1;
 
     #mobile-header-left {
       height: 100%;
@@ -209,6 +209,7 @@
       align-items: center;
       margin: 0 20px;
     }
+
     #mobile-header-right {
       height: 100%;
       display: flex;
