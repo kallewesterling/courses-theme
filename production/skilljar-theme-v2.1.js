@@ -51,8 +51,20 @@ const logger = {
  */
 const hide = (element) => setStyle(element, { display: "none !important" });
 
+/**
+ * This function shows the body element by removing any display style overrides.
+ * It sets the display style to undefined, allowing it to revert to its default behavior.
+ * @returns {void}
+ */
 const showBody = () => setStyle(CG.dom.body, { display: undefined });
 
+/**
+ * Sets the text content of an HTML element.
+ * @param {HTMLElement} element - The target HTML element.
+ * @param {string} value - The text content to set.
+ * @param {string} [auto=""] - The fallback text content if value is undefined or null.
+ * @returns {void}
+ */
 const text = (element, value, auto = "") => {
   if (element && value !== undefined && value !== null) {
     element.textContent = value;
@@ -63,6 +75,12 @@ const text = (element, value, auto = "") => {
   }
 };
 
+/**
+ * Sets the placeholder attribute of an HTML element.
+ * @param {HTMLElement} element - The target HTML element.
+ * @param {string} value - The placeholder text to set.
+ * @returns {void}
+ */
 const placeholder = (element, value) => {
   if (element && value !== undefined && value !== null) {
     element.setAttribute("placeholder", value);
@@ -71,9 +89,25 @@ const placeholder = (element, value) => {
   }
 };
 
+/**
+ * Shortcut to querySelector function.
+ * @param {string} selector - The CSS selector to query.
+ * @returns {HTMLElement|null} The first matching element or null if not found.
+ */
 const Q = (selector) => document.querySelector(selector);
+
+/**
+ * Shortcut to querySelectorAll function.
+ * @param {string} selector - The CSS selector to query.
+ * @returns {NodeListOf<HTMLElement>} A list of matching elements.
+ */
 const A = (selector) => document.querySelectorAll(selector);
 
+/**
+ * Shortcut to verifying the existence of an element.
+ * @param {string} selector - The CSS selector to query.
+ * @returns {HTMLElement|false} The first matching element or false if not found.
+ */
 const c = (selector) => Q(selector) || false;
 
 const CONFIG = {
