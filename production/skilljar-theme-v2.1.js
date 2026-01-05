@@ -451,14 +451,21 @@ const CG = {
       className: "sj-floater-text",
       text: "Course",
     }),
-    headingParagraph: el("div", {
-      className: "sj-heading-paragraph",
-      text: skilljarCourse
-        ? skilljarCourse.short_description
-        : skilljarCourseSeries
-        ? skilljarCourseSeries.short_description
-        : "",
-    }),
+
+    get descriptionParagraph() {
+      if (!CG.env.hasCourse && !CG.env.hasCourseSeries) return "";
+
+      if (CG.env.hasCourseSeries) return skilljarCourseSeries.short_description;
+
+      if (CG.env.hasCourse) return skilljarCourse.short_description;
+
+      return "";
+    },
+
+    get headingParagraph() {
+      const text = this.descriptionParagraph;
+      return el("div", { className: "sj-heading-paragraph", text });
+    },
   },
   dom: {
     body: document.body,
