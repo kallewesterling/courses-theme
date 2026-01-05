@@ -71,7 +71,10 @@ const text = (element, value, auto = "") => {
   } else if (element) {
     element.textContent = auto;
   } else {
-    logger.warn("text(): Element is null or undefined.");
+    logger.warn(
+      "text(): Element is null or undefined. Tried to set text to:",
+      value
+    );
   }
 };
 
@@ -85,7 +88,10 @@ const placeholder = (element, value) => {
   if (element && value !== undefined && value !== null) {
     element.setAttribute("placeholder", value);
   } else {
-    logger.warn("placeholder(): Element is null or undefined.");
+    logger.warn(
+      "placeholder(): Element is null or undefined. Tried to set placeholder to:",
+      value
+    );
   }
 };
 
@@ -346,6 +352,14 @@ const CG = {
     get isCoursePage() {
       return this.isPageDetail || this.isCourseDetails || this.isSignedUp;
     },
+
+    get inPartnerPath() {
+      return (
+        Object.values(CONFIG.partners)
+          .map((a) => a.id === CG.state.course.path.id)
+          .filter(Boolean).length > 0
+      );
+    },
   },
   state: {
     crumbs: [],
@@ -549,11 +563,6 @@ function addCrumb(label, href, prependBase = false) {
   if (prependBase) href = `${CG.state.baseURL}${href}`;
   CG.state.crumbs.push([label, href]);
 }
-
-CG.page.inPartnerPath =
-  Object.values(CONFIG.partners)
-    .map((a) => a.id === CG.state.course.path.id)
-    .filter(Boolean).length > 0;
 
 pathSections = {
   home: [
