@@ -8,9 +8,6 @@ body.sj-page-catalog {
     justify-content: start;
 
     .breadcrumb {
-      --ink: #14003d;
-      --muted: #6b6a78;
-      --border: #d8d5e0;
       background: #fff;
       border: 1px solid var(--border);
       border-radius: 14px;
@@ -20,7 +17,7 @@ body.sj-page-catalog {
       max-width: 100%;
 
       &[aria-current="page"] {
-        color: var(--muted);
+        color: var(--ink-dim);
         font-weight: 800;
       }
 
@@ -37,7 +34,7 @@ body.sj-page-catalog {
           align-items: center;
           gap: 8px;
           min-width: 0;
-          color: var(--muted);
+          color: var(--ink-dim);
 
           a {
             color: var(--ink);
