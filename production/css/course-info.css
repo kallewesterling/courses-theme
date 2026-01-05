@@ -16,7 +16,7 @@ body.sj-page-curriculum {
         margin: 0px;
         font-family: Gellix;
         color: var(--ink) !important;
-        font-size: 16px !important;
+        font-size: 18px !important;
         font-weight: 700 !important;
         line-height: 125%;
         border-bottom: 2px solid var(--blurple);
@@ -25,6 +25,7 @@ body.sj-page-curriculum {
           /* Special case: header when no lessons */
           font-weight: inherit;
           padding: 0;
+          font-size: 18px !important;
 
           &:hover {
             background-color: none;
