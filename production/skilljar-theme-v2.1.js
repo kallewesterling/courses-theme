@@ -16,7 +16,7 @@
  */
 
 // hide all before making adjustments
-Q("body").style.setProperty("display", "none");
+document.querySelector("body").style.setProperty("display", "none");
 
 /**
  * Simple logger utility for console messages with styling.
