@@ -23,7 +23,10 @@ body.sj-page-curriculum {
 
     a {
       /* Section lesson */
-      display: block;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      align-items: center;
       font-family: inherit;
       color: var(--ink) !important;
       padding: 24px;
