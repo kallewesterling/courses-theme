@@ -43,6 +43,104 @@ body.sj-page-curriculum {
       }
     }
   }
+
+  .course-details-card {
+    font-family: inherit !important;
+    max-width: 368px !important;
+    margin: 20px !important;
+    margin-bottom: 50px !important;
+    border-radius: 8px !important;
+    background-color: var(--primary-white-hex) !important;
+    border: 2px solid var(--blurple) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    color: inherit !important;
+    align-self: start !important;
+    position: sticky !important;
+    top: 100px !important;
+
+    .course-details-card-header {
+      font-size: 16px;
+      font-weight: 700;
+      font-family: Gellix;
+      line-height: 20px;
+      letter-spacing: -0.01em;
+      border-bottom: 2px solid var(--blurple) !important;
+      padding: 24px;
+    }
+
+    .course-details-card-list {
+      list-style: none;
+      padding: 24px 24px 0 24px;
+      margin: 0;
+      margin-bottom: 16px;
+
+      li {
+        margin-bottom: 8px;
+        display: flex;
+        align-items: start !important;
+        gap: 12px;
+
+        &::before {
+          content: "";
+          font: normal normal normal 14px/1 FontAwesome;
+          font-size: 14px;
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          transform: translateY(5px);
+        }
+
+        p {
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 24px;
+          margin: 0;
+        }
+      }
+    }
+
+    .course-details-card-link {
+      background-color: var(--blurple) !important;
+      color: var(--primary-white-hex) !important;
+      padding: 12px 20px !important;
+      text-align: center !important;
+      text-decoration: none !important;
+      display: inline-block;
+      font-size: 16px !important;
+      font-family: Roobert !important;
+      border-radius: 999px !important;
+      cursor: pointer !important;
+      margin: 0 24px !important;
+      margin-bottom: 24px !important;
+      transition: all 0.2s !important;
+
+      &:visited {
+        background-color: var(--blurple);
+        color: var(--primary-white-hex);
+      }
+
+      &:hover,
+      &:active {
+        background-color: var(--blurple);
+        color: var(--primary-white-hex);
+      }
+    }
+
+    .course-details-card-link.completed,
+    .button.completed {
+      background-color: green !important;
+      cursor: default !important;
+    }
+
+    .completed-subtext {
+      padding: 0px 20px 20px 0px !important;
+      font-size: 12px !important;
+      font-family: Roobert !important;
+      margin: 0 24px !important;
+      color: green !important;
+    }
+  }
 }
 
 body.sj-page-curriculum:not(:has(.cp-certificate)) {
