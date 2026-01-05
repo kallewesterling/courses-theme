@@ -51,7 +51,7 @@ body.sj-page-curriculum {
   .course-card {
     font-family: inherit !important;
     max-width: 368px !important;
-    margin: 20px !important;
+    margin: 20px auto !important;
     margin-bottom: 50px !important;
     border-radius: 8px !important;
     background-color: var(--primary-white-hex) !important;
@@ -71,6 +71,7 @@ body.sj-page-curriculum {
       letter-spacing: -0.01em;
       border-bottom: 2px solid var(--blurple) !important;
       padding: 24px;
+      margin: 0;
     }
 
     ul {
