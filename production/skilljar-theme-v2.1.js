@@ -405,7 +405,7 @@ const CG = {
       signupTabTextSpan: document.querySelector("#login-tab-right span"),
       forgotPasswordLink: document.querySelector("a.forgot-password"),
 
-      // signup-specific
+      // signup specific
       loginTabTextSpan: document.querySelector("#login-tab-left a span"),
       signupForm: document.querySelector("#signup_form"),
       signupTabText:
@@ -1796,16 +1796,6 @@ function styleCourseDetails() {
   } catch (error) {
     logger.error("Error processing curriculum elements:", error);
   }
-
-  // append elements to header
-  // CG.dom.header.wrapper.append(
-  //   ...[
-  //     CG.dom.header.floaterText,
-  //     CG.dom.header.mainHeading,
-  //     CG.dom.header.courseInfo,
-  //     CG.dom.header.ctaBtnWrapper,
-  //   ].filter(Boolean)
-  // );
 }
 
 /**
@@ -1815,16 +1805,6 @@ function stylePathCourseDetails() {
   // set content
   text(CG.dom.header.floaterText, "Learning Path");
   text(CG.dom.header.courseInfo, skilljarCourseSeries.short_description);
-
-  // move elements
-  // CG.dom.header.wrapper.append(
-  //   ...[
-  //     CG.dom.header.floaterText,
-  //     CG.dom.header.mainHeading,
-  //     CG.dom.header.courseInfo,
-  //     CG.dom.header.ctaBtnWrapper,
-  //   ].filter(Boolean)
-  // );
 
   // make path sections
   tryPathSections();
@@ -2083,7 +2063,6 @@ function styleLesson() {
     ].filter(Boolean)
   );
 
-  // CG.dom.local.lesson.innerBody.append(el("hr"));
   CG.dom.local.nav.toggleWrapper.append(setupLessonNav());
 
   CG.dom.local.lesson.content.codeBlocks
@@ -2230,7 +2209,6 @@ function styleAuth() {
  * This function applies styling to the curriculum page.
  */
 function styleCurriculumPage() {
-  // f.k.a. styleCurriculumPageNoCertificate
   CG.dom.local = {
     card: {
       details: document.querySelector(".course-details-card"),
@@ -2284,14 +2262,6 @@ function styleCurriculumPage() {
 
   // move elements
   CG.dom.courseContainer.append(...[CG.dom.local.card.details].filter(Boolean));
-  // CG.dom.header.wrapper.append(
-  //   ...[
-  //     CG.dom.header.floaterText,
-  //     CG.dom.header.mainHeading,
-  //     CG.dom.header.courseInfo,
-  //     CG.dom.header.ctaBtnWrapper,
-  //   ].filter(Boolean)
-  // );
 }
 
 const pageHandlers = [
