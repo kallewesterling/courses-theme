@@ -1195,12 +1195,17 @@ function remove(selector) {
  */
 function renderBreadcrumbs(targetElement) {
   if (
-    !targetElement ||
     !CG.state.crumbs ||
     !Array.isArray(CG.state.crumbs) ||
     CG.state.crumbs.length === 0
   )
     return;
+
+  if (!targetElement)
+    targetElement = el("div", {
+      id: "breadcrumbs",
+      className: CG.page.isPageCatalog ? "row dp-row-flex-v2" : "",
+    });
 
   const nav = el(
     "nav",
@@ -2296,12 +2301,7 @@ function handlePageStyling() {
     // isCoursePage = isPageDetail || isCourseDetails || isSignedUp
 
     // make breadcrumbs
-    const breadcrumb = el("div", {
-      id: "breadcrumbs",
-      className: CG.page.isPageCatalog ? "row dp-row-flex-v2" : "",
-    });
-
-    renderBreadcrumbs(breadcrumb);
+    renderBreadcrumbs();
 
     if (CG.page.isCoursePage) {
       CG.dom.header.wrapper.prepend(breadcrumb);
