@@ -1289,6 +1289,7 @@ function makeSections(
             section.links.map((link) => {
               const r = reg(link.slug);
               const c = compl(link.slug);
+              const hasPill = c || r;
 
               return el(
                 "a",
@@ -1302,10 +1303,12 @@ function makeSections(
                       "div",
                       { className: "inner" },
                       [
-                        el("span", {
-                          className: `pill ${c} ${r}`,
-                          text: c ? "Completed" : r ? "In Progress" : "",
-                        }),
+                        hasPill
+                          ? el("span", {
+                              className: `pill ${c} ${r}`,
+                              text: c ? "Completed" : r ? "In Progress" : "",
+                            })
+                          : undefined,
                         el("div", { className: "icon" }, [
                           createClone(link.icon),
                         ]),
