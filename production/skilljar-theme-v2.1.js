@@ -1487,10 +1487,24 @@ function getCurriculumElements(curriculumParentContainer = null) {
       ];
     });
 
-  const sections = [... new Set(content.map(d => d[0]))];
-  
-  const output = sections.map(s => [s, content.filter(d => d[0] === s).filter(d => d[1]), content.filter(d => d[0] === s).filter(d => !d[1])])
-  
+  const sections = [...new Set(content.map((d) => d[0]))];
+
+  const output = sections
+    .map((s) => [
+      s,
+      content.filter((d) => d[0] === s).filter((d) => d[1]),
+      content.filter((d) => d[0] === s).filter((d) => !d[1]),
+    ])
+    .map((d) => {
+      heading = d[1].length ? d[1][0][2] : "";
+      return {
+        section: d[0],
+        heading,
+        lessons: d[2],
+        d,
+      };
+    });
+
   if (!currentSection) {
     // we have no sections, only a list of lessons
     a = [
