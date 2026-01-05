@@ -390,15 +390,15 @@ const CG = {
 
       get curriculumSection() {
         return (
-          CG.dom.tabs.container.querySelector("section #curriculumSection") ||
-          CG.dom.tabs.container.querySelector("section:nth-child(1)")
+          Q("section #curriculumSection", CG.dom.tabs.container) ||
+          Q("section:nth-child(1)", CG.dom.tabs.container)
         );
       },
 
       get aboutSection() {
         return (
-          CG.dom.tabs.container.querySelector("section #aboutSection") ||
-          CG.dom.tabs.container.querySelector("section:nth-child(2)")
+          Q("section #aboutSection", CG.dom.tabs.container) ||
+          Q("section:nth-child(2)", CG.dom.tabs.container)
         );
       },
     },
@@ -452,7 +452,7 @@ const CG = {
       signup: Q("#login-tab-right a") || Q("#login-tab-right span"),
 
       get altMethod() {
-        return CG.dom.auth.method.querySelector("span");
+        return Q("span", CG.dom.auth.method);
       },
     },
   },
@@ -1436,7 +1436,7 @@ function getCurriculumElements(curriculumParentContainer = null) {
 
   let currentSection = 0,
     elements = Array.from(
-      curriculumParentContainer.querySelectorAll("[class^='lesson-'],.section")
+      A("[class^='lesson-'],.section", curriculumParentContainer)
     ),
     a;
 
@@ -1454,7 +1454,7 @@ function getCurriculumElements(curriculumParentContainer = null) {
         isHeader,
         elem.textContent.trim().split("\n")[0], // keep only first line
         elem.href || null,
-        elem.querySelector(".bullet i"),
+        Q(".bullet i", elem),
       ];
     });
 
@@ -1766,13 +1766,9 @@ function styleCourseDetails() {
   if (CG.dom.header.ctaBtnWrapper) {
     btnHref = CG.dom.header.registerBtn.href;
   } else {
-    const links = [...CG.dom.header.courseInfo.querySelectorAll("p")]
+    const links = [...A("p", CG.dom.header.courseInfo)]
       .filter((d) => d.textContent.toLowerCase().includes("learning path"))
-      .map((p) =>
-        [...p.querySelectorAll("a")].filter(
-          (a) => a.innerHTML === "learning path"
-        )
-      )
+      .map((p) => [...A("a", p)].filter((a) => a.innerHTML === "learning path"))
       .flat();
 
     if (links.length > 0) {
@@ -1973,7 +1969,7 @@ function setupLessonNav() {
  * @return {void}
  */
 function processCodeBlock(elem) {
-  const codeEl = elem.querySelector("code");
+  const codeEl = Q("code", elem);
   const iconClone = createClone("copy");
 
   const copyText = codeEl.textContent
@@ -2101,7 +2097,7 @@ function styleLesson() {
 
         const box = CG.dom.local.lesson.content.resources.boxes[0];
 
-        const wrapper = box.querySelector(".resource-wrapper");
+        const wrapper = Q(".resource-wrapper", box);
 
         // Add cards
         wrapper.replaceChildren(...cards);
@@ -2120,7 +2116,7 @@ function styleLesson() {
             createResourceCard(r)
           );
 
-          const wrapper = box.querySelector(".resource-wrapper");
+          const wrapper = Q(".resource-wrapper", box);
 
           // Add cards
           if (resources.groups[box.dataset.group]) {
@@ -2493,10 +2489,10 @@ function showCompletion(elem) {
   // Next paint to trigger transition
   requestAnimationFrame(() => setStyle(elem, { opacity: "1" }));
   // focus for accessibility
-  const focusTarget = elem.querySelector("#completion-card");
+  const focusTarget = Q("#completion-card", elem);
   if (focusTarget) focusTarget.focus({ preventScroll: true });
 
-  const countdownEl = elem.querySelector("#completion-countdown");
+  const countdownEl = Q("#completion-countdown", elem);
   if (countdownEl) {
     let remaining = CONFIG.confetti.autoHideMs / 1000;
     text(countdownEl, remaining);
