@@ -16,7 +16,7 @@
  */
 
 // hide all before making adjustments
-document.querySelector("body").style.setProperty("display", "none");
+Q("body").style.setProperty("display", "none");
 
 /**
  * Simple logger utility for console messages with styling.
@@ -71,7 +71,10 @@ const placeholder = (element, value) => {
   }
 };
 
-const c = (selector) => (document.querySelector(selector) ? true : false);
+const Q = (selector) => document.querySelector(selector);
+const A = (selector) => document.querySelectorAll(selector);
+
+const c = (selector) => (Q(selector) ? true : false);
 
 const CONFIG = {
   logo: el(
@@ -255,8 +258,7 @@ const CG = {
     hasCourse: typeof skilljarCourse !== "undefined",
     hasCatalogPage: typeof skilljarCatalogPage !== "undefined",
     hasCourseProgress: typeof skilljarCourseProgress !== "undefined",
-    hasCourseBoxes:
-      [...document.querySelectorAll(".coursebox-container")].length > 0,
+    hasCourseBoxes: [...A(".coursebox-container")].length > 0,
   },
   page: {
     isCatalog: c(".sj-page-catalog"),
@@ -321,48 +323,36 @@ const CG = {
   },
   dom: {
     body: document.body,
-    bodyHeader: document.querySelector("#header"),
-    headerLeft: document.querySelector("#header-left"),
-    headerRight: document.querySelector("#header-right"),
-    footerContainer: document.querySelector("#footer-container"),
-    epFooter: document.querySelector("#ep-footer"),
-    messages: document.querySelector("#messages"),
-    courseBoxes: [...document.querySelectorAll(".coursebox-container")],
-    catalogContent: document.querySelector("#catalog-content"),
-    catalogCourses: document.querySelector("#catalog-courses"),
-    mainContainer: document.querySelector("#main-container"),
+    bodyHeader: Q("#header"),
+    headerLeft: Q("#header-left"),
+    headerRight: Q("#header-right"),
+    footerContainer: Q("#footer-container"),
+    epFooter: Q("#ep-footer"),
+    messages: Q("#messages"),
+    courseBoxes: [...A(".coursebox-container")],
+    catalogContent: Q("#catalog-content"),
+    catalogCourses: Q("#catalog-courses"),
+    mainContainer: Q("#main-container"),
 
     get contentContainer() {
-      return CG.page.isLesson
-        ? document.querySelector(".sj-page-lesson")
-        : document.querySelector("#skilljar-content");
+      return CG.page.isLesson ? Q(".sj-page-lesson") : Q("#skilljar-content");
     },
 
     header: {
-      wrapper:
-        document.querySelector(".cp-summary-wrapper") ||
-        document.querySelector(".dp-summary-wrapper"),
-      floaterText: document.querySelector(".sj-floater-text"),
-      mainHeading: document.querySelector(".break-word"),
-      courseInfo:
-        document.querySelector(".sj-course-info-wrapper") ||
-        document.querySelector(".sj-heading-paragraph"),
-      ctaBtnWrapper:
-        document.querySelector("#resume-button") ||
-        document.querySelector("#purchase-button-wrapper-large"),
-      registerBtn: document.querySelector("#purchase-button-wrapper-large a"),
-      ctaBtn: document.querySelector("#resume-button a"),
-      ctaBtnText: document.querySelector("#resume-button a span"),
+      wrapper: Q(".cp-summary-wrapper") || Q(".dp-summary-wrapper"),
+      floaterText: Q(".sj-floater-text"),
+      mainHeading: Q(".break-word"),
+      courseInfo: Q(".sj-course-info-wrapper") || Q(".sj-heading-paragraph"),
+      ctaBtnWrapper: Q("#resume-button") || Q("#purchase-button-wrapper-large"),
+      registerBtn: Q("#purchase-button-wrapper-large a"),
+      ctaBtn: Q("#resume-button a"),
+      ctaBtnText: Q("#resume-button a span"),
     },
-    courseContainer:
-      document.querySelector("#dp-details") ||
-      document.querySelector("#cp-content"),
-    curriculumContainer:
-      document.querySelectorAll(".dp-curriculum")[0] ||
-      document.querySelector("#curriculum-list"),
+    courseContainer: Q("#dp-details") || Q("#cp-content"),
+    curriculumContainer: A(".dp-curriculum")[0] || Q("#curriculum-list"),
 
     tabs: {
-      container: document.querySelector(".tabs"),
+      container: Q(".tabs"),
 
       get curriculumSection() {
         return (
@@ -385,69 +375,47 @@ const CG = {
       rows: [],
 
       inputs: {
-        email:
-          document.querySelector("#id_email") ||
-          document.querySelector("#id_login"),
-        password:
-          document.querySelector("#id_password") ||
-          document.querySelector("#id_password1"),
+        email: Q("#id_email") || Q("#id_login"),
+        password: Q("#id_password") || Q("#id_password1"),
 
         // signup specific
-        password2: document.querySelector("#id_password2"),
-        fName: document.querySelector("#id_first_name"),
-        lName: document.querySelector("#id_last_name"),
-        accessCode: document.querySelector("#id_access_code"),
+        password2: Q("#id_password2"),
+        fName: Q("#id_first_name"),
+        lName: Q("#id_last_name"),
+        accessCode: Q("#id_access_code"),
       },
 
       // login specific
-      loginForm: document.querySelector("#login_form"),
-      loginText: document.querySelector("#login-tab-left span span"),
-      signupTabTextSpan: document.querySelector("#login-tab-right span"),
-      forgotPasswordLink: document.querySelector("a.forgot-password"),
+      loginForm: Q("#login_form"),
+      loginText: Q("#login-tab-left span span"),
+      signupTabTextSpan: Q("#login-tab-right span"),
+      forgotPasswordLink: Q("a.forgot-password"),
 
       // signup specific
-      loginTabTextSpan: document.querySelector("#login-tab-left a span"),
-      signupForm: document.querySelector("#signup_form"),
-      signupTabText:
-        document.querySelector("#login-tab-right a") ||
-        document.querySelector("#login-tab-right span"),
+      loginTabTextSpan: Q("#login-tab-left a span"),
+      signupForm: Q("#signup_form"),
+      signupTabText: Q("#login-tab-right a") || Q("#login-tab-right span"),
 
       labels: {
-        passwordConfirm: document.querySelector(
-          "label[for=id_password2] .input-label-text span"
-        ),
-        fName: document.querySelector("label[for=id_first_name] span span"),
-        lName: document.querySelector("label[for=id_last_name] span span"),
-        email:
-          document.querySelector("label[for=id_email]") ||
-          document.querySelector("label[for=id_login]"),
-        accessCode: document.querySelector(
-          "label[for=id_access_code] span span"
-        ),
+        passwordConfirm: Q("label[for=id_password2] .input-label-text span"),
+        fName: Q("label[for=id_first_name] span span"),
+        lName: Q("label[for=id_last_name] span span"),
+        email: Q("label[for=id_email]") || Q("label[for=id_login]"),
+        accessCode: Q("label[for=id_access_code] span span"),
       },
 
-      google: document.querySelector("#google_login"),
-      TOS: document.querySelector("#access-message"),
+      google: Q("#google_login"),
+      TOS: Q("#access-message"),
 
-      form:
-        document.querySelector("#login_form") ||
-        document.querySelector("#signup_form"),
+      form: Q("#login_form") || Q("#signup_form"),
 
-      button:
-        document.querySelector("#button-sign-in") ||
-        document.querySelector("#button-sign-up"),
+      button: Q("#button-sign-in") || Q("#button-sign-up"),
 
-      method:
-        document.querySelector(".sj-text-sign-in-with") ||
-        document.querySelector(".sj-text-sign-up-with"),
+      method: Q(".sj-text-sign-in-with") || Q(".sj-text-sign-up-with"),
 
-      login:
-        document.querySelector("#login-tab-left a span") ||
-        document.querySelector("#login-tab-left span span"),
+      login: Q("#login-tab-left a span") || Q("#login-tab-left span span"),
 
-      signup:
-        document.querySelector("#login-tab-right a") ||
-        document.querySelector("#login-tab-right span"),
+      signup: Q("#login-tab-right a") || Q("#login-tab-right span"),
 
       get altMethod() {
         return CG.dom.auth.method.querySelector("span");
@@ -1048,7 +1016,7 @@ pathSections = {
  * updateLinks(false);
  */
 function updateLinks(useTestDomain) {
-  const links = document.querySelectorAll(
+  const links = A(
     'a[href*="' +
       CONFIG.domains.prod.url +
       '"], a[href*="' +
@@ -1124,8 +1092,8 @@ function debugHeading() {
     CG.dom.headerRight.parentElement.firstChild
   );
 
-  const trigger = document.querySelector(".info-circle-wrapper");
-  const dropdown = document.querySelector(".info-circle-menu");
+  const trigger = Q(".info-circle-wrapper");
+  const dropdown = Q(".info-circle-menu");
 
   trigger.addEventListener("click", () => {
     const x = trigger.getBoundingClientRect().x;
@@ -1140,7 +1108,7 @@ function debugHeading() {
     dropdown.hidden = !dropdown.hidden;
   });
 
-  const checkbox = document.querySelector("#cg-baseurl-staging");
+  const checkbox = Q("#cg-baseurl-staging");
 
   // initial state update if needed
   updateLinks(checkbox.checked);
@@ -1178,7 +1146,7 @@ function remove(selector) {
     return;
   }
 
-  document.querySelectorAll(selector).forEach((el) => {
+  A(selector).forEach((el) => {
     try {
       el.remove();
     } catch (e) {
@@ -1356,7 +1324,7 @@ function makeSections(
       ].filter(Boolean)
     );
 
-    document.querySelector(parentSelector).append(sectionElement);
+    Q(parentSelector).append(sectionElement);
   });
 }
 
@@ -1632,7 +1600,7 @@ function setStyle(target, style) {
 
   // selector string → first match
   if (typeof target === "string") {
-    const elem = document.querySelector(target);
+    const elem = Q(target);
     return elem ? apply(elem) : null;
   }
 
@@ -1721,7 +1689,7 @@ function styleCatalog() {
  */
 function style404() {
   if (CG.page.isPartner404 && !CG.env.hasUser) {
-    document.querySelector(".message").append(
+    Q(".message").append(
       ...[
         el("hr"),
         el("p", {
@@ -1742,7 +1710,7 @@ function style404() {
  */
 function styleCourseDetails() {
   CG.dom.local = {
-    card: document.querySelector(".course-details-card"),
+    card: Q(".course-details-card"),
   };
 
   // Add course order
@@ -1853,7 +1821,7 @@ function stylePathCatalogPage() {
               className: "sj-heading-paragraph",
               textContent: skilljarCourseSeries.short_description || "",
             }),
-            document.querySelector(".path-curriculum-button-wrapper a"),
+            Q(".path-curriculum-button-wrapper a"),
           ]
         ),
       ]),
@@ -1885,8 +1853,8 @@ function stylePathCatalogPage() {
  */
 function setupLessonNav() {
   // 1) Find canonical footer controls
-  const footerPrev = document.querySelector("#lp-footer .prev-lesson-button");
-  const footerNext = document.querySelector("#lp-footer .next-lesson-link");
+  const footerPrev = Q("#lp-footer .prev-lesson-button");
+  const footerNext = Q("#lp-footer .next-lesson-link");
 
   // 2) Extract Prev
   const prevHref = footerPrev?.getAttribute("href") || "#";
@@ -2010,38 +1978,32 @@ function processCodeBlock(elem) {
 function styleLesson() {
   CG.dom.local = {
     body: {
-      mainContainer: document.querySelector("#lp-wrapper"),
-      innerContainer: document.querySelector("#lesson-body"),
+      mainContainer: Q("#lp-wrapper"),
+      innerContainer: Q("#lesson-body"),
     },
     lesson: {
-      body: document.querySelector("#lesson-body"),
-      innerBody: document.querySelector("#lesson-main-inner"),
+      body: Q("#lesson-body"),
+      innerBody: Q("#lesson-main-inner"),
       content: {
-        codeBlocks: new Array(
-          ...document.querySelectorAll("pre:has(code):not(.language-ansi)")
-        ),
-        internalCourseWarning: document.querySelector(
-          "#internal-course-warning"
-        ),
-        links: document.querySelectorAll("sjwc-lesson-content-item a"),
+        codeBlocks: new Array(...A("pre:has(code):not(.language-ansi)")),
+        internalCourseWarning: Q("#internal-course-warning"),
+        links: A("sjwc-lesson-content-item a"),
         resources: {
-          boxes: document.querySelectorAll(
-            "sjwc-lesson-content-item .resource-box"
-          ),
-          wrapper: document.querySelector(
+          boxes: A("sjwc-lesson-content-item .resource-box"),
+          wrapper: Q(
             "sjwc-lesson-content-item .resource-box .resource-wrapper"
           ),
         },
       },
     },
     nav: {
-      menu: document.querySelector("#lp-left-nav"),
-      toggleWrapper: document.querySelector("#left-nav-button"),
-      backToCurriculumText: document.querySelector("#left-nav-return-text"),
-      backBtn: document.querySelector("#returnToOverview"),
+      menu: Q("#lp-left-nav"),
+      toggleWrapper: Q("#left-nav-button"),
+      backToCurriculumText: Q("#left-nav-return-text"),
+      backBtn: Q("#returnToOverview"),
     },
     footer: {
-      container: document.querySelector("#lp-footer"),
+      container: Q("#lp-footer"),
     },
   };
 
@@ -2076,7 +2038,7 @@ function styleLesson() {
     .forEach((elem) => processCodeBlock(elem));
 
   // Make section titles normal h3 elements
-  Array.from(document.querySelectorAll("h3.sjwc-section-title")).map((elem) =>
+  Array.from(A("h3.sjwc-section-title")).map((elem) =>
     elem.classList.remove("sjwc-section-title")
   );
 
@@ -2159,7 +2121,7 @@ function styleAuth() {
   }
 
   const authContainer = el("div", { id: "auth-container" }, [
-    document.querySelector("#tabs"),
+    Q("#tabs"),
     el("div", { className: "auth-card" }, [
       CG.dom.auth.form,
       el("div", { className: "divider" }, [el("span", { textContent: "or" })]),
@@ -2178,7 +2140,7 @@ function styleAuth() {
 
   if (CG.page.isSignup) {
     // add aria-labels to inputs' parent .row elements
-    document.querySelectorAll("input").forEach((elem) => {
+    A("input").forEach((elem) => {
       if (!elem.getAttribute("id")) return;
 
       CG.dom.auth.rows[elem.getAttribute("id")] = elem.closest(".row");
@@ -2217,8 +2179,8 @@ function styleAuth() {
 function styleCurriculumPage() {
   CG.dom.local = {
     card: {
-      details: document.querySelector(".course-details-card"),
-      link: document.querySelector(".course-details-card-link"),
+      details: Q(".course-details-card"),
+      link: Q(".course-details-card-link"),
     },
   };
 
@@ -2246,9 +2208,7 @@ function styleCurriculumPage() {
     );
 
     // re-query link
-    CG.dom.local.card.link = document.querySelector(
-      ".course-details-card-link"
-    );
+    CG.dom.local.card.link = Q(".course-details-card-link");
   }
 
   // update resume button text and href (with auto-value fallback)
@@ -2317,7 +2277,7 @@ function handlePageStyling() {
         ].filter(Boolean)
       );
     } else if (CG.page.isPageCatalog) {
-      document.querySelector(".top-row-grey").prepend(breadcrumbs);
+      Q(".top-row-grey").prepend(breadcrumbs);
     }
   }
 
@@ -2363,8 +2323,8 @@ function fixHeader() {
 
   CG.dom.mobileHeader = {
     container: mobileHeader,
-    left: document.querySelector("#mobile-header-left"),
-    right: document.querySelector("#mobile-header-right"),
+    left: Q("#mobile-header-left"),
+    right: Q("#mobile-header-right"),
   };
 }
 
@@ -2375,7 +2335,7 @@ function fixHeader() {
 document.addEventListener("DOMContentLoaded", () => {
   if (CG.page.isLesson)
     // if a lesson page, we need to move the nav button before we modify the header
-    CG.dom.contentContainer.append(document.querySelector("#left-nav-button"));
+    CG.dom.contentContainer.append(Q("#left-nav-button"));
 
   // replace logo
   CG.dom.headerLeft.replaceChildren(
