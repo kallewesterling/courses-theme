@@ -23,7 +23,7 @@ body.sj-page-curriculum {
     .curriculum-lesson {
       /* Section lesson */
       display: block;
-      color: black;
+      color: var(--ink) !important;
       padding: 24px;
       font-size: 16px;
       font-weight: 400;
