@@ -12,50 +12,53 @@
     background-size: cover;
   }
 
-  .coursebox-container {
-    width: calc(50% - 24px) !important;
-    margin: 0;
-  }
+  #catalog-content {
+    /* Hide existing catalog content */
+    display: none !important;
 
-  #catalog-content #catalog-courses {
-    gap: 24px;
-    justify-content: start;
-  }
+    #catalog-courses {
+      gap: 24px;
+      justify-content: start;
 
-  .badge-box {
-    font-weight: 800 !important;
-    background-image: linear-gradient(
-      315deg,
-      rgb(253, 225, 254),
-      rgb(245, 246, 254) 72%
-    ) !important;
-    padding: 12px 12px 12px 24px !important;
-    margin-top: 0 !important;
-    font-size: 1em !important;
-    text-transform: uppercase !important;
-    color: #c0a200 !important;
-    left: 0 !important;
-    top: 0 !important;
-    position: absolute !important;
-    z-index: 1 !important;
-    width: 100% !important;
-    box-shadow: 0 0 7px #0000003d !important;
-  }
+      .coursebox-container {
+        width: calc(50% - 24px) !important;
+        margin: 0;
 
-  .sj-course-ribbon-complete {
-    color: white !important;
+        @media screen and (max-width: 600px) {
+          width: 100% !important;
+        }
+
+        .badge-box {
+          font-weight: 800 !important;
+          background-image: linear-gradient(
+            315deg,
+            rgb(253, 225, 254),
+            rgb(245, 246, 254) 72%
+          ) !important;
+          padding: 12px 12px 12px 24px !important;
+          margin-top: 0 !important;
+          font-size: 1em !important;
+          text-transform: uppercase !important;
+          color: #c0a200 !important;
+          left: 0 !important;
+          top: 0 !important;
+          position: absolute !important;
+          z-index: 1 !important;
+          width: 100% !important;
+          box-shadow: 0 0 7px #0000003d !important;
+        }
+
+        .sj-course-ribbon-complete {
+          color: white !important;
+        }
+      }
+    }
   }
 
   .catalog-center-width {
     width: 100% !important;
     min-height: auto !important;
     padding: 0;
-  }
-
-  @media screen and (max-width: 600px) {
-    .coursebox-container {
-      width: 100% !important;
-    }
   }
 
   #cta-bottom {
