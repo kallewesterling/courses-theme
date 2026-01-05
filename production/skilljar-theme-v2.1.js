@@ -1522,26 +1522,30 @@ function getCurriculumElements(curriculumParentContainer = null) {
       );
     });
 
+    let headingElement;
+    if (d.heading) {
+      headingElement = el("div", {
+        className: "curriculum-header no-select",
+        textContent: lessons.length > 1 ? d.heading : "Lessons",
+      });
+    } else if (!headingElement && lessons.length === 1) {
+      headingElement = el("a", {
+        className: "curriculum-header no-select",
+        textContent: lessons[0].text, // use first lesson as header if no section heading and only one lesson
+        href: lessons[0].href,
+      });
+
+      lessons.shift(); // remove the first lesson since it's now the header
+    } else {
+      logger.warn(
+        "Unexpected curriculum structure: no heading and multiple lessons"
+      );
+    }
+
     return el(
       "div",
       { className: "curriculum-wrapper" },
-      [
-        d.heading
-          ? el("div", {
-              className: "curriculum-header no-select",
-              textContent: d.heading,
-            })
-          : lessons.length > 1
-          ? el("div", {
-              className: "curriculum-header no-select",
-              textContent: "Lessons",
-            })
-          : el("div", {
-              className: "curriculum-header no-select",
-              textContent: lessons.pop(0).text, // use first lesson as header if no section heading and only one lesson
-            }),
-        ...lessons,
-      ].filter(Boolean)
+      [headingElement, ...lessons].filter(Boolean)
     );
   });
 }
