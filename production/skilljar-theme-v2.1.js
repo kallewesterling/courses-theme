@@ -354,6 +354,14 @@ const CG = {
         completed: this.completed.map((elem) => elem.dataset.course),
       };
     },
+
+    get isRegistered() {
+      return (slug) => this.registered.includes(slug);
+    },
+
+    get isCompleted() {
+      return (slug) => this.completed.includes(slug);
+    },
   },
   dom: {
     body: document.body,
