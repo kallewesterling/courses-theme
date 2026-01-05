@@ -1,5 +1,17 @@
 .sj-page-catalog {
   /* All catalog pages */
+
+  #cg-bg {
+    width: 100%;
+    height: 100%;
+    z-index: -7 !important;
+    position: absolute;
+    inset: 0;
+    background: url(https://westerling.nu/courses-theme/production/img/bg.svg)
+      center no-repeat;
+    background-size: cover;
+  }
+
   .coursebox-container {
     width: calc(50% - 24px) !important;
     margin: 0;
