@@ -1281,6 +1281,7 @@ function makeSections(
       return el(
         "a",
         {
+          className: "no-select",
           href: `${baseURL}/${link.slug}`,
           title: link.isCourse ? "Start course" : "Start path",
         },
