@@ -1710,7 +1710,7 @@ function style404() {
  */
 function styleCourseDetails() {
   CG.dom.local = {
-    card: Q(".course-details-card"),
+    card: Q(".course-card"),
   };
 
   // Add course order
@@ -2179,8 +2179,8 @@ function styleAuth() {
 function styleCurriculumPage() {
   CG.dom.local = {
     card: {
-      details: Q(".course-details-card"),
-      link: Q(".course-details-card-link"),
+      details: Q(".course-card"),
+      link: Q(".course-card a"),
     },
   };
 
@@ -2208,7 +2208,7 @@ function styleCurriculumPage() {
     );
 
     // re-query link
-    CG.dom.local.card.link = Q(".course-details-card-link");
+    CG.dom.local.card.link = Q(".course-card a");
   }
 
   // update resume button text and href (with auto-value fallback)
