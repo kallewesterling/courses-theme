@@ -36,6 +36,10 @@ body.sj-page-curriculum {
       border-bottom: 2px solid var(--blurple);
       height: 100%;
 
+      .fa-check-circle {
+        color: green !important;
+      }
+
       &:hover {
         background-color: var(--gradient-end);
       }
