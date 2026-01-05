@@ -1532,9 +1532,7 @@ function createCourseDetailsCard(
   const link = el("a", {
     href: options.completed ? "#" : options.btnHref,
     textContent: options.completed ? "🎉 Completed" : options.btnText,
-    className: `button ${
-      options.completed ? "completed" : ""
-    }`,
+    className: `button ${options.completed ? "completed" : ""}`,
   });
 
   // add margin to link button
