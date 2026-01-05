@@ -1,12 +1,14 @@
 body.sj-page-detail-course,
 body.sj-page-curriculum {
   .curriculum-wrapper {
+    /* Each section of the curriculum has it's own wrapper */
     border-radius: 8px;
     margin-bottom: 48px;
     padding: 0px;
     border: 2px solid var(--blurple);
 
     .curriculum-header {
+      /* Section heading */
       display: flex;
       align-items: center;
       padding: 24px;
@@ -19,6 +21,7 @@ body.sj-page-curriculum {
     }
 
     .curriculum-lesson {
+      /* Section lesson */
       display: block;
       color: black;
       padding: 24px;
@@ -38,6 +41,7 @@ body.sj-page-curriculum {
       }
 
       i {
+        /* TODO: is this legacy? */
         margin-right: 12px;
         color: var(--blurple);
       }
@@ -240,6 +244,7 @@ body.sj-page-curriculum:not(:has(.cp-certificate)) {
   }
 
   #cp-content {
+    /* Page content for signed up users */
     display: grid;
     grid-template-columns: minmax(100px, 760px) minmax(100px, 368px);
     margin-top: 96px;
@@ -468,7 +473,7 @@ body.sj-page-detail-course {
   }
 
   #dp-details {
-    /* Page content */
+    /* Page content for users who haven't signed up for the course */
     max-width: min(1152px, 90%);
     margin: 96px auto 46px auto;
     display: grid;
