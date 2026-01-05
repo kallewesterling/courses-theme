@@ -1272,7 +1272,7 @@ function renderBreadcrumbs(targetElement) {
     "nav",
     {
       className: "breadcrumb",
-      ariaLabel: "Breadcrumb",
+      "aria-label": "Breadcrumb",
       role: "navigation",
     },
     [
