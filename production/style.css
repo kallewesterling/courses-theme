@@ -30,12 +30,6 @@
   content: none;
 }
 
-
-.video-player.flex-video.widescreen {
-  padding: 0;
-  border-radius: 8px;
-}
-
 .bullet .fa.fa-check-circle {
   color: var(--blurple);
 }
