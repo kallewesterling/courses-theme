@@ -2340,6 +2340,8 @@ function fixHeader() {
   It is a good place to run scripts that need to manipulate the DOM or set up event listeners.
 */
 document.addEventListener("DOMContentLoaded", () => {
+  logger.info("CG Desktop Script Loaded");
+
   if (CG.page.isLesson)
     // if a lesson page, we need to move the nav button before we modify the header
     CG.dom.contentContainer.append(Q("#left-nav-button"));
