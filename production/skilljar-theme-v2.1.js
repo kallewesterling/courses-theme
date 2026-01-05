@@ -1505,50 +1505,38 @@ function getCurriculumElements(curriculumParentContainer = null) {
       };
     });
 
-  if (!currentSection) {
-    // we have no sections, only a list of lessons
-    a = [
-      {
-        section: 1,
-        heading: "Lessons",
-        lessons: content.map((d) => d[2]),
-        links: content.map((d) => d[3]),
-        bullets: content.map((d) => d[4]),
-      },
-    ];
-  } else {
-    a = new Array(currentSection).fill(0).map((_, i) => ({
-      section: i + 1,
-      heading: content.filter((d) => d[1] && d[0] === i + 1)[0][2],
-      lessons: content.filter((d) => !d[1] && d[0] === i + 1).map((d) => d[2]),
-      links: content.filter((d) => !d[1] && d[0] === i + 1).map((d) => d[3]),
-      bullets: content.filter((d) => !d[1] && d[0] === i + 1).map((d) => d[4]),
-    }));
-  }
-
-  return a.map((section) => {
-    const wrapper = el("div", { className: "curriculum-wrapper" });
-
-    const header = el("div", {
-      className: "curriculum-header no-select",
-      textContent: section.heading,
+  return output.map((d) => {
+    const lessons = d.lessons.map((l) => {
+      const text = l[2],
+        icon = l[4],
+        href = l[3] || "#";
+      el(
+        "a",
+        {
+          className: "curriculum-lesson no-select",
+          text,
+          href,
+        },
+        [icon].filter(Boolean)
+      );
     });
 
-    const lessons = section.lessons.map((lesson, ix) => {
-      const a = el("a", {
-        className: "curriculum-lesson no-select" /* lesson-row */,
-        textContent: lesson,
-        href: section.links[ix] || "#",
-      });
-
-      if (section.bullets[ix]) a.prepend(section.bullets[ix]);
-
-      return a;
-    });
-
-    wrapper.append(header, ...lessons);
-
-    return wrapper;
+    return el(
+      "div",
+      { className: "curriculum-wrapper" },
+      [
+        d.heading
+          ? el("div", {
+              className: "curriculum-header no-select",
+              textContent: d.heading,
+            })
+          : el("div", {
+              className: "curriculum-header no-select",
+              textContent: "Lessons",
+            }),
+        ...lessons,
+      ].filter(Boolean)
+    );
   });
 }
 
