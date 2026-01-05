@@ -7,7 +7,7 @@ body.sj-page-curriculum {
     padding: 0px;
     border: 2px solid var(--blurple);
 
-    .curriculum-header {
+    h3 {
       /* Section heading */
       display: flex;
       align-items: center;
@@ -21,9 +21,10 @@ body.sj-page-curriculum {
       border-bottom: 2px solid var(--blurple);
     }
 
-    .curriculum-lesson {
+    a {
       /* Section lesson */
       display: block;
+      font-family: inherit;
       color: var(--ink) !important;
       padding: 24px;
       font-size: 16px;
