@@ -1264,6 +1264,9 @@ function makeSections(
   parentSelector = "#skilljar-content",
   baseURL = "https://courses.chainguard.dev"
 ) {
+  const reg = (slug) => (CG.state.isRegistered(slug) ? "in-progress" : "");
+  const compl = (slug) => (CG.state.isCompleted(slug) ? "completed" : "");
+
   sections.forEach((section) => {
     const sectionElement = el(
       "section",
@@ -1271,9 +1274,9 @@ function makeSections(
         className: `featured-courses ${section.classNames?.join(" ") || ""}`,
       },
       [
-        el("div", { className: "featured-courses__grid" }, [
+        el("div", { className: "grid" }, [
           // Intro
-          el("div", { className: "featured-courses__intro" }, [
+          el("div", { className: "intro" }, [
             el("h2", { className: "eyebrow", text: section.eyebrow }),
             el("p", { className: "headline", text: section.title }),
             el("p", { className: "subhead", text: section.description }),
@@ -1284,80 +1287,44 @@ function makeSections(
             "div",
             { className: "cards" },
             section.links.map((link) => {
-              const isRegistered = CG.state.courses.registered.includes(
-                link.slug
-              )
-                ? "card--in-progress"
-                : "";
-              const isCompleted = CG.state.courses.completed.includes(link.slug)
-                ? "card--completed"
-                : "";
+              const r = reg(link.slug);
+              const c = compl(link.slug);
 
               return el(
                 "a",
                 {
-                  className: "card__link",
                   href: `${baseURL}/${link.slug}`,
                   title: link.isCourse ? "Start course" : "Start path",
                 },
                 [
-                  el(
-                    "article",
-                    {
-                      className: `card ${isCompleted} ${isRegistered}`,
-                    },
-                    [
-                      el(
-                        "div",
-                        {
-                          className: "card__inner",
-                        },
-                        [
-                          isCompleted
-                            ? el("span", {
-                                className: "pill completed",
-                                textContent: "Completed",
-                              })
-                            : undefined,
-                          isRegistered && !isCompleted
-                            ? el("span", {
-                                className: "pill in-progress",
-                                textContent: "In Progress",
-                              })
-                            : undefined,
-                          el(
-                            "div",
-                            {
-                              className: "card__icon",
-                            },
-                            [createClone(link.icon)]
-                          ),
-                          el(
-                            "h5",
-                            {
-                              className: "card__eyebrow",
-                              text: link.isCourse ? "Course" : "Learning Path",
-                            },
-                            [el("span", { textContent: " | Free" })]
-                          ),
-                          el("h3", {
-                            className: "card__title",
-                            text: link.title,
-                          }),
-                          el("p", {
-                            className: "card__text",
-                            text: link.description,
-                          }),
-                          link.hasBadge && !isCompleted
-                            ? el("span", {
-                                className: "pill badged",
-                                text: "Get a Badge",
-                              })
-                            : undefined,
-                        ].filter(Boolean)
-                      ),
-                    ]
-                  ),
+                  el("article", { className: `${c} ${r}` }, [
+                    el(
+                      "div",
+                      { className: "inner" },
+                      [
+                        el("span", {
+                          className: `pill ${c} ${r}`,
+                          text: c ? "Completed" : r ? "In Progress" : "",
+                        }),
+                        el("div", { className: "icon" }, [
+                          createClone(link.icon),
+                        ]),
+                        el(
+                          "h5",
+                          { text: link.isCourse ? "Course" : "Learning Path" },
+                          [el("span", { textContent: " | Free" })]
+                        ),
+                        el("h3", { text: link.title }),
+                        el("p", { text: link.description }),
+                        link.hasBadge && !c
+                          ? el("span", {
+                              className: "pill badged",
+                              text: "Get a Badge",
+                            })
+                          : undefined,
+                      ].filter(Boolean)
+                    ),
+                  ]),
                 ]
               );
             })

@@ -133,7 +133,7 @@ body.sj-page-catalog {
       }
     }
 
-    .featured-courses__grid {
+    .grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 24px;
@@ -146,11 +146,11 @@ body.sj-page-catalog {
         grid-template-columns: 34% calc(66% - 24px) !important;
       }
 
-      .featured-courses__intro {
+      .intro {
         padding-right: 32px;
         font-family: inherit;
 
-        .eyebrow {
+        h2.eyebrow {
           color: var(--blurple);
           font-family: inherit;
           margin: 0 0 var(--space-1);
@@ -208,7 +208,7 @@ body.sj-page-catalog {
         grid-template-columns: 1fr 1fr;
       }
 
-      .card__link {
+      a {
         display: inline-block;
         margin-top: 4px;
         text-decoration: none;
@@ -219,7 +219,7 @@ body.sj-page-catalog {
           color: var(--blurple) !important;
         }
 
-        .card {
+        article {
           background: var(--card-bg);
           border-radius: var(--radius-2);
           height: 100%;
@@ -231,14 +231,14 @@ body.sj-page-catalog {
             transform: translateY(-2px);
           }
 
-          & .card--completed {
+          & .completed {
             border: 1px solid #04bd13; /* lime */
           }
-          & .card--in-progress {
+          & .in-progress {
             border: 1px solid #fd3964; /* solar */
           }
 
-          .card__inner {
+          .inner {
             padding: 24px;
             position: relative;
 
@@ -303,7 +303,7 @@ body.sj-page-catalog {
             }
           }
 
-          .card__icon {
+          .icon {
             margin: 0 auto var(--space-3);
             display: inline-flex;
             align-items: center;
@@ -314,7 +314,7 @@ body.sj-page-catalog {
             padding: 16px;
           }
 
-          .card__eyebrow {
+          h5 {
             font-family: inherit;
             text-transform: uppercase;
             font-size: 0.8em;
@@ -328,7 +328,7 @@ body.sj-page-catalog {
             }
           }
 
-          .card__title {
+          h3 {
             margin: 0 0 8px;
             font-weight: 800;
             font-size: 1.5rem;
@@ -340,7 +340,7 @@ body.sj-page-catalog {
             }
           }
 
-          .card__text {
+          p {
             font-family: Gellix;
             margin: 0 0 var(--space-2);
             font-size: 1rem;
