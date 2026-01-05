@@ -323,7 +323,7 @@ const CG = {
 
     get isOnlyPartner() {
       return this.isPartner && skilljarUserStudentGroups.length === 1;
-    }
+    },
   },
   page: {
     isCatalog: c(".sj-page-catalog"),
@@ -348,10 +348,48 @@ const CG = {
     },
   },
   state: {
-    domain: CONFIG.domains.prod,
-    baseURL: `https://${CONFIG.domains.prod.url}`,
-    course: { progress: {}, path: {}, completed: false },
     crumbs: [],
+
+    get domain() {
+      if (CG.env.isAdmin) return CONFIG.domains.stage;
+
+      return CONFIG.domains.prod;
+    },
+
+    get course() {
+      if (!CG.env.hasCourse)
+        return { progress: {}, path: {}, completed: false };
+
+      let course = Object.assign(
+        { progress: {}, path: {}, completed: false },
+        {
+          id: skilljarCourse.id,
+          publishedCourseId: skilljarCourse.publishedCourseId,
+          tags: skilljarCourse.tags,
+          title: skilljarCourse.title,
+          short_description: skilljarCourse.short_description,
+          long_description_html: skilljarCourse.long_description_html,
+          edit: `https://dashboard.skilljar.com/course/${skilljarCourse.id}`,
+        }
+      );
+
+      if (CG.env.hasCourseProgress) {
+        course.progress = skilljarCourseProgress;
+        course.completed = skilljarCourseProgress.completed_at !== "";
+      }
+
+      if (CG.env.hasCourseSeries) {
+        course.path = Object.assign(skilljarCourseSeries, {
+          edit: `https://dashboard.skilljar.com/publishing/domains/${CG.state.domain.id}/published-paths/${skilljarCourseSeries.id}/edit`,
+        });
+      }
+
+      return course;
+    },
+
+    get baseURL() {
+      return `https://${this.domain.url}`;
+    },
 
     get user() {
       return skilljarUser;
@@ -510,52 +548,6 @@ const CG = {
 function addCrumb(label, href, prependBase = false) {
   if (prependBase) href = `${CG.state.baseURL}${href}`;
   CG.state.crumbs.push([label, href]);
-}
-
-if (CG.env.hasUser) {
-  // if (CG.state.user.email.includes("@chainguard.dev")) {
-    // CG.env.isPartner = true; // internal users get partner access
-  // }
-  if (CG.state.user.email === "kalle.westerling@chainguard.dev") {
-    // CG.env.isAdmin = true;
-    CG.state.domain = CONFIG.domains.stage;
-    CG.state.baseURL = `https://${CG.state.domain.url}`;
-  }
-}
-
-if (CG.env.hasGroups) {
-  // CG.env.isPartner = skilljarUserStudentGroups
-  //   .map((d) => d.id)
-  //   .includes("1axsvmzhtbb95");
-
-  if (CG.env.isPartner && skilljarUserStudentGroups.length === 1) {
-    CG.env.isOnlyPartner = true;
-  }
-}
-
-if (CG.env.hasCourseSeries) {
-  CG.state.course.path = Object.assign(skilljarCourseSeries, {
-    edit: `https://dashboard.skilljar.com/publishing/domains/${CG.state.domain.id}/published-paths/${skilljarCourseSeries.id}/edit`,
-  });
-}
-
-if (CG.env.hasCourse) {
-  Object.assign(CG.state.course, {
-    id: skilljarCourse.id,
-    publishedCourseId: skilljarCourse.publishedCourseId,
-    tags: skilljarCourse.tags,
-    title: skilljarCourse.title,
-    short_description: skilljarCourse.short_description,
-    long_description_html: skilljarCourse.long_description_html,
-    edit: `https://dashboard.skilljar.com/course/${skilljarCourse.id}`,
-  });
-}
-
-if (CG.env.hasCourseProgress) {
-  Object.assign(CG.state.course, {
-    progress: skilljarCourseProgress,
-    completed: skilljarCourseProgress.completed_at !== "",
-  });
 }
 
 CG.page.inPartnerPath =
