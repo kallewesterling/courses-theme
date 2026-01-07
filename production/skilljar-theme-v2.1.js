@@ -497,7 +497,7 @@ const CG = {
       ctaBtnText: Q("#resume-button a span"),
 
       get href() {
-        const btn = Q("a.resume-button") || Q("a.purchase-button");
+        const btn = Q("a.resume-button") || Q("a.purchase-button") || Q("a#path-curriculum-resume-button");
         if (btn) return btn.href;
 
         const links = [...A("p", this.courseInfo)]
