@@ -1753,11 +1753,109 @@ function tryPathSections() {
 }
 
 /**
+ * This function applies styling to the 404 error page.
+ * @returns {void}
+ */
+function notFoundView() {
+  if (CG.page.isPartner404 && !CG.env.hasUser) {
+    Q(".message").append(
+      ...[
+        el("hr"),
+        el("p", {
+          classList: "sj-text-page-not-found-explanation",
+          innerHTML: CG.data.partnerErrorMessage,
+        }),
+      ]
+    );
+
+    window.location.replace(
+      `/auth/login?next=${encodeURIComponent(window.location.pathname)}`
+    );
+  }
+}
+
+/**
+ * This function applies styling to the authentication (login/signup) pages.
+ * @returns {void}
+ */
+function authView() {
+  text(CG.dom.auth.login, "Log In");
+  text(CG.dom.auth.signup, "Sign Up");
+  text(CG.dom.auth.google, "Continue with Google");
+  text(CG.dom.auth.btn, CG.page.isLogin ? "Log In" : "Sign Up");
+  text(CG.dom.auth.labels.email, "Work Email");
+
+  placeholder(CG.dom.auth.inputs.email, "Work Email");
+
+  if (CG.page.isSignup) {
+    text(CG.dom.auth.labels.fName, "First Name");
+    text(CG.dom.auth.labels.lName, "Last Name");
+    placeholder(CG.dom.auth.inputs.fName, "First Name");
+    placeholder(CG.dom.auth.inputs.lName, "Last Name");
+    placeholder(CG.dom.auth.inputs.password2, "Password Confirm");
+    text(CG.dom.auth.labels.passwordConfirm, "Password Confirm");
+    text(CG.dom.auth.labels.accessCode, "Access Code (optional)");
+  }
+
+  const authContainer = el("div", { id: "auth-container" }, [
+    Q("#tabs"),
+    el("div", { className: "auth-card" }, [
+      CG.dom.auth.form,
+      el("div", { className: "divider" }, [el("span", { textContent: "or" })]),
+      CG.dom.auth.google,
+      CG.dom.auth.TOS,
+    ]),
+  ]);
+
+  CG.dom.contentContainer.append(authContainer);
+
+  // move "Forgot Password?" to after Password
+  if (CG.page.isLogin && CG.dom.auth.inputs.password)
+    CG.dom.auth.inputs.password.parentElement.append(
+      CG.dom.auth.forgotPasswordLink
+    );
+
+  if (CG.page.isSignup) {
+    // add aria-labels to inputs' parent .row elements
+    A("input").forEach((elem) => {
+      if (!elem.getAttribute("id")) return;
+
+      CG.dom.auth.rows[elem.getAttribute("id")] = elem.closest(".row");
+      CG.dom.auth.rows[elem.getAttribute("id")].setAttribute(
+        "aria-label",
+        elem.getAttribute("id")
+      );
+    });
+
+    // move Access Code field to after Password Confirm
+    CG.dom.auth.rows.id_password2.insertAdjacentElement(
+      "afterend",
+      CG.dom.auth.rows.id_access_code
+    );
+
+    // add focus listeners to fade in labels
+    CG.dom.auth.inputs.accessCode.addEventListener("focus", () => {
+      setStyle(CG.dom.auth.rows.id_access_code, { opacity: "1" });
+    });
+
+    CG.dom.auth.inputs.accessCode.addEventListener("blur", () => {
+      if (CG.dom.auth.inputs.accessCode.value === "") {
+        setStyle(CG.dom.auth.rows.id_access_code, { opacity: "0.4" });
+      }
+    });
+
+    setStyle(CG.dom.auth.rows.id_access_code, { opacity: "0.4" });
+  }
+
+  remove(CG.dom.auth.method);
+}
+
+/**
  * This function applies styling to a catalog page (landing page only, regardless
  * of whether the user is logged in; and Learning Path catalog pages, if the user is logged in).
  * @returns {void}
  */
-function styleCatalog() {
+function catalogView() {
   CG.dom.body.prepend(el("div", { id: "cg-bg" }));
   CG.data.sections = pathSections[skilljarCatalogPage.slug]; // ex. "partners"
 
@@ -1795,33 +1893,11 @@ function styleCatalog() {
 }
 
 /**
- * This function applies styling to the 404 error page.
+ * This function applies styling to the course details page when the user is
+ * not signed in or signed in but not registered for the course.
  * @returns {void}
  */
-function style404() {
-  if (CG.page.isPartner404 && !CG.env.hasUser) {
-    Q(".message").append(
-      ...[
-        el("hr"),
-        el("p", {
-          classList: "sj-text-page-not-found-explanation",
-          innerHTML: CG.data.partnerErrorMessage,
-        }),
-      ]
-    );
-
-    window.location.replace(
-      `/auth/login?next=${encodeURIComponent(window.location.pathname)}`
-    );
-  }
-}
-
-/**
- * This function applies styling to the course details page when the user
- * is not logged in or logged in but not registered for the course.
- * @returns {void}
- */
-function styleCourseDetails() {
+function courseUnregisteredView() {
   CG.dom.local = {
     card: Q(".course-card"),
   };
@@ -1868,11 +1944,69 @@ function styleCourseDetails() {
 }
 
 /**
+ * This function applies styling to the course details page when the user is
+ * signed in and registered for the course.
+ * @returns {void}
+ */
+function courseRegisteredView() {
+  CG.dom.local = {
+    card: {
+      details: Q(".course-card"),
+      link: Q(".course-card a"),
+    },
+  };
+
+  CG.dom.tabs.aboutSection?.classList.add("active");
+
+  CG.dom.tabs.container.append(
+    Object.assign(CG.dom.tabs.aboutSection, { id: "about-section" }),
+    Object.assign(CG.dom.tabs.curriculumSection, { id: "curriculum-section" })
+  );
+
+  if (typeof courseDetails !== "undefined") {
+    CG.dom.local.card.details ? CG.dom.local.card.details.remove() : null; // remove existing card if present
+    CG.dom.courseContainer.append(
+      ...[
+        createCourseDetailsCard(courseDetails, {
+          btnText: CG.dom.header.ctaBtnWrapper
+            ? CG.dom.header.ctaBtnText.textContent
+            : "Resume",
+          btnHref: CG.dom.header.ctaBtnText
+            ? CG.dom.header.ctaBtn.getAttribute("href")
+            : "resume",
+          completed: CG.state.course.completed,
+        }),
+      ].filter(Boolean)
+    );
+
+    // re-query link
+    CG.dom.local.card.link = Q(".course-card a");
+  }
+
+  // update resume button text and href (with auto-value fallback)
+  if (CG.dom.header.ctaBtnWrapper && CG.dom.local.card.link) {
+    Object.assign(CG.dom.local.card.link, {
+      textContent: CG.dom.header.ctaBtnText.textContent || "Resume",
+      href: CG.dom.header.ctaBtn.getAttribute("href") || "resume",
+    });
+  } else if (CG.dom.local.card.link && !CG.state.course.completed) {
+    logger.warn("Hiding resume button as it could not be found");
+    hide(CG.dom.local.card.link); // Hide resume button if it doesn't exist
+  }
+
+  CG.data.curriculumElements = getCurriculumElements();
+  CG.dom.curriculumContainer.replaceChildren(...CG.data.curriculumElements);
+
+  // move elements
+  CG.dom.courseContainer.append(...[CG.dom.local.card.details].filter(Boolean));
+}
+
+/**
  * This function applies styling to the Learning Path details page, when
  * the user is logged out or logged in but not registered for the Learning Path.
  * @returns {void}
  */
-function stylePathCourseDetails() {
+function pathUnregisteredView() {
   // make path sections
   tryPathSections();
 }
@@ -1882,7 +2016,7 @@ function stylePathCourseDetails() {
  * the user is logged in and registered for the Learning Path.
  * @returns {void}
  */
-function stylePathCatalogPage() {
+function pathRegisteredView() {
   hide([
     ".path-curriculum-resume-wrapper",
     "#path-curriculum-progress-bar-annotation",
@@ -2068,7 +2202,7 @@ function processCodeBlock(elem) {
  * This function applies styling to the lesson page.
  * @returns {void}
  */
-function styleLesson() {
+function lessonView() {
   CG.dom.local = {
     body: {
       mainContainer: Q("#lp-wrapper"),
@@ -2191,158 +2325,24 @@ function styleLesson() {
   }
 }
 
-/**
- * This function applies styling to the authentication (login/signup) pages.
- * @returns {void}
- */
-function styleAuth() {
-  text(CG.dom.auth.login, "Log In");
-  text(CG.dom.auth.signup, "Sign Up");
-  text(CG.dom.auth.google, "Continue with Google");
-  text(CG.dom.auth.btn, CG.page.isLogin ? "Log In" : "Sign Up");
-  text(CG.dom.auth.labels.email, "Work Email");
-
-  placeholder(CG.dom.auth.inputs.email, "Work Email");
-
-  if (CG.page.isSignup) {
-    text(CG.dom.auth.labels.fName, "First Name");
-    text(CG.dom.auth.labels.lName, "Last Name");
-    placeholder(CG.dom.auth.inputs.fName, "First Name");
-    placeholder(CG.dom.auth.inputs.lName, "Last Name");
-    placeholder(CG.dom.auth.inputs.password2, "Password Confirm");
-    text(CG.dom.auth.labels.passwordConfirm, "Password Confirm");
-    text(CG.dom.auth.labels.accessCode, "Access Code (optional)");
-  }
-
-  const authContainer = el("div", { id: "auth-container" }, [
-    Q("#tabs"),
-    el("div", { className: "auth-card" }, [
-      CG.dom.auth.form,
-      el("div", { className: "divider" }, [el("span", { textContent: "or" })]),
-      CG.dom.auth.google,
-      CG.dom.auth.TOS,
-    ]),
-  ]);
-
-  CG.dom.contentContainer.append(authContainer);
-
-  // move "Forgot Password?" to after Password
-  if (CG.page.isLogin && CG.dom.auth.inputs.password)
-    CG.dom.auth.inputs.password.parentElement.append(
-      CG.dom.auth.forgotPasswordLink
-    );
-
-  if (CG.page.isSignup) {
-    // add aria-labels to inputs' parent .row elements
-    A("input").forEach((elem) => {
-      if (!elem.getAttribute("id")) return;
-
-      CG.dom.auth.rows[elem.getAttribute("id")] = elem.closest(".row");
-      CG.dom.auth.rows[elem.getAttribute("id")].setAttribute(
-        "aria-label",
-        elem.getAttribute("id")
-      );
-    });
-
-    // move Access Code field to after Password Confirm
-    CG.dom.auth.rows.id_password2.insertAdjacentElement(
-      "afterend",
-      CG.dom.auth.rows.id_access_code
-    );
-
-    // add focus listeners to fade in labels
-    CG.dom.auth.inputs.accessCode.addEventListener("focus", () => {
-      setStyle(CG.dom.auth.rows.id_access_code, { opacity: "1" });
-    });
-
-    CG.dom.auth.inputs.accessCode.addEventListener("blur", () => {
-      if (CG.dom.auth.inputs.accessCode.value === "") {
-        setStyle(CG.dom.auth.rows.id_access_code, { opacity: "0.4" });
-      }
-    });
-
-    setStyle(CG.dom.auth.rows.id_access_code, { opacity: "0.4" });
-  }
-
-  remove(CG.dom.auth.method);
-}
-
-/**
- * This function applies styling to the Course page, when the user is
- * signed in and registered for the course.
- * @returns {void}
- */
-function styleCurriculumPage() {
-  CG.dom.local = {
-    card: {
-      details: Q(".course-card"),
-      link: Q(".course-card a"),
-    },
-  };
-
-  CG.dom.tabs.aboutSection?.classList.add("active");
-
-  CG.dom.tabs.container.append(
-    Object.assign(CG.dom.tabs.aboutSection, { id: "about-section" }),
-    Object.assign(CG.dom.tabs.curriculumSection, { id: "curriculum-section" })
-  );
-
-  if (typeof courseDetails !== "undefined") {
-    CG.dom.local.card.details ? CG.dom.local.card.details.remove() : null; // remove existing card if present
-    CG.dom.courseContainer.append(
-      ...[
-        createCourseDetailsCard(courseDetails, {
-          btnText: CG.dom.header.ctaBtnWrapper
-            ? CG.dom.header.ctaBtnText.textContent
-            : "Resume",
-          btnHref: CG.dom.header.ctaBtnText
-            ? CG.dom.header.ctaBtn.getAttribute("href")
-            : "resume",
-          completed: CG.state.course.completed,
-        }),
-      ].filter(Boolean)
-    );
-
-    // re-query link
-    CG.dom.local.card.link = Q(".course-card a");
-  }
-
-  // update resume button text and href (with auto-value fallback)
-  if (CG.dom.header.ctaBtnWrapper && CG.dom.local.card.link) {
-    Object.assign(CG.dom.local.card.link, {
-      textContent: CG.dom.header.ctaBtnText.textContent || "Resume",
-      href: CG.dom.header.ctaBtn.getAttribute("href") || "resume",
-    });
-  } else if (CG.dom.local.card.link && !CG.state.course.completed) {
-    logger.warn("Hiding resume button as it could not be found");
-    hide(CG.dom.local.card.link); // Hide resume button if it doesn't exist
-  }
-
-  CG.data.curriculumElements = getCurriculumElements();
-  CG.dom.curriculumContainer.replaceChildren(...CG.data.curriculumElements);
-
-  // move elements
-  CG.dom.courseContainer.append(...[CG.dom.local.card.details].filter(Boolean));
-}
-
 const pageHandlers = [
-  { test: () => CG.page.isLogin || CG.page.isSignup, handler: styleAuth },
-  { test: () => CG.page.isCourseDetails, handler: styleCourseDetails },
+  { test: () => CG.page.isLogin || CG.page.isSignup, handler: authView },
+  { test: () => CG.page.isCourseDetails, handler: courseUnregisteredView },
   {
     test: () => CG.page.isSignedUp,
-    handler: styleCurriculumPage,
+    handler: courseRegisteredView,
   },
-  { test: () => CG.page.isPageDetail, handler: stylePathCourseDetails },
-  { test: () => CG.page.isPageCatalog, handler: stylePathCatalogPage },
-  { test: () => CG.page.isLesson, handler: styleLesson },
-  { test: () => CG.page.isCatalog || CG.page.isLanding, handler: styleCatalog },
-  { test: () => CG.page.is404, handler: style404 },
+  { test: () => CG.page.isPageDetail, handler: pathUnregisteredView },
+  { test: () => CG.page.isPageCatalog, handler: pathRegisteredView },
+  { test: () => CG.page.isLesson, handler: lessonView },
+  { test: () => CG.page.isCatalog || CG.page.isLanding, handler: catalogView },
+  { test: () => CG.page.is404, handler: notFoundView },
 ];
 
 /**
  * This router function handles the overall page styling by determining the
  * appropriate handler for the current page and executing it.
- * 
+ *
  * It also manages the placement of breadcrumbs, header elements, footer,
  * and messages on course-related pages.
  * @returns {void}
