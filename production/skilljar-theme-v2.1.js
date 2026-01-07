@@ -364,6 +364,16 @@ const CG = {
   state: {
     crumbs: [],
 
+    get shortDescription() {
+      if (!CG.env.hasCourse && !CG.env.hasCourseSeries) return "";
+
+      if (CG.env.hasCourseSeries) return skilljarCourseSeries.short_description;
+
+      if (CG.env.hasCourse) return skilljarCourse.short_description;
+
+      return "";
+    },
+
     get domain() {
       if (CG.env.isAdmin) return CONFIG.domains.stage;
 
@@ -452,20 +462,10 @@ const CG = {
       text: "Course",
     }),
 
-    get shortDescription() {
-      if (!CG.env.hasCourse && !CG.env.hasCourseSeries) return "";
-
-      if (CG.env.hasCourseSeries) return skilljarCourseSeries.short_description;
-
-      if (CG.env.hasCourse) return skilljarCourse.short_description;
-
-      return "";
-    },
-
     get headingParagraph() {
       return el("div", {
         className: "sj-heading-paragraph",
-        text: this.shortDescription,
+        text: CG.state.shortDescription,
       });
     },
   },
@@ -495,24 +495,29 @@ const CG = {
       registerBtn: Q("#purchase-button-wrapper-large a"),
       ctaBtn: Q("#resume-button a"),
       ctaBtnText: Q("#resume-button a span"),
+      btn:
+        Q("a.resume-button") ||
+        Q("a.purchase-button") ||
+        Q("a#path-curriculum-resume-button"),
 
-      get href() {
-        const btn = Q("a.resume-button") || Q("a.purchase-button") || Q("a#path-curriculum-resume-button");
-        if (btn) return btn.href;
-
-        const links = [...A("p", this.courseInfo)]
+      get links() {
+        return [...A("p", this.courseInfo)]
           .filter((d) => d.textContent.toLowerCase().includes("learning path"))
           .map((p) =>
             [...A("a", p)].filter((a) => a.innerHTML === "learning path")
           )
           .flat();
+      },
+
+      get href() {
+        if (this.btn) return this.btn.href;
 
         const checkout = CONFIG.partners[skilljarCourseSeries.slug]?.checkout;
 
-        if (links.length > 0 && checkout) {
+        if (this.links.length > 0 && checkout) {
           return `/checkout/${checkout}`;
-        } else if (links.length > 0) {
-          return links[0].href;
+        } else if (this.links.length > 0) {
+          return this.links[0].href;
         }
 
         return "#";
@@ -526,15 +531,15 @@ const CG = {
 
       get curriculumSection() {
         return (
-          Q("section #curriculum-section", CG.dom.tabs.container) ||
-          Q("section:nth-child(1)", CG.dom.tabs.container)
+          Q("section #curriculum-section", this.container) ||
+          Q("section:nth-child(1)", this.container)
         );
       },
 
       get aboutSection() {
         return (
-          Q("section #about-section", CG.dom.tabs.container) ||
-          Q("section:nth-child(2)", CG.dom.tabs.container)
+          Q("section #about-section", this.container) ||
+          Q("section:nth-child(2)", this.container)
         );
       },
     },
@@ -556,15 +561,7 @@ const CG = {
       },
 
       // login specific
-      loginForm: Q("#login_form"),
-      loginText: Q("#login-tab-left span span"),
-      signupTabTextSpan: Q("#login-tab-right span"),
       forgotPasswordLink: Q("a.forgot-password"),
-
-      // signup specific
-      loginTabTextSpan: Q("#login-tab-left a span"),
-      signupForm: Q("#signup_form"),
-      signupTabText: Q("#login-tab-right a") || Q("#login-tab-right span"),
 
       labels: {
         passwordConfirm: Q("label[for=id_password2] .input-label-text span"),
@@ -576,15 +573,10 @@ const CG = {
 
       google: Q("#google_login"),
       TOS: Q("#access-message"),
-
       form: Q("#login_form") || Q("#signup_form"),
-
-      button: Q("#button-sign-in") || Q("#button-sign-up"),
-
+      btn: Q("#button-sign-in") || Q("#button-sign-up"),
       method: Q(".sj-text-sign-in-with") || Q(".sj-text-sign-up-with"),
-
       login: Q("#login-tab-left a span") || Q("#login-tab-left span span"),
-
       signup: Q("#login-tab-right a") || Q("#login-tab-right span"),
 
       get altMethod() {
@@ -2184,7 +2176,7 @@ function styleAuth() {
   text(CG.dom.auth.login, "Log In");
   text(CG.dom.auth.signup, "Sign Up");
   text(CG.dom.auth.google, "Continue with Google");
-  text(CG.dom.auth.button, CG.page.isLogin ? "Log In" : "Sign Up");
+  text(CG.dom.auth.btn, CG.page.isLogin ? "Log In" : "Sign Up");
   text(CG.dom.auth.labels.email, "Work Email");
 
   placeholder(CG.dom.auth.inputs.email, "Work Email");
