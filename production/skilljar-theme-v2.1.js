@@ -21,6 +21,7 @@ document.querySelector("body").style.setProperty("display", "none");
 /**
  * Simple logger utility for console messages with styling.
  * Logs messages only if in staging or admin environment.
+ * @returns {void}
  */
 const logger = {
   enabled() {
@@ -48,6 +49,7 @@ const logger = {
 /**
  * This function hides the given element by setting its display style to "none".
  * @param {HTMLElement} element - The element to hide.
+ * @returns {void}
  */
 const hide = (element) => setStyle(element, { display: "none !important" });
 
@@ -595,6 +597,7 @@ const CG = {
  * @param {string} label - The label for the breadcrumb
  * @param {string} href - The href for the breadcrumb
  * @param {boolean} prependBase - Whether to prepend the base URL to the href
+ * @returns {void}
  */
 function addCrumb(label, href, prependBase = false) {
   if (prependBase) href = `${CG.state.baseURL}${href}`;
@@ -1114,6 +1117,7 @@ pathSections = {
 /**
  * Update all links on the page to use either the production or staging domain.
  * @param {boolean} useTestDomain - If true, update links to use the staging domain; otherwise, use the production domain.
+ * @returns {void}
  * @example
  * // Update links to use the staging domain
  * updateLinks(true);
@@ -1142,6 +1146,7 @@ function updateLinks(useTestDomain) {
 
 /**
  * Add a "Partner Courses" menu item to the header if the user is a partner.
+ * @returns {void}
  */
 function addPartnerMenu() {
   const partnerItem = el("a", {
@@ -1154,6 +1159,7 @@ function addPartnerMenu() {
 
 /**
  * Adds a debug heading with environment information and a staging toggle.
+ * @returns {void}
  */
 function debugHeading() {
   // adding a dropdown info circle
@@ -1228,6 +1234,7 @@ function debugHeading() {
 /**
  * Removes elements from the DOM based on the provided selector(s).
  * @param {string|string[]} selector - A CSS selector string or an array of selector strings.
+ * @returns {void}
  * @example
  * // Remove a single element
  * remove('.ad-banner');
@@ -1264,7 +1271,7 @@ function remove(selector) {
 /**
  * Renders a breadcrumb navigation element.
  * @param {HTMLElement} [targetElement] - The target element to render the breadcrumbs into. If not provided, a new div will be created.
- * @return {HTMLElement} The rendered breadcrumb navigation element.
+ * @returns {HTMLElement} The rendered breadcrumb navigation element.
  * @example
  * renderBreadcrumbs('#breadcrumb-container');
  */
@@ -1320,6 +1327,7 @@ function renderBreadcrumbs(targetElement) {
  * @param {Array} sections - An array of section objects containing details for each section.
  * @param {string} parentSelector - The CSS selector of the parent element to which sections will be appended.
  * @param {string} baseURL - The base URL for course links.
+ * @returns {void}
  * @example
  * makeSections(sectionsData, '#main-content', 'https://courses.example.com');
  */
@@ -1631,7 +1639,7 @@ function createCourseDetailsCard(
  * Creates a function to copy text to the clipboard and animate a tooltip.
  * @param {string} copyText - The text to copy to the clipboard.
  * @param {HTMLElement} tooltipContainer - The element to animate as a tooltip.
- * @return {Function} - A function that, when called, will copy the text and animate the tooltip.
+ * @returns {Function} - A function that, when called, will copy the text and animate the tooltip.
  */
 function toClipboard(copyText, tooltipContainer) {
   /**
@@ -1727,6 +1735,7 @@ function setStyle(target, style) {
 /**
  * Attempts to load and display sections for the current learning path.
  * Logs a warning if the path sections are not found.
+ * @returns {void}
  */
 function tryPathSections() {
   if (!pathSections[skilljarPath.slug]) {
@@ -1745,6 +1754,7 @@ function tryPathSections() {
 
 /**
  * This function applies desktop-specific styling to a catalog page.
+ * @returns {void}
  */
 function styleCatalog() {
   CG.dom.body.prepend(el("div", { id: "cg-bg" }));
@@ -1785,6 +1795,7 @@ function styleCatalog() {
 
 /**
  * This function applies styling to the 404 error page.
+ * @returns {void}
  */
 function style404() {
   if (CG.page.isPartner404 && !CG.env.hasUser) {
@@ -1806,6 +1817,7 @@ function style404() {
 
 /**
  * This function applies general styling to the course details page.
+ * @returns {void}
  */
 function styleCourseDetails() {
   CG.dom.local = {
@@ -1855,6 +1867,7 @@ function styleCourseDetails() {
 
 /**
  * This function applies general styling to the path course details page.
+ * @returns {void}
  */
 function stylePathCourseDetails() {
   // make path sections
@@ -1863,6 +1876,7 @@ function stylePathCourseDetails() {
 
 /**
  * This function applies desktop-specific styling to the path catalog page.
+ * @returns {void}
  */
 function stylePathCatalogPage() {
   hide([
@@ -2013,7 +2027,7 @@ function setupLessonNav() {
 /**
  * This function processes a code block element by adding a copy icon and functionality to copy the code to the clipboard.
  * @param {HTMLElement} elem - The code block element to process.
- * @return {void}
+ * @returns {void}
  */
 function processCodeBlock(elem) {
   const codeEl = Q("code", elem);
@@ -2050,7 +2064,7 @@ function processCodeBlock(elem) {
  * This function processes code blocks by adding a copy icon and functionality to copy the code to the clipboard.
  * It filters out code blocks that have the 'noCopy' or 'copyAdded' data attributes.
  * @param {NodeList} codeBlocks - A list of code block elements to process.
- * @return {void}
+ * @returns {void}
  */
 function styleLesson() {
   CG.dom.local = {
@@ -2177,6 +2191,7 @@ function styleLesson() {
 
 /**
  * This function applies styling to the authentication (login/signup) pages.
+ * @returns {void}
  */
 function styleAuth() {
   text(CG.dom.auth.login, "Log In");
@@ -2252,6 +2267,7 @@ function styleAuth() {
 
 /**
  * This function applies styling to the curriculum page.
+ * @returns {void}
  */
 function styleCurriculumPage() {
   CG.dom.local = {
@@ -2323,6 +2339,7 @@ const pageHandlers = [
 /**
  * This function handles the overall page styling by determining the appropriate handler for the current page and executing it.
  * It also manages the placement of breadcrumbs, header elements, footer, and messages on course-related pages.
+ * @returns {void}
  */
 function handlePageStyling() {
   // find first matching handler
@@ -2370,6 +2387,7 @@ function handlePageStyling() {
 /**
  * This function modifies the header to include a link to Chainguard's main website.
  * It creates a mobile header and adds the link to both mobile and desktop headers.
+ * @returns {void}
  */
 function fixHeader() {
   const toChainguard = el("div", { id: "to-chainguard" }, [
@@ -2530,6 +2548,7 @@ function ensureCompletionPopup() {
 /**
  * Show the completion popup with animation and focus management.
  * @param {HTMLElement} elem - The completion popup element to show.
+ * @returns {void}
  */
 function showCompletion(elem) {
   elem.setAttribute("aria-hidden", "false");
@@ -2558,6 +2577,7 @@ function showCompletion(elem) {
 /**
  * Hide the completion popup with animation.
  * @param {HTMLElement} elem - The completion popup element to hide.
+ * @returns {void}
  */
 function hideCompletion(elem) {
   setStyle(elem, { opacity: "0" });
@@ -2573,6 +2593,7 @@ function hideCompletion(elem) {
 
 /**
  * Animate the completion popup with confetti and auto-hide functionality.
+ * @returns {void}
  */
 window.animateCompletion = function animateCompletion() {
   const elem = ensureCompletionPopup();
@@ -2589,6 +2610,7 @@ window.animateCompletion = function animateCompletion() {
 
 /**
  * Shoot confetti bursts with stars, circles, and logos.
+ * @returns {void}
  */
 function shoot() {
   confetti({
