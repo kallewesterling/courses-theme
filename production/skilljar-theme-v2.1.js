@@ -497,7 +497,8 @@ const CG = {
       ctaBtnText: Q("#resume-button a span"),
 
       get href() {
-        if (this.ctaBtnWrapper) return this.registerBtn.href;
+        const btn = Q("a.resume-button") || Q("a.purchase-button");
+        if (btn) return btn.href;
 
         const links = [...A("p", courseInfo)]
           .filter((d) => d.textContent.toLowerCase().includes("learning path"))
