@@ -1463,11 +1463,10 @@ function getCurriculumElements(curriculumParentContainer = null) {
   if (!curriculumParentContainer)
     curriculumParentContainer = CG.dom.curriculumContainer;
 
-  let currentSection = 0,
-    elements = Array.from(
+  let elements = Array.from(
       A("[class^='lesson-'],.section", curriculumParentContainer)
     ),
-    a;
+    currentSection = 0;
 
   const content = elements
     .filter((e) => !e.classList.contains("lesson-row"))
