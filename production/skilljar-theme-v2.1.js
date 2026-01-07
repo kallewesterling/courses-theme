@@ -526,14 +526,14 @@ const CG = {
 
       get curriculumSection() {
         return (
-          Q("section #curriculumSection", CG.dom.tabs.container) ||
+          Q("section #curriculum-section", CG.dom.tabs.container) ||
           Q("section:nth-child(1)", CG.dom.tabs.container)
         );
       },
 
       get aboutSection() {
         return (
-          Q("section #aboutSection", CG.dom.tabs.container) ||
+          Q("section #about-section", CG.dom.tabs.container) ||
           Q("section:nth-child(2)", CG.dom.tabs.container)
         );
       },
@@ -2266,8 +2266,8 @@ function styleCurriculumPage() {
   CG.dom.tabs.aboutSection?.classList.add("active");
 
   CG.dom.tabs.container.append(
-    Object.assign(CG.dom.tabs.aboutSection, { id: "aboutSection" }),
-    Object.assign(CG.dom.tabs.curriculumSection, { id: "curriculumSection" })
+    Object.assign(CG.dom.tabs.aboutSection, { id: "about-section" }),
+    Object.assign(CG.dom.tabs.curriculumSection, { id: "curriculum-section" })
   );
 
   if (typeof courseDetails !== "undefined") {
