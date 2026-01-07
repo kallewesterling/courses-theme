@@ -495,6 +495,26 @@ const CG = {
       registerBtn: Q("#purchase-button-wrapper-large a"),
       ctaBtn: Q("#resume-button a"),
       ctaBtnText: Q("#resume-button a span"),
+
+      get href() {
+        if (this.ctaBtnWrapper) return this.registerBtn.href;
+
+        const links = [...A("p", courseInfo)]
+          .filter((d) => d.textContent.toLowerCase().includes("learning path"))
+          .map((p) =>
+            [...A("a", p)].filter((a) => a.innerHTML === "learning path")
+          )
+          .flat();
+
+        if (links.length > 0)
+          return CONFIG.partners[skilljarCourseSeries.slug]?.checkout
+            ? `/checkout/${
+                CONFIG.partners[skilljarCourseSeries.slug]?.checkout
+              }`
+            : links[0].href;
+
+        return "#";
+      },
     },
     courseContainer: Q("#dp-details") || Q("#cp-content"),
     curriculumContainer: A(".dp-curriculum")[0] || Q("#curriculum-list"),
