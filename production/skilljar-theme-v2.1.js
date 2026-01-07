@@ -1550,6 +1550,12 @@ function getCurriculumElements(curriculumParentContainer = null) {
       ]);
 
       lessons.shift(); // remove the first lesson since it's now the header
+    } else if (!headingElement && sections.length === 1) {
+      // we have multiple lessons but no heading, so add a generic one
+      headingElement = el("h3", {
+        className: "curriculum-header no-select",
+        textContent: "Lessons",
+      });
     } else {
       logger.warn(
         "Unexpected curriculum structure: no heading and multiple lessons"
