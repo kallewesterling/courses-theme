@@ -500,19 +500,20 @@ const CG = {
         const btn = Q("a.resume-button") || Q("a.purchase-button");
         if (btn) return btn.href;
 
-        const links = [...A("p", courseInfo)]
+        const links = [...A("p", this.courseInfo)]
           .filter((d) => d.textContent.toLowerCase().includes("learning path"))
           .map((p) =>
             [...A("a", p)].filter((a) => a.innerHTML === "learning path")
           )
           .flat();
 
-        if (links.length > 0)
-          return CONFIG.partners[skilljarCourseSeries.slug]?.checkout
-            ? `/checkout/${
-                CONFIG.partners[skilljarCourseSeries.slug]?.checkout
-              }`
-            : links[0].href;
+        const checkout = CONFIG.partners[skilljarCourseSeries.slug]?.checkout;
+
+        if (links.length > 0 && checkout) {
+          return `/checkout/${checkout}`;
+        } else if (links.length > 0) {
+          return links[0].href;
+        }
 
         return "#";
       },
