@@ -336,13 +336,13 @@ const CG = {
   page: {
     isCatalog: c(".sj-page-catalog"),
     isLanding: c(".sj-page-catalog-root"),
-    isSignedUp: c(".sj-page-curriculum"),
-    isCourseDetails: c(".sj-page-detail-course"),
+    isCourseRegistered: c(".sj-page-curriculum"),
+    isCourseUnregistered: c(".sj-page-detail-course"),
     isLesson: c(".sj-page-lesson"),
     isLogin: c(".sj-page-login"),
     isSignup: c(".sj-page-signup"),
-    isPageDetail: c(".sj-page-detail-bundle.sj-page-detail-path"),
-    isPageCatalog: c(".sj-page-series.sj-page-path"),
+    isPathUnregistered: c(".sj-page-detail-bundle.sj-page-detail-path"),
+    isPathRegistered: c(".sj-page-series.sj-page-path"),
     is404: c(".sj-page-error-404"),
     // hasCertificate: c(".cp-certificate"),
     isPartner404:
@@ -352,7 +352,7 @@ const CG = {
       ].find((d) => window.location.href.includes(d)) || false,
 
     get isCoursePage() {
-      return this.isPageDetail || this.isCourseDetails || this.isSignedUp;
+      return this.isPathUnregistered || this.isCourseUnregistered || this.isCourseRegistered;
     },
 
     get inPartnerPath() {
@@ -1286,7 +1286,7 @@ function renderBreadcrumbs(targetElement) {
   if (!targetElement)
     targetElement = el("div", {
       id: "breadcrumbs",
-      className: CG.page.isPageCatalog ? "row dp-row-flex-v2" : "",
+      className: CG.page.isPathRegistered ? "row dp-row-flex-v2" : "",
     });
 
   const nav = el(
@@ -2338,15 +2338,15 @@ function lessonView() {
 
 const pageHandlers = [
   { test: () => CG.page.isLogin || CG.page.isSignup, handler: authView },
-  { test: () => CG.page.isCourseDetails, handler: courseUnregisteredView },
+  { test: () => CG.page.isCourseUnregistered, handler: courseUnregisteredView },
   {
-    test: () => CG.page.isSignedUp,
+    test: () => CG.page.isCourseRegistered,
     handler: courseRegisteredView,
   },
-  { test: () => CG.page.isPageDetail, handler: pathUnregisteredView },
-  { test: () => CG.page.isPageCatalog, handler: pathRegisteredView },
+  { test: () => CG.page.isPathUnregistered, handler: pathUnregisteredView },
+  { test: () => CG.page.isPathRegistered, handler: pathRegisteredView },
   { test: () => CG.page.isLesson, handler: lessonView },
-  { test: () => CG.page.isCatalog || CG.page.isLanding, handler: catalogView },
+  { test: () => CG.page.isCatalog || CG.page.isLanding, handler: catalogView }, // TODO: I don't think CG.page.isLanding is needed
   { test: () => CG.page.is404, handler: notFoundView },
 ];
 
@@ -2370,7 +2370,7 @@ function handlePageStyling() {
     logger.warn("No page styling handler matched for this page.");
   }
 
-  if (CG.page.isCoursePage || CG.page.isPageCatalog) {
+  if (CG.page.isCoursePage || CG.page.isPathRegistered) {
     // make breadcrumbs
     const breadcrumbs = renderBreadcrumbs();
 
@@ -2386,7 +2386,7 @@ function handlePageStyling() {
           CG.dom.header.ctaBtnWrapper,
         ].filter(Boolean)
       );
-    } else if (CG.page.isPageCatalog) {
+    } else if (CG.page.isPathRegistered) {
       Q(".top-row-grey").prepend(breadcrumbs);
     }
   }
