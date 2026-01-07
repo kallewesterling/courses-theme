@@ -592,18 +592,6 @@ const CG = {
   },
 };
 
-/**
- * Add a breadcrumb to the global state
- * @param {string} label - The label for the breadcrumb
- * @param {string} href - The href for the breadcrumb
- * @param {boolean} prependBase - Whether to prepend the base URL to the href
- * @returns {void}
- */
-function addCrumb(label, href, prependBase = false) {
-  if (prependBase) href = `${CG.state.baseURL}${href}`;
-  CG.state.crumbs.push([label, href]);
-}
-
 pathSections = {
   home: [
     CG.env.isInternal
@@ -1115,6 +1103,18 @@ pathSections = {
 };
 
 /**
+ * Add a breadcrumb to the global state
+ * @param {string} label - The label for the breadcrumb
+ * @param {string} href - The href for the breadcrumb
+ * @param {boolean} prependBase - Whether to prepend the base URL to the href
+ * @returns {void}
+ */
+function addCrumb(label, href, prependBase = false) {
+  if (prependBase) href = `${CG.state.baseURL}${href}`;
+  CG.state.crumbs.push([label, href]);
+}
+
+/**
  * Update all links on the page to use either the production or staging domain.
  * @param {boolean} useTestDomain - If true, update links to use the staging domain; otherwise, use the production domain.
  * @returns {void}
@@ -1444,8 +1444,18 @@ function createClone(
   return el("svg", attrs, paths);
 }
 
-const createResourceCard = (resource) =>
-  el(
+/**
+ * Creates a resource card element.
+ * @param {Object} resource - The resource object containing details for the card.
+ * @param {string} resource.link - The URL link for the resource.
+ * @param {string} resource.title - The title of the resource.
+ * @param {Array<string>} [resource.tags] - An array of tags associated with the resource.
+ * @returns {HTMLElement} The created resource card element.
+ */
+function createResourceCard(
+  resource = { link: "#", title: "Resources", tags: [] }
+) {
+  return el(
     "a",
     {
       href: getCorrectURL(resource.link),
@@ -1475,6 +1485,7 @@ const createResourceCard = (resource) =>
       ]),
     ]
   );
+}
 
 /**
  * Extracts curriculum elements from the given container and organizes them into sections and lessons.
