@@ -1,75 +1,11 @@
+/* 
+Styles for pages that show course information, including:
+- body.sj-page-detail-course = course description page (not logged in + logged in - but not signed up)
+- body.sj-page-curriculum = course description page (logged in + signed up)
+*/
+
 body.sj-page-detail-course,
 body.sj-page-curriculum {
-  #curriculumSection {
-    .curriculum-wrapper {
-      /* Each section of the curriculum has it's own wrapper */
-      border-radius: 8px;
-      margin-bottom: 28px;
-      padding: 0px;
-      border: 2px solid var(--blurple);
-
-      h3 {
-        /* Section heading */
-        display: flex;
-        align-items: center;
-        padding: 24px;
-        margin: 0px;
-        font-family: Gellix;
-        color: var(--ink) !important;
-        font-size: 18px !important;
-        font-weight: 700 !important;
-        line-height: 125%;
-        border-bottom: 2px solid var(--blurple);
-
-        > a {
-          /* Special case: header when no lessons */
-          font-weight: inherit;
-          padding: 0;
-          font-size: 18px !important;
-
-          &:hover {
-            background-color: unset;
-          }
-        }
-      }
-
-      a {
-        /* Section lesson */
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: flex-end;
-        align-items: center;
-        font-family: inherit;
-        color: var(--ink) !important;
-        padding: 24px;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 150%;
-        border-bottom: 2px solid var(--blurple);
-        height: 100%;
-
-        .fa-check-circle {
-          color: green !important;
-        }
-
-        &:hover {
-          background-color: var(--gradient-end);
-        }
-
-        &:last-child {
-          border-bottom: 0;
-          border-radius: 8px;
-        }
-
-        i {
-          /* TODO: is this legacy? */
-          margin-right: 12px;
-          color: var(--blurple);
-        }
-      }
-    }
-  }
-
   .course-card {
     font-family: inherit !important;
     max-width: 368px !important;
@@ -179,14 +115,6 @@ body.sj-page-curriculum:not(:has(.cp-certificate)) {
     max-width: none;
     padding: 0;
     border: 0;
-
-    @media screen and (max-width: 991px) {
-      background-image: linear-gradient(
-        225deg,
-        var(--label-color) 0%,
-        var(--primary-cyan-hex) 100%
-      );
-    }
 
     .dp-row-flex-v2 {
       /* All header content */
@@ -552,6 +480,79 @@ body.sj-page-detail-course {
       /* Course details card */
       margin: 0 0 46px 0;
       justify-self: center;
+    }
+  }
+}
+
+/* Curriculum list */
+body.sj-page-curriculum {
+  #curriculumSection {
+    .curriculum-wrapper {
+      /* Each section of the curriculum has it's own wrapper */
+      border-radius: 8px;
+      margin-bottom: 28px;
+      padding: 0px;
+      border: 2px solid var(--blurple);
+
+      h3 {
+        /* Section heading */
+        display: flex;
+        align-items: center;
+        padding: 24px;
+        margin: 0px;
+        font-family: Gellix;
+        color: var(--ink) !important;
+        font-size: 18px !important;
+        font-weight: 700 !important;
+        line-height: 125%;
+        border-bottom: 2px solid var(--blurple);
+
+        > a {
+          /* Special case: header when no lessons */
+          font-weight: inherit;
+          padding: 0;
+          font-size: 18px !important;
+
+          &:hover {
+            background-color: unset;
+          }
+        }
+      }
+
+      a {
+        /* Section lesson */
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        align-items: center;
+        font-family: inherit;
+        color: var(--ink) !important;
+        padding: 24px;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 150%;
+        border-bottom: 2px solid var(--blurple);
+        height: 100%;
+
+        .fa-check-circle {
+          color: green !important;
+        }
+
+        &:hover {
+          background-color: var(--gradient-end);
+        }
+
+        &:last-child {
+          border-bottom: 0;
+          border-radius: 8px;
+        }
+
+        i {
+          /* TODO: is this legacy? */
+          margin-right: 12px;
+          color: var(--blurple);
+        }
+      }
     }
   }
 }

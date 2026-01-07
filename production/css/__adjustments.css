@@ -15,6 +15,10 @@ body.sj-page-detail-course {
   */
 
   .top-row-grey {
+    /* sj-page-detail-course */
+    /* sj-page-detail-bundle / sj-page-detail-path / sj-page-detail (covers above too) */
+    /* body.sj-page-curriculum */
+
     /* Header container */
     background-color: transparent !important;
     background-image: none !important;
