@@ -1530,7 +1530,7 @@ function getCurriculumElements(curriculumParentContainer = null) {
     const lessons = d.lessons.map((l) => {
       const text = l[2],
         icon = l[4],
-        href = l[3] || "#";
+        href = l[3] || CG.dom.header.href;
 
       return el(
         "a",
@@ -1831,29 +1831,13 @@ function styleCourseDetails() {
     )
     .forEach((elem) => elem.classList.add("path-registration"));
 
-  let btnHref = "#";
-  if (CG.dom.header.ctaBtnWrapper) {
-    btnHref = CG.dom.header.registerBtn.href;
-  } else {
-    const links = [...A("p", courseInfo)]
-      .filter((d) => d.textContent.toLowerCase().includes("learning path"))
-      .map((p) => [...A("a", p)].filter((a) => a.innerHTML === "learning path"))
-      .flat();
-
-    if (links.length > 0) {
-      btnHref = CONFIG.partners[skilljarCourseSeries.slug]?.checkout
-        ? `/checkout/${CONFIG.partners[skilljarCourseSeries.slug]?.checkout}`
-        : links[0].href;
-    }
-  }
-
   CG.data.card =
     typeof courseDetails !== "undefined"
       ? createCourseDetailsCard(courseDetails, {
           btnText: CG.dom.header.ctaBtnWrapper
             ? CG.dom.header.registerBtn.textContent
             : "Register for Learning Path",
-          btnHref,
+          btnHref: CG.dom.header.href,
           completed: CG.state.course.completed,
         })
       : CG.dom.local.card;
