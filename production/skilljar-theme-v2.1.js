@@ -1,15 +1,15 @@
 /* eslint-disable no-undef */
 
 /*
- * Chainguard Courses Theme v2.1
+ * Chainguard Courses Theme v3.0
  * This script applies custom styles and functionality to Chainguard's Skilljar platform.
  * It includes features like curriculum styling, lesson navigation, and responsive design adjustments.
  * It also provides utility functions for clipboard operations and element styling.
  *
  * This script is designed to be run in the context of a Skilljar page.
  *
- * @version 2.1
- * @date 2025-08-21
+ * @version 3.0
+ * @date 2026-01-10
  * @author Chainguard
  * @license MIT
  * @see {@link https://courses.chainguard.com|Chainguard Courses}
@@ -352,7 +352,11 @@ const CG = {
       ].find((d) => window.location.href.includes(d)) || false,
 
     get isCoursePage() {
-      return this.isPathUnregistered || this.isCourseUnregistered || this.isCourseRegistered;
+      return (
+        this.isPathUnregistered ||
+        this.isCourseUnregistered ||
+        this.isCourseRegistered
+      );
     },
 
     get inPartnerPath() {
