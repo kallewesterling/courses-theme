@@ -1753,7 +1753,8 @@ function tryPathSections() {
 }
 
 /**
- * This function applies desktop-specific styling to a catalog page.
+ * This function applies styling to a catalog page (landing page only, regardless
+ * of whether the user is logged in; and Learning Path catalog pages, if the user is logged in).
  * @returns {void}
  */
 function styleCatalog() {
@@ -1816,7 +1817,8 @@ function style404() {
 }
 
 /**
- * This function applies general styling to the course details page.
+ * This function applies styling to the course details page when the user
+ * is not logged in or logged in but not registered for the course.
  * @returns {void}
  */
 function styleCourseDetails() {
@@ -1866,7 +1868,8 @@ function styleCourseDetails() {
 }
 
 /**
- * This function applies general styling to the path course details page.
+ * This function applies styling to the Learning Path details page, when
+ * the user is logged out or logged in but not registered for the Learning Path.
  * @returns {void}
  */
 function stylePathCourseDetails() {
@@ -1875,7 +1878,8 @@ function stylePathCourseDetails() {
 }
 
 /**
- * This function applies desktop-specific styling to the path catalog page.
+ * This function applies styling to the Learning Path details page, when
+ * the user is logged in and registered for the Learning Path.
  * @returns {void}
  */
 function stylePathCatalogPage() {
@@ -2061,9 +2065,7 @@ function processCodeBlock(elem) {
 }
 
 /**
- * This function processes code blocks by adding a copy icon and functionality to copy the code to the clipboard.
- * It filters out code blocks that have the 'noCopy' or 'copyAdded' data attributes.
- * @param {NodeList} codeBlocks - A list of code block elements to process.
+ * This function applies styling to the lesson page.
  * @returns {void}
  */
 function styleLesson() {
@@ -2107,8 +2109,8 @@ function styleLesson() {
   // Makes lesson links pop up in new tab
   CG.dom.local.lesson.content.links.forEach((elem) => {
     elem.target = "_blank";
-    // we also want to set some utm_source, utm_medium here if it's a link to a certain set of domains (domain name includes chainguard.dev)
     if (elem.href.includes("chainguard.dev")) {
+      // set utm_* info if the link is internal (domain name includes chainguard.dev)
       elem.href = getCorrectURL(elem.href);
     }
   });
@@ -2266,7 +2268,8 @@ function styleAuth() {
 }
 
 /**
- * This function applies styling to the curriculum page.
+ * This function applies styling to the Course page, when the user is
+ * signed in and registered for the course.
  * @returns {void}
  */
 function styleCurriculumPage() {
@@ -2337,8 +2340,11 @@ const pageHandlers = [
 ];
 
 /**
- * This function handles the overall page styling by determining the appropriate handler for the current page and executing it.
- * It also manages the placement of breadcrumbs, header elements, footer, and messages on course-related pages.
+ * This router function handles the overall page styling by determining the
+ * appropriate handler for the current page and executing it.
+ * 
+ * It also manages the placement of breadcrumbs, header elements, footer,
+ * and messages on course-related pages.
  * @returns {void}
  */
 function handlePageStyling() {
@@ -2421,10 +2427,6 @@ function fixHeader() {
     right: Q("#mobile-header-right"),
   };
 }
-
-document.addEventListener("load", () => {
-  logger.info("CG Desktop Script Loaded (load event)");
-});
 
 document.addEventListener("DOMContentLoaded", () => {
   logger.info("CG Desktop Script Loaded");
