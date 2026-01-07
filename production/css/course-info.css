@@ -486,7 +486,7 @@ body.sj-page-detail-course {
 
 /* Curriculum list */
 body.sj-page-curriculum {
-  #curriculumSection {
+  #curriculum-section {
     .curriculum-wrapper {
       /* Each section of the curriculum has it's own wrapper */
       border-radius: 8px;
