@@ -125,19 +125,6 @@ body.sj-page-curriculum {
           font-weight: 600;
         }
       }
-
-      .columns.sj-curriculum-wrapper {
-        /* Curriculum wrapper */
-
-        ul.dp-curriculum {
-          margin: 0;
-        }
-
-        h3 {
-          /* This used to be a header in the curriculum list, no longer used (since v2.1) */
-          display: none !important;
-        }
-      }
     }
   }
 
