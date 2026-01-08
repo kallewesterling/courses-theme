@@ -22,6 +22,8 @@ body.sj-page-curriculum {
   .top-row-grey {
     padding: 96px 0;
     border: 0;
+    background-color: #fef6ff9c !important;
+    max-width: 100%;
 
     .d-flex-center-v2 {
       justify-content: start;
