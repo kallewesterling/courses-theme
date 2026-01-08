@@ -32,3 +32,81 @@
 .button.tiny[title="Download certificate PDF"] {
   display: none;
 }
+
+body.sj-page-catalog {
+  /*
+  These are our legacy styles in the transition period to the new branding.
+  */
+
+  #catalog-content {
+    #catalog-courses {
+      .coursebox-container {
+        border-radius: 16px;
+        border: 1px solid #000;
+        width: calc(33% - 24px) !important; /* 3 should fit */
+        display: flex;
+        flex-direction: column;
+
+        @media screen and (max-width: 991px) {
+          width: 100% !important; /* 1 only on mobile */
+        }
+
+        .badge-box {
+          box-shadow: unset !important;
+          color: #fff !important;
+          background: rgb(117, 69, 251) !important;
+        }
+
+        /* Adding FontAwesome icon before badge box */
+        .badge-box::before {
+          content: "";
+          display: inline-block;
+          font: normal normal normal 14px/1 FontAwesome;
+          font-size: inherit;
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          margin-right: 10px;
+        }
+
+        .sj-ribbon-wrapper {
+          display: none !important; /* Hide "registered" ribbon */
+        }
+
+        .coursebox-image {
+          display: none !important; /* Hide course image */
+        }
+
+        .coursebox-text-description {
+          font-size: 14px;
+          flex: 1;
+        }
+
+        .course-overview {
+          font-size: 80%;
+          font-weight: 300;
+
+          .course-overview__content {
+            padding: 8px 8px 0px 8px;
+
+            a {
+              color: var(--blurple);
+
+              i {
+                padding-right: 12px;
+              }
+
+              .course-overview__content__lesson__type-icon {
+                display: none !important;
+              }
+            }
+          }
+        }
+      }
+
+      .coursebox-container:has(.badge-box) {
+        padding-top: 48px;
+      }
+    }
+  }
+}

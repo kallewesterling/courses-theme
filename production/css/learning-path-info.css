@@ -1,0 +1,89 @@
+/* Learning path detail page styles */
+
+body.sj-page-detail-path,
+body.sj-page-series {
+  .top-row-grey {
+    padding: 96px 0;
+    border: 0;
+
+    .dp-row-flex-v2 {
+      display: flex;
+      flex-direction: row-reverse;
+      flex-wrap: nowrap;
+      justify-content: start;
+      gap: 24px;
+      max-width: 1188px;
+
+      .dp-summary-wrapper {
+        border: 0;
+        max-width: 600px;
+
+        .sj-floater-text {
+          display: block;
+          font-family: Roobert;
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 23.7px;
+          color: #7545fb;
+        }
+
+        h1.break-word {
+          color: var(--primary-white-hex);
+          margin: 0 0 12px 0;
+          font-size: 36px;
+          font-weight: 600;
+          line-height: 43.2px;
+          letter-spacing: -0.02em;
+        }
+
+        .sj-heading-paragraph {
+          color: var(--primary-white-hex);
+          display: block;
+          margin: 0 0 24px 0;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 24px;
+        }
+
+        .sj-course-info-wrapper {
+          display: none !important;
+        }
+
+        a#purchase-button,
+        a#path-curriculum-resume-button {
+          border-color: var(--primary-cyan-hex);
+          color: var(--primary-white-hex);
+        }
+
+        a#purchase-button:hover,
+        a#path-curriculum-resume-button:hover {
+          color: white !important;
+        }
+
+        #purchase-button-wrapper-large {
+          /* Register/sign up/resume button wrapper */
+          justify-content: left !important;
+
+          .signin {
+            /* Sign in link */
+            display: none !important;
+          }
+
+          .sj-save-toggle-centered {
+            justify-content: inherit !important;
+          }
+        }
+      }
+    }
+  }
+
+  #dp-details-bundle {
+    padding: 0px;
+    margin: 96px auto 46px auto;
+    max-width: min(1152px, 90%);
+
+    #catalog-courses {
+      margin-bottom: 85px;
+    }
+  }
+}
