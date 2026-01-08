@@ -504,7 +504,7 @@ const CG = {
   data: {
     partnerErrorMessage: `If you are a partner and trying to access our Partner courses, you have to first <a href="/auth/login?next=%2Fpage%2Fpartners">sign in or sign up for our Courses platform</a>.`,
 
-    get curriculumItems() {
+    get curriculumSections() {
       if (!CG.dom.curriculumContainer) return [];
 
       let elements = Array.from(
@@ -551,7 +551,9 @@ const CG = {
   },
 
   get curriculumElements() {
-    return CG.data.curriculumItems.map((d) => {
+    let sections = CG.data.curriculumSections;
+
+    return sections.map((d) => {
       const lessons = d.lessons.map((l) => {
         const text = l[2],
           icon = l[4],
@@ -587,7 +589,7 @@ const CG = {
         );
 
         lessons.shift(); // remove the first lesson since it's now the header
-      } else if (!headingElement && CG.data.curriculumItems.length === 1) {
+      } else if (!headingElement && sections.length === 1) {
         // we have multiple lessons but no heading, so add a generic one
         headingElement = el("h3", {
           className: "curriculum-header no-select",
