@@ -39,8 +39,9 @@ body.sj-page-curriculum {
         display: none !important;
       }
 
-      .cp-summary-wrapper,
+      .columns.cp-summary-wrapper,
       .columns.dp-summary-wrapper {
+        max-width: 100% !important;
         width: 100%;
         border: 0;
         text-align: left !important;
@@ -60,6 +61,7 @@ body.sj-page-curriculum {
         }
 
         .sj-heading-paragraph {
+          display: block !important;
           margin: 0 0 24px 0;
           max-width: 80%;
           color: black !important;
