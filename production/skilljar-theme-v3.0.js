@@ -1456,7 +1456,9 @@ function getCurriculumElements(curriculumParentContainer = null) {
   if (!curriculumParentContainer)
     curriculumParentContainer = CG.dom.curriculumContainer;
 
-  return extractCurriculum(curriculumParentContainer).map((d) => {
+  const sections = extractCurriculum(curriculumParentContainer);
+  
+  return sections.map((d) => {
     const lessons = d.lessons.map((l) => {
       const text = l[2],
         icon = l[4],
