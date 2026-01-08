@@ -1448,7 +1448,6 @@ function createResourceCard(
 
 /**
  * Extracts curriculum elements from the given container and organizes them into sections and lessons.
- * @param {HTMLElement} curriculumParentContainer - The container element holding the curriculum structure.
  * @returns {Array} An array of section elements with their respective lessons.
  */
 function getCurriculumElements() {
