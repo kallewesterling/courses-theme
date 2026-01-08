@@ -290,7 +290,7 @@ const CONFIG = {
 const CG = {
   env: {
     isStaging: window.location.href.includes("chainguard-test"),
-    hasUser: typeof skilljarUser !== "undefined",
+    isLoggedIn: typeof skilljarUser !== "undefined",
     hasGroups: typeof skilljarUserStudentGroups !== "undefined",
     hasCourseSeries: typeof skilljarCourseSeries !== "undefined",
     hasCourse: typeof skilljarCourse !== "undefined",
@@ -299,13 +299,13 @@ const CG = {
     hasCourseBoxes: [...A(".coursebox-container")].length > 0,
 
     get isAdmin() {
-      if (!this.hasUser) return false;
+      if (!this.isLoggedIn) return false;
 
       return CG.state.user.email === "kalle.westerling@chainguard.dev";
     },
 
     get isInternal() {
-      if (!this.hasUser) return false;
+      if (!this.isLoggedIn) return false;
 
       if (CG.state.user.email.includes("@chainguard.dev")) return true;
 
@@ -317,7 +317,7 @@ const CG = {
     },
 
     get isPartner() {
-      if (!this.hasUser) return false;
+      if (!this.isLoggedIn) return false;
 
       // all internal users get partner access
       if (CG.state.user.email.includes("@chainguard.dev")) return true;
@@ -1771,7 +1771,7 @@ function tryPathSections() {
  * @returns {void}
  */
 function notFoundView() {
-  if (CG.page.isPartner404 && !CG.env.hasUser) {
+  if (CG.page.isPartner404 && !CG.env.isLoggedIn) {
     Q(".message").append(
       ...[
         el("hr"),
@@ -1908,7 +1908,7 @@ function catalogView() {
 
 /**
  * This function applies styling to the course details page when the user is
- * not signed in or signed in but not registered for the course.
+ * not logged in or logged in but not registered for the course.
  * @returns {void}
  */
 function courseUnregisteredView() {
@@ -1959,7 +1959,7 @@ function courseUnregisteredView() {
 
 /**
  * This function applies styling to the course details page when the user is
- * signed in and registered for the course.
+ * logged in and registered for the course.
  * @returns {void}
  */
 function courseRegisteredView() {
