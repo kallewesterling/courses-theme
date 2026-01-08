@@ -1964,16 +1964,16 @@ function courseRegisteredView() {
     );
 
     // re-query link
-    CG.dom.local.card.link = Q(".course-card a");
+    CG.dom.local._card.link = Q(".course-card a");
   }
 
   // update resume button text and href (with auto-value fallback)
-  if (CG.dom.header.ctaBtnWrapper && CG.dom.local.card.link) {
-    Object.assign(CG.dom.local.card.link, {
+  if (CG.dom.header.ctaBtnWrapper && CG.dom.local._card.link) {
+    Object.assign(CG.dom.local._card.link, {
       textContent: CG.dom.header.ctaBtnText.textContent || "Resume",
       href: CG.dom.header.ctaBtn.getAttribute("href") || "resume",
     });
-  } else if (CG.dom.local.card.link && !CG.state.course.completed) {
+  } else if (CG.dom.local._card.link && !CG.state.course.completed) {
     logger.warn("Hiding resume button as it could not be found");
     hide(CG.dom.local.card.link); // Hide resume button if it doesn't exist
   }
