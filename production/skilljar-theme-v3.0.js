@@ -549,6 +549,63 @@ const CG = {
         });
     },
   },
+
+  get curriculumElements() {
+    return this.curriculumItems.map((d) => {
+      const lessons = d.lessons.map((l) => {
+        const text = l[2],
+          icon = l[4],
+          href = l[3] || CG.dom.header.href;
+
+        return el(
+          "a",
+          {
+            className: "curriculum-lesson no-select",
+            text,
+            href,
+          },
+          [icon].filter(Boolean)
+        );
+      });
+
+      let headingElement;
+      if (d.heading) {
+        headingElement = el("h3", {
+          className: "curriculum-header no-select",
+          textContent: lessons.length > 1 ? d.heading : "Lessons",
+        });
+      } else if (!headingElement && lessons.length === 1) {
+        headingElement = el(
+          "h3",
+          { className: "curriculum-header no-select" },
+          [
+            el("a", {
+              textContent: lessons[0].text, // use first lesson as header if no section heading and only one lesson
+              href: lessons[0].href,
+            }),
+          ]
+        );
+
+        lessons.shift(); // remove the first lesson since it's now the header
+      } else if (!headingElement && this.curriculumItems.length === 1) {
+        // we have multiple lessons but no heading, so add a generic one
+        headingElement = el("h3", {
+          className: "curriculum-header no-select",
+          textContent: "Lessons",
+        });
+      } else {
+        logger.warn(
+          "Unexpected curriculum structure: no heading and multiple lessons"
+        );
+      }
+
+      return el(
+        "div",
+        { className: "curriculum-wrapper" },
+        [headingElement, ...lessons].filter(Boolean)
+      );
+    });
+  },
 };
 
 pathSections = {
@@ -1447,63 +1504,6 @@ function createResourceCard(
 }
 
 /**
- * Extracts curriculum elements from the given container and organizes them into sections and lessons.
- * @returns {Array} An array of section elements with their respective lessons.
- */
-function getCurriculumElements() {
-  return CG.data.curriculumItems.map((d) => {
-    const lessons = d.lessons.map((l) => {
-      const text = l[2],
-        icon = l[4],
-        href = l[3] || CG.dom.header.href;
-
-      return el(
-        "a",
-        {
-          className: "curriculum-lesson no-select",
-          text,
-          href,
-        },
-        [icon].filter(Boolean)
-      );
-    });
-
-    let headingElement;
-    if (d.heading) {
-      headingElement = el("h3", {
-        className: "curriculum-header no-select",
-        textContent: lessons.length > 1 ? d.heading : "Lessons",
-      });
-    } else if (!headingElement && lessons.length === 1) {
-      headingElement = el("h3", { className: "curriculum-header no-select" }, [
-        el("a", {
-          textContent: lessons[0].text, // use first lesson as header if no section heading and only one lesson
-          href: lessons[0].href,
-        }),
-      ]);
-
-      lessons.shift(); // remove the first lesson since it's now the header
-    } else if (!headingElement && CG.data.curriculumItems.length === 1) {
-      // we have multiple lessons but no heading, so add a generic one
-      headingElement = el("h3", {
-        className: "curriculum-header no-select",
-        textContent: "Lessons",
-      });
-    } else {
-      logger.warn(
-        "Unexpected curriculum structure: no heading and multiple lessons"
-      );
-    }
-
-    return el(
-      "div",
-      { className: "curriculum-wrapper" },
-      [headingElement, ...lessons].filter(Boolean)
-    );
-  });
-}
-
-/**
  * Creates a course details card element with provided details and options.
  * @param {Object} details - An object containing course details.
  * @param {string} details.audience - The target audience for the course.
@@ -1901,7 +1901,7 @@ function courseUnregisteredView() {
 
   // process curriculum elements
   try {
-    CG.dom.curriculumContainer.replaceChildren(...getCurriculumElements());
+    CG.dom.curriculumContainer.replaceChildren(...CG.data.curriculumElements);
   } catch (error) {
     logger.error("Error processing curriculum elements:", error);
   }
@@ -1977,7 +1977,7 @@ function courseRegisteredView() {
     hide(CG.dom.local.card.link); // Hide resume button if it doesn't exist
   }
 
-  CG.dom.curriculumContainer.replaceChildren(...getCurriculumElements());
+  CG.dom.curriculumContainer.replaceChildren(...CG.data.curriculumElements);
 
   // move elements
   CG.dom.courseContainer.append(
