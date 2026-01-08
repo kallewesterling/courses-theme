@@ -19,6 +19,7 @@ body.sj-page-curriculum {
 
     .d-flex-center-v2 {
       justify-content: start;
+      max-width: 1152px;
 
       .cp-summary-row-v2 {
         width: 100% !important;
