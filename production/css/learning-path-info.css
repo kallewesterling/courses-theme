@@ -28,7 +28,6 @@ body.sj-page-series {
         }
 
         h1.break-word {
-          color: var(--primary-white-hex);
           margin: 0 0 12px 0;
           font-size: 36px;
           font-weight: 600;
