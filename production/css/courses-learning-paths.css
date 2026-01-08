@@ -62,7 +62,8 @@ body.sj-page-curriculum {
           color: #7545fb;
         }
 
-        .sj-heading-paragraph {
+        .sj-heading-paragraph,
+        .sj-course-info-wrapper h2 {
           display: block !important;
           margin: 0 0 24px 0;
           max-width: 80%;
