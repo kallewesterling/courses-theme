@@ -341,10 +341,9 @@ const CG = {
     isLesson: c(".sj-page-lesson"),
     isLogin: c(".sj-page-login"),
     isSignup: c(".sj-page-signup"),
-    isPathUnregistered: c(".sj-page-detail-bundle.sj-page-detail-path"),
-    isPathRegistered: c(".sj-page-series.sj-page-path"),
+    isPathUnregistered: c(".sj-page-detail-path"), // Removed: .sj-page-detail-bundle
+    isPathRegistered: c(".sj-page-path"), // Removed: .sj-page-series
     is404: c(".sj-page-error-404"),
-    // hasCertificate: c(".cp-certificate"),
     isPartner404:
       [
         "/page/partners",
