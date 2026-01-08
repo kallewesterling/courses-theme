@@ -1982,7 +1982,7 @@ function courseRegisteredView() {
   CG.dom.curriculumContainer.replaceChildren(...CG.data.curriculumElements);
 
   // move elements
-  CG.dom.courseContainer.append(...[CG.dom.local.card.details].filter(Boolean));
+  CG.dom.courseContainer.append(...[CG.dom.local._card.details].filter(Boolean));
 }
 
 /**
