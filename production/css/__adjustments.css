@@ -52,6 +52,7 @@ body.sj-page-curriculum {
         border: 0;
         max-width: 100% !important;
         text-align: left !important;
+        padding: 0 !important;
 
         .sj-course-info-wrapper {
           display: none !important;
