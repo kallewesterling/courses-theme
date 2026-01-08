@@ -5,6 +5,27 @@ const UTM = {
 };
 
 /**
+ * Shortcut to querySelector function.
+ * @param {string} selector - The CSS selector to query.
+ * @returns {HTMLElement|null} The first matching element or null if not found.
+ */
+const Q = (selector, root = document) => root.querySelector(selector);
+
+/**
+ * Shortcut to querySelectorAll function.
+ * @param {string} selector - The CSS selector to query.
+ * @returns {NodeListOf<HTMLElement>} A list of matching elements.
+ */
+const A = (selector, root = document) => root.querySelectorAll(selector);
+
+/**
+ * Shortcut to verifying the existence of an element.
+ * @param {string} selector - The CSS selector to query.
+ * @returns {HTMLElement|false} The first matching element or false if not found.
+ */
+const c = (selector) => Q(selector) || false;
+
+/**
  * Returns the correct URL with UTM parameters appended.
  * @param {string} link - The base URL to which UTM parameters will be added.
  * @returns {string} - The URL with UTM parameters.
@@ -31,7 +52,7 @@ function getCorrectURL(link) {
  * @param {Object} props - An object containing properties and attributes for the element.
  * @param {Array} children - An array of child nodes to append to the element.
  * @returns {HTMLElement|SVGElement|null} - The created DOM element or null if no tag is provided.
- * 
+ *
  * @example
  * const button = el('button', { className: 'btn', onclick: () => alert('Clicked!') }, [
  *  el('span', { textContent: 'Click Me' })

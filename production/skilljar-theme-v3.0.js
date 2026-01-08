@@ -102,21 +102,39 @@ const placeholder = (element, value) => {
  * @param {string} selector - The CSS selector to query.
  * @returns {HTMLElement|null} The first matching element or null if not found.
  */
-const Q = (selector, root = document) => root.querySelector(selector);
+let Q;
 
 /**
  * Shortcut to querySelectorAll function.
  * @param {string} selector - The CSS selector to query.
  * @returns {NodeListOf<HTMLElement>} A list of matching elements.
  */
-const A = (selector, root = document) => root.querySelectorAll(selector);
+let A;
 
 /**
  * Shortcut to verifying the existence of an element.
  * @param {string} selector - The CSS selector to query.
  * @returns {HTMLElement|false} The first matching element or false if not found.
  */
-const c = (selector) => Q(selector) || false;
+let c;
+
+try {
+  Q = (selector, root = document) => root.querySelector(selector);
+} catch (e) {
+  logger.error("Error in Q function:", e);
+}
+
+try {
+  A = (selector, root = document) => root.querySelectorAll(selector);
+} catch (e) {
+  logger.error("Error in A function:", e);
+}
+
+try {
+  c = (selector) => Q(selector) || false;
+} catch (e) {
+  logger.error("Error in c function:", e);
+}
 
 const CONFIG = {
   logo: el(
@@ -1724,43 +1742,43 @@ function notFoundView() {
  */
 function authView() {
   CG.dom.local.auth = {
-      rows: [],
+    rows: [],
 
-      inputs: {
-        email: Q("#id_email") || Q("#id_login"),
-        password: Q("#id_password") || Q("#id_password1"),
+    inputs: {
+      email: Q("#id_email") || Q("#id_login"),
+      password: Q("#id_password") || Q("#id_password1"),
 
-        // signup specific
-        password2: Q("#id_password2"),
-        fName: Q("#id_first_name"),
-        lName: Q("#id_last_name"),
-        accessCode: Q("#id_access_code"),
-      },
+      // signup specific
+      password2: Q("#id_password2"),
+      fName: Q("#id_first_name"),
+      lName: Q("#id_last_name"),
+      accessCode: Q("#id_access_code"),
+    },
 
-      // login specific
-      forgotPasswordLink: Q("a.forgot-password"),
+    // login specific
+    forgotPasswordLink: Q("a.forgot-password"),
 
-      labels: {
-        passwordConfirm: Q("label[for=id_password2] .input-label-text span"),
-        fName: Q("label[for=id_first_name] span span"),
-        lName: Q("label[for=id_last_name] span span"),
-        email: Q("label[for=id_email]") || Q("label[for=id_login]"),
-        accessCode: Q("label[for=id_access_code] span span"),
-      },
+    labels: {
+      passwordConfirm: Q("label[for=id_password2] .input-label-text span"),
+      fName: Q("label[for=id_first_name] span span"),
+      lName: Q("label[for=id_last_name] span span"),
+      email: Q("label[for=id_email]") || Q("label[for=id_login]"),
+      accessCode: Q("label[for=id_access_code] span span"),
+    },
 
-      google: Q("#google_login"),
-      TOS: Q("#access-message"),
-      form: Q("#login_form") || Q("#signup_form"),
-      btn: Q("#button-sign-in") || Q("#button-sign-up"),
-      method: Q(".sj-text-sign-in-with") || Q(".sj-text-sign-up-with"),
-      login: Q("#login-tab-left a span") || Q("#login-tab-left span span"),
-      signup: Q("#login-tab-right a") || Q("#login-tab-right span"),
+    google: Q("#google_login"),
+    TOS: Q("#access-message"),
+    form: Q("#login_form") || Q("#signup_form"),
+    btn: Q("#button-sign-in") || Q("#button-sign-up"),
+    method: Q(".sj-text-sign-in-with") || Q(".sj-text-sign-up-with"),
+    login: Q("#login-tab-left a span") || Q("#login-tab-left span span"),
+    signup: Q("#login-tab-right a") || Q("#login-tab-right span"),
 
-      get altMethod() {
-        return Q("span", CG.dom.auth.method);
-      },
-    };
-    
+    get altMethod() {
+      return Q("span", CG.dom.auth.method);
+    },
+  };
+
   text(CG.dom.local.auth.login, "Log In");
   text(CG.dom.local.auth.signup, "Sign Up");
   text(CG.dom.local.auth.google, "Continue with Google");
@@ -1960,7 +1978,9 @@ function courseRegisteredView() {
 
   CG.dom.local.tabs.container.append(
     Object.assign(CG.dom.local.tabs.aboutSection, { id: "about-section" }),
-    Object.assign(CG.dom.local.tabs.curriculumSection, { id: "curriculum-section" })
+    Object.assign(CG.dom.local.tabs.curriculumSection, {
+      id: "curriculum-section",
+    })
   );
 
   if (typeof courseDetails !== "undefined") {
