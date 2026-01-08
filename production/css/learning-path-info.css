@@ -36,7 +36,6 @@ body.sj-page-series {
         }
 
         .sj-heading-paragraph {
-          color: var(--primary-white-hex);
           display: block;
           margin: 0 0 24px 0;
           font-size: 16px;
