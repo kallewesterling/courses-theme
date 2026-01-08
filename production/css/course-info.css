@@ -278,60 +278,6 @@ body.sj-page-detail-course {
       }
     }
   }
-
-  #dp-details,
-  #cp-content {
-    /* Page content */
-    max-width: min(1152px, 90%);
-    margin: 96px auto 46px auto;
-    display: grid;
-    grid-template-columns: minmax(100px, 760px) minmax(100px, 368px);
-    column-gap: 24px;
-
-    @media screen and (max-width: 991px) {
-      margin: 72px auto -10px auto;
-      grid-template-columns: 1fr;
-    }
-
-    .show-for-small {
-      /* Mobile body content - hide it! */
-      display: none !important;
-    }
-
-    .hide-for-small {
-      /* Desktop body content */
-      padding: 0px;
-      max-width: 760px;
-      display: grid !important;
-
-      .columns {
-        /* Two columns: content + curriculum */
-        float: none;
-        padding: 0;
-        width: 100%;
-        display: block;
-        margin-bottom: 48px;
-
-        h3 {
-          /* Headers in content + curriculum */
-          font-weight: 600;
-        }
-      }
-
-      .columns.sj-curriculum-wrapper {
-        /* Curriculum wrapper */
-
-        ul.dp-curriculum {
-          margin: 0;
-        }
-
-        h3 {
-          /* This used to be a header in the curriculum list, no longer used (since v2.1) */
-          display: none !important;
-        }
-      }
-    }
-  }
 }
 
 body.sj-page-curriculum {
