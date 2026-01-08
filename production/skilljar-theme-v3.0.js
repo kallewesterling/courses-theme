@@ -462,11 +462,6 @@ const CG = {
     },
   },
   el: {
-    floaterText: el("div", {
-      className: "sj-floater-text",
-      text: "Course",
-    }),
-
     get headingParagraph() {
       return el("div", {
         className: "sj-heading-paragraph",
@@ -475,17 +470,12 @@ const CG = {
     },
   },
   dom: {
+    local: {},
     body: document.body,
     bodyHeader: Q("#header"),
     headerLeft: Q("#header-left"),
     headerRight: Q("#header-right"),
-    footerContainer: Q("#footer-container"),
-    epFooter: Q("#ep-footer"),
-    messages: Q("#messages"),
     courseBoxes: [...A(".coursebox-container")],
-    catalogContent: Q("#catalog-content"),
-    catalogCourses: Q("#catalog-courses"),
-    mainContainer: Q("#main-container"),
 
     get contentContainer() {
       return CG.page.isLesson ? Q(".sj-page-lesson") : Q("#skilljar-content");
@@ -493,8 +483,6 @@ const CG = {
 
     header: {
       wrapper: Q(".cp-summary-wrapper") || Q(".dp-summary-wrapper"),
-      floaterText: Q(".sj-floater-text"),
-      mainHeading: Q(".break-word"),
       courseInfo: Q(".sj-course-info-wrapper") || Q(".sj-heading-paragraph"),
       ctaBtnWrapper: Q("#resume-button") || Q("#purchase-button-wrapper-large"),
       registerBtn: Q("#purchase-button-wrapper-large a"),
@@ -530,64 +518,6 @@ const CG = {
     },
     courseContainer: Q("#dp-details") || Q("#cp-content"),
     curriculumContainer: A(".dp-curriculum")[0] || Q("#curriculum-list"),
-
-    tabs: {
-      container: Q(".tabs"),
-
-      get curriculumSection() {
-        return (
-          Q("section #curriculum-section", this.container) ||
-          Q("section:nth-child(1)", this.container)
-        );
-      },
-
-      get aboutSection() {
-        return (
-          Q("section #about-section", this.container) ||
-          Q("section:nth-child(2)", this.container)
-        );
-      },
-    },
-
-    local: {},
-
-    auth: {
-      rows: [],
-
-      inputs: {
-        email: Q("#id_email") || Q("#id_login"),
-        password: Q("#id_password") || Q("#id_password1"),
-
-        // signup specific
-        password2: Q("#id_password2"),
-        fName: Q("#id_first_name"),
-        lName: Q("#id_last_name"),
-        accessCode: Q("#id_access_code"),
-      },
-
-      // login specific
-      forgotPasswordLink: Q("a.forgot-password"),
-
-      labels: {
-        passwordConfirm: Q("label[for=id_password2] .input-label-text span"),
-        fName: Q("label[for=id_first_name] span span"),
-        lName: Q("label[for=id_last_name] span span"),
-        email: Q("label[for=id_email]") || Q("label[for=id_login]"),
-        accessCode: Q("label[for=id_access_code] span span"),
-      },
-
-      google: Q("#google_login"),
-      TOS: Q("#access-message"),
-      form: Q("#login_form") || Q("#signup_form"),
-      btn: Q("#button-sign-in") || Q("#button-sign-up"),
-      method: Q(".sj-text-sign-in-with") || Q(".sj-text-sign-up-with"),
-      login: Q("#login-tab-left a span") || Q("#login-tab-left span span"),
-      signup: Q("#login-tab-right a") || Q("#login-tab-right span"),
-
-      get altMethod() {
-        return Q("span", CG.dom.auth.method);
-      },
-    },
   },
 
   data: {
@@ -1793,40 +1723,78 @@ function notFoundView() {
  * @returns {void}
  */
 function authView() {
-  text(CG.dom.auth.login, "Log In");
-  text(CG.dom.auth.signup, "Sign Up");
-  text(CG.dom.auth.google, "Continue with Google");
-  text(CG.dom.auth.btn, CG.page.isLogin ? "Log In" : "Sign Up");
-  text(CG.dom.auth.labels.email, "Work Email");
+  CG.dom.local.auth = {
+      rows: [],
 
-  placeholder(CG.dom.auth.inputs.email, "Work Email");
+      inputs: {
+        email: Q("#id_email") || Q("#id_login"),
+        password: Q("#id_password") || Q("#id_password1"),
+
+        // signup specific
+        password2: Q("#id_password2"),
+        fName: Q("#id_first_name"),
+        lName: Q("#id_last_name"),
+        accessCode: Q("#id_access_code"),
+      },
+
+      // login specific
+      forgotPasswordLink: Q("a.forgot-password"),
+
+      labels: {
+        passwordConfirm: Q("label[for=id_password2] .input-label-text span"),
+        fName: Q("label[for=id_first_name] span span"),
+        lName: Q("label[for=id_last_name] span span"),
+        email: Q("label[for=id_email]") || Q("label[for=id_login]"),
+        accessCode: Q("label[for=id_access_code] span span"),
+      },
+
+      google: Q("#google_login"),
+      TOS: Q("#access-message"),
+      form: Q("#login_form") || Q("#signup_form"),
+      btn: Q("#button-sign-in") || Q("#button-sign-up"),
+      method: Q(".sj-text-sign-in-with") || Q(".sj-text-sign-up-with"),
+      login: Q("#login-tab-left a span") || Q("#login-tab-left span span"),
+      signup: Q("#login-tab-right a") || Q("#login-tab-right span"),
+
+      get altMethod() {
+        return Q("span", CG.dom.auth.method);
+      },
+    };
+    
+  text(CG.dom.local.auth.login, "Log In");
+  text(CG.dom.local.auth.signup, "Sign Up");
+  text(CG.dom.local.auth.google, "Continue with Google");
+  text(CG.dom.local.auth.btn, CG.page.isLogin ? "Log In" : "Sign Up");
+  text(CG.dom.local.auth.labels.email, "Work Email");
+
+  placeholder(CG.dom.local.auth.inputs.email, "Work Email");
 
   if (CG.page.isSignup) {
-    text(CG.dom.auth.labels.fName, "First Name");
-    text(CG.dom.auth.labels.lName, "Last Name");
-    placeholder(CG.dom.auth.inputs.fName, "First Name");
-    placeholder(CG.dom.auth.inputs.lName, "Last Name");
-    placeholder(CG.dom.auth.inputs.password2, "Password Confirm");
-    text(CG.dom.auth.labels.passwordConfirm, "Password Confirm");
-    text(CG.dom.auth.labels.accessCode, "Access Code (optional)");
+    text(CG.dom.local.auth.labels.fName, "First Name");
+    text(CG.dom.local.auth.labels.lName, "Last Name");
+    placeholder(CG.dom.local.auth.inputs.fName, "First Name");
+    placeholder(CG.dom.local.auth.inputs.lName, "Last Name");
+    placeholder(CG.dom.local.auth.inputs.password2, "Password Confirm");
+    text(CG.dom.local.auth.labels.passwordConfirm, "Password Confirm");
+    text(CG.dom.local.auth.labels.accessCode, "Access Code (optional)");
   }
 
   const authContainer = el("div", { id: "auth-container" }, [
     Q("#tabs"),
     el("div", { className: "auth-card" }, [
-      CG.dom.auth.form,
+      CG.dom.local.auth.form,
       el("div", { className: "divider" }, [el("span", { textContent: "or" })]),
-      CG.dom.auth.google,
-      CG.dom.auth.TOS,
+      CG.dom.local.auth.google,
+      CG.dom.local.auth.TOS,
     ]),
   ]);
 
   CG.dom.contentContainer.append(authContainer);
 
   // move "Forgot Password?" to after Password
-  if (CG.page.isLogin && CG.dom.auth.inputs.password)
-    CG.dom.auth.inputs.password.parentElement.append(
-      CG.dom.auth.forgotPasswordLink
+  if (CG.page.isLogin && CG.dom.local.auth.inputs.password)
+    CG.dom.local.auth.inputs.password.parentElement.append(
+      CG.dom.local.auth.forgotPasswordLink
     );
 
   if (CG.page.isSignup) {
@@ -1834,34 +1802,34 @@ function authView() {
     A("input").forEach((elem) => {
       if (!elem.getAttribute("id")) return;
 
-      CG.dom.auth.rows[elem.getAttribute("id")] = elem.closest(".row");
-      CG.dom.auth.rows[elem.getAttribute("id")].setAttribute(
+      CG.dom.local.auth.rows[elem.getAttribute("id")] = elem.closest(".row");
+      CG.dom.local.auth.rows[elem.getAttribute("id")].setAttribute(
         "aria-label",
         elem.getAttribute("id")
       );
     });
 
     // move Access Code field to after Password Confirm
-    CG.dom.auth.rows.id_password2.insertAdjacentElement(
+    CG.dom.local.auth.rows.id_password2.insertAdjacentElement(
       "afterend",
-      CG.dom.auth.rows.id_access_code
+      CG.dom.local.auth.rows.id_access_code
     );
 
     // add focus listeners to fade in labels
-    CG.dom.auth.inputs.accessCode.addEventListener("focus", () => {
-      setStyle(CG.dom.auth.rows.id_access_code, { opacity: "1" });
+    CG.dom.local.auth.inputs.accessCode.addEventListener("focus", () => {
+      setStyle(CG.dom.local.auth.rows.id_access_code, { opacity: "1" });
     });
 
-    CG.dom.auth.inputs.accessCode.addEventListener("blur", () => {
-      if (CG.dom.auth.inputs.accessCode.value === "") {
-        setStyle(CG.dom.auth.rows.id_access_code, { opacity: "0.4" });
+    CG.dom.local.auth.inputs.accessCode.addEventListener("blur", () => {
+      if (CG.dom.local.auth.inputs.accessCode.value === "") {
+        setStyle(CG.dom.local.auth.rows.id_access_code, { opacity: "0.4" });
       }
     });
 
-    setStyle(CG.dom.auth.rows.id_access_code, { opacity: "0.4" });
+    setStyle(CG.dom.local.auth.rows.id_access_code, { opacity: "0.4" });
   }
 
-  remove(CG.dom.auth.method);
+  remove(CG.dom.local.auth.method);
 }
 
 /**
@@ -1879,13 +1847,14 @@ function catalogView() {
     logger.warn("Could not determine catalog section name, defaulting to home");
 
   // hide existing content
-  hide(CG.dom.catalogContent);
+  hide(Q("#catalog-content"));
 
   // remove search functionality
   remove([".catalog-left-nav", "#left-nav-button", ".back-to-catalog"]);
 
   // create new sections
   makeSections(CG.data.sections, "#skilljar-content", CG.state.baseURL);
+
   CG.dom.contentContainer.append(
     el("div", { className: "full-width", id: "cta-bottom" }, [
       createClone("chainguard", { width: "83", height: "72" }),
@@ -1968,13 +1937,30 @@ function courseRegisteredView() {
       details: Q(".course-card"),
       link: Q(".course-card a"),
     },
+    tabs: {
+      container: Q(".tabs"),
+
+      get curriculumSection() {
+        return (
+          Q("section #curriculum-section", this.container) ||
+          Q("section:nth-child(1)", this.container)
+        );
+      },
+
+      get aboutSection() {
+        return (
+          Q("section #about-section", this.container) ||
+          Q("section:nth-child(2)", this.container)
+        );
+      },
+    },
   };
 
-  CG.dom.tabs.aboutSection?.classList.add("active");
+  CG.dom.local.tabs.aboutSection?.classList.add("active");
 
-  CG.dom.tabs.container.append(
-    Object.assign(CG.dom.tabs.aboutSection, { id: "about-section" }),
-    Object.assign(CG.dom.tabs.curriculumSection, { id: "curriculum-section" })
+  CG.dom.local.tabs.container.append(
+    Object.assign(CG.dom.local.tabs.aboutSection, { id: "about-section" }),
+    Object.assign(CG.dom.local.tabs.curriculumSection, { id: "curriculum-section" })
   );
 
   if (typeof courseDetails !== "undefined") {
@@ -2383,8 +2369,12 @@ function handlePageStyling() {
 
       CG.dom.header.wrapper.append(
         ...[
-          CG.dom.header.floaterText || CG.el.floaterText,
-          CG.dom.header.mainHeading,
+          Q(".sj-floater-text") ||
+            el("div", {
+              className: "sj-floater-text",
+              text: "Course",
+            }),
+          Q(".break-word"),
           CG.dom.header.courseInfo || CG.el.headingParagraph,
           CG.dom.header.ctaBtnWrapper,
         ].filter(Boolean)
@@ -2395,13 +2385,13 @@ function handlePageStyling() {
   }
 
   // move footer
-  CG.dom.contentContainer.append(CG.dom.footerContainer);
+  CG.dom.contentContainer.append(Q("#footer-container"));
 
   // move messages
-  CG.dom.contentContainer.prepend(CG.dom.messages);
+  CG.dom.contentContainer.prepend(Q("#messages"));
 
   // hide Skilljar footer
-  hide(CG.dom.epFooter);
+  hide(Q("#ep-footer"));
 }
 
 /**
@@ -2425,7 +2415,7 @@ function fixHeader() {
     el("div", { id: "mobile-header-right" }, [toChainguard]),
   ]);
 
-  CG.dom.mainContainer.insertBefore(
+  Q("#main-container").insertBefore(
     mobileHeader,
     CG.dom.bodyHeader.nextSibling
   );
