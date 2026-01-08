@@ -548,65 +548,65 @@ const CG = {
           };
         });
     },
-  },
 
-  get curriculumElements() {
-    let sections = CG.data.curriculumSections;
+    get curriculumElements() {
+      let sections = CG.data.curriculumSections;
 
-    const getLessons = (lessons) =>
-      lessons.map((l) => {
-        const text = l[2],
-          icon = l[4],
-          href = l[3] || CG.dom.header.href;
+      const getLessons = (lessons) =>
+        lessons.map((l) => {
+          const text = l[2],
+            icon = l[4],
+            href = l[3] || CG.dom.header.href;
+
+          return el(
+            "a",
+            {
+              className: "curriculum-lesson no-select",
+              text,
+              href,
+            },
+            [icon].filter(Boolean)
+          );
+        });
+
+      const getSectionHeading = (heading, lessons) => {
+        if (heading) {
+          return el("h3", {
+            className: "curriculum-header no-select",
+            textContent: lessons.length > 1 ? heading : "Lessons",
+          });
+        } else if (lessons.length === 1) {
+          return el("h3", { className: "curriculum-header no-select" }, [
+            el("a", {
+              textContent: lessons[0].text, // use first lesson as header if no section heading and only one lesson
+              href: lessons[0].href,
+            }),
+          ]);
+        } else if (lessons.length > 1) {
+          return el("h3", {
+            className: "curriculum-header no-select",
+            textContent: "Lessons",
+          });
+        } else {
+          logger.warn(
+            "Unexpected curriculum structure: no heading and multiple lessons"
+          );
+          return null;
+        }
+      };
+
+      return sections.map((d) => {
+        const lessons = getLessons(d.lessons);
+
+        const headingElement = getSectionHeading(d.heading, lessons);
 
         return el(
-          "a",
-          {
-            className: "curriculum-lesson no-select",
-            text,
-            href,
-          },
-          [icon].filter(Boolean)
+          "div",
+          { className: "curriculum-wrapper" },
+          [headingElement, ...lessons].filter(Boolean)
         );
       });
-
-    const getSectionHeading = (heading, lessons) => {
-      if (heading) {
-        return el("h3", {
-          className: "curriculum-header no-select",
-          textContent: lessons.length > 1 ? heading : "Lessons",
-        });
-      } else if (lessons.length === 1) {
-        return el("h3", { className: "curriculum-header no-select" }, [
-          el("a", {
-            textContent: lessons[0].text, // use first lesson as header if no section heading and only one lesson
-            href: lessons[0].href,
-          }),
-        ]);
-      } else if (lessons.length > 1) {
-        return el("h3", {
-          className: "curriculum-header no-select",
-          textContent: "Lessons",
-        });
-      } else {
-        logger.warn(
-          "Unexpected curriculum structure: no heading and multiple lessons"
-        );
-        return null;
-      }
-    };
-
-    return sections.map((d) => {
-      const lessons = getLessons(d.lessons);
-
-      const headingElement = getSectionHeading(d.heading, lessons);
-
-      return el(
-        "div",
-        { className: "curriculum-wrapper" },
-        [headingElement, ...lessons].filter(Boolean)
-      );
-    });
+    },
   },
 };
 
