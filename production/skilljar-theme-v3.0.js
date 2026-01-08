@@ -473,6 +473,8 @@ const CG = {
         Q("a#path-curriculum-resume-button"),
 
       get links() {
+        if (!this.courseInfo) return [];
+
         return [...A("p", this.courseInfo)]
           .filter((d) => d.textContent.toLowerCase().includes("learning path"))
           .map((p) =>
