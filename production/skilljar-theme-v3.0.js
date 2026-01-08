@@ -1405,6 +1405,8 @@ function extractCurriculum(curriculumParentContainer = null) {
   if (!curriculumParentContainer)
     curriculumParentContainer = CG.dom.curriculumContainer;
 
+  if (!curriculumParentContainer) return [];
+
   let elements = Array.from(
       A("[class^='lesson-'],.section", curriculumParentContainer)
     ),
@@ -1457,7 +1459,7 @@ function getCurriculumElements(curriculumParentContainer = null) {
     curriculumParentContainer = CG.dom.curriculumContainer;
 
   const sections = extractCurriculum(curriculumParentContainer);
-  
+
   return sections.map((d) => {
     const lessons = d.lessons.map((l) => {
       const text = l[2],
@@ -2428,6 +2430,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (CG.page.isLesson)
     // if a lesson page, we need to move the nav button before we modify the header
     CG.dom.contentContainer.append(Q("#left-nav-button"));
+
+  if (CG.page.isCoursePage)
+    CG.data.curriculum = extractCurriculum(curriculumParentContainer);
 
   // replace logo
   CG.dom.headerLeft.replaceChildren(
