@@ -65,15 +65,14 @@ body.sj-page-curriculum {
 
     a {
       margin: 0 20px 1.25em;
+
+      & .completed {
+        background-color: green !important;
+        cursor: default !important;
+      }
     }
 
-    .course-details-card-link.completed,
-    .button.completed {
-      background-color: green !important;
-      cursor: default !important;
-    }
-
-    .completed-subtext {
+    p.completed-subtext {
       padding: 0px 20px 20px 0px !important;
       font-size: 12px !important;
       font-family: Roobert !important;
@@ -138,116 +137,6 @@ body.sj-page-curriculum {
           border: 0;
           padding: 0;
         }
-      }
-    }
-  }
-}
-
-body.sj-page-curriculum:not(:has(.cp-certificate)) {
-  /* Non-certificate issued course description (signed up) styles */
-
-  .top-row-grey {
-    /* Header container */
-    max-width: none;
-    padding: 0;
-    border: 0;
-
-    .dp-row-flex-v2 {
-      /* All header content */
-      display: flex;
-      margin: 96px 0;
-      justify-content: center;
-      flex-wrap: nowrap;
-      gap: 24px;
-
-      @media screen and (max-width: 991px) {
-        flex-wrap: wrap;
-      }
-
-      .cp-summary-wrapper {
-        position: static;
-        padding: 0;
-        border: 0;
-        text-align: left;
-        max-width: 564px;
-
-        @media screen and (max-width: 991px) {
-          max-width: none;
-          width: 90%;
-          margin-bottom: 32px;
-        }
-
-        h2.cp-lessons {
-          display: none !important;
-        }
-
-        .progress-bar {
-          display: none !important;
-        }
-
-        h1.break-word {
-          /* Course title */
-          font-size: 36px;
-          font-weight: 600;
-          line-height: 43.2px;
-          letter-spacing: -0.02em;
-          margin: 0 0 12px 0;
-        }
-
-        #resume-button {
-          margin-left: 0px;
-          margin-right: 0px;
-        }
-      }
-
-      .cp-promo-image-wrapper {
-        position: static;
-        padding: 0;
-        width: 564px;
-        height: auto;
-
-        @media screen {
-          width: 90%;
-        }
-
-        .cp-promo-image {
-          max-height: none;
-
-          img {
-            max-height: none;
-            height: auto;
-            max-width: 100%;
-          }
-        }
-      }
-    }
-  }
-
-  #cp-content {
-    /* Page content for signed up users */
-    display: grid;
-    grid-template-columns: minmax(100px, 760px) minmax(100px, 368px);
-    margin-top: 96px;
-    column-gap: 24px;
-    padding-top: 0;
-    padding-bottom: 0;
-
-    @media screen and (max-width: 991px) {
-      grid-template-columns: 1fr;
-      width: 90%;
-    }
-
-    .columns {
-      width: 100%;
-    }
-
-    .course-details-card {
-      /* Course details card styling */
-      margin: 96px 0 46px 0;
-
-      @media screen and (max-width: 991px) {
-        margin: 32px 0 56px 0;
-        justify-self: center;
       }
     }
   }
@@ -390,8 +279,9 @@ body.sj-page-detail-course {
     }
   }
 
-  #dp-details {
-    /* Page content for users who haven't signed up for the course */
+  #dp-details,
+  #cp-content {
+    /* Page content */
     max-width: min(1152px, 90%);
     margin: 96px auto 46px auto;
     display: grid;
@@ -441,17 +331,25 @@ body.sj-page-detail-course {
         }
       }
     }
-
-    .course-details-card {
-      /* Course details card */
-      margin: 0 0 46px 0;
-      justify-self: center;
-    }
   }
 }
 
-/* Curriculum list */
 body.sj-page-curriculum {
+  .top-row-grey {
+    .dp-row-flex-v2 {
+      .cp-summary-wrapper {
+        h2.cp-lessons,
+        .progress-bar {
+          display: none !important; /* Hide "X of Y lessons completed (Z%)" and progress bar */
+        }
+
+        #resume-button {
+          padding: 0 0.9375em;
+        }
+      }
+    }
+  }
+
   #curriculum-section {
     hr {
       display: none !important;
