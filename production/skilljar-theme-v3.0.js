@@ -1881,20 +1881,21 @@ function courseUnregisteredView() {
     )
     .forEach((elem) => elem.classList.add("path-registration"));
 
-  CG.data.card =
-    typeof courseDetails !== "undefined"
-      ? createCourseDetailsCard(courseDetails, {
+  if (typeof courseDetails !== "undefined") {
+    CG.dom.local.card ? CG.dom.local.card.remove() : null;
+
+    CG.dom.courseContainer.append(
+      ...[
+        createCourseDetailsCard(courseDetails, {
           btnText: CG.dom.header.ctaBtnWrapper
             ? CG.dom.header.registerBtn.textContent
             : "Register for Learning Path",
           btnHref: CG.dom.header.href,
           completed: CG.state.course.completed,
-        })
-      : CG.dom.local.card;
-
-  // remove existing card if present
-  CG.dom.local.card ? CG.dom.local.card.remove() : null;
-  CG.dom.courseContainer.append(...[CG.data.card].filter(Boolean));
+        }),
+      ].filter(Boolean)
+    );
+  }
 
   // process curriculum elements
   try {
@@ -1912,7 +1913,8 @@ function courseUnregisteredView() {
  */
 function courseRegisteredView() {
   CG.dom.local = {
-    card: {
+    card: Q(".course-card"),
+    _card: {
       details: Q(".course-card"),
       link: Q(".course-card a"),
     },
@@ -1945,16 +1947,15 @@ function courseRegisteredView() {
   );
 
   if (typeof courseDetails !== "undefined") {
-    CG.dom.local.card.details ? CG.dom.local.card.details.remove() : null; // remove existing card if present
+    CG.dom.local.card ? CG.dom.local.card.remove() : null;
+
     CG.dom.courseContainer.append(
       ...[
         createCourseDetailsCard(courseDetails, {
           btnText: CG.dom.header.ctaBtnWrapper
             ? CG.dom.header.ctaBtnText.textContent
             : "Resume",
-          btnHref: CG.dom.header.ctaBtnText
-            ? CG.dom.header.ctaBtn.getAttribute("href")
-            : "resume",
+          btnHref: CG.dom.header.href,
           completed: CG.state.course.completed,
         }),
       ].filter(Boolean)
