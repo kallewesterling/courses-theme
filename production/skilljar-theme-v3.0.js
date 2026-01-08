@@ -1198,7 +1198,7 @@ function renderBreadcrumbs(targetElement) {
   if (!targetElement)
     targetElement = el("div", {
       id: "breadcrumbs",
-      className: CG.page.isPathRegistered ? "row dp-row-flex-v2" : "",
+      className: "row dp-row-flex-v2",
     });
 
   const nav = el(
