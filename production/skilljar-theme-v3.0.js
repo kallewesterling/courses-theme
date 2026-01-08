@@ -553,8 +553,8 @@ const CG = {
   get curriculumElements() {
     let sections = CG.data.curriculumSections;
 
-    return sections.map((d) => {
-      const lessons = d.lessons.map((l) => {
+    const getLessons = (lessons) =>
+      lessons.map((l) => {
         const text = l[2],
           icon = l[4],
           href = l[3] || CG.dom.header.href;
@@ -570,28 +570,21 @@ const CG = {
         );
       });
 
-      let headingElement;
-      if (d.heading) {
-        headingElement = el("h3", {
+    const getSectionHeading = (heading, lessons) => {
+      if (heading) {
+        return el("h3", {
           className: "curriculum-header no-select",
-          textContent: lessons.length > 1 ? d.heading : "Lessons",
+          textContent: lessons.length > 1 ? heading : "Lessons",
         });
-      } else if (!headingElement && lessons.length === 1) {
-        headingElement = el(
-          "h3",
-          { className: "curriculum-header no-select" },
-          [
-            el("a", {
-              textContent: lessons[0].text, // use first lesson as header if no section heading and only one lesson
-              href: lessons[0].href,
-            }),
-          ]
-        );
-
-        lessons.shift(); // remove the first lesson since it's now the header
-      } else if (!headingElement && sections.length === 1) {
-        // we have multiple lessons but no heading, so add a generic one
-        headingElement = el("h3", {
+      } else if (lessons.length === 1) {
+        return el("h3", { className: "curriculum-header no-select" }, [
+          el("a", {
+            textContent: lessons[0].text, // use first lesson as header if no section heading and only one lesson
+            href: lessons[0].href,
+          }),
+        ]);
+      } else if (lessons.length > 1) {
+        return el("h3", {
           className: "curriculum-header no-select",
           textContent: "Lessons",
         });
@@ -599,7 +592,14 @@ const CG = {
         logger.warn(
           "Unexpected curriculum structure: no heading and multiple lessons"
         );
+        return null;
       }
+    };
+
+    return sections.map((d) => {
+      const lessons = getLessons(d.lessons);
+
+      const headingElement = getSectionHeading(d.heading, lessons);
 
       return el(
         "div",
