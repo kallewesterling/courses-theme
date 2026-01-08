@@ -8,16 +8,21 @@
   - body.sj-page-detail-course = course description page (not logged in + logged in)
   */
 
-body.sj-page-detail-course,
 body.sj-page-detail-path,
+body.sj-page-series,
+body.sj-page-detail-course,
 body.sj-page-curriculum {
   /*
+  body.sj-page-detail-path: isPathUnregistered
+  body.sj-page-series: isPathRegistered
   body.sj-page-detail-course: isCourseUnregistered
   body.sj-page-curriculum: isCourseRegistered
-  body.sj-page-detail-path: isPathUnregistered
   */
 
   .top-row-grey {
+    padding: 96px 0;
+    border: 0;
+
     .d-flex-center-v2 {
       justify-content: start;
 
@@ -27,6 +32,13 @@ body.sj-page-curriculum {
     }
 
     .dp-row-flex-v2 {
+      display: flex;
+      flex-direction: row-reverse;
+      flex-wrap: nowrap;
+      justify-content: start;
+      gap: 24px;
+      max-width: 1188px;
+
       .cp-promo-image-wrapper,
       .dp-promo-image-wrapper {
         /* Course image */
@@ -35,8 +47,13 @@ body.sj-page-curriculum {
 
       .cp-summary-wrapper,
       .dp-summary-wrapper {
+        border: 0;
         max-width: 100% !important;
         text-align: left !important;
+
+        .sj-course-info-wrapper {
+          display: none !important;
+        }
 
         .sj-floater-text {
           display: block !important;
@@ -48,6 +65,7 @@ body.sj-page-curriculum {
         }
 
         .sj-heading-paragraph {
+          margin: 0 0 24px 0;
           max-width: 80%;
           color: black !important;
           font-size: 16px;
@@ -56,12 +74,20 @@ body.sj-page-curriculum {
         }
 
         h1.break-word {
+          margin: 0 0 12px 0;
+          font-size: 36px;
+          font-weight: 600;
+          line-height: 43.2px;
+          letter-spacing: -0.02em;
           color: black !important;
         }
       }
     }
   }
+}
 
+body.sj-page-detail-course,
+body.sj-page-curriculum {
   .tabs {
     .content {
       background-color: transparent !important;
