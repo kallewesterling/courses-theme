@@ -551,7 +551,7 @@ const CG = {
   },
 
   get curriculumElements() {
-    return this.curriculumItems.map((d) => {
+    return CG.data.curriculumItems.map((d) => {
       const lessons = d.lessons.map((l) => {
         const text = l[2],
           icon = l[4],
@@ -587,7 +587,7 @@ const CG = {
         );
 
         lessons.shift(); // remove the first lesson since it's now the header
-      } else if (!headingElement && this.curriculumItems.length === 1) {
+      } else if (!headingElement && CG.data.curriculumItems.length === 1) {
         // we have multiple lessons but no heading, so add a generic one
         headingElement = el("h3", {
           className: "curriculum-header no-select",
