@@ -503,6 +503,51 @@ const CG = {
 
   data: {
     partnerErrorMessage: `If you are a partner and trying to access our Partner courses, you have to first <a href="/auth/login?next=%2Fpage%2Fpartners">sign in or sign up for our Courses platform</a>.`,
+
+    get curriculumItems() {
+      if (!CG.dom.curriculumContainer) return [];
+
+      let elements = Array.from(
+          A("[class^='lesson-'],.section", CG.dom.curriculumContainer)
+        ),
+        currentSection = 0;
+
+      const content = elements
+        .filter((e) => !e.classList.contains("lesson-row"))
+        .map((elem) => {
+          const isHeader =
+            elem.classList.contains("section") ||
+            elem.classList.contains("lesson-section");
+
+          currentSection += isHeader ? 1 : 0;
+
+          return [
+            currentSection,
+            isHeader,
+            elem.textContent.trim().split("\n")[0], // keep only first line
+            elem.href || null,
+            Q(".bullet i", elem),
+          ];
+        });
+
+      const sections = [...new Set(content.map((d) => d[0]))];
+
+      return sections
+        .map((s) => [
+          s,
+          content.filter((d) => d[0] === s).filter((d) => d[1]),
+          content.filter((d) => d[0] === s).filter((d) => !d[1]),
+        ])
+        .map((d) => {
+          heading = d[1].length ? d[1][0][2] : "";
+          return {
+            section: d[0],
+            heading,
+            lessons: d[2],
+            d,
+          };
+        });
+    },
   },
 };
 
@@ -1401,66 +1446,13 @@ function createResourceCard(
   );
 }
 
-function extractCurriculum(curriculumParentContainer = null) {
-  if (!curriculumParentContainer)
-    curriculumParentContainer = CG.dom.curriculumContainer;
-
-  if (!curriculumParentContainer) return [];
-
-  let elements = Array.from(
-      A("[class^='lesson-'],.section", curriculumParentContainer)
-    ),
-    currentSection = 0;
-
-  const content = elements
-    .filter((e) => !e.classList.contains("lesson-row"))
-    .map((elem) => {
-      const isHeader =
-        elem.classList.contains("section") ||
-        elem.classList.contains("lesson-section");
-
-      currentSection += isHeader ? 1 : 0;
-
-      return [
-        currentSection,
-        isHeader,
-        elem.textContent.trim().split("\n")[0], // keep only first line
-        elem.href || null,
-        Q(".bullet i", elem),
-      ];
-    });
-
-  const sections = [...new Set(content.map((d) => d[0]))];
-
-  return sections
-    .map((s) => [
-      s,
-      content.filter((d) => d[0] === s).filter((d) => d[1]),
-      content.filter((d) => d[0] === s).filter((d) => !d[1]),
-    ])
-    .map((d) => {
-      heading = d[1].length ? d[1][0][2] : "";
-      return {
-        section: d[0],
-        heading,
-        lessons: d[2],
-        d,
-      };
-    });
-}
-
 /**
  * Extracts curriculum elements from the given container and organizes them into sections and lessons.
  * @param {HTMLElement} curriculumParentContainer - The container element holding the curriculum structure.
  * @returns {Array} An array of section elements with their respective lessons.
  */
-function getCurriculumElements(curriculumParentContainer = null) {
-  if (!curriculumParentContainer)
-    curriculumParentContainer = CG.dom.curriculumContainer;
-
-  const sections = extractCurriculum(curriculumParentContainer);
-
-  return sections.map((d) => {
+function getCurriculumElements() {
+  return CG.data.curriculumItems.map((d) => {
     const lessons = d.lessons.map((l) => {
       const text = l[2],
         icon = l[4],
@@ -1492,7 +1484,7 @@ function getCurriculumElements(curriculumParentContainer = null) {
       ]);
 
       lessons.shift(); // remove the first lesson since it's now the header
-    } else if (!headingElement && sections.length === 1) {
+    } else if (!headingElement && CG.data.curriculumItems.length === 1) {
       // we have multiple lessons but no heading, so add a generic one
       headingElement = el("h3", {
         className: "curriculum-header no-select",
@@ -1910,8 +1902,7 @@ function courseUnregisteredView() {
 
   // process curriculum elements
   try {
-    CG.data.curriculumElements = getCurriculumElements();
-    CG.dom.curriculumContainer.replaceChildren(...CG.data.curriculumElements);
+    CG.dom.curriculumContainer.replaceChildren(...getCurriculumElements());
   } catch (error) {
     logger.error("Error processing curriculum elements:", error);
   }
@@ -1987,8 +1978,7 @@ function courseRegisteredView() {
     hide(CG.dom.local.card.link); // Hide resume button if it doesn't exist
   }
 
-  CG.data.curriculumElements = getCurriculumElements();
-  CG.dom.curriculumContainer.replaceChildren(...CG.data.curriculumElements);
+  CG.dom.curriculumContainer.replaceChildren(...getCurriculumElements());
 
   // move elements
   CG.dom.courseContainer.append(
@@ -2430,9 +2420,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (CG.page.isLesson)
     // if a lesson page, we need to move the nav button before we modify the header
     CG.dom.contentContainer.append(Q("#left-nav-button"));
-
-  if (CG.page.isCoursePage)
-    CG.data.curriculum = extractCurriculum(curriculumParentContainer);
 
   // replace logo
   CG.dom.headerLeft.replaceChildren(
