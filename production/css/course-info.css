@@ -64,30 +64,6 @@ body.sj-page-curriculum {
     }
 
     a {
-      /* background-color: var(--blurple) !important;
-      color: var(--primary-white-hex) !important;
-      padding: 12px 20px !important;
-      text-align: center !important;
-      text-decoration: none !important;
-      display: inline-block;
-      font-size: 16px !important;
-      font-family: Roobert !important;
-      border-radius: 999px !important;
-      cursor: pointer !important;
-      margin: 0 24px !important;
-      margin-bottom: 24px !important;
-      transition: all 0.2s !important;
-
-      &:visited {
-        background-color: var(--blurple);
-        color: var(--primary-white-hex);
-      }
-
-      &:hover,
-      &:active {
-        background-color: var(--blurple);
-        color: var(--primary-white-hex);
-      } */
       margin: 0 20px 1.25em;
     }
 
@@ -158,14 +134,6 @@ body.sj-page-curriculum:not(:has(.cp-certificate)) {
 
         .progress-bar {
           display: none !important;
-        }
-
-        .sj-floater-text {
-          display: block;
-        }
-
-        .sj-heading-paragraph {
-          display: block;
         }
 
         h1.break-word {
@@ -367,12 +335,6 @@ body.sj-page-detail-course {
             width: 100%;
           }
 
-          .sj-floater-text {
-            /* Type, e.g. Course/Learning Path */
-            display: block;
-            /* margin-bottom: 24px; */
-          }
-
           h1.break-word {
             /* Course title */
             font-size: 36px;
@@ -397,12 +359,6 @@ body.sj-page-detail-course {
               padding-left: 15px;
               padding-right: 15px;
             }
-          }
-
-          .sj-heading-paragraph {
-            /* Course description */
-            display: block;
-            margin: 0 0 24px 0;
           }
 
           .sj-course-info-wrapper {
