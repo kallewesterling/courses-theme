@@ -83,12 +83,61 @@ body.sj-page-curriculum {
   }
 
   .tabs {
-    .content {
-      background-color: transparent !important;
+    visibility: visible;
+    margin: 0 0 46px 0;
 
-      ul {
-        list-style-position: outside;
-        padding-inline-start: 30px;
+    @media screen and (max-width: 991px) {
+      margin: 96px 0 46px 0;
+    }
+
+    section {
+      .title {
+        display: none !important; /* Hide all section titles ("About this course", "Curriculum") */
+      }
+
+      .content {
+        background-color: transparent !important;
+
+        ul {
+          list-style-position: outside;
+          padding-inline-start: 30px;
+        }
+      }
+
+      &:nth-child(1) {
+        /* Curriculum section */
+        padding: 0 !important;
+
+        h2 {
+          /* "Curriculum" header */
+
+          font-weight: 600; /* TODO: this seems unnecessary */
+          display: none !important;
+        }
+
+        .content {
+          /* Curriculum content wrapper */
+          border: 0;
+          padding: 0;
+        }
+      }
+
+      &:nth-child(2) {
+        /* Course details section */
+        margin-top: 48px;
+        padding: 0 !important;
+
+        h3 {
+          /* "About" header */
+
+          font-weight: 600;
+        }
+
+        .content {
+          /* Course details content wrapper */
+          border: 0;
+          padding: 0;
+        }
       }
     }
   }
@@ -190,56 +239,6 @@ body.sj-page-curriculum:not(:has(.cp-certificate)) {
 
     .columns {
       width: 100%;
-    }
-
-    .tabs {
-      margin: 0 0 46px 0;
-
-      @media screen and (max-width: 991px) {
-        margin: 96px 0 46px 0;
-      }
-
-      section .title {
-        /* Section titles */
-
-        display: none !important;
-      }
-
-      section:nth-child(1) {
-        /* Curriculum section */
-        padding: 0 !important;
-
-        h2 {
-          /* "Curriculum" header */
-
-          font-weight: 600; /* TODO: this seems unnecessary */
-          display: none !important;
-        }
-
-        .content {
-          /* Curriculum content wrapper */
-          border: 0;
-          padding: 0;
-        }
-      }
-
-      section:nth-child(2) {
-        /* Course details section */
-        margin-top: 48px;
-        padding: 0 !important;
-
-        h3 {
-          /* "About" header */
-
-          font-weight: 600;
-        }
-
-        .content {
-          /* Course details content wrapper */
-          border: 0;
-          padding: 0;
-        }
-      }
     }
 
     .course-details-card {
@@ -457,7 +456,7 @@ body.sj-page-curriculum {
     hr {
       display: none !important;
     }
-    
+
     .curriculum-wrapper {
       /* Each section of the curriculum has it's own wrapper */
       border-radius: 8px;
