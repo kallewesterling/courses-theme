@@ -49,9 +49,9 @@ body.sj-page-curriculum {
         text-align: left !important;
         padding: 0 !important;
 
-        .sj-course-info-wrapper {
+        /* .sj-course-info-wrapper {
           display: none !important;
-        }
+        } */
 
         .sj-floater-text {
           display: block !important;
