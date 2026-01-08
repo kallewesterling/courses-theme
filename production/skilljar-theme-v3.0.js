@@ -1401,12 +1401,7 @@ function createResourceCard(
   );
 }
 
-/**
- * Extracts curriculum elements from the given container and organizes them into sections and lessons.
- * @param {HTMLElement} curriculumParentContainer - The container element holding the curriculum structure.
- * @returns {Array} An array of section elements with their respective lessons.
- */
-function getCurriculumElements(curriculumParentContainer = null) {
+function extractCurriculum(curriculumParentContainer = null) {
   if (!curriculumParentContainer)
     curriculumParentContainer = CG.dom.curriculumContainer;
 
@@ -1435,7 +1430,7 @@ function getCurriculumElements(curriculumParentContainer = null) {
 
   const sections = [...new Set(content.map((d) => d[0]))];
 
-  const output = sections
+  return sections
     .map((s) => [
       s,
       content.filter((d) => d[0] === s).filter((d) => d[1]),
@@ -1450,8 +1445,18 @@ function getCurriculumElements(curriculumParentContainer = null) {
         d,
       };
     });
+}
 
-  return output.map((d) => {
+/**
+ * Extracts curriculum elements from the given container and organizes them into sections and lessons.
+ * @param {HTMLElement} curriculumParentContainer - The container element holding the curriculum structure.
+ * @returns {Array} An array of section elements with their respective lessons.
+ */
+function getCurriculumElements(curriculumParentContainer = null) {
+  if (!curriculumParentContainer)
+    curriculumParentContainer = CG.dom.curriculumContainer;
+
+  return extractCurriculum(curriculumParentContainer).map((d) => {
     const lessons = d.lessons.map((l) => {
       const text = l[2],
         icon = l[4],
@@ -1982,7 +1987,9 @@ function courseRegisteredView() {
   CG.dom.curriculumContainer.replaceChildren(...CG.data.curriculumElements);
 
   // move elements
-  CG.dom.courseContainer.append(...[CG.dom.local._card.details].filter(Boolean));
+  CG.dom.courseContainer.append(
+    ...[CG.dom.local._card.details].filter(Boolean)
+  );
 }
 
 /**
