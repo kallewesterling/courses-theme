@@ -334,16 +334,16 @@ const CG = {
     },
   },
   page: {
-    isCatalog: c(".sj-page-catalog"),
-    isLanding: c(".sj-page-catalog-root"),
-    isCourseRegistered: c(".sj-page-curriculum"),
-    isCourseUnregistered: c(".sj-page-detail-course"),
-    isLesson: c(".sj-page-lesson"),
     isLogin: c(".sj-page-login"),
     isSignup: c(".sj-page-signup"),
+    is404: c(".sj-page-error-404"),
+    isCatalog: c(".sj-page-catalog"),
+    isLanding: c(".sj-page-catalog-root"),
+    isCourseUnregistered: c(".sj-page-detail-course"),
+    isCourseRegistered: c(".sj-page-curriculum"),
     isPathUnregistered: c(".sj-page-detail-path"), // Removed: .sj-page-detail-bundle
     isPathRegistered: c(".sj-page-path"), // Removed: .sj-page-series
-    is404: c(".sj-page-error-404"),
+    isLesson: c(".sj-page-lesson"),
     isPartner404:
       [
         "/page/partners",
