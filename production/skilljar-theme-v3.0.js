@@ -1703,43 +1703,43 @@ function notFoundView() {
  */
 function authView() {
   CG.dom.local.auth = {
-      rows: [],
+    rows: [],
 
-      inputs: {
-        email: Q("#id_email") || Q("#id_login"),
-        password: Q("#id_password") || Q("#id_password1"),
+    inputs: {
+      email: Q("#id_email") || Q("#id_login"),
+      password: Q("#id_password") || Q("#id_password1"),
 
-        // signup specific
-        password2: Q("#id_password2"),
-        fName: Q("#id_first_name"),
-        lName: Q("#id_last_name"),
-        accessCode: Q("#id_access_code"),
-      },
+      // signup specific
+      password2: Q("#id_password2"),
+      fName: Q("#id_first_name"),
+      lName: Q("#id_last_name"),
+      accessCode: Q("#id_access_code"),
+    },
 
-      // login specific
-      forgotPasswordLink: Q("a.forgot-password"),
+    // login specific
+    forgotPasswordLink: Q("a.forgot-password"),
 
-      labels: {
-        passwordConfirm: Q("label[for=id_password2] .input-label-text span"),
-        fName: Q("label[for=id_first_name] span span"),
-        lName: Q("label[for=id_last_name] span span"),
-        email: Q("label[for=id_email]") || Q("label[for=id_login]"),
-        accessCode: Q("label[for=id_access_code] span span"),
-      },
+    labels: {
+      passwordConfirm: Q("label[for=id_password2] .input-label-text span"),
+      fName: Q("label[for=id_first_name] span span"),
+      lName: Q("label[for=id_last_name] span span"),
+      email: Q("label[for=id_email]") || Q("label[for=id_login]"),
+      accessCode: Q("label[for=id_access_code] span span"),
+    },
 
-      google: Q("#google_login"),
-      TOS: Q("#access-message"),
-      form: Q("#login_form") || Q("#signup_form"),
-      btn: Q("#button-sign-in") || Q("#button-sign-up"),
-      method: Q(".sj-text-sign-in-with") || Q(".sj-text-sign-up-with"),
-      login: Q("#login-tab-left a span") || Q("#login-tab-left span span"),
-      signup: Q("#login-tab-right a") || Q("#login-tab-right span"),
+    google: Q("#google_login"),
+    TOS: Q("#access-message"),
+    form: Q("#login_form") || Q("#signup_form"),
+    btn: Q("#button-sign-in") || Q("#button-sign-up"),
+    method: Q(".sj-text-sign-in-with") || Q(".sj-text-sign-up-with"),
+    login: Q("#login-tab-left a span") || Q("#login-tab-left span span"),
+    signup: Q("#login-tab-right a") || Q("#login-tab-right span"),
 
-      get altMethod() {
-        return Q("span", CG.dom.auth.method);
-      },
-    };
-    
+    get altMethod() {
+      return Q("span", CG.dom.auth.method);
+    },
+  };
+
   text(CG.dom.local.auth.login, "Log In");
   text(CG.dom.local.auth.signup, "Sign Up");
   text(CG.dom.local.auth.google, "Continue with Google");
@@ -1939,7 +1939,9 @@ function courseRegisteredView() {
 
   CG.dom.local.tabs.container.append(
     Object.assign(CG.dom.local.tabs.aboutSection, { id: "about-section" }),
-    Object.assign(CG.dom.local.tabs.curriculumSection, { id: "curriculum-section" })
+    Object.assign(CG.dom.local.tabs.curriculumSection, {
+      id: "curriculum-section",
+    })
   );
 
   if (typeof courseDetails !== "undefined") {
@@ -2341,11 +2343,10 @@ function handlePageStyling() {
   if (CG.page.isCoursePage || CG.page.isPathRegistered) {
     // make breadcrumbs
     const breadcrumbs = renderBreadcrumbs();
+    Q(".top-row-grey").prepend(breadcrumbs);
 
     // append elements to header
     if (CG.page.isCoursePage) {
-      CG.dom.header.wrapper.prepend(breadcrumbs);
-
       CG.dom.header.wrapper.append(
         ...[
           Q(".sj-floater-text") ||
@@ -2358,8 +2359,6 @@ function handlePageStyling() {
           CG.dom.header.ctaBtnWrapper,
         ].filter(Boolean)
       );
-    } else if (CG.page.isPathRegistered) {
-      Q(".top-row-grey").prepend(breadcrumbs);
     }
   }
 
