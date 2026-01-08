@@ -92,6 +92,7 @@ body.sj-page-curriculum {
     display: grid;
     grid-template-columns: minmax(100px, 760px) minmax(100px, 368px);
     column-gap: 24px;
+    padding: 0;
 
     @media screen and (max-width: 991px) {
       margin: 72px auto -10px auto;
