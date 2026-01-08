@@ -87,6 +87,23 @@ body.sj-page-curriculum {
       }
     }
   }
+
+
+
+
+  #dp-details-bundle {
+    margin: 0 auto 96px auto;
+    max-width: 1188px;
+    padding: 0;
+
+    .row {
+      padding: 0;
+
+      .columns {
+        padding: 0;
+      }
+    }
+  }
 }
 
 body.sj-page-detail-course,
