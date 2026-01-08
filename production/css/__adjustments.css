@@ -88,13 +88,11 @@ body.sj-page-curriculum {
     }
   }
 
-
-
-
   #dp-details-bundle {
-    margin: 0 auto 96px auto;
     max-width: 1188px;
-    padding: 0;
+    padding: 96px 0 96px 0 !important;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--neutral-border);
 
     .row {
       padding: 0;
