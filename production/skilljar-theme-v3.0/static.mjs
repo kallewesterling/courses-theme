@@ -1,5 +1,4 @@
 import { el } from "./meta.mjs";
-import { CG } from "./CG.mjs";
 
 export const CONFIG = {
   logo: el(
@@ -344,39 +343,37 @@ export const footerData = {
 
 export const pathSections = {
   home: [
-    CG.env.isInternal
-      ? {
-          eyebrow: "🔓 Internal Training",
-          title: "For Chainguardians",
+    {
+      internalSection: true,
+      eyebrow: "🔓 Internal Training",
+      title: "For Chainguardians",
+      description:
+        "Because you are logged in with a Chainguard email address, you can access internal training materials and resources to enhance your skills and knowledge about Chainguard's products and services.",
+      links: [
+        {
+          isPath: false,
+          isCourse: true,
+          hasBadge: false,
+          title: "Build Your First Chainguard Container",
+          slug: "build-your-first-chainguard-container",
           description:
-            "Because you are logged in with a Chainguard email address, you can access internal training materials and resources to enhance your skills and knowledge about Chainguard's products and services.",
-          links: [
-            {
-              isPath: false,
-              isCourse: true,
-              hasBadge: false,
-              title: "Build Your First Chainguard Container",
-              slug: "build-your-first-chainguard-container",
-              description:
-                "This course is designed to teach new Chainguard engineers how to build container images.",
-              icon: "chainguard",
-            },
-            CG.env.isAdmin
-              ? {
-                  isPath: true,
-                  isCourse: false,
-                  hasBadge: true,
-                  icon: "burger",
-                  title: "Painless Vulnerability Management",
-                  slug: "path/painless-vulnerability-management",
-                  description:
-                    "Learn how to manage vulnerabilities effectively using Chainguard's tools and best practices. Currently, this is an internal learning path as we haven't rolled it out publicly yet.",
-                }
-              : undefined,
-          ].filter(Boolean),
-          classNames: ["internal"],
-        }
-      : undefined,
+            "This course is designed to teach new Chainguard engineers how to build container images.",
+          icon: "chainguard",
+        },
+        {
+          adminOnly: true,
+          isPath: true,
+          isCourse: false,
+          hasBadge: true,
+          icon: "burger",
+          title: "Painless Vulnerability Management",
+          slug: "path/painless-vulnerability-management",
+          description:
+            "Learn how to manage vulnerabilities effectively using Chainguard's tools and best practices. Currently, this is an internal learning path as we haven't rolled it out publicly yet.",
+        },
+      ],
+      classNames: ["internal"],
+    },
     {
       eyebrow: "Chainguard Fundamentals",
       title: "Get Started with Containers",
@@ -471,27 +468,27 @@ export const pathSections = {
         },
       ],
     },
-    CG.env.isInternal
-      ? {
-          eyebrow: "Deep-Dive Paths",
-          title: "Master Containers",
+
+    {
+      internalSection: true,
+      eyebrow: "Deep-Dive Paths",
+      title: "Master Containers",
+      description:
+        "Go beyond the basics with this in-depth learning path. Gain expertise in managing Chainguard Containers across the full software supply chain.",
+      links: [
+        {
+          isPath: true,
+          isCourse: false,
+          hasBadge: false,
+          title: "Complete Guide to Chainguard Containers",
+          slug: "path/linkys-guide-to-chainguard-images",
           description:
-            "Go beyond the basics with this in-depth learning path. Gain expertise in managing Chainguard Containers across the full software supply chain.",
-          links: [
-            {
-              isPath: true,
-              isCourse: false,
-              hasBadge: false,
-              title: "Complete Guide to Chainguard Containers",
-              slug: "path/linkys-guide-to-chainguard-images",
-              description:
-                "This learning path is being sunset. An 8-course path covering implementation, management, and best practices for Chainguard Containers.",
-              icon: "classBurger",
-            },
-          ],
-        }
-      : undefined,
-  ].filter(Boolean),
+            "This learning path is being sunset. An 8-course path covering implementation, management, and best practices for Chainguard Containers.",
+          icon: "classBurger",
+        },
+      ],
+    },
+  ],
   "painless-vulnerability-management": [
     {
       eyebrow: "",
@@ -568,19 +565,18 @@ export const pathSections = {
           description:
             "A comprehensive learning path designed to provide partners with the foundational knowledge needed to effectively sell Chainguard's products and solutions.",
         },
-        CG.env.isInternal
-          ? {
-              isPath: true,
-              isCourse: false,
-              hasBadge: false,
-              title: "Chainguard Advanced: Partner Sales Accelerator",
-              slug: "path/chainguard-advanced-partner-sales-accelerator",
-              icon: "burger",
-              description:
-                "An advanced learning path aimed at equipping partners with the skills and knowledge to accelerate their sales efforts for Chainguard's products and solutions.",
-            }
-          : undefined,
-      ].filter(Boolean),
+        {
+          internalOnly: true,
+          isPath: true,
+          isCourse: false,
+          hasBadge: false,
+          title: "Chainguard Advanced: Partner Sales Accelerator",
+          slug: "path/chainguard-advanced-partner-sales-accelerator",
+          icon: "burger",
+          description:
+            "An advanced learning path aimed at equipping partners with the skills and knowledge to accelerate their sales efforts for Chainguard's products and solutions.",
+        },
+      ],
     },
   ],
   "chainguard-containers-onboarding-guide": [

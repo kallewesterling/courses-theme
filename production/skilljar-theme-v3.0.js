@@ -236,7 +236,12 @@ function makeSections(
   const compl = (slug) => (CG.state.isCompleted(slug) ? "completed" : "");
 
   sections.forEach((s) => {
+    if (s.internalSection && !CG.env.isInternal) return;
+
     const card = (link) => {
+      if (link.internalOnly && !CG.env.isInternal) return null;
+      if (link.adminOnly && !CG.env.isAdmin) return null;
+
       const r = reg(link.slug);
       const c = compl(link.slug);
       const className = `${c} ${r}`;
@@ -299,7 +304,7 @@ function makeSections(
           el(
             "div",
             { className: "cards" },
-            s.links.map((link) => card(link))
+            s.links.map((link) => card(link)).filter(Boolean)
           ),
         ]),
       ].filter(Boolean)
