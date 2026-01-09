@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   CG.dom.bodyHeader.classList.add("headers");
   hide(Q("#ep-footer")); // hide Skilljar footer
 
-  generateFooter(window.footerData);
+  generateFooter(footerData);
   window.animateCompletion = animateCompletion;
 
   if (CG.page.isLesson)
