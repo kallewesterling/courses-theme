@@ -91,6 +91,8 @@ export const CG = {
       },
 
       get data() {
+        this._data = [];
+        
         // setup breadcrumbs
         this.addCrumb("Home", CG.state.baseURL);
 
