@@ -145,72 +145,76 @@ body.sj-page-curriculum {
     hr {
       display: none !important;
     }
+  }
 
-    .curriculum-wrapper {
-      /* Each section of the curriculum has it's own wrapper */
-      border-radius: 8px;
-      margin-bottom: 28px;
-      padding: 0px;
-      border: 2px solid var(--blurple);
+  ul.dp-curriculum {
+    padding-left: 0;
+  }
 
-      h3 {
-        /* Section heading */
-        display: flex;
-        align-items: center;
-        padding: 24px;
-        margin: 0px;
-        font-family: Gellix;
-        color: var(--ink) !important;
+  .curriculum-wrapper {
+    /* Each section of the curriculum has it's own wrapper */
+    border-radius: 8px;
+    margin-bottom: 28px;
+    padding: 0px;
+    border: 2px solid var(--blurple);
+
+    h3 {
+      /* Section heading */
+      display: flex;
+      align-items: center;
+      padding: 24px;
+      margin: 0px;
+      font-family: Gellix;
+      color: var(--ink) !important;
+      font-size: 18px !important;
+      font-weight: 700 !important;
+      line-height: 125%;
+      border-bottom: 2px solid var(--blurple);
+
+      > a {
+        /* Special case: header when no lessons */
+        font-weight: inherit;
+        padding: 0;
         font-size: 18px !important;
-        font-weight: 700 !important;
-        line-height: 125%;
-        border-bottom: 2px solid var(--blurple);
-
-        > a {
-          /* Special case: header when no lessons */
-          font-weight: inherit;
-          padding: 0;
-          font-size: 18px !important;
-
-          &:hover {
-            background-color: unset;
-          }
-        }
-      }
-
-      a {
-        /* Section lesson */
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: flex-end;
-        align-items: center;
-        font-family: inherit;
-        color: var(--ink) !important;
-        padding: 24px;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 150%;
-        border-bottom: 2px solid var(--blurple);
-        height: 100%;
-
-        .fa-check-circle {
-          color: green !important;
-        }
 
         &:hover {
-          background-color: var(--gradient-end);
+          background-color: unset;
         }
+      }
+    }
 
-        &:last-child {
-          border-bottom: 0;
-          border-radius: 8px;
-        }
+    a {
+      /* Section lesson */
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      align-items: center;
+      font-family: inherit;
+      color: var(--ink) !important;
+      padding: 24px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 150%;
+      border-bottom: 2px solid var(--blurple);
+      height: 100%;
 
-        i {
-          /* TODO: is this legacy? */
-          margin-right: 12px;
-          color: var(--blurple);
-        }
+      .fa-check-circle {
+        color: green !important;
+      }
+
+      &:hover {
+        background-color: var(--gradient-end);
+      }
+
+      &:last-child {
+        border-bottom: 0;
+        border-radius: 8px;
+      }
+
+      i {
+        /* TODO: is this legacy? */
+        margin-right: 12px;
+        color: var(--blurple);
       }
     }
   }
