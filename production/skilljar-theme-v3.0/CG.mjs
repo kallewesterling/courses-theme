@@ -1,5 +1,5 @@
 import { CONFIG } from "./static.mjs";
-import { c, A, Q, el } from "./meta.mjs";
+import { c, A, Q, el, getCorrectURL } from "./meta.mjs";
 import { logger } from "./logger.mjs";
 
 export const CG = {
@@ -256,6 +256,38 @@ export const CG = {
         className: "sj-heading-paragraph",
         text: CG.state.shortDescription,
       });
+    },
+
+    get toChainguard() {
+      return el("div", { id: "to-chainguard" }, [
+        el("a", {
+          href: getCorrectURL("https://www.chainguard.dev"),
+          target: "_blank",
+          rel: "noopener noreferrer",
+          title: "Go to chainguard.dev",
+          text: "Go to Chainguard →",
+        }),
+      ]).cloneNode(true);
+    },
+
+    get mobileHeader() {
+      return el("header", { id: "mobile-header", class: "headers" }, [
+        el("div", { id: "mobile-header-left" }, []),
+        el("div", { id: "mobile-header-right" }, [this.toChainguard]),
+      ]);
+    },
+
+    get logo() {
+      return el("div", { id: "logo-wrapper" }, [
+        el(
+          "a",
+          {
+            className: "header-logo-link focus-link-v2",
+            href: CG.state.baseURL,
+          },
+          [CONFIG.logo]
+        ),
+      ]);
     },
   },
   dom: {

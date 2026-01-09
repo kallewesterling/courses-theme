@@ -34,6 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
   window.showBody = showBody;
   window.logger = logger;
 
+  // Clean up DOM: remove elements + set class names
+  remove(".search-container");
+  CG.dom.bodyHeader.classList.add("headers");
+
   generateFooter(window.footerData);
   window.animateCompletion = animateCompletion;
 });

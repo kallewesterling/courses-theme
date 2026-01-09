@@ -1138,44 +1138,6 @@ function handlePageStyling() {
   hide(Q("#ep-footer"));
 }
 
-/**
- * This function modifies the header to include a link to Chainguard's main website.
- * It creates a mobile header and adds the link to both mobile and desktop headers.
- * @returns {void}
- */
-function fixHeader() {
-  const toChainguard = el("div", { id: "to-chainguard" }, [
-    el("a", {
-      href: getCorrectURL("https://www.chainguard.dev"),
-      target: "_blank",
-      rel: "noopener noreferrer",
-      title: "Go to chainguard.dev",
-      text: "Go to Chainguard →",
-    }),
-  ]);
-
-  const mobileHeader = el("header", { id: "mobile-header", class: "headers" }, [
-    el("div", { id: "mobile-header-left" }, []),
-    el("div", { id: "mobile-header-right" }, [toChainguard]),
-  ]);
-
-  Q("#main-container").insertBefore(
-    mobileHeader,
-    CG.dom.bodyHeader.nextSibling
-  );
-
-  CG.dom.headerRight.insertBefore(
-    toChainguard.cloneNode(true),
-    CG.dom.headerRight.firstChild
-  );
-
-  CG.dom.mobileHeader = {
-    container: mobileHeader,
-    left: Q("#mobile-header-left"),
-    right: Q("#mobile-header-right"),
-  };
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   logger.info("CG Desktop Script Loaded");
 
@@ -1184,32 +1146,32 @@ document.addEventListener("DOMContentLoaded", () => {
     CG.dom.contentContainer.append(Q("#left-nav-button"));
 
   // replace logo
-  CG.dom.headerLeft.replaceChildren(
-    el("div", { id: "logo-wrapper" }, [
-      el(
-        "a",
-        {
-          className: "header-logo-link focus-link-v2",
-          href: CG.state.baseURL,
-        },
-        [CONFIG.logo]
-      ),
-    ])
-  );
-
-  // remove search container
-  remove(".search-container");
+  CG.dom.headerLeft.replaceChildren(CG.el.logo);
 
   // admin debug heading
   if (CG.env.isAdmin) debugHeading();
 
-  CG.dom.bodyHeader.classList.add("headers");
+  if (!CG.page.isSignup && !CG.page.isLogin) {
+    // add chainguard link + mobile header
+    Q("#main-container").insertBefore(
+      CG.el.mobileHeader,
+      CG.dom.bodyHeader.nextSibling
+    );
 
-  // add chainguard link
-  if (!CG.page.isSignup && !CG.page.isLogin) fixHeader();
+    CG.dom.headerRight.insertBefore(
+      CG.el.toChainguard,
+      CG.dom.headerRight.firstChild
+    );
 
-  // add partner menu item
-  if (CG.env.isPartner) addPartnerMenu();
+    CG.dom.mobileHeader = {
+      container: mobileHeader,
+      left: Q("#mobile-header-left"),
+      right: Q("#mobile-header-right"),
+    };
+  } else if (CG.env.isPartner) {
+    // add partner menu item
+    addPartnerMenu();
+  }
 
   handlePageStyling();
 
