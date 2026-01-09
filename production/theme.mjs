@@ -16,6 +16,7 @@ import { animateCompletion } from "./skilljar-theme-v3.0/course-completion.mjs";
 import { generateFooter } from "./skilljar-theme-v3.0/footer.mjs";
 import { hide, showBody } from "./skilljar-theme-v3.0/styling.mjs";
 import { logger } from "./skilljar-theme-v3.0/logger.mjs";
+import { notFoundView } from "./skilljar-theme-v3.0/views/404.mjs";
 
 document.addEventListener("DOMContentLoaded", () => {
   logger.info("CG Modular Script Loaded");
@@ -33,6 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
   window.hide = hide;
   window.showBody = showBody;
   window.logger = logger;
+  
+  // views
+  window.notFoundView = notFoundView;
 
   // Clean up DOM: remove elements + set class names
   remove(".search-container");
