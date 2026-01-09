@@ -424,6 +424,3 @@ function generateFooter(data, containerId = "footer-container") {
   );
   container.appendChild(copyrightFooter);
 }
-
-// Run
-generateFooter(footerData);

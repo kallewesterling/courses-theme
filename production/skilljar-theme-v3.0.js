@@ -2465,6 +2465,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   handlePageStyling();
+  
+  // Generate our footer
+  generateFooter(footerData);
 
   // show all
   showBody();
