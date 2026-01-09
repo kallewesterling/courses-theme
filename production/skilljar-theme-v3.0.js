@@ -1287,7 +1287,7 @@ document.addEventListener("DOMContentLoaded", () => {
   handlePageStyling();
 
   // Generate our footer
-  generateFooter(footerData);
+  // generateFooter(footerData);
 
   // show all
   showBody();
