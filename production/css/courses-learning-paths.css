@@ -126,6 +126,11 @@ body.sj-page-curriculum {
         }
       }
     }
+
+    .large-10.large-centered.columns.tabs-wrapper-v2 {
+      margin: 0;
+      width: 796px;
+    }
   }
 
   #dp-details-bundle {
