@@ -86,7 +86,7 @@ export function el(tag, props = {}, children = []) {
  * @param {string} [auto=""] - The fallback text content if value is undefined or null.
  * @returns {void}
  */
-export const text = (element, value, auto = "") => {
+export function text(element, value, auto = "") {
   if (element && value !== undefined && value !== null) {
     element.textContent = value;
   } else if (element) {
@@ -97,7 +97,24 @@ export const text = (element, value, auto = "") => {
       value
     );
   }
-};
+}
+
+/**
+ * Sets the placeholder attribute of an HTML element.
+ * @param {HTMLElement} element - The target HTML element.
+ * @param {string} value - The placeholder text to set.
+ * @returns {void}
+ */
+export function placeholder(element, value) {
+  if (element && value !== undefined && value !== null) {
+    element.setAttribute("placeholder", value);
+  } else {
+    console.warn(
+      "placeholder(): Element is null or undefined. Tried to set placeholder to:",
+      value
+    );
+  }
+}
 
 /**
  * Removes elements from the DOM based on the provided selector(s).
