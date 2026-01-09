@@ -1164,7 +1164,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     CG.dom.mobileHeader = {
-      container: mobileHeader,
+      container: Q("header#mobile-header"),
       left: Q("#mobile-header-left"),
       right: Q("#mobile-header-right"),
     };
