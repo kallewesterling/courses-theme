@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 const UTM = {
   utm_source: "courses",
   utm_medium: "referral",
