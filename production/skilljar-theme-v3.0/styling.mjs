@@ -73,11 +73,12 @@ export function setStyle(target, style) {
  * @param {HTMLElement} element - The element to hide.
  * @returns {void}
  */
-const hide = (element) => setStyle(element, { display: "none !important" });
+export const hide = (element) =>
+  setStyle(element, { display: "none !important" });
 
 /**
  * This function shows the body element by removing any display style overrides.
  * It sets the display style to undefined, allowing it to revert to its default behavior.
  * @returns {void}
  */
-const showBody = () => setStyle(CG.dom.body, { display: undefined });
+export const showBody = () => setStyle(Q("body"), { display: undefined });
