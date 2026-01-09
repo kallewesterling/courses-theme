@@ -1,9 +1,9 @@
-import { pathSections } from "../static.mjs";
-import { Q, el } from "../meta.mjs";
-import { hide } from "../styling.mjs";
-import { createClone } from "../icons.mjs";
-import { CG } from "../CG.mjs";
-import { logger } from "../logger.mjs";
+import { pathSections } from "./static.mjs";
+import { Q, el } from "./meta.mjs";
+import { hide } from "./styling.mjs";
+import { createClone } from "./icons.mjs";
+import { CG } from "./CG.mjs";
+import { logger } from "./logger.mjs";
 
 /**
  * Generates and appends course sections to a specified parent element.
