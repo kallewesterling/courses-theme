@@ -1200,9 +1200,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // remove search container
   remove(".search-container");
 
-  // setup breadcrumbs
-  // addCrumb("Home", CG.state.baseURL);
-
   // admin debug heading
   if (CG.env.isAdmin) debugHeading();
 
@@ -1214,26 +1211,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // add partner menu item
   if (CG.env.isPartner) addPartnerMenu();
 
-  // if (CG.env.hasCourseSeries) {
-  //   addCrumb(
-  //     skilljarCourseSeries.title,
-  //     `/path/${skilljarCourseSeries.slug}`,
-  //     true
-  //   );
-  // }
-
-  // if (CG.env.hasCourse) {
-  //   addCrumb(skilljarCourse.title, "#");
-  // }
-
-  // if (CG.page.inPartnerPath) {
-  //   addCrumb("Partner Courses", "/page/partners", true);
-  // }
-
   handlePageStyling();
-
-  // Generate our footer
-  // generateFooter(footerData);
 
   // show all
   showBody();

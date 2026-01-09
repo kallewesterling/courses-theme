@@ -18,6 +18,8 @@ import { hide, showBody } from "./skilljar-theme-v3.0/styling.mjs";
 import { logger } from "./skilljar-theme-v3.0/logger.mjs";
 
 document.addEventListener("DOMContentLoaded", () => {
+  logger.info("CG Modular Script Loaded");
+
   window.CONFIG = CONFIG;
   window.footerData = footerData;
   window.pathSections = pathSections;
