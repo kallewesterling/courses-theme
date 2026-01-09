@@ -78,3 +78,23 @@ export function el(tag, props = {}, children = []) {
     .forEach((child) => n.appendChild(child));
   return n;
 }
+
+/**
+ * Sets the text content of an HTML element.
+ * @param {HTMLElement} element - The target HTML element.
+ * @param {string} value - The text content to set.
+ * @param {string} [auto=""] - The fallback text content if value is undefined or null.
+ * @returns {void}
+ */
+const text = (element, value, auto = "") => {
+  if (element && value !== undefined && value !== null) {
+    element.textContent = value;
+  } else if (element) {
+    element.textContent = auto;
+  } else {
+    console.warn(
+      "text(): Element is null or undefined. Tried to set text to:",
+      value
+    );
+  }
+};
