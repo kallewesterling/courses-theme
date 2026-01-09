@@ -503,6 +503,11 @@ const CG = {
 
   data: {
     partnerErrorMessage: `If you are a partner and trying to access our Partner courses, you have to first <a href="/auth/login?next=%2Fpage%2Fpartners">sign in or sign up for our Courses platform</a>.`,
+    UTM: {
+      utm_source: "courses",
+      utm_medium: "referral",
+      utm_campaign: "dev-enablement",
+    },
 
     get curriculumSections() {
       if (!CG.dom.curriculumContainer) return [];
