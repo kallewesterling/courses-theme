@@ -11,31 +11,30 @@ const UTM = {
  * @param {string} selector - The CSS selector to query.
  * @returns {HTMLElement|null} The first matching element or null if not found.
  */
-const Q = (selector, root = document) => root.querySelector(selector);
+// const Q = (selector, root = document) => root.querySelector(selector);
 
 /**
  * Shortcut to querySelectorAll function.
  * @param {string} selector - The CSS selector to query.
  * @returns {NodeListOf<HTMLElement>} A list of matching elements.
  */
-const A = (selector, root = document) => root.querySelectorAll(selector);
+// const A = (selector, root = document) => root.querySelectorAll(selector);
 
 /**
  * Shortcut to verifying the existence of an element.
  * @param {string} selector - The CSS selector to query.
  * @returns {HTMLElement|false} The first matching element or false if not found.
  */
-const c = (selector) => Q(selector) || false;
+// const c = (selector) => Q(selector) || false;
 
 /**
  * Returns the correct URL with UTM parameters appended.
  * @param {string} link - The base URL to which UTM parameters will be added.
  * @returns {string} - The URL with UTM parameters.
  */
+/*
 function getCorrectURL(link) {
   let url = new URL(link);
-
-  // add UTM params for tracking if specified
 
   UTM
     ? Object.entries(UTM).forEach(([key, value]) => {
@@ -45,6 +44,7 @@ function getCorrectURL(link) {
 
   return url.toString();
 }
+*/
 
 /**
  * Creates a DOM element with specified tag, properties, and children.
@@ -61,6 +61,7 @@ function getCorrectURL(link) {
  * ]);
  * document.body.appendChild(button);
  */
+/*
 const el = (tag, props = {}, children = []) => {
   if (!tag) return null;
   const svgTags =
@@ -96,6 +97,7 @@ const el = (tag, props = {}, children = []) => {
     .forEach((child) => n.appendChild(child));
   return n;
 };
+*/
 
 /**
  * Data for building the footer section of the webpage.
