@@ -82,7 +82,83 @@ export const CG = {
     },
   },
   state: {
-    crumbs: [],
+    breadcrumbs: {
+      _data: [],
+
+      addCrumb(label, href, prependBase = false) {
+        if (prependBase) href = `${CG.state.baseURL}${href}`;
+        this._data.push([label, href]);
+      },
+
+      get data() {
+        // setup breadcrumbs
+        this.addCrumb("Home", CG.state.baseURL);
+
+        if (CG.env.hasCourseSeries) {
+          this.addCrumb(
+            window.skilljarCourseSeries.title,
+            `/path/${window.skilljarCourseSeries.slug}`,
+            true
+          );
+        }
+
+        if (CG.env.hasCourse) {
+          this.addCrumb(window.skilljarCourse.title, "#");
+        }
+
+        if (CG.page.inPartnerPath) {
+          this.addCrumb("Partner Courses", "/page/partners", true);
+        }
+
+        return this._data;
+      },
+
+      get length() {
+        return this.data.length;
+      },
+
+      get nav() {
+        if (!this.data || !Array.isArray(this.data) || this.data.length === 0)
+          return undefined;
+
+        const targetElement = el("div", {
+          id: "breadcrumbs",
+          className: "row dp-row-flex-v2",
+        });
+
+        const nav = el(
+          "nav",
+          {
+            className: "breadcrumb",
+            "aria-label": "Breadcrumb",
+            role: "navigation",
+          },
+          [
+            el(
+              "ol",
+              {},
+              this.data.map(([text, href], ix, arr) => {
+                const isLast = ix === arr.length - 1;
+                const hasLink = href !== "#";
+                const tag = isLast || !hasLink ? "span" : "a";
+                return el("li", {}, [
+                  el(tag, {
+                    className: "crumb",
+                    text,
+                    href: href === "#" ? undefined : href,
+                    "aria-current": isLast ? "page" : undefined,
+                  }),
+                ]);
+              })
+            ),
+          ]
+        );
+
+        targetElement?.appendChild(nav);
+
+        return targetElement;
+      },
+    },
 
     get shortDescription() {
       if (!CG.env.hasCourse && !CG.env.hasCourseSeries) return "";

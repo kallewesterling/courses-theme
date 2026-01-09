@@ -36,18 +36,6 @@ const placeholder = (element, value) => {
 };
 
 /**
- * Add a breadcrumb to the global state
- * @param {string} label - The label for the breadcrumb
- * @param {string} href - The href for the breadcrumb
- * @param {boolean} prependBase - Whether to prepend the base URL to the href
- * @returns {void}
- */
-function addCrumb(label, href, prependBase = false) {
-  if (prependBase) href = `${CG.state.baseURL}${href}`;
-  CG.state.crumbs.push([label, href]);
-}
-
-/**
  * Update all links on the page to use either the production or staging domain.
  * @param {boolean} useTestDomain - If true, update links to use the staging domain; otherwise, use the production domain.
  * @returns {void}
@@ -172,47 +160,6 @@ function debugHeading() {
  * renderBreadcrumbs('#breadcrumb-container');
  */
 function renderBreadcrumbs(targetElement) {
-  if (
-    !CG.state.crumbs ||
-    !Array.isArray(CG.state.crumbs) ||
-    CG.state.crumbs.length === 0
-  )
-    return;
-
-  if (!targetElement)
-    targetElement = el("div", {
-      id: "breadcrumbs",
-      className: "row dp-row-flex-v2",
-    });
-
-  const nav = el(
-    "nav",
-    {
-      className: "breadcrumb",
-      "aria-label": "Breadcrumb",
-      role: "navigation",
-    },
-    [
-      el(
-        "ol",
-        {},
-        CG.state.crumbs.map(([text, href], ix, arr) => {
-          const isLast = ix === arr.length - 1;
-          const hasLink = href !== "#";
-          const tag = isLast || !hasLink ? "span" : "a";
-          return el("li", {}, [
-            el(tag, {
-              className: "crumb",
-              text,
-              href: href === "#" ? undefined : href,
-              "aria-current": isLast ? "page" : undefined,
-            }),
-          ]);
-        })
-      ),
-    ]
-  );
-
   targetElement?.replaceChildren(nav);
 
   return targetElement;
@@ -1161,9 +1108,8 @@ function handlePageStyling() {
   }
 
   if (CG.page.isCoursePage || CG.page.isPathRegistered) {
-    // make breadcrumbs
-    const breadcrumbs = renderBreadcrumbs();
-    Q(".top-row-grey").prepend(breadcrumbs);
+    // append breadcrumbs
+    Q(".top-row-grey").prepend(CG.state.breadcrumbs.nav);
 
     // append elements to header
     if (CG.page.isCoursePage) {
@@ -1255,7 +1201,7 @@ document.addEventListener("DOMContentLoaded", () => {
   remove(".search-container");
 
   // setup breadcrumbs
-  addCrumb("Home", CG.state.baseURL);
+  // addCrumb("Home", CG.state.baseURL);
 
   // admin debug heading
   if (CG.env.isAdmin) debugHeading();
@@ -1268,21 +1214,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // add partner menu item
   if (CG.env.isPartner) addPartnerMenu();
 
-  if (CG.env.hasCourseSeries) {
-    addCrumb(
-      skilljarCourseSeries.title,
-      `/path/${skilljarCourseSeries.slug}`,
-      true
-    );
-  }
+  // if (CG.env.hasCourseSeries) {
+  //   addCrumb(
+  //     skilljarCourseSeries.title,
+  //     `/path/${skilljarCourseSeries.slug}`,
+  //     true
+  //   );
+  // }
 
-  if (CG.env.hasCourse) {
-    addCrumb(skilljarCourse.title, "#");
-  }
+  // if (CG.env.hasCourse) {
+  //   addCrumb(skilljarCourse.title, "#");
+  // }
 
-  if (CG.page.inPartnerPath) {
-    addCrumb("Partner Courses", "/page/partners", true);
-  }
+  // if (CG.page.inPartnerPath) {
+  //   addCrumb("Partner Courses", "/page/partners", true);
+  // }
 
   handlePageStyling();
 
