@@ -498,7 +498,7 @@ const CG = {
       },
     },
     courseContainer: Q("#dp-details") || Q("#cp-content"),
-    curriculumContainer: A(".dp-curriculum")[0] || Q("#curriculum-list"),
+    curriculumContainer: A("ul.dp-curriculum")[0] || Q("div#curriculum-list"),
   },
 
   data: {
