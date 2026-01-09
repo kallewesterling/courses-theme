@@ -25,22 +25,22 @@ import { debugHeading } from "./skilljar-theme-v3.0/debug.mjs";
 document.addEventListener("DOMContentLoaded", () => {
   logger.info("CG Modular Script Loaded");
 
-  window.CONFIG = CONFIG;
-  window.footerData = footerData;
-  window.pathSections = pathSections;
-  window.CG = CG;
-  window.Q = Q;
-  window.A = A;
-  window.c = c;
-  window.getCorrectURL = getCorrectURL;
-  window.el = el;
-  window.remove = remove;
-  window.hide = hide;
-  window.showBody = showBody;
-  window.createClone = createClone;
-  window.placeholder = placeholder;
-  window.text = text;
-  window.logger = logger;
+  // window.CONFIG = CONFIG;
+  // window.footerData = footerData;
+  // window.pathSections = pathSections;
+  // window.CG = CG;
+  // window.Q = Q;
+  // window.A = A;
+  // window.c = c;
+  // window.getCorrectURL = getCorrectURL;
+  // window.el = el;
+  // window.remove = remove;
+  // window.hide = hide;
+  // window.showBody = showBody;
+  // window.createClone = createClone;
+  // window.placeholder = placeholder;
+  // window.text = text;
+  // window.logger = logger;
 
   // Clean up DOM: remove elements + set class names
   remove(".search-container");
