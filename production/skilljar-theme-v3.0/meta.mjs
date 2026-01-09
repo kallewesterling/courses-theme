@@ -98,3 +98,40 @@ export const text = (element, value, auto = "") => {
     );
   }
 };
+
+/**
+ * Removes elements from the DOM based on the provided selector(s).
+ * @param {string|string[]} selector - A CSS selector string or an array of selector strings.
+ * @returns {void}
+ * @example
+ * // Remove a single element
+ * remove('.ad-banner');
+ *
+ * // Remove multiple elements
+ * remove(['.ad-banner', '#popup', '.sponsored-content']);
+ */
+export function remove(selector) {
+  if (!selector) return;
+
+  if (selector instanceof HTMLElement) {
+    try {
+      selector.remove();
+    } catch (e) {
+      console.warn("Could not remove element:", selector, e);
+    }
+    return;
+  }
+
+  if (Array.isArray(selector)) {
+    selector.forEach((sel) => remove(sel));
+    return;
+  }
+
+  A(selector).forEach((el) => {
+    try {
+      el.remove();
+    } catch (e) {
+      console.warn("Could not remove element:", el, e);
+    }
+  });
+}
