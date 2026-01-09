@@ -1,5 +1,5 @@
 import { el, text, Q } from "./meta.mjs";
-import { CONFIG } from "./config.mjs";
+import { CONFIG } from "./static.mjs";
 import { setStyle } from "./styling.mjs";
 import { CG } from "./CG.mjs";
 

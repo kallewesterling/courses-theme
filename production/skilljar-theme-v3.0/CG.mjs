@@ -1,4 +1,4 @@
-import { CONFIG } from "./config.mjs";
+import { CONFIG } from "./static.mjs";
 import { c, A, Q, el } from "./meta.mjs";
 import { logger } from "./logger.mjs";
 
