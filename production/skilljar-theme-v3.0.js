@@ -666,7 +666,7 @@ function handlePageStyling() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  logger.info("CG Desktop Script Loaded");
+  // logger.info("CG Desktop Script Loaded");
 
   if (CG.page.isLesson)
     // if a lesson page, we need to move the nav button before we modify the header
