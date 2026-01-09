@@ -7,9 +7,10 @@ import { hide, showBody } from "./skilljar-theme-v3.0/styling.mjs";
 import { logger } from "./skilljar-theme-v3.0/logger.mjs";
 import { route } from "./skilljar-theme-v3.0/router.mjs";
 import { debugHeading } from "./skilljar-theme-v3.0/debug.mjs";
+import * as shiki from "https://esm.sh/shiki@3.0.0";
 
 document.addEventListener("load", () => {
-  logger.info("CG Modular Script Loaded");
+  logger.info("CG Modular Script load event");
 
   document.querySelector("body").style.setProperty("display", "none");
 });
@@ -95,4 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // show all
   showBody();
+  
+  // syntax highlighting with shiki
+  window.shiki = shiki;
 });
