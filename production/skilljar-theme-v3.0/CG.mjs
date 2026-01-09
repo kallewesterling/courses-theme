@@ -92,25 +92,20 @@ export const CG = {
 
       get data() {
         this._data = [];
-        
-        // setup breadcrumbs
+
         this.addCrumb("Home", CG.state.baseURL);
 
-        if (CG.env.hasCourseSeries) {
+        if (CG.env.hasCourseSeries)
           this.addCrumb(
             window.skilljarCourseSeries.title,
             `/path/${window.skilljarCourseSeries.slug}`,
             true
           );
-        }
 
-        if (CG.env.hasCourse) {
-          this.addCrumb(window.skilljarCourse.title, "#");
-        }
+        if (CG.env.hasCourse) this.addCrumb(window.skilljarCourse.title, "#");
 
-        if (CG.page.inPartnerPath) {
+        if (CG.page.inPartnerPath)
           this.addCrumb("Partner Courses", "/page/partners", true);
-        }
 
         return this._data;
       },
