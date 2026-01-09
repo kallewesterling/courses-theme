@@ -86,7 +86,7 @@ export function el(tag, props = {}, children = []) {
  * @param {string} [auto=""] - The fallback text content if value is undefined or null.
  * @returns {void}
  */
-const text = (element, value, auto = "") => {
+export const text = (element, value, auto = "") => {
   if (element && value !== undefined && value !== null) {
     element.textContent = value;
   } else if (element) {
