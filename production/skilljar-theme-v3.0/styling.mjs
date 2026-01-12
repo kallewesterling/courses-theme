@@ -73,8 +73,21 @@ export function setStyle(target, style) {
  * @param {HTMLElement} element - The element to hide.
  * @returns {void}
  */
-export const hide = (element) =>
-  setStyle(element, { display: "none !important" });
+export const hide = (element) => {
+  if (!element) return;
+
+  if (typeof element === "string") {
+    element = Q(element);
+  } else if (Array.isArray(element) || element instanceof NodeList) {
+    // repeat hide for each element in array
+    element.forEach((el) => setStyle(el, { display: "none !important" }));
+    return;
+  }
+
+  if (!typeof element === HTMLElement) return;
+
+  return setStyle(element, { display: "none !important" });
+};
 
 /**
  * This function shows the body element by removing any display style overrides.

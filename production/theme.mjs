@@ -1,3 +1,18 @@
+/*
+ * Chainguard Courses Theme v4.0
+ * This script applies custom styles and functionality to Chainguard's Skilljar platform.
+ * It includes features like curriculum styling, lesson navigation, and responsive design adjustments.
+ * It also provides utility functions for clipboard operations and element styling.
+ *
+ * This script is designed to be run in the context of a Skilljar page.
+ *
+ * @version 3.0
+ * @date 2026-01-10
+ * @author Chainguard
+ * @license MIT
+ * @see {@link https://courses.chainguard.com|Chainguard Courses}
+ */
+
 import { Q, el, remove } from "./skilljar-theme-v3.0/meta.mjs";
 import { CG } from "./skilljar-theme-v3.0/CG.mjs";
 import { footerData } from "./skilljar-theme-v3.0/static.mjs";
@@ -9,19 +24,13 @@ import { route } from "./skilljar-theme-v3.0/router.mjs";
 import { debugHeading } from "./skilljar-theme-v3.0/debug.mjs";
 import * as shiki from "https://esm.sh/shiki@3.0.0";
 
-document.addEventListener("load", () => {
-  logger.info("CG Modular Script load event");
-
-  document.querySelector("body").style.setProperty("display", "none");
-});
-
 document.addEventListener("DOMContentLoaded", () => {
-  logger.info("CG Modular Script Loaded");
+  logger.info("DOMContentLoaded");
 
   // Clean up DOM: remove elements + set class names
   remove(".search-container");
   CG.dom.bodyHeader.classList.add("headers");
-  hide(Q("#ep-footer")); // hide Skilljar footer
+  hide("#ep-footer"); // hide Skilljar footer
 
   generateFooter(footerData);
   window.animateCompletion = animateCompletion;

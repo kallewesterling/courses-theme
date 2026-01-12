@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-
 /*
  * Chainguard Courses Theme v3.0
  * This script applies custom styles and functionality to Chainguard's Skilljar platform.
