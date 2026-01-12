@@ -22,7 +22,10 @@ import { hide, showBody } from "./skilljar-theme-v3.0/styling.mjs";
 import { logger } from "./skilljar-theme-v3.0/logger.mjs";
 import { route } from "./skilljar-theme-v3.0/router.mjs";
 import { debugHeading } from "./skilljar-theme-v3.0/debug.mjs";
+
+// External libraries
 import * as shiki from "https://esm.sh/shiki@3.0.0";
+import { confetti } from "https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/+esm";
 
 document.addEventListener("DOMContentLoaded", () => {
   logger.info("DOMContentLoaded");
@@ -108,4 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
   // syntax highlighting with shiki
   window.shiki = shiki;
+
+  // confetti function
+  window.confetti = confetti;
 });
