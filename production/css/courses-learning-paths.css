@@ -139,9 +139,13 @@ body.sj-page-curriculum {
 
   #dp-details-bundle {
     max-width: 1188px;
-    padding: 96px 0 96px 0 !important;
+    padding: 96px 0 !important;
     margin: 0 auto;
     border-bottom: 1px solid var(--neutral-border);
+
+    @media screen and (max-width: 767px) {
+      padding: 56px 8vw !important;
+    }
 
     .row {
       padding: 0;
