@@ -3,6 +3,9 @@ import { CONFIG } from "./static.mjs";
 import { setStyle } from "./styling.mjs";
 import { CG } from "./CG.mjs";
 
+// External libraries
+import { confetti } from "https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/+esm";
+
 /**
  * Course completion popup and confetti animation module.
  */
@@ -117,35 +120,33 @@ export function hideCompletion(elem) {
  * @returns {void}
  */
 export function shoot() {
-  // TODO: Solve confetti import/build issues
-  //
-  // confetti({
-  //   ...CONFIG.confetti.defaults,
-  //   particleCount: CONFIG.confetti.particles.stars.counts,
-  //   scalar: CONFIG.confetti.particles.stars.scalar,
-  //   shapes: ["star"],
-  // });
-  // confetti({
-  //   ...CONFIG.confetti.defaults,
-  //   particleCount: CONFIG.confetti.particles.circles.counts,
-  //   scalar: CONFIG.confetti.particles.circles.scalar,
-  //   shapes: ["circle"],
-  // });
-  // confetti({
-  //   ...CONFIG.confetti.defaults,
-  //   particleCount: CONFIG.confetti.particles.logos.counts,
-  //   scalar: CONFIG.confetti.particles.logos.scalar,
-  //   shapes: ["image"],
-  //   shapeOptions: {
-  //     image: [
-  //       {
-  //         src: "https://cc.sj-cdn.net/instructor/l9kl0bllkdr4-chainguard/themes/2gr0n1rmedy35/favicon.1757695230.png",
-  //         width: 32,
-  //         height: 32,
-  //       },
-  //     ],
-  //   },
-  // });
+  confetti({
+    ...CONFIG.confetti.defaults,
+    particleCount: CONFIG.confetti.particles.stars.counts,
+    scalar: CONFIG.confetti.particles.stars.scalar,
+    shapes: ["star"],
+  });
+  confetti({
+    ...CONFIG.confetti.defaults,
+    particleCount: CONFIG.confetti.particles.circles.counts,
+    scalar: CONFIG.confetti.particles.circles.scalar,
+    shapes: ["circle"],
+  });
+  confetti({
+    ...CONFIG.confetti.defaults,
+    particleCount: CONFIG.confetti.particles.logos.counts,
+    scalar: CONFIG.confetti.particles.logos.scalar,
+    shapes: ["image"],
+    shapeOptions: {
+      image: [
+        {
+          src: "https://cc.sj-cdn.net/instructor/l9kl0bllkdr4-chainguard/themes/2gr0n1rmedy35/favicon.1757695230.png",
+          width: 32,
+          height: 32,
+        },
+      ],
+    },
+  });
 }
 
 /**
