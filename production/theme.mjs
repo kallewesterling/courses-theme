@@ -1,5 +1,5 @@
 /*
- * Chainguard Courses Theme v4.0
+ * Chainguard Courses Theme v3.0
  * This script applies custom styles and functionality to Chainguard's Skilljar platform.
  * It includes features like curriculum styling, lesson navigation, and responsive design adjustments.
  * It also provides utility functions for clipboard operations and element styling.
