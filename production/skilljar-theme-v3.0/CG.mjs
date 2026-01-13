@@ -22,8 +22,6 @@ export const CG = {
     get isInternal() {
       if (!this.isLoggedIn) return false;
 
-      if (CG.state.user.email.includes("@chainguard.dev")) return true;
-
       if (!this.hasGroups) return false;
 
       return window.skilljarUserStudentGroups
@@ -34,10 +32,10 @@ export const CG = {
     get isPartner() {
       if (!this.isLoggedIn) return false;
 
-      // all internal users get partner access
-      if (CG.state.user.email.includes("@chainguard.dev")) return true;
-
       if (!this.hasGroups) return false;
+
+      // all internal users get partner access
+      if (this.isInternal) return true;
 
       return window.skilljarUserStudentGroups
         .map((d) => d.id)
