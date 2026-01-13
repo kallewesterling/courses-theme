@@ -23,9 +23,6 @@ import { logger } from "./skilljar-theme-v3.0/logger.mjs";
 import { route } from "./skilljar-theme-v3.0/router.mjs";
 import { debugHeading } from "./skilljar-theme-v3.0/debug.mjs";
 
-// External libraries
-import * as shiki from "https://esm.sh/shiki@3.0.0";
-
 document.addEventListener("DOMContentLoaded", () => {
   logger.info("DOMContentLoaded");
 
@@ -107,7 +104,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // show all
   showBody();
-  
-  // syntax highlighting with shiki
-  window.shiki = shiki;
 });
