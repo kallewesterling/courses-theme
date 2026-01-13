@@ -1,6 +1,13 @@
 repos:
   - repo: local
     hooks:
+      - id: css-build
+        name: Build CSS
+        entry: bash -c 'node build-css.mjs && git add production/style.css'
+        language: system
+        files: ^production/css/.*\.css$
+        pass_filenames: false
+
       - id: css-syntax-check
         name: CSS syntax check
         entry: npx stylelint production/style.css production/css/*.css
