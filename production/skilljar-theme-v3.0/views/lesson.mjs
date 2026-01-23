@@ -40,6 +40,7 @@ function toClipboard(copyText, tooltipContainer) {
  */
 function processCodeBlock(elem) {
   console.log(elem);
+  console.log(elem.dataset);
   
   const codeEl = Q("code", elem);
 
