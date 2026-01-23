@@ -56,17 +56,17 @@ function processCodeBlock(elem) {
     [createClone("copy")],
   );
 
-  // add event listener to cloned icon to copy block into clipboard
-  container.firstChild.addEventListener(
-    "click",
-    toClipboard(copyText, tooltipContainer),
-  );
-
   // create 'copied' tooltip
   const tooltipContainer = el("div", {
     textContent: "Copied",
     style: `position: absolute; top: -24px; right: 10px; text-shadow: none; background-color: var(--answer-option); color: var(--primary-white-hex); padding: 5px 10px; border-radius: 4px; opacity: 0; transition: opacity .2s ease-in;`,
   });
+
+  // add event listener to cloned icon to copy block into clipboard
+  container.firstChild.addEventListener(
+    "click",
+    toClipboard(copyText, tooltipContainer),
+  );
 
   // add elements
   elem.append(tooltipContainer);
