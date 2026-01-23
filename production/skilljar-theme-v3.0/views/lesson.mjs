@@ -138,13 +138,14 @@ async function processCodeBlock(elem) {
     transformers: [addCopyButton()],
   });
 
-  // Parse Shiki output
-  const tpl = document.createElement("template");
-  tpl.innerHTML = formatted.trim();
-  const newPre = tpl.content.firstElementChild;
+  const parser = new DOMParser(),
+  formattedElem = parser.parseFromString(formatted, "text/html");
 
-  if (newPre) {
-    elem.replaceWith(newPre);
+  const newCode = formattedElem.querySelector("code");
+
+  if (newCode) {
+    // replace old code element with new highlighted one
+    codeEl.replaceWith(newCode);
   }
 }
 
