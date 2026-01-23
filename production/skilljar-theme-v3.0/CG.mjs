@@ -97,7 +97,7 @@ export const CG = {
           this.addCrumb(
             window.skilljarCourseSeries.title,
             `/path/${window.skilljarCourseSeries.slug}`,
-            true
+            true,
           );
 
         if (CG.env.hasCourse) this.addCrumb(window.skilljarCourse.title, "#");
@@ -144,9 +144,9 @@ export const CG = {
                     "aria-current": isLast ? "page" : undefined,
                   }),
                 ]);
-              })
+              }),
             ),
-          ]
+          ],
         );
 
         targetElement?.appendChild(nav);
@@ -186,7 +186,7 @@ export const CG = {
           short_description: window.skilljarCourse.short_description,
           long_description_html: window.skilljarCourse.long_description_html,
           edit: `https://dashboard.skilljar.com/course/${window.skilljarCourse.id}`,
-        }
+        },
       );
 
       if (CG.env.hasCourseProgress) {
@@ -214,21 +214,21 @@ export const CG = {
     get unregistered() {
       if (!CG.dom.courseBoxes) logger.warn("No course boxes found");
       return CG.dom.courseBoxes.filter(
-        (d) => d.dataset.courseStatus === "unregistered"
+        (d) => d.dataset.courseStatus === "unregistered",
       );
     },
 
     get registered() {
       if (!CG.dom.courseBoxes) logger.warn("No course boxes found");
       return CG.dom.courseBoxes.filter(
-        (d) => d.dataset.courseStatus === "registered"
+        (d) => d.dataset.courseStatus === "registered",
       );
     },
 
     get completed() {
       if (!CG.dom.courseBoxes) logger.warn("No course boxes found");
       return CG.dom.courseBoxes.filter(
-        (d) => d.dataset.courseStatus === "complete"
+        (d) => d.dataset.courseStatus === "complete",
       );
     },
 
@@ -283,7 +283,7 @@ export const CG = {
             className: "header-logo-link focus-link-v2",
             href: CG.state.baseURL,
           },
-          [CONFIG.logo]
+          [CONFIG.logo],
         ),
       ]);
     },
@@ -318,7 +318,7 @@ export const CG = {
         return [...A("p", this.courseInfo)]
           .filter((d) => d.textContent.toLowerCase().includes("learning path"))
           .map((p) =>
-            [...A("a", p)].filter((a) => a.innerHTML === "learning path")
+            [...A("a", p)].filter((a) => a.innerHTML === "learning path"),
           )
           .flat();
       },
@@ -326,8 +326,11 @@ export const CG = {
       get href() {
         if (this.btn) return this.btn.href;
 
-        const checkout =
-          CONFIG.partners[window.skilljarCourseSeries.slug]?.checkout;
+        let checkout;
+
+        if (window.skilljarCourseSeries)
+          checkout =
+            CONFIG.partners[window.skilljarCourseSeries.slug]?.checkout;
 
         if (this.links.length > 0 && checkout) {
           return `/checkout/${checkout}`;
@@ -354,7 +357,7 @@ export const CG = {
       if (!CG.dom.curriculumContainer) return [];
 
       let elements = Array.from(
-          A("[class^='lesson-'],.section", CG.dom.curriculumContainer)
+          A("[class^='lesson-'],.section", CG.dom.curriculumContainer),
         ),
         currentSection = 0;
 
@@ -412,7 +415,7 @@ export const CG = {
               text,
               href,
             },
-            [icon].filter(Boolean)
+            [icon].filter(Boolean),
           );
         });
 
@@ -436,7 +439,7 @@ export const CG = {
           });
         } else {
           logger.warn(
-            "Unexpected curriculum structure: no heading and multiple lessons"
+            "Unexpected curriculum structure: no heading and multiple lessons",
           );
           return null;
         }
@@ -450,7 +453,7 @@ export const CG = {
         return el(
           "div",
           { className: "curriculum-wrapper" },
-          [headingElement, ...lessons].filter(Boolean)
+          [headingElement, ...lessons].filter(Boolean),
         );
       });
     },
