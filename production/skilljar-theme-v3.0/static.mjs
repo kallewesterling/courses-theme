@@ -56,6 +56,7 @@ export const CONFIG = {
       colors: ["#C6FF50", "#50FFE1"],
     },
   },
+  codeTheme: "min-light", // Shiki theme to use for code blocks
   icons: {
     checkbox: {
       paths: [

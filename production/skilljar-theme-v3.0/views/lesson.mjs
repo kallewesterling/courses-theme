@@ -1,11 +1,16 @@
 import { A, Q, el, text, getCorrectURL } from "../meta.mjs";
 import { CG } from "../CG.mjs";
+import { CONFIG } from "../static.mjs";
 import { setStyle } from "../styling.mjs";
 import { createClone } from "../icons.mjs";
 import { logger } from "../logger.mjs";
 
+// Shiki syntax highlighting
+import * as shiki from "https://esm.sh/shiki@3.0.0";
+import { h } from "https://esm.sh/hastscript@9?bundle";
+
 /**
- * Creates a function to copy text to the clipboard and animate a tooltip.
+ * Copies text to the clipboard and animates a tooltip to indicate success.
  * @param {string} copyText - The text to copy to the clipboard.
  * @param {HTMLElement} tooltipContainer - The element to animate as a tooltip.
  * @returns {Function} - A function that, when called, will copy the text and animate the tooltip.
@@ -34,15 +39,63 @@ function toClipboard(copyText, tooltipContainer) {
 }
 
 /**
- * This function processes a code block element by adding a copy icon and functionality to copy the code to the clipboard.
- * @param {HTMLElement} elem - The code block element to process.
+ * Adds a copy button to code blocks.
+ * It is used as a transformer for Shiki to modify blocks.
+ * @param {Object} options - Configuration options for the copy button.
+ * @param {RegExp} [options.promptRE=/^\s*\$ /gm] - Regular expression to identify prompt characters to remove.
+ * @returns {Object} - A Shiki transformer object.
+ */
+function addCopyButton({ promptRE = /^\s*\$ /gm } = {}) {
+  return {
+    name: "shiki-transformer-copy-button",
+    pre(node) {
+      const onclick = String.raw`
+        (async (btn) => {
+          const pre = btn.parentElement;
+          const code = pre.querySelector('code');
+          const raw  = code ? code.innerText : pre.innerText;
+          const text = raw.replace(${promptRE.toString()}, '');
+          try {
+            await navigator.clipboard.writeText(text);
+            btn.classList.add('copied');
+            setTimeout(() => btn.classList.remove('copied'), 2000);
+          } catch (e) {
+            btn.classList.add('error');
+            setTimeout(() => btn.classList.remove('error'), 2000);
+          }
+        })(this);
+      `;
+      node.children.push(
+        h("button", { class: "copy", type: "button", onclick }, [
+          h("span", { class: "ready" }),
+          h("span", { class: "success" }),
+        ]),
+      );
+    },
+  };
+}
+
+/**
+ * This function processes a code block element by adding syntax highlighting and a copy button.
+ * @param {HTMLElement} elem - The <pre> block element to process.
  * @returns {void}
  */
-function processCodeBlock(elem) {
-  console.log(elem);
-  console.log(elem.dataset);
-  
+async function processCodeBlock(elem) {
   const codeEl = Q("code", elem);
+
+  const languages = Array.from(codeEl.classList).filter((e) =>
+    e.includes("language-"),
+  );
+
+  const language =
+    languages.length === 0 ? "text" : languages[0].replace("language-", "");
+
+  const highlight = {
+    textContent: codeEl.textContent,
+    language,
+    highlightLine: elem.dataset?.highlightLine,
+    highlightContent: elem.dataset?.highlightContent,
+  };
 
   const copyText = codeEl.textContent
     .trim()
@@ -75,6 +128,24 @@ function processCodeBlock(elem) {
 
   // Mark that copy icon was added to this code block
   elem.dataset.copyAdded = "true";
+
+  // Apply Shiki highlighting
+  const THEME = CONFIG.codeTheme || "github-light";
+
+  const formatted = await shiki.codeToHtml(highlight.textContent, {
+    lang: highlight.language,
+    theme: THEME,
+    transformers: [addCopyButton()],
+  });
+
+  // Parse Shiki output
+  const tpl = document.createElement("template");
+  tpl.innerHTML = formatted.trim();
+  const newPre = tpl.content.firstElementChild;
+
+  if (newPre) {
+    elem.replaceWith(newPre);
+  }
 }
 
 /**
