@@ -39,17 +39,28 @@ function toClipboard(copyText, tooltipContainer) {
  * @returns {void}
  */
 function processCodeBlock(elem) {
+  console.log(elem);
+  
   const codeEl = Q("code", elem);
-  const iconClone = createClone("copy");
 
   const copyText = codeEl.textContent
     .trim()
     .replace(/\r?\n\$ /g, " && ")
     .replace(/^\$ /g, "");
 
-  const container = el("div", {
-    style: `display: flex; justify-content: end; border-bottom: 1px solid gainsboro; padding: 12px 24px;`,
-  });
+  const container = el(
+    "div",
+    {
+      style: `display: flex; justify-content: end; border-bottom: 1px solid gainsboro; padding: 12px 24px;`,
+    },
+    [createClone("copy")],
+  );
+
+  // add event listener to cloned icon to copy block into clipboard
+  container.firstChild.addEventListener(
+    "click",
+    toClipboard(copyText, tooltipContainer),
+  );
 
   // create 'copied' tooltip
   const tooltipContainer = el("div", {
@@ -58,12 +69,8 @@ function processCodeBlock(elem) {
   });
 
   // add elements
-  container.append(iconClone);
   elem.append(tooltipContainer);
   elem.prepend(container);
-
-  // add event listener to cloned icon to copy block into clipboard
-  iconClone.addEventListener("click", toClipboard(copyText, tooltipContainer));
 
   // Mark that copy icon was added to this code block
   elem.dataset.copyAdded = "true";
@@ -164,7 +171,7 @@ function setupLessonNav() {
  * @returns {HTMLElement} The created resource card element.
  */
 function createResourceCard(
-  resource = { link: "#", title: "Resources", tags: [] }
+  resource = { link: "#", title: "Resources", tags: [] },
 ) {
   return el(
     "a",
@@ -184,17 +191,17 @@ function createResourceCard(
                   "div",
                   { className: "badge-container" },
                   resource.tags.map((tag) =>
-                    el("div", { className: "badge", text: tag })
-                  )
+                    el("div", { className: "badge", text: tag }),
+                  ),
                 )
               : undefined,
 
             // title
             el("h5", { className: "card-title", text: resource.title }),
-          ].filter(Boolean)
+          ].filter(Boolean),
         ),
       ]),
-    ]
+    ],
   );
 }
 
@@ -218,7 +225,7 @@ export function lessonView() {
         resources: {
           boxes: A("sjwc-lesson-content-item .resource-box"),
           wrapper: Q(
-            "sjwc-lesson-content-item .resource-box .resource-wrapper"
+            "sjwc-lesson-content-item .resource-box .resource-wrapper",
           ),
         },
       },
@@ -255,7 +262,7 @@ export function lessonView() {
     ...[
       CG.dom.local.lesson.content.internalCourseWarning,
       CG.dom.local.nav.toggleWrapper,
-    ].filter(Boolean)
+    ].filter(Boolean),
   );
 
   CG.dom.local.nav.toggleWrapper.append(setupLessonNav());
@@ -266,7 +273,7 @@ export function lessonView() {
 
   // Make section titles normal h3 elements
   Array.from(A("h3.sjwc-section-title")).map((elem) =>
-    elem.classList.remove("sjwc-section-title")
+    elem.classList.remove("sjwc-section-title"),
   );
 
   if (typeof resources !== "undefined") {
@@ -274,7 +281,7 @@ export function lessonView() {
 
     if (typeof resources.resources !== "undefined" && numBoxes === 0) {
       logger.info(
-        "No resource boxes found to add resources to. Adding automatically!"
+        "No resource boxes found to add resources to. Adding automatically!",
       );
       const box = el("div", { className: "resource-box" });
       const header = el("h3", { textContent: "📘 More Resources" });
@@ -304,13 +311,13 @@ export function lessonView() {
           if (!box.dataset.group) {
             logger.warn(
               "Resource box is missing data-group attribute, skipping:",
-              box
+              box,
             );
             return;
           }
 
           const cards = resources.groups[box.dataset.group].map((r) =>
-            createResourceCard(r)
+            createResourceCard(r),
           );
 
           const wrapper = Q(".resource-wrapper", box);
