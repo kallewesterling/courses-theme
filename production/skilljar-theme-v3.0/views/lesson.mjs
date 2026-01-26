@@ -7,37 +7,70 @@ import { logger } from "../logger.mjs";
 
 // Shiki syntax highlighting
 import * as shiki from "https://esm.sh/shiki@3.0.0";
-import { h } from "https://esm.sh/hastscript@9?bundle";
 
 /**
- * Copies text to the clipboard and animates a tooltip to indicate success.
- * @param {string} copyText - The text to copy to the clipboard.
- * @param {HTMLElement} tooltipContainer - The element to animate as a tooltip.
- * @returns {Function} - A function that, when called, will copy the text and animate the tooltip.
+ * Adds a copy button to a code block.
+ * @param {HTMLElement} pre - The <pre> element containing the code block.
+ * @param {HTMLElement} codeEl - The <code> element containing the code.
+ * @returns {void}
  */
-function toClipboard(copyText, tooltipContainer) {
-  /**
-   * Animates the tooltip by changing its opacity.
-   * @param {HTMLElement} tooltipEl - The tooltip element to animate.
-   */
-  function animateCopiedTooltip(tooltipEl) {
-    setStyle(tooltipEl, { opacity: "1" });
+function addCopyButton(pre, codeEl) {
+  function toClipboard(copyText, tooltipContainer) {
+    /**
+     * Animates the tooltip by changing its opacity.
+     * @param {HTMLElement} tooltipEl - The tooltip element to animate.
+     */
+    function animateCopiedTooltip(tooltipEl) {
+      setStyle(tooltipEl, { opacity: "1" });
 
-    setTimeout(() => {
-      setStyle(tooltipEl, { opacity: "0" });
-    }, 400);
+      setTimeout(() => {
+        setStyle(tooltipEl, { opacity: "0" });
+      }, 400);
+    }
+
+    return async () => {
+      try {
+        await navigator.clipboard.writeText(copyText);
+        animateCopiedTooltip(tooltipContainer);
+      } catch (err) {
+        logger.error("Failed to copy codeblock to clipboard: ", err);
+      }
+    };
   }
 
-  return async () => {
-    try {
-      await navigator.clipboard.writeText(copyText);
-      animateCopiedTooltip(tooltipContainer);
-    } catch (err) {
-      logger.error("Failed to copy codeblock to clipboard: ", err);
-    }
-  };
+  const container = el("div", { className: "code-block-controls" }, [
+    createClone("copy"),
+  ]);
+
+  // create 'copied' tooltip
+  const tooltipContainer = el("div", {
+    textContent: "Copied",
+    className: "tooltip-copied",
+    style: "opacity: 0;",
+  });
+
+  // add event listener to cloned icon to copy block into clipboard
+  container.firstChild.addEventListener(
+    "click",
+    toClipboard(cleanCommandPrompt(codeEl), tooltipContainer),
+  );
+
+  // add elements
+  pre.append(tooltipContainer);
+  pre.prepend(container);
+
+  // Mark that copy icon was added to this code block
+  pre.dataset.copyAdded = "true";
 }
 
+/**
+ * Shiki transformer to add line number spans to code blocks.
+ * @param {Object} options - Configuration options for the transformer.
+ * @param {string} options.preClass - Class to add to the <code> element.
+ * @param {string} options.lineClass - Class to add to each line's <span>.
+ * @param {string} options.noContent - Class to add to lines with no content.
+ * @returns {Object} The Shiki transformer object.
+ */
 function addLineNumberSpans(options = {}) {
   const {
     preClass: copyClass = "has-line-numbers", // Class for the <code> tag
@@ -63,65 +96,26 @@ function addLineNumberSpans(options = {}) {
 }
 
 /**
- * Adds a copy button to code blocks.
- * It is used as a transformer for Shiki to modify blocks.
- * @param {Object} options - Configuration options for the copy button.
- * @param {RegExp} [options.promptRE=/^\s*\$ /gm] - Regular expression to identify prompt characters to remove.
- * @returns {Object} - A Shiki transformer object.
+ * Formats code using Shiki syntax highlighting.
+ * @param {HTMLElement} code - The <code> element containing the code to format.
+ * @param {string} lang - The programming language of the code.
+ * @returns {Promise<void>} A promise that resolves when formatting is complete.
  */
-function addCopyButton({ promptRE = /^\s*\$ /gm } = {}) {
-  return {
-    name: "shiki-transformer-copy-button",
-    code(node) {
-      node.prepend(h("div", { class: "code-block-controls" }, []));
-      //node.append()
-    },
-    pre(node) {
-      const onclick = String.raw`
-        (async (btn) => {
-          const pre = btn.parentElement;
-          const code = pre.querySelector('code');
-          const raw  = code ? code.innerText : pre.innerText;
-          const text = raw.replace(${promptRE.toString()}, '');
-          try {
-            await navigator.clipboard.writeText(text);
-            btn.classList.add('copied');
-            setTimeout(() => btn.classList.remove('copied'), 2000);
-          } catch (e) {
-            btn.classList.add('error');
-            setTimeout(() => btn.classList.remove('error'), 2000);
-          }
-        })(this);
-      `;
-      node.children.push(
-        h("button", { class: "copy", type: "button", onclick }, [
-          h("span", { class: "ready" }),
-          h("span", { class: "success" }),
-        ]),
-      );
-    },
-  };
-}
+const formatCode = async (code, lang) => {
+  const parser = new DOMParser();
 
-const formatCode = async (code, lang, addCopy = true) => {
   // Apply Shiki highlighting
-  const THEME = CONFIG.codeTheme || "github-light";
-
-  const transformers = [
-    addLineNumberSpans(),
-    addCopy ? addCopyButton() : null,
-  ].filter(Boolean);
-
   const formatted = await shiki.codeToHtml(
     // trim textContent to avoid extra newlines
     code.textContent.trim(),
-    { lang, theme: THEME, transformers },
+    {
+      lang,
+      theme: CONFIG.codeTheme || "github-light",
+      transformers: [addLineNumberSpans()],
+    },
   );
 
-  const parser = new DOMParser(),
-    formattedElem = parser.parseFromString(formatted, "text/html");
-
-  let newCode = Q("code", formattedElem);
+  let newCode = Q("code", parser.parseFromString(formatted, "text/html"));
 
   if (newCode) {
     // replace old code element with new highlighted one
@@ -130,15 +124,19 @@ const formatCode = async (code, lang, addCopy = true) => {
   }
 };
 
+/**
+ * Applies line and content highlights to a code block.
+ * @param {HTMLElement} codeEl - The <code> element containing the code.
+ * @param {Object} highlight - Highlighting specifications.
+ * @param {string} [highlight.highlightLine] - Line numbers to highlight (e.g., "3,5-7").
+ * @param {string} [highlight.highlightContent] - Content patterns to highlight (e.g., "cosign|chainctl").
+ * @returns {void}
+ */
 function applyHighlights(codeEl, highlight) {
   const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
   const lineSpec = highlight.highlightLine?.trim();
   const contentSpec = highlight.highlightContent?.trim();
-
-  // Ensure we have per-line wrappers to target.
-  // If Shiki already outputs line wrappers (common), this won't break anything.
-  // ensureLineSpans(codeEl);
 
   // Highlight lines like "3" or "3,5-7"
   if (lineSpec) {
@@ -175,6 +173,11 @@ function applyHighlights(codeEl, highlight) {
   }
 }
 
+/**
+ * Parses a line specification string into a set of line numbers.
+ * @param {string} spec - The line specification string (e.g., "3,5-7").
+ * @returns {Set<number>} A set of line numbers to highlight.
+ */
 function parseLineSpec(spec) {
   // "3,5-7" -> Set{3,5,6,7}
   const out = new Set();
@@ -193,12 +196,17 @@ function parseLineSpec(spec) {
   return out;
 }
 
+/**
+ * Cleans command prompt symbols from code block text.
+ * @param {HTMLElement} el - The code block element.
+ * @returns {string} The cleaned code text.
+ */
 function cleanCommandPrompt(el) {
   return el.textContent.replace(/\r?\n\$ /g, " && ").replace(/^\$ /g, "");
 }
 
 /**
- * This function processes a code block element by adding syntax highlighting and a copy button.
+ * Processes a code block element by adding syntax highlighting and a copy button.
  * @param {HTMLElement} pre - The <pre> block element to process.
  * @returns {void}
  */
@@ -217,38 +225,12 @@ async function processPre(pre) {
     language,
     highlightLine: pre.dataset?.highlightLine,
     highlightContent: pre.dataset?.highlightContent,
-
-    get copyText() {
-      return cleanCommandPrompt(codeEl);
-    },
   };
 
-  const container = el("div", { className: "code-block-controls" }, [
-    createClone("copy"),
-  ]);
-
-  // create 'copied' tooltip
-  const tooltipContainer = el("div", {
-    textContent: "Copied",
-    className: "tooltip-copied",
-    style: "opacity: 0;",
-  });
-
-  // add event listener to cloned icon to copy block into clipboard
-  container.firstChild.addEventListener(
-    "click",
-    toClipboard(highlight.copyText, tooltipContainer),
-  );
-
-  // add elements
-  pre.append(tooltipContainer);
-  pre.prepend(container);
-
-  // Mark that copy icon was added to this code block
-  pre.dataset.copyAdded = "true";
+  addCopyButton(pre, codeEl);
 
   // Apply Shiki highlighting
-  await formatCode(codeEl, highlight.language, true);
+  await formatCode(codeEl, highlight.language);
 
   // Apply optional line/content highlighting
   // (we need to do this + requery after Shiki)
@@ -386,7 +368,7 @@ function createResourceCard(
 }
 
 /**
- * This function applies styling to the lesson page.
+ * Applies styling to the lesson page.
  * @returns {void}
  */
 export function lessonView() {
@@ -449,7 +431,7 @@ export function lessonView() {
   CG.dom.local.nav.toggleWrapper.append(setupLessonNav());
 
   CG.dom.local.lesson.content.inlineCodeBlocks.forEach((elem) =>
-    formatCode(elem, elem.dataset.lang || "text", false),
+    formatCode(elem, elem.dataset.lang || "text"),
   );
 
   CG.dom.local.lesson.content.codeBlocks
