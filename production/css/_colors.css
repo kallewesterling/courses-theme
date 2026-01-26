@@ -1,70 +1,10 @@
-/* colors from https://www.chainguard.dev/_next/static/css/51c5f4fed6114f02.css */
+/* Colors from https://www.chainguard.dev/_next/static/css/51c5f4fed6114f02.css */
 
 :root {
-  --primary-blue: 52 67 244;
-  --primary-cyan: 122 240 254;
-  --primary-cyan-hex: #7af0fe;
-  --primary-dark-purple: 20 0 61;
-  --primary-white: 255 255 255;
-  --secondary-pink: 254 199 254;
-  --secondary-violet: 117 69 251;
-  --secondary-gray: 208 207 238;
-  --secondary-light-gray: 250 250 253;
-  --secondary-light-gray-hex: #fafafd;
-  --tertiary-light-green: 129 254 160;
-  --tertiary-dark-green: 1 161 120;
-  --tertiary-orange: 254 91 60;
-  --tertiary-yellow: 246 235 97;
-  --primary-dark-purple-hex: #14003d;
-  --primary-blue-hex: #3443f4;
-  --primary-white-hex: #fff;
-  --max-width: 1444px;
-  --max-width-v2: 1402px;
-  --primary-border-radius: 20px;
-  --space-section-ends: 80px;
-  /* below is from .light colors */
-  --detail-medium-contrast: rgb(234, 234, 234);
-  --text-high-contrast-rgb-value: 49, 49, 49;
-  --detail-medium-contrast-rgb-value: 234, 234, 234;
-  --slider-btn-disabled: rgba(52, 67, 244, 0.4);
-  --primary-bg: 255, 255, 255;
-  --primary-text: 28, 28, 28;
-  --gradient-end: 253, 225, 254;
-  --gradient-start: #fde1fe;
-  --gradient-end: #f5f6fe;
-  --gradient-angle: 315deg;
-  --nav-link-hover: 208 207 238;
-  --border-color: #3443f4;
-  --border-color-v2: #e5e3ea;
-  --list-bullet-color: #3443f4;
-  --form-bg: #d0cfee;
-  --label-color: #7545fb;
-  --placeholder-color: #14003d;
-  --cta-bg: transparent;
-  --cta-border: 2px solid #3443f4;
-  --cta-text-color: #14003d;
-  --error-color: #fe5b3c;
-  /* courses colors */
-  --answer-option: #1c1c1c;
-  /* new ones from highlighting courses */
-  --ink-dim: #0f1020b3; /* 70% */
-  --card-bg: #F8F6FE; /* light blurple */
-  --separator: #d8d5e0;
-  --icon-border: #804aac24; /* faint purple border */
-  --radius-2: 16px;
-  --radius-1: 14px;
-  --space-1: 8px;
-  --space-2: 12px;
-  --space-3: 16px;
-  --space-4: 20px;
-  --space-5: 24px;
-  --space-6: 32px;
-  --space-7: 40px;
-  --space-8: 48px;
-  --w-max: 1168px; /* match “max-w-section-v2” feel */
-
-  /* New brand in 2025 */
-  --primary-blue: 52 67 244;
+  /* ====================================
+     NEW BRAND COLORS (2025)
+     Primary brand colors for UI elements
+     ==================================== */
 
   /* Brand (Non-text) */
   --blurple: rgb(98, 38, 251);
@@ -92,64 +32,93 @@
   --ink-40: rgb(13, 22, 28, 0.4);
   --ink-10: rgb(13, 22, 28, 0.1);
   --ink-5: rgb(13, 22, 28, 0.05);
+  --ink-dim: #0f1020b3; /* 70% opacity */
   --white: rgb(255, 255, 255);
-
   --neutral-border: rgb(218, 218, 218);
-}
 
-:root {
+  /* ====================================
+     LEGACY COLORS
+     Kept for backward compatibility
+     Consider migrating to new brand colors
+     ==================================== */
+
+  /* Primary Colors (RGB values without rgb() for use with opacity) */
   --primary-blue: 52 67 244;
+  --primary-blue-hex: #3443f4;
   --primary-cyan: 122 240 254;
   --primary-cyan-hex: #7af0fe;
   --primary-dark-purple: 20 0 61;
+  --primary-dark-purple-hex: #14003d;
   --primary-white: 255 255 255;
+  --primary-white-hex: #fff;
+
+  /* Secondary Colors */
   --secondary-pink: 254 199 254;
   --secondary-violet: 117 69 251;
   --secondary-gray: 208 207 238;
   --secondary-light-gray: 250 250 253;
   --secondary-light-gray-hex: #fafafd;
+
+  /* Tertiary Colors */
   --tertiary-light-green: 129 254 160;
   --tertiary-dark-green: 1 161 120;
   --tertiary-orange: 254 91 60;
   --tertiary-yellow: 246 235 97;
-  --primary-dark-purple-hex: #14003d;
-  --primary-blue-hex: #3443f4;
-  --primary-white-hex: #fff;
-  --max-width: 1444px;
-  --max-width-v2: 1402px;
-  --primary-border-radius: 20px;
-  --space-section-ends: 80px;
-  /* below is from .light colors */
+
+  /* ====================================
+     UI COLORS
+     Colors for UI elements
+     ==================================== */
+
+  --card-bg: #fbfaff; /* Faint lavender - used across cards and backgrounds */
+  --paper: #ffffff;
+  --separator: #d8d5e0;
+  --icon-border: #804aac24; /* Faint purple border */
+  --answer-option: #1c1c1c;
+  --border: #d8d5e0;
+  --border-color: #3443f4;
+  --border-color-v2: #e5e3ea;
+  --list-bullet-color: #3443f4;
+  --error-color: #fe5b3c;
+  --ring: #c9d1ff; /* Focus halo */
+
+  /* Form Colors */
+  --form-bg: #d0cfee;
+  --label-color: #7545fb;
+  --placeholder-color: #14003d;
+
+  /* Button/CTA Colors */
+  --cta-bg: transparent;
+  --cta-border: 2px solid #3443f4;
+  --cta-text-color: #14003d;
+
+  /* Background & Text */
+  --primary-bg: 255, 255, 255;
+  --primary-text: 28, 28, 28;
   --detail-medium-contrast: rgb(234, 234, 234);
   --text-high-contrast-rgb-value: 49, 49, 49;
   --detail-medium-contrast-rgb-value: 234, 234, 234;
   --slider-btn-disabled: rgba(52, 67, 244, 0.4);
-  --primary-bg: 255, 255, 255;
-  --primary-text: 28, 28, 28;
-  --gradient-end: 253, 225, 254;
+
+  /* Gradients */
   --gradient-start: #fde1fe;
   --gradient-end: #f5f6fe;
   --gradient-angle: 315deg;
+  --grad: linear-gradient(90deg, #57c6ff 0%, #5b6bff 50%, #813df3 100%);
+
+  /* Navigation */
   --nav-link-hover: 208 207 238;
-  --border-color: #3443f4;
-  --border-color-v2: #e5e3ea;
-  --list-bullet-color: #3443f4;
-  --form-bg: #d0cfee;
-  --label-color: #7545fb;
-  --placeholder-color: #14003d;
-  --cta-bg: transparent;
-  --cta-border: 2px solid #3443f4;
-  --cta-text-color: #14003d;
-  --error-color: #fe5b3c;
-  /* courses colors */
-  --answer-option: #1c1c1c;
-  /* new ones from highlighting courses */
-  --ink-dim: #0f1020b3; /* 70% */
-  --card-bg: #faf7ff;
-  --separator: #d8d5e0;
-  --icon-border: #804aac24; /* faint purple border */
-  --radius-2: 16px;
-  --radius-1: 14px;
+
+  /* Brand Aliases (for compatibility) */
+  --brand: #3c44f7; /* Primary blue */
+  --brand-ink: #14003d; /* Deep ink */
+
+  /* ====================================
+     LAYOUT & SPACING
+     Spacing scale and layout dimensions
+     ==================================== */
+
+  /* Spacing Scale */
   --space-1: 8px;
   --space-2: 12px;
   --space-3: 16px;
@@ -158,21 +127,20 @@
   --space-6: 32px;
   --space-7: 40px;
   --space-8: 48px;
-  --w-max: 1168px; /* match “max-w-section-v2” feel */
-}
+  --space-section-ends: 80px;
 
-/* New: Login page styling */
-:root {
-  --brand: #3c44f7; /* primary blue */
-  --brand-ink: #14003d; /* deep ink */
-  --ink: #0f1020;
-  --ink-dim: #0f1020b3;
-  --paper: #ffffff;
-  --card-bg: #fbfaff; /* faint lavender */
-  --border: #d8d5e0;
-  --ring: #c9d1ff; /* focus halo */
-  --radius-xl: 20px;
+  /* Border Radius */
+  --radius-1: 14px;
+  --radius-2: 16px;
   --radius-md: 14px;
+  --radius-xl: 20px;
+  --primary-border-radius: 20px;
+
+  /* Max Widths */
+  --w-max: 1168px; /* Match "max-w-section-v2" feel */
+  --max-width: 1444px;
+  --max-width-v2: 1402px;
+
+  /* Shadows */
   --shadow: 0 12px 30px rgba(20, 0, 61, 0.08);
-  --grad: linear-gradient(90deg, #57c6ff 0%, #5b6bff 50%, #813df3 100%);
 }
