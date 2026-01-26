@@ -35,7 +35,7 @@ body.sj-page-curriculum {
       flex-direction: row-reverse;
       flex-wrap: nowrap;
       justify-content: start;
-      gap: 24px;
+      gap: var(--gap-6);
       max-width: 1188px;
 
       .cp-promo-image-wrapper,
@@ -60,8 +60,8 @@ body.sj-page-curriculum {
         .sj-floater-text {
           display: block !important;
           font-family: Roobert;
-          font-weight: 700;
-          font-size: 16px;
+          font-weight: var(--font-weight-bold);
+          font-size: var(--font-size-base);
           line-height: 23.7px;
           color: #7545fb;
         }
@@ -69,19 +69,19 @@ body.sj-page-curriculum {
         .sj-heading-paragraph,
         .sj-course-info-wrapper h2 {
           display: block !important;
-          margin: 0 0 24px 0;
+          margin: 0 0 var(--spacing-px-24) 0;
           max-width: 80%;
           color: var(--ink) !important;
-          font-size: 16px;
-          font-weight: 400;
-          line-height: 24px;
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-normal);
+          line-height: var(--line-height-24);
           font-family: "Roobert";
         }
 
         h1.break-word {
-          margin: 0 0 12px 0;
-          font-size: 36px;
-          font-weight: 600;
+          margin: 0 0 var(--spacing-px-12) 0;
+          font-size: var(--font-size-3xl);
+          font-weight: var(--font-weight-semibold);
           line-height: 43.2px;
           letter-spacing: -0.02em;
           color: var(--ink) !important;
@@ -94,11 +94,11 @@ body.sj-page-curriculum {
   #cp-content {
     /* Page content */
     max-width: min(1188px, 90%);
-    margin: 96px auto 46px auto;
+    margin: 96px auto var(--spacing-px-46) auto;
     display: grid;
     grid-template-columns: minmax(100px, 796px) minmax(100px, 368px);
-    column-gap: 24px;
-    padding: 0;
+    column-gap: var(--gap-6);
+    padding: var(--spacing-0);
 
     @media screen and (max-width: 991px) {
       margin: 72px auto -10px auto;
@@ -112,27 +112,27 @@ body.sj-page-curriculum {
 
     .hide-for-small {
       /* Desktop body content */
-      padding: 0px;
+      padding: var(--spacing-0);
       max-width: 796px;
       display: grid !important;
 
       .columns {
         /* Two columns: content + curriculum */
         float: none;
-        padding: 0;
+        padding: var(--spacing-0);
         width: 100%;
         display: block;
-        margin-bottom: 48px;
+        margin-bottom: var(--spacing-px-48);
 
         h3 {
           /* Headers in content + curriculum */
-          font-weight: 600;
+          font-weight: var(--font-weight-semibold);
         }
       }
     }
 
     .large-10.large-centered.columns.tabs-wrapper-v2 {
-      margin: 0;
+      margin: var(--spacing-0);
       width: 796px;
     }
   }
@@ -140,7 +140,7 @@ body.sj-page-curriculum {
   #dp-details-bundle {
     max-width: 1188px;
     padding: 96px 0 !important;
-    margin: 0 auto;
+    margin: var(--spacing-0) auto;
     border-bottom: 1px solid var(--neutral-border);
 
     @media screen and (max-width: 1320px) {
@@ -148,10 +148,10 @@ body.sj-page-curriculum {
     }
 
     .row {
-      padding: 0;
+      padding: var(--spacing-0);
 
       .columns {
-        padding: 0;
+        padding: var(--spacing-0);
       }
     }
   }

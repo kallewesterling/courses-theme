@@ -9,9 +9,9 @@ body.sj-page-curriculum {
   .course-card {
     font-family: inherit !important;
     max-width: 368px !important;
-    margin: 20px auto !important;
-    margin-bottom: 50px !important;
-    border-radius: 8px !important;
+    margin: var(--spacing-px-20) auto !important;
+    margin-bottom: var(--spacing-px-50) !important;
+    border-radius: var(--spacing-px-8) !important;
     background-color: var(--primary-white-hex) !important;
     border: 2px solid var(--blurple) !important;
     display: flex !important;
@@ -22,32 +22,32 @@ body.sj-page-curriculum {
     top: 100px !important;
 
     h3 {
-      font-size: 16px !important;
-      font-weight: 700 !important;
+      font-size: var(--font-size-base) !important;
+      font-weight: var(--font-weight-bold) !important;
       font-family: Gellix;
-      line-height: 20px;
+      line-height: var(--line-height-20);
       letter-spacing: -0.01em;
       border-bottom: 2px solid var(--blurple) !important;
-      padding: 24px;
-      margin: 0;
+      padding: var(--spacing-px-24);
+      margin: var(--spacing-0);
     }
 
     ul {
       list-style: none;
-      padding: 24px 24px 0 24px;
+      padding: var(--spacing-px-24) var(--spacing-px-24) 0 var(--spacing-px-24);
       margin: 0;
-      margin-bottom: 16px;
+      margin-bottom: var(--spacing-px-16);
 
       li {
-        margin-bottom: 8px;
+        margin-bottom: var(--spacing-px-8);
         display: flex;
         align-items: start !important;
-        gap: 12px;
+        gap: var(--gap-3);
 
         &::before {
           content: "";
           font: normal normal normal 14px/1 FontAwesome;
-          font-size: 14px;
+          font-size: var(--font-size-sm);
           text-rendering: auto;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
@@ -55,16 +55,16 @@ body.sj-page-curriculum {
         }
 
         p {
-          font-size: 16px;
-          font-weight: 400;
-          line-height: 24px;
-          margin: 0;
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-normal);
+          line-height: var(--line-height-24);
+          margin: var(--spacing-0);
         }
       }
     }
 
     a {
-      margin: 0 20px 1.25em;
+      margin: 0 var(--spacing-px-20) 1.25em;
 
       &.completed {
         background-color: green !important;
@@ -73,20 +73,20 @@ body.sj-page-curriculum {
     }
 
     p.completed-subtext {
-      padding: 0px 20px 20px 0px !important;
-      font-size: 12px !important;
+      padding: var(--spacing-0) var(--spacing-px-20) var(--spacing-px-20) var(--spacing-0) !important;
+      font-size: var(--font-size-xs) !important;
       font-family: Roobert !important;
-      margin: 0 24px !important;
+      margin: 0 var(--spacing-px-24) !important;
       color: green !important;
     }
   }
 
   .tabs {
     visibility: visible;
-    margin: 0 0 46px 0;
+    margin: 0 0 var(--spacing-px-46) 0;
 
     @media screen and (max-width: 991px) {
-      margin: 96px 0 46px 0;
+      margin: 96px 0 var(--spacing-px-46) 0;
     }
 
     section {
@@ -110,7 +110,7 @@ body.sj-page-curriculum {
         h2 {
           /* "Curriculum" header */
 
-          font-weight: 600; /* TODO: this seems unnecessary */
+          font-weight: var(--font-weight-semibold); /* TODO: this seems unnecessary */
           display: none !important;
         }
 
@@ -123,13 +123,13 @@ body.sj-page-curriculum {
 
       &:nth-child(2) {
         /* Course details section */
-        margin-top: 48px;
+        margin-top: var(--spacing-px-48);
         padding: 0 !important;
 
         h3 {
           /* "About" header */
 
-          font-weight: 600;
+          font-weight: var(--font-weight-semibold);
         }
 
         .content {
@@ -162,12 +162,12 @@ body.sj-page-curriculum {
       /* Section heading */
       display: flex;
       align-items: center;
-      padding: 24px;
+      padding: var(--spacing-px-24);
       margin: 0px;
       font-family: Gellix;
       color: var(--ink) !important;
-      font-size: 18px !important;
-      font-weight: 700 !important;
+      font-size: var(--font-size-md) !important;
+      font-weight: var(--font-weight-bold) !important;
       line-height: 125%;
       border-bottom: 2px solid var(--blurple);
 
@@ -175,7 +175,7 @@ body.sj-page-curriculum {
         /* Special case: header when no lessons */
         font-weight: inherit;
         padding: 0;
-        font-size: 18px !important;
+        font-size: var(--font-size-md) !important;
 
         &:hover {
           background-color: unset;
@@ -191,9 +191,9 @@ body.sj-page-curriculum {
       align-items: center;
       font-family: inherit;
       color: var(--ink) !important;
-      padding: 24px;
-      font-size: 16px;
-      font-weight: 400;
+      padding: var(--spacing-px-24);
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-normal);
       line-height: 150%;
       border-bottom: 2px solid var(--blurple);
       height: 100%;
@@ -272,7 +272,7 @@ body.sj-page-detail-course {
         flex-direction: row-reverse;
         flex-wrap: nowrap;
         justify-content: start;
-        gap: 24px;
+        gap: var(--gap-6);
         max-width: 1188px;
 
         @media screen and (max-width: 991px) {
@@ -303,14 +303,14 @@ body.sj-page-detail-course {
 
           h1.break-word {
             /* Course title */
-            font-size: 36px;
-            font-weight: 600;
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-semibold);
             line-height: 43.2px;
             letter-spacing: -0.02em;
             margin: 0 0 12px 0;
 
             @media screen and (max-width: 991px) {
-              font-size: 30px;
+              font-size: var(--font-size-2xl);
               line-height: 40px;
             }
           }
@@ -335,7 +335,7 @@ body.sj-page-detail-course {
             }
 
             h2 {
-              font-weight: 500 !important;
+              font-weight: var(--font-weight-medium) !important;
             }
           }
 

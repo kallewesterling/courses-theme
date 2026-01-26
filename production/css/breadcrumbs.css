@@ -4,42 +4,42 @@ body.sj-page-detail-course,
 body.sj-page-curriculum,
 body.sj-page-catalog {
   #breadcrumbs {
-    margin: 20px auto;
+    margin: var(--spacing-px-20) auto;
     justify-content: start;
 
     .breadcrumb {
       background: #fff;
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 10px 14px;
+      padding: var(--spacing-px-10) var(--spacing-px-14);
       box-shadow: 0 8px 24px rgba(20, 0, 61, 0.06);
       width: max-content;
       max-width: 100%;
 
       &[aria-current="page"] {
         color: var(--ink-dim);
-        font-weight: 800;
+        font-weight: var(--font-weight-extrabold);
       }
 
       ol {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
-        margin: 0;
-        padding: 0;
+        gap: var(--gap-2);
+        margin: var(--spacing-0);
+        padding: var(--spacing-0);
         list-style: none;
 
         li {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: var(--gap-2);
           min-width: 0;
           color: var(--ink-dim);
 
           a {
             color: var(--ink);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: var(--font-weight-semibold);
 
             &:hover {
               color: var(--ink) !important;

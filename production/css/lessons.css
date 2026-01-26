@@ -77,12 +77,12 @@ body.sj-page-lesson {
       background: var(--blurple);
       border-radius: 999px;
       color: white !important;
-      padding: 4px;
+      padding: var(--spacing-px-4);
       display: flex;
       justify-content: center;
-      font-size: 0.8em;
-      font-weight: 600;
-      margin-top: 16px;
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      margin-top: var(--spacing-px-16);
 
       &:hover {
         text-decoration: none !important;
@@ -100,7 +100,7 @@ body.sj-page-lesson {
 
     .lessons-wrapper {
       /* Menu content: lessons */
-      padding-bottom: 32px;
+      padding-bottom: var(--spacing-px-32);
 
       a.lesson {
         /* Lesson link */
@@ -118,10 +118,10 @@ body.sj-page-lesson {
           display: flex;
           flex-direction: row-reverse;
           justify-content: space-between;
-          margin: 0;
-          padding: 10px 14px;
-          font-size: 13px;
-          line-height: 18px;
+          margin: var(--spacing-0);
+          padding: var(--spacing-px-10) var(--spacing-px-14);
+          font-size: var(--font-size-xs);
+          line-height: var(--line-height-18);
 
           &.lesson-active {
             background-color: #eaeaea;
@@ -143,17 +143,17 @@ body.sj-page-lesson {
         /* Section title */
         color: var(--ink) !important;
         background-color: transparent;
-        padding: 0px 14px;
-        margin: 10px 0 0px 0;
+        padding: var(--spacing-0) var(--spacing-px-14);
+        margin: var(--spacing-px-10) 0 var(--spacing-0) 0;
         border: 0;
         font-family: Roobert;
-        font-size: 14px;
-        font-weight: 700;
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-bold);
         text-transform: uppercase;
         letter-spacing: 0.05em;
 
         @media screen and (max-width: 991px) {
-          font-size: 12px;
+          font-size: var(--font-size-xs);
         }
       }
     }
@@ -183,7 +183,7 @@ body.sj-page-lesson {
       #lesson-body {
         /* Lesson body */
         color: var(--ink) !important;
-        margin: 0;
+        margin: var(--spacing-0);
         max-width: none;
 
         .lesson-top {
@@ -192,8 +192,8 @@ body.sj-page-lesson {
           padding-top: 60px;
 
           h2 {
-            font-weight: 600;
-            font-size: 36px;
+            font-weight: var(--font-weight-semibold);
+            font-size: var(--font-size-3xl);
             line-height: 43.2px;
             color: var(--ink);
           }
@@ -208,10 +208,10 @@ body.sj-page-lesson {
           float: none;
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: var(--gap-2-5);
           top: 0;
           left: 0;
-          padding: 4px 0 0 4px;
+          padding: var(--spacing-px-4) 0 0 var(--spacing-px-4);
           background: rgba(255, 255, 255, 0.8);
           backdrop-filter: blur(1.5px);
           width: 100%;
@@ -222,7 +222,7 @@ body.sj-page-lesson {
           .fa-bars,
           .fa-times {
             /* Open and close icons */
-            padding: 12px;
+            padding: var(--spacing-px-12);
             border: none;
             border-radius: 8px;
             background: rgb(255, 255, 255);
@@ -241,10 +241,10 @@ body.sj-page-lesson {
             position: sticky;
             display: flex;
             justify-content: center;
-            gap: 0.5rem;
+            gap: var(--gap-2);
             z-index: 10;
             margin-left: auto;
-            margin-right: 12px;
+            margin-right: var(--spacing-px-12);
 
             .lesson-btn {
               border: 1px solid rgba(0, 0, 0, 0.12);
@@ -252,7 +252,7 @@ body.sj-page-lesson {
               border-radius: 999px;
               padding: 0.6rem 0.9rem;
               font:
-                500 14px/1 system-ui,
+                var(--font-weight-medium) var(--font-size-sm)/1 system-ui,
                 -apple-system,
                 Segoe UI,
                 Roboto,
@@ -277,9 +277,9 @@ body.sj-page-lesson {
         }
 
         #internal-course-warning {
-          font-size: 0.9em;
+          font-size: var(--font-size-sm);
           font-family: "Gellix";
-          padding: 18px;
+          padding: var(--spacing-px-18);
           background-image: linear-gradient(315deg, #fde1fe, #f5f6fe 72%);
           box-shadow: 0 0 6px 6px #0000001a !important;
           margin-bottom: 50px;
@@ -294,7 +294,7 @@ body.sj-page-lesson {
           /* Lesson main content */
           position: relative;
           z-index: 0;
-          padding-top: 0;
+          padding-top: var(--spacing-0);
 
           #lesson-main-inner {
             /* Lesson main content inner */
@@ -312,13 +312,13 @@ body.sj-page-lesson {
               padding-bottom: 100px;
 
               h3 {
-                font-weight: 600;
-                font-size: 26px;
+                font-weight: var(--font-weight-semibold);
+                font-size: var(--font-size-2xl);
               }
 
               h4 {
-                font-weight: 600;
-                font-size: 24px;
+                font-weight: var(--font-weight-semibold);
+                font-size: var(--font-size-xl);
                 line-height: 32.1px;
                 letter-spacing: -0.02em;
               }
@@ -326,7 +326,7 @@ body.sj-page-lesson {
               .content-table {
                 display: grid;
                 margin-bottom: 48px;
-                font-size: 16px;
+                font-size: var(--font-size-base);
 
                 &.one-col-table {
                   /* One column table */
@@ -383,16 +383,16 @@ body.sj-page-lesson {
 
                 .table-header {
                   border-bottom: 1px solid #dcdcdc;
-                  font-weight: 600;
-                  line-height: 20px;
+                  font-weight: var(--font-weight-semibold);
+                  line-height: var(--line-height-20);
                   letter-spacing: -0.01em;
                   padding: 12px;
                 }
 
                 .table-row {
                   padding: 24px 12px;
-                  font-weight: 400;
-                  line-height: 24px;
+                  font-weight: var(--font-weight-normal);
+                  line-height: var(--line-height-24);
                   border-bottom: 1px solid #dcdcdc;
 
                   ul:first-child {
@@ -424,14 +424,14 @@ body.sj-page-lesson {
                 max-width: 80%;
 
                 cite {
-                  font-size: 0.8125em;
+                  font-size: var(--font-size-sm);
                   color: #555;
                   display: flex;
                   justify-content: flex-end;
                   margin-top: 9px;
                   flex-wrap: wrap;
                   flex-direction: row;
-                  gap: 3px !important;
+                  gap: var(--gap-0-5) !important;
 
                   a {
                     color: #3f17ac !important;
@@ -486,8 +486,8 @@ body.sj-page-lesson {
                   }
 
                   .language-label {
-                    font-size: 0.75rem;
-                    font-weight: 600;
+                    font-size: var(--font-size-xs);
+                    font-weight: var(--font-weight-semibold);
                     color: var(--form-bg);
                   }
                 }
@@ -559,13 +559,13 @@ body.sj-page-lesson {
               .resource-box {
                 /* A resource box */
                 h3 {
-                  font-size: 1.25rem;
+                  font-size: var(--font-size-lg);
                 }
 
                 .resource-wrapper {
                   display: grid;
                   grid-template-columns: repeat(2, 1fr); /* two equal columns */
-                  gap: 0.75rem;
+                  gap: var(--gap-3);
                   padding: 0.75rem;
 
                   .resource-card {
@@ -594,8 +594,8 @@ body.sj-page-lesson {
 
                         .badge {
                           color: #9d174d;
-                          font-weight: 500;
-                          font-size: 0.75rem;
+                          font-weight: var(--font-weight-medium);
+                          font-size: var(--font-size-xs);
                           line-height: calc(1 / 0.75);
                           padding-block: 0.125rem;
                           padding-inline: 0.625rem;
@@ -612,8 +612,8 @@ body.sj-page-lesson {
 
                       h5.card-title {
                         margin-bottom: 0;
-                        font-size: 1rem;
-                        font-weight: 500;
+                        font-size: var(--font-size-base);
+                        font-weight: var(--font-weight-medium);
                         line-height: 1.5rem;
                         margin-top: 0;
                       }
@@ -628,7 +628,7 @@ body.sj-page-lesson {
                         border-color: var(--border-color-v2) !important;
 
                         display: inline-block;
-                        font-weight: 400;
+                        font-weight: var(--font-weight-normal);
                         text-align: center;
                         vertical-align: middle;
                         -webkit-user-select: none;
@@ -638,8 +638,8 @@ body.sj-page-lesson {
                         background-color: transparent;
                         border: 1px solid transparent;
                         padding: 0.375rem 0.75rem;
-                        font-size: 0.8rem;
-                        line-height: 1.5;
+                        font-size: var(--font-size-sm);
+                        line-height: var(--line-height-24);
                         border-radius: 0.25rem;
                         transition:
                           color 0.15s ease-in-out,
@@ -663,7 +663,7 @@ body.sj-page-lesson {
             border-top: solid lightgray 1px;
             margin-top: 4em;
             padding-top: 1em;
-            font-size: 0.7em;
+            font-size: var(--font-size-xs);
           }
 
           h4 {
@@ -702,8 +702,8 @@ sjwc-lesson-content-item {
       text-transform: uppercase !important;
       padding: 10px 20px 10px 20px;
       border-radius: 5px 5px 0 0;
-      font-size: 1.2em !important;
-      font-weight: 700;
+      font-size: var(--font-size-lg) !important;
+      font-weight: var(--font-weight-bold);
 
       i {
         padding-right: 0.5em;
@@ -735,8 +735,8 @@ sjwc-lesson-content-item {
   p,
   li {
     font-family: Gellix !important;
-    font-size: 1.4em !important;
-    line-height: 1.75em;
+    font-size: var(--font-size-xl) !important;
+    line-height: var(--line-height-28);
 
     em,
     a,
@@ -746,7 +746,7 @@ sjwc-lesson-content-item {
   }
 
   p.lead {
-    font-size: 1.8em !important;
+    font-size: var(--font-size-2xl) !important;
   }
 
   ul,
@@ -808,8 +808,8 @@ sjwc-lesson-content-item {
 
         h1 {
           margin: 0 0 12px 0;
-          font-weight: 600;
-          font-size: 24px;
+          font-weight: var(--font-weight-semibold);
+          font-size: var(--font-size-xl);
           line-height: 31.2px;
           letter-spacing: -0.02em;
         }
@@ -842,8 +842,8 @@ sjwc-lesson-content-item {
           width: 100%;
 
           p {
-            font-weight: 600;
-            font-size: 24px;
+            font-weight: var(--font-weight-semibold);
+            font-size: var(--font-size-xl);
             line-height: 31.2px;
             letter-spacing: -0.02em;
           }
@@ -856,9 +856,9 @@ sjwc-lesson-content-item {
 
           #id_chosen_answers div label,
           #id_answer div label {
-            line-height: 24px;
-            font-weight: 400;
-            font-size: 16px;
+            line-height: var(--line-height-24);
+            font-weight: var(--font-weight-normal);
+            font-size: var(--font-size-base);
             color: var(--answer-option);
 
             input {
@@ -873,18 +873,18 @@ sjwc-lesson-content-item {
 
           #answer_question {
             margin: 0;
-            font-size: 14px;
+            font-size: var(--font-size-sm);
 
             .button.small.sj-text-quiz-next,
             .button.small.sj-text-quiz-submit {
               margin: 0;
-              font-size: 14px;
+              font-size: var(--font-size-sm);
             }
           }
 
           #prev_question .button.small.secondary.sj-text-quiz-previous {
             margin: 0;
-            font-size: 14px;
+            font-size: var(--font-size-sm);
           }
         }
       }

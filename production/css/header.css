@@ -13,7 +13,7 @@
     float: left;
     display: flex;
     align-items: center;
-    margin: 0 20px;
+    margin: 0 var(--spacing-px-20);
 
     a {
       color: var(--ink) !important;
@@ -42,14 +42,14 @@
   overflow: hidden;
 
   > a {
-    padding: 20px;
+    padding: var(--spacing-px-20);
     border-right: 1px solid var(--neutral-border);
     min-height: 100%;
     display: flex;
     align-items: center;
 
     @media screen and (max-width: 690px) {
-      padding: 0px;
+      padding: var(--spacing-0);
     }
   }
 }
@@ -67,17 +67,17 @@
   }
 
   .header-dropdown-button {
-    margin-right: 10px;
+    margin-right: var(--spacing-px-10);
   }
 
   #header-left {
-    padding-left: 0px !important;
+    padding-left: var(--spacing-0) !important;
 
     #logo-wrapper {
       height: 100%;
       display: flex;
       align-items: center;
-      padding: 0 20px;
+      padding: 0 var(--spacing-px-20);
       background-color: var(--blurple);
 
       a {
@@ -94,7 +94,7 @@
 
     @media screen and (max-width: 480px) {
       #logo-wrapper {
-        padding: 0 10px;
+        padding: 0 var(--spacing-px-10);
       }
     }
   }
@@ -106,7 +106,7 @@
 
     .info-circle-wrapper {
       border-left: 1px solid var(--neutral-border);
-      padding: 0 10px;
+      padding: 0 var(--spacing-px-10);
       cursor: pointer;
       float: left;
       height: 100%;
@@ -122,25 +122,25 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 1;
+        font-weight: var(--font-weight-bold);
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-none);
       }
     }
 
     .login-link {
       font-family: Gellix;
-      font-weight: 700;
+      font-weight: var(--font-weight-bold);
       height: 100%;
       width: 100%;
-      margin: 0;
+      margin: var(--spacing-0);
       border: 0;
       border-radius: 0;
       display: flex;
       align-items: center;
       background-color: white;
       border: 2px solid var(--ring);
-      padding: 0 50px;
+      padding: 0 var(--spacing-px-50);
       color: var(--primary-white-hex) !important;
       background-color: var(--blurple);
     }
@@ -160,10 +160,10 @@
     li {
       display: block;
       padding: 0.625em 0.625em;
-      font-size: 0.875em;
+      font-size: var(--font-size-sm);
       cursor: pointer;
       line-height: 1.125em;
-      margin: 0;
+      margin: var(--spacing-0);
 
       &:hover {
         background: #e7eaee;
@@ -178,7 +178,7 @@
   }
 
   .header-dropdown-button-v2 {
-    margin-right: 10px;
+    margin-right: var(--spacing-px-10);
   }
 }
 
@@ -211,14 +211,14 @@
       height: 100%;
       display: flex;
       align-items: center;
-      margin: 0 20px;
+      margin: 0 var(--spacing-px-20);
     }
 
     #mobile-header-right {
       height: 100%;
       display: flex;
       align-items: center;
-      margin: 0 20px;
+      margin: 0 var(--spacing-px-20);
     }
   }
 

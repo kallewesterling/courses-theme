@@ -13,7 +13,7 @@ footer {
 
   .footer-content-container {
     margin: 63px auto;
-    gap: 12px;
+    gap: var(--gap-3);
 
     .primary-col {
       max-width: 300px;
@@ -26,11 +26,11 @@ footer {
         p {
           color: inherit !important;
           letter-spacing: -0.12rem;
-          line-height: 44px !important;
-          font-size: 3rem !important;
+          line-height: var(--line-height-44) !important;
+          font-size: var(--font-size-4xl) !important;
           max-width: 400px;
           font-family: Gellix;
-          font-weight: 800;
+          font-weight: var(--font-weight-extrabold);
           margin-bottom: 1.25em !important;
         }
 
@@ -42,20 +42,20 @@ footer {
       .ctas .button {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
+        gap: var(--gap-2);
         font-size: inherit;
-        margin: 0;
+        margin: var(--spacing-0);
       }
     }
 
     .footer-col {
-      font-size: 1rem;
+      font-size: var(--font-size-base);
       display: flex;
       flex-direction: column;
-      line-height: 21px;
+      line-height: var(--line-height-21);
 
       > div + div:last-child {
-        margin-top: 24px;
+        margin-top: var(--spacing-px-24);
       }
 
       a,
@@ -66,18 +66,18 @@ footer {
       a {
         text-decoration: none;
         display: block;
-        margin: 14px 0;
+        margin: var(--spacing-px-14) 0;
         color: rgb(13 22 28 / 0.9) !important;
-        font-weight: 400;
+        font-weight: var(--font-weight-normal);
       }
 
       h2 {
-        margin: 0 0 15px 0;
+        margin: 0 0 var(--spacing-px-15) 0;
         font-family: "Roobert";
         text-transform: uppercase;
-        font-size: 0.75rem;
+        font-size: var(--font-size-xs);
         color: rgb(13 22 28 / 0.7) !important;
-        font-weight: 400;
+        font-weight: var(--font-weight-normal);
       }
     }
 
@@ -85,7 +85,7 @@ footer {
       display: grid;
       flex-shrink: 0;
       grid-template-columns: 1fr;
-      gap: 32px;
+      gap: var(--gap-8);
 
       a {
         display: block;
@@ -110,7 +110,7 @@ footer {
     .social-icons {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: var(--gap-2-5);
     }
   }
 
@@ -121,7 +121,7 @@ footer {
 
   .footer-content-container .primary-col .copyright,
   .footer-copyright {
-    font-size: 1rem;
+    font-size: var(--font-size-base);
     font-family: Gellix;
     color: rgb(13 22 28 / 0.6);
 
@@ -137,7 +137,7 @@ footer {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       width: 90%;
-      gap: 24px;
+      gap: var(--gap-6);
 
       .primary-col {
         max-width: 100%;
@@ -148,15 +148,15 @@ footer {
 
         .tagline p {
           letter-spacing: -0.08rem;
-          line-height: 30px;
-          font-size: 1.875rem;
+          line-height: var(--line-height-30);
+          font-size: var(--font-size-2xl);
           max-width: 250px;
         }
 
         .ctas .button {
-          padding: 24px;
-          font-size: 20px;
-          margin-bottom: 32px;
+          padding: var(--spacing-px-24);
+          font-size: var(--font-size-lg);
+          margin-bottom: var(--spacing-px-32);
         }
       }
     }
@@ -176,13 +176,13 @@ footer {
     .footer-content-container {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 32px;
+      gap: var(--gap-8);
       width: 100% !important;
-      padding: 0 20px 0 20px;
+      padding: 0 var(--spacing-px-20) 0 var(--spacing-px-20);
 
       .primary-col .small-logo {
         display: block !important;
-        margin-bottom: 10px;
+        margin-bottom: var(--spacing-px-10);
       }
     }
 

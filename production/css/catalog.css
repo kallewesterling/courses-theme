@@ -17,27 +17,27 @@ body.sj-page-catalog {
     display: none !important;
 
     #catalog-courses {
-      gap: 24px;
+      gap: var(--gap-6);
       justify-content: start;
 
       .coursebox-container {
-        width: calc(50% - 24px) !important;
-        margin: 0;
+        width: calc(50% - var(--spacing-px-24)) !important;
+        margin: var(--spacing-0);
 
         @media screen and (max-width: 600px) {
           width: 100% !important;
         }
 
         .badge-box {
-          font-weight: 800 !important;
+          font-weight: var(--font-weight-extrabold) !important;
           background-image: linear-gradient(
             315deg,
             rgb(253, 225, 254),
             rgb(245, 246, 254) 72%
           ) !important;
-          padding: 12px 12px 12px 24px !important;
+          padding: var(--spacing-px-12) var(--spacing-px-12) var(--spacing-px-12) var(--spacing-px-24) !important;
           margin-top: 0 !important;
-          font-size: 1em !important;
+          font-size: var(--font-size-base) !important;
           text-transform: uppercase !important;
           color: #c0a200 !important;
           left: 0 !important;
@@ -58,34 +58,34 @@ body.sj-page-catalog {
   .catalog-center-width {
     width: 100% !important;
     min-height: auto !important;
-    padding: 0;
+    padding: var(--spacing-0);
 
     .catalog-header {
       .catalog-hero {
         background: transparent !important; /* Hide background */
         color: var(--ink) !important; /* Make title black */
         min-height: unset;
-        padding: 66px 24px;
+        padding: 66px var(--spacing-px-24);
 
         h1 {
           color: var(--ink) !important;
           letter-spacing: -0.24rem;
-          line-height: 88px;
-          font-size: 6rem;
-          font-weight: 700;
+          line-height: var(--line-height-88);
+          font-size: var(--font-size-6xl);
+          font-weight: var(--font-weight-bold);
 
           @media screen and (max-width: 767px) {
-            font-size: 2.5rem;
-            line-height: 38px;
+            font-size: var(--font-size-2xl);
+            line-height: var(--line-height-38);
             letter-spacing: -0.1rem;
           }
         }
 
         p {
-          margin-bottom: 0px;
+          margin-bottom: var(--spacing-0);
 
           @media screen and (max-width: 767px) {
-            font-size: 1rem;
+            font-size: var(--font-size-base);
             line-height: 1.6rem;
           }
         }
@@ -105,7 +105,7 @@ body.sj-page-catalog {
     padding-bottom: 64px;
     border-bottom: 1px solid var(--separator);
     color: var(--ink);
-    font-size: 18px;
+    font-size: var(--font-size-md);
     line-height: 1.55;
 
     @media (min-width: 640px) {
@@ -136,14 +136,14 @@ body.sj-page-catalog {
     .grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 24px;
+      gap: var(--gap-6);
 
       @media (min-width: 1200px) {
-        grid-template-columns: 38% calc(62% - 24px) !important;
+        grid-template-columns: 38% calc(62% - var(--spacing-px-24)) !important;
       }
 
       @media (min-width: 1536px) {
-        grid-template-columns: 34% calc(66% - 24px) !important;
+        grid-template-columns: 34% calc(66% - var(--spacing-px-24)) !important;
       }
 
       .intro {
@@ -155,12 +155,12 @@ body.sj-page-catalog {
           font-family: inherit;
           margin: 0 0 var(--space-1);
           text-transform: uppercase;
-          font-weight: 500;
-          font-size: 0.9rem;
+          font-weight: var(--font-weight-medium);
+          font-size: var(--font-size-base);
           letter-spacing: 0.04em;
 
           @media screen and (max-width: 767px) {
-            font-size: 0.8rem;
+            font-size: var(--font-size-sm);
           }
 
           &::after {
@@ -177,13 +177,13 @@ body.sj-page-catalog {
         p.headline {
           font-family: Gellix;
           margin: 0 0 var(--space-4);
-          font-weight: 800;
-          font-size: 2.25rem;
-          line-height: 50px;
+          font-weight: var(--font-weight-extrabold);
+          font-size: var(--font-size-3xl);
+          line-height: var(--line-height-50);
 
           @media screen and (max-width: 767px) {
-            font-size: 1.75rem;
-            line-height: 42px;
+            font-size: var(--font-size-xl);
+            line-height: var(--line-height-42);
           }
         }
 
@@ -191,10 +191,10 @@ body.sj-page-catalog {
           font-family: Gellix;
           margin: 0 0 var(--space-3);
           color: var(--ink-dim);
-          font-size: 1em; /* 18px */
+          font-size: var(--font-size-base); /* 18px */
 
           @media screen and (max-width: 767px) {
-            font-size: 1rem;
+            font-size: var(--font-size-sm);
           }
         }
       }
@@ -202,7 +202,7 @@ body.sj-page-catalog {
 
     .cards {
       display: grid;
-      gap: 16px;
+      gap: var(--gap-4);
 
       @media (min-width: 1536px) {
         grid-template-columns: 1fr 1fr;
@@ -239,21 +239,21 @@ body.sj-page-catalog {
           }
 
           .inner {
-            padding: 24px;
+            padding: var(--spacing-px-24);
             position: relative;
 
             @media (min-width: 900px) {
-              padding: 32px;
+              padding: var(--spacing-px-32);
             }
 
             .pill {
               display: inline-flex;
               align-items: center;
-              gap: 6px;
-              margin: 12px 12px 0px 0px;
-              padding: 4px 12px;
-              font-size: 0.85rem;
-              font-weight: 600;
+              gap: var(--gap-1-5);
+              margin: var(--spacing-px-12) var(--spacing-px-12) var(--spacing-0) var(--spacing-0);
+              padding: var(--spacing-px-4) var(--spacing-px-12);
+              font-size: var(--font-size-xs);
+              font-weight: var(--font-weight-semibold);
               color: var(--placeholder-color);
               background: #e8e6fb;
               border: 1px solid #c9c5f2;
@@ -275,8 +275,8 @@ body.sj-page-catalog {
               &.completed,
               &.in-progress {
                 position: absolute;
-                top: 24px;
-                right: 24px;
+                top: var(--spacing-px-24);
+                right: var(--spacing-px-24);
               }
 
               &.completed {
@@ -311,39 +311,39 @@ body.sj-page-catalog {
             border: 1px solid var(--icon-border);
             background: var(--primary-white-hex);
             border-radius: var(--radius-1);
-            padding: 16px;
+            padding: var(--spacing-px-16);
           }
 
           h5 {
             font-family: inherit;
             text-transform: uppercase;
-            font-size: 0.8em;
-            font-weight: 700;
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-bold);
             color: #d3c6e8;
-            padding: 0px;
-            margin: 0 0 8px;
+            padding: var(--spacing-0);
+            margin: 0 0 var(--spacing-px-8);
 
             span {
-              font-weight: 400 !important; /* "Free" */
+              font-weight: var(--font-weight-normal) !important; /* "Free" */
             }
           }
 
           h3 {
-            margin: 0 0 8px;
-            font-weight: 800;
-            font-size: 1.5rem;
-            line-height: 35px;
+            margin: 0 0 var(--spacing-px-8);
+            font-weight: var(--font-weight-extrabold);
+            font-size: var(--font-size-xl);
+            line-height: var(--line-height-35);
 
             @media screen and (max-width: 767px) {
-              font-size: 1.25rem;
-              line-height: 30px;
+              font-size: var(--font-size-lg);
+              line-height: var(--line-height-30);
             }
           }
 
           p {
             font-family: Gellix;
             margin: 0 0 var(--space-2);
-            font-size: 1rem;
+            font-size: var(--font-size-base);
             overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 5; /* number of lines to show */
@@ -351,7 +351,7 @@ body.sj-page-catalog {
             -webkit-box-orient: vertical;
 
             @media screen and (max-width: 767px) {
-              font-size: 0.95rem;
+              font-size: var(--font-size-sm);
             }
           }
         }
@@ -363,18 +363,18 @@ body.sj-page-catalog {
     background-color: var(--blurple);
     width: 100%;
     min-height: 200px;
-    padding-left: 32px;
-    padding-right: 32px;
+    padding-left: var(--spacing-px-32);
+    padding-right: var(--spacing-px-32);
     max-width: 1232px;
     margin: 0 auto;
 
     h2 {
       color: white;
-      font-size: 6rem;
+      font-size: var(--font-size-6xl);
       margin-top: 96px;
-      margin-bottom: 48px;
+      margin-bottom: var(--spacing-px-48);
       letter-spacing: -3.84px;
-      line-height: 88px;
+      line-height: var(--line-height-88);
       max-width: 1040px;
     }
 
@@ -394,18 +394,18 @@ body.sj-page-catalog {
       a.button {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        font-size: 1.5rem;
+        gap: var(--gap-2);
+        font-size: var(--font-size-xl);
         min-width: 180px;
         border-width: 1px;
         white-space: nowrap;
         align-self: flex-start;
-        column-gap: 8px;
+        column-gap: var(--gap-2);
         justify-content: center;
         flex-shrink: 0;
         background: white;
         color: var(--ink) !important;
-        padding: 24px;
+        padding: var(--spacing-px-24);
 
         svg {
           fill: var(--blurple);
@@ -417,16 +417,16 @@ body.sj-page-catalog {
 
     @media screen and (max-width: 767px) {
       h2 {
-        font-size: 2.5rem;
-        margin-top: 30px;
-        margin-bottom: 30px;
+        font-size: var(--font-size-2xl);
+        margin-top: var(--spacing-px-30);
+        margin-bottom: var(--spacing-px-30);
         letter-spacing: -1.6px;
-        line-height: 38px;
+        line-height: var(--line-height-38);
       }
 
       > svg {
         display: block;
-        padding-top: 32px;
+        padding-top: var(--spacing-px-32);
       }
 
       div {
@@ -436,7 +436,7 @@ body.sj-page-catalog {
 
         a.button {
           width: 100%;
-          font-size: 1.125rem !important;
+          font-size: var(--font-size-md) !important;
         }
       }
     }

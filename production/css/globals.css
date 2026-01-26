@@ -21,7 +21,7 @@ h4,
 h5,
 h6 {
   font-family: Gellix;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   color: var(--ink);
 }
 
@@ -45,9 +45,9 @@ label {
   background-color: var(--blurple);
   border: 0;
   font-family: Gellix;
-  font-size: 14px;
-  font-weight: 700;
-  padding: 10px 20px;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  padding: var(--spacing-px-10) var(--spacing-px-20);
 
   &:hover {
     color: var(--white) !important;
