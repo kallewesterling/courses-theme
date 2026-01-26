@@ -77,11 +77,11 @@ function addCopyButton({ promptRE = /^\s*\$ /gm } = {}) {
 
 /**
  * This function processes a code block element by adding syntax highlighting and a copy button.
- * @param {HTMLElement} elem - The <pre> block element to process.
+ * @param {HTMLElement} pre - The <pre> block element to process.
  * @returns {void}
  */
-async function processCodeBlock(elem) {
-  const codeEl = Q("code", elem);
+async function processPre(pre) {
+  const codeEl = Q("code", pre);
 
   const languages = Array.from(codeEl.classList).filter((e) =>
     e.includes("language-"),
@@ -91,16 +91,15 @@ async function processCodeBlock(elem) {
     languages.length === 0 ? "text" : languages[0].replace("language-", "");
 
   const highlight = {
-    textContent: codeEl.textContent,
+    textContent: codeEl.textContent.trim(),
     language,
-    highlightLine: elem.dataset?.highlightLine,
-    highlightContent: elem.dataset?.highlightContent,
-  };
+    highlightLine: pre.dataset?.highlightLine,
+    highlightContent: pre.dataset?.highlightContent,
 
-  const copyText = codeEl.textContent
-    .trim()
-    .replace(/\r?\n\$ /g, " && ")
-    .replace(/^\$ /g, "");
+    get copyText() {
+      return this.textContent.replace(/\r?\n\$ /g, " && ").replace(/^\$ /g, "");
+    },
+  };
 
   const container = el(
     "div",
@@ -119,22 +118,22 @@ async function processCodeBlock(elem) {
   // add event listener to cloned icon to copy block into clipboard
   container.firstChild.addEventListener(
     "click",
-    toClipboard(copyText, tooltipContainer),
+    toClipboard(highlight.copyText, tooltipContainer),
   );
 
   // add elements
-  elem.append(tooltipContainer);
-  elem.prepend(container);
+  pre.append(tooltipContainer);
+  pre.prepend(container);
 
   // Mark that copy icon was added to this code block
-  elem.dataset.copyAdded = "true";
+  pre.dataset.copyAdded = "true";
 
   // Apply Shiki highlighting
   const THEME = CONFIG.codeTheme || "github-light";
 
   const formatted = await shiki.codeToHtml(
     // trim textContent to avoid extra newlines
-    highlight.textContent.trim(),
+    highlight.textContent,
     {
       lang: highlight.language,
       theme: THEME,
@@ -346,7 +345,7 @@ export function lessonView() {
 
   CG.dom.local.lesson.content.codeBlocks
     .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
-    .forEach((elem) => processCodeBlock(elem));
+    .forEach((elem) => processPre(elem));
 
   // Make section titles normal h3 elements
   Array.from(A("h3.sjwc-section-title")).map((elem) =>
