@@ -122,8 +122,8 @@ const formatCode = async (code, lang, addCopy = true) => {
 };
 
 function applyHighlights(codeEl, highlight) {
-  const lineSpec = highlight.highlightLine.trim();
-  const contentSpec = highlight.highlightContent.trim();
+  const lineSpec = highlight.highlightLine?.trim();
+  const contentSpec = highlight.highlightContent?.trim();
 
   // Ensure we have per-line wrappers to target.
   // If Shiki already outputs line wrappers (common), this won't break anything.
