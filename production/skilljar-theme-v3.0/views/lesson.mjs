@@ -9,35 +9,42 @@ import { logger } from "../logger.mjs";
 import * as shiki from "https://esm.sh/shiki@3.0.0";
 
 function buildResourceBox() {
-  let boxes = A("sjwc-lesson-content-item .resource-box");
+  const elems = {
+    get boxes() {
+      return A("sjwc-lesson-content-item .resource-box");
+    },
 
-  const numBoxes = boxes.length;
+    get lastBodyItem() {
+      return Array.from(A("sjwc-lesson-content-item")).pop();
+    },
+
+    get numBoxes() {
+      return this.boxes.length;
+    }
+  }
+
   const hasResources = typeof resources.resources !== "undefined";
   const hasGroups = typeof resources.groups !== "undefined";
 
-  if (hasResources && numBoxes === 0) {
+  if (hasResources && elems.numBoxes === 0) {
     logger.info(
       "No resource boxes found to add resources to. Adding automatically!",
     );
 
-    const lastBodyItem = Array.from(A("sjwc-lesson-content-item")).pop();
-
-    lastBodyItem.append(
+    elems.lastBodyItem.append(
       el("div", { className: "resource-box" }, [
         el("h3", { textContent: "📘 More Resources" }),
         el("div", { className: "resource-wrapper" }),
       ]),
     );
-
-    boxes = A("sjwc-lesson-content-item .resource-box");
   }
 
-  if (boxes && hasResources) {
-    if (hasResources && numBoxes === 1) {
+  if (elems.boxes && hasResources) {
+    if (hasResources && elems.numBoxes === 1) {
       // we have a list of resources and will drop that in the first box
       const cards = resources.resources.map((r) => createResourceCard(r));
 
-      const box = boxes[0];
+      const box = elems.boxes[0];
 
       const wrapper = Q(".resource-wrapper", box);
 
@@ -45,7 +52,7 @@ function buildResourceBox() {
       wrapper.replaceChildren(...cards);
     } else if (hasGroups) {
       // we have groups of resources to drop in each box
-      boxes.forEach((box) => {
+      elems.boxes.forEach((box) => {
         if (!box.dataset.group) {
           logger.warn(
             "Resource box is missing data-group attribute, skipping:",
