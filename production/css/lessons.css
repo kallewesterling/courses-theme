@@ -479,6 +479,10 @@ body.sj-page-lesson {
                   justify-content: end;
                   border-bottom: 1px solid gainsboro;
                   padding: 12px 24px;
+
+                  &:has(span.language-label) {
+                    justify-content: space-between;
+                  }
                 }
 
                 .tooltip-copied {
