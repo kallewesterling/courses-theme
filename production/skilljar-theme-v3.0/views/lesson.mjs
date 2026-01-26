@@ -139,11 +139,16 @@ async function processCodeBlock(elem) {
   });
 
   const parser = new DOMParser(),
-  formattedElem = parser.parseFromString(formatted, "text/html");
+    formattedElem = parser.parseFromString(formatted, "text/html");
 
-  const newCode = formattedElem.querySelector("code");
+  let newCode = formattedElem.querySelector("code");
 
   if (newCode) {
+    // trim textContent to avoid extra newlines
+    newCode = Object.assign(newCode, {
+      textContent: newCode.textContent.trim(),
+    });
+
     // replace old code element with new highlighted one
     codeEl.replaceWith(newCode);
   }
