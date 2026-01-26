@@ -11,6 +11,7 @@ export function c(selector) {
 }
 
 export function getCorrectURL(link, UTM = {}) {
+  // TODO: This should just return the link if it's not a Chainguard URL
   let url = new URL(link);
 
   if (!UTM) UTM = CG.data.UTM ? CG.data.UTM.utm_campaign : undefined;
