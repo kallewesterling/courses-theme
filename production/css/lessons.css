@@ -474,6 +474,25 @@ body.sj-page-lesson {
                 position: relative;
                 width: 100%;
 
+                .code-block-controls {
+                  display: flex;
+                  justify-content: end;
+                  border-bottom: 1px solid gainsboro;
+                  padding: 12px 24px;
+                }
+
+                .tooltip-copied {
+                  position: absolute;
+                  top: -24px;
+                  right: 10px;
+                  text-shadow: none;
+                  background-color: var(--answer-option);
+                  color: var(--primary-white-hex);
+                  padding: 5px 10px;
+                  border-radius: 4px;
+                  transition: opacity 0.2s ease-in;
+                }
+
                 code {
                   /* Inline code */
                   display: inline-block;

@@ -215,18 +215,15 @@ async function processPre(pre) {
     },
   };
 
-  const container = el(
-    "div",
-    {
-      style: `display: flex; justify-content: end; border-bottom: 1px solid gainsboro; padding: 12px 24px;`,
-    },
-    [createClone("copy")],
-  );
+  const container = el("div", { className: "code-block-controls" }, [
+    createClone("copy"),
+  ]);
 
   // create 'copied' tooltip
   const tooltipContainer = el("div", {
     textContent: "Copied",
-    style: `position: absolute; top: -24px; right: 10px; text-shadow: none; background-color: var(--answer-option); color: var(--primary-white-hex); padding: 5px 10px; border-radius: 4px; opacity: 0; transition: opacity .2s ease-in;`,
+    className: "tooltip-copied",
+    style: "opacity: 0;",
   });
 
   // add event listener to cloned icon to copy block into clipboard
@@ -247,7 +244,6 @@ async function processPre(pre) {
 
   // Apply optional line/content highlighting
   // (we need to do this + requery after Shiki)
-
   if (highlight.highlightLine || highlight.highlightContent)
     applyHighlights(Q("code", pre), highlight);
 }
