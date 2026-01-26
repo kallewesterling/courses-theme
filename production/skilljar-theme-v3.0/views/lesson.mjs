@@ -73,7 +73,8 @@ function addCopyButton({ promptRE = /^\s*\$ /gm } = {}) {
   return {
     name: "shiki-transformer-copy-button",
     copy(node) {
-      console.log(node);
+      node.prepend(h("div", { class: "code-block-controls" }, []));
+      //node.append()
     },
     pre(node) {
       const onclick = String.raw`
