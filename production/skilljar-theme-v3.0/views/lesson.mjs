@@ -1,4 +1,4 @@
-import { A, Q, el, text, getCorrectURL } from "../meta.mjs";
+import { A, Q, el, text, getCorrectURL, toTitleCase } from "../meta.mjs";
 import { CG } from "../CG.mjs";
 import { CONFIG } from "../static.mjs";
 import { setStyle } from "../styling.mjs";
@@ -211,13 +211,6 @@ function cleanCommandPrompt(el) {
  * @returns {void}
  */
 async function processPre(pre) {
-  function toTitleCase(str) {
-    return str.replace(
-      /\w\S*/g,
-      (text) => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase(),
-    );
-  }
-
   const codeEl = Q("code", pre);
 
   const languages = Array.from(codeEl.classList).filter((e) =>

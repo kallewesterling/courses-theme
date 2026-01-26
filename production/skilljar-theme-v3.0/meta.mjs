@@ -95,7 +95,7 @@ export function text(element, value, auto = "") {
   } else {
     console.warn(
       "text(): Element is null or undefined. Tried to set text to:",
-      value
+      value,
     );
   }
 }
@@ -112,7 +112,7 @@ export function placeholder(element, value) {
   } else {
     console.warn(
       "placeholder(): Element is null or undefined. Tried to set placeholder to:",
-      value
+      value,
     );
   }
 }
@@ -152,4 +152,11 @@ export function remove(selector) {
       console.warn("Could not remove element:", el, e);
     }
   });
+}
+
+export function toTitleCase(str) {
+  return str.replace(
+    /\w\S*/g,
+    (text) => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase(),
+  );
 }
