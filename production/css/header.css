@@ -1,18 +1,18 @@
 .headers {
-  height: 60px;
-  left: 0;
-  overflow: visible;
   position: fixed;
-  width: 100%;
+  left: 0;
   z-index: 5;
-  border-bottom: 1px solid #d5d4d4 !important;
+  width: 100%;
+  height: 60px;
+  overflow: visible;
   background-color: var(--white) !important;
+  border-bottom: 1px solid #d5d4d4 !important;
 
   #to-chainguard {
-    height: 100%;
-    float: left;
     display: flex;
     align-items: center;
+    float: left;
+    height: 100%;
     margin: 0 var(--spacing-px-20);
 
     a {
@@ -42,11 +42,11 @@
   overflow: hidden;
 
   > a {
-    padding: var(--spacing-px-20);
-    border-right: 1px solid var(--neutral-border);
-    min-height: 100%;
     display: flex;
     align-items: center;
+    min-height: 100%;
+    padding: var(--spacing-px-20);
+    border-right: 1px solid var(--neutral-border);
 
     @media screen and (max-width: 690px) {
       padding: var(--spacing-0);
@@ -74,19 +74,19 @@
     padding-left: var(--spacing-0) !important;
 
     #logo-wrapper {
-      height: 100%;
       display: flex;
       align-items: center;
+      height: 100%;
       padding: 0 var(--spacing-px-20);
       background-color: var(--blurple);
 
       a {
-        height: 100% !important;
         display: flex;
         align-items: center;
+        height: 100% !important;
 
         svg {
-          fill: white !important;
+          fill: #ffffff !important;
           height: 40%;
         }
       }
@@ -105,68 +105,68 @@
     }
 
     .info-circle-wrapper {
-      border-left: 1px solid var(--neutral-border);
-      padding: 0 var(--spacing-px-10);
-      cursor: pointer;
-      float: left;
-      height: 100%;
       display: flex;
       align-items: center;
+      float: left;
+      height: 100%;
+      padding: 0 var(--spacing-px-10);
+      cursor: pointer;
+      border-left: 1px solid var(--neutral-border);
 
       .info-circle {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
         width: 32px;
         height: 32px;
         border-radius: 50%;
         background: var(--blurple);
-        color: white;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: var(--font-weight-bold);
+        color: #ffffff;
         font-size: var(--font-size-base);
+        font-weight: var(--font-weight-bold);
         line-height: var(--line-height-none);
       }
     }
 
     .login-link {
-      font-family: Gellix;
-      font-weight: var(--font-weight-bold);
-      height: 100%;
-      width: 100%;
-      margin: var(--spacing-0);
-      border: 0;
-      border-radius: 0;
       display: flex;
       align-items: center;
-      background-color: white;
-      border: 2px solid var(--ring);
+      width: 100%;
+      height: 100%;
       padding: 0 var(--spacing-px-50);
-      color: var(--primary-white-hex) !important;
+      margin: var(--spacing-0);
+      border: 0;
+      border: 2px solid var(--ring);
+      border-radius: 0;
+      background-color: #ffffff;
       background-color: var(--blurple);
+      color: var(--primary-white-hex) !important;
+      font-family: Gellix, sans-serif;
+      font-weight: var(--font-weight-bold);
     }
   }
 
   .info-circle-menu {
-    max-width: 200px;
-    list-style: none;
-    background: #fff;
-    border: 1px solid #5a697c;
-    box-shadow: 0 6px 12px 1px rgba(0, 0, 0, 0.1);
     position: absolute;
     top: 52px;
     left: -999999px;
     z-index: 200;
+    max-width: 200px;
+    border: 1px solid #5a697c;
+    background-color: #ffffff;
+    list-style: none;
+    box-shadow: 0 6px 12px 1px rgb(0 0 0 / 0.1);
 
     li {
       display: block;
       padding: 0.625em 0.625em;
-      font-size: var(--font-size-sm);
-      cursor: pointer;
-      line-height: 1.125em;
       margin: var(--spacing-0);
+      font-size: var(--font-size-sm);
+      line-height: 1.125em;
+      cursor: pointer;
 
       &:hover {
-        background: #e7eaee;
+        background-color: #e7eaee;
       }
 
       a {
@@ -202,22 +202,22 @@
 
 @media screen and (max-width: 690px) {
   #mobile-header {
+    z-index: 1;
     display: flex !important;
     justify-content: space-between;
     align-items: center;
-    z-index: 1;
 
     #mobile-header-left {
-      height: 100%;
       display: flex;
       align-items: center;
+      height: 100%;
       margin: 0 var(--spacing-px-20);
     }
 
     #mobile-header-right {
-      height: 100%;
       display: flex;
       align-items: center;
+      height: 100%;
       margin: 0 var(--spacing-px-20);
     }
   }

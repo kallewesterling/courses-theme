@@ -4,34 +4,34 @@ footer {
 
   .footer-content-container,
   .footer-bottom-bar {
-    width: 90%;
     display: flex;
+    justify-content: space-between;
+    width: 90%;
     max-width: 1232px;
     margin: 0 auto;
-    justify-content: space-between;
   }
 
   .footer-content-container {
-    margin: 63px auto;
     gap: var(--gap-3);
+    margin: 63px auto;
 
     .primary-col {
-      max-width: 300px;
-      flex-shrink: 1;
       display: flex;
       flex-direction: column;
       grid-column: 1 / -1;
+      max-width: 300px;
+      flex-shrink: 1;
 
       .tagline {
         p {
-          color: inherit !important;
-          letter-spacing: -0.12rem;
-          line-height: var(--line-height-44) !important;
-          font-size: var(--font-size-4xl) !important;
           max-width: 400px;
-          font-family: Gellix;
-          font-weight: var(--font-weight-extrabold);
           margin-bottom: 1.25em !important;
+          color: inherit !important;
+          font-family: Gellix, sans-serif;
+          font-size: var(--font-size-4xl) !important;
+          font-weight: var(--font-weight-extrabold);
+          line-height: var(--line-height-44) !important;
+          letter-spacing: -0.12rem;
         }
 
         .small-logo {
@@ -43,15 +43,15 @@ footer {
         display: inline-flex;
         align-items: center;
         gap: var(--gap-2);
-        font-size: inherit;
         margin: var(--spacing-0);
+        font-size: inherit;
       }
     }
 
     .footer-col {
-      font-size: var(--font-size-base);
       display: flex;
       flex-direction: column;
+      font-size: var(--font-size-base);
       line-height: var(--line-height-21);
 
       > div + div:last-child {
@@ -60,32 +60,32 @@ footer {
 
       a,
       p {
-        font-family: Gellix !important;
+        font-family: Gellix, sans-serif !important;
       }
 
       a {
-        text-decoration: none;
         display: block;
         margin: var(--spacing-px-14) 0;
         color: rgb(13 22 28 / 0.9) !important;
         font-weight: var(--font-weight-normal);
+        text-decoration: none;
       }
 
       h2 {
         margin: 0 0 var(--spacing-px-15) 0;
-        font-family: "Roobert";
-        text-transform: uppercase;
-        font-size: var(--font-size-xs);
         color: rgb(13 22 28 / 0.7) !important;
+        font-family: Roobert, monospace;
+        font-size: var(--font-size-xs);
         font-weight: var(--font-weight-normal);
+        text-transform: uppercase;
       }
     }
 
     .product-col {
       display: grid;
-      flex-shrink: 0;
-      grid-template-columns: 1fr;
       gap: var(--gap-8);
+      grid-template-columns: 1fr;
+      flex-shrink: 0;
 
       a {
         display: block;
@@ -121,23 +121,23 @@ footer {
 
   .footer-content-container .primary-col .copyright,
   .footer-copyright {
-    font-size: var(--font-size-base);
-    font-family: Gellix;
     color: rgb(13 22 28 / 0.6);
+    font-family: Gellix, sans-serif;
+    font-size: var(--font-size-base);
 
     a {
-      text-decoration: none;
       color: inherit;
-      font-family: Gellix;
+      font-family: Gellix, sans-serif;
+      text-decoration: none;
     }
   }
 
   @media screen and (max-width: 768px) {
     .footer-content-container {
       display: grid;
+      gap: var(--gap-6);
       grid-template-columns: repeat(3, 1fr);
       width: 90%;
-      gap: var(--gap-6);
 
       .primary-col {
         max-width: 100%;
@@ -147,16 +147,16 @@ footer {
         }
 
         .tagline p {
-          letter-spacing: -0.08rem;
-          line-height: var(--line-height-30);
-          font-size: var(--font-size-2xl);
           max-width: 250px;
+          font-size: var(--font-size-2xl);
+          line-height: var(--line-height-30);
+          letter-spacing: -0.08rem;
         }
 
         .ctas .button {
           padding: var(--spacing-px-24);
-          font-size: var(--font-size-lg);
           margin-bottom: var(--spacing-px-32);
+          font-size: var(--font-size-lg);
         }
       }
     }
@@ -167,16 +167,16 @@ footer {
     }
 
     .footer-copyright {
-      margin: 63px auto;
       width: 90%;
+      margin: 63px auto;
     }
   }
 
   @media screen and (max-width: 480px) {
     .footer-content-container {
       display: grid;
-      grid-template-columns: 1fr;
       gap: var(--gap-8);
+      grid-template-columns: 1fr;
       width: 100% !important;
       padding: 0 var(--spacing-px-20) 0 var(--spacing-px-20);
 

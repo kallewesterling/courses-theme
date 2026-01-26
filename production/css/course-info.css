@@ -7,29 +7,29 @@ Styles for pages that show course information, including:
 body.sj-page-detail-course,
 body.sj-page-curriculum {
   .course-card {
-    font-family: inherit !important;
+    position: sticky !important;
+    top: 100px !important;
+    display: flex !important;
+    flex-direction: column !important;
     max-width: 368px !important;
     margin: var(--spacing-px-20) auto !important;
     margin-bottom: var(--spacing-px-50) !important;
+    border: 2px solid var(--blurple) !important;
     border-radius: var(--spacing-px-8) !important;
     background-color: var(--primary-white-hex) !important;
-    border: 2px solid var(--blurple) !important;
-    display: flex !important;
-    flex-direction: column !important;
     color: inherit !important;
+    font-family: inherit !important;
     align-self: start !important;
-    position: sticky !important;
-    top: 100px !important;
 
     h3 {
+      padding: var(--spacing-px-24);
+      margin: var(--spacing-0);
+      font-family: Gellix, sans-serif;
       font-size: var(--font-size-base) !important;
       font-weight: var(--font-weight-bold) !important;
-      font-family: Gellix;
       line-height: var(--line-height-20);
       letter-spacing: -0.01em;
       border-bottom: 2px solid var(--blurple) !important;
-      padding: var(--spacing-px-24);
-      margin: var(--spacing-0);
     }
 
     ul {
@@ -39,14 +39,14 @@ body.sj-page-curriculum {
       margin-bottom: var(--spacing-px-16);
 
       li {
-        margin-bottom: var(--spacing-px-8);
         display: flex;
         align-items: start !important;
         gap: var(--gap-3);
+        margin-bottom: var(--spacing-px-8);
 
         &::before {
           content: "";
-          font: normal normal normal 14px/1 FontAwesome;
+          font: normal normal normal 14px/1 FontAwesome, monospace;
           font-size: var(--font-size-sm);
           text-rendering: auto;
           -webkit-font-smoothing: antialiased;
@@ -55,10 +55,10 @@ body.sj-page-curriculum {
         }
 
         p {
+          margin: var(--spacing-0);
           font-size: var(--font-size-base);
           font-weight: var(--font-weight-normal);
           line-height: var(--line-height-24);
-          margin: var(--spacing-0);
         }
       }
     }
@@ -67,23 +67,23 @@ body.sj-page-curriculum {
       margin: 0 var(--spacing-px-20) 1.25em;
 
       &.completed {
-        background-color: green !important;
+        background-color: #008000 !important;
         cursor: default !important;
       }
     }
 
     p.completed-subtext {
       padding: var(--spacing-0) var(--spacing-px-20) var(--spacing-px-20) var(--spacing-0) !important;
-      font-size: var(--font-size-xs) !important;
-      font-family: Roobert !important;
       margin: 0 var(--spacing-px-24) !important;
-      color: green !important;
+      color: #008000 !important;
+      font-family: Roobert, monospace !important;
+      font-size: var(--font-size-xs) !important;
     }
   }
 
   .tabs {
-    visibility: visible;
     margin: 0 0 var(--spacing-px-46) 0;
+    visibility: visible;
 
     @media screen and (max-width: 991px) {
       margin: 96px 0 var(--spacing-px-46) 0;
@@ -108,23 +108,23 @@ body.sj-page-curriculum {
         padding: 0 !important;
 
         h2 {
+          display: none !important;
           /* "Curriculum" header */
 
           font-weight: var(--font-weight-semibold); /* TODO: this seems unnecessary */
-          display: none !important;
         }
 
         .content {
+          padding: 0;
           /* Curriculum content wrapper */
           border: 0;
-          padding: 0;
         }
       }
 
       &:nth-child(2) {
+        padding: 0 !important;
         /* Course details section */
         margin-top: var(--spacing-px-48);
-        padding: 0 !important;
 
         h3 {
           /* "About" header */
@@ -133,9 +133,9 @@ body.sj-page-curriculum {
         }
 
         .content {
+          padding: 0;
           /* Course details content wrapper */
           border: 0;
-          padding: 0;
         }
       }
     }
@@ -152,30 +152,30 @@ body.sj-page-curriculum {
   }
 
   .curriculum-wrapper {
+    padding: 0;
+    margin-bottom: 28px;
+    border: 2px solid var(--blurple);
     /* Each section of the curriculum has it's own wrapper */
     border-radius: 8px;
-    margin-bottom: 28px;
-    padding: 0px;
-    border: 2px solid var(--blurple);
 
     h3 {
       /* Section heading */
       display: flex;
       align-items: center;
       padding: var(--spacing-px-24);
-      margin: 0px;
-      font-family: Gellix;
+      margin: 0;
       color: var(--ink) !important;
+      font-family: Gellix, sans-serif;
       font-size: var(--font-size-md) !important;
       font-weight: var(--font-weight-bold) !important;
       line-height: 125%;
       border-bottom: 2px solid var(--blurple);
 
       > a {
-        /* Special case: header when no lessons */
-        font-weight: inherit;
         padding: 0;
         font-size: var(--font-size-md) !important;
+        /* Special case: header when no lessons */
+        font-weight: inherit;
 
         &:hover {
           background-color: unset;
@@ -189,17 +189,17 @@ body.sj-page-curriculum {
       flex-direction: row-reverse;
       justify-content: flex-end;
       align-items: center;
-      font-family: inherit;
-      color: var(--ink) !important;
+      height: 100%;
       padding: var(--spacing-px-24);
+      color: var(--ink) !important;
+      font-family: inherit;
       font-size: var(--font-size-base);
       font-weight: var(--font-weight-normal);
       line-height: 150%;
       border-bottom: 2px solid var(--blurple);
-      height: 100%;
 
       .fa-check-circle {
-        color: green !important;
+        color: #008000 !important;
       }
 
       &:hover {
@@ -239,24 +239,24 @@ body.sj-page-detail-course {
       margin: 20px 0;
 
       label h5 {
-        color: lightgray !important;
+        color: #d3d3d3 !important;
       }
 
       .inline-collapsible-section__label__icons__expand,
       .inline-collapsible-section__label__icons__collapse {
-        background-color: lightgray !important;
+        background-color: #d3d3d3 !important;
       }
     }
   }
 
   .top-row-grey {
-    /* Header container */
-    background-color: var(--form-bg) !important;
-    margin: 0;
     max-width: none;
     padding-top: 96px;
     padding-bottom: 96px;
+    margin: 0;
     border: 0;
+    /* Header container */
+    background-color: var(--form-bg) !important;
 
     @media screen and (max-width: 991px) {
       padding-top: 48px;
@@ -284,30 +284,30 @@ body.sj-page-detail-course {
           display: none !important;
 
           @media screen and (max-width: 991px) {
-            padding: 0px;
-            max-width: none;
             width: 100%;
+            max-width: none;
+            padding: 0;
           }
         }
 
         .dp-summary-wrapper {
-          /* Text content in header */
-          border: 0px;
-          max-width: 564px;
           width: auto;
+          max-width: 564px;
+          /* Text content in header */
+          border: 0;
 
           @media screen and (max-width: 991px) {
-            max-width: none;
             width: 100%;
+            max-width: none;
           }
 
           h1.break-word {
+            margin: 0 0 12px 0;
             /* Course title */
             font-size: var(--font-size-3xl);
             font-weight: var(--font-weight-semibold);
             line-height: 43.2px;
             letter-spacing: -0.02em;
-            margin: 0 0 12px 0;
 
             @media screen and (max-width: 991px) {
               font-size: var(--font-size-2xl);
@@ -318,12 +318,12 @@ body.sj-page-detail-course {
           .video-max {
             /* Video container */
             max-width: none;
-            padding-left: 0px;
-            padding-right: 0px;
+            padding-right: 0;
+            padding-left: 0;
 
             @media screen and (max-width: 991px) {
-              padding-left: 15px;
               padding-right: 15px;
+              padding-left: 15px;
             }
           }
 

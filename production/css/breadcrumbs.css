@@ -4,17 +4,17 @@ body.sj-page-detail-course,
 body.sj-page-curriculum,
 body.sj-page-catalog {
   #breadcrumbs {
-    margin: var(--spacing-px-20) auto;
     justify-content: start;
+    margin: var(--spacing-px-20) auto;
 
     .breadcrumb {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: var(--spacing-px-10) var(--spacing-px-14);
-      box-shadow: 0 8px 24px rgba(20, 0, 61, 0.06);
       width: max-content;
       max-width: 100%;
+      padding: var(--spacing-px-10) var(--spacing-px-14);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background-color: #ffffff;
+      box-shadow: 0 8px 24px rgb(20 0 61 / 0.06);
 
       &[aria-current="page"] {
         color: var(--ink-dim);
@@ -25,8 +25,8 @@ body.sj-page-catalog {
         display: flex;
         flex-wrap: wrap;
         gap: var(--gap-2);
-        margin: var(--spacing-0);
         padding: var(--spacing-0);
+        margin: var(--spacing-0);
         list-style: none;
 
         li {
@@ -38,8 +38,8 @@ body.sj-page-catalog {
 
           a {
             color: var(--ink);
-            text-decoration: none;
             font-weight: var(--font-weight-semibold);
+            text-decoration: none;
 
             &:hover {
               color: var(--ink) !important;
@@ -51,12 +51,10 @@ body.sj-page-catalog {
           + li::before {
             /* chevron separator */
             content: "";
+            flex: 0 0 14px;
             width: 14px;
             height: 14px;
-            flex: 0 0 14px;
-            background: #8c8aa4;
-            -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 5l7 7-7 7'/></svg>")
-              center/contain no-repeat;
+            background-color: #8c8aa4;
             mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 5l7 7-7 7'/></svg>")
               center/contain no-repeat;
           }

@@ -1,13 +1,18 @@
 /* ========================================
-   TYPOGRAPHY VARIABLES
+   TYPOGRAPHY & SPACING VARIABLES
    ======================================== */
 
-/* Font Sizes - Using a modular scale */
 :root {
+  /* Font Sizes - Using a modular scale */
   /* Base sizes */
   --font-size-xs: 0.75rem;      /* 12px */
   --font-size-sm: 0.875rem;     /* 14px */
   --font-size-base: 1rem;       /* 16px */
+
+  /* Additional granular sizes */
+  --font-size-xs-plus: 0.8rem;   /* 12.8px - between xs and sm */
+  --font-size-sm-plus: 0.9rem;   /* 14.4px - between sm and base */
+  --font-size-sm-large: 0.95rem; /* 15.2px */
   --font-size-md: 1.125rem;     /* 18px */
   --font-size-lg: 1.25rem;      /* 20px */
   --font-size-xl: 1.5rem;       /* 24px */
@@ -47,13 +52,7 @@
   --line-height-44: 44px;
   --line-height-50: 50px;
   --line-height-88: 88px;
-}
 
-/* ========================================
-   SPACING VARIABLES
-   ======================================== */
-
-:root {
   /* Base spacing scale - extends existing space-* variables */
   --spacing-0: 0;
   --spacing-1: 0.25rem;         /* 4px */

@@ -1,5 +1,5 @@
 * {
-  font-family: Roobert, Lato;
+  font-family: Roobert, Lato, monospace;
 }
 
 body {
@@ -20,15 +20,12 @@ h4,
 .h4-style,
 h5,
 h6 {
-  font-family: Gellix;
-  font-weight: var(--font-weight-bold);
   color: var(--ink);
+  font-family: Gellix, sans-serif;
+  font-weight: var(--font-weight-bold);
 }
 
 .no-select {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
@@ -41,30 +38,30 @@ label {
 }
 
 .button {
-  color: var(--white) !important;
-  background-color: var(--blurple);
+  padding: var(--spacing-px-10) var(--spacing-px-20);
   border: 0;
-  font-family: Gellix;
+  background-color: var(--blurple);
+  color: var(--white) !important;
+  font-family: Gellix, sans-serif;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-bold);
-  padding: var(--spacing-px-10) var(--spacing-px-20);
 
   &:hover {
-    color: var(--white) !important;
     background-color: var(--blurple);
+    color: var(--white) !important;
   }
 
   span {
-    font-family: inherit;
     color: inherit;
+    font-family: inherit;
   }
 }
 
 #skilljar-content {
-  background: transparent !important; /* Hide white background */
-  min-height: 100%;
   display: flex;
   flex-direction: column;
+  min-height: 100%;
+  background: transparent !important; /* Hide white background */
 
   .top-row,
   .sj-courseboxes-v2,
@@ -73,7 +70,7 @@ label {
   }
 
   &::after {
-    height: 0px;
+    height: 0;
   }
 }
 

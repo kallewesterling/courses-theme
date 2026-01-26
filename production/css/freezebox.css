@@ -41,32 +41,32 @@ body.sj-page-catalog {
   #catalog-content {
     #catalog-courses {
       .coursebox-container {
-        border-radius: 16px;
-        border: 1px solid #000;
-        width: calc(33% - 24px) !important; /* 3 should fit */
         display: flex;
         flex-direction: column;
+        width: calc(33% - 24px) !important; /* 3 should fit */
+        border: 1px solid #000000;
+        border-radius: 16px;
 
         @media screen and (max-width: 991px) {
           width: 100% !important; /* 1 only on mobile */
         }
 
         .badge-box {
+          background-color: rgb(117 69 251) !important;
+          color: #ffffff !important;
           box-shadow: unset !important;
-          color: #fff !important;
-          background: rgb(117, 69, 251) !important;
         }
 
         /* Adding FontAwesome icon before badge box */
         .badge-box::before {
           content: "";
           display: inline-block;
-          font: normal normal normal 14px/1 FontAwesome;
+          margin-right: 10px;
+          font: normal normal normal 14px/1 FontAwesome, monospace;
           font-size: inherit;
           text-rendering: auto;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
-          margin-right: 10px;
         }
 
         .sj-ribbon-wrapper {
@@ -78,8 +78,8 @@ body.sj-page-catalog {
         }
 
         .coursebox-text-description {
-          font-size: var(--font-size-sm);
           flex: 1;
+          font-size: var(--font-size-sm);
         }
 
         .course-overview {
@@ -87,7 +87,7 @@ body.sj-page-catalog {
           font-weight: var(--font-weight-light);
 
           .course-overview__content {
-            padding: 8px 8px 0px 8px;
+            padding: 8px 8px 0 8px;
 
             a {
               color: var(--blurple);

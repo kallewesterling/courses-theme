@@ -12,10 +12,10 @@ body.sj-page-curriculum {
   */
 
   .top-row-grey {
+    max-width: 100%;
     padding: 96px 0;
     border: 0;
     background-color: #fef6ff9c !important;
-    max-width: 100%;
 
     @media screen and (max-width: 1320px) {
       padding: 56px 8vw;
@@ -47,11 +47,11 @@ body.sj-page-curriculum {
       .columns.cp-summary-wrapper,
       .columns.dp-summary-wrapper {
         position: static;
-        max-width: 100% !important;
         width: 100%;
+        max-width: 100% !important;
+        padding: 0 !important;
         border: 0;
         text-align: left !important;
-        padding: 0 !important;
 
         /* .sj-course-info-wrapper {
           display: none !important;
@@ -59,32 +59,32 @@ body.sj-page-curriculum {
 
         .sj-floater-text {
           display: block !important;
-          font-family: Roobert;
-          font-weight: var(--font-weight-bold);
-          font-size: var(--font-size-base);
-          line-height: 23.7px;
           color: #7545fb;
+          font-family: Roobert, monospace;
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-bold);
+          line-height: 23.7px;
         }
 
         .sj-heading-paragraph,
         .sj-course-info-wrapper h2 {
           display: block !important;
-          margin: 0 0 var(--spacing-px-24) 0;
           max-width: 80%;
+          margin: 0 0 var(--spacing-px-24) 0;
           color: var(--ink) !important;
+          font-family: Roobert, monospace;
           font-size: var(--font-size-base);
           font-weight: var(--font-weight-normal);
           line-height: var(--line-height-24);
-          font-family: "Roobert";
         }
 
         h1.break-word {
           margin: 0 0 var(--spacing-px-12) 0;
+          color: var(--ink) !important;
           font-size: var(--font-size-3xl);
           font-weight: var(--font-weight-semibold);
           line-height: 43.2px;
           letter-spacing: -0.02em;
-          color: var(--ink) !important;
         }
       }
     }
@@ -92,17 +92,17 @@ body.sj-page-curriculum {
 
   #dp-details,
   #cp-content {
+    display: grid;
+    column-gap: var(--gap-6);
+    grid-template-columns: minmax(100px, 796px) minmax(100px, 368px);
     /* Page content */
     max-width: min(1188px, 90%);
-    margin: 96px auto var(--spacing-px-46) auto;
-    display: grid;
-    grid-template-columns: minmax(100px, 796px) minmax(100px, 368px);
-    column-gap: var(--gap-6);
     padding: var(--spacing-0);
+    margin: 96px auto var(--spacing-px-46) auto;
 
     @media screen and (max-width: 991px) {
-      margin: 72px auto -10px auto;
       grid-template-columns: 1fr;
+      margin: 72px auto -10px auto;
     }
 
     .show-for-small {
@@ -111,17 +111,17 @@ body.sj-page-curriculum {
     }
 
     .hide-for-small {
+      display: grid !important;
+      max-width: 796px;
       /* Desktop body content */
       padding: var(--spacing-0);
-      max-width: 796px;
-      display: grid !important;
 
       .columns {
+        display: block;
         /* Two columns: content + curriculum */
         float: none;
-        padding: var(--spacing-0);
         width: 100%;
-        display: block;
+        padding: var(--spacing-0);
         margin-bottom: var(--spacing-px-48);
 
         h3 {
@@ -132,8 +132,8 @@ body.sj-page-curriculum {
     }
 
     .large-10.large-centered.columns.tabs-wrapper-v2 {
-      margin: var(--spacing-0);
       width: 796px;
+      margin: var(--spacing-0);
     }
   }
 
