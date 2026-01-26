@@ -470,6 +470,7 @@ body.sj-page-lesson {
                   padding: 24px !important;
                   overflow-x: scroll;
                   width: 100%;
+                  background-color: transparent;
                 }
 
                 .code-copy-container {
