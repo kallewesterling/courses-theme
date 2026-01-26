@@ -72,7 +72,7 @@ function addLineNumberSpans(options = {}) {
 function addCopyButton({ promptRE = /^\s*\$ /gm } = {}) {
   return {
     name: "shiki-transformer-copy-button",
-    copy(node) {
+    code(node) {
       node.prepend(h("div", { class: "code-block-controls" }, []));
       //node.append()
     },
