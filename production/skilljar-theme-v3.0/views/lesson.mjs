@@ -289,9 +289,11 @@ async function processPre(pre) {
   // Apply Shiki highlighting
   await formatCode(codeEl, highlight.language, true);
 
-  // Apply optional line/content highlighting (your custom layer)
+  // Apply optional line/content highlighting
+  // (we need to do this + requery after Shiki)
+  
   if (highlight.highlightLine || highlight.highlightContent)
-    applyHighlights(codeEl, highlight);
+    applyHighlights(Q("code", pre), highlight);
 }
 
 /**
