@@ -152,7 +152,7 @@ function applyHighlights(codeEl, highlight) {
         const re = new RegExp(`(${escaped.join("|")})`, "g");
 
         if (lineEl.textContent.search(re) > -1) {
-          lineEl.classList.add("has-highlighted-content");
+          lineEl.classList.add("is-highlighted-line");
         }
       });
     }
