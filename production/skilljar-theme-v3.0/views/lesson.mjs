@@ -147,32 +147,16 @@ function applyHighlights(codeEl, highlight) {
 
     if (terms.length) {
       // Walk text nodes inside each line, wrap matches
-      Array.from(A("span[data-line]", codeEl)).forEach((lineEl) =>
-        highlightTermsInElement(lineEl, terms),
-      );
+      Array.from(A("span[data-line]", codeEl)).forEach((lineEl) => {
+        const escaped = terms.map(escapeRegExp);
+        const re = new RegExp(`(${escaped.join("|")})`, "g");
+
+        if (lineEl.textContent.search(re) > -1) {
+          lineEl.classList.add("has-highlighted-content");
+        }
+      });
     }
   }
-}
-
-function ensureLineSpans(codeEl) {
-  // If we already have line spans, assume Shiki (or someone) did it.
-  if (Q("span[data-line]", codeEl)) return;
-
-  // Fallback: rebuild code into per-line spans.
-  // NOTE: This will drop any existing syntax spans, so only use if you *don’t* already have line wrappers.
-  const text = codeEl.textContent ?? "";
-  const lines = text.replace(/\r\n/g, "\n").split("\n");
-
-  codeEl.textContent = "";
-  lines.forEach((line, idx) => {
-    const n = idx + 1;
-    const lineSpan = document.createElement("span");
-    lineSpan.dataset.line = String(n);
-    lineSpan.className = "code-line";
-    lineSpan.textContent = line || "\u00A0"; // keep empty lines visible
-    codeEl.appendChild(lineSpan);
-    if (n < lines.length) codeEl.appendChild(document.createTextNode("\n"));
-  });
 }
 
 function parseLineSpec(spec) {
@@ -191,42 +175,6 @@ function parseLineSpec(spec) {
       out.add(i);
   }
   return out;
-}
-
-function highlightTermsInElement(rootEl, terms) {
-  // Build a single regex that matches any term (escaped)
-  const escaped = terms.map(escapeRegExp);
-  const re = new RegExp(`(${escaped.join("|")})`, "g");
-
-  const walker = document.createTreeWalker(rootEl, NodeFilter.SHOW_TEXT);
-  const textNodes = [];
-  while (walker.nextNode()) textNodes.push(walker.currentNode);
-
-  for (const node of textNodes) {
-    const txt = node.nodeValue;
-    if (!txt || !re.test(txt)) continue;
-
-    re.lastIndex = 0; // reset global regex state
-    const frag = document.createDocumentFragment();
-    let last = 0;
-
-    txt.replace(re, (match, _g1, offset) => {
-      if (offset > last)
-        frag.appendChild(document.createTextNode(txt.slice(last, offset)));
-
-      const mark = document.createElement("mark");
-      mark.className = "is-highlighted-content";
-      mark.textContent = match;
-      frag.appendChild(mark);
-
-      last = offset + match.length;
-      return match;
-    });
-
-    if (last < txt.length)
-      frag.appendChild(document.createTextNode(txt.slice(last)));
-    node.parentNode.replaceChild(frag, node);
-  }
 }
 
 function escapeRegExp(s) {
@@ -291,7 +239,7 @@ async function processPre(pre) {
 
   // Apply optional line/content highlighting
   // (we need to do this + requery after Shiki)
-  
+
   if (highlight.highlightLine || highlight.highlightContent)
     applyHighlights(Q("code", pre), highlight);
 }
