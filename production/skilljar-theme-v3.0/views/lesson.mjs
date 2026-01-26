@@ -132,11 +132,15 @@ async function processCodeBlock(elem) {
   // Apply Shiki highlighting
   const THEME = CONFIG.codeTheme || "github-light";
 
-  const formatted = await shiki.codeToHtml(highlight.textContent, {
-    lang: highlight.language,
-    theme: THEME,
-    transformers: [addCopyButton()],
-  });
+  const formatted = await shiki.codeToHtml(
+    // trim textContent to avoid extra newlines
+    highlight.textContent.trim(),
+    {
+      lang: highlight.language,
+      theme: THEME,
+      transformers: [addCopyButton()],
+    },
+  );
 
   const parser = new DOMParser(),
     formattedElem = parser.parseFromString(formatted, "text/html");
@@ -144,11 +148,6 @@ async function processCodeBlock(elem) {
   let newCode = formattedElem.querySelector("code");
 
   if (newCode) {
-    // trim textContent to avoid extra newlines
-    newCode = Object.assign(newCode, {
-      textContent: newCode.textContent.trim(),
-    });
-
     // replace old code element with new highlighted one
     codeEl.replaceWith(newCode);
   }
