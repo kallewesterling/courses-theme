@@ -120,10 +120,41 @@ npm run lint:css:fix
 ```
 
 This will fix:
-- Property ordering
+- **Property ordering** (automatically sorts properties in all selectors)
 - Spacing and indentation
 - Some color format issues
 - Empty lines before rules
+
+### Automatic Property Sorting
+
+The linter automatically sorts CSS properties in a logical order to maintain consistency. Running `npm run lint:css:fix` will reorder all properties according to this sequence:
+
+1. **Content & Positioning**: `content`, `position`, `inset`, `top`, `right`, `bottom`, `left`, `z-index`
+2. **Display & Layout**: `display`, `flex-*`, `justify-content`, `align-*`, `gap`, `grid-*`
+3. **Box Model**: `float`, `clear`, `width`, `height`, `padding`, `margin`, `overflow`
+4. **Borders & Background**: `border-*`, `border-radius`, `background-*`
+5. **Typography**: `color`, `font-*`, `line-height`, `letter-spacing`, `text-*`
+6. **Visual Effects**: `opacity`, `visibility`, `transform`, `transition`, `animation`
+7. **Interaction**: `cursor`, `pointer-events`
+
+**Example:**
+```css
+/* Before auto-fix */
+.example {
+  color: red;
+  display: flex;
+  padding: 10px;
+  position: relative;
+}
+
+/* After auto-fix */
+.example {
+  position: relative;
+  display: flex;
+  padding: 10px;
+  color: red;
+}
+```
 
 ## Ignoring Rules
 
