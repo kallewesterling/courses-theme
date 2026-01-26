@@ -92,13 +92,128 @@ const formatCode = async (code, lang, addCopy = true) => {
   const parser = new DOMParser(),
     formattedElem = parser.parseFromString(formatted, "text/html");
 
-  let newCode = formattedElem.querySelector("code");
+  let newCode = Q("code", formattedElem);
 
   if (newCode) {
     // replace old code element with new highlighted one
     code.replaceWith(newCode);
   }
 };
+
+function applyHighlights(codeEl, highlight) {
+  const lineSpec = highlight.highlightLine?.trim();
+  const contentSpec = highlight.highlightContent?.trim();
+
+  if (!lineSpec && !contentSpec) return;
+
+  // Ensure we have per-line wrappers to target.
+  // If Shiki already outputs line wrappers (common), this won't break anything.
+  ensureLineSpans(codeEl);
+
+  // Highlight lines like "3" or "3,5-7"
+  if (lineSpec) {
+    const lineNums = parseLineSpec(lineSpec);
+    for (const n of lineNums) {
+      const lineEl = Q(`span[data-line="${n}"]`, codeEl);
+      if (lineEl) lineEl.classList.add("is-highlighted-line");
+    }
+  }
+
+  // Highlight content like "cosign|chainctl" (treat as OR)
+  if (contentSpec) {
+    const terms = contentSpec
+      .split("|")
+      .map((s) => s.trim())
+      .filter(Boolean);
+
+    if (terms.length) {
+      // Walk text nodes inside each line, wrap matches
+      const lineEls = Array.from(A("span[data-line]", codeEl));
+      for (const lineEl of lineEls) {
+        highlightTermsInElement(lineEl, terms);
+      }
+    }
+  }
+}
+
+function ensureLineSpans(codeEl) {
+  // If we already have line spans, assume Shiki (or someone) did it.
+  if (Q("span[data-line]", codeEl)) return;
+
+  // Fallback: rebuild code into per-line spans.
+  // NOTE: This will drop any existing syntax spans, so only use if you *don’t* already have line wrappers.
+  const text = codeEl.textContent ?? "";
+  const lines = text.replace(/\r\n/g, "\n").split("\n");
+
+  codeEl.textContent = "";
+  lines.forEach((line, idx) => {
+    const n = idx + 1;
+    const lineSpan = document.createElement("span");
+    lineSpan.dataset.line = String(n);
+    lineSpan.className = "code-line";
+    lineSpan.textContent = line || "\u00A0"; // keep empty lines visible
+    codeEl.appendChild(lineSpan);
+    if (n < lines.length) codeEl.appendChild(document.createTextNode("\n"));
+  });
+}
+
+function parseLineSpec(spec) {
+  // "3,5-7" -> Set{3,5,6,7}
+  const out = new Set();
+  for (const part of spec.split(",")) {
+    const p = part.trim();
+    if (!p) continue;
+
+    const m = p.match(/^(\d+)(?:-(\d+))?$/);
+    if (!m) continue;
+
+    const start = Number(m[1]);
+    const end = m[2] ? Number(m[2]) : start;
+    for (let i = Math.min(start, end); i <= Math.max(start, end); i++)
+      out.add(i);
+  }
+  return out;
+}
+
+function highlightTermsInElement(rootEl, terms) {
+  // Build a single regex that matches any term (escaped)
+  const escaped = terms.map(escapeRegExp);
+  const re = new RegExp(`(${escaped.join("|")})`, "g");
+
+  const walker = document.createTreeWalker(rootEl, NodeFilter.SHOW_TEXT);
+  const textNodes = [];
+  while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+  for (const node of textNodes) {
+    const txt = node.nodeValue;
+    if (!txt || !re.test(txt)) continue;
+
+    re.lastIndex = 0; // reset global regex state
+    const frag = document.createDocumentFragment();
+    let last = 0;
+
+    txt.replace(re, (match, _g1, offset) => {
+      if (offset > last)
+        frag.appendChild(document.createTextNode(txt.slice(last, offset)));
+
+      const mark = document.createElement("mark");
+      mark.className = "is-highlighted-content";
+      mark.textContent = match;
+      frag.appendChild(mark);
+
+      last = offset + match.length;
+      return match;
+    });
+
+    if (last < txt.length)
+      frag.appendChild(document.createTextNode(txt.slice(last)));
+    node.parentNode.replaceChild(frag, node);
+  }
+}
+
+function escapeRegExp(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
 
 /**
  * This function processes a code block element by adding syntax highlighting and a copy button.
@@ -155,6 +270,9 @@ async function processPre(pre) {
 
   // Apply Shiki highlighting
   await formatCode(codeEl, highlight.language, true);
+
+  // Apply optional line/content highlighting (your custom layer)
+  applyHighlights(codeEl, highlight);
 }
 
 /**
