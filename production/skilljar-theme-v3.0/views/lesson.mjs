@@ -72,6 +72,9 @@ function addLineNumberSpans(options = {}) {
 function addCopyButton({ promptRE = /^\s*\$ /gm } = {}) {
   return {
     name: "shiki-transformer-copy-button",
+    copy(node) {
+      console.log(node);
+    },
     pre(node) {
       const onclick = String.raw`
         (async (btn) => {
