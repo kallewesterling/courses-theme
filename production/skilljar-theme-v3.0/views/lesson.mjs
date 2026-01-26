@@ -8,6 +8,65 @@ import { logger } from "../logger.mjs";
 // Shiki syntax highlighting
 import * as shiki from "https://esm.sh/shiki@3.0.0";
 
+function buildResourceBox() {
+  const resourceElems = {
+    boxes: A("sjwc-lesson-content-item .resource-box"),
+    wrapper: Q("sjwc-lesson-content-item .resource-box .resource-wrapper"),
+  };
+
+  const numBoxes = resourceElems.boxes.length;
+  const hasResources = typeof resources.resources !== "undefined";
+  const hasGroups = typeof resources.groups !== "undefined";
+
+  if (hasResources && numBoxes === 0) {
+    logger.info(
+      "No resource boxes found to add resources to. Adding automatically!",
+    );
+    Q("#lesson-body").append(
+      el("div", { className: "resource-box" }, [
+        el("h3", { textContent: "📘 More Resources" }),
+        el("div", { className: "resource-wrapper" }),
+      ]),
+    );
+  }
+
+  if (resourceElems && hasResources) {
+    if (hasResources && numBoxes === 1) {
+      // we have a list of resources and will drop that in the first box
+      const cards = resources.resources.map((r) => createResourceCard(r));
+
+      const box = resourceElems.boxes[0];
+
+      const wrapper = Q(".resource-wrapper", box);
+
+      // Add cards
+      wrapper.replaceChildren(...cards);
+    } else if (hasGroups) {
+      // we have groups of resources to drop in each box
+      resourceElems.boxes.forEach((box) => {
+        if (!box.dataset.group) {
+          logger.warn(
+            "Resource box is missing data-group attribute, skipping:",
+            box,
+          );
+          return;
+        }
+
+        const cards = resources.groups[box.dataset.group].map((r) =>
+          createResourceCard(r),
+        );
+
+        const wrapper = Q(".resource-wrapper", box);
+
+        // Add cards
+        if (resources.groups[box.dataset.group]) {
+          wrapper.replaceChildren(...cards);
+        }
+      });
+    }
+  }
+}
+
 /**
  * Adds a copy button to a code block.
  * @param {HTMLElement} pre - The <pre> element containing the code block.
@@ -451,58 +510,5 @@ export function lessonView() {
     elem.classList.remove("sjwc-section-title"),
   );
 
-  if (typeof resources !== "undefined") {
-    const numBoxes = CG.dom.local.lesson.content.resources.boxes.length;
-
-    if (typeof resources.resources !== "undefined" && numBoxes === 0) {
-      logger.info(
-        "No resource boxes found to add resources to. Adding automatically!",
-      );
-      const box = el("div", { className: "resource-box" });
-      const header = el("h3", { textContent: "📘 More Resources" });
-      const wrapper = el("div", { className: "resource-wrapper" });
-
-      box.append(header, wrapper);
-      CG.dom.local.lesson.body.append(box);
-    }
-
-    if (
-      CG.dom.local.lesson.content.resources &&
-      typeof resources !== "undefined"
-    ) {
-      if (typeof resources.resources !== "undefined" && numBoxes === 1) {
-        // we have a list of resources and will drop that in the first box
-        const cards = resources.resources.map((r) => createResourceCard(r));
-
-        const box = CG.dom.local.lesson.content.resources.boxes[0];
-
-        const wrapper = Q(".resource-wrapper", box);
-
-        // Add cards
-        wrapper.replaceChildren(...cards);
-      } else if (typeof resources.groups !== "undefined") {
-        // we have groups of resources to drop in each box
-        CG.dom.local.lesson.content.resources.boxes.forEach((box) => {
-          if (!box.dataset.group) {
-            logger.warn(
-              "Resource box is missing data-group attribute, skipping:",
-              box,
-            );
-            return;
-          }
-
-          const cards = resources.groups[box.dataset.group].map((r) =>
-            createResourceCard(r),
-          );
-
-          const wrapper = Q(".resource-wrapper", box);
-
-          // Add cards
-          if (resources.groups[box.dataset.group]) {
-            wrapper.replaceChildren(...cards);
-          }
-        });
-      }
-    }
-  }
+  if (typeof resources !== "undefined") buildResourceBox();
 }
