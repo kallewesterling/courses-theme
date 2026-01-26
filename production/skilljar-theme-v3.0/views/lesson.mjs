@@ -38,6 +38,26 @@ function toClipboard(copyText, tooltipContainer) {
   };
 }
 
+function transformerSimpleLineNumbers(options = {}) {
+  const {
+    preClass = "has-line-numbers", // Class for the <pre> tag
+    lineClass = "code-line", // Class for each line's <span>
+  } = options;
+
+  return {
+    name: "@shikijs/transformer-simple-line-numbers",
+    // Add a class to the <pre> element
+    pre(node) {
+      this.addClassToHast(node, preClass);
+    },
+    // Add a class to each line
+    line(node, line) {
+      this.addClassToHast(node, lineClass);
+      node.properties["data-line"] = line;
+    },
+  };
+}
+
 /**
  * Adds a copy button to code blocks.
  * It is used as a transformer for Shiki to modify blocks.
@@ -79,14 +99,15 @@ const formatCode = async (code, lang, addCopy = true) => {
   // Apply Shiki highlighting
   const THEME = CONFIG.codeTheme || "github-light";
 
+  const transformers = [transformerSimpleLineNumbers()];
+  if (addCopy) {
+    transformers.push(addCopyButton());
+  }
+
   const formatted = await shiki.codeToHtml(
     // trim textContent to avoid extra newlines
     code.textContent.trim(),
-    {
-      lang,
-      theme: THEME,
-      transformers: addCopy ? [addCopyButton()] : [],
-    },
+    { lang, theme: THEME, transformers },
   );
 
   const parser = new DOMParser(),
