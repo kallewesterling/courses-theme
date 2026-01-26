@@ -75,6 +75,31 @@ function addCopyButton({ promptRE = /^\s*\$ /gm } = {}) {
   };
 }
 
+const formatCode = async (code, lang, addCopy = true) => {
+  // Apply Shiki highlighting
+  const THEME = CONFIG.codeTheme || "github-light";
+
+  const formatted = await shiki.codeToHtml(
+    // trim textContent to avoid extra newlines
+    code.textContent.trim(),
+    {
+      lang,
+      theme: THEME,
+      transformers: addCopy ? [addCopyButton()] : [],
+    },
+  );
+
+  const parser = new DOMParser(),
+    formattedElem = parser.parseFromString(formatted, "text/html");
+
+  let newCode = formattedElem.querySelector("code");
+
+  if (newCode) {
+    // replace old code element with new highlighted one
+    code.replaceWith(newCode);
+  }
+};
+
 /**
  * This function processes a code block element by adding syntax highlighting and a copy button.
  * @param {HTMLElement} pre - The <pre> block element to process.
@@ -129,27 +154,7 @@ async function processPre(pre) {
   pre.dataset.copyAdded = "true";
 
   // Apply Shiki highlighting
-  const THEME = CONFIG.codeTheme || "github-light";
-
-  const formatted = await shiki.codeToHtml(
-    // trim textContent to avoid extra newlines
-    highlight.textContent,
-    {
-      lang: highlight.language,
-      theme: THEME,
-      transformers: [addCopyButton()],
-    },
-  );
-
-  const parser = new DOMParser(),
-    formattedElem = parser.parseFromString(formatted, "text/html");
-
-  let newCode = formattedElem.querySelector("code");
-
-  if (newCode) {
-    // replace old code element with new highlighted one
-    codeEl.replaceWith(newCode);
-  }
+  await formatCode(codeEl, highlight.language, true);
 }
 
 /**
@@ -296,6 +301,7 @@ export function lessonView() {
       innerBody: Q("#lesson-main-inner"),
       content: {
         codeBlocks: new Array(...A("pre:has(code):not(.language-ansi)")),
+        inlineCodeBlocks: new Array(...A("code[data-lang")),
         internalCourseWarning: Q("#internal-course-warning"),
         links: A("sjwc-lesson-content-item a"),
         resources: {
@@ -342,6 +348,10 @@ export function lessonView() {
   );
 
   CG.dom.local.nav.toggleWrapper.append(setupLessonNav());
+
+  CG.dom.local.lesson.content.inlineCodeBlocks.forEach((elem) =>
+    formatCode(elem, elem.dataset.lang || "text", false),
+  );
 
   CG.dom.local.lesson.content.codeBlocks
     .filter((d) => !d.dataset.noCopy && !d.dataset.copyAdded)
