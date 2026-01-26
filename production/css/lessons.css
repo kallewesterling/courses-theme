@@ -189,6 +189,7 @@ body.sj-page-lesson {
         .lesson-top {
           border: 0;
           display: block !important;
+          padding-top: 60px;
 
           h2 {
             font-weight: 600;
