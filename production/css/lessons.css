@@ -730,8 +730,8 @@ sjwc-lesson-content-item {
   p,
   li {
     font-family: Gellix, sans-serif !important;
-    font-size: var(--font-size-xl) !important;
-    line-height: var(--line-height-28);
+    font-size: var(--font-size-lg) !important;
+    line-height: var(--line-height-30);
 
     em,
     a,
