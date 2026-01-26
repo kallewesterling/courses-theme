@@ -125,8 +125,6 @@ function applyHighlights(codeEl, highlight) {
   const lineSpec = highlight.highlightLine?.trim();
   const contentSpec = highlight.highlightContent?.trim();
 
-  if (!lineSpec && !contentSpec) return;
-
   // Ensure we have per-line wrappers to target.
   // If Shiki already outputs line wrappers (common), this won't break anything.
   ensureLineSpans(codeEl);
@@ -293,7 +291,8 @@ async function processPre(pre) {
   await formatCode(codeEl, highlight.language, true);
 
   // Apply optional line/content highlighting (your custom layer)
-  applyHighlights(codeEl, highlight);
+  if (highlight.highlightLine || highlight.highlightContent)
+    applyHighlights(codeEl, highlight);
 }
 
 /**
