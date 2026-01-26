@@ -1,0 +1,88 @@
+/* ========================================
+   TYPOGRAPHY VARIABLES
+   ======================================== */
+
+/* Font Sizes - Using a modular scale */
+:root {
+  /* Base sizes */
+  --font-size-xs: 0.75rem;      /* 12px */
+  --font-size-sm: 0.875rem;     /* 14px */
+  --font-size-base: 1rem;       /* 16px */
+  --font-size-md: 1.125rem;     /* 18px */
+  --font-size-lg: 1.25rem;      /* 20px */
+  --font-size-xl: 1.5rem;       /* 24px */
+  --font-size-2xl: 1.875rem;    /* 30px */
+  --font-size-3xl: 2.25rem;     /* 36px */
+  --font-size-4xl: 3rem;        /* 48px */
+  --font-size-5xl: 4rem;        /* 64px */
+  --font-size-6xl: 6rem;        /* 96px */
+
+  /* Font Weights - Semantic names */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Line Heights - Relative and fixed */
+  --line-height-none: 1;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.7;
+  --line-height-loose: 2;
+
+  /* Fixed line heights for specific use cases */
+  --line-height-18: 18px;
+  --line-height-20: 20px;
+  --line-height-24: 24px;
+  --line-height-30: 30px;
+  --line-height-32: 32px;
+  --line-height-40: 40px;
+  --line-height-50: 50px;
+}
+
+/* ========================================
+   SPACING VARIABLES
+   ======================================== */
+
+:root {
+  /* Base spacing scale - extends existing space-* variables */
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;         /* 4px */
+  --spacing-2: 0.5rem;          /* 8px */
+  --spacing-3: 0.75rem;         /* 12px */
+  --spacing-4: 1rem;            /* 16px */
+  --spacing-5: 1.25rem;         /* 20px */
+  --spacing-6: 1.5rem;          /* 24px */
+  --spacing-8: 2rem;            /* 32px */
+  --spacing-10: 2.5rem;         /* 40px */
+  --spacing-12: 3rem;           /* 48px */
+  --spacing-16: 4rem;           /* 64px */
+  --spacing-20: 5rem;           /* 80px */
+  --spacing-24: 6rem;           /* 96px */
+
+  /* Pixel-based spacing for backwards compatibility */
+  --spacing-px-2: 2px;
+  --spacing-px-3: 3px;
+  --spacing-px-4: 4px;
+  --spacing-px-5: 5px;
+  --spacing-px-6: 6px;
+  --spacing-px-8: 8px;
+  --spacing-px-10: 10px;
+  --spacing-px-12: 12px;
+  --spacing-px-14: 14px;
+  --spacing-px-15: 15px;
+  --spacing-px-16: 16px;
+  --spacing-px-18: 18px;
+  --spacing-px-20: 20px;
+  --spacing-px-24: 24px;
+  --spacing-px-32: 32px;
+  --spacing-px-40: 40px;
+  --spacing-px-46: 46px;
+  --spacing-px-48: 48px;
+  --spacing-px-49: 49px;
+  --spacing-px-50: 50px;
+  --spacing-px-80: 80px;
+}
