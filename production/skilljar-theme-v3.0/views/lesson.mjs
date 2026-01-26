@@ -122,6 +122,8 @@ const formatCode = async (code, lang, addCopy = true) => {
 };
 
 function applyHighlights(codeEl, highlight) {
+  const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
   const lineSpec = highlight.highlightLine?.trim();
   const contentSpec = highlight.highlightContent?.trim();
 
@@ -143,15 +145,20 @@ function applyHighlights(codeEl, highlight) {
     const terms = contentSpec
       .split("|")
       .map((s) => s.trim())
-      .filter(Boolean);
+      .filter(Boolean)
+      .map((term) => {
+        if (term.includes("[LINE-END]")) {
+          const raw = term.replace("[LINE-END]", "");
+          return `${escapeRegExp(raw)}(?=\\s*$)`;
+        }
+        return escapeRegExp(term);
+      });
 
     if (terms.length) {
-      // Walk text nodes inside each line, wrap matches
-      Array.from(A("span[data-line]", codeEl)).forEach((lineEl) => {
-        const escaped = terms.map(escapeRegExp);
-        const re = new RegExp(`(${escaped.join("|")})`, "g");
+      const re = new RegExp(`(${terms.join("|")})`);
 
-        if (lineEl.textContent.search(re) > -1) {
+      Array.from(A("span[data-line]", codeEl)).forEach((lineEl) => {
+        if (re.test(lineEl.textContent)) {
           lineEl.classList.add("is-highlighted-line");
         }
       });
@@ -175,10 +182,6 @@ function parseLineSpec(spec) {
       out.add(i);
   }
   return out;
-}
-
-function escapeRegExp(s) {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 /**
