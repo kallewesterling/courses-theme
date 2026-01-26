@@ -17,7 +17,7 @@ body.sj-page-curriculum {
     background-color: #fef6ff9c !important;
     max-width: 100%;
 
-    @media screen and (max-width: 1320px) {
+    @media screen and (width <= 1320px) {
       padding: 56px 8vw;
     }
 
@@ -32,8 +32,7 @@ body.sj-page-curriculum {
 
     .row.dp-row-flex-v2 {
       display: flex;
-      flex-direction: row-reverse;
-      flex-wrap: nowrap;
+      flex-flow: row-reverse nowrap;
       justify-content: start;
       gap: 24px;
       max-width: 1188px;
@@ -47,11 +46,11 @@ body.sj-page-curriculum {
       .columns.cp-summary-wrapper,
       .columns.dp-summary-wrapper {
         position: static;
-        max-width: 100% !important;
         width: 100%;
+        padding: 0 !important;
         border: 0;
         text-align: left !important;
-        padding: 0 !important;
+        max-width: 100% !important;
 
         /* .sj-course-info-wrapper {
           display: none !important;
@@ -59,32 +58,32 @@ body.sj-page-curriculum {
 
         .sj-floater-text {
           display: block !important;
-          font-family: Roobert;
-          font-weight: 700;
-          font-size: 16px;
-          line-height: 23.7px;
           color: #7545fb;
+          font-family: Roobert;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 23.7px;
         }
 
         .sj-heading-paragraph,
         .sj-course-info-wrapper h2 {
           display: block !important;
-          margin: 0 0 24px 0;
-          max-width: 80%;
+          margin: 0 0 24px;
           color: var(--ink) !important;
+          font-family: "Roobert";
           font-size: 16px;
           font-weight: 400;
           line-height: 24px;
-          font-family: "Roobert";
+          max-width: 80%;
         }
 
         h1.break-word {
-          margin: 0 0 12px 0;
+          margin: 0 0 12px;
+          color: var(--ink) !important;
           font-size: 36px;
           font-weight: 600;
           line-height: 43.2px;
           letter-spacing: -0.02em;
-          color: var(--ink) !important;
         }
       }
     }
@@ -92,16 +91,17 @@ body.sj-page-curriculum {
 
   #dp-details,
   #cp-content {
-    /* Page content */
-    max-width: min(1188px, 90%);
-    margin: 96px auto 46px auto;
     display: grid;
-    grid-template-columns: minmax(100px, 796px) minmax(100px, 368px);
-    column-gap: 24px;
+    margin: 96px auto 46px;
     padding: 0;
 
-    @media screen and (max-width: 991px) {
-      margin: 72px auto -10px auto;
+    /* Page content */
+    max-width: min(1188px, 90%);
+    grid-template-columns: minmax(100px, 796px) minmax(100px, 368px);
+    column-gap: 24px;
+
+    @media screen and (width <= 991px) {
+      margin: 72px auto -10px;
       grid-template-columns: 1fr;
     }
 
@@ -111,17 +111,19 @@ body.sj-page-curriculum {
     }
 
     .hide-for-small {
-      /* Desktop body content */
-      padding: 0px;
-      max-width: 796px;
       display: grid !important;
 
+      /* Desktop body content */
+      padding: 0;
+      max-width: 796px;
+
       .columns {
+        display: block;
+        width: 100%;
+        padding: 0;
+
         /* Two columns: content + curriculum */
         float: none;
-        padding: 0;
-        width: 100%;
-        display: block;
         margin-bottom: 48px;
 
         h3 {
@@ -132,18 +134,18 @@ body.sj-page-curriculum {
     }
 
     .large-10.large-centered.columns.tabs-wrapper-v2 {
-      margin: 0;
       width: 796px;
+      margin: 0;
     }
   }
 
   #dp-details-bundle {
-    max-width: 1188px;
-    padding: 96px 0 !important;
     margin: 0 auto;
+    padding: 96px 0 !important;
+    max-width: 1188px;
     border-bottom: 1px solid var(--neutral-border);
 
-    @media screen and (max-width: 1320px) {
+    @media screen and (width <= 1320px) {
       padding: 56px 8vw !important;
     }
 

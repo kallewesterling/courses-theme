@@ -1,19 +1,19 @@
 .headers {
-  height: 60px;
-  left: 0;
-  overflow: visible;
   position: fixed;
-  width: 100%;
+  left: 0;
   z-index: 5;
+  width: 100%;
+  height: 60px;
+  overflow: visible;
   border-bottom: 1px solid #d5d4d4 !important;
   background-color: var(--white) !important;
 
   #to-chainguard {
-    height: 100%;
-    float: left;
     display: flex;
     align-items: center;
+    height: 100%;
     margin: 0 20px;
+    float: left;
 
     a {
       color: var(--ink) !important;
@@ -28,7 +28,7 @@
     top: 60px;
   }
 
-  @media screen and (max-width: 690px) {
+  @media screen and (width <= 690px) {
     height: 45px !important;
 
     + #mobile-header {
@@ -42,14 +42,14 @@
   overflow: hidden;
 
   > a {
+    display: flex;
+    align-items: center;
     padding: 20px;
     border-right: 1px solid var(--neutral-border);
     min-height: 100%;
-    display: flex;
-    align-items: center;
 
-    @media screen and (max-width: 690px) {
-      padding: 0px;
+    @media screen and (width <= 690px) {
+      padding: 0;
     }
   }
 }
@@ -71,19 +71,19 @@
   }
 
   #header-left {
-    padding-left: 0px !important;
+    padding-left: 0 !important;
 
     #logo-wrapper {
-      height: 100%;
       display: flex;
       align-items: center;
+      height: 100%;
       padding: 0 20px;
       background-color: var(--blurple);
 
       a {
-        height: 100% !important;
         display: flex;
         align-items: center;
+        height: 100% !important;
 
         svg {
           fill: white !important;
@@ -92,7 +92,7 @@
       }
     }
 
-    @media screen and (max-width: 480px) {
+    @media screen and (width <= 480px) {
       #logo-wrapper {
         padding: 0 10px;
       }
@@ -105,65 +105,65 @@
     }
 
     .info-circle-wrapper {
-      border-left: 1px solid var(--neutral-border);
-      padding: 0 10px;
-      cursor: pointer;
-      float: left;
-      height: 100%;
       display: flex;
       align-items: center;
+      height: 100%;
+      padding: 0 10px;
+      cursor: pointer;
+      border-left: 1px solid var(--neutral-border);
+      float: left;
 
       .info-circle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         width: 32px;
         height: 32px;
         border-radius: 50%;
         background: var(--blurple);
         color: white;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
         font-size: 16px;
+        font-weight: 700;
         line-height: 1;
       }
     }
 
     .login-link {
-      font-family: Gellix;
-      font-weight: 700;
-      height: 100%;
-      width: 100%;
-      margin: 0;
-      border: 0;
-      border-radius: 0;
       display: flex;
       align-items: center;
-      background-color: white;
-      border: 2px solid var(--ring);
+      width: 100%;
+      height: 100%;
+      margin: 0;
       padding: 0 50px;
+      border: 0;
+      border: 2px solid var(--ring);
+      border-radius: 0;
       color: var(--primary-white-hex) !important;
+      font-family: Gellix;
+      font-weight: 700;
+      background-color: white;
       background-color: var(--blurple);
     }
   }
 
   .info-circle-menu {
-    max-width: 200px;
-    list-style: none;
-    background: #fff;
-    border: 1px solid #5a697c;
-    box-shadow: 0 6px 12px 1px rgba(0, 0, 0, 0.1);
     position: absolute;
     top: 52px;
     left: -999999px;
     z-index: 200;
+    border: 1px solid #5a697c;
+    background: #ffffff;
+    max-width: 200px;
+    list-style: none;
+    box-shadow: 0 6px 12px 1px rgb(0, 0, 0, 0.1);
 
     li {
       display: block;
-      padding: 0.625em 0.625em;
-      font-size: 0.875em;
-      cursor: pointer;
-      line-height: 1.125em;
       margin: 0;
+      padding: 0.625em;
+      font-size: 0.875em;
+      line-height: 1.125em;
+      cursor: pointer;
 
       &:hover {
         background: #e7eaee;
@@ -171,7 +171,7 @@
 
       a {
         display: block;
-        padding: 0.625em 0.625em;
+        padding: 0.625em;
         color: #4d4d4d;
       }
     }
@@ -182,7 +182,7 @@
   }
 }
 
-@media screen and (max-width: 808px) {
+@media screen and (width <= 808px) {
   #header .info-circle-menu {
     position: absolute;
     top: 38.5px;
@@ -200,24 +200,24 @@
   display: none;
 }
 
-@media screen and (max-width: 690px) {
+@media screen and (width <= 690px) {
   #mobile-header {
-    display: flex !important;
-    justify-content: space-between;
-    align-items: center;
     z-index: 1;
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
 
     #mobile-header-left {
-      height: 100%;
       display: flex;
       align-items: center;
+      height: 100%;
       margin: 0 20px;
     }
 
     #mobile-header-right {
-      height: 100%;
       display: flex;
       align-items: center;
+      height: 100%;
       margin: 0 20px;
     }
   }

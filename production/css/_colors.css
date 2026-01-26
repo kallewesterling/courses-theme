@@ -50,7 +50,7 @@
   --primary-dark-purple: 20 0 61;
   --primary-dark-purple-hex: #14003d;
   --primary-white: 255 255 255;
-  --primary-white-hex: #fff;
+  --primary-white-hex: #ffffff;
 
   /* Secondary Colors */
   --secondary-pink: 254 199 254;
@@ -98,7 +98,7 @@
   --detail-medium-contrast: rgb(234, 234, 234);
   --text-high-contrast-rgb-value: 49, 49, 49;
   --detail-medium-contrast-rgb-value: 234, 234, 234;
-  --slider-btn-disabled: rgba(52, 67, 244, 0.4);
+  --slider-btn-disabled: rgb(52, 67, 244, 0.4);
 
   /* Gradients */
   --gradient-start: #fde1fe;
@@ -142,5 +142,5 @@
   --max-width-v2: 1402px;
 
   /* Shadows */
-  --shadow: 0 12px 30px rgba(20, 0, 61, 0.08);
+  --shadow: 0 12px 30px rgb(20, 0, 61, 0.08);
 }

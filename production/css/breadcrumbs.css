@@ -4,16 +4,16 @@ body.sj-page-detail-course,
 body.sj-page-curriculum,
 body.sj-page-catalog {
   #breadcrumbs {
-    margin: 20px auto;
     justify-content: start;
+    margin: 20px auto;
 
     .breadcrumb {
-      background: #fff;
+      width: max-content;
+      padding: 10px 14px;
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 10px 14px;
-      box-shadow: 0 8px 24px rgba(20, 0, 61, 0.06);
-      width: max-content;
+      background: #ffffff;
+      box-shadow: 0 8px 24px rgb(20, 0, 61, 0.06);
       max-width: 100%;
 
       &[aria-current="page"] {
@@ -51,11 +51,11 @@ body.sj-page-catalog {
           + li::before {
             /* chevron separator */
             content: "";
+            flex: 0 0 14px;
             width: 14px;
             height: 14px;
-            flex: 0 0 14px;
             background: #8c8aa4;
-            -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 5l7 7-7 7'/></svg>")
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 5l7 7-7 7'/></svg>")
               center/contain no-repeat;
             mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 5l7 7-7 7'/></svg>")
               center/contain no-repeat;

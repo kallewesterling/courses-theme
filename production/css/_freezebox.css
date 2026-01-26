@@ -41,20 +41,20 @@ body.sj-page-catalog {
   #catalog-content {
     #catalog-courses {
       .coursebox-container {
-        border-radius: 16px;
-        border: 1px solid #000;
-        width: calc(33% - 24px) !important; /* 3 should fit */
         display: flex;
         flex-direction: column;
+        width: calc(33% - 24px) !important; /* 3 should fit */
+        border: 1px solid #000000;
+        border-radius: 16px;
 
-        @media screen and (max-width: 991px) {
+        @media screen and (width <= 991px) {
           width: 100% !important; /* 1 only on mobile */
         }
 
         .badge-box {
-          box-shadow: unset !important;
-          color: #fff !important;
           background: rgb(117, 69, 251) !important;
+          color: #ffffff !important;
+          box-shadow: unset !important;
         }
 
         /* Adding FontAwesome icon before badge box */
@@ -78,8 +78,8 @@ body.sj-page-catalog {
         }
 
         .coursebox-text-description {
-          font-size: 14px;
           flex: 1;
+          font-size: 14px;
         }
 
         .course-overview {
@@ -87,7 +87,7 @@ body.sj-page-catalog {
           font-weight: 300;
 
           .course-overview__content {
-            padding: 8px 8px 0px 8px;
+            padding: 8px 8px 0;
 
             a {
               color: var(--blurple);

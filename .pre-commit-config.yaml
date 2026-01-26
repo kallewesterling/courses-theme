@@ -3,9 +3,10 @@ repos:
     hooks:
       - id: css-syntax-check
         name: CSS syntax check
-        entry: npx stylelint production/style.css production/css/*.css
+        entry: npx stylelint production/style.css production/css/*.css --quiet
         language: system
         files: \.css$
+        exclude: \.min\.css$
 
       - id: js-syntax-check
         name: JavaScript syntax check
