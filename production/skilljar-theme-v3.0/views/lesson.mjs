@@ -121,6 +121,7 @@ const formatCode = async (code, lang, addCopy = true) => {
 
   if (newCode) {
     // replace old code element with new highlighted one
+    newCode.classList = code.classList; // preserve original classes
     code.replaceWith(newCode);
   }
 };
