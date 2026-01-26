@@ -483,6 +483,12 @@ body.sj-page-lesson {
                   &:has(span.language-label) {
                     justify-content: space-between;
                   }
+
+                  .language-label {
+                    font-size: 0.75rem;
+                    font-weight: 600;
+                    color: var(--answer-option);
+                  }
                 }
 
                 .tooltip-copied {
