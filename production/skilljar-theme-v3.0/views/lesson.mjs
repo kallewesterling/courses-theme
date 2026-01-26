@@ -103,10 +103,10 @@ const formatCode = async (code, lang, addCopy = true) => {
   // Apply Shiki highlighting
   const THEME = CONFIG.codeTheme || "github-light";
 
-  const transformers = [transformerSimpleLineNumbers()];
-  if (addCopy) {
-    transformers.push(addCopyButton());
-  }
+  const transformers = [
+    transformerSimpleLineNumbers(),
+    addCopy ? addCopyButton() : null,
+  ].filter(Boolean);
 
   const formatted = await shiki.codeToHtml(
     // trim textContent to avoid extra newlines
