@@ -122,20 +122,20 @@ const formatCode = async (code, lang, addCopy = true) => {
 };
 
 function applyHighlights(codeEl, highlight) {
-  const lineSpec = highlight.highlightLine?.trim();
-  const contentSpec = highlight.highlightContent?.trim();
+  const lineSpec = highlight.highlightLine.trim();
+  const contentSpec = highlight.highlightContent.trim();
 
   // Ensure we have per-line wrappers to target.
   // If Shiki already outputs line wrappers (common), this won't break anything.
-  ensureLineSpans(codeEl);
+  // ensureLineSpans(codeEl);
 
   // Highlight lines like "3" or "3,5-7"
   if (lineSpec) {
     const lineNums = parseLineSpec(lineSpec);
-    for (const n of lineNums) {
+    lineNums.forEach((n) => {
       const lineEl = Q(`span[data-line="${n}"]`, codeEl);
       if (lineEl) lineEl.classList.add("is-highlighted-line");
-    }
+    });
   }
 
   // Highlight content like "cosign|chainctl" (treat as OR)
@@ -147,10 +147,9 @@ function applyHighlights(codeEl, highlight) {
 
     if (terms.length) {
       // Walk text nodes inside each line, wrap matches
-      const lineEls = Array.from(A("span[data-line]", codeEl));
-      for (const lineEl of lineEls) {
-        highlightTermsInElement(lineEl, terms);
-      }
+      Array.from(A("span[data-line]", codeEl)).forEach((lineEl) =>
+        highlightTermsInElement(lineEl, terms),
+      );
     }
   }
 }
