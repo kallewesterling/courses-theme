@@ -42,6 +42,7 @@ function transformerSimpleLineNumbers(options = {}) {
   const {
     preClass = "has-line-numbers", // Class for the <pre> tag
     lineClass = "code-line", // Class for each line's <span>
+    noContent = "no-content", // Class for lines with no content
   } = options;
 
   return {
@@ -54,6 +55,9 @@ function transformerSimpleLineNumbers(options = {}) {
     line(node, line) {
       this.addClassToHast(node, lineClass);
       node.properties["data-line"] = line;
+      if (node.children.length === 0) {
+        this.addClassToHast(node, noContent);
+      }
     },
   };
 }
