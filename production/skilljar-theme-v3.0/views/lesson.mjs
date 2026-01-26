@@ -38,18 +38,18 @@ function toClipboard(copyText, tooltipContainer) {
   };
 }
 
-function transformerSimpleLineNumbers(options = {}) {
+function addLineNumberSpans(options = {}) {
   const {
-    preClass = "has-line-numbers", // Class for the <pre> tag
+    preClass: copyClass = "has-line-numbers", // Class for the <code> tag
     lineClass = "code-line", // Class for each line's <span>
     noContent = "no-content", // Class for lines with no content
   } = options;
 
   return {
-    name: "@shikijs/transformer-simple-line-numbers",
-    // Add a class to the <pre> element
-    pre(node) {
-      this.addClassToHast(node, preClass);
+    name: "@shikijs/add-line-number-spans",
+    // Add a class to the <code> element
+    copy(node) {
+      this.addClassToHast(node, copyClass);
     },
     // Add a class to each line
     line(node, line) {
@@ -104,7 +104,7 @@ const formatCode = async (code, lang, addCopy = true) => {
   const THEME = CONFIG.codeTheme || "github-light";
 
   const transformers = [
-    transformerSimpleLineNumbers(),
+    addLineNumberSpans(),
     addCopy ? addCopyButton() : null,
   ].filter(Boolean);
 
