@@ -26,7 +26,7 @@ body.sj-page-curriculum {
       padding: var(--space-6);
       font-family: Gellix;
       font-size: var(--font-size-base) !important; /* 16px */
-      font-weight: 700 !important;
+      font-weight: var(--font-bold) !important;
       line-height: 20px;
       letter-spacing: -0.01em;
       border-bottom: var(--border-width-medium) solid var(--blurple) !important;
@@ -57,7 +57,7 @@ body.sj-page-curriculum {
         p {
           margin: 0;
           font-size: var(--font-size-base); /* 16px */
-          font-weight: 400;
+          font-weight: var(--font-normal);
           line-height: 24px;
         }
       }
@@ -74,7 +74,7 @@ body.sj-page-curriculum {
 
     p.completed-subtext {
       margin: 0 24px !important;
-      padding: 0 20px 20px 0 !important;
+      padding: var(--space-0) var(--space-5) var(--space-5) var(--space-0) !important;
       color: green !important;
       font-family: Roobert !important;
       font-size: var(--font-size-xs) !important; /* 12px */
@@ -112,14 +112,14 @@ body.sj-page-curriculum {
 
           /* "Curriculum" header */
 
-          font-weight: 600; /* TODO: this seems unnecessary */
+          font-weight: var(--font-semibold); /* TODO: this seems unnecessary */
         }
 
         .content {
           padding: var(--space-0);
 
           /* Curriculum content wrapper */
-          border: 0;
+          border: var(--no-border);
         }
       }
 
@@ -131,14 +131,14 @@ body.sj-page-curriculum {
         h3 {
           /* "About" header */
 
-          font-weight: 600;
+          font-weight: var(--font-semibold);
         }
 
         .content {
           padding: var(--space-0);
 
           /* Course details content wrapper */
-          border: 0;
+          border: var(--no-border);
         }
       }
     }
@@ -171,7 +171,7 @@ body.sj-page-curriculum {
       color: var(--ink) !important;
       font-family: Gellix;
       font-size: var(--font-size-lg) !important; /* 18px */
-      font-weight: 700 !important;
+      font-weight: var(--font-bold) !important;
       line-height: 125%;
       border-bottom: var(--border-width-medium) solid var(--blurple);
 
@@ -199,7 +199,7 @@ body.sj-page-curriculum {
       color: var(--ink) !important;
       font-family: inherit;
       font-size: var(--font-size-base); /* 16px */
-      font-weight: 400;
+      font-weight: var(--font-normal);
       line-height: 150%;
       border-bottom: var(--border-width-medium) solid var(--blurple);
 
@@ -261,7 +261,7 @@ body.sj-page-detail-course {
     max-width: none;
     padding-top: var(--space-24);
     padding-bottom: var(--space-24);
-    border: 0;
+    border: var(--no-border);
 
     @media screen and (width <= 991px) {
       padding-top: var(--space-12);
@@ -298,7 +298,7 @@ body.sj-page-detail-course {
           width: auto;
 
           /* Text content in header */
-          border: 0;
+          border: var(--no-border);
           max-width: 564px;
 
           @media screen and (width <= 991px) {
@@ -311,7 +311,7 @@ body.sj-page-detail-course {
 
             /* Course title */
             font-size: var(--font-size-4xl); /* 36px */
-            font-weight: 600;
+            font-weight: var(--font-semibold);
             line-height: 43.2px;
             letter-spacing: -0.02em;
 
@@ -341,7 +341,7 @@ body.sj-page-detail-course {
             }
 
             h2 {
-              font-weight: 500 !important;
+              font-weight: var(--font-medium) !important;
             }
           }
 

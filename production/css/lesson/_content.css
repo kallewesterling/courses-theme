@@ -7,12 +7,12 @@ sjwc-lesson-content-item {
 
   h3 {
     font-size: var(--font-size-3xl);
-    font-weight: 600;
+    font-weight: var(--font-semibold);
   }
 
   h4 {
     font-size: var(--font-size-2xl); /* 24px */
-    font-weight: 600;
+    font-weight: var(--font-semibold);
     line-height: 32.1px;
     letter-spacing: -0.02em;
   }
@@ -64,8 +64,8 @@ sjwc-lesson-content-item {
     border-radius: var(--radius-lg);
 
     /* Inline code blocks */
-    font-weight: bold;
-    background-color: #eeeeee;
+    font-weight: var(--font-bold);
+    background-color: var(--gray-code);
   }
 
   .content-table {
@@ -128,17 +128,17 @@ sjwc-lesson-content-item {
 
     .table-header {
       padding: var(--space-3);
-      font-weight: 600;
+      font-weight: var(--font-semibold);
       line-height: 20px;
-      border-bottom: 1px solid #dcdcdc;
+      border-bottom: 1px solid var(--gray-light);
       letter-spacing: -0.01em;
     }
 
     .table-row {
       padding: var(--space-6) var(--space-3);
-      font-weight: 400;
+      font-weight: var(--font-normal);
       line-height: 24px;
-      border-bottom: 1px solid #dcdcdc;
+      border-bottom: 1px solid var(--gray-light);
 
       ul:first-child {
         margin-top: 0;
@@ -161,8 +161,8 @@ sjwc-lesson-content-item {
     line-height: 1.7;
     background-image: linear-gradient(
       315deg,
-      rgb(253, 225, 254),
-      rgb(245, 246, 254) 72%
+      var(--gradient-start),
+      var(--gradient-end) 72%
     ) !important;
     max-width: 80%;
 
@@ -171,12 +171,12 @@ sjwc-lesson-content-item {
       flex-flow: row wrap;
       justify-content: flex-end;
       gap: 3px !important;
-      color: #555555;
+      color: var(--gray-darker);
       font-size: 0.8125em;
       margin-top: 9px;
 
       a {
-        color: #3f17ac !important;
+        color: var(--purple-link) !important;
       }
     }
   }
@@ -190,10 +190,10 @@ sjwc-lesson-content-item {
     border-radius: var(--radius-md);
     background-image: linear-gradient(
       315deg,
-      rgb(253, 225, 254),
-      rgb(245, 246, 254) 72%
+      var(--gradient-start),
+      var(--gradient-end) 72%
     );
-    background-color: #ffffff;
+    background-color: var(--white);
     max-width: fit-content;
 
     img {
@@ -212,7 +212,7 @@ sjwc-lesson-content-item {
     border: var(--border-width-thin) solid var(--blurple) !important;
     border-radius: var(--radius-base);
     font-size: 90% !important;
-    background-color: rgb(52, 68, 244, 0.05) !important;
+    background-color: var(--blurple-5) !important;
     box-shadow: unset !important;
     opacity: 1 !important;
 
@@ -220,7 +220,7 @@ sjwc-lesson-content-item {
       padding: 10px var(--space-5);
       border-radius: var(--radius-base) var(--radius-base) 0 0;
       font-size: 1.2em !important;
-      font-weight: 700;
+      font-weight: var(--font-bold);
       text-transform: uppercase !important;
       background-color: transparent !important;
 
@@ -240,7 +240,7 @@ sjwc-lesson-content-item {
       }
 
       code {
-        background-color: #3443f421;
+        background-color: var(--primary-blue-hex)21;
       }
     }
 
@@ -255,8 +255,8 @@ sjwc-lesson-content-item {
     font-family: "Gellix";
     font-size: 0.9em;
     line-height: 1.5em;
-    background-image: linear-gradient(315deg, #fde1fe, #f5f6fe 72%);
-    box-shadow: 0 0 6px 6px #0000001a !important;
+    background-image: linear-gradient(315deg, var(--gradient-start), var(--gradient-end) 72%);
+    box-shadow: 0 0 6px 6px var(--black-10) !important;
     margin-bottom: 50px;
 
     a {

@@ -8,7 +8,7 @@ body.sj-page-lesson {
     height: 100vh;
 
     /* Left hand nav menu */
-    background-color: #f9f9f9;
+    background-color: var(--gray-offwhite);
     overflow-y: scroll;
 
     /* To counteract padding in footer, add margin-bottom: -63px; here if we add footer back! */
@@ -17,16 +17,16 @@ body.sj-page-lesson {
       /* Responsive styles for left nav menu */
       position: fixed;
       height: 100%;
-      background-color: white;
+      background-color: var(--white);
       padding-bottom: var(--space-10);
 
       &.cbp-spmenu-open {
         box-shadow:
-          rgb(0, 0, 0, 0.25) 0 54px 55px,
-          rgb(0, 0, 0, 0.12) 0 -12px 30px,
-          rgb(0, 0, 0, 0.12) 0 4px 6px,
-          rgb(0, 0, 0, 0.17) 0 12px 13px,
-          rgb(0, 0, 0, 0.09) 0 -3px 5px;
+          var(--black-25) 0 54px 55px,
+          var(--black-12) 0 -12px 30px,
+          var(--black-12) 0 4px 6px,
+          var(--black-17) 0 12px 13px,
+          var(--black-9) 0 -3px 5px;
       }
     }
 
@@ -36,9 +36,9 @@ body.sj-page-lesson {
       padding: var(--space-1);
       border-radius: var(--radius-full);
       background: var(--blurple);
-      color: white !important;
+      color: var(--white) !important;
       font-size: 0.8em;
-      font-weight: 600;
+      font-weight: var(--font-semibold);
       margin-top: 16px;
 
       &:hover {
@@ -81,7 +81,7 @@ body.sj-page-lesson {
           line-height: 18px;
 
           &.lesson-active {
-            background-color: #eaeaea;
+            background-color: var(--gray-lightest);
             color: var(--ink) !important;
           }
 
@@ -99,13 +99,13 @@ body.sj-page-lesson {
       h3.section-title {
         margin: 10px 0 0;
         padding: var(--space-0) 14px;
-        border: 0;
+        border: var(--no-border);
 
         /* Section title */
         color: var(--ink) !important;
         font-family: Roobert;
         font-size: var(--font-size-sm);
-        font-weight: 700;
+        font-weight: var(--font-bold);
         text-transform: uppercase;
         background-color: transparent;
         letter-spacing: 0.05em;
@@ -130,7 +130,7 @@ body.sj-page-lesson {
     gap: 10px;
     width: 100%;
     padding: var(--space-1) var(--space-0) var(--space-0) var(--space-1);
-    background: rgb(255, 255, 255, 0.8);
+    background: var(--white-80);
     float: none;
     backdrop-filter: blur(1.5px);
     overflow-x: hidden;
@@ -143,10 +143,10 @@ body.sj-page-lesson {
       padding: var(--space-3);
       border: none;
       border-radius: var(--radius-md);
-      background: rgb(255, 255, 255);
+      background: var(--white);
 
       @media screen and (width <= 767px) {
-        border: 1px solid gainsboro;
+        border: var(--border-width-thin) solid gainsboro;
       }
     }
 
@@ -166,7 +166,7 @@ body.sj-page-lesson {
 
       .lesson-btn {
         padding: 0.6rem 0.9rem;
-        border: 1px solid rgb(0, 0, 0, 0.12);
+        border: var(--border-width-thin) solid var(--black-12);
         border-radius: var(--radius-full);
         color: var(--ink) !important;
         font:
@@ -180,14 +180,14 @@ body.sj-page-lesson {
         transition:
           transform 0.06s ease,
           box-shadow 0.2s ease;
-        background-image: linear-gradient(355deg, #f7cef9, #dbdffd 72%);
+        background-image: linear-gradient(355deg, var(--gradient-pink), var(--gradient-blue) 72%);
         text-decoration: none;
-        box-shadow: 0 2px 8px rgb(0, 0, 0, 0.06);
+        box-shadow: 0 2px 8px var(--black-6);
       }
 
       .lesson-btn:hover {
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgb(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px var(--black-10);
       }
 
       .lesson-btn:active {

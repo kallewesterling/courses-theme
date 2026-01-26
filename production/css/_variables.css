@@ -63,6 +63,7 @@
      Border widths and styles
      ==================================== */
 
+  --no-border: 0;
   --border-width-thin: 1px;
   --border-width-medium: 2px;
   --border-width-thick: 4px; /* UNUSED */

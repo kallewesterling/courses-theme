@@ -22,7 +22,7 @@ h5,
 h6 {
   color: var(--ink);
   font-family: Gellix;
-  font-weight: 700;
+  font-weight: var(--font-bold);
 }
 
 .no-select {
@@ -42,11 +42,11 @@ label {
 
 .button {
   padding: 10px var(--space-5);
-  border: 0;
+  border: var(--no-border);
   color: var(--white) !important;
   font-family: Gellix;
   font-size: var(--font-size-sm); /* 14px */
-  font-weight: 700;
+  font-weight: var(--font-bold);
   background-color: var(--blurple);
 
   &:hover {

@@ -4,7 +4,7 @@ sjwc-lesson-content-item {
   .quiz {
     .start-quiz {
       padding: var(--space-12);
-      border: var(--border-width-thin) solid #dcdcdc;
+      border: var(--border-width-thin) solid var(--gray-light);
       border-radius: var(--radius-md);
 
       .row {
@@ -18,7 +18,7 @@ sjwc-lesson-content-item {
         h1 {
           margin: 0 0 12px;
           font-size: var(--font-size-2xl); /* 24px */
-          font-weight: 600;
+          font-weight: var(--font-semibold);
           line-height: 31.2px;
           letter-spacing: -0.02em;
         }
@@ -43,7 +43,7 @@ sjwc-lesson-content-item {
 
       .question {
         padding: var(--space-12);
-        border: var(--border-width-thin) solid #dcdcdc;
+        border: var(--border-width-thin) solid var(--gray-light);
         border-radius: var(--radius-md);
 
         .row .large-8.large-centered.columns.question-text {
@@ -52,7 +52,7 @@ sjwc-lesson-content-item {
 
           p {
             font-size: var(--font-size-2xl); /* 24px */
-            font-weight: 600;
+            font-weight: var(--font-semibold);
             line-height: 31.2px;
             letter-spacing: -0.02em;
           }
@@ -67,7 +67,7 @@ sjwc-lesson-content-item {
           #id_answer div label {
             color: var(--answer-option);
             font-size: var(--font-size-base);
-            font-weight: 400;
+            font-weight: var(--font-normal);
             line-height: 24px;
 
             input {

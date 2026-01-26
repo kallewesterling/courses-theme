@@ -2,7 +2,7 @@
 
 .module-heading {
   /* TODO: Legacy? */
-  font-weight: 500;
+  font-weight: var(--font-medium);
   line-height: 20px;
   letter-spacing: -0.01em;
 }
@@ -52,8 +52,8 @@ body.sj-page-catalog {
         }
 
         .badge-box {
-          background: rgb(117, 69, 251) !important;
-          color: #ffffff !important;
+          background: var(--label-color) !important;
+          color: var(--white) !important;
           box-shadow: unset !important;
         }
 
@@ -84,7 +84,7 @@ body.sj-page-catalog {
 
         .course-overview {
           font-size: 80%;
-          font-weight: 300;
+          font-weight: var(--font-light);
 
           .course-overview__content {
             padding: var(--space-2) var(--space-2) var(--space-0);

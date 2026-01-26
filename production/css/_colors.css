@@ -27,8 +27,9 @@
 
   /* Neutral */
   --ink: rgb(13, 22, 28);
-  --ink-90: rgb(13, 22, 28, 0.9); /* UNUSED */
-  --ink-70: rgb(13, 22, 28, 0.7); /* UNUSED */
+  --ink-90: rgb(13, 22, 28, 0.9);
+  --ink-70: rgb(13, 22, 28, 0.7);
+  --ink-60: rgb(13, 22, 28, 0.6);
   --ink-40: rgb(13, 22, 28, 0.4); /* UNUSED */
   --ink-10: rgb(13, 22, 28, 0.1); /* UNUSED */
   --ink-5: rgb(13, 22, 28, 0.05); /* UNUSED */
@@ -129,6 +130,81 @@
   --status-warning-border: rgb(245, 158, 11, 0.5); /* UNUSED */
 
   /* ====================================
+     ADDITIONAL UI COLORS
+     Extended color palette for UI elements
+     ==================================== */
+
+  /* Gray Scale */
+  --gray-light: #dcdcdc;           /* Light gray - borders, subtle dividers */
+  --gray-lighter: #d6d6d6;         /* Lighter gray - backgrounds */
+  --gray-lightest: #eaeaea;        /* Lightest gray - very subtle backgrounds */
+  --gray-offwhite: #f9f9f9;        /* Off-white gray - backgrounds */
+  --gray-code: #eeeeee;            /* Code background gray */
+  --gray-mid: #8c8aa4;             /* Mid gray - muted text, icons */
+  --gray-mid-purple: #9c9ab0;      /* Mid grayish purple - muted text */
+  --gray-dark: #666666;            /* Dark gray - secondary text */
+  --gray-darker: #555555;          /* Darker gray - text */
+  --gray-darkest: #4d4d4d;         /* Darkest gray - strong text */
+  --gray-border: #cccccc;          /* Border gray - form borders */
+  --gray-blue: #e7eaee;            /* Gray-blue - header background */
+
+  /* Purple Shades */
+  --purple-link: #3f17ac;          /* Purple for links and accents */
+  --purple-light: #c9c5f2;         /* Light purple - backgrounds */
+  --purple-lighter: #e8e6fb;       /* Very light purple - hover states */
+  --purple-lavender: #f0eeff;      /* Lavender - subtle backgrounds */
+  --purple-muted: #d3c6e8;         /* Muted purple - disabled states */
+  --purple-pastel-61: rgb(254, 246, 255, 0.61);  /* Pastel purple with 61% opacity */
+
+  /* Teal/Cyan Shades */
+  --teal-subtle: rgb(22, 148, 209, 0.08);  /* Very subtle teal - backgrounds */
+
+  /* Pink/Rose Shades */
+  --pink-dark: #9d174d;            /* Dark rose pink - accents */
+  --pink-light: #fce7f3;           /* Light pink - backgrounds */
+
+  /* Yellow/Gold Shades */
+  --gold-warning: #c0a200;         /* Gold/yellow - warning text */
+
+  /* Gradient Colors (Additional) */
+  --gradient-pink: #f7cef9;        /* Pink gradient start */
+  --gradient-blue: #dbdffd;        /* Blue gradient end */
+
+  /* Black with Opacity (for shadows, overlays) */
+  --black-4: rgb(0, 0, 0, 0.04);   /* 4% black - very subtle shadow */
+  --black-5: rgb(0, 0, 0, 0.05);   /* 5% black - very subtle shadow */
+  --black-6: rgb(0, 0, 0, 0.06);   /* 6% black - subtle shadow */
+  --black-8: rgb(0, 0, 0, 0.08);   /* 8% black - subtle shadow */
+  --black-9: rgb(0, 0, 0, 0.09);   /* 9% black - light shadow */
+  --black-10: rgb(0, 0, 0, 0.1);   /* 10% black - card shadow */
+  --black-12: rgb(0, 0, 0, 0.12);  /* 12% black - border shadow */
+  --black-17: rgb(0, 0, 0, 0.17);  /* 17% black - medium shadow */
+  --black-25: rgb(0, 0, 0, 0.25);  /* 25% black - strong shadow */
+  --black-40: rgb(0, 0, 0, 0.4);   /* 40% black - overlay */
+
+  /* White with Opacity */
+  --white-80: rgb(255, 255, 255, 0.8);  /* 80% white - glass effect */
+
+  /* Brand Color Opacity Variants */
+  --blurple-5: rgb(52, 68, 244, 0.05);  /* 5% primary blue - very subtle */
+  --blurple-9: rgb(52, 67, 244, 0.09);  /* 9% primary blue - subtle */
+  --blurple-12: rgb(60, 68, 247, 0.12); /* 12% brand blue - light */
+  --blurple-40: rgb(52, 67, 244, 0.4);  /* 40% primary blue - emphasis */
+
+  /* Ring/Focus Variants */
+  --ring-strong: rgb(201, 209, 255, 0.65);  /* Strong focus ring */
+
+  /* Highlight Colors */
+  --highlight-yellow: rgb(255, 230, 150, 0.35);  /* Yellow highlight */
+  --highlight-yellow-border: rgb(255, 180, 0, 0.9);  /* Yellow border */
+  --highlight-yellow-bg: rgb(255, 230, 150, 0.8);  /* Yellow background */
+  --highlight-red: rgb(255, 92, 92, 0.25);  /* Red highlight/error */
+
+  /* Brand Ink Opacity */
+  --brand-ink-2: rgb(20, 0, 61, 0.02);  /* 2% brand ink - very subtle */
+  --brand-ink-6: rgb(20, 0, 61, 0.06);  /* 6% brand ink - subtle shadow */
+
+  /* ====================================
      LAYOUT & SPACING
      Spacing scale and layout dimensions
      ==================================== */
@@ -149,6 +225,16 @@
   --space-16: 64px;
   --space-20: 80px;
   --space-24: 96px;
+
+  /* Font Weight Scale */
+  --font-thin: 100;
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+  --font-black: 900;
 
   /* Border Radius Scale */
   --radius-none: 0;

@@ -2,8 +2,8 @@
 
 sjwc-lesson-content-item {
   code:not(pre code) {
-    color: #3f17ac !important;
-    background-color: #0000000d !important;
+    color: var(--purple-link) !important;
+    background-color: var(--black-5) !important;
   }
 
   pre {
@@ -13,7 +13,7 @@ sjwc-lesson-content-item {
 
     /* Code block wrapper */
     padding: var(--space-0);
-    border: var(--border-width-thin) solid #dcdcdc !important;
+    border: var(--border-width-thin) solid var(--gray-light) !important;
     border-radius: var(--radius-md) !important;
 
     /* quickfix pre */
@@ -33,7 +33,7 @@ sjwc-lesson-content-item {
       .language-label {
         color: var(--form-bg);
         font-size: var(--font-size-xs);
-        font-weight: 600;
+        font-weight: var(--font-semibold);
       }
     }
 
@@ -66,8 +66,8 @@ sjwc-lesson-content-item {
       /* whole-line highlight */
       & .is-highlighted-line {
         display: block;
-        background: rgb(255, 230, 150, 0.35);
-        border-left: 3px solid rgb(255, 180, 0, 0.9);
+        background: var(--highlight-yellow);
+        border-left: 3px solid var(--highlight-yellow-border);
         padding-left: 12px;
         margin-left: -12px;
       }
@@ -76,7 +76,7 @@ sjwc-lesson-content-item {
       mark.is-highlighted-content {
         padding: var(--space-0) 2px;
         border-radius: var(--radius-xs);
-        background: rgb(255, 230, 150, 0.8);
+        background: var(--highlight-yellow-bg);
       }
     }
 

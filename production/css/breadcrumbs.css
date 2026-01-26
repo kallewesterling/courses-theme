@@ -12,13 +12,13 @@ body.sj-page-catalog {
       padding: 10px 14px; /* Custom for lessons */ /* Custom for breadcrumbs */
       border: var(--border-width-thin) solid var(--border);
       border-radius: var(--radius-card);
-      background: #ffffff;
-      box-shadow: 0 8px 24px rgb(20, 0, 61, 0.06);
+      background: var(--white);
+      box-shadow: 0 8px 24px var(--brand-ink-6);
       max-width: 100%;
 
       &[aria-current="page"] {
         color: var(--ink-dim);
-        font-weight: 800;
+        font-weight: var(--font-extrabold);
       }
 
       ol {
@@ -39,7 +39,7 @@ body.sj-page-catalog {
           a {
             color: var(--ink);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: var(--font-semibold);
 
             &:hover {
               color: var(--ink) !important;
@@ -54,7 +54,7 @@ body.sj-page-catalog {
             flex: 0 0 14px;
             width: 14px;
             height: 14px;
-            background: #8c8aa4;
+            background: var(--gray-mid);
             mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 5l7 7-7 7'/></svg>")
               center/contain no-repeat;
             mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 5l7 7-7 7'/></svg>")

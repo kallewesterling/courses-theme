@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Gellix";
-  font-weight: 100;
+  font-weight: var(--font-thin);
   font-style: normal;
   font-display: swap;
   src: url("https://chainguard-dev.github.io/courses-theme/fonts/Gellix-Thin.woff2")
@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: "Gellix";
-  font-weight: 300;
+  font-weight: var(--font-light);
   font-style: normal;
   font-display: swap;
   src: url("https://chainguard-dev.github.io/courses-theme/fonts/Gellix-Light.woff2")
@@ -18,7 +18,7 @@
 
 @font-face {
   font-family: "Gellix";
-  font-weight: 400;
+  font-weight: var(--font-normal);
   font-style: normal;
   font-display: swap;
   src: url("https://chainguard-dev.github.io/courses-theme/fonts/Gellix-Regular.woff2")
@@ -27,7 +27,7 @@
 
 @font-face {
   font-family: "Gellix";
-  font-weight: 500;
+  font-weight: var(--font-medium);
   font-style: normal;
   font-display: swap;
   src: url("https://chainguard-dev.github.io/courses-theme/fonts/Gellix-Medium.woff2")
@@ -36,7 +36,7 @@
 
 @font-face {
   font-family: "Gellix";
-  font-weight: 600;
+  font-weight: var(--font-semibold);
   font-style: normal;
   font-display: swap;
   src: url("https://chainguard-dev.github.io/courses-theme/fonts/Gellix-SemiBold.woff2")
@@ -45,7 +45,7 @@
 
 @font-face {
   font-family: "Gellix";
-  font-weight: 700;
+  font-weight: var(--font-bold);
   font-style: normal;
   font-display: swap;
   src: url("https://chainguard-dev.github.io/courses-theme/fonts/Gellix-Bold.woff2")
@@ -54,7 +54,7 @@
 
 @font-face {
   font-family: "Gellix";
-  font-weight: 800;
+  font-weight: var(--font-extrabold);
   font-style: normal;
   font-display: swap;
   src: url("https://chainguard-dev.github.io/courses-theme/fonts/Gellix-ExtraBold.woff2")
@@ -63,7 +63,7 @@
 
 @font-face {
   font-family: "Gellix";
-  font-weight: 900;
+  font-weight: var(--font-black);
   font-style: normal;
   font-display: swap;
   src: url("https://chainguard-dev.github.io/courses-theme/fonts/Gellix-Black.woff2")
@@ -72,7 +72,7 @@
 
 @font-face {
   font-family: "Roobert";
-  font-weight: 300;
+  font-weight: var(--font-light);
   font-style: normal;
   font-display: swap;
   src: url("https://chainguard-dev.github.io/courses-theme/fonts/RoobertSemiMono-Light.woff2")
@@ -81,7 +81,7 @@
 
 @font-face {
   font-family: "Roobert";
-  font-weight: 400;
+  font-weight: var(--font-normal);
   font-style: normal;
   font-display: swap;
   src: url("https://chainguard-dev.github.io/courses-theme/fonts/RoobertSemiMono-Regular.woff2")
@@ -90,7 +90,7 @@
 
 @font-face {
   font-family: "Roobert";
-  font-weight: 500;
+  font-weight: var(--font-medium);
   font-style: normal;
   font-display: swap;
   src: url("https://chainguard-dev.github.io/courses-theme/fonts/RoobertSemiMono-Medium.woff2")
@@ -99,7 +99,7 @@
 
 @font-face {
   font-family: "Roobert";
-  font-weight: 600;
+  font-weight: var(--font-semibold);
   font-style: normal;
   font-display: swap;
   src: url("https://chainguard-dev.github.io/courses-theme/fonts/RoobertSemiMono-SemiBold.woff2")
@@ -108,7 +108,7 @@
 
 @font-face {
   font-family: "Roobert";
-  font-weight: 700;
+  font-weight: var(--font-bold);
   font-style: normal;
   font-display: swap;
   src: url("https://chainguard-dev.github.io/courses-theme/fonts/RoobertSemiMono-Bold.woff2")
@@ -117,7 +117,7 @@
 
 @font-face {
   font-family: "Roobert";
-  font-weight: 800;
+  font-weight: var(--font-extrabold);
   font-style: normal;
   font-display: swap;
   src: url("https://chainguard-dev.github.io/courses-theme/fonts/RoobertSemiMono-Heavy.woff2")
