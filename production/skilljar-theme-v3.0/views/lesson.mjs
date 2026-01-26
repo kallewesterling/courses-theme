@@ -189,6 +189,10 @@ function parseLineSpec(spec) {
   return out;
 }
 
+function cleanCommandPrompt(el) {
+  return el.textContent.replace(/\r?\n\$ /g, " && ").replace(/^\$ /g, "");
+}
+
 /**
  * This function processes a code block element by adding syntax highlighting and a copy button.
  * @param {HTMLElement} pre - The <pre> block element to process.
@@ -211,7 +215,7 @@ async function processPre(pre) {
     highlightContent: pre.dataset?.highlightContent,
 
     get copyText() {
-      return this.textContent.replace(/\r?\n\$ /g, " && ").replace(/^\$ /g, "");
+      return cleanCommandPrompt(codeEl);
     },
   };
 
