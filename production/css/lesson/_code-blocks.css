@@ -1,0 +1,105 @@
+/* Code block styling for lessons */
+
+sjwc-lesson-content-item {
+  code:not(pre code) {
+    color: #3f17ac !important;
+    background-color: #0000000d !important;
+  }
+
+  pre {
+    position: relative;
+    width: 100%;
+    margin: 1em 0 !important;
+
+    /* Code block wrapper */
+    padding: var(--space-0);
+    border: var(--border-width-thin) solid #dcdcdc !important;
+    border-radius: var(--radius-md) !important;
+
+    /* quickfix pre */
+    background: none !important;
+    overflow: visible;
+
+    .code-block-controls {
+      display: flex;
+      justify-content: end;
+      border-bottom: 1px solid gainsboro;
+      padding: var(--space-3) var(--space-6);
+
+      &:has(span.language-label) {
+        justify-content: space-between;
+      }
+
+      .language-label {
+        color: var(--form-bg);
+        font-size: var(--font-size-xs);
+        font-weight: 600;
+      }
+    }
+
+    .tooltip-copied {
+      position: absolute;
+      top: -24px;
+      right: 10px;
+      padding: 5px 10px; /* Custom for tooltips */
+      border-radius: var(--radius-sm);
+      color: var(--primary-white-hex);
+      transition: opacity 0.2s ease-in;
+      text-shadow: none;
+      background-color: var(--answer-option);
+    }
+
+    code {
+      /* Inline code */
+      display: inline-block;
+      width: 100%;
+      padding: var(--space-6) !important;
+      overflow-x: scroll;
+      background-color: transparent;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* whole-line highlight */
+      & .is-highlighted-line {
+        display: block;
+        background: rgb(255, 230, 150, 0.35);
+        border-left: 3px solid rgb(255, 180, 0, 0.9);
+        padding-left: 12px;
+        margin-left: -12px;
+      }
+
+      /* content highlight */
+      mark.is-highlighted-content {
+        padding: var(--space-0) 2px;
+        border-radius: var(--radius-xs);
+        background: rgb(255, 230, 150, 0.8);
+      }
+    }
+
+    .code-copy-container {
+      /* Code copy button container */
+      display: flex;
+      justify-content: end;
+      border-bottom: 1px solid gainsboro;
+      padding: var(--space-3) var(--space-6);
+    }
+
+    .tooltip {
+      /* Tooltip */
+      position: absolute;
+      top: -24px;
+      right: 10px;
+      padding: 5px 10px; /* Custom for tooltips */
+      border-radius: var(--radius-sm);
+      color: var(--primary-white-hex);
+      transition: opacity 0.2s ease-in;
+      text-shadow: none;
+      background-color: var(--answer-option);
+      opacity: 0;
+    }
+  }
+}

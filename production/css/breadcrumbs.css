@@ -9,9 +9,9 @@ body.sj-page-catalog {
 
     .breadcrumb {
       width: max-content;
-      padding: 10px 14px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
+      padding: 10px 14px; /* Custom for lessons */ /* Custom for breadcrumbs */
+      border: var(--border-width-thin) solid var(--border);
+      border-radius: var(--radius-card);
       background: #ffffff;
       box-shadow: 0 8px 24px rgb(20, 0, 61, 0.06);
       max-width: 100%;
@@ -26,7 +26,7 @@ body.sj-page-catalog {
         flex-wrap: wrap;
         gap: 8px;
         margin: 0;
-        padding: 0;
+        padding: var(--space-0);
         list-style: none;
 
         li {

@@ -8,30 +8,30 @@
 
   /* Brand (Non-text) */
   --blurple: rgb(98, 38, 251);
-  --light-blurple: rgb(241, 236, 254);
-  --aqua: rgb(43, 186, 253);
-  --light-aqua: rgb(223, 244, 254);
-  --fuschia: rgb(253, 43, 242);
-  --light-fuschia: rgb(253, 223, 252);
-  --lime: rgb(68, 253, 43);
-  --light-lime: rgb(233, 252, 234);
-  --solar: rgb(253, 57, 100);
-  --light-solar: rgb(252, 224, 224);
+  --light-blurple: rgb(241, 236, 254); /* UNUSED */
+  --aqua: rgb(43, 186, 253); /* UNUSED */
+  --light-aqua: rgb(223, 244, 254); /* UNUSED */
+  --fuschia: rgb(253, 43, 242); /* UNUSED */
+  --light-fuschia: rgb(253, 223, 252); /* UNUSED */
+  --lime: rgb(68, 253, 43); /* UNUSED */
+  --light-lime: rgb(233, 252, 234); /* UNUSED */
+  --solar: rgb(253, 57, 100); /* UNUSED */
+  --light-solar: rgb(252, 224, 224); /* UNUSED */
 
   /* Brand (Text) */
-  --blurple-text: rgb(0, 160, 235);
-  --aqua-text: rgb(4, 189, 19);
-  --fuschia-text: rgb(246, 4, 64);
-  --lime-text: rgb(98, 38, 251);
-  --solar-text: rgb(235, 2, 224);
+  --blurple-text: rgb(0, 160, 235); /* UNUSED */
+  --aqua-text: rgb(4, 189, 19); /* UNUSED */
+  --fuschia-text: rgb(246, 4, 64); /* UNUSED */
+  --lime-text: rgb(98, 38, 251); /* UNUSED */
+  --solar-text: rgb(235, 2, 224); /* UNUSED */
 
   /* Neutral */
   --ink: rgb(13, 22, 28);
-  --ink-90: rgb(13, 22, 28, 0.9);
-  --ink-70: rgb(13, 22, 28, 0.7);
-  --ink-40: rgb(13, 22, 28, 0.4);
-  --ink-10: rgb(13, 22, 28, 0.1);
-  --ink-5: rgb(13, 22, 28, 0.05);
+  --ink-90: rgb(13, 22, 28, 0.9); /* UNUSED */
+  --ink-70: rgb(13, 22, 28, 0.7); /* UNUSED */
+  --ink-40: rgb(13, 22, 28, 0.4); /* UNUSED */
+  --ink-10: rgb(13, 22, 28, 0.1); /* UNUSED */
+  --ink-5: rgb(13, 22, 28, 0.05); /* UNUSED */
   --ink-dim: #0f1020b3; /* 70% opacity */
   --white: rgb(255, 255, 255);
   --neutral-border: rgb(218, 218, 218);
@@ -43,27 +43,27 @@
      ==================================== */
 
   /* Primary Colors (RGB values without rgb() for use with opacity) */
-  --primary-blue: 52 67 244;
+  --primary-blue: 52 67 244; /* UNUSED */
   --primary-blue-hex: #3443f4;
-  --primary-cyan: 122 240 254;
-  --primary-cyan-hex: #7af0fe;
-  --primary-dark-purple: 20 0 61;
-  --primary-dark-purple-hex: #14003d;
-  --primary-white: 255 255 255;
+  --primary-cyan: 122 240 254; /* UNUSED */
+  --primary-cyan-hex: #7af0fe; /* UNUSED */
+  --primary-dark-purple: 20 0 61; /* UNUSED */
+  --primary-dark-purple-hex: #14003d; /* UNUSED */
+  --primary-white: 255 255 255; /* UNUSED */
   --primary-white-hex: #ffffff;
 
   /* Secondary Colors */
-  --secondary-pink: 254 199 254;
-  --secondary-violet: 117 69 251;
-  --secondary-gray: 208 207 238;
-  --secondary-light-gray: 250 250 253;
-  --secondary-light-gray-hex: #fafafd;
+  --secondary-pink: 254 199 254; /* UNUSED */
+  --secondary-violet: 117 69 251; /* UNUSED */
+  --secondary-gray: 208 207 238; /* UNUSED */
+  --secondary-light-gray: 250 250 253; /* UNUSED */
+  --secondary-light-gray-hex: #fafafd; /* UNUSED */
 
   /* Tertiary Colors */
-  --tertiary-light-green: 129 254 160;
-  --tertiary-dark-green: 1 161 120;
-  --tertiary-orange: 254 91 60;
-  --tertiary-yellow: 246 235 97;
+  --tertiary-light-green: 129 254 160; /* UNUSED */
+  --tertiary-dark-green: 1 161 120; /* UNUSED */
+  --tertiary-orange: 254 91 60; /* UNUSED */
+  --tertiary-yellow: 246 235 97; /* UNUSED */
 
   /* ====================================
      UI COLORS
@@ -76,70 +76,97 @@
   --icon-border: #804aac24; /* Faint purple border */
   --answer-option: #1c1c1c;
   --border: #d8d5e0;
-  --border-color: #3443f4;
+  --border-color: #3443f4; /* UNUSED */
   --border-color-v2: #e5e3ea;
-  --list-bullet-color: #3443f4;
-  --error-color: #fe5b3c;
+  --list-bullet-color: #3443f4; /* UNUSED */
+  --error-color: #fe5b3c; /* UNUSED */
   --ring: #c9d1ff; /* Focus halo */
 
   /* Form Colors */
   --form-bg: #d0cfee;
-  --label-color: #7545fb;
+  --label-color: #7545fb; /* UNUSED */
   --placeholder-color: #14003d;
 
   /* Button/CTA Colors */
-  --cta-bg: transparent;
-  --cta-border: 2px solid #3443f4;
-  --cta-text-color: #14003d;
+  --cta-bg: transparent; /* UNUSED */
+  --cta-border: 2px solid #3443f4; /* UNUSED */
+  --cta-text-color: #14003d; /* UNUSED */
 
   /* Background & Text */
-  --primary-bg: 255, 255, 255;
-  --primary-text: 28, 28, 28;
+  --primary-bg: 255, 255, 255; /* UNUSED */
+  --primary-text: 28, 28, 28; /* UNUSED */
   --detail-medium-contrast: rgb(234, 234, 234);
-  --text-high-contrast-rgb-value: 49, 49, 49;
-  --detail-medium-contrast-rgb-value: 234, 234, 234;
-  --slider-btn-disabled: rgb(52, 67, 244, 0.4);
+  --text-high-contrast-rgb-value: 49, 49, 49; /* UNUSED */
+  --detail-medium-contrast-rgb-value: 234, 234, 234; /* UNUSED */
+  --slider-btn-disabled: rgb(52, 67, 244, 0.4); /* UNUSED */
 
   /* Gradients */
-  --gradient-start: #fde1fe;
+  --gradient-start: #fde1fe; /* UNUSED */
   --gradient-end: #f5f6fe;
-  --gradient-angle: 315deg;
-  --grad: linear-gradient(90deg, #57c6ff 0%, #5b6bff 50%, #813df3 100%);
+  --gradient-angle: 315deg; /* UNUSED */
+  --grad: linear-gradient(90deg, #57c6ff 0%, #5b6bff 50%, #813df3 100%); /* UNUSED */
 
   /* Navigation */
-  --nav-link-hover: 208 207 238;
+  --nav-link-hover: 208 207 238; /* UNUSED */
 
   /* Brand Aliases (for compatibility) */
   --brand: #3c44f7; /* Primary blue */
   --brand-ink: #14003d; /* Deep ink */
 
   /* ====================================
+     STATUS COLORS
+     Colors for success, warning, error states
+     ==================================== */
+
+  --status-success: #04bd13;      /* lime/green */
+  --status-success-bg: rgb(4, 189, 19, 0.24); /* UNUSED */
+  --status-success-border: rgb(4, 189, 19, 0.65); /* UNUSED */
+  --status-in-progress: #fd3964;  /* solar/red */
+  --status-in-progress-bg: rgb(253, 57, 100, 0.13); /* UNUSED */
+  --status-in-progress-border: rgb(253, 57, 100, 0.5); /* UNUSED */
+  --status-warning: #f59e0b; /* UNUSED */
+  --status-warning-bg: rgb(245, 158, 11, 0.1); /* UNUSED */
+  --status-warning-border: rgb(245, 158, 11, 0.5); /* UNUSED */
+
+  /* ====================================
      LAYOUT & SPACING
      Spacing scale and layout dimensions
      ==================================== */
 
-  /* Spacing Scale */
-  --space-1: 8px;
-  --space-2: 12px;
-  --space-3: 16px;
-  --space-4: 20px;
-  --space-5: 24px;
-  --space-6: 32px;
-  --space-7: 40px;
-  --space-8: 48px;
-  --space-section-ends: 80px;
+  /* Spacing/Padding Scale */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-15: 60px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
 
-  /* Border Radius */
-  --radius-1: 14px;
-  --radius-2: 16px;
-  --radius-md: 14px;
-  --radius-xl: 20px;
-  --primary-border-radius: 20px;
+  /* Border Radius Scale */
+  --radius-none: 0;
+  --radius-xs: 3px;     /* Tiny elements, highlights */
+  --radius-sm: 4px;     /* Small elements, tooltips (0.25rem) */
+  --radius-base: 5px;   /* Base elements, callouts */
+  --radius-md: 8px;     /* Default, most common */
+  --radius-lg: 9px;     /* Inline code blocks */
+  --radius-card: 14px;  /* Cards, breadcrumbs */
+  --radius-xl: 16px;    /* Large cards, course boxes */
+  --radius-2xl: 20px;   /* Extra large cards, modals, auth */
+  --radius-circle: 50%; /* Circular elements */
+  --radius-full: 999px; /* Pills, circular buttons */
 
   /* Max Widths */
   --w-max: 1168px; /* Match "max-w-section-v2" feel */
-  --max-width: 1444px;
-  --max-width-v2: 1402px;
+  --max-width: 1444px; /* UNUSED */
+  --max-width-v2: 1402px; /* UNUSED */
 
   /* Shadows */
   --shadow: 0 12px 30px rgb(20, 0, 61, 0.08);

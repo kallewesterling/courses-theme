@@ -12,7 +12,7 @@ body.sj-page-curriculum {
   */
 
   .top-row-grey {
-    padding: 96px 0;
+    padding: var(--space-24) var(--space-0);
     border: 0;
     background-color: #fef6ff9c !important;
     max-width: 100%;
@@ -47,7 +47,7 @@ body.sj-page-curriculum {
       .columns.dp-summary-wrapper {
         position: static;
         width: 100%;
-        padding: 0 !important;
+        padding: var(--space-0) !important;
         border: 0;
         text-align: left !important;
         max-width: 100% !important;
@@ -60,7 +60,7 @@ body.sj-page-curriculum {
           display: block !important;
           color: #7545fb;
           font-family: Roobert;
-          font-size: 16px;
+          font-size: var(--font-size-base); /* 16px */
           font-weight: 700;
           line-height: 23.7px;
         }
@@ -71,7 +71,7 @@ body.sj-page-curriculum {
           margin: 0 0 24px;
           color: var(--ink) !important;
           font-family: "Roobert";
-          font-size: 16px;
+          font-size: var(--font-size-base); /* 16px */
           font-weight: 400;
           line-height: 24px;
           max-width: 80%;
@@ -80,7 +80,7 @@ body.sj-page-curriculum {
         h1.break-word {
           margin: 0 0 12px;
           color: var(--ink) !important;
-          font-size: 36px;
+          font-size: var(--font-size-4xl); /* 36px */
           font-weight: 600;
           line-height: 43.2px;
           letter-spacing: -0.02em;
@@ -93,7 +93,7 @@ body.sj-page-curriculum {
   #cp-content {
     display: grid;
     margin: 96px auto 46px;
-    padding: 0;
+    padding: var(--space-0);
 
     /* Page content */
     max-width: min(1188px, 90%);
@@ -114,13 +114,13 @@ body.sj-page-curriculum {
       display: grid !important;
 
       /* Desktop body content */
-      padding: 0;
+      padding: var(--space-0);
       max-width: 796px;
 
       .columns {
         display: block;
         width: 100%;
-        padding: 0;
+        padding: var(--space-0);
 
         /* Two columns: content + curriculum */
         float: none;
@@ -141,19 +141,19 @@ body.sj-page-curriculum {
 
   #dp-details-bundle {
     margin: 0 auto;
-    padding: 96px 0 !important;
+    padding: var(--space-24) var(--space-0) !important;
     max-width: 1188px;
-    border-bottom: 1px solid var(--neutral-border);
+    border-bottom: var(--border-style-default);
 
     @media screen and (width <= 1320px) {
       padding: 56px 8vw !important;
     }
 
     .row {
-      padding: 0;
+      padding: var(--space-0);
 
       .columns {
-        padding: 0;
+        padding: var(--space-0);
       }
     }
   }

@@ -1,0 +1,126 @@
+/* Main layout structure for lesson pages */
+
+body.sj-page-lesson {
+  /* Hide elements that we don't want shown */
+  #lp-footer {
+    /* Lesson footer */
+    display: none !important;
+  }
+
+  /* Handle open/close menu buttons */
+  &.cbp-spmenu-open {
+    .fa-bars {
+      display: none !important;
+    }
+
+    .fa-times {
+      display: inline-block !important;
+    }
+
+    #lpLeftNavBackground {
+      background: white;
+      opacity: 0.8;
+    }
+
+    #lp-wrapper {
+      margin-left: var(--sidebar-width);
+
+      #lesson-main {
+        padding-left: 42px !important;
+        padding-right: 42px !important;
+
+        #lesson-main-inner {
+          width: 100% !important;
+        }
+      }
+    }
+  }
+
+  &:not(.cbp-spmenu-open) {
+    .fa-bars {
+      display: inline-block !important;
+    }
+
+    .fa-times {
+      display: none !important;
+    }
+  }
+
+  #lp-wrapper {
+    /* Lesson content wrapper */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    border: 0;
+    background-color: transparent;
+    overflow-y: auto;
+    padding-bottom: 0;
+
+    @media screen and (width <= 991px) {
+      /* Responsive styles for lesson content wrapper */
+      overflow-y: scroll;
+    }
+
+    #lp-content {
+      /* Lesson content */
+      height: auto;
+
+      #lesson-body {
+        margin: 0;
+
+        /* Lesson body */
+        color: var(--ink) !important;
+        max-width: none;
+
+        .lesson-top {
+          display: block !important;
+          border: 0;
+          padding-top: var(--space-15);
+
+          h2 {
+            color: var(--ink);
+            font-size: var(--font-size-4xl); /* 36px */
+            font-weight: 600;
+            line-height: 43.2px;
+          }
+        }
+
+        #lesson-main {
+          /* Lesson main content */
+          position: relative;
+          z-index: 0;
+          padding-top: 0;
+
+          #lesson-main-inner {
+            /* Lesson main content inner */
+            max-width: 912px;
+            width: 80%;
+            margin: 0 auto;
+
+            @media screen and (width <= 767px) {
+              width: 90%;
+            }
+          }
+        }
+
+        #details-pane {
+          padding-top: 7em;
+
+          #details-pane-inner {
+            border-top: var(--border-width-thin) solid lightgray;
+            margin-top: 4em;
+            padding-top: 1em;
+            font-size: 0.7em;
+          }
+
+          h4 {
+            /* hide "Summary" header */
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

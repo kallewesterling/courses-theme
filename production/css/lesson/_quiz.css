@@ -1,0 +1,102 @@
+/* Quiz and assessment styling */
+
+sjwc-lesson-content-item {
+  .quiz {
+    .start-quiz {
+      padding: var(--space-12);
+      border: var(--border-width-thin) solid #dcdcdc;
+      border-radius: var(--radius-md);
+
+      .row {
+        display: none;
+      }
+
+      .text-center {
+        margin: 0;
+        text-align: left !important;
+
+        h1 {
+          margin: 0 0 12px;
+          font-size: var(--font-size-2xl); /* 24px */
+          font-weight: 600;
+          line-height: 31.2px;
+          letter-spacing: -0.02em;
+        }
+
+        .fa.fa-check-square-o.quiz-icon {
+          display: none;
+        }
+
+        .length {
+          margin: 0 0 48px;
+        }
+      }
+
+      .create_quiz.text-center {
+        margin: 0;
+        text-align: right !important;
+
+        .button.sj-text-quiz-start {
+          margin: 0;
+        }
+      }
+
+      .question {
+        padding: var(--space-12);
+        border: var(--border-width-thin) solid #dcdcdc;
+        border-radius: var(--radius-md);
+
+        .row .large-8.large-centered.columns.question-text {
+          width: 100%;
+          text-align: left !important;
+
+          p {
+            font-size: var(--font-size-2xl); /* 24px */
+            font-weight: 600;
+            line-height: 31.2px;
+            letter-spacing: -0.02em;
+          }
+        }
+
+        .row .form-answers.large-8.large-centered.columns {
+          width: 100%;
+          margin: 0;
+          text-align: left !important;
+
+          #id_chosen_answers div label,
+          #id_answer div label {
+            color: var(--answer-option);
+            font-size: var(--font-size-base);
+            font-weight: 400;
+            line-height: 24px;
+
+            input {
+              top: 3px;
+            }
+          }
+        }
+
+        .text-center.next-prev {
+          margin: 32px 0 0;
+          text-align: right !important;
+
+          #answer_question {
+            margin: 0;
+            font-size: var(--font-size-sm);
+
+            .button.small.sj-text-quiz-next,
+            .button.small.sj-text-quiz-submit {
+              margin: 0;
+              font-size: var(--font-size-sm);
+            }
+          }
+
+          #prev_question .button.small.secondary.sj-text-quiz-previous {
+            margin: 0;
+            font-size: var(--font-size-sm);
+          }
+        }
+      }
+    }
+  }
+}

@@ -41,11 +41,11 @@ label {
 }
 
 .button {
-  padding: 10px 20px;
+  padding: 10px var(--space-5);
   border: 0;
   color: var(--white) !important;
   font-family: Gellix;
-  font-size: 14px;
+  font-size: var(--font-size-sm); /* 14px */
   font-weight: 700;
   background-color: var(--blurple);
 

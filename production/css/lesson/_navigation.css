@@ -1,0 +1,198 @@
+/* Left navigation menu for lesson pages */
+
+body.sj-page-lesson {
+  #lp-left-nav {
+    position: absolute;
+    top: 0;
+    width: var(--sidebar-width); /* formerly 320px; */
+    height: 100vh;
+
+    /* Left hand nav menu */
+    background-color: #f9f9f9;
+    overflow-y: scroll;
+
+    /* To counteract padding in footer, add margin-bottom: -63px; here if we add footer back! */
+
+    @media screen and (width <= 767px) {
+      /* Responsive styles for left nav menu */
+      position: fixed;
+      height: 100%;
+      background-color: white;
+      padding-bottom: var(--space-10);
+
+      &.cbp-spmenu-open {
+        box-shadow:
+          rgb(0, 0, 0, 0.25) 0 54px 55px,
+          rgb(0, 0, 0, 0.12) 0 -12px 30px,
+          rgb(0, 0, 0, 0.12) 0 4px 6px,
+          rgb(0, 0, 0, 0.17) 0 12px 13px,
+          rgb(0, 0, 0, 0.09) 0 -3px 5px;
+      }
+    }
+
+    a#returnToOverview {
+      display: flex;
+      justify-content: center;
+      padding: var(--space-1);
+      border-radius: var(--radius-full);
+      background: var(--blurple);
+      color: white !important;
+      font-size: 0.8em;
+      font-weight: 600;
+      margin-top: 16px;
+
+      &:hover {
+        text-decoration: none !important;
+      }
+
+      > span.left-nav-return-text {
+        text-decoration: none !important;
+      }
+    }
+
+    h1.course-title {
+      color: var(--ink) !important;
+      font-family: Gellix;
+    }
+
+    .lessons-wrapper {
+      /* Menu content: lessons */
+      padding-bottom: var(--space-8);
+
+      a.lesson {
+        /* Lesson link */
+
+        @media screen and (width <= 991px) {
+          color: var(--answer-option);
+        }
+
+        &:hover {
+          background-color: transparent;
+        }
+
+        .lesson-row {
+          /* Individual lesson */
+          display: flex;
+          flex-direction: row-reverse;
+          justify-content: space-between;
+          margin: 0;
+          padding: 10px 14px; /* Custom for lessons */
+          font-size: 13px;
+          line-height: 18px;
+
+          &.lesson-active {
+            background-color: #eaeaea;
+            color: var(--ink) !important;
+          }
+
+          &:hover {
+            background-color: var(--white);
+          }
+
+          .type-icon {
+            /* Lesson icons */
+            display: none !important;
+          }
+        }
+      }
+
+      h3.section-title {
+        margin: 10px 0 0;
+        padding: var(--space-0) 14px;
+        border: 0;
+
+        /* Section title */
+        color: var(--ink) !important;
+        font-family: Roobert;
+        font-size: var(--font-size-sm);
+        font-weight: 700;
+        text-transform: uppercase;
+        background-color: transparent;
+        letter-spacing: 0.05em;
+
+        @media screen and (width <= 991px) {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  a#left-nav-button {
+    /* Left nav button (open/close menu) */
+    position: sticky;
+    top: 12px;
+    top: 0;
+    left: 12px;
+    left: 0;
+    z-index: var(--z-normal);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: var(--space-1) var(--space-0) var(--space-0) var(--space-1);
+    background: rgb(255, 255, 255, 0.8);
+    float: none;
+    backdrop-filter: blur(1.5px);
+    overflow-x: hidden;
+    border-bottom: var(--border-style-default);
+    min-height: 55px;
+
+    .fa-bars,
+    .fa-times {
+      /* Open and close icons */
+      padding: var(--space-3);
+      border: none;
+      border-radius: var(--radius-md);
+      background: rgb(255, 255, 255);
+
+      @media screen and (width <= 767px) {
+        border: 1px solid gainsboro;
+      }
+    }
+
+    .fa-search {
+      /* Search icon */
+      display: none !important;
+    }
+
+    .lesson-floater {
+      position: sticky;
+      z-index: var(--z-dropdown);
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-left: auto;
+      margin-right: 12px;
+
+      .lesson-btn {
+        padding: 0.6rem 0.9rem;
+        border: 1px solid rgb(0, 0, 0, 0.12);
+        border-radius: var(--radius-full);
+        color: var(--ink) !important;
+        font:
+          500 14px/1 system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Arial,
+          sans-serif;
+        font-family: Gellix;
+        transition:
+          transform 0.06s ease,
+          box-shadow 0.2s ease;
+        background-image: linear-gradient(355deg, #f7cef9, #dbdffd 72%);
+        text-decoration: none;
+        box-shadow: 0 2px 8px rgb(0, 0, 0, 0.06);
+      }
+
+      .lesson-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgb(0, 0, 0, 0.1);
+      }
+
+      .lesson-btn:active {
+        transform: translateY(0);
+      }
+    }
+  }
+}
