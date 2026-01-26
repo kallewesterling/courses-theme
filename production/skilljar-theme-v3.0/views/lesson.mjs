@@ -22,7 +22,10 @@ function buildResourceBox() {
     logger.info(
       "No resource boxes found to add resources to. Adding automatically!",
     );
-    Q("#lesson-body").append(
+    
+    const lastBodyItem = Array.from(A("sjwc-lesson-content-item")).pop();
+
+    lastBodyItem.append(
       el("div", { className: "resource-box" }, [
         el("h3", { textContent: "📘 More Resources" }),
         el("div", { className: "resource-wrapper" }),
