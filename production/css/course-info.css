@@ -67,7 +67,7 @@ body.sj-page-curriculum {
       margin: 0 var(--spacing-px-20) 1.25em;
 
       &.completed {
-        background-color: #008000 !important;
+        background-color: var(--color-success-dark) !important;
         cursor: default !important;
       }
     }
@@ -75,7 +75,7 @@ body.sj-page-curriculum {
     p.completed-subtext {
       padding: var(--spacing-0) var(--spacing-px-20) var(--spacing-px-20) var(--spacing-0) !important;
       margin: 0 var(--spacing-px-24) !important;
-      color: #008000 !important;
+      color: var(--color-success-dark) !important;
       font-family: Roobert, monospace !important;
       font-size: var(--font-size-xs) !important;
     }
@@ -199,7 +199,7 @@ body.sj-page-curriculum {
       border-bottom: 2px solid var(--blurple);
 
       .fa-check-circle {
-        color: #008000 !important;
+        color: var(--color-success-dark) !important;
       }
 
       &:hover {
@@ -239,12 +239,12 @@ body.sj-page-detail-course {
       margin: 20px 0;
 
       label h5 {
-        color: #d3d3d3 !important;
+        color: var(--color-border-default) !important;
       }
 
       .inline-collapsible-section__label__icons__expand,
       .inline-collapsible-section__label__icons__collapse {
-        background-color: #d3d3d3 !important;
+        background-color: var(--color-border-default) !important;
       }
     }
   }

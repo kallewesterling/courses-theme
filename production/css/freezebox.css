@@ -44,7 +44,7 @@ body.sj-page-catalog {
         display: flex;
         flex-direction: column;
         width: calc(33% - 24px) !important; /* 3 should fit */
-        border: 1px solid #000000;
+        border: 1px solid var(--color-border-black);
         border-radius: 16px;
 
         @media screen and (max-width: 991px) {
@@ -52,8 +52,8 @@ body.sj-page-catalog {
         }
 
         .badge-box {
-          background-color: rgb(117 69 251) !important;
-          color: #ffffff !important;
+          background-color: var(--color-brand-blurple) !important;
+          color: var(--color-surface-base) !important;
           box-shadow: unset !important;
         }
 

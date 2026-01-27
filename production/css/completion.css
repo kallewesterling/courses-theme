@@ -3,7 +3,7 @@
   inset: 0;
   z-index: 9999;
   display: none;
-  background-color: rgb(0 0 0 / 0.4);
+  background-color: var(--overlay-dark);
   opacity: 0;
   transition: opacity 0.2s ease-in;
 
@@ -25,11 +25,11 @@
       max-width: 520px;
       padding: var(--spacing-px-24) 28px;
       border-radius: var(--spacing-px-16);
-      background-color: #ffffff;
+      background-color: var(--color-surface-base);
       font-family: inherit;
       text-align: center;
       pointer-events: auto; /* enable focus */
-      box-shadow: 0 10px 30px rgb(0 0 0 / 0.25);
+      box-shadow: 0 10px 30px var(--shadow-strong);
 
       h1 {
         margin: var(--spacing-0) 0 0.5rem 0;

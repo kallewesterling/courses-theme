@@ -66,8 +66,8 @@ body.sj-page-signup {
         padding: 0 var(--spacing-px-18);
         border: 1px solid transparent;
         border-radius: 999px;
-        background-color: #f0eeff;
-        color: #8c8aa4;
+        background-color: var(--color-surface-accent);
+        color: var(--color-text-muted-purple);
         font-weight: var(--font-weight-extrabold);
       }
     }
@@ -96,15 +96,15 @@ body.sj-page-signup {
           z-index: 20;
           width: 100%;
           height: 1px;
-          background-color: #cccccc;
+          background-color: var(--color-surface-disabled);
         }
 
         span {
           position: relative;
           z-index: 20;
           padding: 0 var(--spacing-px-12);
-          background-color: #ffffff;
-          color: #666666;
+          background-color: var(--color-surface-base);
+          color: var(--color-text-gray-medium);
           font-size: var(--font-size-sm);
         }
       }
@@ -117,7 +117,7 @@ body.sj-page-signup {
         gap: var(--gap-3);
         width: 100%;
         height: 52px;
-        border: 1px solid #c6c6c6;
+        border: 1px solid var(--color-border-strong);
         background: var(--primary-white-hex);
         color: var(--ink);
         font-family: Gellix, sans-serif;
@@ -192,13 +192,13 @@ body.sj-page-signup {
       padding: var(--spacing-px-20) var(--spacing-px-15);
       border: 2px solid var(--blurple); /* rgba(60, 68, 247, 0.55) */
       border-radius: var(--radius-md);
-      background-color: #ffffff;
+      background-color: var(--color-surface-base);
       color: var(--ink);
       font-size: var(--font-size-sm);
       line-height: var(--line-height-24);
       transition: border-color 0.15s ease, box-shadow 0.15s ease,
         background-color 0.15s ease;
-      box-shadow: 0 1px 0 rgb(20 0 61 / 0.02);
+      box-shadow: 0 1px 0 var(--shadow-purple-subtle);
 
       &:hover {
         border-color: var(--brand);
@@ -212,11 +212,11 @@ body.sj-page-signup {
 
       &:invalid:focus {
         /* HTML5 invalid focus */
-        box-shadow: 0 0 0 4px rgb(255 92 92 / 0.25);
+        box-shadow: 0 0 0 4px var(--color-error-light);
       }
 
       &::placeholder {
-        color: #9c9ab0;
+        color: var(--color-text-light-purple);
       }
 
       @media screen and (max-width: 991px) {
@@ -300,9 +300,9 @@ body.sj-page-login #tabs #login-tab-left,
 body.sj-page-signup #tabs #login-tab-right {
   /* Active tab ("Login" on login page, "Sign up" on signup page) */
   border-color: var(--brand);
-  background-color: rgb(60 68 247 / 0.12);
+  background-color: var(--color-brand-primary-medium);
   color: var(--brand-ink);
-  box-shadow: 0 0 0 3px rgb(201 209 255 / 0.65) inset;
+  box-shadow: 0 0 0 3px var(--color-focus-ring-inset) inset;
 
   a,
   span {
@@ -313,11 +313,11 @@ body.sj-page-signup #tabs #login-tab-right {
 body.sj-page-login #tabs #login-tab-right,
 body.sj-page-signup #tabs #login-tab-left {
   /* Inactive tab ("Sign up" on login page, "Login" on signup page) */
-  background-color: rgb(52 67 244 / 0.09);
+  background-color: var(--color-brand-primary-subtle);
 
   a,
   span {
-    color: rgb(52 67 244 / 0.4) !important;
+    color: var(--color-brand-primary-disabled) !important;
   }
 
   a.sj-text-sign-in,
@@ -327,7 +327,7 @@ body.sj-page-signup #tabs #login-tab-left {
     height: 44px;
     padding: 0 var(--spacing-px-18);
     border-radius: 999px;
-    color: rgb(52 67 244 / 0.4) !important;
+    color: var(--color-brand-primary-disabled) !important;
     font-weight: var(--font-weight-extrabold);
     text-decoration: none;
   }

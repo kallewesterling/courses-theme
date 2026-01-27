@@ -6,7 +6,7 @@
   height: 60px;
   overflow: visible;
   background-color: var(--white) !important;
-  border-bottom: 1px solid #d5d4d4 !important;
+  border-bottom: 1px solid var(--color-border-default) !important;
 
   #to-chainguard {
     display: flex;
@@ -86,7 +86,7 @@
         height: 100% !important;
 
         svg {
-          fill: #ffffff !important;
+          fill: var(--color-surface-base) !important;
           height: 40%;
         }
       }
@@ -121,7 +121,7 @@
         height: 32px;
         border-radius: 50%;
         background: var(--blurple);
-        color: #ffffff;
+        color: var(--color-surface-base);
         font-size: var(--font-size-base);
         font-weight: var(--font-weight-bold);
         line-height: var(--line-height-none);
@@ -138,7 +138,6 @@
       border: 0;
       border: 2px solid var(--ring);
       border-radius: 0;
-      background-color: #ffffff;
       background-color: var(--blurple);
       color: var(--primary-white-hex) !important;
       font-family: Gellix, sans-serif;
@@ -152,10 +151,10 @@
     left: -999999px;
     z-index: 200;
     max-width: 200px;
-    border: 1px solid #5a697c;
-    background-color: #ffffff;
+    border: 1px solid var(--color-text-steel);
+    background-color: var(--color-surface-base);
     list-style: none;
-    box-shadow: 0 6px 12px 1px rgb(0 0 0 / 0.1);
+    box-shadow: 0 6px 12px 1px var(--shadow-default);
 
     li {
       display: block;
@@ -166,13 +165,13 @@
       cursor: pointer;
 
       &:hover {
-        background-color: #e7eaee;
+        background-color: var(--color-hover-bg);
       }
 
       a {
         display: block;
         padding: 0.625em 0.625em;
-        color: #4d4d4d;
+        color: var(--color-text-gray);
       }
     }
   }

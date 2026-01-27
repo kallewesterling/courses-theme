@@ -41,15 +41,15 @@ body.sj-page-catalog {
             rgb(253 225 254),
             rgb(245 246 254) 72%
           ) !important;
-          color: #c0a200 !important;
+          color: var(--color-warning) !important;
           font-size: var(--font-size-base) !important;
           font-weight: var(--font-weight-extrabold) !important;
           text-transform: uppercase !important;
-          box-shadow: 0 0 7px #0000003d !important;
+          box-shadow: 0 0 7px var(--color-border-black)3d !important;
         }
 
         .sj-course-ribbon-complete {
-          color: #ffffff !important;
+          color: var(--color-surface-base) !important;
         }
       }
     }
@@ -123,13 +123,13 @@ body.sj-page-catalog {
 
     &.internal {
       padding: 60px;
-      border: 1px solid #d6d6d6;
+      border: 1px solid var(--color-border-default);
       border-radius: 20px;
-      background-color: #ffffff00;
+      background-color: var(--color-surface-base)00;
       backdrop-filter: blur(25px);
 
       .card {
-        background-color: #1694d114;
+        background-color: var(--color-accent-aqua-subtle);
       }
     }
 
@@ -168,7 +168,7 @@ body.sj-page-catalog {
             display: inline-block;
             width: 11px;
             height: 18px;
-            background-color: rgb(98 38 251);
+            background-color: var(--color-brand-blurple);
             transform: translate(7px, 3px);
             animation: cursor-blink 1.5s steps(1) infinite;
           }
@@ -226,17 +226,17 @@ body.sj-page-catalog {
           transition: transform 0.2s ease, box-shadow 0.2s ease;
 
           &:hover {
-            box-shadow: 0 10px 20px rgb(0 0 0 / 0.12),
-              0 3px 6px rgb(0 0 0 / 0.04);
+            box-shadow: 0 10px 20px var(--shadow-medium),
+              0 3px 6px var(--shadow-subtle);
             transform: translateY(-2px);
           }
 
           & .completed {
-            border: 1px solid #04bd13; /* lime */
+            border: 1px solid var(--color-success); /* lime */
           }
 
           & .in-progress {
-            border: 1px solid #fd3964; /* solar */
+            border: 1px solid var(--color-accent-solar); /* solar */
           }
 
           .inner {
@@ -254,9 +254,9 @@ body.sj-page-catalog {
               gap: var(--gap-1-5);
               padding: var(--spacing-px-4) var(--spacing-px-12);
               margin: var(--spacing-px-12) var(--spacing-px-12) var(--spacing-0) var(--spacing-0);
-              border: 1px solid #c9c5f2;
+              border: 1px solid var(--color-purple-light);
               border-radius: 999px;
-              background-color: #e8e6fb;
+              background-color: var(--color-purple-soft);
               color: var(--placeholder-color);
               font-size: var(--font-size-xs);
               font-weight: var(--font-weight-semibold);
@@ -281,15 +281,15 @@ body.sj-page-catalog {
               }
 
               &.completed {
-                border: 1px solid #04bd13a6;
-                background-color: #04bd133d;
-                color: #04bd13; /* lime */
+                border: 1px solid var(--color-success)a6;
+                background-color: var(--color-success)3d;
+                color: var(--color-success); /* lime */
               }
 
               &.in-progress {
-                border: 1px solid #fd396480;
-                background-color: #fd396421;
-                color: #fd3964; /* solar */
+                border: 1px solid var(--color-accent-solar)80;
+                background-color: var(--color-accent-solar)21;
+                color: var(--color-accent-solar); /* solar */
               }
 
               &.completed::before {
@@ -318,7 +318,7 @@ body.sj-page-catalog {
           h5 {
             padding: var(--spacing-0);
             margin: 0 0 var(--spacing-px-8);
-            color: #d3c6e8;
+            color: var(--color-purple-medium);
             font-family: inherit;
             font-size: var(--font-size-xs-plus);
             font-weight: var(--font-weight-bold);
@@ -373,7 +373,7 @@ body.sj-page-catalog {
       max-width: 1040px;
       margin-top: 96px;
       margin-bottom: var(--spacing-px-48);
-      color: #ffffff;
+      color: var(--color-surface-base);
       font-size: var(--font-size-6xl);
       line-height: var(--line-height-88);
       letter-spacing: -3.84px;
@@ -381,7 +381,7 @@ body.sj-page-catalog {
 
     > svg {
       display: none;
-      fill: #ffffff;
+      fill: var(--color-surface-base);
     }
 
     div {
@@ -389,7 +389,7 @@ body.sj-page-catalog {
       justify-content: space-between;
 
       svg {
-        fill: #ffffff;
+        fill: var(--color-surface-base);
       }
 
       a.button {
@@ -401,7 +401,7 @@ body.sj-page-catalog {
         min-width: 180px;
         padding: var(--spacing-px-24);
         border-width: 1px;
-        background-color: #ffffff;
+        background-color: var(--color-surface-base);
         color: var(--ink) !important;
         font-size: var(--font-size-xl);
         white-space: nowrap;

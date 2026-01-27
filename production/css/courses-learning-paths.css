@@ -15,7 +15,7 @@ body.sj-page-curriculum {
     max-width: 100%;
     padding: 96px 0;
     border: 0;
-    background-color: #fef6ff9c !important;
+    background-color: var(--color-card-bg-light)9c !important;
 
     @media screen and (max-width: 1320px) {
       padding: 56px 8vw;
@@ -59,7 +59,7 @@ body.sj-page-curriculum {
 
         .sj-floater-text {
           display: block !important;
-          color: #7545fb;
+          color: var(--color-brand-violet);
           font-family: Roobert, monospace;
           font-size: var(--font-size-base);
           font-weight: var(--font-weight-bold);
