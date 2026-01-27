@@ -408,11 +408,7 @@ body.sj-page-catalog {
         white-space: nowrap;
         align-self: flex-start;
         flex-shrink: 0;
-        transition:
-          background-color 0.2s ease-in,
-          border-color 0.2s ease-in,
-          box-shadow 0.15s ease,
-          transform 0.05s ease;
+        transition: var(--transition-button-full);
 
         &:hover {
           border-color: var(--blurple);

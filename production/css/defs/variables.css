@@ -167,4 +167,61 @@
   --border-width-medium: 2px;        /* Medium border (emphasis) */
   --border-width-thick: 3px;         /* Thick border */
   --border-width-heavy: 4px;         /* Heavy border */
+
+  /* Transition Timing - Standardized durations and easing */
+  --transition-duration-instant: 0.05s;   /* Near-instant feedback (transforms) */
+  --transition-duration-fast: 0.15s;      /* Fast transitions (shadows, filters) */
+  --transition-duration-normal: 0.2s;     /* Normal transitions (colors, backgrounds) */
+  --transition-duration-slow: 0.3s;       /* Slower transitions (layout changes) */
+  --transition-easing-in: ease-in;        /* Acceleration curve */
+  --transition-easing-out: ease-out;      /* Deceleration curve */
+  --transition-easing-in-out: ease-in-out; /* Smooth both ends */
+  --transition-easing-default: ease;      /* Browser default */
+
+  /* Common Transition Patterns - Reusable combinations */
+  /* Button transitions - Full interactive button with all states */
+  --transition-button-full:
+    background-color 0.2s ease-in,
+    color 0.2s ease-in,
+    border-color 0.2s ease-in,
+    box-shadow 0.15s ease,
+    transform 0.05s ease;
+
+  /* Button transitions - Simple (no border-color) */
+  --transition-button-simple:
+    background-color 0.2s ease-in,
+    color 0.2s ease-in,
+    box-shadow 0.15s ease,
+    transform 0.05s ease;
+
+  /* Button transitions - Minimal (for inherit-style buttons) */
+  --transition-button-minimal:
+    background-color 0.2s ease-in,
+    box-shadow 0.15s ease,
+    transform 0.05s ease;
+
+  /* Input field transitions */
+  --transition-input:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background-color 0.15s ease;
+
+  /* Card hover transitions */
+  --transition-card-hover:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  /* Icon button transitions (filter-based hover) */
+  --transition-icon-button:
+    transform 0.05s ease,
+    filter 0.15s ease,
+    box-shadow 0.15s ease;
+
+  /* Resource button transitions (all properties) */
+  --transition-resource-button:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out,
+    transform 0.05s ease;
 }

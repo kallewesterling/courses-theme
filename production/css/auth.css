@@ -128,10 +128,7 @@ body.sj-page-signup {
         color: var(--ink);
         font-family: Gellix, sans-serif;
         text-align: center;
-        transition:
-          transform 0.05s ease,
-          filter 0.15s ease,
-          box-shadow 0.15s ease;
+        transition: var(--transition-icon-button);
 
         @media only screen and (max-width: 991px) {
           width: 100%;
@@ -204,10 +201,7 @@ body.sj-page-signup {
       color: var(--ink);
       font-size: var(--font-size-sm);
       line-height: var(--line-height-24);
-      transition:
-        border-color 0.15s ease,
-        box-shadow 0.15s ease,
-        background-color 0.15s ease;
+      transition: var(--transition-input);
       box-shadow: var(--shadow-input-outline);
 
       @media screen and (max-width: 991px) {
@@ -260,12 +254,7 @@ body.sj-page-signup {
       color: var(--blurple);
       font-weight: var(--font-weight-extrabold);
       letter-spacing: var(--letter-spacing-wide);
-      transition:
-        background-color 0.2s ease-in,
-        color 0.2s ease-in,
-        border-color 0.2s ease-in,
-        box-shadow 0.15s ease,
-        transform 0.05s ease;
+      transition: var(--transition-button-full);
 
       @media screen and (max-width: 991px) {
         margin-bottom: var(--spacing-px-12);

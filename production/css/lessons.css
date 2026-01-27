@@ -84,10 +84,7 @@ body.sj-page-lesson {
       color: var(--color-surface-base) !important; /* Skilljar Override: White text on button */
       font-size: var(--font-size-sm);
       font-weight: var(--font-weight-semibold);
-      transition:
-        background-color 0.2s ease-in,
-        box-shadow 0.15s ease,
-        transform 0.05s ease;
+      transition: var(--transition-button-minimal);
 
       &:hover {
         text-decoration: none !important; /* Skilljar Override: No underline on hover */
@@ -579,7 +576,7 @@ body.sj-page-lesson {
                   display: grid;
                   gap: var(--gap-3);
                   grid-template-columns: repeat(2, 1fr); /* two equal columns */
-                  padding: 0.75rem;
+                  padding: var(--spacing-3);
 
                   .resource-card {
                     /* Resource card styles */
@@ -634,7 +631,7 @@ body.sj-page-lesson {
 
                       a.button {
                         display: inline-block;
-                        padding: 0.375rem 0.75rem;
+                        padding: var(--spacing-px-6) var(--spacing-px-12);
                         margin: var(--spacing-0);
                         border: var(--border-width-thin) solid transparent;
                         border-color: var(--border-color-v2) !important;
@@ -645,14 +642,14 @@ body.sj-page-lesson {
                         font-weight: var(--font-weight-normal);
                         line-height: var(--line-height-24);
                         text-align: center;
-                        transition:
-                          color 0.15s ease-in-out,
-                          background-color 0.15s ease-in-out,
-                          border-color 0.15s ease-in-out,
-                          box-shadow 0.15s ease-in-out,
-                          transform 0.05s ease;
+                        transition: var(--transition-resource-button);
                         vertical-align: middle;
                         user-select: none;
+
+                        &:hover {
+                          border-color: var(--blurple);
+                          background-color: var(--color-surface-accent);
+                        }
 
                         &:focus-visible {
                           outline: none;
