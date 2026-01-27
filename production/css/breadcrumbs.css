@@ -1,4 +1,7 @@
-/* Breadcrumb styling */
+/* Breadcrumb styling
+ *
+ * NOTE: !important is used where needed to override Skilljar's platform CSS.
+ */
 
 body.sj-page-detail-course,
 body.sj-page-curriculum,

@@ -1,4 +1,8 @@
-/* This is where we put legacy styles that we want to freeze and not update, but potentially remove */
+/* This is where we put legacy styles that we want to freeze and not update, but potentially remove
+ *
+ * NOTE: !important is used to override Skilljar's platform CSS.
+ * This is necessary and expected for custom theming.
+ */
 
 .module-heading {
   /* TODO: Legacy? */

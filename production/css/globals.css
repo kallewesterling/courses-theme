@@ -1,3 +1,9 @@
+/* Global styles and typography
+ *
+ * NOTE: !important is used where needed to override Skilljar's platform CSS.
+ * This is necessary and expected for custom theming.
+ */
+
 * {
   font-family: Roobert, Lato, monospace;
 }

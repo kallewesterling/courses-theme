@@ -1,7 +1,10 @@
-/* 
+/*
 Styles for pages that show course information, including:
 - body.sj-page-detail-course = course description page (not logged in + logged in - but not signed up)
 - body.sj-page-curriculum = course description page (logged in + signed up)
+
+NOTE: !important is used extensively throughout this file to override
+Skilljar's platform CSS. This is necessary and expected for custom theming.
 */
 
 body.sj-page-detail-course,

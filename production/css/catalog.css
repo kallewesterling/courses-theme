@@ -1,3 +1,9 @@
+/* Catalog pages styling
+ *
+ * NOTE: !important is used extensively throughout this file to override
+ * Skilljar's platform CSS. This is necessary and expected for custom theming.
+ */
+
 body.sj-page-catalog {
   /* All catalog pages */
 

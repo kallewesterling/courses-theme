@@ -1,3 +1,8 @@
+/* 404 error page styling
+ *
+ * NOTE: !important is used where needed to override Skilljar's platform CSS.
+ */
+
 .sj-page-error-404 {
   .row.padded-side-bottom {
     flex-grow: 1;

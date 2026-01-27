@@ -1,3 +1,9 @@
+/* Header navigation styling
+ *
+ * NOTE: !important is used to override Skilljar's platform CSS.
+ * This is necessary and expected for custom theming.
+ */
+
 .headers {
   position: fixed;
   left: 0;

@@ -1,3 +1,9 @@
+/* Footer styling
+ *
+ * NOTE: !important is used to override Skilljar's platform CSS.
+ * This is necessary and expected for custom theming.
+ */
+
 footer {
   border-top: 1px solid var(--color-border-accent);
   margin: 63px 0 0;

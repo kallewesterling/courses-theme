@@ -1,4 +1,8 @@
-/* Styles that apply to both course and learning path pages */
+/* Styles that apply to both course and learning path pages
+ *
+ * NOTE: !important is used extensively throughout this file to override
+ * Skilljar's platform CSS. This is necessary and expected for custom theming.
+ */
 
 body.sj-page-detail-path,
 body.sj-page-series,

@@ -1,3 +1,9 @@
+/* Authentication pages (login and signup)
+ *
+ * NOTE: !important is used to override Skilljar's platform CSS.
+ * This is necessary and expected for custom theming.
+ */
+
 body.sj-page-login,
 body.sj-page-signup {
   /* Login and Signup pages shared styles */

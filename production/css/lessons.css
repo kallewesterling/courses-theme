@@ -1,20 +1,26 @@
-/* Styles for the lesson pages */
+/* Styles for the lesson pages
+ *
+ * NOTE: !important is used extensively throughout this file to override
+ * Skilljar's platform CSS. This is necessary and expected for custom theming.
+ * The platform injects its own styles that must be overridden to achieve
+ * the desired design.
+ */
 
 body.sj-page-lesson {
   /* Hide elements that we don't want shown */
   #lp-footer {
     /* Lesson footer */
-    display: none !important;
+    display: none !important; /* Skilljar Override: Hide platform footer */
   }
 
   /* Handle open/close menu buttons */
   &.cbp-spmenu-open {
     .fa-bars {
-      display: none !important;
+      display: none !important; /* Skilljar Override: Hide hamburger when menu is open */
     }
 
     .fa-times {
-      display: inline-block !important;
+      display: inline-block !important; /* Skilljar Override: Show close icon when menu is open */
     }
 
     #lpLeftNavBackground {
@@ -26,11 +32,11 @@ body.sj-page-lesson {
       margin-left: 292px;
 
       #lesson-main {
-        padding-right: var(--spacing-10) !important;
-        padding-left: var(--spacing-10) !important;
+        padding-right: var(--spacing-10) !important; /* Skilljar Override: Custom padding for open menu state */
+        padding-left: var(--spacing-10) !important; /* Skilljar Override: Custom padding for open menu state */
 
         #lesson-main-inner {
-          width: 100% !important;
+          width: 100% !important; /* Skilljar Override: Full width when menu is open */
         }
       }
     }
@@ -38,11 +44,11 @@ body.sj-page-lesson {
 
   &:not(.cbp-spmenu-open) {
     .fa-bars {
-      display: inline-block !important;
+      display: inline-block !important; /* Skilljar Override: Show hamburger when menu is closed */
     }
 
     .fa-times {
-      display: none !important;
+      display: none !important; /* Skilljar Override: Hide close icon when menu is closed */
     }
   }
 
@@ -75,21 +81,21 @@ body.sj-page-lesson {
       margin-top: var(--spacing-px-16);
       border-radius: var(--radius-pill);
       background: var(--blurple);
-      color: var(--color-surface-base) !important;
+      color: var(--color-surface-base) !important; /* Skilljar Override: White text on button */
       font-size: var(--font-size-sm);
       font-weight: var(--font-weight-semibold);
 
       &:hover {
-        text-decoration: none !important;
+        text-decoration: none !important; /* Skilljar Override: No underline on hover */
       }
 
       > span.left-nav-return-text {
-        text-decoration: none !important;
+        text-decoration: none !important; /* Skilljar Override: No underline on text span */
       }
     }
 
     h1.course-title {
-      color: var(--ink) !important;
+      color: var(--ink) !important; /* Skilljar Override: Custom title color */
       font-family: Gellix, sans-serif;
     }
 
