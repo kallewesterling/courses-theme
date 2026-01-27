@@ -26,8 +26,8 @@ body.sj-page-lesson {
       margin-left: 292px;
 
       #lesson-main {
-        padding-right: 42px !important;
-        padding-left: 42px !important;
+        padding-right: var(--spacing-10) !important;
+        padding-left: var(--spacing-10) !important;
 
         #lesson-main-inner {
           width: 100% !important;
@@ -64,12 +64,7 @@ body.sj-page-lesson {
       background-color: var(--color-surface-base);
 
       &.cbp-spmenu-open {
-        box-shadow:
-          var(--shadow-strong) 0 54px 55px,
-          var(--shadow-medium) 0 -12px 30px,
-          var(--shadow-medium) 0 4px 6px,
-          rgb(0 0 0 / 0.17) 0 12px 13px,
-          rgb(0 0 0 / 0.09) 0 -3px 5px;
+        box-shadow: var(--shadow-mobile-menu);
       }
     }
 
@@ -78,7 +73,7 @@ body.sj-page-lesson {
       justify-content: center;
       padding: var(--spacing-px-4);
       margin-top: var(--spacing-px-16);
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       background: var(--blurple);
       color: var(--color-surface-base) !important;
       font-size: var(--font-size-sm);
@@ -142,14 +137,14 @@ body.sj-page-lesson {
       h3.section-title {
         padding: var(--spacing-0) var(--spacing-px-14);
         margin: var(--spacing-px-10) 0 var(--spacing-0) 0;
-        border: 0;
+        border: var(--border-width-none);
         background-color: transparent;
         /* Section title */
         color: var(--ink) !important;
         font-family: Roobert, monospace;
         font-size: var(--font-size-sm);
         font-weight: var(--font-weight-bold);
-        letter-spacing: 0.05em;
+        letter-spacing: var(--letter-spacing-extra-wide);
         text-transform: uppercase;
 
         @media screen and (max-width: 991px) {
@@ -166,9 +161,9 @@ body.sj-page-lesson {
     flex-direction: column;
     justify-content: space-between;
     height: 100vh;
-    padding-bottom: 0;
+    padding-bottom: var(--spacing-0);
     overflow-y: auto;
-    border: 0;
+    border: var(--border-width-none);
     background-color: transparent;
 
     @media screen and (max-width: 991px) {
@@ -189,13 +184,13 @@ body.sj-page-lesson {
         .lesson-top {
           display: block !important;
           padding-top: 60px;
-          border: 0;
+          border: var(--border-width-none);
 
           h2 {
             color: var(--ink);
             font-size: var(--font-size-3xl);
             font-weight: var(--font-weight-semibold);
-            line-height: 43.2px;
+            line-height: var(--line-height-43-2);
           }
         }
 
@@ -224,11 +219,11 @@ body.sj-page-lesson {
             /* Open and close icons */
             padding: var(--spacing-px-12);
             border: none;
-            border-radius: 8px;
+            border-radius: var(--radius-lg);
             background-color: var(--color-surface-base);
 
             @media screen and (max-width: 767px) {
-              border: 1px solid var(--color-border-default);
+              border: var(--border-width-thin) solid var(--color-border-default);
             }
           }
 
@@ -248,8 +243,8 @@ body.sj-page-lesson {
 
             .lesson-btn {
               padding: 0.6rem 0.9rem;
-              border: 1px solid var(--shadow-medium);
-              border-radius: 999px;
+              border: var(--border-width-thin) solid var(--shadow-medium);
+              border-radius: var(--radius-pill);
               background-image: linear-gradient(355deg, var(--gradient-pink-alt), var(--gradient-blue-alt) 72%);
               color: var(--ink) !important;
               font:
@@ -264,12 +259,12 @@ body.sj-page-lesson {
               transition:
                 transform 0.06s ease,
                 box-shadow 0.2s ease;
-              box-shadow: 0 2px 8px var(--shadow-soft);
+              box-shadow: var(--shadow-elevation-sm);
             }
 
             .lesson-btn:hover {
               transform: translateY(-1px);
-              box-shadow: 0 4px 12px var(--shadow-default);
+              box-shadow: var(--shadow-elevation-md);
             }
 
             .lesson-btn:active {
@@ -280,12 +275,12 @@ body.sj-page-lesson {
 
         #internal-course-warning {
           padding: var(--spacing-px-18);
-          margin-bottom: 50px;
+          margin-bottom: var(--spacing-px-50);
           background-image: linear-gradient(315deg, var(--gradient-pink), var(--gradient-blue) 72%);
           font-family: Gellix, sans-serif;
           font-size: var(--font-size-sm);
-          line-height: 1.5em;
-          box-shadow: 0 0 6px 6px var(--color-border-black)1a !important;
+          line-height: var(--line-height-1-5em);
+          box-shadow: var(--shadow-glow) !important;
 
           a {
             font-family: Gellix, sans-serif;
@@ -302,7 +297,7 @@ body.sj-page-lesson {
             width: 80%;
             /* Lesson main content inner */
             max-width: 912px;
-            margin: 0 auto;
+            margin: var(--spacing-0) auto;
 
             @media screen and (max-width: 767px) {
               width: 90%;
@@ -321,13 +316,13 @@ body.sj-page-lesson {
               h4 {
                 font-size: var(--font-size-xl);
                 font-weight: var(--font-weight-semibold);
-                line-height: 32.1px;
-                letter-spacing: -0.02em;
+                line-height: var(--line-height-32-1);
+                letter-spacing: var(--letter-spacing-snug);
               }
 
               .content-table {
                 display: grid;
-                margin-bottom: 48px;
+                margin-bottom: var(--spacing-px-48);
                 font-size: var(--font-size-base);
 
                 &.one-col-table {
@@ -384,27 +379,27 @@ body.sj-page-lesson {
                 }
 
                 .table-header {
-                  padding: 12px;
+                  padding: var(--spacing-3);
                   font-weight: var(--font-weight-semibold);
                   line-height: var(--line-height-20);
-                  letter-spacing: -0.01em;
+                  letter-spacing: var(--letter-spacing-snug-alt);
                   border-bottom: 1px solid var(--color-border-default);
                 }
 
                 .table-row {
-                  padding: 24px 12px;
+                  padding: var(--spacing-6) var(--spacing-3);
                   font-weight: var(--font-weight-normal);
                   line-height: var(--line-height-24);
                   border-bottom: 1px solid var(--color-border-default);
 
                   ul:first-child {
-                    margin-top: 0;
+                    margin-top: var(--spacing-0);
                   }
                 }
 
                 p,
                 li {
-                  margin: 3px 0;
+                  margin: var(--spacing-1) 0;
                   font-size: inherit !important;
                   font-weight: inherit !important;
                 }
@@ -412,18 +407,14 @@ body.sj-page-lesson {
 
               blockquote.cg {
                 max-width: 80%;
-                padding: 24px 24px 24px 24px;
-                margin: 48px 48px 48px 48px;
-                margin-top: 48px !important;
-                margin-bottom: 48px !important;
+                padding: var(--spacing-6) var(--spacing-6) var(--spacing-6) var(--spacing-6);
+                margin: var(--spacing-px-48) var(--spacing-px-48) var(--spacing-px-48) var(--spacing-px-48);
+                margin-top: var(--spacing-px-48) !important;
+                margin-bottom: var(--spacing-px-48) !important;
                 border: none;
-                border-radius: 8px !important;
-                background-image: linear-gradient(
-                  315deg,
-                  rgb(253 225 254),
-                  rgb(245 246 254) 72%
-                ) !important;
-                line-height: 1.7;
+                border-radius: var(--radius-lg) !important;
+                background-image: var(--gradient-primary) !important;
+                line-height: var(--line-height-relaxed);
 
                 cite {
                   display: flex;
@@ -431,7 +422,7 @@ body.sj-page-lesson {
                   flex-wrap: wrap;
                   justify-content: flex-end;
                   gap: var(--gap-0-5) !important;
-                  margin-top: 9px;
+                  margin-top: var(--spacing-px-8);
                   color: var(--color-text-gray-dark);
                   font-size: var(--font-size-sm);
 
@@ -446,22 +437,18 @@ body.sj-page-lesson {
                 justify-content: center;
                 align-items: center;
                 max-width: fit-content;
-                padding: 49px;
-                margin: 48px auto;
-                border-radius: 8px;
+                padding: var(--spacing-px-49);
+                margin: var(--spacing-12) auto;
+                border-radius: var(--radius-lg);
                 background-color: var(--color-surface-base);
-                background-image: linear-gradient(
-                  315deg,
-                  rgb(253 225 254),
-                  rgb(245 246 254) 72%
-                );
+                background-image: var(--gradient-primary);
 
                 img {
                   display: block;
                   width: auto;
                   max-height: 300px;
                   border: var(--color-surface-base) 20px solid;
-                  border-radius: 4px;
+                  border-radius: var(--radius-default);
                 }
               }
 
@@ -474,14 +461,14 @@ body.sj-page-lesson {
                 position: relative;
                 width: 100%;
                 /* Code block wrapper */
-                padding: 0;
+                padding: var(--spacing-0);
                 overflow: visible;
 
                 .code-block-controls {
                   display: flex;
                   justify-content: end;
                   border-bottom: 1px solid var(--color-border-default);
-                  padding: 12px 24px;
+                  padding: var(--spacing-3) var(--spacing-6);
 
                   &:has(span.language-label) {
                     justify-content: space-between;
@@ -499,7 +486,7 @@ body.sj-page-lesson {
                   top: -24px;
                   right: 10px;
                   padding: 5px 10px;
-                  border-radius: 4px;
+                  border-radius: var(--radius-default);
                   background-color: var(--answer-option);
                   color: var(--primary-white-hex);
                   transition: opacity 0.2s ease-in;
@@ -510,23 +497,23 @@ body.sj-page-lesson {
                   /* Inline code */
                   display: inline-block;
                   width: 100%;
-                  padding: 24px !important;
+                  padding: var(--spacing-6) !important;
                   overflow-x: scroll;
                   background-color: transparent;
 
                   /* whole-line highlight */
                   & .is-highlighted-line {
                     display: block;
-                    padding-left: 12px;
-                    margin-left: -12px;
+                    padding-left: var(--spacing-3);
+                    margin-left: calc(-1 * var(--spacing-3));
                     background-color: var(--color-warning-subtle);
                     border-left: 3px solid var(--color-warning-border);
                   }
 
                   /* content highlight */
                   mark.is-highlighted-content {
-                    padding: 0 2px;
-                    border-radius: 3px;
+                    padding: var(--spacing-0) var(--spacing-px-2);
+                    border-radius: var(--radius-sm);
                     background-color: var(--color-warning-light);
                   }
                 }
@@ -536,7 +523,7 @@ body.sj-page-lesson {
                   display: flex;
                   justify-content: end;
                   border-bottom: 1px solid var(--color-border-default);
-                  padding: 12px 24px;
+                  padding: var(--spacing-3) var(--spacing-6);
                 }
 
                 .tooltip {
@@ -545,7 +532,7 @@ body.sj-page-lesson {
                   top: -24px;
                   right: 10px;
                   padding: 5px 10px;
-                  border-radius: 4px;
+                  border-radius: var(--radius-default);
                   background-color: var(--answer-option);
                   color: var(--primary-white-hex);
                   opacity: 0;
@@ -576,8 +563,8 @@ body.sj-page-lesson {
                     display: flex;
                     flex-direction: column;
                     min-width: 0;
-                    border: 1px solid rgb(0 0 0 / 0.125);
-                    border-radius: 0.25rem;
+                    border: var(--border-width-thin) solid var(--color-border-subtle);
+                    border-radius: var(--radius-rem-sm);
                     background-color: var(--color-surface-base);
                     overflow-wrap: break-word;
                     background-clip: border-box;
@@ -589,14 +576,14 @@ body.sj-page-lesson {
                       .badge-container {
                         display: flex;
                         flex-wrap: wrap;
-                        margin-bottom: 10px;
+                        margin-bottom: var(--spacing-px-10);
 
                         .badge {
                           width: fit-content;
-                          margin-right: 10px;
-                          margin-bottom: 10px;
-                          border: 0 solid;
-                          border-radius: 0.25rem;
+                          margin-right: var(--spacing-px-10);
+                          margin-bottom: var(--spacing-px-10);
+                          border: var(--border-width-none);
+                          border-radius: var(--radius-rem-sm);
                           background-color: var(--color-pink-light);
                           color: var(--color-text-pink-dark);
                           font-size: var(--font-size-xs);
@@ -604,17 +591,17 @@ body.sj-page-lesson {
                           line-height: calc(1 / 0.75);
                           padding-block: 0.125rem;
                           padding-inline: 0.625rem;
-                          margin-inline-end: 0.5rem;
+                          margin-inline-end: var(--spacing-2);
                           box-sizing: border-box;
                         }
                       }
 
                       h5.card-title {
-                        margin-top: 0;
-                        margin-bottom: 0;
+                        margin-top: var(--spacing-0);
+                        margin-bottom: var(--spacing-0);
                         font-size: var(--font-size-base);
                         font-weight: var(--font-weight-medium);
-                        line-height: 1.5rem;
+                        line-height: var(--line-height-1-5rem);
                       }
 
                       p.card-text {
@@ -624,10 +611,10 @@ body.sj-page-lesson {
                       a.button {
                         display: inline-block;
                         padding: 0.375rem 0.75rem;
-                        margin: 0;
-                        border: 1px solid transparent;
+                        margin: var(--spacing-0);
+                        border: var(--border-width-thin) solid transparent;
                         border-color: var(--border-color-v2) !important;
-                        border-radius: 0.25rem;
+                        border-radius: var(--radius-rem-sm);
                         background-color: var(--border-color-v2) !important;
                         background-color: transparent;
                         color: var(--blurple) !important;
@@ -655,8 +642,8 @@ body.sj-page-lesson {
           padding-top: 7em;
 
           #details-pane-inner {
-            padding-top: 1em;
-            margin-top: 4em;
+            padding-top: var(--spacing-4);
+            margin-top: var(--spacing-16);
             font-size: var(--font-size-xs);
             border-top: solid var(--color-border-default) 1px;
           }
@@ -683,18 +670,18 @@ sjwc-lesson-content-item {
 
   .callout {
     width: 100% !important;
-    padding: 20px !important;
-    margin: 45px 0 !important;
-    border: 1px solid var(--blurple) !important;
-    border-radius: 5px;
+    padding: var(--spacing-px-20) !important;
+    margin: var(--spacing-px-46) 0 !important;
+    border: var(--border-width-thin) solid var(--blurple) !important;
+    border-radius: var(--radius-md);
     background-color: var(--color-brand-primary-subtle) !important;
     font-size: 90% !important;
     opacity: 1 !important;
     box-shadow: unset !important;
 
     .callout-header {
-      padding: 10px 20px 10px 20px;
-      border-radius: 5px 5px 0 0;
+      padding: var(--spacing-px-10) var(--spacing-px-20) var(--spacing-px-10) var(--spacing-px-20);
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
       background-color: transparent !important;
       font-size: var(--font-size-lg) !important;
       font-weight: var(--font-weight-bold);
@@ -707,7 +694,7 @@ sjwc-lesson-content-item {
     }
 
     .callout-body {
-      padding: 10px 20px 10px 20px;
+      padding: var(--spacing-px-10) var(--spacing-px-20) var(--spacing-px-10) var(--spacing-px-20);
 
       ul {
         li::marker {
@@ -721,8 +708,8 @@ sjwc-lesson-content-item {
     }
 
     p {
-      padding: 0;
-      margin: 0;
+      padding: var(--spacing-0);
+      margin: var(--spacing-0);
     }
   }
 
@@ -759,7 +746,7 @@ sjwc-lesson-content-item {
   h2,
   h3,
   h4 {
-    margin-top: 1.4em !important;
+    margin-top: var(--spacing-6) !important;
   }
 
   img {
@@ -769,8 +756,8 @@ sjwc-lesson-content-item {
 
   code:not([class*="language-"]) {
     padding: 6px 5px 5px 5px;
-    margin: 0 3px 0 3px;
-    border-radius: 9px;
+    margin: var(--spacing-0) var(--spacing-px-3) var(--spacing-0) var(--spacing-px-3);
+    border-radius: var(--radius-xl);
     background-color: var(--color-surface-muted);
     color: var(--color-code-text);
     /* Inline code blocks */
@@ -778,33 +765,33 @@ sjwc-lesson-content-item {
   }
 
   pre {
-    margin: 1em 0 !important;
-    border: 1px solid var(--color-border-default) !important;
-    border-radius: 8px !important;
+    margin: var(--spacing-4) var(--spacing-0) !important;
+    border: var(--border-width-thin) solid var(--color-border-default) !important;
+    border-radius: var(--radius-lg) !important;
     /* quickfix pre */
     background: none !important;
   }
 
   .quiz {
     .start-quiz {
-      padding: 48px;
-      border: 1px solid var(--color-border-default);
-      border-radius: 8px;
+      padding: var(--spacing-px-48);
+      border: var(--border-width-thin) solid var(--color-border-default);
+      border-radius: var(--radius-lg);
 
       .row {
         display: none;
       }
 
       .text-center {
-        margin: 0;
+        margin: var(--spacing-0);
         text-align: left !important;
 
         h1 {
-          margin: 0 0 12px 0;
+          margin: var(--spacing-0) var(--spacing-0) 12px 0;
           font-size: var(--font-size-xl);
           font-weight: var(--font-weight-semibold);
-          line-height: 31.2px;
-          letter-spacing: -0.02em;
+          line-height: var(--line-height-31-2);
+          letter-spacing: var(--letter-spacing-snug);
         }
 
         .fa.fa-check-square-o.quiz-icon {
@@ -812,23 +799,23 @@ sjwc-lesson-content-item {
         }
 
         .length {
-          margin: 0 0 48px 0;
+          margin: var(--spacing-0) var(--spacing-0) 48px 0;
         }
       }
 
       .create_quiz.text-center {
-        margin: 0;
+        margin: var(--spacing-0);
         text-align: right !important;
 
         .button.sj-text-quiz-start {
-          margin: 0;
+          margin: var(--spacing-0);
         }
       }
 
       .question {
-        padding: 48px;
-        border: 1px solid var(--color-border-default);
-        border-radius: 8px;
+        padding: var(--spacing-px-48);
+        border: var(--border-width-thin) solid var(--color-border-default);
+        border-radius: var(--radius-lg);
 
         .row .large-8.large-centered.columns.question-text {
           width: 100%;
@@ -837,14 +824,14 @@ sjwc-lesson-content-item {
           p {
             font-size: var(--font-size-xl);
             font-weight: var(--font-weight-semibold);
-            line-height: 31.2px;
-            letter-spacing: -0.02em;
+            line-height: var(--line-height-31-2);
+            letter-spacing: var(--letter-spacing-snug);
           }
         }
 
         .row .form-answers.large-8.large-centered.columns {
           width: 100%;
-          margin: 0;
+          margin: var(--spacing-0);
           text-align: left !important;
 
           #id_chosen_answers div label,
@@ -861,22 +848,22 @@ sjwc-lesson-content-item {
         }
 
         .text-center.next-prev {
-          margin: 32px 0 0 0;
+          margin: var(--spacing-px-32) var(--spacing-0) var(--spacing-0) var(--spacing-0);
           text-align: right !important;
 
           #answer_question {
-            margin: 0;
+            margin: var(--spacing-0);
             font-size: var(--font-size-sm);
 
             .button.small.sj-text-quiz-next,
             .button.small.sj-text-quiz-submit {
-              margin: 0;
+              margin: var(--spacing-0);
               font-size: var(--font-size-sm);
             }
           }
 
           #prev_question .button.small.secondary.sj-text-quiz-previous {
-            margin: 0;
+            margin: var(--spacing-0);
             font-size: var(--font-size-sm);
           }
         }

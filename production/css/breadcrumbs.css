@@ -11,10 +11,10 @@ body.sj-page-catalog {
       width: max-content;
       max-width: 100%;
       padding: var(--spacing-px-10) var(--spacing-px-14);
-      border: 1px solid var(--border);
-      border-radius: 14px;
+      border: var(--border-width-thin) solid var(--border);
+      border-radius: var(--radius-2xl);
       background-color: var(--color-surface-base);
-      box-shadow: 0 8px 24px var(--shadow-purple-medium);
+      box-shadow: var(--shadow-breadcrumb);
 
       &[aria-current="page"] {
         color: var(--ink-dim);

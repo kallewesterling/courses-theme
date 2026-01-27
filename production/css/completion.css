@@ -24,12 +24,12 @@
       width: calc(100% - 32px);
       max-width: 520px;
       padding: var(--spacing-px-24) 28px;
-      border-radius: var(--spacing-px-16);
+      border-radius: var(--radius-3xl);
       background-color: var(--color-surface-base);
       font-family: inherit;
       text-align: center;
       pointer-events: auto; /* enable focus */
-      box-shadow: 0 10px 30px var(--shadow-strong);
+      box-shadow: var(--shadow-elevation-lg);
 
       h1 {
         margin: var(--spacing-0) 0 0.5rem 0;

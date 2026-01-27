@@ -8,7 +8,7 @@ footer {
     justify-content: space-between;
     width: 90%;
     max-width: 1232px;
-    margin: 0 auto;
+    margin: var(--spacing-0) auto;
   }
 
   .footer-content-container {
@@ -25,13 +25,13 @@ footer {
       .tagline {
         p {
           max-width: 400px;
-          margin-bottom: 1.25em !important;
+          margin-bottom: var(--spacing-6) !important;
           color: inherit !important;
           font-family: Gellix, sans-serif;
           font-size: var(--font-size-4xl) !important;
           font-weight: var(--font-weight-extrabold);
           line-height: var(--line-height-44) !important;
-          letter-spacing: -0.12rem;
+          letter-spacing: var(--letter-spacing-tighter);
         }
 
         .small-logo {
@@ -72,7 +72,7 @@ footer {
       }
 
       h2 {
-        margin: 0 0 var(--spacing-px-15) 0;
+        margin: var(--spacing-0) var(--spacing-0) var(--spacing-px-15) 0;
         color: var(--color-text-tertiary) !important;
         font-family: Roobert, monospace;
         font-size: var(--font-size-xs);
@@ -150,7 +150,7 @@ footer {
           max-width: 250px;
           font-size: var(--font-size-2xl);
           line-height: var(--line-height-30);
-          letter-spacing: -0.08rem;
+          letter-spacing: var(--letter-spacing-tight);
         }
 
         .ctas .button {
@@ -178,7 +178,7 @@ footer {
       gap: var(--gap-8);
       grid-template-columns: 1fr;
       width: 100% !important;
-      padding: 0 var(--spacing-px-20) 0 var(--spacing-px-20);
+      padding: var(--spacing-0) var(--spacing-px-20) 0 var(--spacing-px-20);
 
       .primary-col .small-logo {
         display: block !important;
@@ -192,7 +192,7 @@ footer {
       }
 
       .social-icons {
-        margin: 0 auto !important;
+        margin: var(--spacing-0) auto !important;
       }
     }
   }

@@ -3,19 +3,19 @@
 .module-heading {
   /* TODO: Legacy? */
   font-weight: var(--font-weight-medium);
-  line-height: 20px;
-  letter-spacing: -0.01em;
+  line-height: var(--line-height-21);
+  letter-spacing: var(--letter-spacing-snug-alt);
 }
 
 .module-list {
   /* TODO: Legacy? */
-  margin-bottom: 48px;
+  margin-bottom: var(--spacing-12);
 }
 
 .video-player.flex-video.widescreen {
   /* Legacy - I don't think we use video player anywhere anymore */
-  padding: 0;
-  border-radius: 8px;
+  padding: var(--spacing-0);
+  border-radius: var(--radius-lg);
 }
 
 .sj-heading-paragraph,
@@ -44,8 +44,8 @@ body.sj-page-catalog {
         display: flex;
         flex-direction: column;
         width: calc(33% - 24px) !important; /* 3 should fit */
-        border: 1px solid var(--color-border-black);
-        border-radius: 16px;
+        border: var(--border-width-thin) solid var(--color-border-black);
+        border-radius: var(--radius-3xl);
 
         @media screen and (max-width: 991px) {
           width: 100% !important; /* 1 only on mobile */
@@ -87,13 +87,13 @@ body.sj-page-catalog {
           font-weight: var(--font-weight-light);
 
           .course-overview__content {
-            padding: 8px 8px 0 8px;
+            padding: var(--spacing-px-8) var(--spacing-px-8) 0 var(--spacing-px-8);
 
             a {
               color: var(--blurple);
 
               i {
-                padding-right: 12px;
+                padding-right: var(--spacing-3);
               }
 
               .course-overview__content__lesson__type-icon {
@@ -105,7 +105,7 @@ body.sj-page-catalog {
       }
 
       .coursebox-container:has(.badge-box) {
-        padding-top: 48px;
+        padding-top: var(--spacing-px-48);
       }
     }
   }

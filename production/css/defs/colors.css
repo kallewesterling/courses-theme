@@ -22,6 +22,7 @@
   --color-border-strong: #c6c6c6; /* Darker border */
   --color-border-neutral: rgb(218 218 218); /* Pure gray */
   --color-border-black: #000000; /* Black border */
+  --color-border-subtle: rgb(0 0 0 / 0.125); /* Subtle black border (12.5% opacity) */
 
   /* ========================================
      BRAND COLORS
@@ -121,16 +122,44 @@
      UTILITY COLORS
      ======================================== */
 
-  /* Shadows */
+  /* Shadow Colors (for use in box-shadow) */
   --shadow-strong: rgb(0 0 0 / 0.25);
+  --shadow-medium-heavy: rgb(0 0 0 / 0.17);
   --shadow-medium: rgb(0 0 0 / 0.12);
   --shadow-default: rgb(0 0 0 / 0.1);
+  --shadow-light: rgb(0 0 0 / 0.09);
   --shadow-soft: rgb(0 0 0 / 0.06);
   --shadow-subtle: rgb(0 0 0 / 0.04);
   --shadow-purple: rgb(20 0 61 / 0.08);
   --shadow-purple-medium: rgb(20 0 61 / 0.06);
   --shadow-purple-subtle: rgb(20 0 61 / 0.02);
-  --shadow-card: 0 12px 30px rgb(20 0 61 / 0.08);
+
+  /* Elevation Shadows (complete box-shadow values) */
+  --shadow-elevation-sm: 0 2px 8px var(--shadow-soft);
+  --shadow-elevation-md: 0 4px 12px var(--shadow-default);
+  --shadow-elevation-lg: 0 10px 30px var(--shadow-strong);
+  --shadow-elevation-xl: 0 10px 20px var(--shadow-medium), 0 3px 6px var(--shadow-subtle);
+  --shadow-card: 0 12px 30px var(--shadow-purple);
+  --shadow-card-hover: 0 10px 20px var(--shadow-medium), 0 3px 6px var(--shadow-subtle);
+  --shadow-breadcrumb: 0 8px 24px var(--shadow-purple-medium);
+  --shadow-menu-dropdown: 0 6px 12px 1px var(--shadow-default);
+
+  /* Focus Ring Shadows */
+  --shadow-focus-ring: 0 0 0 4px var(--color-focus-ring);
+  --shadow-focus-ring-inset: 0 0 0 3px var(--color-focus-ring-inset) inset;
+
+  /* Special Purpose Shadows */
+  --shadow-input-outline: 0 1px 0 var(--shadow-purple-subtle);
+  --shadow-glow: 0 0 6px 6px var(--overlay-tinted-bg);
+  --shadow-glow-black: 0 0 7px var(--shadow-subtle);
+
+  /* Complex Multi-Shadow (for mobile menu) */
+  --shadow-mobile-menu:
+    var(--shadow-strong) 0 54px 55px,
+    var(--shadow-medium) 0 -12px 30px,
+    var(--shadow-medium) 0 4px 6px,
+    var(--shadow-medium-heavy) 0 12px 13px,
+    var(--shadow-light) 0 -3px 5px;
 
   /* Overlays */
   --overlay-dark: rgb(0 0 0 / 0.4);
@@ -249,9 +278,11 @@
   --icon-border: var(--color-icon-border);
   --w-max: 1168px;
 
-  /* Legacy Radii (duplicated from variables.css space- definitions) */
-  --radius-2: 16px;
-  --radius-1: 14px;
+  /* Legacy Radii (mapped to new radius system in variables.css) */
+  --radius-2: var(--radius-3xl); /* 16px */
+  --radius-1: var(--radius-2xl); /* 14px */
+
+  /* Legacy Space variables (mapped to spacing system in variables.css) */
   --space-1: 8px;
   --space-2: 12px;
   --space-3: 16px;

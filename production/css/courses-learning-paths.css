@@ -13,8 +13,8 @@ body.sj-page-curriculum {
 
   .top-row-grey {
     max-width: 100%;
-    padding: 96px 0;
-    border: 0;
+    padding: var(--spacing-24) var(--spacing-0);
+    border: var(--border-width-none);
     background-color: var(--color-card-bg-light)9c !important;
 
     @media screen and (max-width: 1320px) {
@@ -49,8 +49,8 @@ body.sj-page-curriculum {
         position: static;
         width: 100%;
         max-width: 100% !important;
-        padding: 0 !important;
-        border: 0;
+        padding: var(--spacing-0) !important;
+        border: var(--border-width-none);
         text-align: left !important;
 
         /* .sj-course-info-wrapper {
@@ -63,14 +63,14 @@ body.sj-page-curriculum {
           font-family: Roobert, monospace;
           font-size: var(--font-size-base);
           font-weight: var(--font-weight-bold);
-          line-height: 23.7px;
+          line-height: var(--line-height-23-7);
         }
 
         .sj-heading-paragraph,
         .sj-course-info-wrapper h2 {
           display: block !important;
           max-width: 80%;
-          margin: 0 0 var(--spacing-px-24) 0;
+          margin: var(--spacing-0) var(--spacing-0) var(--spacing-px-24) 0;
           color: var(--ink) !important;
           font-family: Roobert, monospace;
           font-size: var(--font-size-base);
@@ -79,12 +79,12 @@ body.sj-page-curriculum {
         }
 
         h1.break-word {
-          margin: 0 0 var(--spacing-px-12) 0;
+          margin: var(--spacing-0) var(--spacing-0) var(--spacing-px-12) 0;
           color: var(--ink) !important;
           font-size: var(--font-size-3xl);
           font-weight: var(--font-weight-semibold);
-          line-height: 43.2px;
-          letter-spacing: -0.02em;
+          line-height: var(--line-height-43-2);
+          letter-spacing: var(--letter-spacing-snug);
         }
       }
     }
@@ -139,7 +139,7 @@ body.sj-page-curriculum {
 
   #dp-details-bundle {
     max-width: 1188px;
-    padding: 96px 0 !important;
+    padding: var(--spacing-24) var(--spacing-0) !important;
     margin: var(--spacing-0) auto;
     border-bottom: 1px solid var(--neutral-border);
 

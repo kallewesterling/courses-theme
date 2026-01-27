@@ -14,8 +14,8 @@ body.sj-page-curriculum {
     max-width: 368px !important;
     margin: var(--spacing-px-20) auto !important;
     margin-bottom: var(--spacing-px-50) !important;
-    border: 2px solid var(--blurple) !important;
-    border-radius: var(--spacing-px-8) !important;
+    border: var(--border-width-medium) solid var(--blurple) !important;
+    border-radius: var(--radius-lg) !important;
     background-color: var(--primary-white-hex) !important;
     color: inherit !important;
     font-family: inherit !important;
@@ -28,14 +28,14 @@ body.sj-page-curriculum {
       font-size: var(--font-size-base) !important;
       font-weight: var(--font-weight-bold) !important;
       line-height: var(--line-height-20);
-      letter-spacing: -0.01em;
+      letter-spacing: var(--letter-spacing-snug-alt);
       border-bottom: 2px solid var(--blurple) !important;
     }
 
     ul {
       list-style: none;
       padding: var(--spacing-px-24) var(--spacing-px-24) 0 var(--spacing-px-24);
-      margin: 0;
+      margin: var(--spacing-0);
       margin-bottom: var(--spacing-px-16);
 
       li {
@@ -64,7 +64,7 @@ body.sj-page-curriculum {
     }
 
     a {
-      margin: 0 var(--spacing-px-20) 1.25em;
+      margin: var(--spacing-0) var(--spacing-px-20) 1.25em;
 
       &.completed {
         background-color: var(--color-success-dark) !important;
@@ -74,7 +74,7 @@ body.sj-page-curriculum {
 
     p.completed-subtext {
       padding: var(--spacing-0) var(--spacing-px-20) var(--spacing-px-20) var(--spacing-0) !important;
-      margin: 0 var(--spacing-px-24) !important;
+      margin: var(--spacing-0) var(--spacing-px-24) !important;
       color: var(--color-success-dark) !important;
       font-family: Roobert, monospace !important;
       font-size: var(--font-size-xs) !important;
@@ -82,11 +82,11 @@ body.sj-page-curriculum {
   }
 
   .tabs {
-    margin: 0 0 var(--spacing-px-46) 0;
+    margin: var(--spacing-0) var(--spacing-0) var(--spacing-px-46) 0;
     visibility: visible;
 
     @media screen and (max-width: 991px) {
-      margin: 96px 0 var(--spacing-px-46) 0;
+      margin: var(--spacing-24) var(--spacing-0) var(--spacing-px-46) var(--spacing-0);
     }
 
     section {
@@ -105,7 +105,7 @@ body.sj-page-curriculum {
 
       &:nth-child(1) {
         /* Curriculum section */
-        padding: 0 !important;
+        padding: var(--spacing-0) !important;
 
         h2 {
           display: none !important;
@@ -115,14 +115,14 @@ body.sj-page-curriculum {
         }
 
         .content {
-          padding: 0;
+          padding: var(--spacing-0);
           /* Curriculum content wrapper */
-          border: 0;
+          border: var(--border-width-none);
         }
       }
 
       &:nth-child(2) {
-        padding: 0 !important;
+        padding: var(--spacing-0) !important;
         /* Course details section */
         margin-top: var(--spacing-px-48);
 
@@ -133,9 +133,9 @@ body.sj-page-curriculum {
         }
 
         .content {
-          padding: 0;
+          padding: var(--spacing-0);
           /* Course details content wrapper */
-          border: 0;
+          border: var(--border-width-none);
         }
       }
     }
@@ -148,31 +148,31 @@ body.sj-page-curriculum {
   }
 
   ul.dp-curriculum {
-    padding-left: 0;
+    padding-left: var(--spacing-0);
   }
 
   .curriculum-wrapper {
-    padding: 0;
-    margin-bottom: 28px;
-    border: 2px solid var(--blurple);
+    padding: var(--spacing-0);
+    margin-bottom: var(--spacing-px-30);
+    border: var(--border-width-medium) solid var(--blurple);
     /* Each section of the curriculum has it's own wrapper */
-    border-radius: 8px;
+    border-radius: var(--radius-lg);
 
     h3 {
       /* Section heading */
       display: flex;
       align-items: center;
       padding: var(--spacing-px-24);
-      margin: 0;
+      margin: var(--spacing-0);
       color: var(--ink) !important;
       font-family: Gellix, sans-serif;
       font-size: var(--font-size-md) !important;
       font-weight: var(--font-weight-bold) !important;
-      line-height: 125%;
+      line-height: var(--line-height-125);
       border-bottom: 2px solid var(--blurple);
 
       > a {
-        padding: 0;
+        padding: var(--spacing-0);
         font-size: var(--font-size-md) !important;
         /* Special case: header when no lessons */
         font-weight: inherit;
@@ -195,7 +195,7 @@ body.sj-page-curriculum {
       font-family: inherit;
       font-size: var(--font-size-base);
       font-weight: var(--font-weight-normal);
-      line-height: 150%;
+      line-height: var(--line-height-150);
       border-bottom: 2px solid var(--blurple);
 
       .fa-check-circle {
@@ -208,7 +208,7 @@ body.sj-page-curriculum {
 
       &:last-child {
         border-bottom: 0;
-        border-radius: 8px;
+        border-radius: var(--radius-lg);
       }
 
       i {
@@ -236,7 +236,7 @@ body.sj-page-detail-course {
     }
 
     .inline-collapsible-section {
-      margin: 20px 0;
+      margin: var(--spacing-5) var(--spacing-0);
 
       label h5 {
         color: var(--color-border-default) !important;
@@ -251,16 +251,16 @@ body.sj-page-detail-course {
 
   .top-row-grey {
     max-width: none;
-    padding-top: 96px;
-    padding-bottom: 96px;
-    margin: 0;
-    border: 0;
+    padding-top: var(--spacing-24);
+    padding-bottom: var(--spacing-24);
+    margin: var(--spacing-0);
+    border: var(--border-width-none);
     /* Header container */
     background-color: var(--form-bg) !important;
 
     @media screen and (max-width: 991px) {
-      padding-top: 48px;
-      padding-bottom: 48px;
+      padding-top: var(--spacing-12);
+      padding-bottom: var(--spacing-12);
     }
 
     .d-flex-center-v2 {
@@ -286,7 +286,7 @@ body.sj-page-detail-course {
           @media screen and (max-width: 991px) {
             width: 100%;
             max-width: none;
-            padding: 0;
+            padding: var(--spacing-0);
           }
         }
 
@@ -294,7 +294,7 @@ body.sj-page-detail-course {
           width: auto;
           max-width: 564px;
           /* Text content in header */
-          border: 0;
+          border: var(--border-width-none);
 
           @media screen and (max-width: 991px) {
             width: 100%;
@@ -302,28 +302,28 @@ body.sj-page-detail-course {
           }
 
           h1.break-word {
-            margin: 0 0 12px 0;
+            margin: var(--spacing-0) var(--spacing-0) var(--spacing-3) var(--spacing-0);
             /* Course title */
             font-size: var(--font-size-3xl);
             font-weight: var(--font-weight-semibold);
-            line-height: 43.2px;
-            letter-spacing: -0.02em;
+            line-height: var(--line-height-43-2);
+            letter-spacing: var(--letter-spacing-snug);
 
             @media screen and (max-width: 991px) {
               font-size: var(--font-size-2xl);
-              line-height: 40px;
+              line-height: var(--line-height-40);
             }
           }
 
           .video-max {
             /* Video container */
             max-width: none;
-            padding-right: 0;
-            padding-left: 0;
+            padding-right: var(--spacing-0);
+            padding-left: var(--spacing-0);
 
             @media screen and (max-width: 991px) {
-              padding-right: 15px;
-              padding-left: 15px;
+              padding-right: var(--spacing-4);
+              padding-left: var(--spacing-4);
             }
           }
 
@@ -368,7 +368,7 @@ body.sj-page-curriculum {
         }
 
         #resume-button {
-          padding: 0 0.9375em;
+          padding: var(--spacing-0) var(--spacing-4);
         }
       }
     }

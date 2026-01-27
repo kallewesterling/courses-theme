@@ -39,7 +39,7 @@ label {
 
 .button {
   padding: var(--spacing-px-10) var(--spacing-px-20);
-  border: 0;
+  border: var(--border-width-none);
   background-color: var(--blurple);
   color: var(--white) !important;
   font-family: Gellix, sans-serif;

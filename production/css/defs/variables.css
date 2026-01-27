@@ -35,23 +35,42 @@
   --line-height-tight: 1.25;
   --line-height-snug: 1.375;
   --line-height-normal: 1.5;
+  --line-height-medium: 1.55;
+  --line-height-comfortable: 1.6;
   --line-height-relaxed: 1.7;
   --line-height-loose: 2;
+
+  /* Percentage-based line heights */
+  --line-height-125: 125%; /* 1.25 - same as tight */
+  --line-height-150: 150%; /* 1.5 - same as normal */
 
   /* Fixed line heights for specific use cases */
   --line-height-18: 18px;
   --line-height-20: 20px;
   --line-height-21: 21px;
+  --line-height-23-7: 23.7px;
   --line-height-24: 24px;
+  --line-height-28: 28px;
   --line-height-30: 30px;
+  --line-height-31-2: 31.2px;
   --line-height-32: 32px;
+  --line-height-32-1: 32.1px;
   --line-height-35: 35px;
   --line-height-38: 38px;
   --line-height-40: 40px;
   --line-height-42: 42px;
+  --line-height-43-2: 43.2px;
   --line-height-44: 44px;
   --line-height-50: 50px;
   --line-height-88: 88px;
+
+  /* Em-based line heights */
+  --line-height-1-125em: 1.125em;
+  --line-height-1-5em: 1.5em; /* Maps to --line-height-normal */
+
+  /* Rem-based line heights */
+  --line-height-1-5rem: 1.5rem; /* 24px - maps to --line-height-24 */
+  --line-height-1-6rem: 1.6rem; /* 25.6px */
 
   /* Base spacing scale - extends existing space-* variables */
   --spacing-0: 0;
@@ -90,6 +109,7 @@
   --spacing-px-48: 48px; /* to be replaced by --spacing-12 */
   --spacing-px-49: 49px;
   --spacing-px-50: 50px;
+  --spacing-px-60: 60px;
   --spacing-px-80: 80px; /* to be replaced by --spacing-20 */
 
   /* Gap-specific scale for flex/grid gaps */
@@ -105,4 +125,46 @@
   --gap-6: 1.5rem;          /* 24px */
   --gap-8: 2rem;            /* 32px */
   --gap-10: 2.5rem;         /* 40px */
+
+  /* Letter Spacing - Modular scale for tracking */
+  --letter-spacing-tightest: -0.24rem;  /* -3.84px */
+  --letter-spacing-tighter: -0.12rem;   /* Very tight, large headings */
+  --letter-spacing-tight-alt: -0.1rem;  /* Tight, medium headings */
+  --letter-spacing-tight: -0.08rem;     /* Tight spacing */
+  --letter-spacing-snug: -0.02em;       /* Slightly tight (most common) */
+  --letter-spacing-snug-alt: -0.01em;   /* Barely tight */
+  --letter-spacing-normal: 0;           /* Normal spacing */
+  --letter-spacing-wide: 0.02em;        /* Slightly wide */
+  --letter-spacing-wider: 0.03em;       /* Wide */
+  --letter-spacing-widest: 0.04em;      /* Very wide */
+  --letter-spacing-extra-wide: 0.05em;  /* Extra wide for emphasis */
+
+  /* Pixel-based letter spacing for specific cases */
+  --letter-spacing-px-tight-xl: -3.84px;  /* Maps to --letter-spacing-tightest */
+  --letter-spacing-px-tight-lg: -1.6px;   /* Tight for large text */
+
+  /* Border Radius - Modular scale for rounded corners */
+  --radius-none: 0;                  /* No rounding */
+  --radius-sm: 3px;                  /* Small rounding */
+  --radius-default: 4px;             /* Default rounding */
+  --radius-md: 5px;                  /* Medium rounding */
+  --radius-lg: 8px;                  /* Large rounding (most common) */
+  --radius-xl: 9px;                  /* Extra large rounding */
+  --radius-2xl: 14px;                /* 2X large rounding */
+  --radius-3xl: 16px;                /* 3X large rounding */
+  --radius-4xl: 20px;                /* 4X large rounding */
+  --radius-pill: 999px;              /* Pill shape (fully rounded) */
+  --radius-circle: 50%;              /* Perfect circle */
+
+  /* Rem-based radius for responsive designs */
+  --radius-rem-sm: 0.25rem;          /* 4px - maps to --radius-default */
+  --radius-rem-md: 0.5rem;           /* 8px - maps to --radius-lg */
+  --radius-rem-lg: 1rem;             /* 16px - maps to --radius-3xl */
+
+  /* Border Width - Modular scale for border thickness */
+  --border-width-none: 0;            /* No border */
+  --border-width-thin: 1px;          /* Thin border (most common) */
+  --border-width-medium: 2px;        /* Medium border (emphasis) */
+  --border-width-thick: 3px;         /* Thick border */
+  --border-width-heavy: 4px;         /* Heavy border */
 }

@@ -35,17 +35,13 @@ body.sj-page-catalog {
           z-index: 1 !important;
           width: 100% !important;
           padding: var(--spacing-px-12) var(--spacing-px-12) var(--spacing-px-12) var(--spacing-px-24) !important;
-          margin-top: 0 !important;
-          background-image: linear-gradient(
-            315deg,
-            rgb(253 225 254),
-            rgb(245 246 254) 72%
-          ) !important;
+          margin-top: var(--spacing-0) !important;
+          background-image: var(--gradient-primary) !important;
           color: var(--color-warning) !important;
           font-size: var(--font-size-base) !important;
           font-weight: var(--font-weight-extrabold) !important;
           text-transform: uppercase !important;
-          box-shadow: 0 0 7px var(--color-border-black)3d !important;
+          box-shadow: var(--shadow-glow-black) !important;
         }
 
         .sj-course-ribbon-complete {
@@ -72,12 +68,12 @@ body.sj-page-catalog {
           font-size: var(--font-size-6xl);
           font-weight: var(--font-weight-bold);
           line-height: var(--line-height-88);
-          letter-spacing: -0.24rem;
+          letter-spacing: var(--letter-spacing-tightest);
 
           @media screen and (max-width: 767px) {
             font-size: var(--font-size-2xl);
             line-height: var(--line-height-38);
-            letter-spacing: -0.1rem;
+            letter-spacing: var(--letter-spacing-tight-alt);
           }
         }
 
@@ -86,7 +82,7 @@ body.sj-page-catalog {
 
           @media screen and (max-width: 767px) {
             font-size: var(--font-size-base);
-            line-height: 1.6rem;
+            line-height: var(--line-height-1-6rem);
           }
         }
 
@@ -100,12 +96,12 @@ body.sj-page-catalog {
   section.featured-courses {
     width: 93%;
     max-width: var(--w-max);
-    padding-bottom: 64px;
+    padding-bottom: var(--spacing-16);
     /* Each section of featured courses on our landing pages + learning paths */
-    margin: 64px auto;
+    margin: var(--spacing-16) auto;
     color: var(--ink);
     font-size: var(--font-size-md);
-    line-height: 1.55;
+    line-height: var(--line-height-medium);
     border-bottom: 1px solid var(--separator);
 
     @media (min-width: 640px) {
@@ -113,8 +109,8 @@ body.sj-page-catalog {
     }
 
     @media (min-width: 1200px) {
-      padding-bottom: 80px;
-      margin: 80px auto;
+      padding-bottom: var(--spacing-20);
+      margin: var(--spacing-20) auto;
     }
 
     &:last-of-type {
@@ -122,9 +118,9 @@ body.sj-page-catalog {
     }
 
     &.internal {
-      padding: 60px;
-      border: 1px solid var(--color-border-default);
-      border-radius: 20px;
+      padding: var(--spacing-px-60);
+      border: var(--border-width-thin) solid var(--color-border-default);
+      border-radius: var(--radius-4xl);
       background-color: var(--color-surface-base)00;
       backdrop-filter: blur(25px);
 
@@ -147,16 +143,16 @@ body.sj-page-catalog {
       }
 
       .intro {
-        padding-right: 32px;
+        padding-right: var(--spacing-8);
         font-family: inherit;
 
         h2.eyebrow {
-          margin: 0 0 var(--space-1);
+          margin: var(--spacing-0) var(--spacing-0) var(--space-1);
           color: var(--blurple);
           font-family: inherit;
           font-size: var(--font-size-sm-plus);
           font-weight: var(--font-weight-medium);
-          letter-spacing: 0.04em;
+          letter-spacing: var(--letter-spacing-widest);
           text-transform: uppercase;
 
           @media screen and (max-width: 767px) {
@@ -175,7 +171,7 @@ body.sj-page-catalog {
         }
 
         p.headline {
-          margin: 0 0 var(--space-4);
+          margin: var(--spacing-0) var(--spacing-0) var(--space-4);
           font-family: Gellix, sans-serif;
           font-size: var(--font-size-3xl);
           font-weight: var(--font-weight-extrabold);
@@ -188,7 +184,7 @@ body.sj-page-catalog {
         }
 
         p.subhead {
-          margin: 0 0 var(--space-3);
+          margin: var(--spacing-0) var(--spacing-0) var(--space-3);
           color: var(--ink-dim);
           font-family: Gellix, sans-serif;
           font-size: 1em; /* 18px - inherits from parent */
@@ -213,7 +209,7 @@ body.sj-page-catalog {
         margin-top: 4px;
         color: var(--ink) !important;
         text-decoration: none;
-        border-bottom: 2px solid transparent;
+        border-bottom: var(--border-width-medium) solid transparent;
 
         &:hover {
           color: var(--blurple) !important;
@@ -226,17 +222,16 @@ body.sj-page-catalog {
           transition: transform 0.2s ease, box-shadow 0.2s ease;
 
           &:hover {
-            box-shadow: 0 10px 20px var(--shadow-medium),
-              0 3px 6px var(--shadow-subtle);
+            box-shadow: var(--shadow-card-hover);
             transform: translateY(-2px);
           }
 
           & .completed {
-            border: 1px solid var(--color-success); /* lime */
+            border: var(--border-width-thin) solid var(--color-success); /* lime */
           }
 
           & .in-progress {
-            border: 1px solid var(--color-accent-solar); /* solar */
+            border: var(--border-width-thin) solid var(--color-accent-solar); /* solar */
           }
 
           .inner {
@@ -254,13 +249,13 @@ body.sj-page-catalog {
               gap: var(--gap-1-5);
               padding: var(--spacing-px-4) var(--spacing-px-12);
               margin: var(--spacing-px-12) var(--spacing-px-12) var(--spacing-0) var(--spacing-0);
-              border: 1px solid var(--color-purple-light);
-              border-radius: 999px;
+              border: var(--border-width-thin) solid var(--color-purple-light);
+              border-radius: var(--radius-pill);
               background-color: var(--color-purple-soft);
               color: var(--placeholder-color);
               font-size: var(--font-size-xs);
               font-weight: var(--font-weight-semibold);
-              letter-spacing: 0.03em;
+              letter-spacing: var(--letter-spacing-wider);
               text-transform: uppercase;
 
               &.badged::before {
@@ -281,13 +276,13 @@ body.sj-page-catalog {
               }
 
               &.completed {
-                border: 1px solid var(--color-success)a6;
+                border: var(--border-width-thin) solid var(--color-success)a6;
                 background-color: var(--color-success)3d;
                 color: var(--color-success); /* lime */
               }
 
               &.in-progress {
-                border: 1px solid var(--color-accent-solar)80;
+                border: var(--border-width-thin) solid var(--color-accent-solar)80;
                 background-color: var(--color-accent-solar)21;
                 color: var(--color-accent-solar); /* solar */
               }
@@ -309,15 +304,15 @@ body.sj-page-catalog {
             justify-content: center;
             align-items: center;
             padding: var(--spacing-px-16);
-            margin: 0 auto var(--space-3);
-            border: 1px solid var(--icon-border);
+            margin: var(--spacing-0) auto var(--space-3);
+            border: var(--border-width-thin) solid var(--icon-border);
             border-radius: var(--radius-1);
             background: var(--primary-white-hex);
           }
 
           h5 {
             padding: var(--spacing-0);
-            margin: 0 0 var(--spacing-px-8);
+            margin: var(--spacing-0) var(--spacing-0) var(--spacing-px-8);
             color: var(--color-purple-medium);
             font-family: inherit;
             font-size: var(--font-size-xs-plus);
@@ -330,7 +325,7 @@ body.sj-page-catalog {
           }
 
           h3 {
-            margin: 0 0 var(--spacing-px-8);
+            margin: var(--spacing-0) var(--spacing-0) var(--spacing-px-8);
             font-size: var(--font-size-xl);
             font-weight: var(--font-weight-extrabold);
             line-height: var(--line-height-35);
@@ -343,7 +338,7 @@ body.sj-page-catalog {
 
           p {
             display: -webkit-box;
-            margin: 0 0 var(--space-2);
+            margin: var(--spacing-0) var(--spacing-0) var(--space-2);
             overflow: hidden;
             font-family: Gellix, sans-serif;
             font-size: var(--font-size-base);
@@ -366,7 +361,7 @@ body.sj-page-catalog {
     min-height: 200px;
     padding-right: var(--spacing-px-32);
     padding-left: var(--spacing-px-32);
-    margin: 0 auto;
+    margin: var(--spacing-0) auto;
     background-color: var(--blurple);
 
     h2 {
@@ -376,7 +371,7 @@ body.sj-page-catalog {
       color: var(--color-surface-base);
       font-size: var(--font-size-6xl);
       line-height: var(--line-height-88);
-      letter-spacing: -3.84px;
+      letter-spacing: var(--letter-spacing-px-tight-xl);
     }
 
     > svg {
@@ -400,7 +395,7 @@ body.sj-page-catalog {
         column-gap: var(--gap-2);
         min-width: 180px;
         padding: var(--spacing-px-24);
-        border-width: 1px;
+        border-width: var(--border-width-thin);
         background-color: var(--color-surface-base);
         color: var(--ink) !important;
         font-size: var(--font-size-xl);
@@ -422,7 +417,7 @@ body.sj-page-catalog {
         margin-bottom: var(--spacing-px-30);
         font-size: var(--font-size-2xl);
         line-height: var(--line-height-38);
-        letter-spacing: -1.6px;
+        letter-spacing: var(--letter-spacing-px-tight-lg);
       }
 
       > svg {
