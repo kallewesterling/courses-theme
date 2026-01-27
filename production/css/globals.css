@@ -57,6 +57,11 @@ label {
     color: var(--white) !important;
   }
 
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-focus-ring);
+  }
+
   span {
     color: inherit;
     font-family: inherit;

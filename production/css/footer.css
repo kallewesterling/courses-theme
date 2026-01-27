@@ -51,6 +51,11 @@ footer {
         gap: var(--gap-2);
         margin: var(--spacing-0);
         font-size: inherit;
+
+        &:focus-visible {
+          outline: none;
+          box-shadow: var(--shadow-focus-ring);
+        }
       }
     }
 

@@ -409,6 +409,11 @@ body.sj-page-catalog {
         align-self: flex-start;
         flex-shrink: 0;
 
+        &:focus-visible {
+          outline: none;
+          box-shadow: var(--shadow-focus-ring);
+        }
+
         svg {
           fill: var(--blurple);
           width: 1rem;

@@ -89,6 +89,11 @@ body.sj-page-lesson {
         text-decoration: none !important; /* Skilljar Override: No underline on hover */
       }
 
+      &:focus-visible {
+        outline: none;
+        box-shadow: var(--shadow-focus-ring);
+      }
+
       > span.left-nav-return-text {
         text-decoration: none !important; /* Skilljar Override: No underline on text span */
       }
@@ -622,7 +627,6 @@ body.sj-page-lesson {
                         border: var(--border-width-thin) solid transparent;
                         border-color: var(--border-color-v2) !important;
                         border-radius: var(--radius-rem-sm);
-                        background-color: var(--border-color-v2) !important;
                         background-color: transparent;
                         color: var(--blurple) !important;
                         font-size: var(--font-size-sm);
@@ -636,6 +640,15 @@ body.sj-page-lesson {
                           box-shadow 0.15s ease-in-out;
                         vertical-align: middle;
                         user-select: none;
+
+                        &:focus-visible {
+                          outline: none;
+                          box-shadow: var(--shadow-focus-ring);
+                        }
+
+                        @media (prefers-reduced-motion: reduce) {
+                          transition: none;
+                        }
                       }
                     }
                   }
