@@ -19,7 +19,7 @@ body.sj-page-curriculum {
     max-width: 100%;
     padding: var(--spacing-24) var(--spacing-0);
     border: var(--border-width-none);
-    background-color: var(--color-card-bg-light)9c !important;
+    background-color: var(--color-card-bg-light) !important;
 
     @media screen and (max-width: 1320px) {
       padding: 56px 8vw;

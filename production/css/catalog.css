@@ -282,14 +282,14 @@ body.sj-page-catalog {
               }
 
               &.completed {
-                border: var(--border-width-thin) solid var(--color-success)a6;
-                background-color: var(--color-success)3d;
+                border: var(--border-width-thin) solid var(--color-success);
+                background-color: var(--color-success);
                 color: var(--color-success); /* lime */
               }
 
               &.in-progress {
-                border: var(--border-width-thin) solid var(--color-accent-solar)80;
-                background-color: var(--color-accent-solar)21;
+                border: var(--border-width-thin) solid var(--color-accent-solar);
+                background-color: var(--color-accent-solar);
                 color: var(--color-accent-solar); /* solar */
               }
 
