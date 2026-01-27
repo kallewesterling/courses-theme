@@ -233,7 +233,7 @@
   body.sj-page-detail-course {
     #skilljar-content,
     #lp-wrapper {
-      padding-top: 90px;
+      padding-top: var(--spacing-24);
     }
   }
 }

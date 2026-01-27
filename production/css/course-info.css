@@ -99,7 +99,7 @@ body.sj-page-curriculum {
 
         ul {
           list-style-position: outside;
-          padding-inline-start: 30px;
+          padding-inline-start: var(--spacing-px-30);
         }
       }
 

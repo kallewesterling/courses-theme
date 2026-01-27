@@ -60,7 +60,7 @@ body.sj-page-lesson {
       /* Responsive styles for left nav menu */
       position: fixed;
       height: 100%;
-      padding-bottom: 40px;
+      padding-bottom: var(--spacing-10);
       background-color: var(--color-surface-base);
 
       &.cbp-spmenu-open {
@@ -183,7 +183,7 @@ body.sj-page-lesson {
 
         .lesson-top {
           display: block !important;
-          padding-top: 60px;
+          padding-top: var(--spacing-px-60);
           border: var(--border-width-none);
 
           h2 {
@@ -305,7 +305,7 @@ body.sj-page-lesson {
             }
 
             sjwc-lesson-content-item {
-              padding-bottom: 100px;
+              padding-bottom: var(--spacing-24);
               /* Lesson content item */
               color: var(--ink) !important;
 
@@ -682,7 +682,7 @@ sjwc-lesson-content-item {
 
     .callout-header {
       padding: var(--spacing-px-10) var(--spacing-px-20) var(--spacing-px-10) var(--spacing-px-20);
-      border-radius: var(--radius-md) var(--radius-md) 0 0;
+      border-radius: var(--radius-md) var(--radius-md) var(--radius-none) var(--radius-none);
       background-color: transparent !important;
       font-size: var(--font-size-lg) !important;
       font-weight: var(--font-weight-bold);
