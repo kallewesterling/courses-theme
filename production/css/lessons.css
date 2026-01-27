@@ -1,10 +1,26 @@
-/* Styles for the lesson pages
- *
- * NOTE: !important is used extensively throughout this file to override
- * Skilljar's platform CSS. This is necessary and expected for custom theming.
- * The platform injects its own styles that must be overridden to achieve
- * the desired design.
- */
+/* ========================================
+   LESSON PAGES STYLING
+   Styles for body.sj-page-lesson
+
+   NOTE: !important is used extensively throughout this file to override
+   Skilljar's platform CSS. This is necessary and expected for custom theming.
+   The platform injects its own styles that must be overridden to achieve
+   the desired design.
+
+   SECTIONS:
+   1. Page Setup & Global Overrides
+   2. Menu State Management (Open/Close)
+   3. Left Navigation Menu
+   4. Lesson Content Wrapper
+   5. Lesson Content Body
+   6. Interactive Elements (Buttons, Forms)
+   7. Resource Boxes
+   8. Responsive Overrides
+   ======================================== */
+
+/* ========================================
+   1. PAGE SETUP & GLOBAL OVERRIDES
+   ======================================== */
 
 body.sj-page-lesson {
   /* Hide elements that we don't want shown */
@@ -12,6 +28,10 @@ body.sj-page-lesson {
     /* Lesson footer */
     display: none !important; /* Skilljar Override: Hide platform footer */
   }
+
+  /* ========================================
+     2. MENU STATE MANAGEMENT (OPEN/CLOSE)
+     ======================================== */
 
   /* Handle open/close menu buttons */
   &.cbp-spmenu-open {
@@ -51,6 +71,10 @@ body.sj-page-lesson {
       display: none !important; /* Skilljar Override: Hide close icon when menu is closed */
     }
   }
+
+  /* ========================================
+     3. LEFT NAVIGATION MENU
+     ======================================== */
 
   #lp-left-nav {
     position: absolute;
@@ -173,6 +197,10 @@ body.sj-page-lesson {
       }
     }
   }
+
+  /* ========================================
+     4. LESSON CONTENT WRAPPER
+     ======================================== */
 
   #lp-wrapper {
     /* Lesson content wrapper */
@@ -474,7 +502,7 @@ body.sj-page-lesson {
               }
 
               code:not(pre code) {
-                background-color: var(--color-border-black)0d !important;
+                background-color: var(--color-border-black) !important;
                 color: var(--color-text-purple-link) !important;
               }
 
@@ -561,6 +589,10 @@ body.sj-page-lesson {
                   text-shadow: none;
                 }
               }
+
+              /* ========================================
+                 7. RESOURCE BOXES
+                 ======================================== */
 
               .resource-box:not(:has(.resource-card)) {
                 display: none !important;
