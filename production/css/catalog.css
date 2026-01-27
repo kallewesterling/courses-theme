@@ -408,10 +408,28 @@ body.sj-page-catalog {
         white-space: nowrap;
         align-self: flex-start;
         flex-shrink: 0;
+        transition:
+          background-color 0.2s ease-in,
+          border-color 0.2s ease-in,
+          box-shadow 0.15s ease,
+          transform 0.05s ease;
+
+        &:hover {
+          border-color: var(--blurple);
+          background-color: var(--color-surface-accent);
+        }
 
         &:focus-visible {
           outline: none;
           box-shadow: var(--shadow-focus-ring);
+        }
+
+        &:active {
+          transform: translateY(1px);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          transition: none;
         }
 
         svg {

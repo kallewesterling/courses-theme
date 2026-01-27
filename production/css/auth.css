@@ -260,7 +260,12 @@ body.sj-page-signup {
       color: var(--blurple);
       font-weight: var(--font-weight-extrabold);
       letter-spacing: var(--letter-spacing-wide);
-      transition: all 0.2s ease-in;
+      transition:
+        background-color 0.2s ease-in,
+        color 0.2s ease-in,
+        border-color 0.2s ease-in,
+        box-shadow 0.15s ease,
+        transform 0.05s ease;
 
       @media screen and (max-width: 991px) {
         margin-bottom: var(--spacing-px-12);
@@ -274,6 +279,10 @@ body.sj-page-signup {
       &:focus-visible {
         outline: none;
         box-shadow: var(--shadow-focus-ring);
+      }
+
+      &:active {
+        transform: translateY(1px);
       }
 
       @media (prefers-reduced-motion: reduce) {

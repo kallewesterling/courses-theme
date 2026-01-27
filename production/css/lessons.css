@@ -84,6 +84,10 @@ body.sj-page-lesson {
       color: var(--color-surface-base) !important; /* Skilljar Override: White text on button */
       font-size: var(--font-size-sm);
       font-weight: var(--font-weight-semibold);
+      transition:
+        background-color 0.2s ease-in,
+        box-shadow 0.15s ease,
+        transform 0.05s ease;
 
       &:hover {
         text-decoration: none !important; /* Skilljar Override: No underline on hover */
@@ -92,6 +96,14 @@ body.sj-page-lesson {
       &:focus-visible {
         outline: none;
         box-shadow: var(--shadow-focus-ring);
+      }
+
+      &:active {
+        transform: translateY(1px);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
       }
 
       > span.left-nav-return-text {
@@ -637,13 +649,18 @@ body.sj-page-lesson {
                           color 0.15s ease-in-out,
                           background-color 0.15s ease-in-out,
                           border-color 0.15s ease-in-out,
-                          box-shadow 0.15s ease-in-out;
+                          box-shadow 0.15s ease-in-out,
+                          transform 0.05s ease;
                         vertical-align: middle;
                         user-select: none;
 
                         &:focus-visible {
                           outline: none;
                           box-shadow: var(--shadow-focus-ring);
+                        }
+
+                        &:active {
+                          transform: translateY(1px);
                         }
 
                         @media (prefers-reduced-motion: reduce) {

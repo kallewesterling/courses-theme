@@ -51,6 +51,11 @@ label {
   font-family: Gellix, sans-serif;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-bold);
+  transition:
+    background-color 0.2s ease-in,
+    color 0.2s ease-in,
+    box-shadow 0.15s ease,
+    transform 0.05s ease;
 
   &:hover {
     background-color: var(--blurple);
@@ -60,6 +65,14 @@ label {
   &:focus-visible {
     outline: none;
     box-shadow: var(--shadow-focus-ring);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
   }
 
   span {
