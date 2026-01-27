@@ -3,6 +3,25 @@
 ## Overview
 This document outlines a strategic plan for further improving the courses-theme CSS codebase, building on the foundation of the variable system and color consolidation already completed.
 
+## ⚠️ Key Constraint: Skilljar Controls HTML
+
+**Critical Understanding**: We do **not** control the HTML that Skilljar renders. We can only override CSS styles that target Skilljar's existing selectors and structure.
+
+**What This Means**:
+- ❌ Cannot add custom classes to HTML elements (e.g., `class="btn btn-primary"`)
+- ❌ Cannot change HTML structure or element types
+- ❌ Cannot add wrapper divs or modify DOM hierarchy
+- ✅ Can target Skilljar's existing classes, IDs, and elements
+- ✅ Can override Skilljar's default styles with `!important`
+- ✅ Can use CSS custom properties (variables) for consistency
+- ✅ Can use advanced CSS selectors (`:has()`, `:not()`, etc.)
+
+**Impact on Strategy**: Instead of creating reusable component classes, we focus on:
+1. Ensuring consistency across similar Skilljar-generated elements
+2. Using CSS variables for shared property values
+3. Documenting Skilljar's structure and common selectors
+4. Consolidating duplicate CSS within our override files
+
 ---
 
 ## Phase 1: Code Quality & Maintainability
@@ -55,43 +74,54 @@ This document outlines a strategic plan for further improving the courses-theme 
 - lessons.css: Multiple media query blocks could be consolidated
 - catalog.css: Repeated selectors for course cards
 
-### 1.3 Extract Common Patterns
-**Current State**: Similar patterns repeated across files (buttons, cards, pills, etc.)
+### 1.3 Ensure Consistency Across Similar Patterns
+**Current State**: Similar Skilljar-generated elements (buttons, cards, pills) have inconsistent styling
+
+**Context**: Since we can't add custom classes, we ensure consistency by targeting Skilljar's selectors with uniform styling.
 
 **Goals**:
-- Create utility classes for common patterns
-- Extract reusable components
-- Reduce duplication
+- Identify similar Skilljar-generated elements across pages
+- Ensure consistent styling using their existing selectors
+- Extract common property values to CSS variables where applicable
+- Document Skilljar's common selectors and patterns
 
-**Patterns to Extract**:
-- Button styles (primary, secondary, outline)
-- Card styles (base card, hover states)
-- Pill/badge styles (status indicators)
-- Focus ring patterns
-- Hover transitions
+**Patterns to Standardize**:
+- Button-like elements (`#button-sign-in`, `#button-sign-up`, `.button`, `#google_login`)
+- Card elements (`.coursebox-container`, `.course-card`)
+- Pill/badge styles (`.badge-box`, `.pill`, `.completed`, `.in-progress`)
+- Focus ring patterns (all interactive elements)
+- Hover transitions (links, buttons, cards)
 
-**Implementation**:
+**Implementation Approach**:
 ```css
-/* New file: css/components/buttons.css */
-.btn-base {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: var(--spacing-6) var(--spacing-8);
+/* Instead of creating .btn-primary class, target Skilljar selectors */
+#button-sign-in,
+#button-sign-up {
+  /* Consistent button styling */
+  width: 100%;
+  height: 56px;
+  border: var(--border-width-medium) solid var(--blurple);
   border-radius: var(--radius-pill);
+  background-color: transparent;
+  color: var(--blurple);
   font-weight: var(--font-weight-extrabold);
   transition: all 0.2s ease-in;
 }
 
-.btn-primary {
-  border: var(--border-width-medium) solid var(--blurple);
-  background-color: transparent;
-  color: var(--blurple);
+#button-sign-in:hover,
+#button-sign-up:hover {
+  background-color: var(--blurple) !important; /* Skilljar Override */
+  color: var(--primary-white-hex) !important; /* Skilljar Override */
 }
+```
 
-.btn-primary:hover {
-  background-color: var(--blurple);
-  color: var(--primary-white-hex);
+**Optional - Extract to Variables**:
+```css
+/* If many elements share exact values, consider CSS variables */
+:root {
+  --interactive-transition: all 0.2s ease-in;
+  --button-height-large: 56px;
+  --button-border-primary: var(--border-width-medium) solid var(--blurple);
 }
 ```
 
@@ -99,66 +129,93 @@ This document outlines a strategic plan for further improving the courses-theme 
 
 ## Phase 2: Architecture & Organization
 
-### 2.1 Implement Component-Based Structure
+### 2.1 File Organization Strategy
 **Current State**: Files organized by page type (catalog.css, lessons.css, auth.css)
 
-**Proposed Structure**:
+**Context**: Since we target Skilljar's selectors rather than creating reusable classes, our file organization should reflect Skilljar's page structure rather than abstract components.
+
+**Current Structure** (Appropriate for Skilljar constraints):
 ```
 css/
 ├── defs/
 │   ├── variables.css (✓ Complete)
 │   ├── colors.css (✓ Complete)
 │   └── fonts.css (✓ Complete)
-├── base/
-│   ├── reset.css (normalize/reset)
-│   └── typography.css (base text styles)
-├── components/
-│   ├── buttons.css
-│   ├── cards.css
-│   ├── forms.css
-│   ├── pills.css
-│   ├── navigation.css
-│   └── breadcrumbs.css
-├── layout/
-│   ├── header.css
-│   ├── footer.css
-│   └── grid.css
-└── pages/
-    ├── catalog.css
-    ├── lessons.css
-    └── auth.css
+├── animations.css (global animations)
+├── globals.css (global overrides, base typography)
+├── header.css (Skilljar header overrides)
+├── footer.css (Skilljar footer overrides)
+├── breadcrumbs.css (breadcrumb navigation)
+├── auth.css (login/signup pages)
+├── catalog.css (catalog/landing pages)
+├── course-info.css (course detail pages)
+├── courses-learning-paths.css (course/path shared styles)
+├── lessons.css (lesson pages)
+├── completion.css (completion pages)
+├── 404.css (error pages)
+└── freezebox.css (legacy styles)
 ```
 
-**Benefits**:
-- Easier to find and maintain components
-- Reusable across pages
-- Clear separation of concerns
-- Easier onboarding for new developers
+**Alternative**: Group by Skilljar context
+```
+css/
+├── defs/ (variables, colors, fonts)
+├── global/ (globals, animations, header, footer)
+├── auth/ (login, signup overrides)
+├── catalog/ (catalog, featured courses)
+├── courses/ (course-info, lessons, completion)
+└── legacy/ (freezebox, deprecated)
+```
 
-### 2.2 Adopt Naming Convention (BEM-lite)
-**Current State**: Mixed naming conventions (kebab-case, camelCase, nested selectors)
+**Benefits of Current Structure**:
+- Matches Skilljar's page types (easy to find relevant overrides)
+- Clear which CSS applies to which page
+- Easy to test changes per page
+- Natural for platform override approach
 
-**Proposal**: Adopt a simplified BEM approach for new components
+**Recommendation**: Keep current structure, it's appropriate for Skilljar theming
 
+### 2.2 Selector Organization & Documentation
+**Current State**: We target Skilljar's mixed naming conventions (kebab-case, camelCase, IDs, classes)
+
+**Context**: We don't control the naming - Skilljar generates IDs like `#button-sign-in`, classes like `.coursebox-container`, and page identifiers like `body.sj-page-catalog`.
+
+**Strategy**: Document Skilljar's patterns for maintainability
+
+**Common Skilljar Patterns**:
 ```css
-/* Block */
-.card { }
+/* Page-level identifiers (on body) */
+body.sj-page-catalog { }        /* Catalog pages */
+body.sj-page-lesson { }         /* Lesson pages */
+body.sj-page-login { }          /* Login page */
+body.sj-page-detail-course { }  /* Course detail (not enrolled) */
+body.sj-page-curriculum { }     /* Course detail (enrolled) */
 
-/* Element */
-.card__header { }
-.card__body { }
-.card__footer { }
+/* State classes */
+.cbp-spmenu-open { }            /* When menu is open */
+.lesson-active { }              /* Active lesson */
 
-/* Modifier */
-.card--highlighted { }
-.card--completed { }
+/* Component classes */
+.coursebox-container { }        /* Course cards */
+.course-card { }                /* Course info card */
+.badge-box { }                  /* Status badges */
+
+/* Button IDs */
+#button-sign-in { }             /* Sign in button */
+#button-sign-up { }             /* Sign up button */
+#google_login { }               /* Google OAuth button */
 ```
 
+**Organization Guidelines**:
+- Group selectors by Skilljar component/feature
+- Add comments explaining what Skilljar generates
+- Document state classes and their triggers
+- Note which selectors appear across multiple pages
+
 **Benefits**:
-- Clear component structure
-- Reduced specificity conflicts
-- Self-documenting class names
-- Easier to understand relationships
+- Easier to find relevant Skilljar selectors
+- New developers understand Skilljar's structure
+- Clearer maintenance when Skilljar updates their platform
 
 ---
 
@@ -537,45 +594,59 @@ Source CSS → PostCSS → Autoprefixer → Minification → Output
 ```
 
 ### 7.4 Documentation Comments
-**Standard Format**:
+**Standard Format for Skilljar Overrides**:
 ```css
 /**
- * Card Component
+ * Course Card (Skilljar-generated)
  *
- * A flexible card component used throughout the catalog and courses.
+ * Overrides styling for course cards in the catalog.
+ * Skilljar generates: .coursebox-container
  *
- * @modifier .card--highlighted - Featured course card with gradient
- * @modifier .card--completed - Course with completed status
+ * @context Appears on catalog pages (body.sj-page-catalog)
+ * @selector .coursebox-container
+ * @states .sj-course-ribbon-complete (completed badge)
  *
- * @example
- *   <div class="card">
- *     <div class="card__header">Title</div>
- *     <div class="card__body">Content</div>
+ * @example Skilljar generates HTML like:
+ *   <div class="coursebox-container">
+ *     <div class="badge-box">Status</div>
+ *     <div class="coursebox-content">...</div>
  *   </div>
  */
-.card {
-  /* styles */
+.coursebox-container {
+  /* Our override styles */
+  width: calc(50% - var(--spacing-px-24)) !important; /* Skilljar Override */
+  border-radius: var(--radius-lg);
 }
 ```
+
+**Key Documentation Elements**:
+- What Skilljar generates (selector/structure)
+- Where it appears (page context)
+- Related state classes or modifiers
+- Example of Skilljar's HTML structure
+- Why overrides are needed
 
 ---
 
 ## Implementation Roadmap
 
 ### Priority 1 (Quick Wins - 1-2 weeks)
-- [ ] Document all !important usage with comments (mark Skilljar overrides vs internal)
-- [ ] Extract common button styles to components
-- [ ] Consolidate duplicate selectors
-- [ ] Add missing focus-visible states
-- [ ] Document existing variables
+- [x] Document all !important usage with comments (mark Skilljar overrides)
+- [ ] ~~Extract common button styles to components~~ (Not applicable - can't add classes)
+- [ ] Ensure consistency across similar Skilljar button elements
+- [ ] Consolidate duplicate selectors within files
+- [ ] Add missing focus-visible states to Skilljar's interactive elements
+- [ ] Document existing variables and Skilljar selector patterns
 
 ### Priority 2 (Medium Effort - 2-4 weeks)
-- [ ] Implement component-based file structure
-- [ ] Create reusable card component
-- [ ] Consolidate media queries
+- [ ] ~~Implement component-based file structure~~ (Current structure is appropriate)
+- [ ] ~~Create reusable card component~~ (Not applicable - can't add classes)
+- [ ] Ensure consistency across Skilljar card elements (`.coursebox-container`, `.course-card`)
+- [ ] Consolidate media queries within files
 - [ ] Add fluid typography with clamp()
 - [ ] Run color contrast audit and fix issues
 - [ ] Remove unused CSS
+- [ ] Document common Skilljar selectors and their contexts
 
 ### Priority 3 (Long Term - 1-3 months)
 - [ ] Implement CSS cascade layers
