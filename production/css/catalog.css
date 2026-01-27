@@ -71,13 +71,13 @@ body.sj-page-catalog {
 
         h1 {
           color: var(--ink) !important;
-          font-size: var(--font-size-6xl);
+          font-size: var(--font-size-6xl); /* Fluid: scales 30px-96px automatically */
           font-weight: var(--font-weight-bold);
           line-height: var(--line-height-88);
           letter-spacing: var(--letter-spacing-tightest);
 
           @media screen and (max-width: 767px) {
-            font-size: var(--font-size-2xl);
+            /* font-size handled by fluid typography (clamp) */
             line-height: var(--line-height-38);
             letter-spacing: var(--letter-spacing-tight-alt);
           }
@@ -179,12 +179,12 @@ body.sj-page-catalog {
         p.headline {
           margin: var(--spacing-0) var(--spacing-0) var(--space-4);
           font-family: Gellix, sans-serif;
-          font-size: var(--font-size-3xl);
+          font-size: var(--font-size-3xl); /* Fluid: scales 24px-36px automatically */
           font-weight: var(--font-weight-extrabold);
           line-height: var(--line-height-50);
 
           @media screen and (max-width: 767px) {
-            font-size: var(--font-size-xl);
+            /* font-size handled by fluid typography (clamp) */
             line-height: var(--line-height-42);
           }
         }
@@ -332,12 +332,12 @@ body.sj-page-catalog {
 
           h3 {
             margin: var(--spacing-0) var(--spacing-0) var(--spacing-px-8);
-            font-size: var(--font-size-xl);
+            font-size: var(--font-size-xl); /* Fluid: scales 20px-24px automatically */
             font-weight: var(--font-weight-extrabold);
             line-height: var(--line-height-35);
 
             @media screen and (max-width: 767px) {
-              font-size: var(--font-size-lg);
+              /* font-size handled by fluid typography (clamp) */
               line-height: var(--line-height-30);
             }
           }

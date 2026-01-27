@@ -307,13 +307,13 @@ body.sj-page-detail-course {
           h1.break-word {
             margin: var(--spacing-0) var(--spacing-0) var(--spacing-3) var(--spacing-0);
             /* Course title */
-            font-size: var(--font-size-3xl);
+            font-size: var(--font-size-3xl); /* Fluid: scales 24px-36px automatically */
             font-weight: var(--font-weight-semibold);
             line-height: var(--line-height-43-2);
             letter-spacing: var(--letter-spacing-snug);
 
             @media screen and (max-width: 991px) {
-              font-size: var(--font-size-2xl);
+              /* font-size handled by fluid typography (clamp) */
               line-height: var(--line-height-40);
             }
           }

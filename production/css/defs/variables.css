@@ -15,12 +15,21 @@
   --font-size-sm-large: 0.95rem; /* 15.2px */
   --font-size-md: 1.125rem;     /* 18px */
   --font-size-lg: 1.25rem;      /* 20px */
-  --font-size-xl: 1.5rem;       /* 24px */
-  --font-size-2xl: 1.875rem;    /* 30px */
-  --font-size-3xl: 2.25rem;     /* 36px */
-  --font-size-4xl: 3rem;        /* 48px */
-  --font-size-5xl: 4rem;        /* 64px */
-  --font-size-6xl: 6rem;        /* 96px */
+
+  /* Large heading sizes with fluid typography (using clamp) */
+  --font-size-xl: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  /* Scales from 20px to 24px - Eliminates xl → lg media queries */
+
+  --font-size-2xl: clamp(1.5rem, 1.2rem + 1vw, 1.875rem);
+  /* Scales from 24px to 30px - Smooth transition for medium headings */
+
+  --font-size-3xl: clamp(1.5rem, 1rem + 2vw, 2.25rem);
+  /* Scales from 24px to 36px - Eliminates 3xl → xl media queries */
+
+  --font-size-4xl: 3rem;        /* 48px - Fixed (not commonly responsive) */
+  --font-size-5xl: 4rem;        /* 64px - Fixed (not commonly responsive) */
+  --font-size-6xl: clamp(1.875rem, 1rem + 4vw, 6rem);
+  /* Scales from 30px to 96px - Eliminates 6xl → 2xl media queries */
 
   /* Font Weights - Semantic names */
   --font-weight-light: 300;
@@ -224,4 +233,21 @@
     border-color 0.15s ease-in-out,
     box-shadow 0.15s ease-in-out,
     transform 0.05s ease;
+
+  /* Responsive Breakpoints - Standard viewport widths */
+  /* Note: CSS variables cannot be used in media queries directly.
+     These are for documentation and reference. Use the pixel values
+     in @media queries as shown in examples below. */
+
+  --breakpoint-mobile: 767px;     /* Mobile phone (max-width) */
+  --breakpoint-tablet: 991px;     /* Tablet (max-width) */
+  --breakpoint-desktop-sm: 1200px; /* Small desktop (min-width) */
+  --breakpoint-desktop-lg: 1536px; /* Large desktop (min-width) */
+
+  /* Usage examples (CSS variables cannot be used in @media directly):
+     @media screen and (max-width: 767px) { Mobile styles }
+     @media screen and (max-width: 991px) { Tablet/mobile styles }
+     @media (min-width: 1200px) { Desktop styles }
+     @media (min-width: 1536px) { Large desktop styles }
+  */
 }
