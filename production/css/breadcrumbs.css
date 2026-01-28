@@ -4,8 +4,10 @@
  */
 
 body.sj-page-detail-course,
+body.sj-page-detail-path,
 body.sj-page-curriculum,
-body.sj-page-catalog {
+body.sj-page-catalog,
+body.sj-page-series {
   #breadcrumbs {
     justify-content: start;
     margin: var(--spacing-px-20) auto;
