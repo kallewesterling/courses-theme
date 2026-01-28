@@ -214,6 +214,10 @@ body.sj-page-signup {
         margin-bottom: var(--spacing-px-12);
       }
 
+      @media (prefers-reduced-motion: reduce) {
+        transition: none; /* Instant focus appearance */
+      }
+
       &:hover {
         border-color: var(--brand);
       }

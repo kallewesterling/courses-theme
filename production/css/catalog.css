@@ -76,6 +76,7 @@ body.sj-page-detail-path {
           font-size: var(
             --font-size-6xl
           ); /* Fluid: scales 30px-96px automatically */
+
           font-weight: var(--font-weight-bold);
           line-height: var(--line-height-88);
           letter-spacing: var(--letter-spacing-tightest);
@@ -177,6 +178,11 @@ body.sj-page-detail-path {
             background-color: var(--color-brand-blurple);
             transform: translate(7px, 3px);
             animation: cursor-blink 1.5s steps(1) infinite;
+
+            @media (prefers-reduced-motion: reduce) {
+              opacity: 1; /* Keep cursor visible but static */
+              animation: none;
+            }
           }
         }
 
@@ -186,6 +192,7 @@ body.sj-page-detail-path {
           font-size: var(
             --font-size-3xl
           ); /* Fluid: scales 24px-36px automatically */
+
           font-weight: var(--font-weight-extrabold);
           line-height: var(--line-height-50);
 
@@ -243,6 +250,15 @@ body.sj-page-detail-path {
           &:hover {
             box-shadow: var(--shadow-card-hover);
             transform: translateY(-2px);
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            transition: none;
+
+            &:hover {
+              transform: none; /* No movement */
+              /* Keep shadow for visual feedback */
+            }
           }
 
           & .completed {
@@ -349,6 +365,7 @@ body.sj-page-detail-path {
             font-size: var(
               --font-size-xl
             ); /* Fluid: scales 20px-24px automatically */
+
             font-weight: var(--font-weight-extrabold);
             line-height: var(--line-height-35);
 

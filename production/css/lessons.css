@@ -309,15 +309,28 @@ body.sj-page-lesson {
                 transform 0.06s ease,
                 box-shadow 0.2s ease;
               box-shadow: var(--shadow-elevation-sm);
+
+              @media (prefers-reduced-motion: reduce) {
+                transition: none;
+              }
             }
 
             .lesson-btn:hover {
               transform: translateY(-1px);
               box-shadow: var(--shadow-elevation-md);
+
+              @media (prefers-reduced-motion: reduce) {
+                transform: none; /* No movement */
+                /* Keep box-shadow for visual feedback */
+              }
             }
 
             .lesson-btn:active {
               transform: translateY(0);
+
+              @media (prefers-reduced-motion: reduce) {
+                transform: none; /* No movement */
+              }
             }
           }
         }
@@ -540,6 +553,10 @@ body.sj-page-lesson {
                   color: var(--primary-white-hex);
                   transition: opacity 0.2s ease-in;
                   text-shadow: none;
+
+                  @media (prefers-reduced-motion: reduce) {
+                    transition: none; /* Instant appearance */
+                  }
                 }
 
                 code {
@@ -587,6 +604,10 @@ body.sj-page-lesson {
                   opacity: 0;
                   transition: opacity 0.2s ease-in;
                   text-shadow: none;
+
+                  @media (prefers-reduced-motion: reduce) {
+                    transition: none; /* Instant appearance */
+                  }
                 }
               }
 
