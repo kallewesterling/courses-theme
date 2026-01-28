@@ -3,16 +3,26 @@
     "lint:css": "stylelint \"production/**/*.css\"",
     "lint:css:fix": "stylelint \"production/**/*.css\" --fix",
     "lint:js": "eslint .",
-    "lint": "npm run lint:css && npm run lint:js"
+    "lint": "npm run lint:css && npm run lint:js",
+    "build:css": "NODE_ENV=production postcss production/style.css -o dist/bundle.min.css",
+    "build:css:dev": "postcss production/style.css -o dist/bundle.css --map",
+    "watch:css": "postcss production/style.css -o dist/bundle.css --watch --map",
+    "build": "npm run lint && npm run build:css",
+    "dev": "npm run watch:css"
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",
+    "autoprefixer": "^10.4.23",
+    "cssnano": "^7.1.2",
     "eslint": "^9.23.0",
     "globals": "^16.0.0",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "postcss-import": "^16.1.1",
+    "postcss-sorting": "^9.1.0",
     "stylelint": "^17.0.0",
     "stylelint-config-standard": "^40.0.0",
-    "stylelint-order": "^7.0.1",
-    "postcss-sorting": "^9.1.0"
+    "stylelint-order": "^7.0.1"
   },
   "dependencies": {
     "terser": "^5.44.1"
