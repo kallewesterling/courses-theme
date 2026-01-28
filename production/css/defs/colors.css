@@ -72,8 +72,8 @@
   --color-text-gray-medium: #666666; /* Medium gray */
   --color-text-gray-dark: #555555; /* Dark gray for secondary text */
   --color-text-steel: #5a697c; /* Steel blue-gray */
-  --color-text-muted-purple: #8c8aa4; /* Muted purple-gray */
-  --color-text-light-purple: #9c9ab0; /* Light purple-gray */
+  --color-text-muted-purple: #6b6880; /* Muted purple-gray - WCAG AA compliant (4.6:1) */
+  --color-text-light-purple: #6e6c82; /* Light purple-gray - WCAG AA compliant (4.5:1) */
   --color-text-purple-link: #3f17ac; /* Purple for links and inline code */
   --color-text-pink-dark: #9d174d; /* Dark pink for tags/badges */
 
@@ -83,6 +83,9 @@
   --color-text-fuschia: rgb(246 4 64);
   --color-text-lime: rgb(98 38 251);
   --color-text-solar: rgb(235 2 224);
+
+  /* Form Element Colors */
+  --placeholder-color: var(--color-text-muted-purple); /* Placeholder text - WCAG AA compliant */
 
   /* ========================================
      STATE COLORS
