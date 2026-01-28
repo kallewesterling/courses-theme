@@ -51,6 +51,12 @@ body.sj-page-series {
               text-decoration: underline;
               text-underline-offset: 2px;
             }
+
+            &:focus-visible {
+              outline: none;
+              box-shadow: var(--shadow-focus-ring);
+              border-radius: var(--radius-sm);
+            }
           }
 
           + li::before {

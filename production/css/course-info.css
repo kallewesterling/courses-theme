@@ -69,6 +69,11 @@ body.sj-page-curriculum {
     a {
       margin: var(--spacing-0) var(--spacing-px-20) 1.25em;
 
+      &:focus-visible {
+        outline: none;
+        box-shadow: var(--shadow-focus-ring);
+      }
+
       &.completed {
         background-color: var(--color-success-dark) !important;
         cursor: default !important;
@@ -207,6 +212,11 @@ body.sj-page-curriculum {
 
       &:hover {
         background-color: var(--gradient-end);
+      }
+
+      &:focus-visible {
+        outline: none;
+        box-shadow: var(--shadow-focus-ring);
       }
 
       &:last-child {

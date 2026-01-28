@@ -218,7 +218,7 @@ body.sj-page-signup {
         border-color: var(--brand);
       }
 
-      &:focus {
+      &:focus-visible {
         outline: none;
         border-color: var(--brand);
         box-shadow: var(--shadow-focus-ring);
