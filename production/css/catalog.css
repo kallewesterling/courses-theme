@@ -199,10 +199,10 @@ body.sj-page-detail-path {
           margin: var(--spacing-0) var(--spacing-0) var(--space-3);
           color: var(--ink-dim);
           font-family: Gellix, sans-serif;
-          font-size: 1em; /* 18px - inherits from parent */
+          font-size: var(--font-size-base);
 
           @media screen and (max-width: 767px) {
-            font-size: var(--font-size-base);
+            font-size: calc(0.9 * var(--font-size-base));
           }
         }
       }
@@ -225,6 +225,11 @@ body.sj-page-detail-path {
 
         &:hover {
           color: var(--blurple) !important;
+        }
+
+        &:focus-visible {
+          outline: none;
+          box-shadow: var(--shadow-focus-ring);
         }
 
         article {
