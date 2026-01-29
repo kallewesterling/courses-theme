@@ -42,9 +42,8 @@ body.sj-page-catalog {
   These are our legacy styles in the transition period to the new branding.
   */
 
-  #catalog-content {
-    #catalog-courses {
-      .coursebox-container {
+  /* Legacy coursebox container */
+  #catalog-courses .coursebox-container {
         display: flex;
         flex-direction: column;
         width: calc(33% - 24px) !important; /* 3 should fit */
@@ -55,62 +54,71 @@ body.sj-page-catalog {
           width: 100% !important; /* 1 only on mobile */
         }
 
-        .badge-box {
-          background-color: var(--color-brand-blurple) !important;
-          color: var(--color-surface-base) !important;
-          box-shadow: unset !important;
-        }
+  }
 
-        /* Adding FontAwesome icon before badge box */
-        .badge-box::before {
+  /* Badge box styling */
+  #catalog-courses .coursebox-container .badge-box {
+    background-color: var(--color-brand-blurple) !important;
+    color: var(--color-surface-base) !important;
+    box-shadow: unset !important;
+  }
+
+  /* FontAwesome icon before badge box */
+  #catalog-courses .coursebox-container .badge-box::before {
           content: "";
           display: inline-block;
           margin-right: 10px;
           font: normal normal normal 14px/1 FontAwesome, monospace;
           font-size: inherit;
           text-rendering: auto;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-        }
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+  }
 
-        .sj-ribbon-wrapper {
-          display: none !important; /* Hide "registered" ribbon */
-        }
+  /* Hide registered ribbon */
+  #catalog-courses .coursebox-container .sj-ribbon-wrapper {
+    display: none !important;
+  }
 
-        .coursebox-image {
-          display: none !important; /* Hide course image */
-        }
+  /* Hide course image */
+  #catalog-courses .coursebox-container .coursebox-image {
+    display: none !important;
+  }
 
-        .coursebox-text-description {
-          flex: 1;
-          font-size: var(--font-size-sm);
-        }
+  /* Text description */
+  #catalog-courses .coursebox-container .coursebox-text-description {
+    flex: 1;
+    font-size: var(--font-size-sm);
+  }
 
-        .course-overview {
-          font-size: 80%;
-          font-weight: var(--font-weight-light);
+  /* Course overview section */
+  #catalog-courses .coursebox-container .course-overview {
+    font-size: 80%;
+    font-weight: var(--font-weight-light);
+  }
 
-          .course-overview__content {
-            padding: var(--spacing-px-8) var(--spacing-px-8) 0 var(--spacing-px-8);
+  /* Course overview content */
+  #catalog-courses .coursebox-container .course-overview__content {
+    padding: var(--spacing-px-8) var(--spacing-px-8) 0 var(--spacing-px-8);
+  }
 
-            a {
-              color: var(--blurple);
+  /* Course overview links */
+  #catalog-courses .coursebox-container .course-overview__content a {
+    color: var(--blurple);
+  }
 
-              i {
-                padding-right: var(--spacing-3);
-              }
+  /* Course overview link icons */
+  #catalog-courses .coursebox-container .course-overview__content a i {
+    padding-right: var(--spacing-3);
+  }
 
-              .course-overview__content__lesson__type-icon {
-                display: none !important;
-              }
-            }
-          }
-        }
-      }
+  /* Hide type icon */
+  #catalog-courses .coursebox-container .course-overview__content__lesson__type-icon {
+    display: none !important;
+  }
 
-      .coursebox-container:has(.badge-box) {
-        padding-top: var(--spacing-px-48);
-      }
-    }
+  /* Padding when badge box present */
+  #catalog-courses .coursebox-container:has(.badge-box) {
+    padding-top: var(--spacing-px-48);
   }
 }
