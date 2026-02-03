@@ -150,6 +150,7 @@ const columnData = {
               href: "https://www.chainguard.dev/supply-chain-security-101",
             },
             { label: "Blog", href: "https://www.chainguard.dev/unchained" },
+            { label: "Open Source Leadership", href: "https://www.chainguard.dev/open-source-leadership" },
             { label: "Partners", href: "https://www.chainguard.dev/partners" },
             { label: "Newsroom", href: "https://www.chainguard.dev/newsroom" },
             { label: "Careers", href: "https://www.chainguard.dev/careers" },
