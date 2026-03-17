@@ -6,6 +6,7 @@ repos:
         entry: npx stylelint
         language: node
         files: \.css$
+        exclude: \.(min|bundle\.min)\.css$
         pass_filenames: true
 
       - id: js-syntax-check

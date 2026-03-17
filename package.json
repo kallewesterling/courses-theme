@@ -5,6 +5,7 @@
     "lint:js": "eslint .",
     "lint": "npm run lint:css && npm run lint:js",
     "build:css": "NODE_ENV=production postcss production/style.css -o dist/bundle.min.css",
+    "build:css:test": "NODE_ENV=production postcss production/style.css -o test/bundle.min.css",
     "build:css:dev": "postcss production/style.css -o dist/bundle.css --map",
     "watch:css": "postcss production/style.css -o dist/bundle.css --watch --map",
     "build": "npm run lint && npm run build:css",
