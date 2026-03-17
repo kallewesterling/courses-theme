@@ -4,7 +4,7 @@ repos:
       - id: css-syntax-check
         name: CSS syntax check
         entry: npx stylelint
-        language: system
+        language: node
         files: \.css$
         pass_filenames: true
 
