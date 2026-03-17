@@ -65,41 +65,128 @@ body.sj-page-detail-path {
     padding: var(--spacing-0);
 
     .catalog-header {
-      .catalog-hero {
-        min-height: unset;
-        padding: 66px var(--spacing-px-24);
-        background: transparent !important; /* Hide background */
-        color: var(--ink) !important; /* Make title black */
+      display: none !important;
+    }
+  }
 
-        h1 {
-          color: var(--ink) !important;
-          font-size: var(
-            --font-size-6xl
-          ); /* Fluid: scales 30px-96px automatically */
+  #catalog-banner {
+    width: 100%;
+    max-width: 1512px;
+    padding: 0 var(--spacing-px-32);
+    margin: var(--spacing-px-24) auto;
 
-          font-weight: var(--font-weight-bold);
-          line-height: var(--line-height-88);
-          letter-spacing: var(--letter-spacing-tightest);
+    @media screen and (max-width: 767px) {
+      padding: 0 var(--spacing-px-24);
+      margin-top: var(--spacing-px-24);
+    }
 
-          @media screen and (max-width: 767px) {
-            /* font-size handled by fluid typography (clamp) */
-            line-height: var(--line-height-38);
-            letter-spacing: var(--letter-spacing-tight-alt);
-          }
+    .banner-inner {
+      display: flex;
+      justify-content: space-between;
+      border: 1px solid transparent;
+      border-image: radial-gradient(
+          100% 198.73% at 0% 50%,
+          #6226fb 0%,
+          #fd2bf2 97.78%
+        )
+        1;
+    }
+
+    .banner-col {
+      width: 100%;
+      max-width: 302px;
+      flex-shrink: 0;
+      overflow: hidden;
+
+      svg {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      @media screen and (max-width: 1023px) {
+        display: none;
+      }
+    }
+
+    .banner-center {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 160px var(--spacing-px-24);
+      text-align: center;
+
+      @media screen and (min-width: 1024px) {
+        padding: 40px var(--spacing-px-24);
+      }
+
+      h1 {
+        color: var(--ink) !important;
+        font-size: var(--font-size-6xl);
+        font-weight: var(--font-weight-bold);
+        line-height: var(--line-height-88);
+        letter-spacing: var(--letter-spacing-tightest);
+      }
+
+      h3 {
+        margin: var(--spacing-0);
+        color: var(--ink);
+        font-family: Gellix, sans-serif;
+        font-size: var(--font-size-2xl);
+        font-weight: var(--font-weight-bold);
+        line-height: var(--line-height-tight);
+        letter-spacing: -0.03em;
+
+        @media screen and (min-width: 1024px) {
+          font-size: var(--font-size-3xl);
+          letter-spacing: -0.04em;
         }
+      }
 
-        p {
-          margin-bottom: var(--spacing-0);
+      p {
+        margin: var(--spacing-px-24) var(--spacing-0) var(--spacing-0);
+        color: var(--ink);
+        font-family: Roobert, monospace;
+        font-size: var(--font-size-sm);
+        line-height: 19px;
+        letter-spacing: -0.03em;
+        opacity: 0.8;
 
-          @media screen and (max-width: 767px) {
-            font-size: var(--font-size-base);
-            line-height: var(--line-height-1-6rem);
-          }
+        @media screen and (min-width: 1024px) {
+          max-width: 404px;
+          margin-top: var(--spacing-px-16);
+          font-size: var(--font-size-base);
+          line-height: var(--line-height-normal);
         }
+      }
+    }
 
-        a {
-          display: none !important; /* Hide "View Our Courses" button */
-        }
+    .banner-cta {
+      margin-top: var(--spacing-px-24);
+
+      @media screen and (min-width: 1024px) {
+        margin-top: var(--spacing-px-32);
+      }
+    }
+
+    .banner-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--gap-2);
+      color: var(--color-brand-blurple) !important;
+      font-family: Gellix, sans-serif;
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: -0.01em;
+      text-decoration: none;
+
+      svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        fill: var(--color-brand-blurple);
       }
     }
   }
