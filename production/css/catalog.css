@@ -71,7 +71,7 @@ body.sj-page-detail-path {
 
   #catalog-banner {
     width: 100%;
-    max-width: 1512px;
+    max-width: 100%;
     padding: 0 var(--spacing-px-32);
     margin: var(--spacing-px-24) auto;
 
