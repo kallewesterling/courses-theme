@@ -84,12 +84,12 @@ body.sj-page-detail-path {
       display: flex;
       justify-content: space-between;
       border: 1px solid transparent;
-      border-image: radial-gradient(
+      /* border-image: radial-gradient(
           100% 198.73% at 0% 50%,
           #6226fb 0%,
           #fd2bf2 97.78%
         )
-        1;
+        1; */
     }
 
     .banner-col {
@@ -149,7 +149,7 @@ body.sj-page-detail-path {
         margin: var(--spacing-px-24) var(--spacing-0) var(--spacing-0);
         color: var(--ink);
         font-family: Roobert, monospace;
-        font-size: var(--font-size-sm);
+        font-size: var(--font-size-md);
         line-height: 19px;
         letter-spacing: -0.03em;
         opacity: 0.8;
@@ -157,7 +157,6 @@ body.sj-page-detail-path {
         @media screen and (min-width: 1024px) {
           max-width: 404px;
           margin-top: var(--spacing-px-16);
-          font-size: var(--font-size-base);
           line-height: var(--line-height-normal);
         }
       }
