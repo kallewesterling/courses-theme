@@ -7,7 +7,7 @@
  * This script is designed to be run in the context of a Skilljar page.
  *
  * @version 3.0
- * @date 2026-01-10
+ * @date 2026-03-20
  * @author Chainguard
  * @license MIT
  * @see {@link https://courses.chainguard.com|Chainguard Courses}
