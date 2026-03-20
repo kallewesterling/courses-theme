@@ -678,7 +678,7 @@ body.sj-page-lesson {
   /* Card body - main content area */
   .resource-card .card-body {
     flex: 1 1 auto;
-    padding: 1.25rem;
+    padding: var(--spacing-5);
   }
 
   /* Badge container */
