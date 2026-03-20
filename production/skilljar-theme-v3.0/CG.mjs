@@ -2,6 +2,9 @@ import { CONFIG } from "./static.mjs";
 import { c, A, Q, el, sanitizeUrl } from "./meta.mjs";
 import { logger } from "./logger.mjs";
 
+// static import
+import { logo } from "../data/graphics.mjs";
+
 export const CG = {
   env: {
     isStaging: window.location.href.includes("chainguard-test"),
@@ -277,14 +280,11 @@ export const CG = {
 
     get logo() {
       return el("div", { id: "logo-wrapper" }, [
-        el(
-          "a",
-          {
-            className: "header-logo-link focus-link-v2",
-            href: CG.state.baseURL,
-          },
-          [CONFIG.logo],
-        ),
+        el("a", {
+          className: "header-logo-link focus-link-v2",
+          href: CG.state.baseURL,
+          innerHTML: logo,
+        }),
       ]);
     },
   },
