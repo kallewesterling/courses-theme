@@ -10,12 +10,12 @@ body.sj-page-catalog,
 body.sj-page-series {
   #breadcrumbs {
     justify-content: start;
-    margin: var(--spacing-px-20) auto;
+    margin: var(--spacing-5) auto;
 
     .breadcrumb {
       width: max-content;
       max-width: 100%;
-      padding: var(--spacing-px-10) var(--spacing-px-14);
+      padding: var(--spacing-2) var(--spacing-3);
       border: var(--border-width-thin) solid var(--border);
       border-radius: var(--radius-2xl);
       background-color: var(--color-surface-base);
