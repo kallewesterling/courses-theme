@@ -50,7 +50,12 @@ export function catalogView() {
     logger.warn("Could not determine catalog section name, defaulting to home");
 
   // hide existing content
-  hide(Q("#catalog-content"));
+  hide(
+    // catalog content for landing pages
+    Q("#catalog-content"),
+    // tile contents for pages
+    Q(".tile-content-block"),
+  );
 
   // insert factory banner after old catalog header
   const catalogHeader = Q(".catalog-header");
