@@ -1,6 +1,6 @@
 import { A, Q, el, text, sanitizeUrl, toTitleCase } from "../meta.mjs";
 import { CG } from "../CG.mjs";
-import { CONFIG } from "../static.mjs";
+import { CONFIG } from "../config.mjs";
 import { setStyle } from "../styling.mjs";
 import { createClone } from "../icons.mjs";
 import { logger } from "../logger.mjs";
@@ -25,8 +25,8 @@ function buildResourceBox() {
 
     get numBoxes() {
       return this.boxes.length;
-    }
-  }
+    },
+  };
 
   const hasResources = typeof resources.resources !== "undefined";
   const hasGroups = typeof resources.groups !== "undefined";
@@ -222,7 +222,6 @@ function applyHighlights(codeEl, highlight) {
     }
   }
 }
-
 
 /**
  * Processes a code block element by adding syntax highlighting and a copy button.
