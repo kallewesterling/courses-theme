@@ -7,14 +7,8 @@ import { logger } from "../logger.mjs";
 import { makeSections } from "../sections.mjs";
 
 function createBanner() {
-  const leftCol = el("div", { className: "banner-col" });
-  leftCol.innerHTML = bannerSVGs.left;
-
-  const rightCol = el("div", { className: "banner-col" });
-  rightCol.innerHTML = bannerSVGs.right;
-
   const ctas = [
-    { href: "/", text: "See all our courses", arrow: true },
+    // { href: "/", text: "See all our courses", arrow: true },
   ];
 
   const ctaLinks = ctas.map(({ href, text, arrow }) =>
@@ -24,12 +18,12 @@ function createBanner() {
       rel: "noreferrer noopener",
       className: "banner-link",
       innerHTML: arrow ? `${text} ${bannerSVGs.arrow}` : text,
-    })
+    }),
   );
 
   return el("div", { id: "catalog-banner" }, [
     el("div", { className: "banner-inner" }, [
-      leftCol,
+      el("div", { className: "banner-col", innerHTML: bannerSVGs.left }),
       el("div", { className: "banner-center" }, [
         el("h1", { text: "Let's Get Smarter." }),
         el("p", {
@@ -37,7 +31,7 @@ function createBanner() {
         }),
         el("div", { className: "banner-cta" }, ctaLinks),
       ]),
-      rightCol,
+      el("div", { className: "banner-col", innerHTML: bannerSVGs.right }),
     ]),
   ]);
 }
