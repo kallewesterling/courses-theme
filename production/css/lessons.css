@@ -770,8 +770,8 @@ sjwc-lesson-content-item {
 
   .callout {
     width: 100% !important;
-    padding: var(--spacing-px-20) !important;
-    margin: var(--spacing-px-46) 0 !important;
+    padding: var(--spacing-5) !important;
+    margin: var(--spacing-10) var(--spacing-0) !important;
     border: var(--border-width-thin) solid var(--blurple) !important;
     border-radius: var(--radius-md);
     background-color: var(--color-brand-primary-subtle) !important;
@@ -780,7 +780,7 @@ sjwc-lesson-content-item {
     box-shadow: unset !important;
 
     .callout-header {
-      padding: var(--spacing-px-10) var(--spacing-px-20) var(--spacing-px-10) var(--spacing-px-20);
+      padding: var(--spacing-2) var(--spacing-2) var(--spacing-2) var(--spacing-5);
       border-radius: var(--radius-md) var(--radius-md) var(--radius-none) var(--radius-none);
       background-color: transparent !important;
       font-size: var(--font-size-lg) !important;
@@ -794,7 +794,7 @@ sjwc-lesson-content-item {
     }
 
     .callout-body {
-      padding: var(--spacing-px-10) var(--spacing-px-20) var(--spacing-px-10) var(--spacing-px-20);
+      padding: var(--spacing-2) var(--spacing-5) var(--spacing-2) var(--spacing-5);
 
       ul {
         li::marker {
