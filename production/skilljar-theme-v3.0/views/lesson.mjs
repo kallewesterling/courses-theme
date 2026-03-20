@@ -1,4 +1,4 @@
-import { A, Q, el, text, getCorrectURL, toTitleCase } from "../meta.mjs";
+import { A, Q, el, text, sanitizeUrl, toTitleCase } from "../meta.mjs";
 import { CG } from "../CG.mjs";
 import { CONFIG } from "../static.mjs";
 import { setStyle } from "../styling.mjs";
@@ -365,7 +365,7 @@ function createResourceCard(
   return el(
     "a",
     {
-      href: getCorrectURL(resource.link),
+      href: sanitizeUrl(resource.link),
       target: "_blank",
       className: "resource-link-wrapper",
     },
@@ -442,7 +442,7 @@ export function lessonView() {
     elem.target = "_blank";
     if (elem.href.includes("chainguard.dev")) {
       // set utm_* info if the link is internal (domain name includes chainguard.dev)
-      elem.href = getCorrectURL(elem.href);
+      elem.href = sanitizeUrl(elem.href);
     }
   });
 

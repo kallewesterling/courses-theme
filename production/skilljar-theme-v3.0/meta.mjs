@@ -10,7 +10,7 @@ export function c(selector) {
   return Q(selector) || false;
 }
 
-export function getCorrectURL(link, UTM = {}) {
+export function sanitizeUrl(link, UTM = {}) {
   let url;
   try {
     url = new URL(link);

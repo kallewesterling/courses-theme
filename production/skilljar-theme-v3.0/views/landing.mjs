@@ -1,5 +1,5 @@
 import { pathSections } from "../static.mjs";
-import { Q, el, remove, getCorrectURL } from "../meta.mjs";
+import { Q, el, remove, sanitizeUrl } from "../meta.mjs";
 import { hide } from "../styling.mjs";
 import { createClone } from "../icons.mjs";
 import { CG } from "../CG.mjs";
@@ -76,7 +76,7 @@ export function landingView() {
         el(
           "a",
           {
-            href: getCorrectURL("https://www.chainguard.dev/contact"),
+            href: sanitizeUrl("https://www.chainguard.dev/contact"),
             className: "button white",
             text: "Contact Us",
           },

@@ -1,4 +1,4 @@
-import { el, getCorrectURL } from "./meta.mjs";
+import { el, sanitizeUrl } from "./meta.mjs";
 
 /**
  * Generates the footer HTML and appends it to the specified container.
@@ -17,7 +17,7 @@ export function generateFooter(data, containerId = "footer-container") {
       "div",
       { className: "legal-links" },
       data.copyright.links
-        .map((l) => el("a", { href: getCorrectURL(l.href), text: l.label }))
+        .map((l) => el("a", { href: sanitizeUrl(l.href), text: l.label }))
 
         // in-between every link we want a | separator except after the last one
         .reduce((acc, elem, idx, arr) => {
@@ -34,7 +34,7 @@ export function generateFooter(data, containerId = "footer-container") {
     el("div", { className: "primary-col" }, [
       el("div", { className: "tagline" }, [
         el("a", {
-          href: getCorrectURL(data.logo.href),
+          href: sanitizeUrl(data.logo.href),
           target: "_blank",
           innerHTML: data.logo.svg,
           class: "small-logo",
@@ -50,7 +50,7 @@ export function generateFooter(data, containerId = "footer-container") {
               "a",
               {
                 className: "button",
-                href: getCorrectURL(data.contact.href),
+                href: sanitizeUrl(data.contact.href),
                 target: "_blank",
                 text: data.contact.label,
               },
@@ -96,7 +96,7 @@ export function generateFooter(data, containerId = "footer-container") {
       (g.links || []).forEach((link) =>
         gDiv.appendChild(
           el("a", {
-            href: getCorrectURL(link.href),
+            href: sanitizeUrl(link.href),
             target: "_blank",
             text: link.label,
           })
@@ -117,7 +117,7 @@ export function generateFooter(data, containerId = "footer-container") {
     data.logo
       ? el("div", { className: "logo-container" }, [
           el("a", {
-            href: getCorrectURL(data.logo.href),
+            href: sanitizeUrl(data.logo.href),
             target: "_blank",
             innerHTML: data.logo.svg,
           }),
@@ -131,7 +131,7 @@ export function generateFooter(data, containerId = "footer-container") {
           { className: "social-icons" },
           data.socials.map((s) =>
             el("a", {
-              href: getCorrectURL(s.href),
+              href: sanitizeUrl(s.href),
               target: "_blank",
               innerHTML: s.svg,
             })
