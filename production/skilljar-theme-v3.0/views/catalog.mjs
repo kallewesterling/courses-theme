@@ -1,10 +1,13 @@
-import { pathSections, bannerSVGs } from "../static.mjs";
 import { Q, el, remove, sanitizeUrl } from "../meta.mjs";
 import { hide } from "../styling.mjs";
 import { createClone } from "../icons.mjs";
 import { CG } from "../CG.mjs";
 import { logger } from "../logger.mjs";
 import { makeSections } from "../sections.mjs";
+
+// static imports
+import { pathSections } from "../data/path-sections.mjs";
+import { bannerSVGs } from "../../data/graphics.mjs";
 
 function createBanner() {
   const ctas = [
