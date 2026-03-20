@@ -515,7 +515,7 @@ body.sj-page-lesson {
               }
 
               code:not(pre code) {
-                background-color: var(--color-border-black) !important;
+                background-color: var(--color-border-accent) !important;
                 color: var(--color-text-purple-link) !important;
               }
 
@@ -685,14 +685,14 @@ body.sj-page-lesson {
   .resource-card .badge-container {
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: var(--spacing-px-10);
+    margin-bottom: var(--spacing-2);
   }
 
   /* Badge styling */
   .resource-card .badge {
     width: fit-content;
-    margin-right: var(--spacing-px-10);
-    margin-bottom: var(--spacing-px-10);
+    margin-right: var(--spacing-1);
+    margin-bottom: var(--spacing-1);
     border: var(--border-width-none);
     border-radius: var(--radius-rem-sm);
     background-color: var(--color-pink-light);
