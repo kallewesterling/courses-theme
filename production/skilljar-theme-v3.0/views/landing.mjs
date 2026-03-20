@@ -17,7 +17,7 @@ function createBanner() {
   const rightCol = el("div", { className: "banner-col" });
   rightCol.innerHTML = RIGHT_SVG;
 
-  const ctaLink = el("a", {
+  const ctaLink = el("a", { // TODO: add ability to have more than one ctaLink
     href: "/",
     target: "_blank",
     rel: "noreferrer noopener",
