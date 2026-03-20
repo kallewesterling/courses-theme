@@ -238,66 +238,66 @@ body.sj-page-detail-path {
       @media (min-width: 1536px) {
         grid-template-columns: 34% calc(66% - var(--spacing-px-24)) !important;
       }
+    }
 
-      .intro {
-        padding-right: var(--spacing-8);
-        font-family: inherit;
+    .intro {
+      padding-right: var(--spacing-8);
+      font-family: inherit;
+    }
 
-        h2.eyebrow {
-          margin: var(--spacing-0) var(--spacing-0) var(--space-1);
-          color: var(--blurple);
-          font-family: inherit;
-          font-size: var(--font-size-sm-plus);
-          font-weight: var(--font-weight-medium);
-          letter-spacing: var(--letter-spacing-widest);
-          text-transform: uppercase;
+    .intro h2.eyebrow {
+      margin: var(--spacing-0) var(--spacing-0) var(--space-1);
+      color: var(--blurple);
+      font-family: inherit;
+      font-size: var(--font-size-sm-plus);
+      font-weight: var(--font-weight-medium);
+      letter-spacing: var(--letter-spacing-widest);
+      text-transform: uppercase;
 
-          @media screen and (max-width: 767px) {
-            font-size: var(--font-size-xs-plus);
-          }
+      @media screen and (max-width: 767px) {
+        font-size: var(--font-size-xs-plus);
+      }
 
-          &::after {
-            content: "";
-            display: inline-block;
-            width: 11px;
-            height: 18px;
-            background-color: var(--color-brand-blurple);
-            transform: translate(7px, 3px);
-            animation: cursor-blink 1.5s steps(1) infinite;
+      &::after {
+        content: "";
+        display: inline-block;
+        width: 11px;
+        height: 18px;
+        background-color: var(--color-brand-blurple);
+        transform: translate(7px, 3px);
+        animation: cursor-blink 1.5s steps(1) infinite;
 
-            @media (prefers-reduced-motion: reduce) {
-              opacity: 1; /* Keep cursor visible but static */
-              animation: none;
-            }
-          }
+        @media (prefers-reduced-motion: reduce) {
+          opacity: 1; /* Keep cursor visible but static */
+          animation: none;
         }
+      }
+    }
 
-        p.headline {
-          margin: var(--spacing-0) var(--spacing-0) var(--space-4);
-          font-family: Gellix, sans-serif;
-          font-size: var(
-            --font-size-3xl
-          ); /* Fluid: scales 24px-36px automatically */
+    .intro p.headline {
+      margin: var(--spacing-0) var(--spacing-0) var(--space-4);
+      font-family: Gellix, sans-serif;
+      font-size: var(
+        --font-size-3xl
+      ); /* Fluid: scales 24px-36px automatically */
 
-          font-weight: var(--font-weight-extrabold);
-          line-height: var(--line-height-50);
+      font-weight: var(--font-weight-extrabold);
+      line-height: var(--line-height-50);
 
-          @media screen and (max-width: 767px) {
-            /* font-size handled by fluid typography (clamp) */
-            line-height: var(--line-height-42);
-          }
-        }
+      @media screen and (max-width: 767px) {
+        /* font-size handled by fluid typography (clamp) */
+        line-height: var(--line-height-42);
+      }
+    }
 
-        p.subhead {
-          margin: var(--spacing-0) var(--spacing-0) var(--space-3);
-          color: var(--ink-dim);
-          font-family: Gellix, sans-serif;
-          font-size: var(--font-size-base);
+    .intro p.subhead {
+      margin: var(--spacing-0) var(--spacing-0) var(--space-3);
+      color: var(--ink-dim);
+      font-family: Gellix, sans-serif;
+      font-size: var(--font-size-base);
 
-          @media screen and (max-width: 767px) {
-            font-size: calc(0.9 * var(--font-size-base));
-          }
-        }
+      @media screen and (max-width: 767px) {
+        font-size: calc(0.9 * var(--font-size-base));
       }
     }
 
@@ -525,55 +525,55 @@ body.sj-page-detail-path {
       fill: var(--color-surface-base);
     }
 
-    div {
+    > div {
       display: flex;
       justify-content: space-between;
+    }
 
-      svg {
-        fill: var(--color-surface-base);
+    > div > svg {
+      fill: var(--color-surface-base);
+    }
+
+    a.button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: var(--gap-2);
+      column-gap: var(--gap-2);
+      min-width: 180px;
+      padding: var(--spacing-px-24);
+      border-width: var(--border-width-thin);
+      background-color: var(--color-surface-base);
+      color: var(--ink) !important;
+      font-size: var(--font-size-xl);
+      white-space: nowrap;
+      align-self: flex-start;
+      flex-shrink: 0;
+      transition: var(--transition-button-full);
+
+      &:hover {
+        border-color: var(--blurple);
+        background-color: var(--color-surface-accent);
       }
 
-      a.button {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        gap: var(--gap-2);
-        column-gap: var(--gap-2);
-        min-width: 180px;
-        padding: var(--spacing-px-24);
-        border-width: var(--border-width-thin);
-        background-color: var(--color-surface-base);
-        color: var(--ink) !important;
-        font-size: var(--font-size-xl);
-        white-space: nowrap;
-        align-self: flex-start;
-        flex-shrink: 0;
-        transition: var(--transition-button-full);
-
-        &:hover {
-          border-color: var(--blurple);
-          background-color: var(--color-surface-accent);
-        }
-
-        &:focus-visible {
-          outline: none;
-          box-shadow: var(--shadow-focus-ring);
-        }
-
-        &:active {
-          transform: translateY(1px);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          transition: none;
-        }
-
-        svg {
-          fill: var(--blurple);
-          width: 1rem;
-          height: 1rem;
-        }
+      &:focus-visible {
+        outline: none;
+        box-shadow: var(--shadow-focus-ring);
       }
+
+      &:active {
+        transform: translateY(1px);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
+
+    a.button > svg {
+      fill: var(--blurple);
+      width: 1rem;
+      height: 1rem;
     }
 
     @media screen and (max-width: 767px) {
@@ -590,15 +590,13 @@ body.sj-page-detail-path {
         padding-top: var(--spacing-px-32);
       }
 
-      div {
-        > svg {
-          display: none;
-        }
+      > div > svg {
+        display: none;
+      }
 
-        a.button {
-          width: 100%;
-          font-size: var(--font-size-md) !important;
-        }
+      a.button {
+        width: 100%;
+        font-size: var(--font-size-md) !important;
       }
     }
   }
