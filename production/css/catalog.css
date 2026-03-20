@@ -163,6 +163,9 @@ body.sj-page-detail-path {
     }
 
     .banner-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--gap-3);
       margin-top: var(--spacing-px-24);
 
       @media screen and (min-width: 1024px) {
