@@ -45,7 +45,7 @@ function createBanner() {
  * of whether the user is logged in; and Learning Path catalog pages, if the user is logged in).
  * @returns {void}
  */
-export function catalogView() {
+export function landingView() {
   // CG.dom.body.prepend(el("div", { id: "cg-bg" }));
   CG.data.sections = pathSections[window.skilljarCatalogPage.slug]; // ex. "partners"
 

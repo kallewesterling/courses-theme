@@ -6,7 +6,7 @@ import {
 } from "./views/course.mjs";
 import { lessonView } from "./views/lesson.mjs";
 import { authView } from "./views/auth.mjs";
-import { catalogView } from "./views/catalog.mjs";
+import { landingView } from "./views/landing.mjs";
 import { notFoundView } from "./views/404.mjs";
 import { logger } from "./logger.mjs";
 
@@ -25,7 +25,7 @@ export const pageHandlers = [
   { test: () => CG.page.isPathUnregistered, handler: pathUnregisteredView },
   { test: () => CG.page.isPathRegistered, handler: pathRegisteredView },
   { test: () => CG.page.isLesson, handler: lessonView },
-  { test: () => CG.page.isCatalog || CG.page.isLanding, handler: catalogView }, // TODO: I don't think CG.page.isLanding is needed
+  { test: () => CG.page.isLanding, handler: landingView },
   { test: () => CG.page.is404, handler: notFoundView },
 ];
 
