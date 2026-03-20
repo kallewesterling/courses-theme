@@ -120,14 +120,14 @@ export const CG = {
           return undefined;
 
         const targetElement = el("div", {
-          id: "breadcrumbs",
+          id: "breadcrumb-wrapper",
           className: "row dp-row-flex-v2",
         });
 
         const nav = el(
           "nav",
           {
-            className: "breadcrumb",
+            className: "breadcrumbs",
             "aria-label": "Breadcrumb",
             role: "navigation",
           },

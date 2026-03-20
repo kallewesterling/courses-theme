@@ -8,14 +8,14 @@ body.sj-page-detail-path,
 body.sj-page-curriculum,
 body.sj-page-catalog,
 body.sj-page-series {
-  #breadcrumbs {
+  #breadcrumb-wrapper {
     justify-content: start;
     margin: var(--spacing-5) auto;
 
-    .breadcrumb {
+    .breadcrumbs {
       width: max-content;
       max-width: 100%;
-      padding: var(--spacing-2) var(--spacing-3);
+      padding: var(--spacing-3) var(--spacing-4);
       border: var(--border-width-thin) solid var(--border);
       border-radius: var(--radius-2xl);
       background-color: var(--color-surface-base);
