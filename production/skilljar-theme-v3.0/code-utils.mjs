@@ -32,7 +32,28 @@ export function parseLineSpec(spec) {
  * @returns {string}
  */
 export function cleanCommandPrompt(el) {
-  return el.textContent.replace(/\r?\n\$ /g, " && ").replace(/^\$ /g, "");
+  const text = el.textContent;
+  const lines = text.split(/\r?\n/);
+
+  if (!lines.some((l) => l.startsWith("$ "))) return text;
+
+  const commands = [];
+  let current = null;
+
+  for (const line of lines) {
+    if (line.startsWith("$ ")) {
+      if (current !== null) commands.push(current);
+      current = line.slice(2);
+    } else if (current !== null && current.endsWith("\\")) {
+      current += "\n" + line;          // multi-line command continuation
+    } else {
+      if (current !== null) commands.push(current);
+      current = null;                  // output line — discard
+    }
+  }
+  if (current !== null) commands.push(current);
+
+  return commands.join(" && ");
 }
 
 /**

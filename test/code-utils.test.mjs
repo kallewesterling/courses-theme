@@ -80,6 +80,30 @@ describe("cleanCommandPrompt", () => {
       "echo $ not a prompt",
     );
   });
+
+  it("strips output lines between commands", () => {
+    assert.equal(
+      cleanCommandPrompt({
+        textContent:
+          "$ docker pull cgr.dev/node:22\n22: Pulling from cgr.dev/node\nDigest: sha256:abc\nStatus: Downloaded\ncgr.dev/node:22",
+      }),
+      "docker pull cgr.dev/node:22",
+    );
+  });
+
+  it("joins multiple commands separated by output lines with &&", () => {
+    assert.equal(
+      cleanCommandPrompt({ textContent: "$ foo\noutput\n$ bar\nmore output" }),
+      "foo && bar",
+    );
+  });
+
+  it("preserves multi-line command continuations", () => {
+    assert.equal(
+      cleanCommandPrompt({ textContent: "$ docker run \\\n  --rm \\\n  node\noutput" }),
+      "docker run \\\n  --rm \\\n  node",
+    );
+  });
 });
 
 // ------------------------------------------------------------
