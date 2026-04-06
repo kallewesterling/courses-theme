@@ -1,5 +1,11 @@
+/* Global styles and typography
+ *
+ * NOTE: !important is used where needed to override Skilljar's platform CSS.
+ * This is necessary and expected for custom theming.
+ */
+
 * {
-  font-family: Roobert, Lato;
+  font-family: Roobert, Lato, monospace;
 }
 
 body {
@@ -20,15 +26,12 @@ h4,
 .h4-style,
 h5,
 h6 {
-  font-family: Gellix;
-  font-weight: 700;
   color: var(--ink);
+  font-family: Gellix, sans-serif;
+  font-weight: var(--font-weight-bold);
 }
 
 .no-select {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
@@ -41,30 +44,44 @@ label {
 }
 
 .button {
-  color: var(--white) !important;
+  padding: var(--spacing-px-10) var(--spacing-px-20);
+  border: var(--border-width-none);
   background-color: var(--blurple);
-  border: 0;
-  font-family: Gellix;
-  font-size: 14px;
-  font-weight: 700;
-  padding: 10px 20px;
+  color: var(--white) !important;
+  font-family: Gellix, sans-serif;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  transition: var(--transition-button-simple);
 
   &:hover {
-    color: var(--white) !important;
     background-color: var(--blurple);
+    color: var(--white) !important;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-focus-ring);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
   }
 
   span {
-    font-family: inherit;
     color: inherit;
+    font-family: inherit;
   }
 }
 
 #skilljar-content {
-  background: transparent !important; /* Hide white background */
-  min-height: 100%;
   display: flex;
   flex-direction: column;
+  min-height: 100%;
+  background: transparent !important; /* Hide white background */
 
   .top-row,
   .sj-courseboxes-v2,
@@ -73,7 +90,7 @@ label {
   }
 
   &::after {
-    height: 0px;
+    height: 0;
   }
 }
 

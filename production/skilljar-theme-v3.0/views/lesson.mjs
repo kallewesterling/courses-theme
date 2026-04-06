@@ -1,9 +1,14 @@
-import { A, Q, el, text, getCorrectURL, toTitleCase } from "../meta.mjs";
+import { A, Q, el, text, sanitizeUrl, toTitleCase } from "../meta.mjs";
 import { CG } from "../CG.mjs";
-import { CONFIG } from "../static.mjs";
+import { CONFIG } from "../config.mjs";
 import { setStyle } from "../styling.mjs";
 import { createClone } from "../icons.mjs";
 import { logger } from "../logger.mjs";
+import {
+  addLineNumberSpans,
+  parseLineSpec,
+  cleanCommandPrompt,
+} from "../code-utils.mjs";
 
 // Shiki syntax highlighting
 import * as shiki from "https://esm.sh/shiki@3.0.0";
@@ -20,8 +25,8 @@ function buildResourceBox() {
 
     get numBoxes() {
       return this.boxes.length;
-    }
-  }
+    },
+  };
 
   const hasResources = typeof resources.resources !== "undefined";
   const hasGroups = typeof resources.groups !== "undefined";
@@ -139,29 +144,6 @@ function addCopyButton(pre, codeEl) {
  * @param {string} options.noContent - Class to add to lines with no content.
  * @returns {Object} The Shiki transformer object.
  */
-function addLineNumberSpans(options = {}) {
-  const {
-    preClass: copyClass = "has-line-numbers", // Class for the <code> tag
-    lineClass = "code-line", // Class for each line's <span>
-    noContent = "no-content", // Class for lines with no content
-  } = options;
-
-  return {
-    name: "@shikijs/add-line-number-spans",
-    // Add a class to the <code> element
-    copy(node) {
-      this.addClassToHast(node, copyClass);
-    },
-    // Add a class to each line
-    line(node, line) {
-      this.addClassToHast(node, lineClass);
-      node.properties["data-line"] = line;
-      if (node.children.length === 0) {
-        this.addClassToHast(node, noContent);
-      }
-    },
-  };
-}
 
 /**
  * Formats code using Shiki syntax highlighting.
@@ -239,38 +221,6 @@ function applyHighlights(codeEl, highlight) {
       });
     }
   }
-}
-
-/**
- * Parses a line specification string into a set of line numbers.
- * @param {string} spec - The line specification string (e.g., "3,5-7").
- * @returns {Set<number>} A set of line numbers to highlight.
- */
-function parseLineSpec(spec) {
-  // "3,5-7" -> Set{3,5,6,7}
-  const out = new Set();
-  for (const part of spec.split(",")) {
-    const p = part.trim();
-    if (!p) continue;
-
-    const m = p.match(/^(\d+)(?:-(\d+))?$/);
-    if (!m) continue;
-
-    const start = Number(m[1]);
-    const end = m[2] ? Number(m[2]) : start;
-    for (let i = Math.min(start, end); i <= Math.max(start, end); i++)
-      out.add(i);
-  }
-  return out;
-}
-
-/**
- * Cleans command prompt symbols from code block text.
- * @param {HTMLElement} el - The code block element.
- * @returns {string} The cleaned code text.
- */
-function cleanCommandPrompt(el) {
-  return el.textContent.replace(/\r?\n\$ /g, " && ").replace(/^\$ /g, "");
 }
 
 /**
@@ -414,7 +364,7 @@ function createResourceCard(
   return el(
     "a",
     {
-      href: getCorrectURL(resource.link),
+      href: sanitizeUrl(resource.link),
       target: "_blank",
       className: "resource-link-wrapper",
     },
@@ -491,7 +441,7 @@ export function lessonView() {
     elem.target = "_blank";
     if (elem.href.includes("chainguard.dev")) {
       // set utm_* info if the link is internal (domain name includes chainguard.dev)
-      elem.href = getCorrectURL(elem.href);
+      elem.href = sanitizeUrl(elem.href);
     }
   });
 

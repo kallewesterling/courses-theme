@@ -1,6 +1,9 @@
-import { CONFIG } from "./static.mjs";
-import { c, A, Q, el, getCorrectURL } from "./meta.mjs";
+import { CONFIG } from "./config.mjs";
+import { c, A, Q, el, sanitizeUrl } from "./meta.mjs";
 import { logger } from "./logger.mjs";
+
+// static import
+import { logo } from "../data/graphics.mjs";
 
 export const CG = {
   env: {
@@ -117,14 +120,14 @@ export const CG = {
           return undefined;
 
         const targetElement = el("div", {
-          id: "breadcrumbs",
+          id: "breadcrumb-wrapper",
           className: "row dp-row-flex-v2",
         });
 
         const nav = el(
           "nav",
           {
-            className: "breadcrumb",
+            className: "breadcrumbs",
             "aria-label": "Breadcrumb",
             role: "navigation",
           },
@@ -259,7 +262,7 @@ export const CG = {
     get toChainguard() {
       return el("div", { id: "to-chainguard" }, [
         el("a", {
-          href: getCorrectURL("https://www.chainguard.dev"),
+          href: sanitizeUrl("https://www.chainguard.dev"),
           target: "_blank",
           rel: "noopener noreferrer",
           title: "Go to chainguard.dev",
@@ -277,14 +280,11 @@ export const CG = {
 
     get logo() {
       return el("div", { id: "logo-wrapper" }, [
-        el(
-          "a",
-          {
-            className: "header-logo-link focus-link-v2",
-            href: CG.state.baseURL,
-          },
-          [CONFIG.logo],
-        ),
+        el("a", {
+          className: "header-logo-link focus-link-v2",
+          href: CG.state.baseURL,
+          innerHTML: logo,
+        }),
       ]);
     },
   },

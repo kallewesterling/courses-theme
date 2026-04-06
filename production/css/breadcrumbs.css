@@ -1,62 +1,71 @@
-/* Breadcrumb styling */
+/* Breadcrumb styling
+ *
+ * NOTE: !important is used where needed to override Skilljar's platform CSS.
+ */
 
 body.sj-page-detail-course,
+body.sj-page-detail-path,
 body.sj-page-curriculum,
-body.sj-page-catalog {
-  #breadcrumbs {
-    margin: 20px auto;
+body.sj-page-catalog,
+body.sj-page-series {
+  #breadcrumb-wrapper {
     justify-content: start;
+    margin: var(--spacing-5) auto;
 
-    .breadcrumb {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 10px 14px;
-      box-shadow: 0 8px 24px rgba(20, 0, 61, 0.06);
+    .breadcrumbs {
       width: max-content;
       max-width: 100%;
+      padding: var(--spacing-3) var(--spacing-4);
+      border: var(--border-width-thin) solid var(--border);
+      border-radius: var(--radius-2xl);
+      background-color: var(--color-surface-base);
+      box-shadow: var(--shadow-breadcrumb);
 
       &[aria-current="page"] {
         color: var(--ink-dim);
-        font-weight: 800;
+        font-weight: var(--font-weight-extrabold);
       }
 
       ol {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
-        margin: 0;
-        padding: 0;
+        gap: var(--gap-2);
+        padding: var(--spacing-0);
+        margin: var(--spacing-0);
         list-style: none;
 
         li {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: var(--gap-2);
           min-width: 0;
           color: var(--ink-dim);
 
           a {
             color: var(--ink);
+            font-weight: var(--font-weight-semibold);
             text-decoration: none;
-            font-weight: 600;
 
             &:hover {
               color: var(--ink) !important;
               text-decoration: underline;
               text-underline-offset: 2px;
             }
+
+            &:focus-visible {
+              outline: none;
+              box-shadow: var(--shadow-focus-ring);
+              border-radius: var(--radius-sm);
+            }
           }
 
           + li::before {
             /* chevron separator */
             content: "";
+            flex: 0 0 14px;
             width: 14px;
             height: 14px;
-            flex: 0 0 14px;
-            background: #8c8aa4;
-            -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 5l7 7-7 7'/></svg>")
-              center/contain no-repeat;
+            background-color: var(--color-text-muted-purple);
             mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 5l7 7-7 7'/></svg>")
               center/contain no-repeat;
           }

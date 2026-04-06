@@ -1,4 +1,7 @@
-import { el, getCorrectURL } from "./meta.mjs";
+import { el, sanitizeUrl } from "./meta.mjs";
+
+// static imports
+import { footerData } from "../data/footer.mjs";
 
 /**
  * Generates the footer HTML and appends it to the specified container.
@@ -6,7 +9,10 @@ import { el, getCorrectURL } from "./meta.mjs";
  * @param {string} containerId - The ID of the container to append the footer to.
  * @returns {void}
  */
-export function generateFooter(data, containerId = "footer-container") {
+export function generateFooter(
+  data = footerData,
+  containerId = "footer-container",
+) {
   const container = document.getElementById(containerId);
   if (!container) return;
   container.innerHTML = "";
@@ -17,7 +23,7 @@ export function generateFooter(data, containerId = "footer-container") {
       "div",
       { className: "legal-links" },
       data.copyright.links
-        .map((l) => el("a", { href: getCorrectURL(l.href), text: l.label }))
+        .map((l) => el("a", { href: sanitizeUrl(l.href), text: l.label }))
 
         // in-between every link we want a | separator except after the last one
         .reduce((acc, elem, idx, arr) => {
@@ -26,7 +32,7 @@ export function generateFooter(data, containerId = "footer-container") {
             acc.push(el("span", { text: " | " }));
           }
           return acc;
-        }, [])
+        }, []),
     ),
   ];
 
@@ -34,7 +40,7 @@ export function generateFooter(data, containerId = "footer-container") {
     el("div", { className: "primary-col" }, [
       el("div", { className: "tagline" }, [
         el("a", {
-          href: getCorrectURL(data.logo.href),
+          href: sanitizeUrl(data.logo.href),
           target: "_blank",
           innerHTML: data.logo.svg,
           class: "small-logo",
@@ -50,7 +56,7 @@ export function generateFooter(data, containerId = "footer-container") {
               "a",
               {
                 className: "button",
-                href: getCorrectURL(data.contact.href),
+                href: sanitizeUrl(data.contact.href),
                 target: "_blank",
                 text: data.contact.label,
               },
@@ -72,10 +78,10 @@ export function generateFooter(data, containerId = "footer-container") {
                     "M8.4 8.4L8.4 5.6L5.6 5.6L5.6 8.4L8.4 8.4Z",
                     "M14 8.4L14 5.6L11.2 5.6L11.2 8.4L14 8.4Z",
                     "M2.8 8.4L2.8 5.6L-2.15213e-06 5.6L-2.27452e-06 8.4L2.8 8.4Z",
-                  ].map((d) => el("path", { d }))
+                  ].map((d) => el("path", { d })),
                 ),
-              ]
-            )
+              ],
+            ),
           )
         : undefined,
 
@@ -96,11 +102,11 @@ export function generateFooter(data, containerId = "footer-container") {
       (g.links || []).forEach((link) =>
         gDiv.appendChild(
           el("a", {
-            href: getCorrectURL(link.href),
+            href: sanitizeUrl(link.href),
             target: "_blank",
             text: link.label,
-          })
-        )
+          }),
+        ),
       );
       colDiv.appendChild(gDiv);
     });
@@ -117,7 +123,7 @@ export function generateFooter(data, containerId = "footer-container") {
     data.logo
       ? el("div", { className: "logo-container" }, [
           el("a", {
-            href: getCorrectURL(data.logo.href),
+            href: sanitizeUrl(data.logo.href),
             target: "_blank",
             innerHTML: data.logo.svg,
           }),
@@ -131,11 +137,11 @@ export function generateFooter(data, containerId = "footer-container") {
           { className: "social-icons" },
           data.socials.map((s) =>
             el("a", {
-              href: getCorrectURL(s.href),
+              href: sanitizeUrl(s.href),
               target: "_blank",
               innerHTML: s.svg,
-            })
-          )
+            }),
+          ),
         )
       : undefined,
   ]);
@@ -145,7 +151,7 @@ export function generateFooter(data, containerId = "footer-container") {
   const copyrightFooter = el(
     "div",
     { className: "footer-copyright" },
-    copyrightContent
+    copyrightContent,
   );
   container.appendChild(copyrightFooter);
 }

@@ -1,6 +1,8 @@
 import { el } from "./meta.mjs";
-import { CONFIG } from "./static.mjs";
 import { logger } from "./logger.mjs";
+
+// static imports
+import { icons } from "../data/graphics.mjs";
 
 /**
  * Creates an SVG icon element based on the specified type and attributes.
@@ -18,17 +20,17 @@ export function createClone(
     // fill: "none",
   }
 ) {
-  if (!CONFIG.icons[type]) {
-    logger.error(`Icon type "${type}" not found in CONFIG.icons`);
+  if (!icons[type]) {
+    logger.error(`Icon type "${type}" not found in icons`);
     return null;
   }
 
-  if (CONFIG.icons[type].attrs) {
-    attrs = { ...CONFIG.icons[type].attrs, ...attrs };
+  if (icons[type].attrs) {
+    attrs = { ...icons[type].attrs, ...attrs };
   }
 
   if (!attrs["className"]) attrs.className = `clone-icon ${type}-icon`;
 
-  const paths = CONFIG.icons[type].paths.map((d) => el("path", { d }));
+  const paths = icons[type].paths.map((d) => el("path", { d }));
   return el("svg", attrs, paths);
 }

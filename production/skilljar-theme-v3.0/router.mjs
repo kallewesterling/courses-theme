@@ -25,7 +25,7 @@ export const pageHandlers = [
   { test: () => CG.page.isPathUnregistered, handler: pathUnregisteredView },
   { test: () => CG.page.isPathRegistered, handler: pathRegisteredView },
   { test: () => CG.page.isLesson, handler: lessonView },
-  { test: () => CG.page.isCatalog || CG.page.isLanding, handler: catalogView }, // TODO: I don't think CG.page.isLanding is needed
+  { test: () => CG.page.isLanding || CG.page.isCatalog, handler: catalogView },
   { test: () => CG.page.is404, handler: notFoundView },
 ];
 

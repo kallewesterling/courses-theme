@@ -3,15 +3,18 @@ repos:
     hooks:
       - id: css-syntax-check
         name: CSS syntax check
-        entry: npx stylelint production/style.css production/css/*.css
-        language: system
+        entry: npx stylelint
+        language: node
         files: \.css$
+        exclude: \.(min|bundle\.min)\.css$
+        pass_filenames: true
 
       - id: js-syntax-check
         name: JavaScript syntax check
         entry: bash -c 'for f in "$@"; do node --check "$f"; done' --
         language: system
         files: \.js$
+        pass_filenames: true
 
       # - id: js-minify
       #   name: JavaScript minify (with sourcemap)

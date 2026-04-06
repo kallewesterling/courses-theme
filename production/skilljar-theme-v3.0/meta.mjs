@@ -10,21 +10,20 @@ export function c(selector) {
   return Q(selector) || false;
 }
 
-export function getCorrectURL(link, UTM = {}) {
-  // TODO: This should just return the link if it's not a Chainguard URL
-  let url = new URL(link);
+export function sanitizeUrl(link, UTM = {}) {
+  let url;
+  try {
+    url = new URL(link);
+  } catch {
+    return link; // relative URL or unparseable — return as-is
+  }
 
-  if (!UTM) UTM = CG.data.UTM ? CG.data.UTM.utm_campaign : undefined;
+  // Only add UTM params to Chainguard URLs
+  if (!url.hostname.endsWith("chainguard.dev")) return link;
 
-  if (!UTM) return url.toString();
-
-  // add UTM params for tracking if specified
-
-  UTM
-    ? Object.entries(UTM).forEach(([key, value]) => {
-        url.searchParams.set(key, value);
-      })
-    : undefined;
+  Object.entries(UTM).forEach(([key, value]) => {
+    url.searchParams.set(key, value);
+  });
 
   return url.toString();
 }

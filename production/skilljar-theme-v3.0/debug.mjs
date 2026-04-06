@@ -1,6 +1,6 @@
 import { Q, A, el } from "./meta.mjs";
 import { CG } from "./CG.mjs";
-import { CONFIG } from "./static.mjs";
+import { CONFIG } from "./config.mjs";
 import { pageHandlers } from "./router.mjs";
 
 /**

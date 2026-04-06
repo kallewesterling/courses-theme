@@ -24,7 +24,7 @@ export const logger = {
    */
   info(message, ...args) {
     if (!this.enabled()) return;
-    const style = "color: var(--primary-blue-hex); font-weight: 600;";
+    const style = "color: var(--primary-blue-hex); font-weight: var(--font-weight-semibold);";
     console.info(`%c[CG] ${message}`, style, ...args);
   },
 
@@ -36,7 +36,7 @@ export const logger = {
    */
   warn(message, ...args) {
     if (!this.enabled()) return;
-    const style = "color: darkorange; font-weight: 600;";
+    const style = "color: darkorange; font-weight: var(--font-weight-semibold);";
     console.warn(`%c[CG] ${message}`, style, ...args);
   },
 
@@ -48,7 +48,7 @@ export const logger = {
    */
   error(message, ...args) {
     if (!this.enabled()) return;
-    const style = "color: darkred; font-weight: 600;";
+    const style = "color: darkred; font-weight: var(--font-weight-semibold);";
     console.error(`%c[CG] ${message}`, style, ...args);
   },
 };

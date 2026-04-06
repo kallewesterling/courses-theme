@@ -1,4 +1,4 @@
-import { pathSections } from "./static.mjs";
+import { pathSections } from "../data/path-sections.mjs";
 import { Q, el } from "./meta.mjs";
 import { hide } from "./styling.mjs";
 import { createClone } from "./icons.mjs";
