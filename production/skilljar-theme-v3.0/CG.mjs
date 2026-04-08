@@ -119,42 +119,38 @@ export const CG = {
         if (!this.data || !Array.isArray(this.data) || this.data.length === 0)
           return undefined;
 
-        const targetElement = el("div", {
+        return el("div", {
           id: "breadcrumb-wrapper",
           className: "row dp-row-flex-v2",
-        });
-
-        const nav = el(
-          "nav",
-          {
-            className: "breadcrumbs",
-            "aria-label": "Breadcrumb",
-            role: "navigation",
-          },
-          [
-            el(
-              "ol",
-              {},
-              this.data.map(([text, href], ix, arr) => {
-                const isLast = ix === arr.length - 1;
-                const hasLink = href !== "#";
-                const tag = isLast || !hasLink ? "span" : "a";
-                return el("li", {}, [
-                  el(tag, {
-                    className: "crumb",
-                    text,
-                    href: href === "#" ? undefined : href,
-                    "aria-current": isLast ? "page" : undefined,
-                  }),
-                ]);
-              }),
-            ),
-          ],
-        );
-
-        targetElement?.appendChild(nav);
-
-        return targetElement;
+        }, [
+          el(
+            "nav",
+            {
+              className: "breadcrumbs",
+              "aria-label": "Breadcrumb",
+              role: "navigation",
+            },
+            [
+              el(
+                "ol",
+                {},
+                this.data.map(([text, href], ix, arr) => {
+                  const isLast = ix === arr.length - 1;
+                  const hasLink = href !== "#";
+                  const tag = isLast || !hasLink ? "span" : "a";
+                  return el("li", {}, [
+                    el(tag, {
+                      className: "crumb",
+                      text,
+                      href: href === "#" ? undefined : href,
+                      "aria-current": isLast ? "page" : undefined,
+                    }),
+                  ]);
+                }),
+              ),
+            ],
+          )
+        ]);
       },
     },
 
@@ -357,8 +353,8 @@ export const CG = {
       if (!CG.dom.curriculumContainer) return [];
 
       let elements = Array.from(
-          A("[class^='lesson-'],.section", CG.dom.curriculumContainer),
-        ),
+        A("[class^='lesson-'],.section", CG.dom.curriculumContainer),
+      ),
         currentSection = 0;
 
       const content = elements
