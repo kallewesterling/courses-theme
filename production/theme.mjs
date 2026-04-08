@@ -24,7 +24,7 @@ import { debugHeading } from "./skilljar-theme-v3.0/debug.mjs";
 
 document.addEventListener("DOMContentLoaded", () => {
   // setup logging based on environment - enabled for staging and admin users by default, but can be toggled
-  if (CG.env.isStaging || CG.env.isAdmin) {
+  if ((CG.env.isStaging || CG.env.isAdmin) && !localStorage.getItem("cg-logger-enabled")) {
     localStorage.setItem("cg-logger-enabled", "true");
   } else if (!localStorage.getItem("cg-logger-enabled")) {
     localStorage.setItem("cg-logger-enabled", "false");
