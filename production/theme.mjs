@@ -23,6 +23,9 @@ import { route } from "./skilljar-theme-v3.0/router.mjs";
 import { debugHeading } from "./skilljar-theme-v3.0/debug.mjs";
 
 document.addEventListener("DOMContentLoaded", () => {
+  if (CG.env.isStaging || CG.env.isAdmin)
+    localStorage.setItem("cg-logger-enabled", "true");
+
   logger.info("DOMContentLoaded");
 
   // Clean up DOM: remove elements + set class names
@@ -83,10 +86,10 @@ document.addEventListener("DOMContentLoaded", () => {
       CG.dom.header.wrapper.append(
         ...[
           Q(".sj-floater-text") ||
-            el("div", {
-              className: "sj-floater-text",
-              text: "Course",
-            }),
+          el("div", {
+            className: "sj-floater-text",
+            text: "Course",
+          }),
           Q(".break-word"),
           CG.dom.header.courseInfo || CG.el.headingParagraph,
           CG.dom.header.ctaBtnWrapper,

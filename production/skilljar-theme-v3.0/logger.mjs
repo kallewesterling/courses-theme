@@ -1,5 +1,7 @@
 import { CG } from "./CG.mjs";
 
+const fontWeight = "font-weight: var(--font-weight-semibold);";
+
 /**
  * Simple logger utility for console messages with styling.
  * Logs messages only if in staging or admin environment.
@@ -11,9 +13,7 @@ export const logger = {
    * @returns {boolean} True if logging is enabled, false otherwise.
    */
   enabled() {
-    return (
-      CG.env.isStaging || CG.env.isAdmin || CG.page.isSignup || CG.page.isLogin
-    );
+    return localStorage.getItem("cg-logger-enabled") === "true";
   },
 
   /**
@@ -24,7 +24,7 @@ export const logger = {
    */
   info(message, ...args) {
     if (!this.enabled()) return;
-    const style = "color: var(--primary-blue-hex); font-weight: var(--font-weight-semibold);";
+    const style = `color:var(--primary-blue-hex);${fontWeight}`;
     console.info(`%c[CG] ${message}`, style, ...args);
   },
 
@@ -36,7 +36,7 @@ export const logger = {
    */
   warn(message, ...args) {
     if (!this.enabled()) return;
-    const style = "color: darkorange; font-weight: var(--font-weight-semibold);";
+    const style = `color:darkorange;${fontWeight}`;
     console.warn(`%c[CG] ${message}`, style, ...args);
   },
 
@@ -48,7 +48,7 @@ export const logger = {
    */
   error(message, ...args) {
     if (!this.enabled()) return;
-    const style = "color: darkred; font-weight: var(--font-weight-semibold);";
+    const style = `color:darkred;${fontWeight}`;
     console.error(`%c[CG] ${message}`, style, ...args);
   },
 };
