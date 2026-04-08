@@ -23,8 +23,11 @@ import { route } from "./skilljar-theme-v3.0/router.mjs";
 import { debugHeading } from "./skilljar-theme-v3.0/debug.mjs";
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (CG.env.isStaging || CG.env.isAdmin)
+  if (CG.env.isStaging || CG.env.isAdmin) {
     localStorage.setItem("cg-logger-enabled", "true");
+  } else {
+    localStorage.setItem("cg-logger-enabled", "false");
+  }
 
   logger.info("DOMContentLoaded");
 
