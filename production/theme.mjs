@@ -42,10 +42,10 @@ document.addEventListener("DOMContentLoaded", () => {
   CG.dom.bodyHeader.classList.add("headers");
   hide("#ep-footer"); // hide Skilljar footer
 
-  generateFooter();
-
   // replace logo
   CG.dom.headerLeft.replaceChildren(CG.el.logo);
+
+  generateFooter();
 
   if (CG.page.isLesson)
     // if a lesson page, we need to move the nav button before we modify the header
