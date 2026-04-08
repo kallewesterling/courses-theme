@@ -22,6 +22,10 @@ import { logger } from "./skilljar-theme-v3.0/logger.mjs";
 import { route } from "./skilljar-theme-v3.0/router.mjs";
 import { debugHeading } from "./skilljar-theme-v3.0/debug.mjs";
 
+// Expose logger and animateCompletion to the global scope for debugging and external triggers
+window.logger = logger;
+window.animateCompletion = animateCompletion;
+
 document.addEventListener("DOMContentLoaded", () => {
   // setup logging based on environment - enabled for staging and admin users by default, but can be toggled
   if ((CG.env.isStaging || CG.env.isAdmin) && !localStorage.getItem("cg-logger-enabled")) {
@@ -39,14 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
   hide("#ep-footer"); // hide Skilljar footer
 
   generateFooter();
-  window.animateCompletion = animateCompletion;
+
+  // replace logo
+  CG.dom.headerLeft.replaceChildren(CG.el.logo);
 
   if (CG.page.isLesson)
     // if a lesson page, we need to move the nav button before we modify the header
     CG.dom.contentContainer.append(Q("#left-nav-button"));
-
-  // replace logo
-  CG.dom.headerLeft.replaceChildren(CG.el.logo);
 
   // admin debug heading
   if (CG.env.isAdmin) debugHeading();
