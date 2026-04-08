@@ -31,11 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // log environment info
-  logger.info("Environment", {
-    isStaging: CG.env.isStaging,
-    isAdmin: CG.env.isAdmin,
-    isPartner: CG.env.isPartner,
-  });
+  logger.info("Environment", CG.env);
 
   // Clean up DOM: remove elements + set class names
   remove(".search-container");
