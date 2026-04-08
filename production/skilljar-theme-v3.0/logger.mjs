@@ -1,4 +1,4 @@
-const fontWeight = "font-weight: var(--font-weight-semibold);";
+const fontWeight = "font-weight:600;";
 
 /**
  * Simple logger utility for console messages with styling.
@@ -10,7 +10,7 @@ export const logger = {
    * Determines if logging is enabled based on the environment.
    * @returns {boolean} True if logging is enabled, false otherwise.
    */
-  enabled() {
+  get isEnabled() {
     return localStorage.getItem("cg-logger-enabled") === "true";
   },
 
@@ -21,8 +21,8 @@ export const logger = {
    * @returns {void}
    */
   info(message, ...args) {
-    if (!this.enabled()) return;
-    const style = `color:var(--primary-blue-hex);${fontWeight}`;
+    if (!this.isEnabled) return;
+    const style = `color:darkblue;${fontWeight}`;
     console.info(`%c[CG] ${message}`, style, ...args);
   },
 
@@ -33,7 +33,7 @@ export const logger = {
    * @returns {void}
    */
   warn(message, ...args) {
-    if (!this.enabled()) return;
+    if (!this.isEnabled) return;
     const style = `color:darkorange;${fontWeight}`;
     console.warn(`%c[CG] ${message}`, style, ...args);
   },
@@ -45,7 +45,7 @@ export const logger = {
    * @returns {void}
    */
   error(message, ...args) {
-    if (!this.enabled()) return;
+    if (!this.isEnabled) return;
     const style = `color:darkred;${fontWeight}`;
     console.error(`%c[CG] ${message}`, style, ...args);
   },
