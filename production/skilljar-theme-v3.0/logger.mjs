@@ -1,5 +1,3 @@
-import { CG } from "./CG.mjs";
-
 const fontWeight = "font-weight: var(--font-weight-semibold);";
 
 /**
