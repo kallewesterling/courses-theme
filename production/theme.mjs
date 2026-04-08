@@ -23,13 +23,19 @@ import { route } from "./skilljar-theme-v3.0/router.mjs";
 import { debugHeading } from "./skilljar-theme-v3.0/debug.mjs";
 
 document.addEventListener("DOMContentLoaded", () => {
+  // setup logging based on environment - enabled for staging and admin users by default, but can be toggled
   if (CG.env.isStaging || CG.env.isAdmin) {
     localStorage.setItem("cg-logger-enabled", "true");
-  } else {
+  } else if (!localStorage.getItem("cg-logger-enabled")) {
     localStorage.setItem("cg-logger-enabled", "false");
   }
 
-  logger.info("DOMContentLoaded");
+  // log environment info
+  logger.info("Environment", {
+    isStaging: CG.env.isStaging,
+    isAdmin: CG.env.isAdmin,
+    isPartner: CG.env.isPartner,
+  });
 
   // Clean up DOM: remove elements + set class names
   remove(".search-container");
