@@ -56,7 +56,7 @@ export function setStyle(target, style) {
   if (isIterable && !(target instanceof Element)) {
     const elements = Array.from(target).filter(isElement);
     // Optional: warn if we dropped items (useful during dev)
-    // if (elements.length !== Array.from(target).length) console.warn("setStyle: skipped non-element items in iterable");
+    // if (elements.length !== Array.from(target).length) logger.warn("setStyle: skipped non-element items in iterable");
     if (elements.length === 0) return null;
     elements.forEach(apply);
     return elements;

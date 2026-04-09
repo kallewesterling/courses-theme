@@ -1,3 +1,5 @@
+import { logger } from "./logger.mjs";
+
 export function Q(selector, root = document) {
   return root.querySelector(selector);
 }
@@ -15,12 +17,14 @@ export function sanitizeUrl(link, UTM = {}) {
   try {
     url = new URL(link);
   } catch {
+    logger.warn("sanitizeUrl: Invalid URL provided, returning as-is:", link);
     return link; // relative URL or unparseable — return as-is
   }
 
   // Only add UTM params to Chainguard URLs
   if (!url.hostname.endsWith("chainguard.dev")) return link;
 
+  logger.info("sanitizeUrl: Adding UTM parameters to URL:", link);
   Object.entries(UTM).forEach(([key, value]) => {
     url.searchParams.set(key, value);
   });
@@ -92,10 +96,7 @@ export function text(element, value, auto = "") {
   } else if (element) {
     element.textContent = auto;
   } else {
-    console.warn(
-      "text(): Element is null or undefined. Tried to set text to:",
-      value,
-    );
+    logger.warn("text: Element is null or undefined. Value:", value);
   }
 }
 
@@ -109,10 +110,7 @@ export function placeholder(element, value) {
   if (element && value !== undefined && value !== null) {
     element.setAttribute("placeholder", value);
   } else {
-    console.warn(
-      "placeholder(): Element is null or undefined. Tried to set placeholder to:",
-      value,
-    );
+    logger.warn("placeholder: Element is null or undefined. Value:", value);
   }
 }
 
@@ -134,7 +132,7 @@ export function remove(selector) {
     try {
       selector.remove();
     } catch (e) {
-      console.warn("Could not remove element:", selector, e);
+      logger.warn("Could not remove element:", selector, e);
     }
     return;
   }
@@ -148,7 +146,7 @@ export function remove(selector) {
     try {
       el.remove();
     } catch (e) {
-      console.warn("Could not remove element:", el, e);
+      logger.warn("Could not remove element:", el, e);
     }
   });
 }
