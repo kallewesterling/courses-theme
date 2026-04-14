@@ -1,4 +1,6 @@
 import { logger } from "./logger.mjs";
+
+// static imports
 import { UTM as standardUTM } from "../data/utm.mjs";
 
 export function Q(selector, root = document) {
