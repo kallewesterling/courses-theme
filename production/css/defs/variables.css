@@ -193,27 +193,27 @@
     background-color 0.2s ease-in,
     color 0.2s ease-in,
     border-color 0.2s ease-in,
-    box-shadow 0.15s ease,
-    transform 0.05s ease;
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 
   /* Button transitions - Simple (no border-color) */
   --transition-button-simple:
     background-color 0.2s ease-in,
     color 0.2s ease-in,
-    box-shadow 0.15s ease,
-    transform 0.05s ease;
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 
   /* Button transitions - Minimal (for inherit-style buttons) */
   --transition-button-minimal:
     background-color 0.2s ease-in,
-    box-shadow 0.15s ease,
-    transform 0.05s ease;
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 
   /* Input field transitions */
   --transition-input:
-    border-color 0.15s ease,
-    box-shadow 0.15s ease,
-    background-color 0.15s ease;
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 
   /* Card hover transitions */
   --transition-card-hover:
@@ -222,17 +222,17 @@
 
   /* Icon button transitions (filter-based hover) */
   --transition-icon-button:
-    transform 0.05s ease,
-    filter 0.15s ease,
-    box-shadow 0.15s ease;
+    transform 0.2s ease,
+    filter 0.2s ease,
+    box-shadow 0.2s ease;
 
   /* Resource button transitions (all properties) */
   --transition-resource-button:
-    color 0.15s ease-in-out,
-    background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out,
-    box-shadow 0.15s ease-in-out,
-    transform 0.05s ease;
+    color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out,
+    transform 0.2s ease;
 
   /* Responsive Breakpoints - Standard viewport widths */
   /* Note: CSS variables cannot be used in media queries directly.
