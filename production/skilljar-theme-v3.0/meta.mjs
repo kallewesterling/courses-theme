@@ -1,4 +1,5 @@
 import { logger } from "./logger.mjs";
+import { UTM as standardUTM } from "../data/utm.mjs";
 
 export function Q(selector, root = document) {
   return root.querySelector(selector);
@@ -13,6 +14,11 @@ export function c(selector) {
 }
 
 export function sanitizeUrl(link, UTM = {}) {
+  if (!UTM || typeof UTM !== "object") {
+    logger.warn("sanitizeUrl: UTM parameter is not an object. Setting to standard defaults.");
+    UTM = standardUTM;
+  }
+
   let url;
   try {
     url = new URL(link);
@@ -27,9 +33,10 @@ export function sanitizeUrl(link, UTM = {}) {
   Object.entries(UTM).forEach(([key, value]) => {
     url.searchParams.set(key, value);
   });
-  
+
   const sanitizedLink = url.toString();
   logger.info(`sanitizeUrl: ${link} -> ${sanitizedLink}`);
+
   return sanitizedLink;
 }
 
