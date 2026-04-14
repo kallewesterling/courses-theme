@@ -77,18 +77,10 @@ body.sj-page-detail-course {
         outline: none;
         box-shadow: var(--shadow-focus-ring);
       }
-
-      /* &.completed {
-      } */
     }
 
-    p.completed-subtext {
-      padding: var(--spacing-0) var(--spacing-px-20) var(--spacing-px-20)
-        var(--spacing-0) !important;
-      margin: var(--spacing-0) var(--spacing-px-24) !important;
-      color: var(--color-success-dark) !important;
-      font-family: Roobert, monospace !important;
-      font-size: var(--font-size-xs) !important;
+    > p {
+      display: none !important;
     }
   }
 
@@ -385,6 +377,15 @@ body.sj-page-curriculum {
     .course-card a {
       background-color: var(--color-success-dark) !important;
       cursor: default !important;
+    }
+
+    .course-card > p {
+      padding: var(--spacing-0) var(--spacing-px-20) var(--spacing-px-20)
+        var(--spacing-0) !important;
+      margin: var(--spacing-0) var(--spacing-px-24) !important;
+      color: var(--color-success-dark) !important;
+      font-family: Roobert, monospace !important;
+      font-size: var(--font-size-xs) !important;
     }
 
     /* .top-row-grey {
