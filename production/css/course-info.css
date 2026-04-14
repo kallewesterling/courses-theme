@@ -70,6 +70,8 @@ body.sj-page-detail-course {
 
     a {
       margin: var(--spacing-0) var(--spacing-px-20) 1.25em;
+      margin-right: 20px;
+      margin-left: 20px;
 
       &:focus-visible {
         outline: none;

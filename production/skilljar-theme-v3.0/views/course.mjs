@@ -1,5 +1,5 @@
 import { Q, el } from "../utils.mjs";
-import { setStyle, hide } from "../styling.mjs";
+import { hide } from "../styling.mjs";
 import { CG } from "../CG.mjs";
 import { logger } from "../logger.mjs";
 
@@ -44,7 +44,7 @@ function createCourseDetailsCard(
   });
 
   // add margin to link button
-  setStyle(link, { marginLeft: "20px", marginRight: "20px" });
+  // setStyle(link, { marginLeft: "20px", marginRight: "20px" });
 
   card.appendChild(link);
 
