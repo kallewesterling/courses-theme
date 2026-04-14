@@ -42,9 +42,10 @@ body.sj-page-series {
           color: var(--ink-dim);
 
           a {
-            color: var(--ink);
+            color: var(--ink) !important;
             font-weight: var(--font-weight-semibold);
             text-decoration: none;
+            opacity: 1 !important;
 
             &:hover {
               color: var(--ink) !important;
@@ -77,6 +78,8 @@ body.sj-page-series {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        color: var(--ink) !important;
+        opacity: 0.5;
       }
     }
   }
