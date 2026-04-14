@@ -347,6 +347,10 @@ body.sj-page-detail-path {
         transform 0.2s ease,
         box-shadow 0.2s ease;
 
+      &.completed {
+        opacity: 0.5;
+      }
+
       &:hover {
         box-shadow: var(--shadow-card-hover);
         transform: translateY(-2px);
@@ -366,7 +370,6 @@ body.sj-page-detail-path {
     /* Status pill borders on article */
     .cards article .completed {
       border: var(--border-width-thin) solid var(--color-success); /* lime */
-      opacity: 0.5;
     }
 
     .cards article .in-progress {
