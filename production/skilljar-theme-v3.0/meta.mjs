@@ -24,12 +24,13 @@ export function sanitizeUrl(link, UTM = {}) {
   // Only add UTM params to Chainguard URLs
   if (!url.hostname.endsWith("chainguard.dev")) return link;
 
-  logger.info("sanitizeUrl: Adding UTM parameters to URL:", link);
   Object.entries(UTM).forEach(([key, value]) => {
     url.searchParams.set(key, value);
   });
-
-  return url.toString();
+  
+  const sanitizedLink = url.toString();
+  logger.info(`sanitizeUrl: ${link} -> ${sanitizedLink}`);
+  return sanitizedLink;
 }
 
 /**
