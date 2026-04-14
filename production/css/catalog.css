@@ -356,6 +356,7 @@ body.sj-page-detail-path {
         transition: none;
 
         &:hover {
+          opacity: 1; /* Keep full opacity */
           transform: none; /* No movement */
           /* Keep shadow for visual feedback */
         }
@@ -365,6 +366,7 @@ body.sj-page-detail-path {
     /* Status pill borders on article */
     .cards article .completed {
       border: var(--border-width-thin) solid var(--color-success); /* lime */
+      opacity: 0.5;
     }
 
     .cards article .in-progress {
