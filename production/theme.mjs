@@ -33,8 +33,12 @@ window.animateCompletion = animateCompletion;
  */
 function preRoute() {
   // set body classes
-  if (CG.page.isCourseRegistered)
+  if (CG.page.isCourseRegistered) {
     CG.dom.body.classList.add("course-registered-view");
+
+    if (CG.state.course.completed)
+      CG.dom.body.classList.add("course-completed-view");
+  }
   
   if (CG.page.isCourseUnregistered)
     CG.dom.body.classList.add("course-unregistered-view");
