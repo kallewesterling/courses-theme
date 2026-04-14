@@ -7,8 +7,8 @@ NOTE: !important is used extensively throughout this file to override
 Skilljar's platform CSS. This is necessary and expected for custom theming.
 */
 
-body.sj-page-detail-course,
-body.sj-page-curriculum {
+body.sj-page-curriculum,
+body.sj-page-detail-course {
   .course-card {
     position: sticky !important;
     top: 100px !important;
@@ -366,18 +366,6 @@ body.sj-page-detail-course {
   #purchase-button-wrapper-large .sj-save-toggle-centered {
     justify-content: inherit !important;
   }
-
-  &.course-completed-view {
-    /* Any styles can be added here for completed courses */
-    /* .top-row-grey {
-      background-color: var(--color-brand-lime-light) !important;
-    } */
-
-    .course-card a {
-      background-color: var(--color-success-dark) !important;
-      cursor: default !important;
-    }
-  }
 }
 
 body.sj-page-curriculum {
@@ -388,5 +376,17 @@ body.sj-page-curriculum {
 
   .cp-summary-wrapper #resume-button {
     padding: var(--spacing-0) var(--spacing-4);
+  }
+
+  &.course-completed-view {
+    /* Any styles can be added here for completed courses */
+    .course-card a {
+      background-color: var(--color-success-dark) !important;
+      cursor: default !important;
+    }
+
+    /* .top-row-grey {
+      background-color: var(--color-brand-lime-light) !important;
+    } */
   }
 }
