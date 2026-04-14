@@ -559,6 +559,8 @@ body.sj-page-detail-path {
       &:hover {
         border-color: var(--blurple);
         background-color: var(--color-surface-accent);
+        box-shadow: var(--shadow-card-hover);
+        transform: translateY(-2px);
       }
 
       &:focus-visible {
