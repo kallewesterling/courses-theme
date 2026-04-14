@@ -454,7 +454,11 @@ export function lessonView() {
     ].filter(Boolean),
   );
 
-  CG.dom.local.nav.toggleWrapper.append(setupLessonNav());
+  try {
+    CG.dom.local.nav.toggleWrapper.append(setupLessonNav());
+  } catch (err) {
+    logger.error("Failed to set up lesson navigation buttons: ", err);
+  }
 
   CG.dom.local.lesson.content.inlineCodeBlocks.forEach((elem) =>
     formatCode(elem, elem.dataset.lang || "text"),
