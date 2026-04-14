@@ -47,7 +47,7 @@ export function sanitizeUrl(link, UTM = {}) {
   });
 
   const sanitizedLink = url.toString();
-  logger.info(`sanitizeUrl: ${link} -> ${sanitizedLink}`);
+  logger.info("sanitizeUrl:", { link, sanitizedLink });
 
   return sanitizedLink;
 }
