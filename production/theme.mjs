@@ -34,8 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("cg-logger-enabled", "false");
   }
 
-  // log environment info
+  // log environment info + state
   logger.info("Environment", CG.env);
+  logger.info("State", CG.state);
 
   // Clean up DOM: remove elements + set class names
   remove(".search-container");
