@@ -26,28 +26,12 @@ import { debugHeading } from "./skilljar-theme-v3.0/debug.mjs";
 window.logger = logger;
 window.animateCompletion = animateCompletion;
 
-document.addEventListener("DOMContentLoaded", () => {
-  // setup logging based on environment - enabled for staging and admin users by default, but can be toggled
-  if ((CG.env.isStaging || CG.env.isAdmin) && !localStorage.getItem("cg-logger-enabled")) {
-    localStorage.setItem("cg-logger-enabled", "true");
-  } else if (!localStorage.getItem("cg-logger-enabled")) {
-    localStorage.setItem("cg-logger-enabled", "false");
-  }
-
-  // log environment info + state
-  logger.info("Environment", CG.env);
-  logger.info("State", CG.state);
-
-  // Clean up DOM: remove elements + set class names
-  remove(".search-container");
-  CG.dom.bodyHeader.classList.add("headers");
-  hide("#ep-footer"); // hide Skilljar footer
-
-  // replace logo
-  CG.dom.headerLeft.replaceChildren(CG.el.logo);
-
-  generateFooter();
-
+/* 
+ * Pre-route setup function to prepare the DOM and environment before routing logic is applied.
+ * This function handles tasks such as moving navigation buttons, adding header elements, and setting up admin debug features.
+ * It ensures that the necessary DOM structure and elements are in place before the main routing logic is executed.
+ */
+function preRoute() {
   if (CG.page.isLesson)
     // if a lesson page, we need to move the nav button before we modify the header
     CG.dom.contentContainer.append(Q("#left-nav-button"));
@@ -81,11 +65,14 @@ document.addEventListener("DOMContentLoaded", () => {
     CG.dom.headerLeft.appendChild(partnerItem);
     CG.dom.mobileHeader.left.appendChild(partnerItem.cloneNode(true));
   }
+}
 
-  route();
-
-  // last changes after styles are applied by `route()`
-
+/*
+ * Post-route setup function to finalize the DOM adjustments after routing logic has been applied.
+ * This function handles tasks such as appending breadcrumbs, adjusting header elements based on the page type, and moving the footer and messages to their final positions.
+ * It ensures that the page is fully set up with the correct elements and structure after the main routing logic has executed.
+ */
+function postRoute() {
   if (CG.page.isCoursePage || CG.page.isPathRegistered) {
     // append breadcrumbs
     Q(".top-row-grey").prepend(CG.state.breadcrumbs.nav);
@@ -112,6 +99,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // move messages
   CG.dom.contentContainer.prepend(Q("#messages"));
+}
+
+/*
+ * Sets up logging based on the environment. Logging is enabled by default for staging and admin users, but can be toggled via localStorage.
+ * This function also logs the current environment and state for debugging purposes.
+ * It checks the environment variables to determine if logging should be enabled and stores this preference in localStorage.
+ * Finally, it logs the current environment and state using the logger instance.
+ */
+function setupLogging() {
+  if ((CG.env.isStaging || CG.env.isAdmin) && !localStorage.getItem("cg-logger-enabled")) {
+    localStorage.setItem("cg-logger-enabled", "true");
+  } else if (!localStorage.getItem("cg-logger-enabled")) {
+    localStorage.setItem("cg-logger-enabled", "false");
+  }
+
+  // log environment info + state
+  logger.info("Environment", CG.env);
+  logger.info("State", CG.state);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // setup logging based on environment - enabled for staging and admin users by default, but can be toggled
+  setupLogging();
+
+  // Clean up DOM: remove elements + set class names
+  remove(".search-container");
+  CG.dom.bodyHeader.classList.add("headers");
+  hide("#ep-footer"); // hide Skilljar footer
+
+  // replace logo
+  CG.dom.headerLeft.replaceChildren(CG.el.logo);
+
+  generateFooter();
+
+  preRoute();
+  route();
+  postRoute();
 
   // show all
   showBody();
