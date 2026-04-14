@@ -557,8 +557,6 @@ body.sj-page-detail-path {
       transition: var(--transition-button-full);
 
       &:hover {
-        border-color: var(--blurple);
-        background-color: var(--color-surface-accent);
         box-shadow: var(--shadow-card-hover);
         transform: translateY(-2px);
       }
