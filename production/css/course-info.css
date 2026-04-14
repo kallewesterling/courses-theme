@@ -380,6 +380,7 @@ body.sj-page-curriculum {
     }
 
     .course-card > p {
+      display: block !important;
       padding: var(--spacing-0) var(--spacing-px-20) var(--spacing-px-20)
         var(--spacing-0) !important;
       margin: var(--spacing-0) var(--spacing-px-24) !important;
