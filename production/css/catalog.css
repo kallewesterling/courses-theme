@@ -345,13 +345,15 @@ body.sj-page-detail-path {
       background: var(--card-bg);
       transition:
         transform 0.2s ease,
-        box-shadow 0.2s ease;
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
 
       &.completed {
         opacity: 0.5;
       }
 
       &:hover {
+        opacity: 1; /* Keep full opacity */
         box-shadow: var(--shadow-card-hover);
         transform: translateY(-2px);
       }
@@ -360,7 +362,6 @@ body.sj-page-detail-path {
         transition: none;
 
         &:hover {
-          opacity: 1; /* Keep full opacity */
           transform: none; /* No movement */
           /* Keep shadow for visual feedback */
         }
