@@ -362,6 +362,13 @@ body.sj-page-detail-course {
   #purchase-button-wrapper-large .sj-save-toggle-centered {
     justify-content: inherit !important;
   }
+
+  &.course-completed-view {
+    /* Any styles can be added here for completed courses */
+    /* .top-row-grey {
+      background-color: var(--color-brand-lime-light) !important;
+    } */
+  }
 }
 
 body.sj-page-curriculum {
