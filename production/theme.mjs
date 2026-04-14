@@ -32,6 +32,13 @@ window.animateCompletion = animateCompletion;
  * It ensures that the necessary DOM structure and elements are in place before the main routing logic is executed.
  */
 function preRoute() {
+  // set body classes
+  if (CG.page.isCourseRegistered)
+    CG.dom.body.classList.add("course-registered-view");
+  
+  if (CG.page.isCourseUnregistered)
+    CG.dom.body.classList.add("course-unregistered-view");
+
   if (CG.page.isLesson)
     // if a lesson page, we need to move the nav button before we modify the header
     CG.dom.contentContainer.append(Q("#left-nav-button"));

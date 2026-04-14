@@ -22,7 +22,7 @@ export function A(selector, root = document) {
 }
 
 export function c(selector) {
-  return Q(selector) || false;
+  return Q(selector) ? true : false;
 }
 
 export function sanitizeUrl(link, UTM = {}) {
