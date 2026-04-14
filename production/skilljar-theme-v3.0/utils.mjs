@@ -3,6 +3,16 @@ import { logger } from "./logger.mjs";
 // static imports
 import { UTM as standardUTM } from "../data/utm.mjs";
 
+function isEmpty(obj) {
+  for (const prop in obj) {
+    if (Object.hasOwn(obj, prop)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 export function Q(selector, root = document) {
   return root.querySelector(selector);
 }
@@ -16,8 +26,8 @@ export function c(selector) {
 }
 
 export function sanitizeUrl(link, UTM = {}) {
-  if (!UTM || typeof UTM !== "object") {
-    logger.warn("sanitizeUrl: UTM parameter is not an object. Setting to standard defaults.");
+  if (!UTM || typeof UTM !== "object" || isEmpty(UTM)) {
+    logger.warn("sanitizeUrl: UTM parameter is not an object or is empty. Setting to standard defaults.");
     UTM = standardUTM;
   }
 
