@@ -1,4 +1,4 @@
-import { Q, el } from "../meta.mjs";
+import { Q, el } from "../utils.mjs";
 import { CG } from "../CG.mjs";
 
 /**

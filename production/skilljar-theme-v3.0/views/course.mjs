@@ -1,4 +1,4 @@
-import { Q, el } from "../meta.mjs";
+import { Q, el } from "../utils.mjs";
 import { setStyle, hide } from "../styling.mjs";
 import { CG } from "../CG.mjs";
 import { logger } from "../logger.mjs";

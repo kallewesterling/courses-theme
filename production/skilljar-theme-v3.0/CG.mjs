@@ -1,5 +1,5 @@
 import { CONFIG } from "./config.mjs";
-import { c, A, Q, el, sanitizeUrl } from "./meta.mjs";
+import { c, A, Q, el, sanitizeUrl } from "./utils.mjs";
 import { logger } from "./logger.mjs";
 
 // static import

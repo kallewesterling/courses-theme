@@ -1,5 +1,5 @@
 import { pathSections } from "../data/path-sections.mjs";
-import { Q, el } from "./meta.mjs";
+import { Q, el } from "./utils.mjs";
 import { hide } from "./styling.mjs";
 import { createClone } from "./icons.mjs";
 import { CG } from "./CG.mjs";

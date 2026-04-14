@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { sanitizeUrl, toTitleCase } from "../production/skilljar-theme-v3.0/meta.mjs";
+import { sanitizeUrl, toTitleCase } from "../production/skilljar-theme-v3.0/utils.mjs";
 
 // ------------------------------------------------------------
 // sanitizeUrl

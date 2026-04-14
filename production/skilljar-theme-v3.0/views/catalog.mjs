@@ -1,4 +1,4 @@
-import { Q, el, remove, sanitizeUrl } from "../meta.mjs";
+import { Q, el, remove, sanitizeUrl } from "../utils.mjs";
 import { hide } from "../styling.mjs";
 import { createClone } from "../icons.mjs";
 import { CG } from "../CG.mjs";

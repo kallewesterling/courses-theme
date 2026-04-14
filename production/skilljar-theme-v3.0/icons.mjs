@@ -1,4 +1,4 @@
-import { el } from "./meta.mjs";
+import { el } from "./utils.mjs";
 import { logger } from "./logger.mjs";
 
 // static imports

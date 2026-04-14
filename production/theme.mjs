@@ -13,7 +13,7 @@
  * @see {@link https://courses.chainguard.com|Chainguard Courses}
  */
 
-import { Q, el, remove } from "./skilljar-theme-v3.0/meta.mjs";
+import { Q, el, remove } from "./skilljar-theme-v3.0/utils.mjs";
 import { CG } from "./skilljar-theme-v3.0/CG.mjs";
 import { animateCompletion } from "./skilljar-theme-v3.0/course-completion.mjs";
 import { generateFooter } from "./skilljar-theme-v3.0/footer.mjs";

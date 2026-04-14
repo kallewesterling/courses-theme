@@ -1,4 +1,4 @@
-import { el, sanitizeUrl } from "./meta.mjs";
+import { el, sanitizeUrl } from "./utils.mjs";
 
 // static imports
 import { footerData } from "../data/footer.mjs";

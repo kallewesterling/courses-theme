@@ -1,4 +1,4 @@
-import { Q } from "./meta.mjs";
+import { Q } from "./utils.mjs";
 
 /**
  * Sets the style of an element or a list of elements.

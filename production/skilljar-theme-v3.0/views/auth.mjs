@@ -1,4 +1,4 @@
-import { A, Q, el, text, placeholder, remove } from "../meta.mjs";
+import { A, Q, el, text, placeholder, remove } from "../utils.mjs";
 import { CG } from "../CG.mjs";
 import { setStyle } from "../styling.mjs";
 

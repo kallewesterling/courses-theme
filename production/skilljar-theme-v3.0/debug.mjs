@@ -1,4 +1,4 @@
-import { Q, A, el } from "./meta.mjs";
+import { Q, A, el } from "./utils.mjs";
 import { CG } from "./CG.mjs";
 import { CONFIG } from "./config.mjs";
 import { pageHandlers } from "./router.mjs";

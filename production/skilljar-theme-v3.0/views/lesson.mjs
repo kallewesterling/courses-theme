@@ -1,4 +1,4 @@
-import { A, Q, el, text, sanitizeUrl, toTitleCase } from "../meta.mjs";
+import { A, Q, el, text, sanitizeUrl, toTitleCase } from "../utils.mjs";
 import { CG } from "../CG.mjs";
 import { CONFIG } from "../config.mjs";
 import { setStyle } from "../styling.mjs";
