@@ -52,8 +52,10 @@ body.sj-page-lesson {
       margin-left: 292px;
 
       #lesson-main {
-        padding-right: var(--spacing-10) !important; /* Skilljar Override: Custom padding for open menu state */
-        padding-left: var(--spacing-10) !important; /* Skilljar Override: Custom padding for open menu state */
+        /* Skilljar Override: Custom padding for open menu state */
+        padding-right: var(--spacing-10) !important;
+        /* Skilljar Override: Custom padding for open menu state */
+        padding-left: var(--spacing-10) !important;
 
         #lesson-main-inner {
           width: 100% !important; /* Skilljar Override: Full width when menu is open */
@@ -294,7 +296,11 @@ body.sj-page-lesson {
               padding: 0.6rem 0.9rem;
               border: var(--border-width-thin) solid var(--shadow-medium);
               border-radius: var(--radius-pill);
-              background-image: linear-gradient(355deg, var(--gradient-pink-alt), var(--gradient-blue-alt) 72%);
+              background-image: linear-gradient(
+                355deg,
+                var(--gradient-pink-alt),
+                var(--gradient-blue-alt) 72%
+              );
               color: var(--ink) !important;
               font:
                 var(--font-weight-medium) var(--font-size-sm)/1 system-ui,
@@ -338,7 +344,11 @@ body.sj-page-lesson {
         #internal-course-warning {
           padding: var(--spacing-px-18);
           margin-bottom: var(--spacing-px-50);
-          background-image: linear-gradient(315deg, var(--gradient-pink), var(--gradient-blue) 72%);
+          background-image: linear-gradient(
+            315deg,
+            var(--gradient-pink),
+            var(--gradient-blue) 72%
+          );
           font-family: Gellix, sans-serif;
           font-size: var(--font-size-sm);
           line-height: var(--line-height-1-5em);
@@ -469,8 +479,10 @@ body.sj-page-lesson {
 
               blockquote.cg {
                 max-width: 80%;
-                padding: var(--spacing-6) var(--spacing-6) var(--spacing-6) var(--spacing-6);
-                margin: var(--spacing-px-48) var(--spacing-px-48) var(--spacing-px-48) var(--spacing-px-48);
+                padding: var(--spacing-6) var(--spacing-6) var(--spacing-6)
+                  var(--spacing-6);
+                margin: var(--spacing-px-48) var(--spacing-px-48)
+                  var(--spacing-px-48) var(--spacing-px-48);
                 margin-top: var(--spacing-px-48) !important;
                 margin-bottom: var(--spacing-px-48) !important;
                 border: none;
@@ -780,8 +792,10 @@ sjwc-lesson-content-item {
     box-shadow: unset !important;
 
     .callout-header {
-      padding: var(--spacing-2) var(--spacing-2) var(--spacing-2) var(--spacing-5);
-      border-radius: var(--radius-md) var(--radius-md) var(--radius-none) var(--radius-none);
+      padding: var(--spacing-2) var(--spacing-2) var(--spacing-2)
+        var(--spacing-5);
+      border-radius: var(--radius-md) var(--radius-md) var(--radius-none)
+        var(--radius-none);
       background-color: transparent !important;
       font-size: var(--font-size-lg) !important;
       font-weight: var(--font-weight-bold);
@@ -794,7 +808,8 @@ sjwc-lesson-content-item {
     }
 
     .callout-body {
-      padding: var(--spacing-2) var(--spacing-5) var(--spacing-2) var(--spacing-5);
+      padding: var(--spacing-2) var(--spacing-5) var(--spacing-2)
+        var(--spacing-5);
 
       ul {
         li::marker {
@@ -828,7 +843,9 @@ sjwc-lesson-content-item {
   }
 
   p.lead {
-    font-size: var(--font-size-2xl) !important;
+    font-size: calc(var(--font-size-xl) * 1.1) !important;
+    font-weight: 500;
+    line-height: 1.5;
   }
 
   ul,
@@ -856,7 +873,8 @@ sjwc-lesson-content-item {
 
   code:not([class*="language-"]) {
     padding: 6px 5px 5px 5px;
-    margin: var(--spacing-0) var(--spacing-px-3) var(--spacing-0) var(--spacing-px-3);
+    margin: var(--spacing-0) var(--spacing-px-3) var(--spacing-0)
+      var(--spacing-px-3);
     border-radius: var(--radius-xl);
     background-color: var(--color-surface-muted);
     color: var(--color-code-text);
@@ -948,7 +966,8 @@ sjwc-lesson-content-item {
         }
 
         .text-center.next-prev {
-          margin: var(--spacing-px-32) var(--spacing-0) var(--spacing-0) var(--spacing-0);
+          margin: var(--spacing-px-32) var(--spacing-0) var(--spacing-0)
+            var(--spacing-0);
           text-align: right !important;
 
           #answer_question {
