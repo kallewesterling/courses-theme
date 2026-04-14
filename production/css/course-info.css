@@ -49,7 +49,9 @@ body.sj-page-curriculum {
 
         &::before {
           content: "";
-          font: normal normal normal 14px/1 FontAwesome, monospace;
+          font:
+            normal normal normal 14px/1 FontAwesome,
+            monospace;
           font-size: var(--font-size-sm);
           text-rendering: auto;
           -webkit-font-smoothing: antialiased;
@@ -74,14 +76,13 @@ body.sj-page-curriculum {
         box-shadow: var(--shadow-focus-ring);
       }
 
-      &.completed {
-        background-color: var(--color-success-dark) !important;
-        cursor: default !important;
-      }
+      /* &.completed {
+      } */
     }
 
     p.completed-subtext {
-      padding: var(--spacing-0) var(--spacing-px-20) var(--spacing-px-20) var(--spacing-0) !important;
+      padding: var(--spacing-0) var(--spacing-px-20) var(--spacing-px-20)
+        var(--spacing-0) !important;
       margin: var(--spacing-0) var(--spacing-px-24) !important;
       color: var(--color-success-dark) !important;
       font-family: Roobert, monospace !important;
@@ -94,7 +95,8 @@ body.sj-page-curriculum {
     visibility: visible;
 
     @media screen and (max-width: 991px) {
-      margin: var(--spacing-24) var(--spacing-0) var(--spacing-px-46) var(--spacing-0);
+      margin: var(--spacing-24) var(--spacing-0) var(--spacing-px-46)
+        var(--spacing-0);
     }
 
     section .title {
@@ -118,7 +120,9 @@ body.sj-page-curriculum {
     section:nth-child(1) h2 {
       display: none !important;
       /* "Curriculum" header */
-      font-weight: var(--font-weight-semibold); /* TODO: this seems unnecessary */
+      font-weight: var(
+        --font-weight-semibold
+      ); /* TODO: this seems unnecessary */
     }
 
     section:nth-child(1) .content {
@@ -368,6 +372,11 @@ body.sj-page-detail-course {
     /* .top-row-grey {
       background-color: var(--color-brand-lime-light) !important;
     } */
+
+    .course-card a {
+      background-color: var(--color-success-dark) !important;
+      cursor: default !important;
+    }
   }
 }
 
