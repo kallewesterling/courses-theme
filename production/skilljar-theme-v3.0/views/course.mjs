@@ -67,9 +67,16 @@ function postCourse() {
     ].filter(Boolean)
   );
 
-  // Strip goes at the bottom of the content container (#dp-details or #cp-content)
+  // Insert strip immediately before .sj-curriculum-wrapper so it sits just
+  // above the curriculum list. Fall back to prepend if the element isn't found.
   if (CG.dom.local.strip) {
-    CG.dom.courseContainer.append(CG.dom.local.strip);
+    const curriculumWrapper = Q(".sj-curriculum-wrapper", CG.dom.courseContainer);
+    if (curriculumWrapper) {
+      curriculumWrapper.before(CG.dom.local.strip);
+    } else {
+      logger.warn("course-details-strip: .sj-curriculum-wrapper not found, falling back to prepend");
+      CG.dom.courseContainer.prepend(CG.dom.local.strip);
+    }
   }
 }
 

@@ -100,7 +100,7 @@ body.sj-page-curriculum {
 
   #dp-details,
   #cp-content {
-    display: grid;
+    display: flex;
     column-gap: var(--gap-6);
     grid-template-columns: minmax(100px, 796px) minmax(100px, 368px);
     /* Page content */
