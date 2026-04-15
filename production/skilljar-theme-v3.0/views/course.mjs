@@ -69,18 +69,12 @@ function postCourse() {
 
   // Strip placement depends on the view:
   // - Registered: after the two-column .tabs container (below both about + curriculum columns)
-  // - Unregistered: before .sj-curriculum-wrapper (falls back to prepend)
+  // - Unregistered: appended to the bottom of #dp-details (below .hide-for-small content)
   if (CG.dom.local.strip) {
     if (CG.dom.local.tabs?.container) {
       CG.dom.local.tabs.container.after(CG.dom.local.strip);
     } else {
-      const curriculumWrapper = Q(".sj-curriculum-wrapper", CG.dom.courseContainer);
-      if (curriculumWrapper) {
-        curriculumWrapper.before(CG.dom.local.strip);
-      } else {
-        logger.warn("course-details-strip: .sj-curriculum-wrapper not found, falling back to prepend");
-        CG.dom.courseContainer.prepend(CG.dom.local.strip);
-      }
+      CG.dom.courseContainer.append(CG.dom.local.strip);
     }
   }
 }
