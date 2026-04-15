@@ -61,6 +61,27 @@ function createCourseDetailsCard(
 }
 
 /**
+ * Post-course setup function to finalize the DOM adjustments specific to course pages after routing logic has been applied.
+ * This function handles tasks such as appending course details to the header, and any other adjustments needed for course pages.
+ * It ensures that the course page is fully set up with the correct elements and structure after the main routing logic has executed.
+ */
+function postCourse() {
+  // append elements to header
+  CG.dom.header.wrapper.append(
+    ...[
+      Q(".sj-floater-text") ||
+      el("div", {
+        className: "sj-floater-text",
+        text: "Course",
+      }),
+      Q(".break-word"),
+      CG.dom.header.courseInfo || CG.el.headingParagraph,
+      CG.dom.header.ctaBtnWrapper,
+    ].filter(Boolean)
+  );
+}
+
+/**
  * This function applies styling to the course details page when the user is
  * not logged in or logged in but not registered for the course.
  * @returns {void}
@@ -109,6 +130,8 @@ export function courseUnregisteredView() {
   } catch (error) {
     logger.error("Error processing curriculum elements:", error);
   }
+
+  postCourse();
 }
 
 /**
@@ -187,4 +210,6 @@ export function courseRegisteredView() {
   CG.dom.courseContainer.append(
     ...[CG.dom.local._card.details].filter(Boolean)
   );
+
+  postCourse();
 }

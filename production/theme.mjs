@@ -87,22 +87,6 @@ function postRoute() {
   if (CG.page.isCoursePage || CG.page.isPathRegistered) {
     // append breadcrumbs
     Q(".top-row-grey").prepend(CG.state.breadcrumbs.nav);
-
-    // append elements to header
-    if (CG.page.isCoursePage) {
-      CG.dom.header.wrapper.append(
-        ...[
-          Q(".sj-floater-text") ||
-          el("div", {
-            className: "sj-floater-text",
-            text: "Course",
-          }),
-          Q(".break-word"),
-          CG.dom.header.courseInfo || CG.el.headingParagraph,
-          CG.dom.header.ctaBtnWrapper,
-        ].filter(Boolean)
-      );
-    }
   }
 
   // move footer
