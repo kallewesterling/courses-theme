@@ -226,6 +226,7 @@ body.sj-page-detail-course {
     align-items: start !important;
     gap: var(--gap-6) !important;
     grid-template-columns: 1fr 1fr !important;
+    max-width: 100% !important;
 
     /* Foundation's clearfix injects ::before/::after with display:table,
        which become extra grid items and push columns into the wrong cells. */
