@@ -359,6 +359,23 @@ body.sj-page-curriculum {
     flex-direction: column !important;
   }
 
+  /* Two-column layout: #about-section (left) | #curriculum-section (right) */
+  .tabs {
+    display: grid !important;
+    align-items: start !important;
+    gap: var(--gap-6) !important;
+    grid-template-columns: 1fr 1fr !important;
+
+    /* Reset the vertical stacking margin — sections are now side-by-side */
+    section:nth-child(2) {
+      margin-top: var(--spacing-0) !important;
+    }
+
+    @media screen and (max-width: 767px) {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
   .cp-summary-wrapper h2.cp-lessons,
   .cp-summary-wrapper .progress-bar {
     display: none !important; /* Hide "X of Y lessons completed (Z%)" and progress bar */
