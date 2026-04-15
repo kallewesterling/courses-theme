@@ -22,12 +22,14 @@ body.sj-page-curriculum {
     background-color: var(--color-card-bg-light) !important;
 
     @media screen and (max-width: 1320px) {
-      padding: 56px 8vw;
+      padding-top: 56px;
+      padding-bottom: 56px;
     }
 
     .d-flex-center-v2 {
       justify-content: start;
-      max-width: 1188px;
+      max-width: min(1188px, 90%);
+      margin: var(--spacing-0) auto;
 
       .cp-summary-row-v2 {
         width: 100% !important;
@@ -40,7 +42,8 @@ body.sj-page-curriculum {
       flex-wrap: nowrap;
       justify-content: start;
       gap: var(--gap-6);
-      max-width: 1188px;
+      max-width: min(1188px, 90%);
+      margin: var(--spacing-0) auto;
 
       .cp-promo-image-wrapper,
       .dp-promo-image-wrapper {

@@ -322,13 +322,14 @@ body.sj-page-detail-course {
   }
 
   .dp-row-flex-v2 {
-    /* All header content */
+    /* All header content — aligned to match breadcrumb and #dp-details */
     display: flex;
     flex-direction: row-reverse;
     flex-wrap: nowrap;
     justify-content: start;
     gap: var(--gap-6);
-    max-width: 1188px;
+    max-width: min(1188px, 90%);
+    margin: var(--spacing-0) auto;
 
     @media screen and (max-width: 991px) {
       flex-direction: column-reverse;
