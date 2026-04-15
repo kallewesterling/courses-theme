@@ -139,6 +139,20 @@ export const CG = {
                   const isLast = ix === arr.length - 1;
                   const hasLink = href !== "#";
                   const tag = isLast || !hasLink ? "span" : "a";
+
+                  // First crumb: home icon link instead of "Home" text
+                  if (ix === 0) {
+                    return el("li", {}, [
+                      el("a", {
+                        className: "crumb crumb--home",
+                        href,
+                        "aria-label": text,
+                      }, [
+                        el("i", { className: "fa fa-home" }),
+                      ]),
+                    ]);
+                  }
+
                   return el("li", {}, [
                     el(tag, {
                       className: "crumb",

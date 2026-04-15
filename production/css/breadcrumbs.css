@@ -9,23 +9,14 @@ body.sj-page-curriculum,
 body.sj-page-catalog,
 body.sj-page-series {
   #breadcrumb-wrapper {
-    justify-content: start;
     max-width: min(1188px, 90%);
-    margin: 48px auto var(--spacing-5) auto;
+    margin: 32px auto 0 auto;
 
     .breadcrumbs {
-      width: max-content;
-      max-width: 100%;
-      padding: var(--spacing-3) var(--spacing-4);
-      border: var(--border-width-thin) solid var(--border);
-      border-radius: var(--radius-2xl);
-      background-color: var(--color-surface-base);
-      box-shadow: var(--shadow-breadcrumb);
-
-      &[aria-current="page"] {
-        color: var(--ink-dim);
-        font-weight: var(--font-weight-extrabold);
-      }
+      width: 100%;
+      padding: 10px 0;
+      border-top: var(--border-width-thin) solid var(--border);
+      border-bottom: var(--border-width-thin) solid var(--border);
 
       ol {
         display: flex;
@@ -40,33 +31,13 @@ body.sj-page-series {
           align-items: center;
           gap: var(--gap-2);
           min-width: 0;
-          color: var(--ink-dim);
-
-          a {
-            color: var(--ink) !important;
-            font-weight: var(--font-weight-semibold);
-            text-decoration: none;
-            opacity: 1 !important;
-
-            &:hover {
-              color: var(--ink) !important;
-              text-decoration: underline;
-              text-underline-offset: 2px;
-            }
-
-            &:focus-visible {
-              outline: none;
-              box-shadow: var(--shadow-focus-ring);
-              border-radius: var(--radius-sm);
-            }
-          }
 
           + li::before {
-            /* chevron separator */
+            /* chevron — indicates drilling down */
             content: "";
-            flex: 0 0 14px;
-            width: 14px;
-            height: 14px;
+            flex: 0 0 12px;
+            width: 12px;
+            height: 12px;
             background-color: var(--color-text-muted-purple);
             mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 5l7 7-7 7'/></svg>")
               center/contain no-repeat;
@@ -76,11 +47,38 @@ body.sj-page-series {
 
       .crumb {
         max-width: min-content;
-        white-space: nowrap;
         overflow: hidden;
+        color: var(--ink-dim) !important;
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-normal);
+        text-decoration: none;
+        opacity: 1 !important;
+        white-space: nowrap;
         text-overflow: ellipsis;
-        color: var(--ink) !important;
-        opacity: 0.5;
+
+        &:is(a):hover {
+          color: var(--ink) !important;
+          text-decoration: underline;
+          text-underline-offset: 2px;
+        }
+
+        &:focus-visible {
+          outline: none;
+          box-shadow: var(--shadow-focus-ring);
+          border-radius: var(--radius-sm);
+        }
+      }
+
+      .crumb--home {
+        display: flex;
+        align-items: center;
+        color: var(--ink-dim) !important;
+        font-size: var(--font-size-base);  /* icon scales with font-size */
+
+        &:hover {
+          color: var(--blurple) !important;
+          text-decoration: none;
+        }
       }
     }
   }
