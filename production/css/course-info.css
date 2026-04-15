@@ -163,29 +163,25 @@ body.sj-page-detail-course {
   }
 
   .curriculum-wrapper {
+    counter-reset: lesson;
     padding: var(--spacing-0);
     margin-bottom: var(--spacing-px-30);
-    border: var(--border-width-medium) solid var(--blurple);
-    /* Each section of the curriculum has it's own wrapper */
-    border-radius: var(--radius-lg);
+    border: var(--border-width-none);
 
     h3 {
       /* Section heading */
-      display: flex;
-      align-items: center;
-      padding: var(--spacing-px-24);
+      padding: var(--spacing-0) var(--spacing-0) var(--spacing-px-12) var(--spacing-0);
       margin: var(--spacing-0);
       color: var(--ink) !important;
       font-family: Gellix, sans-serif;
       font-size: var(--font-size-md) !important;
       font-weight: var(--font-weight-bold) !important;
       line-height: var(--line-height-125);
-      border-bottom: 2px solid var(--blurple);
+      border-bottom: var(--border-width-medium) solid var(--blurple);
 
       > a {
         padding: var(--spacing-0);
         font-size: var(--font-size-md) !important;
-        /* Special case: header when no lessons */
         font-weight: inherit;
 
         &:hover {
@@ -195,42 +191,51 @@ body.sj-page-detail-course {
     }
 
     a {
-      /* Section lesson */
+      /* Section lesson — numbered steps */
+      counter-increment: lesson;
       display: flex;
-      flex-direction: row-reverse;
-      justify-content: flex-end;
-      align-items: center;
-      height: 100%;
-      padding: var(--spacing-px-24);
+      flex-direction: row;
+      align-items: baseline;
+      gap: var(--gap-3);
+      padding: var(--spacing-px-12) var(--spacing-0);
       color: var(--ink) !important;
       font-family: inherit;
       font-size: var(--font-size-base);
       font-weight: var(--font-weight-normal);
       line-height: var(--line-height-150);
-      border-bottom: 2px solid var(--blurple);
+      border-bottom: var(--border-width-thin) solid var(--border);
+
+      &::before {
+        content: counter(lesson, decimal-leading-zero);
+        flex: 0 0 auto;
+        color: var(--ink-dim);
+        font-size: var(--font-size-xs);
+        font-weight: var(--font-weight-semibold);
+        letter-spacing: 0.02em;
+      }
 
       .fa-check-circle {
+        margin-left: auto;
         color: var(--color-success-dark) !important;
       }
 
       &:hover {
-        background-color: var(--gradient-end);
+        background-color: unset;
+        color: var(--blurple) !important;
       }
 
       &:focus-visible {
         outline: none;
         box-shadow: var(--shadow-focus-ring);
+        border-radius: var(--radius-sm);
       }
 
       &:last-child {
-        border-bottom: 0;
-        border-radius: var(--radius-lg);
+        border-bottom: var(--border-width-none);
       }
 
-      i {
-        /* TODO: is this legacy? */
-        margin-right: 12px;
-        color: var(--blurple);
+      i:not(.fa-check-circle) {
+        display: none;
       }
     }
   }
