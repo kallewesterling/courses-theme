@@ -46,6 +46,12 @@ function processCourseDetails(courseDetails, viewType) {
 
   CG.dom.local.strip?.remove();
   CG.dom.local.strip = createCourseDetailsStrip(courseDetails);
+
+  CG.dom.local.timeIndicator?.remove();
+  CG.dom.local.timeIndicator = el("p", {
+    className: "course-time-indicator",
+    textContent: courseDetails.time,
+  });
 }
 
 /**
@@ -62,6 +68,7 @@ function postCourse() {
         text: "Course",
       }),
       Q(".break-word"),
+      CG.dom.local.timeIndicator,
       CG.dom.header.courseInfo || CG.el.headingParagraph,
       CG.dom.header.ctaBtnWrapper,
     ].filter(Boolean)
