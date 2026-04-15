@@ -153,6 +153,10 @@ body.sj-page-detail-course {
   }
 
   #curriculum-section {
+    h2 {
+      display: none !important; /* "Course Overview" — redundant with .curriculum-wrapper h3 */
+    }
+
     hr {
       display: none !important;
     }
@@ -270,6 +274,10 @@ body.sj-page-detail-course {
     @media screen and (max-width: 767px) {
       grid-template-columns: 1fr !important;
     }
+  }
+
+  .sj-curriculum-wrapper > h3 {
+    display: none !important; /* "Curriculum" — redundant with .curriculum-wrapper h3 ("Lessons") */
   }
 
   #dp-details {
