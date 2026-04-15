@@ -84,9 +84,10 @@ function preRoute() {
  * It ensures that the page is fully set up with the correct elements and structure after the main routing logic has executed.
  */
 function postRoute() {
-  // append breadcrumbs to some pages
+  // append breadcrumbs to some pages — placed before the content container,
+  // below the header band and above the two-column layout
   if (CG.page.isCoursePage || CG.page.isPathRegistered) {
-    Q(".top-row-grey").prepend(CG.state.breadcrumbs.nav);
+    CG.dom.courseContainer.before(CG.state.breadcrumbs.nav);
   }
 
   // move footer
