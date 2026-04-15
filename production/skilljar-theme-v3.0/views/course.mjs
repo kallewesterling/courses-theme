@@ -61,6 +61,47 @@ function createCourseDetailsCard(
 }
 
 /**
+ * This function processes the course details and updates the course details card on the page.
+ * It creates a new course details card with the provided details and options, and replaces the existing card if it exists.
+ * @param {Object} courseDetails - An object containing course details to be displayed on the card.
+ * @param {string} viewType - A string indicating the type of view ("unregistered" or "registered") to determine the button text and styling.
+ * @returns {void}
+ */
+function processCourseDetails(courseDetails, viewType) {
+  let btnText;
+  if (viewType === "unregistered") {
+    btnText = CG.dom.header.ctaBtnWrapper
+      ? CG.dom.header.registerBtn.textContent
+      : "Register for Learning Path";
+  } else if (viewType === "registered") {
+    btnText = CG.dom.header.ctaBtnWrapper
+      ? CG.dom.header.ctaBtnText.textContent
+      : "Resume";
+  } else {
+    btnText = "Register";
+  }
+
+  logger.info(`Processing course details for ${viewType} view with button text: ${btnText}`);
+
+  if (typeof courseDetails !== "undefined") {
+    CG.dom.local.card ? CG.dom.local.card.remove() : null;
+
+    CG.dom.courseContainer.append(
+      ...[
+        createCourseDetailsCard(courseDetails, {
+          btnText,
+          btnHref: CG.dom.header.href,
+          completed: CG.state.course.completed,
+        }),
+      ].filter(Boolean)
+    );
+
+    // re-query link
+    CG.dom.local._card.link = Q(".course-card a");
+  }
+}
+
+/**
  * Post-course setup function to finalize the DOM adjustments specific to course pages after routing logic has been applied.
  * This function handles tasks such as appending course details to the header, and any other adjustments needed for course pages.
  * It ensures that the course page is fully set up with the correct elements and structure after the main routing logic has executed.
@@ -108,21 +149,7 @@ export function courseUnregisteredView() {
     )
     .forEach((elem) => elem.classList.add("path-registration"));
 
-  if (typeof courseDetails !== "undefined") {
-    CG.dom.local.card ? CG.dom.local.card.remove() : null;
-
-    CG.dom.courseContainer.append(
-      ...[
-        createCourseDetailsCard(courseDetails, {
-          btnText: CG.dom.header.ctaBtnWrapper
-            ? CG.dom.header.registerBtn.textContent
-            : "Register for Learning Path",
-          btnHref: CG.dom.header.href,
-          completed: CG.state.course.completed,
-        }),
-      ].filter(Boolean)
-    );
-  }
+  processCourseDetails(courseDetails, "unregistered");
 
   // process curriculum elements
   try {
@@ -174,24 +201,7 @@ export function courseRegisteredView() {
     })
   );
 
-  if (typeof courseDetails !== "undefined") {
-    CG.dom.local.card ? CG.dom.local.card.remove() : null;
-
-    CG.dom.courseContainer.append(
-      ...[
-        createCourseDetailsCard(courseDetails, {
-          btnText: CG.dom.header.ctaBtnWrapper
-            ? CG.dom.header.ctaBtnText.textContent
-            : "Resume",
-          btnHref: CG.dom.header.href,
-          completed: CG.state.course.completed,
-        }),
-      ].filter(Boolean)
-    );
-
-    // re-query link
-    CG.dom.local._card.link = Q(".course-card a");
-  }
+  processCourseDetails(courseDetails, "registered");
 
   // update resume button text and href (with auto-value fallback)
   if (CG.dom.header.ctaBtnWrapper && CG.dom.local._card.link) {
