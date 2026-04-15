@@ -43,7 +43,6 @@ body.sj-page-curriculum {
       justify-content: start;
       gap: var(--gap-6);
       max-width: min(1188px, 90%);
-      margin: var(--spacing-0) auto;
 
       .cp-promo-image-wrapper,
       .dp-promo-image-wrapper {
