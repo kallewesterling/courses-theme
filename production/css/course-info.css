@@ -10,9 +10,10 @@ Skilljar's platform CSS. This is necessary and expected for custom theming.
 body.sj-page-curriculum,
 body.sj-page-detail-course {
   .course-time-indicator {
-    display: inline-flex !important;
+    display: flex !important;
     align-items: center !important;
     gap: 6px !important;
+    width: fit-content !important;
     padding: 4px 10px !important;
     margin-bottom: var(--spacing-px-16) !important;
     border: var(--border-width-thin) solid rgb(98 38 251 / 0.35) !important;
