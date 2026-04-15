@@ -68,6 +68,11 @@ function createCourseDetailsCard(
  * @returns {void}
  */
 function processCourseDetails(courseDetails, viewType) {
+  if (typeof courseDetails == "undefined") {
+    logger.warn("Course details are undefined. Skipping course details card creation.");
+    return;
+  }
+
   let btnText;
   if (viewType === "unregistered") {
     btnText = CG.dom.header.ctaBtnWrapper
@@ -83,22 +88,20 @@ function processCourseDetails(courseDetails, viewType) {
 
   logger.info(`Processing course details for ${viewType} view with button text: ${btnText}`);
 
-  if (typeof courseDetails !== "undefined") {
-    CG.dom.local.card ? CG.dom.local.card.remove() : null;
+  CG.dom.local.card ? CG.dom.local.card.remove() : null;
 
-    CG.dom.courseContainer.append(
-      ...[
-        createCourseDetailsCard(courseDetails, {
-          btnText,
-          btnHref: CG.dom.header.href,
-          completed: CG.state.course.completed,
-        }),
-      ].filter(Boolean)
-    );
+  CG.dom.courseContainer.append(
+    ...[
+      createCourseDetailsCard(courseDetails, {
+        btnText,
+        btnHref: CG.dom.header.href,
+        completed: CG.state.course.completed,
+      }),
+    ].filter(Boolean)
+  );
 
-    // re-query link
-    CG.dom.local._card.link = Q(".course-card a");
-  }
+  // re-query link
+  CG.dom.local._card.link = Q(".course-card a");
 }
 
 /**
