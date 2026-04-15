@@ -140,7 +140,7 @@ body.sj-page-curriculum {
     }
 
     .large-10.large-centered.columns.tabs-wrapper-v2 {
-      width: 796px;
+      max-width: 796px;
       margin: var(--spacing-0);
     }
   }
