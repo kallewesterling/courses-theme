@@ -227,6 +227,13 @@ body.sj-page-detail-course {
     gap: var(--gap-6) !important;
     grid-template-columns: 1fr 1fr !important;
 
+    /* Foundation's clearfix injects ::before/::after with display:table,
+       which become extra grid items and push columns into the wrong cells. */
+    &::before,
+    &::after {
+      display: none !important;
+    }
+
     > .columns {
       float: none !important;
       width: auto !important;
