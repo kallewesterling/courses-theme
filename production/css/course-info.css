@@ -9,78 +9,65 @@ Skilljar's platform CSS. This is necessary and expected for custom theming.
 
 body.sj-page-curriculum,
 body.sj-page-detail-course {
-  .course-card {
-    position: sticky !important;
-    top: 100px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    max-width: 368px !important;
-    margin: var(--spacing-px-20) auto !important;
-    margin-bottom: var(--spacing-px-50) !important;
+  .course-details-strip {
+    display: grid !important;
+    gap: var(--gap-6) !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    width: 100% !important;
+    padding: var(--spacing-px-24) !important;
+    margin-top: var(--spacing-px-20) !important;
     border: var(--border-width-medium) solid var(--blurple) !important;
     border-radius: var(--radius-lg) !important;
     background-color: var(--primary-white-hex) !important;
-    color: inherit !important;
-    font-family: inherit !important;
-    align-self: start !important;
 
-    h3 {
-      padding: var(--spacing-px-24);
-      margin: var(--spacing-0);
-      font-family: Gellix, sans-serif;
-      font-size: var(--font-size-base) !important;
-      font-weight: var(--font-weight-bold) !important;
-      line-height: var(--line-height-20);
-      letter-spacing: var(--letter-spacing-snug-alt);
-      border-bottom: 2px solid var(--blurple) !important;
-    }
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-3);
 
-    ul {
-      list-style: none;
-      padding: var(--spacing-px-24) var(--spacing-px-24) 0 var(--spacing-px-24);
-      margin: var(--spacing-0);
-      margin-bottom: var(--spacing-px-16);
+      &::before {
+        color: var(--blurple);
+        font: normal normal normal 20px/1 FontAwesome, monospace;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
 
-      li {
-        display: flex;
-        align-items: start !important;
-        gap: var(--gap-3);
-        margin-bottom: var(--spacing-px-8);
+      &.detail-item--audience::before { content: "\f0c0"; } /* fa-users   */
+      &.detail-item--duration::before { content: "\f017"; } /* fa-clock-o */
+      &.detail-item--lessons::before  { content: "\f02d"; } /* fa-book    */
 
-        &::before {
-          content: "";
-          font:
-            normal normal normal 14px/1 FontAwesome,
-            monospace;
-          font-size: var(--font-size-sm);
-          text-rendering: auto;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-          transform: translateY(5px);
-        }
-
-        p {
-          margin: var(--spacing-0);
-          font-size: var(--font-size-base);
-          font-weight: var(--font-weight-normal);
-          line-height: var(--line-height-24);
-        }
+      &:not(:last-child) {
+        border-right: var(--border-width-thin) solid var(--color-border-accent);
+        padding-right: var(--gap-6);
       }
     }
 
-    a {
-      margin: var(--spacing-0) var(--spacing-px-20) 1.25em;
-      margin-right: 20px;
-      margin-left: 20px;
-
-      &:focus-visible {
-        outline: none;
-        box-shadow: var(--shadow-focus-ring);
-      }
+    .detail-label {
+      margin: var(--spacing-0);
+      color: var(--blurple);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
-    > p {
-      display: none !important;
+    .detail-text {
+      margin: var(--spacing-0);
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-normal);
+      line-height: var(--line-height-24);
+    }
+
+    @media screen and (max-width: 600px) {
+      grid-template-columns: 1fr !important;
+
+      .detail-item:not(:last-child) {
+        border-right: none;
+        border-bottom: var(--border-width-thin) solid var(--color-border-accent);
+        padding-right: 0;
+        padding-bottom: var(--gap-4);
+      }
     }
   }
 
@@ -370,27 +357,5 @@ body.sj-page-curriculum {
 
   .cp-summary-wrapper #resume-button {
     padding: var(--spacing-0) var(--spacing-4);
-  }
-
-  &.course-completed-view {
-    /* Any styles can be added here for completed courses */
-    .course-card a {
-      background-color: var(--color-success-dark) !important;
-      cursor: default !important;
-    }
-
-    .course-card > p {
-      display: block !important;
-      padding: var(--spacing-0) var(--spacing-px-20) var(--spacing-px-20)
-        var(--spacing-0) !important;
-      margin: var(--spacing-0) var(--spacing-px-24) !important;
-      color: var(--color-success-dark) !important;
-      font-family: Roobert, monospace !important;
-      font-size: var(--font-size-xs) !important;
-    }
-
-    /* .top-row-grey {
-      background-color: var(--color-brand-lime-light) !important;
-    } */
   }
 }
