@@ -13,10 +13,15 @@ body.sj-page-series {
     margin: 32px auto 0 auto;
 
     .breadcrumbs {
-      width: 100%;
-      padding: 10px 0;
-      border-top: var(--border-width-thin) solid var(--border);
-      border-bottom: var(--border-width-thin) solid var(--border);
+      width: 100% !important;
+      padding: 10px 0 !important;
+      overflow: visible !important;
+      border: none !important;           /* reset Skilljar's border + border-radius */
+      border-top: var(--border-width-thin) solid var(--border) !important;
+      border-bottom: var(--border-width-thin) solid var(--border) !important;
+      border-radius: 0 !important;
+      background-color: transparent !important;
+      box-shadow: none !important;
 
       ol {
         display: flex;
