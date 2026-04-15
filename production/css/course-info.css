@@ -217,6 +217,10 @@ body.sj-page-detail-course {
 body.sj-page-detail-course {
   /* body.sj-page-detail-course = course description page (logged in + not logged in) */
 
+  #dp-details {
+    flex-direction: column !important;
+  }
+
   .large-6 {
     width: 100% !important;
     border: unset !important;
@@ -350,6 +354,10 @@ body.sj-page-detail-course {
 }
 
 body.sj-page-curriculum {
+  #cp-content {
+    flex-direction: column !important;
+  }
+
   .cp-summary-wrapper h2.cp-lessons,
   .cp-summary-wrapper .progress-bar {
     display: none !important; /* Hide "X of Y lessons completed (Z%)" and progress bar */

@@ -31,7 +31,7 @@ function createCourseDetailsStrip(details) {
 
 /**
  * Creates the course details strip and stores it on CG.dom.local.strip.
- * The strip is not appended here — postCourse() places it in the header.
+ * The strip is not appended here — postCourse() places it in the content container.
  * @param {Object} courseDetails - An object containing course details.
  * @param {string} viewType - "unregistered" or "registered" (used for logging).
  * @returns {void}
@@ -50,9 +50,10 @@ function processCourseDetails(courseDetails, viewType) {
 
 /**
  * Post-course setup function to finalize the DOM adjustments specific to course pages after routing logic has been applied.
- * Appends all header elements — including the course details strip — to the header wrapper.
+ * Assembles the header and appends the course details strip to the bottom of the content container.
  */
 function postCourse() {
+  // Header assembly
   CG.dom.header.wrapper.append(
     ...[
       Q(".sj-floater-text") ||
@@ -62,10 +63,14 @@ function postCourse() {
       }),
       Q(".break-word"),
       CG.dom.header.courseInfo || CG.el.headingParagraph,
-      CG.dom.local.strip,
       CG.dom.header.ctaBtnWrapper,
     ].filter(Boolean)
   );
+
+  // Strip goes at the bottom of the content container (#dp-details or #cp-content)
+  if (CG.dom.local.strip) {
+    CG.dom.courseContainer.append(CG.dom.local.strip);
+  }
 }
 
 /**
