@@ -68,13 +68,17 @@ function postCourse() {
   );
 
   // Strip placement depends on the view:
-  // - Registered: after the two-column .tabs container (below both about + curriculum columns)
-  // - Unregistered: appended to the bottom of #dp-details (below .hide-for-small content)
+  // - Registered: after the two-column .tabs container (inside #cp-content, column flex)
+  // - Unregistered: AFTER #dp-details as a sibling in #skilljar-content (flex column),
+  //   avoiding #dp-details's own flex-row layout which squishes inline children
   if (CG.dom.local.strip) {
     if (CG.dom.local.tabs?.container) {
       CG.dom.local.tabs.container.after(CG.dom.local.strip);
     } else {
-      CG.dom.courseContainer.append(CG.dom.local.strip);
+      // Place strip after #dp-details as a sibling, not inside it.
+      // #dp-details uses Foundation's flex-row layout, which would squish
+      // any child that isn't one of the pre-existing columns.
+      CG.dom.courseContainer.after(CG.dom.local.strip);
     }
   }
 }

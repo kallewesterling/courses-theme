@@ -218,6 +218,26 @@ body.sj-page-detail-course {
 body.sj-page-detail-course {
   /* body.sj-page-detail-course = course description page (logged in + not logged in) */
 
+  /* Two-column layout: about text (left) | curriculum (right)
+     Override Foundation's float-based grid with CSS grid to match
+     the registered view's .tabs two-column layout. */
+  #dp-details .row.hide-for-small {
+    display: grid !important;
+    align-items: start !important;
+    gap: var(--gap-6) !important;
+    grid-template-columns: 1fr 1fr !important;
+
+    > .columns {
+      float: none !important;
+      width: auto !important;
+      padding: var(--spacing-0) !important;
+    }
+
+    @media screen and (max-width: 767px) {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
   #dp-details {
     flex-direction: column !important;
   }
