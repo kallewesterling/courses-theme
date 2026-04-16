@@ -17,7 +17,7 @@ body.sj-page-series {
       padding: 10px 0 !important;
       overflow: visible !important;
       border: none !important;           /* reset Skilljar's border + border-radius */
-      border-top: var(--border-width-thin) solid var(--border) !important;
+      border-top: none !important;
       border-bottom: var(--border-width-thin) solid var(--border) !important;
       border-radius: 0 !important;
       background-color: transparent !important;
