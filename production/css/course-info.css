@@ -255,7 +255,7 @@ body.sj-page-detail-course {
   #dp-details .row.hide-for-small {
     display: grid !important;
     align-items: start !important;
-    gap: var(--gap-6) !important;
+    gap: var(--gap-10) !important;
     grid-template-columns: 1fr 1fr !important;
     max-width: 100% !important;
 
@@ -427,7 +427,7 @@ body.sj-page-curriculum {
   .tabs {
     display: grid !important;
     align-items: start !important;
-    gap: var(--gap-6) !important;
+    gap: var(--gap-10) !important;
     grid-template-columns: 1fr 1fr !important;
 
     /* Reset the vertical stacking margin — sections are now side-by-side */
