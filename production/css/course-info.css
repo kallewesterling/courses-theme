@@ -113,11 +113,16 @@ body.sj-page-detail-course {
   }
 
   /* "Part of [Path]" aqua strip — shown when course belongs to a learning path */
+  .course-order {
+    display: none;
+  }
+  
   .path-strip {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: var(--gap-3);
     padding: 9px 14px;
+    margin: var(--spacing-5) var(--spacing-0);
     border: var(--border-width-thin) solid rgb(43 186 253 / 0.35);
     border-radius: var(--radius-md);
     background: rgb(43 186 253 / 0.07);
