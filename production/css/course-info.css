@@ -437,6 +437,10 @@ body.sj-page-curriculum {
 
     section {
       margin-bottom: var(--spacing-px-48) !important;
+
+      @media screen and (max-width: 767px) {
+        margin-bottom: var(--spacing-px-24) !important;
+      }
     }
 
     /* Reset the vertical stacking margin — sections are now side-by-side */
