@@ -283,14 +283,15 @@ body.sj-page-detail-course {
       flex-direction: row;
       align-items: baseline;
       gap: var(--gap-3);
-      padding: var(--spacing-px-12) var(--spacing-0);
+      padding: var(--spacing-px-12) var(--spacing-px-12);
+      background-color: #0084000f;
       color: var(--ink) !important;
       font-family: inherit;
-      font-size: var(--font-size-base);
+      font-size: var(--font-size-sm);
       font-weight: var(--font-weight-normal);
       line-height: var(--line-height-150);
       border-bottom: var(--border-width-thin) solid var(--border);
-
+      
       &::before {
         content: counter(lesson, decimal-leading-zero);
         flex: 0 0 auto;
