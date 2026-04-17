@@ -56,20 +56,24 @@ function showTooltip(triggerEl, content) {
 
 function positionTooltip(triggerEl, tip) {
   const rect = triggerEl.getBoundingClientRect();
+  const scrollX = window.scrollX;
+  const scrollY = window.scrollY;
   const maxWidth = 280;
   const gap = 8;
 
   // Clamp width to viewport with a small margin.
   const width = Math.min(maxWidth, window.innerWidth - 24);
 
-  // Centre under the trigger; clamp to viewport edges.
-  let left = rect.left + rect.width / 2 - width / 2;
-  left = Math.max(12, Math.min(left, window.innerWidth - width - 12));
+  // Centre under the trigger (viewport coords → document coords via scroll).
+  let left = rect.left + scrollX + rect.width / 2 - width / 2;
+  left = Math.max(scrollX + 12, Math.min(left, scrollX + window.innerWidth - width - 12));
 
   // Default: below the trigger. Flip above if not enough room.
   const spaceBelow = window.innerHeight - rect.bottom;
   const above = spaceBelow < 100;
-  const top = above ? rect.top - gap : rect.bottom + gap;
+  const top = above
+    ? rect.top + scrollY - gap
+    : rect.bottom + scrollY + gap;
 
   tip.style.top = `${top}px`;
   tip.style.left = `${left}px`;
