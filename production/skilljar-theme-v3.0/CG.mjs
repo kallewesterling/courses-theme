@@ -1,10 +1,10 @@
-import { CONFIG } from "./config.mjs";
 import { c, A, Q, el, sanitizeUrl } from "./utils.mjs";
 import { logger } from "./logger.mjs";
 
 // static import
 import { logo } from "../data/graphics.mjs";
 import { partnerErrorMessage } from "../data/messages.mjs";
+import { config } from "../data/config.mjs";
 
 export const CG = {
   env: {
@@ -64,7 +64,7 @@ export const CG = {
     isPartner404:
       [
         "/page/partners",
-        ...Object.keys(CONFIG.partners).map((d) => `/path/${d}`),
+        ...Object.keys(config.partners).map((d) => `/path/${d}`),
       ].find((d) => window.location.href.includes(d)) || false,
 
     get isCoursePage() {
@@ -77,7 +77,7 @@ export const CG = {
 
     get inPartnerPath() {
       return (
-        Object.values(CONFIG.partners)
+        Object.values(config.partners)
           .map((a) => a.id === CG.state.course.path.id)
           .filter(Boolean).length > 0
       );
@@ -181,9 +181,9 @@ export const CG = {
     },
 
     get domain() {
-      if (CG.env.isAdmin) return CONFIG.domains.stage;
+      if (CG.env.isAdmin) return config.domains.stage;
 
-      return CONFIG.domains.prod;
+      return config.domains.prod;
     },
 
     get course() {
@@ -341,7 +341,7 @@ export const CG = {
 
         if (window.skilljarCourseSeries)
           checkout =
-            CONFIG.partners[window.skilljarCourseSeries.slug]?.checkout;
+            config.partners[window.skilljarCourseSeries.slug]?.checkout;
 
         if (this.links.length > 0 && checkout) {
           return `/checkout/${checkout}`;

@@ -1,10 +1,12 @@
 import { el, text, Q } from "./utils.mjs";
-import { CONFIG } from "./config.mjs";
 import { setStyle } from "./styling.mjs";
 import { CG } from "./CG.mjs";
 
 // External libraries
 import { confetti } from "https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/+esm";
+
+// static imports
+import { config } from "../data/config.mjs";
 
 /**
  * Course completion popup and confetti animation module.
@@ -48,7 +50,7 @@ export function ensureCompletionPopup() {
             el("p", {
               id: "completion-notice",
               innerHTML: `You can close this popup by clicking outside of it or press ESC to dismiss. It will also disappear automatically in <span id="completion-countdown">${
-                CONFIG.confetti.autoHideMs / 1000
+                config.confetti.autoHideMs / 1000
               }</span> seconds.`,
             }),
           ]
@@ -85,7 +87,7 @@ export function showCompletion(elem) {
 
   const countdownEl = Q("#completion-countdown", elem);
   if (countdownEl) {
-    let remaining = CONFIG.confetti.autoHideMs / 1000;
+    let remaining = config.confetti.autoHideMs / 1000;
     text(countdownEl, remaining);
     const interval = setInterval(() => {
       remaining -= 1;
@@ -121,21 +123,21 @@ export function hideCompletion(elem) {
  */
 export function shoot() {
   confetti({
-    ...CONFIG.confetti.defaults,
-    particleCount: CONFIG.confetti.particles.stars.counts,
-    scalar: CONFIG.confetti.particles.stars.scalar,
+    ...config.confetti.defaults,
+    particleCount: config.confetti.particles.stars.count,
+    scalar: config.confetti.particles.stars.scalar,
     shapes: ["star"],
   });
   confetti({
-    ...CONFIG.confetti.defaults,
-    particleCount: CONFIG.confetti.particles.circles.counts,
-    scalar: CONFIG.confetti.particles.circles.scalar,
+    ...config.confetti.defaults,
+    particleCount: config.confetti.particles.circles.count,
+    scalar: config.confetti.particles.circles.scalar,
     shapes: ["circle"],
   });
   confetti({
-    ...CONFIG.confetti.defaults,
-    particleCount: CONFIG.confetti.particles.logos.counts,
-    scalar: CONFIG.confetti.particles.logos.scalar,
+    ...config.confetti.defaults,
+    particleCount: config.confetti.particles.logos.count,
+    scalar: config.confetti.particles.logos.scalar,
     shapes: ["image"],
     shapeOptions: {
       image: [
@@ -163,5 +165,5 @@ export function animateCompletion() {
   setTimeout(shoot, 200);
 
   // Auto-hide
-  setTimeout(() => hideCompletion(elem), CONFIG.confetti.autoHideMs);
+  setTimeout(() => hideCompletion(elem), config.confetti.autoHideMs);
 }

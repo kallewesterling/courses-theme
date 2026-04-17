@@ -1,6 +1,5 @@
 import { A, Q, el, text, sanitizeUrl, toTitleCase } from "../utils.mjs";
 import { CG } from "../CG.mjs";
-import { CONFIG } from "../config.mjs";
 import { setStyle } from "../styling.mjs";
 import { createClone } from "../icons.mjs";
 import { logger } from "../logger.mjs";
@@ -12,6 +11,9 @@ import {
 
 // Shiki syntax highlighting
 import * as shiki from "https://esm.sh/shiki@3.0.0";
+
+// static imports
+import { config } from "../data/config.mjs";
 
 function buildResourceBox() {
   const elems = {
@@ -160,7 +162,7 @@ const formatCode = async (code, lang) => {
     code.textContent.trim(),
     {
       lang,
-      theme: CONFIG.codeTheme || "github-light",
+      theme: config.codeTheme || "github-light",
       transformers: [addLineNumberSpans()],
     },
   );

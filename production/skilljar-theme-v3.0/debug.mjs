@@ -1,7 +1,9 @@
 import { Q, A, el } from "./utils.mjs";
 import { CG } from "./CG.mjs";
-import { CONFIG } from "./config.mjs";
 import { pageHandlers } from "./router.mjs";
+
+// static imports
+import { config } from "../data/config.mjs";
 
 /**
  * Update all links on the page to use either the production or staging domain.
@@ -17,17 +19,17 @@ import { pageHandlers } from "./router.mjs";
 function updateLinks(useTestDomain) {
   const links = A(
     'a[href*="' +
-      CONFIG.domains.prod.url +
+      config.domains.prod.url +
       '"], a[href*="' +
-      CONFIG.domains.stage.url +
+      config.domains.stage.url +
       '"]'
   );
   links.forEach((link) => {
     const url = new URL(link.href);
-    if (useTestDomain && url.hostname === CONFIG.domains.prod.url) {
-      url.hostname = CONFIG.domains.stage.url;
-    } else if (!useTestDomain && url.hostname === CONFIG.domains.stage.url) {
-      url.hostname = CONFIG.domains.prod.url;
+    if (useTestDomain && url.hostname === config.domains.prod.url) {
+      url.hostname = config.domains.stage.url;
+    } else if (!useTestDomain && url.hostname === config.domains.stage.url) {
+      url.hostname = config.domains.prod.url;
     }
     link.href = url.toString();
   });

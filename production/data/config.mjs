@@ -1,4 +1,4 @@
-export const CONFIG = {
+export const config = {
   domains: {
     prod: { url: "courses.chainguard.dev", id: "3glgawqmzatte" },
     stage: { url: "chainguard-test.skilljar.com", id: "ix1ljpxex6xd" },
