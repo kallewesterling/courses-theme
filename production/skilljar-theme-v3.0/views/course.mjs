@@ -1,6 +1,8 @@
 import { Q, el } from "../utils.mjs";
 import { CG } from "../CG.mjs";
 import { logger } from "../logger.mjs";
+
+// static imports
 import { courseDetails as staticCourseDetails } from "../../data/course-details.mjs";
 import { term } from "../../data/messages.mjs";
 

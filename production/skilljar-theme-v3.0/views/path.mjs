@@ -1,9 +1,11 @@
-import { Q, el } from "../utils.mjs";
+import { wrapCTAWithBadge } from "./course.mjs";
+import { CG } from "../CG.mjs";
 import { hide } from "../styling.mjs";
 import { tryPathSections } from "../sections.mjs";
-import { wrapCTAWithBadge } from "./course.mjs";
+import { Q, el } from "../utils.mjs";
 
-import { CG } from "../CG.mjs";
+// static imports
+import { term } from "../../data/messages.mjs";
 
 /**
  * Post-path setup — runs after each path view has finished its DOM work.
@@ -17,7 +19,7 @@ import { CG } from "../CG.mjs";
  * In both cases Q(".dp-summary-wrapper") finds the right container.
  */
 function postPath() {
-  const floater = Q(".sj-floater-text") || el("span", { className: "sj-floater-text", textContent: "Learning Path" });
+  const floater = Q(".sj-floater-text") || el("span", { className: "sj-floater-text", textContent: term.learningPath });
   const metaRow = el("div", { className: "course-meta-row" }, [floater]);
 
   const dpSummary = Q(".dp-summary-wrapper");
