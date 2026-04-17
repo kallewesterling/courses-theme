@@ -9,13 +9,38 @@ Skilljar's platform CSS. This is necessary and expected for custom theming.
 
 body.sj-page-curriculum,
 body.sj-page-detail-course {
+  .course-meta-row {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-2);
+    margin-bottom: var(--spacing-px-16);
+  }
+
+  .sj-floater-text {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    color: var(--ink-dim) !important;
+    font-size: var(--font-size-xs) !important;
+    font-weight: var(--font-weight-semibold) !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+
+    &::before {
+      content: "\f19d"; /* fa-graduation-cap */
+      font: normal normal normal 11px/1 FontAwesome, monospace;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+
   .course-time-indicator {
     display: flex !important;
     align-items: center !important;
     gap: 6px !important;
     width: fit-content !important;
     padding: 4px 10px !important;
-    margin-bottom: var(--spacing-px-16) !important;
+    margin-bottom: 0 !important;
     border: var(--border-width-thin) solid rgb(98 38 251 / 0.35) !important;
     border-radius: var(--radius-pill) !important;
     color: var(--blurple) !important;

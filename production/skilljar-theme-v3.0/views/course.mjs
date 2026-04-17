@@ -60,15 +60,13 @@ function processCourseDetails(courseDetails, viewType) {
  */
 function postCourse() {
   // Header assembly
+  const floater = Q(".sj-floater-text") || el("span", { className: "sj-floater-text", text: "Course" });
+  const metaRow = el("div", { className: "course-meta-row" }, [floater, CG.dom.local.timeIndicator].filter(Boolean));
+
   CG.dom.header.wrapper.append(
     ...[
-      Q(".sj-floater-text") ||
-      el("div", {
-        className: "sj-floater-text",
-        text: "Course",
-      }),
+      metaRow,
       Q(".break-word"),
-      CG.dom.local.timeIndicator,
       CG.dom.header.courseInfo || CG.el.headingParagraph,
       CG.dom.header.ctaBtnWrapper,
     ].filter(Boolean)
