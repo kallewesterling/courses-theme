@@ -542,3 +542,77 @@ body.sj-page-curriculum {
     padding: var(--spacing-0) var(--spacing-4);
   }
 }
+
+/* ── CTA badge button (Register / Resume) ─────────────────────────────────
+   Wraps the Skilljar <a> in a two-section pill: fuschia badge on the left
+   with the brand cross-dot icon, dark label section on the right.
+   Applied by wrapCTAWithBadge() in views/course.mjs.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.cta-badge-btn {
+  display: inline-flex !important;
+  align-items: stretch !important;
+  overflow: hidden !important;
+  border-radius: 10px !important;
+  background: var(--ink) !important;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.28) !important;
+  transition: box-shadow 0.22s ease, transform 0.22s ease !important;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 8px 28px rgb(0 0 0 / 0.42) !important;
+    transform: translateY(-2px) !important;
+  }
+}
+
+/* Fuschia badge with cross-dot icon */
+.cta-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 62px;
+  background: var(--fuschia);
+  flex-shrink: 0;
+
+  /*
+   * Cross / plus — 13 dots (5 px each, 9 px step).
+   * Element = centre dot; the other 12 radiate via box-shadow.
+   */
+  &::before {
+    content: "";
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-radius: 1px;
+    background: var(--ink);
+    box-shadow:
+      0       -18px   0   0 var(--ink),
+      -9px    -9px    0   0 var(--ink),
+      0       -9px    0   0 var(--ink),
+      9px     -9px    0   0 var(--ink),
+      -18px   0       0   0 var(--ink),
+      -9px    0       0   0 var(--ink),
+      9px     0       0   0 var(--ink),
+      18px    0       0   0 var(--ink),
+      -9px    9px     0   0 var(--ink),
+      0       9px     0   0 var(--ink),
+      9px     9px     0   0 var(--ink),
+      0       18px    0   0 var(--ink);
+  }
+}
+
+/* Reset the inner Skilljar button — the wrapper owns shape, colour & hover */
+.cta-badge-btn .button {
+  padding: 19px 26px !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  color: var(--white) !important;
+
+  &:hover {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+}

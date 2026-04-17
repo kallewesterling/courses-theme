@@ -74,6 +74,23 @@ function processCourseDetails(courseDetails, viewType) {
 }
 
 /**
+ * Wraps the course CTA button (Register / Resume) with the brand-badge design:
+ * a fuschia square containing the cross-dot icon on the left, the existing
+ * Skilljar <a> element on the right. Safe to call on both registered and
+ * unregistered views; guards against double-wrapping.
+ */
+function wrapCTAWithBadge() {
+  const btn = CG.dom.header.btn;
+  if (!btn || btn.closest(".cta-badge-btn")) return;
+
+  const badge = el("span", { className: "cta-badge" });
+  const wrapper = el("div", { className: "cta-badge-btn" }, [badge]);
+
+  btn.replaceWith(wrapper);
+  wrapper.append(btn);
+}
+
+/**
  * Post-course setup function to finalize the DOM adjustments specific to course pages after routing logic has been applied.
  * Assembles the header and appends the course details strip to the bottom of the content container.
  */
@@ -107,6 +124,8 @@ function postCourse() {
       CG.dom.courseContainer.append(CG.dom.local.strip);
     }
   }
+
+  wrapCTAWithBadge();
 }
 
 /**
