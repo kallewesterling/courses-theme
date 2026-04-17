@@ -10,6 +10,10 @@
  */
 export const partnerErrorMessage = `If you are a partner and trying to access our Partner courses, you have to first <a href="/auth/login?next=%2Fpage%2Fpartners">sign in or sign up for our Courses platform</a>.`
 
+/**
+ * Static terms used across the course pages, such as labels for course details and buttons.
+ * Centralizing these terms allows for consistent language throughout the application and makes it easier to update or localize in the future.
+ */
 export const term = {
     course: "Course",
     learningPath: "Learning Path",
