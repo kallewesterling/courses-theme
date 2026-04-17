@@ -51,6 +51,19 @@ body.sj-page-detail-course {
     opacity: 0.35;
   }
 
+  /* "About this course" h3 — lifted by JS to span both grid columns */
+  .course-content-header {
+    grid-column: 1 / -1 !important;
+    padding: var(--spacing-0) var(--spacing-0) var(--spacing-px-12) var(--spacing-0) !important;
+    margin: var(--spacing-0) var(--spacing-0) var(--spacing-px-24) var(--spacing-0) !important;
+    color: var(--ink) !important;
+    font-family: Gellix, sans-serif;
+    font-size: var(--font-size-md) !important;
+    font-weight: var(--font-weight-bold) !important;
+    line-height: var(--line-height-125);
+    border-bottom: var(--border-width-medium) solid var(--blurple) !important;
+  }
+
   .sj-floater-text {
     display: inline-flex !important;
     align-items: center !important;
@@ -490,19 +503,6 @@ body.sj-page-detail-course {
 body.sj-page-curriculum {
   #cp-content {
     flex-direction: column !important;
-  }
-
-  /* "About this course" h3 — lifted to span both grid columns */
-  .course-content-header {
-    grid-column: 1 / -1 !important;
-    padding: var(--spacing-0) var(--spacing-0) var(--spacing-px-12) var(--spacing-0) !important;
-    margin: var(--spacing-0) var(--spacing-0) var(--spacing-px-24) var(--spacing-0) !important;
-    color: var(--ink) !important;
-    font-family: Gellix, sans-serif;
-    font-size: var(--font-size-md) !important;
-    font-weight: var(--font-weight-bold) !important;
-    line-height: var(--line-height-125);
-    border-bottom: var(--border-width-medium) solid var(--blurple) !important;
   }
 
   /* Two-column layout: #about-section (left) | #curriculum-section (right) */
