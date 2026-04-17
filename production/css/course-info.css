@@ -248,34 +248,37 @@ body.sj-page-detail-course {
   ul.dp-curriculum,
   #curriculum-list {
     padding-left: var(--spacing-0);
-    counter-reset: lesson; /* global — numbers run across all sections */
+    /* counter-reset moved to .curriculum-wrapper for per-section numbering */
+  }
+
+  /* ── "Lessons" heading — always prepended by view functions ────────────── */
+  .curriculum-header {
+    padding: var(--spacing-0) var(--spacing-0) var(--spacing-px-12) var(--spacing-0);
+    margin: var(--spacing-0) var(--spacing-0) var(--spacing-px-12) var(--spacing-0);
+    color: var(--ink) !important;
+    font-family: Gellix, sans-serif;
+    font-size: var(--font-size-md) !important;
+    font-weight: var(--font-weight-bold) !important;
+    line-height: var(--line-height-125);
+    border-bottom: var(--border-width-medium) solid var(--blurple) !important;
   }
 
   .curriculum-wrapper {
     padding: var(--spacing-0);
     margin-bottom: var(--spacing-px-30);
     border: var(--border-width-none);
+    counter-reset: lesson; /* per-section: lesson counter restarts at 01 in each section */
 
     h3 {
-      /* Section heading */
-      padding: var(--spacing-0) var(--spacing-0) var(--spacing-px-12) var(--spacing-0);
-      margin: var(--spacing-0);
-      color: var(--ink) !important;
-      font-family: Gellix, sans-serif;
-      font-size: var(--font-size-md) !important;
-      font-weight: var(--font-weight-bold) !important;
-      line-height: var(--line-height-125);
-      border-bottom: var(--border-width-medium) solid var(--blurple);
-
-      > a {
-        padding: var(--spacing-0);
-        font-size: var(--font-size-md) !important;
-        font-weight: inherit;
-
-        &:hover {
-          background-color: unset;
-        }
-      }
+      /* Section label for nested courses — subtle gray uppercase */
+      padding: var(--spacing-px-8) var(--spacing-px-12);
+      color: var(--ink-dim) !important;
+      font-family: inherit !important;
+      font-size: var(--font-size-xs) !important;
+      font-weight: var(--font-weight-semibold) !important;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-bottom: var(--border-width-none);
     }
 
     a {
@@ -332,34 +335,13 @@ body.sj-page-detail-course {
     }
   }
 
-  /* Nested curriculum: multiple sections flow as a single continuous list
-     with subtle uppercase section labels instead of the bold blurple headings.
-     Uses :not(:only-child) to target only courses that have multiple sections. */
+  /* Nested curriculum: collapse gaps so sections flow as a continuous list */
   .curriculum-wrapper:not(:only-child) {
     margin-bottom: 0;
-
-    h3 {
-      padding: var(--spacing-px-8) var(--spacing-px-12);
-      color: var(--ink-dim) !important;
-      font-family: inherit !important;
-      font-size: var(--font-size-xs) !important;
-      font-weight: var(--font-weight-semibold) !important;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      border-bottom: var(--border-width-none);
-
-      > a {
-        font-size: inherit !important;
-      }
-    }
-
-    /* Restore the divider after the last lesson of every non-final section */
-    &:not(:last-child) a:last-child {
-      border-bottom: var(--border-width-thin) solid var(--border);
-    }
   }
 
-  /* Top border on section labels for all but the first section */
+  /* Thin top border on each section label except the first — acts as the
+     visual divider between sections */
   .curriculum-wrapper + .curriculum-wrapper h3 {
     border-top: var(--border-width-thin) solid var(--border);
   }

@@ -425,36 +425,19 @@ export const CG = {
           );
         });
 
-      const getSectionHeading = (heading, lessons) => {
-        if (heading) {
-          return el("h3", {
-            className: "curriculum-header no-select",
-            textContent: lessons.length > 1 ? heading : "Lessons",
-          });
-        } else if (lessons.length === 1) {
-          return el("h3", { className: "curriculum-header no-select" }, [
-            el("a", {
-              textContent: lessons[0].text, // use first lesson as header if no section heading and only one lesson
-              href: lessons[0].href,
-            }),
-          ]);
-        } else if (lessons.length > 1) {
-          return el("h3", {
-            className: "curriculum-header no-select",
-            textContent: "Lessons",
-          });
-        } else {
-          logger.warn(
-            "Unexpected curriculum structure: no heading and multiple lessons",
-          );
-          return null;
-        }
+      const getSectionHeading = (heading) => {
+        // Returns a subtle section-label h3 only when the section has an explicit
+        // heading. The "Lessons" heading above the list is always injected by the
+        // view function (courseUnregisteredView / courseRegisteredView), so it
+        // does not belong here.
+        if (!heading) return null;
+        return el("h3", { className: "no-select", textContent: heading });
       };
 
       return sections.map((d) => {
         const lessons = getLessons(d.lessons);
 
-        const headingElement = getSectionHeading(d.heading, lessons);
+        const headingElement = getSectionHeading(d.heading);
 
         return el(
           "div",

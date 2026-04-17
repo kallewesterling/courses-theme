@@ -197,6 +197,13 @@ export function courseUnregisteredView() {
     logger.error("Error processing curriculum elements:", error);
   }
 
+  // Always prepend a "Lessons" heading above the curriculum list.
+  // Section labels (for nested courses) are created by getSectionHeading inside
+  // each .curriculum-wrapper; the "Lessons" heading sits above all of them.
+  CG.dom.curriculumContainer?.prepend(
+    el("h3", { className: "curriculum-header no-select", textContent: "Lessons" })
+  );
+
   postCourse();
 }
 
@@ -245,6 +252,9 @@ export function courseRegisteredView() {
   processCourseDetails(resolveDetails());
 
   CG.dom.curriculumContainer.replaceChildren(...CG.data.curriculumElements);
+  CG.dom.curriculumContainer.prepend(
+    el("h3", { className: "curriculum-header no-select", textContent: "Lessons" })
+  );
 
   postCourse();
 }
