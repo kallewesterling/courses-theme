@@ -269,7 +269,7 @@ body.sj-page-lesson {
           .fa-times {
             /* Open and close icons */
             padding: var(--spacing-px-12);
-            border: none;
+            border: var(--border-width-none);
             border-radius: var(--radius-lg);
             background-color: var(--color-surface-base);
 
@@ -479,13 +479,9 @@ body.sj-page-lesson {
 
               blockquote.cg {
                 max-width: 80%;
-                padding: var(--spacing-6) var(--spacing-6) var(--spacing-6)
-                  var(--spacing-6);
-                margin: var(--spacing-px-48) var(--spacing-px-48)
-                  var(--spacing-px-48) var(--spacing-px-48);
-                margin-top: var(--spacing-px-48) !important;
-                margin-bottom: var(--spacing-px-48) !important;
-                border: none;
+                padding: var(--spacing-6);
+                margin: var(--spacing-px-48) !important;
+                border: var(--border-width-none);
                 border-radius: var(--radius-lg) !important;
                 background-image: var(--gradient-primary) !important;
                 line-height: var(--line-height-relaxed);

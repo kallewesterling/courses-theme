@@ -99,7 +99,7 @@ body.sj-page-detail-course {
     width: 100% !important;
     padding: var(--spacing-px-16) var(--spacing-px-24) !important;
     margin-bottom: var(--spacing-px-20) !important;
-    border: none !important;
+    border: var(--border-width-none) !important;
     border-radius: var(--radius-lg) !important;
     background-color: var(--blurple) !important;
 
@@ -377,17 +377,15 @@ body.sj-page-detail-course {
   }
 
   .top-row-grey {
+    /* Header container */
     max-width: none;
-    padding-top: var(--spacing-24);
-    padding-bottom: var(--spacing-24);
+    padding: var(--spacing-24) var(--spacing-0);
     margin: var(--spacing-0);
     border: var(--border-width-none);
-    /* Header container */
     background-color: var(--form-bg) !important;
 
     @media screen and (max-width: 991px) {
-      padding-top: var(--spacing-12);
-      padding-bottom: var(--spacing-12);
+      padding: var(--spacing-12) var(--spacing-0);
     }
   }
 

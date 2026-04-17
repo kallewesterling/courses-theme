@@ -16,10 +16,10 @@ body.sj-page-series {
       width: 100% !important;
       padding: 10px 0 !important;
       overflow: visible !important;
-      border: none !important;           /* reset Skilljar's border + border-radius */
-      border-top: none !important;
-      border-bottom: none !important;
-      border-radius: 0 !important;
+      border: var(--border-width-none) !important;           /* reset Skilljar's border + border-radius */
+      border-top: var(--border-width-none) !important;
+      border-bottom: var(--border-width-none) !important;
+      border-radius: var(--radius-none) !important;
       background-color: transparent !important;
       box-shadow: none !important;
 
