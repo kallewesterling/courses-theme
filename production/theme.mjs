@@ -112,6 +112,7 @@ function setupLogging() {
   // log environment info + state
   logger.info("Environment", CG.env);
   logger.info("State", CG.state);
+  logger.info("Page", CG.page);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
