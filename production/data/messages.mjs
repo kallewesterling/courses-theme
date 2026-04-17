@@ -9,3 +9,9 @@
  * This message includes a link to the login/signup page, guiding users to authenticate before accessing the content.
  */
 export const partnerErrorMessage = `If you are a partner and trying to access our Partner courses, you have to first <a href="/auth/login?next=%2Fpage%2Fpartners">sign in or sign up for our Courses platform</a>.`
+
+export const term = {
+    "course": "Course",
+    "learningPath": "Learning Path",
+    "lesson": "Lesson",
+}
