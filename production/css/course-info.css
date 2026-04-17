@@ -112,6 +112,41 @@ body.sj-page-detail-course {
     }
   }
 
+  /* "Part of [Path]" aqua strip — shown when course belongs to a learning path */
+  .path-strip {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-3);
+    padding: 9px 14px;
+    border: var(--border-width-thin) solid rgb(43 186 253 / 0.35);
+    border-radius: var(--radius-md);
+    background: rgb(43 186 253 / 0.07);
+    color: var(--ink);
+    font-size: var(--font-size-xs);
+
+    .path-strip-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-circle);
+      background: var(--aqua);
+      flex-shrink: 0;
+    }
+
+    .path-strip-text {
+      flex: 1;
+
+      strong { font-weight: var(--font-weight-semibold); }
+    }
+
+    a {
+      color: var(--aqua);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      text-decoration: underline dotted;
+      white-space: nowrap;
+    }
+  }
+
   .course-details-strip {
     display: grid !important;
     gap: var(--gap-4) !important;

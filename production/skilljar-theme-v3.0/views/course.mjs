@@ -53,6 +53,27 @@ function createCourseDetailsStrip(details) {
 }
 
 /**
+ * Creates the aqua "Part of [Path]" strip element when the current course
+ * belongs to a learning path (CG.env.hasCourseSeries). Returns null otherwise.
+ * @returns {HTMLElement|null}
+ */
+function createPathStrip() {
+  if (!CG.env.hasCourseSeries) return null;
+
+  const path = CG.state.course.path;
+  const href = `/path/${path.slug}`;
+
+  return el("div", { className: "path-strip" }, [
+    el("span", { className: "path-strip-dot" }),
+    el("span", { className: "path-strip-text" }, [
+      document.createTextNode(term.partOf + "\u00a0"),
+      el("strong", { textContent: path.title }),
+    ]),
+    el("a", { href, textContent: term.viewPath }),
+  ]);
+}
+
+/**
  * Creates the course details strip and stores it on CG.dom.local.strip.
  * The strip is not appended here — postCourse() places it in the content container.
  * @param {Object} courseDetails - An object containing course details.
@@ -135,6 +156,7 @@ function postCourse() {
       metaRow,
       Q(".break-word"),
       CG.dom.header.courseInfo || CG.el.headingParagraph,
+      CG.dom.local.pathStrip,
       CG.dom.header.ctaBtnWrapper,
     ].filter(Boolean)
   );
@@ -160,7 +182,9 @@ function postCourse() {
  * @returns {void}
  */
 export function courseUnregisteredView() {
-  CG.dom.local = {};
+  CG.dom.local = {
+    pathStrip: createPathStrip(),
+  };
 
   // Add course order
   let courseInfo = CG.dom.header.courseInfo || CG.el.headingParagraph;
@@ -214,6 +238,7 @@ export function courseUnregisteredView() {
  */
 export function courseRegisteredView() {
   CG.dom.local = {
+    pathStrip: createPathStrip(),
     tabs: {
       container: Q(".tabs"),
 

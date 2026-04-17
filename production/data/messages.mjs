@@ -30,6 +30,8 @@ export const term = {
     lastName: "Last Name",
     passwordConfirm: "Password Confirm",
     accessCode: "Access Code (optional)",
+    partOf: "Part of",
+    viewPath: "View path →",
 }
 
 /*
