@@ -71,9 +71,9 @@ function positionTooltip(triggerEl, tip) {
   const above = spaceBelow < 100;
   const top = above ? rect.top - gap : rect.bottom + gap;
 
-  tip.style.setProperty("--tip-top", `${top}px`);
-  tip.style.setProperty("--tip-left", `${left}px`);
-  tip.style.setProperty("--tip-width", `${width}px`);
+  tip.style.top = `${top}px`;
+  tip.style.left = `${left}px`;
+  tip.style.width = `${width}px`;
   tip.classList.toggle("is-above", above);
 }
 

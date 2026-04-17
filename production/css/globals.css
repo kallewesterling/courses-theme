@@ -122,10 +122,7 @@ svg.clone-icon {
 
 .floater-tooltip {
   position: fixed;
-  top: var(--tip-top);
-  left: var(--tip-left);
   z-index: 9999;
-  width: var(--tip-width);
   padding: 10px 14px;
   border-radius: 6px;
   background: var(--ink);
