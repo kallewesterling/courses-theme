@@ -201,7 +201,7 @@ export function courseUnregisteredView() {
   // Section labels (for nested courses) are created by getSectionHeading inside
   // each .curriculum-wrapper; the "Lessons" heading sits above all of them.
   CG.dom.curriculumContainer?.prepend(
-    el("h3", { className: "curriculum-header no-select", textContent: "Lessons" })
+    el("h3", { className: "curriculum-header no-select", textContent: term.lessons })
   );
 
   postCourse();
