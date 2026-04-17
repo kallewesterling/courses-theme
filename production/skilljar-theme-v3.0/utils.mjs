@@ -27,7 +27,7 @@ export function c(selector) {
 
 export function sanitizeUrl(link, UTM = {}) {
   if (!UTM || typeof UTM !== "object" || isEmpty(UTM)) {
-    logger.warn("sanitizeUrl: UTM parameter is not an object or is empty. Setting to standard defaults.");
+    // logger.warn("sanitizeUrl: UTM parameter is not an object or is empty. Setting to standard defaults.");
     UTM = standardUTM;
   }
 
