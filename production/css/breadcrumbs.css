@@ -61,6 +61,10 @@ body.sj-page-series {
         white-space: nowrap;
         text-overflow: ellipsis;
 
+        &[aria-current="page"] {
+          color: var(--color-text-disabled) !important;
+        }
+
         &:is(a):hover {
           color: var(--ink) !important;
           text-decoration: underline;
