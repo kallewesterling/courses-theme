@@ -63,11 +63,16 @@ function createPathStrip() {
   const path = CG.state.course.path;
   const href = `/path/${path.slug}`;
 
+  const lpWord = el("span", { textContent: term.learningPath.toLowerCase() });
+  attachFloaterTooltip(lpWord, tooltips.learningPath);
+
   return el("div", { className: "path-strip" }, [
     el("span", { className: "path-strip-dot" }),
     el("span", { className: "path-strip-text" }, [
       document.createTextNode(term.partOf + "\u00a0"),
       el("strong", { textContent: path.title }),
+      document.createTextNode("\u00a0"),
+      lpWord,
     ]),
     el("a", { href, textContent: term.viewPath }),
   ]);
