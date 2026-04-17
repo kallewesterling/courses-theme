@@ -93,12 +93,12 @@ function wrapCTAWithBadge() {
   let badgeClass = "cta-badge";
   let wrapperClass = "cta-badge-btn";
 
-  if (CG.state.isCompleted) {
+  if (CG.page.isCourseRegistered && CG.state.course.completed) {
     badgeClass += " cta-badge--check";
     wrapperClass += " cta-badge-btn--completed";
     const textSpan = btn.querySelector("span") || btn;
     textSpan.textContent = "Completed";
-  } else if (CG.state.isRegistered) {
+  } else if (CG.page.isCourseRegistered) {
     badgeClass += " cta-badge--play";
   }
 
