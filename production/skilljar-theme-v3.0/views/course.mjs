@@ -74,19 +74,18 @@ function processCourseDetails(courseDetails, viewType) {
 }
 
 /**
- * Wraps the course CTA button (Register / Resume / Completed) with the brand-badge design:
+ * Wraps a CTA button (Register / Resume / Completed) with the brand-badge design:
  * a coloured square containing a dot-grid icon on the left, the existing
- * Skilljar <a> element on the right. Safe to call on both registered and
- * unregistered views; guards against double-wrapping.
+ * Skilljar <a> element on the right. Safe to call on course and learning-path
+ * pages in any state; guards against double-wrapping.
  *
- * Icon and colour vary by state (set by preRoute() before this runs):
- *   - Unregistered:  cross icon, fuschia badge
- *   - Registered:    play icon, fuschia badge, full hover
- *   - Completed:     checkmark icon, lime badge, no hover lift, text → "Completed"
- *
- * Note: learning-path state detection is not yet implemented here.
+ * Icon and colour vary by state:
+ *   - Unregistered:       cross icon, fuschia badge, full hover
+ *   - Registered/resumed: play icon,  fuschia badge, full hover
+ *   - Completed:          check icon, lime badge, no hover, text → "Completed"
+ *                         (course pages only — paths have no completion concept)
  */
-function wrapCTAWithBadge() {
+export function wrapCTAWithBadge() {
   const btn = CG.dom.header.btn;
   if (!btn || btn.closest(".cta-badge-btn")) return;
 
@@ -98,7 +97,7 @@ function wrapCTAWithBadge() {
     wrapperClass += " cta-badge-btn--completed";
     const textSpan = btn.querySelector("span") || btn;
     textSpan.textContent = "Completed";
-  } else if (CG.page.isCourseRegistered) {
+  } else if (CG.page.isCourseRegistered || CG.page.isPathRegistered) {
     badgeClass += " cta-badge--play";
   }
 

@@ -1,6 +1,7 @@
 import { Q, el } from "../utils.mjs";
 import { hide } from "../styling.mjs";
 import { tryPathSections } from "../sections.mjs";
+import { wrapCTAWithBadge } from "./course.mjs";
 
 import { CG } from "../CG.mjs";
 
@@ -12,6 +13,7 @@ import { CG } from "../CG.mjs";
 export function pathUnregisteredView() {
   // make path sections
   tryPathSections();
+  wrapCTAWithBadge();
 }
 
 /**
@@ -76,4 +78,5 @@ export function pathRegisteredView() {
 
   // make path sections
   tryPathSections();
+  wrapCTAWithBadge();
 }
