@@ -74,17 +74,39 @@ function processCourseDetails(courseDetails, viewType) {
 }
 
 /**
- * Wraps the course CTA button (Register / Resume) with the brand-badge design:
- * a fuschia square containing the cross-dot icon on the left, the existing
+ * Wraps the course CTA button (Register / Resume / Completed) with the brand-badge design:
+ * a coloured square containing a dot-grid icon on the left, the existing
  * Skilljar <a> element on the right. Safe to call on both registered and
  * unregistered views; guards against double-wrapping.
+ *
+ * Icon and colour vary by state (set by preRoute() before this runs):
+ *   - Unregistered:  cross icon, fuschia badge
+ *   - Registered:    play icon, fuschia badge, full hover
+ *   - Completed:     checkmark icon, lime badge, no hover lift, text → "Completed"
+ *
+ * Note: learning-path state detection is not yet implemented here.
  */
 function wrapCTAWithBadge() {
   const btn = CG.dom.header.btn;
   if (!btn || btn.closest(".cta-badge-btn")) return;
 
-  const badge = el("span", { className: "cta-badge" });
-  const wrapper = el("div", { className: "cta-badge-btn" }, [badge]);
+  const isCompleted = document.body.classList.contains("course-completed-view");
+  const isRegistered = document.body.classList.contains("course-registered-view");
+
+  let badgeClass = "cta-badge";
+  let wrapperClass = "cta-badge-btn";
+
+  if (isCompleted) {
+    badgeClass += " cta-badge--check";
+    wrapperClass += " cta-badge-btn--completed";
+    const textSpan = btn.querySelector("span") || btn;
+    textSpan.textContent = "Completed";
+  } else if (isRegistered) {
+    badgeClass += " cta-badge--play";
+  }
+
+  const badge = el("span", { className: badgeClass });
+  const wrapper = el("div", { className: wrapperClass }, [badge]);
 
   btn.replaceWith(wrapper);
   wrapper.append(btn);

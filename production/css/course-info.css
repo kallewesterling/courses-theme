@@ -616,3 +616,59 @@ body.sj-page-curriculum {
     transform: none !important;
   }
 }
+
+/*
+ * Play icon (Resume state — registered, not completed).
+ * 9-dot right-pointing triangle: flat left edge at x=-9 (5 dots),
+ * widening to 3 dots at row 0 with the tip at x=+9.
+ * Element sits at (0,0) = the centre dot of the widest row.
+ *
+ *   y=-18:  ●
+ *   y= -9:  ● ●
+ *   y=  0:  ● ● ●  ← tip
+ *   y= +9:  ● ●
+ *   y=+18:  ●
+ */
+.cta-badge--play::before {
+  box-shadow:
+    -9px  -18px  0 0 var(--ink),
+    -9px   -9px  0 0 var(--ink),
+      0    -9px  0 0 var(--ink),
+    -9px      0  0 0 var(--ink),
+     9px      0  0 0 var(--ink),
+    -9px    9px  0 0 var(--ink),
+      0     9px  0 0 var(--ink),
+    -9px   18px  0 0 var(--ink);
+}
+
+/*
+ * Checkmark icon (Completed state).
+ * 5 dots: diagonal from top-right to centre, then horizontal hook left.
+ * Element at (0,0) = the bend/corner of the mark.
+ *
+ *                  ● (18,-18)
+ *             ●    (9,-9)
+ *        ●         (0,0) element
+ *   ● ●            (-18,9) (-9,9)
+ */
+.cta-badge--check::before {
+  box-shadow:
+     18px  -18px  0 0 var(--ink),
+      9px   -9px  0 0 var(--ink),
+     -9px    9px  0 0 var(--ink),
+    -18px    9px  0 0 var(--ink);
+}
+
+/* Completed state — lime badge, no hover lift */
+.cta-badge-btn--completed {
+  cursor: default !important;
+
+  &:hover {
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.28) !important;
+    transform: none !important;
+  }
+
+  .cta-badge {
+    background: var(--lime) !important;
+  }
+}
