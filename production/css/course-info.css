@@ -172,6 +172,11 @@ body.sj-page-detail-course {
       background-color: transparent !important;
     }
 
+    /* The courseDetails script is injected inside a bare <p> — hide it */
+    section .content > p:has(> script) {
+      display: none !important;
+    }
+
     section .content ul {
       list-style-position: outside;
       padding-inline-start: var(--spacing-px-30);
