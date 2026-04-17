@@ -56,16 +56,13 @@ function createCourseDetailsStrip(details) {
  * Creates the course details strip and stores it on CG.dom.local.strip.
  * The strip is not appended here — postCourse() places it in the content container.
  * @param {Object} courseDetails - An object containing course details.
- * @param {string} viewType - "unregistered" or "registered" (used for logging).
  * @returns {void}
  */
-function processCourseDetails(courseDetails, viewType) {
+function processCourseDetails(courseDetails) {
   if (typeof courseDetails === "undefined") {
     logger.warn("Course details are undefined. Skipping course details strip creation.");
     return;
   }
-
-  logger.info(`Processing course details for ${viewType} view`);
 
   CG.dom.local.strip?.remove();
   CG.dom.local.strip = createCourseDetailsStrip(courseDetails);
@@ -191,7 +188,7 @@ export function courseUnregisteredView() {
     dpRow.prepend(aboutH3);
   }
 
-  processCourseDetails(resolveDetails(), "unregistered");
+  processCourseDetails(resolveDetails());
 
   // process curriculum elements
   try {
@@ -245,7 +242,7 @@ export function courseRegisteredView() {
     CG.dom.local.tabs.container.prepend(aboutH3);
   }
 
-  processCourseDetails(resolveDetails(), "registered");
+  processCourseDetails(resolveDetails());
 
   CG.dom.curriculumContainer.replaceChildren(...CG.data.curriculumElements);
 
