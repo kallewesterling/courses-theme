@@ -61,7 +61,12 @@ function processCourseDetails(courseDetails, viewType) {
 function postCourse() {
   // Header assembly
   const floater = Q(".sj-floater-text") || el("span", { className: "sj-floater-text", text: "Course" });
-  const metaRow = el("div", { className: "course-meta-row" }, [floater, CG.dom.local.timeIndicator].filter(Boolean));
+  const metaItems = [floater];
+  if (CG.dom.local.timeIndicator) {
+    metaItems.push(el("span", { className: "course-meta-sep", textContent: "●" }));
+    metaItems.push(CG.dom.local.timeIndicator);
+  }
+  const metaRow = el("div", { className: "course-meta-row" }, metaItems);
 
   CG.dom.header.wrapper.append(
     ...[

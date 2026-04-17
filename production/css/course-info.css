@@ -7,6 +7,35 @@ NOTE: !important is used extensively throughout this file to override
 Skilljar's platform CSS. This is necessary and expected for custom theming.
 */
 
+body.sj-page-path,
+body.sj-page-series,
+body.sj-page-detail-path {
+  .course-meta-row {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-2);
+    margin-bottom: var(--spacing-px-16);
+  }
+
+  .sj-floater-text {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    color: var(--color-text-disabled) !important;
+    font-size: var(--font-size-xs) !important;
+    font-weight: var(--font-weight-semibold) !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+
+    &::before {
+      content: "\f0e8"; /* fa-sitemap */
+      font: normal normal normal 11px/1 FontAwesome, monospace;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+}
+
 body.sj-page-curriculum,
 body.sj-page-detail-course {
   .course-meta-row {
@@ -14,6 +43,12 @@ body.sj-page-detail-course {
     align-items: center;
     gap: var(--gap-2);
     margin-bottom: var(--spacing-px-16);
+  }
+
+  .course-meta-sep {
+    color: var(--ink-dim);
+    font-size: 0.45rem;
+    opacity: 0.35;
   }
 
   .sj-floater-text {

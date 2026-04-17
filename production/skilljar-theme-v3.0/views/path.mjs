@@ -41,10 +41,9 @@ export function pathRegisteredView() {
               "columns text-center large-6 dp-summary-wrapper text-left-v2",
           },
           [
-            el("div", {
-              className: "sj-floater-text",
-              textContent: "Learning Path",
-            }),
+            el("div", { className: "course-meta-row" }, [
+              el("span", { className: "sj-floater-text", textContent: "Learning Path" }),
+            ]),
             el("h1", {
               className: "break-word",
               textContent: window.skilljarCourseSeries.title || "",
