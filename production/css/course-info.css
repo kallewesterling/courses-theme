@@ -342,18 +342,6 @@ body.sj-page-detail-course {
     display: none !important; /* "Curriculum" — redundant with .curriculum-wrapper h3 ("Lessons") */
   }
 
-  /* "About this course" h3 — lifted to span both grid columns */
-  #dp-details .row.hide-for-small > h3 {
-    grid-column: 1 / -1;
-    padding: var(--spacing-0) var(--spacing-0) var(--spacing-px-12) var(--spacing-0) !important;
-    margin: var(--spacing-0) var(--spacing-0) var(--spacing-px-24) var(--spacing-0) !important;
-    color: var(--ink) !important;
-    font-family: Gellix, sans-serif;
-    font-size: var(--font-size-md) !important;
-    font-weight: var(--font-weight-bold) !important;
-    line-height: var(--line-height-125);
-    border-bottom: var(--border-width-medium) solid var(--blurple) !important;
-  }
 
   #dp-details {
     flex-direction: column !important;
@@ -500,8 +488,8 @@ body.sj-page-curriculum {
   }
 
   /* "About this course" h3 — lifted to span both grid columns */
-  #cp-content .tabs > h3.course-long-description-header {
-    grid-column: 1 / -1;
+  .course-content-header {
+    grid-column: 1 / -1 !important;
     padding: var(--spacing-0) var(--spacing-0) var(--spacing-px-12) var(--spacing-0) !important;
     margin: var(--spacing-0) var(--spacing-0) var(--spacing-px-24) var(--spacing-0) !important;
     color: var(--ink) !important;

@@ -138,7 +138,10 @@ export function courseUnregisteredView() {
   const dpRow = Q(".row.hide-for-small", Q("#dp-details"));
   const aboutCol = dpRow ? (Q(".large-7.columns", dpRow) || Q(".columns:first-child", dpRow)) : null;
   const aboutH3 = aboutCol ? Q("h3", aboutCol) : null;
-  if (aboutH3 && dpRow) dpRow.prepend(aboutH3);
+  if (aboutH3 && dpRow) {
+    aboutH3.classList.add("course-content-header");
+    dpRow.prepend(aboutH3);
+  }
 
   processCourseDetails(resolveDetails(), "unregistered");
 
@@ -189,7 +192,10 @@ export function courseRegisteredView() {
 
   // Lift "About this course" h3 out of its section so it spans both grid columns
   const aboutH3 = Q("h3.course-long-description-header", CG.dom.local.tabs.container);
-  if (aboutH3) CG.dom.local.tabs.container.prepend(aboutH3);
+  if (aboutH3) {
+    aboutH3.classList.add("course-content-header");
+    CG.dom.local.tabs.container.prepend(aboutH3);
+  }
 
   processCourseDetails(resolveDetails(), "registered");
 
