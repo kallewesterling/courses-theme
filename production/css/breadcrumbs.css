@@ -10,7 +10,7 @@ body.sj-page-catalog,
 body.sj-page-series {
   #breadcrumb-wrapper {
     max-width: min(1188px, 90%);
-    margin: 0 auto;
+    margin: var(--spacing-4) auto;
 
     .breadcrumbs {
       width: 100% !important;
