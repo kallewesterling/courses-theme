@@ -342,6 +342,12 @@ body.sj-page-detail-course {
     display: none !important; /* "Curriculum" — redundant with .curriculum-wrapper h3 ("Lessons") */
   }
 
+  /* Push the curriculum column down so "Lessons" aligns with the first paragraph
+     under "About this course" rather than with the heading itself. */
+  #dp-details .row.hide-for-small .columns:last-child {
+    padding-top: var(--spacing-px-50) !important;
+  }
+
   #dp-details {
     flex-direction: column !important;
   }
@@ -484,6 +490,13 @@ body.sj-page-detail-course {
 body.sj-page-curriculum {
   #cp-content {
     flex-direction: column !important;
+  }
+
+  /* Push the lessons column down so "Lessons" aligns with the first paragraph
+     under "About this course" rather than with the heading itself.
+     Offset ≈ h3 line-height (22.5px) + padding-bottom (12px) + border (2px) + p margin (16px) */
+  #cp-content #curriculum-section {
+    padding-top: var(--spacing-px-50) !important;
   }
 
   /* Two-column layout: #about-section (left) | #curriculum-section (right) */
