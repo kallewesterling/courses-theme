@@ -20,8 +20,14 @@ import { attachFloaterTooltip } from "../tooltip.mjs";
  * In both cases Q(".dp-summary-wrapper") finds the right container.
  */
 function postPath() {
-  const floater = Q(".sj-floater-text") || el("span", { className: "sj-floater-text", textContent: term.learningPath });
-  attachFloaterTooltip(floater, tooltips.learningPath);
+  const floater = Q(".sj-floater-text") || el("span", { className: "sj-floater-text" });
+  // Wrap the label text in its own span so the tooltip (and dotted underline)
+  // target only the word, not the icon rendered by the ::before pseudo-element.
+  const wordText = floater.textContent.trim() || term.learningPath;
+  floater.textContent = "";
+  const floaterWord = el("span", { className: "sj-floater-word", textContent: wordText });
+  floater.append(floaterWord);
+  attachFloaterTooltip(floaterWord, tooltips.learningPath);
   const metaRow = el("div", { className: "course-meta-row" }, [floater]);
 
   const dpSummary = Q(".dp-summary-wrapper");

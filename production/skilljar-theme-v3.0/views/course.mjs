@@ -118,8 +118,14 @@ export function wrapCTAWithBadge() {
  */
 function postCourse() {
   // Header assembly
-  const floater = Q(".sj-floater-text") || el("span", { className: "sj-floater-text", text: term.course });
-  attachFloaterTooltip(floater, tooltips.course);
+  const floater = Q(".sj-floater-text") || el("span", { className: "sj-floater-text" });
+  // Wrap the label text in its own span so the tooltip (and dotted underline)
+  // target only the word, not the icon rendered by the ::before pseudo-element.
+  const wordText = floater.textContent.trim() || term.course;
+  floater.textContent = "";
+  const floaterWord = el("span", { className: "sj-floater-word", textContent: wordText });
+  floater.append(floaterWord);
+  attachFloaterTooltip(floaterWord, tooltips.course);
   const metaItems = [floater];
   if (CG.dom.local.timeIndicator) {
     metaItems.push(el("span", { className: "course-meta-sep", textContent: "●" }));

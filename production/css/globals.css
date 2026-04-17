@@ -112,7 +112,7 @@ svg.clone-icon {
 
 /* ── Floater label (Course / Learning Path) ──────────────────────────────── */
 
-.sj-floater-text[data-floater-trigger] {
+[data-floater-trigger] {
   text-decoration: underline dotted;
   text-underline-offset: 3px;
   cursor: help;
