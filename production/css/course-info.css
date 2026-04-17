@@ -20,7 +20,7 @@ body.sj-page-detail-course {
     display: inline-flex !important;
     align-items: center !important;
     gap: 5px !important;
-    color: var(--ink-dim) !important;
+    color: var(--color-text-disabled) !important;
     font-size: var(--font-size-xs) !important;
     font-weight: var(--font-weight-semibold) !important;
     letter-spacing: 0.04em !important;
@@ -28,6 +28,7 @@ body.sj-page-detail-course {
 
     &::before {
       content: "\f19d"; /* fa-graduation-cap */
+      margin-right: var(--spacing-1);
       font: normal normal normal 11px/1 FontAwesome, monospace;
       text-rendering: auto;
       -webkit-font-smoothing: antialiased;
