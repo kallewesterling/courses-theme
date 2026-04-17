@@ -51,11 +51,13 @@ label {
   font-family: Gellix, sans-serif;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-bold);
-  transition: var(--transition-button-simple);
+  transition: var(--transition-button-full);
 
   &:hover {
     background-color: var(--blurple);
     color: var(--white) !important;
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
   }
 
   &:focus-visible {
