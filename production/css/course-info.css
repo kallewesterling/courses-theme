@@ -29,6 +29,7 @@ body.sj-page-detail-path {
 
     &::before {
       content: "\f0e8"; /* fa-sitemap */
+      margin-right: var(--spacing-1);
       font: normal normal normal 11px/1 FontAwesome, monospace;
       text-rendering: auto;
       -webkit-font-smoothing: antialiased;
