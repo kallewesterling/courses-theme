@@ -13,7 +13,7 @@ import {
 import * as shiki from "https://esm.sh/shiki@3.0.0";
 
 // static imports
-import { config } from "../data/config.mjs";
+import { config } from "../../data/config.mjs";
 
 function buildResourceBox() {
   const elems = {
