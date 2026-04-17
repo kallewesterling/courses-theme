@@ -352,7 +352,7 @@ body.sj-page-detail-course {
       }
 
       &:has(.fa-check-circle) {
-        background-color: #0084000f;
+        background-color: #00840005;
       }
 
       &:hover {
