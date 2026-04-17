@@ -38,16 +38,16 @@ function resolveDetails() {
 function createCourseDetailsStrip(details) {
   return el("div", { className: "course-details-strip no-select" }, [
     el("div", { className: "detail-item detail-item--audience" }, [
-      el("p", { className: "detail-label", textContent: "Audience" }),
+      el("p", { className: "detail-label", textContent: term.audience }),
       el("p", { className: "detail-text", textContent: details.audience }),
     ]),
     el("div", { className: "detail-item detail-item--duration" }, [
-      el("p", { className: "detail-label", textContent: "Duration" }),
+      el("p", { className: "detail-label", textContent: term.duration }),
       el("p", { className: "detail-text", textContent: details.time }),
     ]),
     el("div", { className: "detail-item detail-item--lessons" }, [
-      el("p", { className: "detail-label", textContent: "Lessons" }),
-      el("p", { className: "detail-text", textContent: details.lessons + " lessons" }),
+      el("p", { className: "detail-label", textContent: term.lessons }),
+      el("p", { className: "detail-text", textContent: details.lessons + " " + term.lessons.toLowerCase() }),
     ]),
   ]);
 }
@@ -253,7 +253,7 @@ export function courseRegisteredView() {
 
   CG.dom.curriculumContainer.replaceChildren(...CG.data.curriculumElements);
   CG.dom.curriculumContainer.prepend(
-    el("h3", { className: "curriculum-header no-select", textContent: "Lessons" })
+    el("h3", { className: "curriculum-header no-select", textContent: term.lessons })
   );
 
   postCourse();

@@ -15,6 +15,8 @@ export const term = {
     learningPath: "Learning Path",
     lesson: "Lesson",
     lessons: "Lessons",
+    audience: "Audience",
+    duration: "Duration",
     backToCourseDescription: "← Back to Course Description",
     logIn: "Log In",
     signUp: "Sign Up",
