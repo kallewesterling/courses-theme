@@ -14,6 +14,16 @@ export const term = {
     course: "Course",
     learningPath: "Learning Path",
     lesson: "Lesson",
+    lessons: "Lessons",
+    backToCourseDescription: "← Back to Course Description",
+    logIn: "Log In",
+    signUp: "Sign Up",
+    continueWithGoogle: "Continue with Google",
+    workEmail: "Work Email",
+    firstName: "First Name",
+    lastName: "Last Name",
+    passwordConfirm: "Password Confirm",
+    accessCode: "Access Code (optional)",
 }
 
 /*

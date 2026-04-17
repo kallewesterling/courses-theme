@@ -14,6 +14,7 @@ import * as shiki from "https://esm.sh/shiki@3.0.0";
 
 // static imports
 import { config } from "../../data/config.mjs";
+import { term } from "../../data/messages.mjs";
 
 function buildResourceBox() {
   const elems = {
@@ -434,7 +435,7 @@ export function lessonView() {
 
   // content
   if (CG.dom.local.nav.backToCurriculumText) {
-    text(CG.dom.local.nav.backToCurriculumText, "← Back to Course Description");
+    text(CG.dom.local.nav.backToCurriculumText, term.backToCourseDescription);
     CG.dom.local.nav.menu.prepend(CG.dom.local.nav.backBtn);
   }
 

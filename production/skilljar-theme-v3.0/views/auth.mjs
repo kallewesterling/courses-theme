@@ -2,6 +2,9 @@ import { A, Q, el, text, placeholder, remove } from "../utils.mjs";
 import { CG } from "../CG.mjs";
 import { setStyle } from "../styling.mjs";
 
+// static imports
+import { term } from "../../data/messages.mjs";
+
 /**
  * This function applies styling to the authentication (login/signup) pages.
  * @returns {void}
@@ -45,22 +48,22 @@ export function authView() {
     },
   };
 
-  text(CG.dom.local.auth.login, "Log In");
-  text(CG.dom.local.auth.signup, "Sign Up");
-  text(CG.dom.local.auth.google, "Continue with Google");
-  text(CG.dom.local.auth.btn, CG.page.isLogin ? "Log In" : "Sign Up");
-  text(CG.dom.local.auth.labels.email, "Work Email");
+  text(CG.dom.local.auth.login, term.logIn);
+  text(CG.dom.local.auth.signup, term.signUp);
+  text(CG.dom.local.auth.google, term.continueWithGoogle);
+  text(CG.dom.local.auth.btn, CG.page.isLogin ? term.logIn : term.signUp);
+  text(CG.dom.local.auth.labels.email, term.workEmail);
 
-  placeholder(CG.dom.local.auth.inputs.email, "Work Email");
+  placeholder(CG.dom.local.auth.inputs.email, term.workEmail);
 
   if (CG.page.isSignup) {
-    text(CG.dom.local.auth.labels.fName, "First Name");
-    text(CG.dom.local.auth.labels.lName, "Last Name");
-    placeholder(CG.dom.local.auth.inputs.fName, "First Name");
-    placeholder(CG.dom.local.auth.inputs.lName, "Last Name");
-    placeholder(CG.dom.local.auth.inputs.password2, "Password Confirm");
-    text(CG.dom.local.auth.labels.passwordConfirm, "Password Confirm");
-    text(CG.dom.local.auth.labels.accessCode, "Access Code (optional)");
+    text(CG.dom.local.auth.labels.fName, term.firstName);
+    text(CG.dom.local.auth.labels.lName, term.lastName);
+    placeholder(CG.dom.local.auth.inputs.fName, term.firstName);
+    placeholder(CG.dom.local.auth.inputs.lName, term.lastName);
+    placeholder(CG.dom.local.auth.inputs.password2, term.passwordConfirm);
+    text(CG.dom.local.auth.labels.passwordConfirm, term.passwordConfirm);
+    text(CG.dom.local.auth.labels.accessCode, term.accessCode);
   }
 
   const authContainer = el("div", { id: "auth-container" }, [
