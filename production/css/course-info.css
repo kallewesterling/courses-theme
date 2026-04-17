@@ -292,6 +292,10 @@ body.sj-page-detail-course {
 
   .large-6 .sj-course-info-wrapper {
     max-width: 80% !important;
+
+    @media screen and (max-width: 991px) {
+      max-width: 100% !important;
+    }
   }
 
   .large-6 .social-media-wrapper {
