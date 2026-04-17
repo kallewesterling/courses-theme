@@ -11,7 +11,16 @@
 export const partnerErrorMessage = `If you are a partner and trying to access our Partner courses, you have to first <a href="/auth/login?next=%2Fpage%2Fpartners">sign in or sign up for our Courses platform</a>.`
 
 export const term = {
-    "course": "Course",
-    "learningPath": "Learning Path",
-    "lesson": "Lesson",
+    course: "Course",
+    learningPath: "Learning Path",
+    lesson: "Lesson",
+}
+
+/*
+ * Tooltip descriptions shown when hovering the "Course" / "Learning Path"
+ * floater labels in the page header.
+ */
+export const tooltips = {
+    course: "A self-paced course covering a specific topic through a series of short lessons. Complete it at your own pace and revisit any lesson at any time.",
+    learningPath: "A curated sequence of courses that guides you through a complete learning journey, from foundational concepts to advanced skills.",
 }

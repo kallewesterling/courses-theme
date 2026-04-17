@@ -5,7 +5,8 @@ import { tryPathSections } from "../sections.mjs";
 import { Q, el } from "../utils.mjs";
 
 // static imports
-import { term } from "../../data/messages.mjs";
+import { term, tooltips } from "../../data/messages.mjs";
+import { attachFloaterTooltip } from "../tooltip.mjs";
 
 /**
  * Post-path setup — runs after each path view has finished its DOM work.
@@ -20,6 +21,7 @@ import { term } from "../../data/messages.mjs";
  */
 function postPath() {
   const floater = Q(".sj-floater-text") || el("span", { className: "sj-floater-text", textContent: term.learningPath });
+  attachFloaterTooltip(floater, tooltips.learningPath);
   const metaRow = el("div", { className: "course-meta-row" }, [floater]);
 
   const dpSummary = Q(".dp-summary-wrapper");
