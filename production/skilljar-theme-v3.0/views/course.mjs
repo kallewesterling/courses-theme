@@ -2,6 +2,7 @@ import { Q, el } from "../utils.mjs";
 import { CG } from "../CG.mjs";
 import { logger } from "../logger.mjs";
 import { courseDetails as staticCourseDetails } from "../../data/course-details.mjs";
+import { term } from "../../data/messages.mjs";
 
 /**
  * Resolves course details for the current page.
@@ -114,7 +115,7 @@ export function wrapCTAWithBadge() {
  */
 function postCourse() {
   // Header assembly
-  const floater = Q(".sj-floater-text") || el("span", { className: "sj-floater-text", text: "Course" });
+  const floater = Q(".sj-floater-text") || el("span", { className: "sj-floater-text", text: term.course });
   const metaItems = [floater];
   if (CG.dom.local.timeIndicator) {
     metaItems.push(el("span", { className: "course-meta-sep", textContent: "●" }));
