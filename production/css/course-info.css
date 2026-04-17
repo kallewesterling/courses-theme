@@ -312,7 +312,7 @@ body.sj-page-detail-course {
     h3 {
       /* Section label for nested courses — subtle gray uppercase */
       padding: var(--spacing-px-24) var(--spacing-px-12) var(--spacing-0) var(--spacing-px-12);
-      color: var(--ink-dim) !important;
+      color: var(--color-text-muted) !important;
       font-family: inherit !important;
       font-size: var(--font-size-xs) !important;
       font-weight: var(--font-weight-semibold) !important;
@@ -329,7 +329,7 @@ body.sj-page-detail-course {
       align-items: baseline;
       gap: var(--gap-3);
       padding: var(--spacing-px-12) var(--spacing-px-12);
-      color: var(--color-text-muted) !important;
+      color: var(--ink-dim) !important;
       font-family: inherit;
       font-size: var(--font-size-sm);
       font-weight: var(--font-weight-normal);
