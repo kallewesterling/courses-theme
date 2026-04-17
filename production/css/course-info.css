@@ -435,6 +435,10 @@ body.sj-page-curriculum {
     grid-template-columns: 1fr 1fr !important;
     margin: var(--spacing-0) !important;
 
+    section {
+      margin-bottom: var(--spacing-px-48) !important;
+    }
+
     /* Reset the vertical stacking margin — sections are now side-by-side */
     section:nth-child(2) {
       margin-top: var(--spacing-0) !important;
