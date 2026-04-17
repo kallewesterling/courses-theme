@@ -398,7 +398,7 @@ body.sj-page-detail-course {
     display: grid !important;
     align-items: start !important;
     gap: var(--gap-10) !important;
-    grid-template-columns: 1fr 1fr !important;
+    grid-template-columns: 1.5fr 1fr !important;
     max-width: 100% !important;
 
     /* Foundation's clearfix injects ::before/::after with display:table,
@@ -573,7 +573,7 @@ body.sj-page-curriculum {
     display: grid !important;
     align-items: start !important;
     gap: var(--gap-10) !important;
-    grid-template-columns: 1fr 1fr !important;
+    grid-template-columns: 1.5fr 1fr !important;
     margin: var(--spacing-0) !important;
 
     section {
