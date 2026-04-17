@@ -245,12 +245,13 @@ body.sj-page-detail-course {
     }
   }
 
-  ul.dp-curriculum {
+  ul.dp-curriculum,
+  #curriculum-list {
     padding-left: var(--spacing-0);
+    counter-reset: lesson; /* global — numbers run across all sections */
   }
 
   .curriculum-wrapper {
-    counter-reset: lesson;
     padding: var(--spacing-0);
     margin-bottom: var(--spacing-px-30);
     border: var(--border-width-none);
@@ -329,6 +330,38 @@ body.sj-page-detail-course {
         display: none;
       }
     }
+  }
+
+  /* Nested curriculum: multiple sections flow as a single continuous list
+     with subtle uppercase section labels instead of the bold blurple headings.
+     Uses :not(:only-child) to target only courses that have multiple sections. */
+  .curriculum-wrapper:not(:only-child) {
+    margin-bottom: 0;
+
+    h3 {
+      padding: var(--spacing-px-8) var(--spacing-px-12);
+      color: var(--ink-dim) !important;
+      font-family: inherit !important;
+      font-size: var(--font-size-xs) !important;
+      font-weight: var(--font-weight-semibold) !important;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-bottom: var(--border-width-none);
+
+      > a {
+        font-size: inherit !important;
+      }
+    }
+
+    /* Restore the divider after the last lesson of every non-final section */
+    &:not(:last-child) a:last-child {
+      border-bottom: var(--border-width-thin) solid var(--border);
+    }
+  }
+
+  /* Top border on section labels for all but the first section */
+  .curriculum-wrapper + .curriculum-wrapper h3 {
+    border-top: var(--border-width-thin) solid var(--border);
   }
 }
 
