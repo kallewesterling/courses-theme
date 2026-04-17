@@ -6,14 +6,38 @@ import { wrapCTAWithBadge } from "./course.mjs";
 import { CG } from "../CG.mjs";
 
 /**
+ * Post-path setup — runs after each path view has finished its DOM work.
+ * Mirrors postCourse(): inserts the floater/meta-row, assembles path sections,
+ * and wraps the CTA button with the brand-badge design.
+ *
+ * Works for both registered and unregistered views:
+ * - Unregistered: Skilljar's .dp-summary-wrapper is already in the DOM.
+ * - Registered:   pathRegisteredView() prepends topRow (which contains
+ *                 .dp-summary-wrapper) before calling this function.
+ * In both cases Q(".dp-summary-wrapper") finds the right container.
+ */
+function postPath() {
+  const floater = Q(".sj-floater-text") || el("span", { className: "sj-floater-text", textContent: "Learning Path" });
+  const metaRow = el("div", { className: "course-meta-row" }, [floater]);
+
+  const dpSummary = Q(".dp-summary-wrapper");
+  if (dpSummary) {
+    const h1 = Q("h1", dpSummary);
+    if (h1) h1.before(metaRow);
+    else dpSummary.prepend(metaRow);
+  }
+
+  tryPathSections();
+  wrapCTAWithBadge();
+}
+
+/**
  * This function applies styling to the Learning Path details page, when
  * the user is logged out or logged in but not registered for the Learning Path.
  * @returns {void}
  */
 export function pathUnregisteredView() {
-  // make path sections
-  tryPathSections();
-  wrapCTAWithBadge();
+  postPath();
 }
 
 /**
@@ -43,9 +67,6 @@ export function pathRegisteredView() {
               "columns text-center large-6 dp-summary-wrapper text-left-v2",
           },
           [
-            el("div", { className: "course-meta-row" }, [
-              el("span", { className: "sj-floater-text", textContent: "Learning Path" }),
-            ]),
             el("h1", {
               className: "break-word",
               textContent: window.skilljarCourseSeries.title || "",
@@ -73,10 +94,9 @@ export function pathRegisteredView() {
     ]),
   ]);
 
-  // prepend topRow and detailsBundle to content
+  // Prepend topRow and detailsBundle before calling postPath(),
+  // so Q(".dp-summary-wrapper") inside postPath() finds our new wrapper.
   CG.dom.contentContainer.prepend(...[topRow, detailsBundle].filter(Boolean));
 
-  // make path sections
-  tryPathSections();
-  wrapCTAWithBadge();
+  postPath();
 }
