@@ -51,6 +51,12 @@ body.sj-page-detail-course {
     opacity: 0.35;
   }
 
+  /* Hide paragraphs that only wrap the courseDetails script injection */
+  .content > p:has(> script),
+  .dp-long-description > p:has(> script) {
+    display: none !important;
+  }
+
   /* "About this course" h3 — lifted by JS to span both grid columns */
   .course-content-header {
     grid-column: 1 / -1 !important;
@@ -185,10 +191,6 @@ body.sj-page-detail-course {
       background-color: transparent !important;
     }
 
-    /* The courseDetails script is injected inside a bare <p> — hide it */
-    section .content > p:has(> script) {
-      display: none !important;
-    }
 
     section .content ul {
       list-style-position: outside;
