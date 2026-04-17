@@ -90,18 +90,15 @@ function wrapCTAWithBadge() {
   const btn = CG.dom.header.btn;
   if (!btn || btn.closest(".cta-badge-btn")) return;
 
-  const isCompleted = document.body.classList.contains("course-completed-view");
-  const isRegistered = document.body.classList.contains("course-registered-view");
-
   let badgeClass = "cta-badge";
   let wrapperClass = "cta-badge-btn";
 
-  if (isCompleted) {
+  if (CG.state.isCompleted) {
     badgeClass += " cta-badge--check";
     wrapperClass += " cta-badge-btn--completed";
     const textSpan = btn.querySelector("span") || btn;
     textSpan.textContent = "Completed";
-  } else if (isRegistered) {
+  } else if (CG.state.isRegistered) {
     badgeClass += " cta-badge--play";
   }
 
