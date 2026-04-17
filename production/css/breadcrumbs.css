@@ -10,7 +10,7 @@ body.sj-page-catalog,
 body.sj-page-series {
   #breadcrumb-wrapper {
     max-width: min(1188px, 90%);
-    margin: 32px auto 0 auto;
+    margin: 0 auto;
 
     .breadcrumbs {
       width: 100% !important;
@@ -18,7 +18,7 @@ body.sj-page-series {
       overflow: visible !important;
       border: none !important;           /* reset Skilljar's border + border-radius */
       border-top: none !important;
-      border-bottom: var(--border-width-thin) solid var(--border) !important;
+      border-bottom: none !important;
       border-radius: 0 !important;
       background-color: transparent !important;
       box-shadow: none !important;
@@ -54,7 +54,7 @@ body.sj-page-series {
         max-width: min-content;
         overflow: hidden;
         color: var(--ink-dim) !important;
-        font-size: var(--font-size-sm);
+        font-size: inherit;
         font-weight: var(--font-weight-normal);
         text-decoration: none;
         opacity: 1 !important;
