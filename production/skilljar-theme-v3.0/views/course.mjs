@@ -1,6 +1,25 @@
 import { Q, el } from "../utils.mjs";
 import { CG } from "../CG.mjs";
 import { logger } from "../logger.mjs";
+import { courseDetails as staticCourseDetails } from "../../data/course-details.mjs";
+
+/**
+ * Resolves course details for the current page.
+ * Uses the page-injected `courseDetails` global (from the course description script block) if
+ * present and non-empty; falls back to the static data file keyed by course slug.
+ * @returns {Object|undefined}
+ */
+function resolveDetails() {
+  const fromPage = typeof courseDetails !== "undefined" ? courseDetails : null;
+  if (fromPage && Object.keys(fromPage).length > 0) return fromPage;
+
+  // Derive the slug from the URL — always available, no Skilljar dependency
+  const slug = window.location.pathname.split("/").filter(Boolean).pop();
+  const fromStatic = slug ? staticCourseDetails[slug] : undefined;
+
+  if (!fromStatic) logger.warn(`No course details found for slug: "${slug}"`);
+  return fromStatic;
+}
 
 /**
  * Creates a horizontal course details strip element with provided details.
@@ -115,7 +134,7 @@ export function courseUnregisteredView() {
     )
     .forEach((elem) => elem.classList.add("path-registration"));
 
-  processCourseDetails(courseDetails, "unregistered");
+  processCourseDetails(resolveDetails(), "unregistered");
 
   // process curriculum elements
   try {
@@ -162,7 +181,7 @@ export function courseRegisteredView() {
     })
   );
 
-  processCourseDetails(courseDetails, "registered");
+  processCourseDetails(resolveDetails(), "registered");
 
   CG.dom.curriculumContainer.replaceChildren(...CG.data.curriculumElements);
 
