@@ -284,7 +284,6 @@ body.sj-page-detail-course {
       align-items: baseline;
       gap: var(--gap-3);
       padding: var(--spacing-px-12) var(--spacing-px-12);
-      background-color: #0084000f;
       color: var(--ink) !important;
       font-family: inherit;
       font-size: var(--font-size-sm);
@@ -304,6 +303,10 @@ body.sj-page-detail-course {
       .fa-check-circle {
         margin-left: auto;
         color: var(--color-success-dark) !important;
+      }
+
+      &:has(.fa-check-circle) {
+        background-color: #0084000f;
       }
 
       &:hover {
