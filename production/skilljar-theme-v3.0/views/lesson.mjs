@@ -471,6 +471,16 @@ export function lessonView() {
     document.body.classList.add("cbp-spmenu-open");
   }
 
+  // Close the nav when tapping the backdrop on mobile
+  CG.dom.local.body.mainContainer.addEventListener("click", (e) => {
+    if (!window.matchMedia("(min-width: 992px)").matches &&
+        document.body.classList.contains("cbp-spmenu-open") &&
+        !CG.dom.local.nav.menu.contains(e.target) &&
+        !CG.dom.local.nav.toggleWrapper.contains(e.target)) {
+      document.body.classList.remove("cbp-spmenu-open");
+    }
+  });
+
   // move elements
   CG.dom.local.body.mainContainer.append(CG.dom.local.footer.container);
   CG.dom.local.body.innerContainer.prepend(

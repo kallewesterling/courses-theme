@@ -103,6 +103,25 @@ body.sj-page-lesson {
           width: 100% !important; /* Skilljar Override: Full width when menu is open */
         }
       }
+
+      @media screen and (max-width: 991px) {
+        margin-left: 0; /* nav overlays content on small screens instead of pushing it */
+      }
+    }
+
+    @media screen and (max-width: 991px) {
+      /* backdrop covers the content area so user can tap to close */
+      #lp-wrapper::after {
+        content: "";
+        position: fixed;
+        top: 60px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 3; /* above content, below nav (nav is z-index: 4+) */
+        background-color: rgb(0 0 0 / 0.35);
+        pointer-events: auto;
+      }
     }
   }
 
