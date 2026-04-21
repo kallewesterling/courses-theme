@@ -37,13 +37,15 @@ body.sj-page-lesson {
 
   #header-course-link {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 0;
+    right: 80px;  /* clear of the account nav */
+    bottom: 0;
+    left: 210px;  /* clear of the logo */
     z-index: 1;
-    max-width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
-    transform: translate(-50%, -50%);
-    pointer-events: auto;
 
     a {
       overflow: hidden;
