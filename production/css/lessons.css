@@ -677,7 +677,7 @@ body.sj-page-lesson {
     flex-direction: column;
     min-width: 0;
     border: var(--border-width-thin) solid var(--color-border-subtle);
-    border-radius: var(--radius-rem-sm);
+    border-radius: var(--radius-default);
     background-color: var(--color-surface-base);
     overflow-wrap: break-word;
     background-clip: border-box;
@@ -702,7 +702,7 @@ body.sj-page-lesson {
     margin-right: var(--spacing-1);
     margin-bottom: var(--spacing-1);
     border: var(--border-width-none);
-    border-radius: var(--radius-rem-sm);
+    border-radius: var(--radius-default);
     background-color: var(--color-pink-light);
     color: var(--color-text-pink-dark);
     font-size: var(--font-size-xs);
@@ -735,7 +735,7 @@ body.sj-page-lesson {
     margin: var(--spacing-0);
     border: var(--border-width-thin) solid transparent;
     border-color: var(--border-color-v2) !important;
-    border-radius: var(--radius-rem-sm);
+    border-radius: var(--radius-default);
     background-color: transparent;
     color: var(--blurple) !important;
     font-size: var(--font-size-sm);

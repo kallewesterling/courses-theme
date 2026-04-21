@@ -127,7 +127,7 @@ body.sj-page-detail-path {
         font-size: var(--font-size-6xl);
         font-weight: var(--font-weight-bold);
         line-height: var(--line-height-88);
-        letter-spacing: var(--letter-spacing-tightest);
+        letter-spacing: var(--letter-spacing-tighter);
       }
 
       h3 {
@@ -150,14 +150,13 @@ body.sj-page-detail-path {
         color: var(--ink);
         font-family: Roobert, monospace;
         font-size: var(--font-size-md);
-        line-height: 19px;
+        line-height: var(--line-height-normal);
         letter-spacing: -0.03em;
         opacity: 0.8;
 
         @media screen and (min-width: 1024px) {
           max-width: 404px;
           margin-top: var(--spacing-4);
-          line-height: var(--line-height-normal);
         }
       }
     }
@@ -537,7 +536,7 @@ body.sj-page-detail-path {
       color: var(--color-surface-base);
       font-size: var(--font-size-6xl);
       line-height: var(--line-height-88);
-      letter-spacing: var(--letter-spacing-tightest);
+      letter-spacing: var(--letter-spacing-tighter);
     }
 
     > svg {
