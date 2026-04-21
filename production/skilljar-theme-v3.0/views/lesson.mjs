@@ -496,4 +496,106 @@ export function lessonView() {
   );
 
   if (typeof resources !== "undefined") buildResourceBox();
+
+  buildToc();
+  buildEndBanner();
+}
+
+/**
+ * Builds a table of contents (ToC) for the lesson page by finding all <h3> headings
+ * with IDs and creating a navigation menu. The ToC is appended to the lesson content,
+ * and an IntersectionObserver is set up to highlight the active section as the user
+ * scrolls through the page.
+ * @returns {void}
+ */
+function buildToc() {
+  const inner = CG.dom.local.lesson.innerBody;
+  if (!inner) return;
+
+  const headings = Array.from(inner.querySelectorAll("h3[id]"));
+  if (headings.length < 2) return;
+
+  const nav = el("nav", { className: "lesson-toc" }, [
+    el("div", { className: "lesson-toc-title", textContent: "On this page" }),
+    el("ol", {}, headings.map((h) => {
+      const li = el("li", {}, [
+        el("a", { href: `#${h.id}`, textContent: h.textContent }),
+      ]);
+      return li;
+    })),
+  ]);
+
+  nav.setAttribute("aria-label", "On this page");
+  inner.classList.add("has-toc");
+  inner.append(nav);
+
+  // Scroll-spy via IntersectionObserver
+  const items = Array.from(nav.querySelectorAll("li"));
+  const map = new Map(headings.map((h, i) => [h, items[i]]));
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const li = map.get(entry.target);
+        if (li) li.classList.toggle("is-active", entry.isIntersecting);
+      });
+    },
+    { rootMargin: "-10% 0px -80% 0px" },
+  );
+
+  headings.forEach((h) => observer.observe(h));
+}
+
+function buildEndBanner() {
+  const inner = CG.dom.local.lesson.innerBody;
+  if (!inner) return;
+
+  const footerNext = Q("#lp-footer .next-lesson-link");
+  if (!footerNext) return;
+
+  const up = footerNext.getAttribute("onmouseup") || "";
+  const kd = footerNext.getAttribute("onkeydown") || "";
+  const nextMatch = (up || kd).match(/onNextLessonClick\('([^']+)'\)/);
+  const nextUrl = nextMatch ? nextMatch[1] : null;
+  const nextTitle = footerNext.getAttribute("title") || "";
+
+  function goNext(e) {
+    e?.preventDefault();
+    if (typeof window.onNextLessonClick === "function" && nextUrl) {
+      window.onNextLessonClick(nextUrl);
+    } else if (nextUrl) {
+      window.location.href = nextUrl;
+    }
+  }
+
+  const btn = el("a", {
+    className: "btn-complete",
+    href: nextUrl || "#",
+    role: "button",
+    tabindex: 0,
+  }, [
+    el("i", { className: "fa fa-check-circle" }),
+    el("span", { textContent: "Mark complete & continue" }),
+  ]);
+  btn.setAttribute("aria-label", "Mark lesson complete and continue");
+  btn.addEventListener("click", goNext);
+  btn.addEventListener("mouseup", goNext);
+  btn.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") goNext(e);
+  });
+
+  const subtitle = nextTitle ? `Up next: ${nextTitle}` : "You've reached the end of this lesson";
+
+  const banner = el("div", { className: "lesson-end-banner" }, [
+    el("div", { className: "end-icon" }, [
+      el("i", { className: "fa fa-flag-checkered" }),
+    ]),
+    el("div", { className: "end-text" }, [
+      el("p", { className: "end-title", textContent: "You've reached the end of this lesson" }),
+      el("p", { className: "end-subtitle", textContent: subtitle }),
+    ]),
+    el("div", { className: "end-actions" }, [btn]),
+  ]);
+
+  inner.append(banner);
 }

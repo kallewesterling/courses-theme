@@ -384,6 +384,164 @@ body.sj-page-lesson {
               width: 90%;
             }
 
+            &.has-toc {
+              display: grid;
+              align-items: start;
+              column-gap: var(--gap-8, 2rem);
+              grid-template-columns: 1fr 180px;
+
+              .lesson-top,
+              #lesson-main-content {
+                grid-column: 1;
+              }
+
+              .lesson-toc {
+                grid-column: 2;
+                grid-row: 2;
+              }
+
+              @media screen and (max-width: 991px) {
+                display: block;
+
+                .lesson-toc {
+                  display: none;
+                }
+              }
+            }
+
+            .lesson-toc {
+              position: sticky;
+              top: 70px;
+              align-self: start;
+              padding: 14px 16px;
+              border-left: 2px solid var(--color-border-default);
+              font-family: var(--font-family-base, Gellix, sans-serif);
+
+              .lesson-toc-title {
+                margin-bottom: 8px;
+                color: var(--ink-dim);
+                font-size: 10px;
+                font-weight: var(--font-weight-bold, 700);
+                letter-spacing: 0.07em;
+                text-transform: uppercase;
+              }
+
+              ol {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                padding: 0;
+                margin: 0;
+                list-style: none;
+              }
+
+              li a {
+                display: block;
+                padding: 2px 0 2px 8px;
+                border-left: 2px solid transparent;
+                color: var(--ink-dim);
+                font-size: 12px;
+                line-height: 1.4;
+                text-decoration: none;
+                transition: color 0.15s, border-color 0.15s;
+
+                &:hover {
+                  border-left-color: var(--blurple);
+                  color: var(--blurple);
+                  text-decoration: none;
+                }
+              }
+
+              li.is-active a {
+                border-left-color: var(--blurple);
+                color: var(--blurple);
+                font-weight: var(--font-weight-semibold, 600);
+              }
+            }
+
+            .lesson-end-banner {
+              display: flex;
+              align-items: center;
+              gap: 16px;
+              padding: 14px 18px;
+              margin: 2rem 0;
+              border: 1px solid #d4c8fc;
+              border-left: 4px solid var(--blurple);
+              border-radius: 8px;
+              background: #f8f5ff;
+              font-family: var(--font-family-base, Gellix, sans-serif);
+
+              .end-icon {
+                display: flex;
+                flex-shrink: 0;
+                justify-content: center;
+                align-items: center;
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background: var(--blurple);
+                color: #ffffff;
+                font-size: 14px;
+              }
+
+              .end-text {
+                flex: 1;
+                min-width: 0;
+              }
+
+              .end-title {
+                margin: 0 0 1px;
+                color: var(--ink);
+                font-size: var(--font-size-sm, 0.875rem);
+                font-weight: var(--font-weight-bold, 700);
+              }
+
+              .end-subtitle {
+                margin: 0;
+                overflow: hidden;
+                color: var(--ink-dim);
+                font-size: var(--font-size-xs, 0.8rem);
+                white-space: nowrap;
+                text-overflow: ellipsis;
+              }
+
+              .end-actions {
+                flex-shrink: 0;
+              }
+
+              .btn-complete {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 0.5rem 1.1rem;
+                border: none;
+                border-radius: 999px;
+                background: var(--blurple);
+                color: #ffffff !important;
+                font-size: var(--font-size-xs, 0.8rem);
+                font-weight: var(--font-weight-semibold, 600);
+                text-decoration: none;
+                white-space: nowrap;
+                transition: background 0.2s, transform 0.1s;
+                cursor: pointer;
+
+                &:hover {
+                  background: #4f1fd6;
+                  color: #ffffff !important;
+                  text-decoration: none;
+                  transform: translateY(-1px);
+                }
+              }
+
+              @media screen and (max-width: 600px) {
+                flex-wrap: wrap;
+
+                .end-subtitle {
+                  white-space: normal;
+                }
+              }
+            }
+
             sjwc-lesson-content-item {
               padding-bottom: var(--spacing-24);
               /* Lesson content item */
