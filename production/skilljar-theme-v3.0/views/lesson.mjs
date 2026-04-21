@@ -551,7 +551,7 @@ function buildToc() {
   if (headings.length < 2) return;
 
   const scrollEl = Q("#lp-wrapper");
-  const OFFSET = 24; // breathing room below the top of the scroll container
+  const OFFSET = 200; // breathing room below the top of the scroll container
 
   const items = [];
   const listEls = headings.map((h) => {
