@@ -2,7 +2,7 @@ import { Q, el } from "../utils.mjs";
 import { CG } from "../CG.mjs";
 
 // static imports
-import { partnerErrorMessage } from "../data/messages.mjs";
+import { partnerErrorMessage } from "../../data/messages.mjs";
 
 /**
  * This function applies styling to the 404 error page.
