@@ -664,9 +664,6 @@ function buildEndBanner() {
  * @returns {void}
  */
 function buildHeaderCourseLink() {
-  const headerRight = CG.dom.headerRight;
-  if (!headerRight) return;
-
   const title = CG.state.course.title;
   const href = CG.dom.local.nav.backBtn?.href;
   if (!title || !href) return;
@@ -675,5 +672,5 @@ function buildHeaderCourseLink() {
     el("a", { href: sanitizeUrl(href), textContent: title }),
   ]);
 
-  headerRight.prepend(link);
+  CG.dom.bodyHeader.append(link);
 }
