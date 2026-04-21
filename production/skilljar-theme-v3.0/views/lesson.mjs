@@ -30,7 +30,7 @@ function buildResourceBox() {
     },
 
     get lastBodyItem() {
-      return Array.from(A("sjwc-lesson-content-item")).pop();
+      return A("sjwc-lesson-content-item").pop();
     },
 
     get numBoxes() {
@@ -224,7 +224,7 @@ function applyHighlights(codeEl, highlight) {
     if (terms.length) {
       const re = new RegExp(`(${terms.join("|")})`);
 
-      Array.from(A("span[data-line]", codeEl)).forEach((lineEl) => {
+      A("span[data-line]", codeEl).forEach((lineEl) => {
         if (re.test(lineEl.textContent)) {
           lineEl.classList.add("is-highlighted-line");
         }
@@ -386,12 +386,12 @@ function createResourceCard(
           [
             Array.isArray(resource.tags) && resource.tags.length > 0
               ? el(
-                  "div",
-                  { className: "badge-container" },
-                  resource.tags.map((tag) =>
-                    el("div", { className: "badge", text: tag }),
-                  ),
-                )
+                "div",
+                { className: "badge-container" },
+                resource.tags.map((tag) =>
+                  el("div", { className: "badge", text: tag }),
+                ),
+              )
               : undefined,
 
             // title
@@ -417,8 +417,8 @@ export function lessonView() {
       body: Q("#lesson-body"),
       innerBody: Q("#lesson-main-inner"),
       content: {
-        codeBlocks: new Array(...A("pre:has(code):not(.language-ansi)")),
-        inlineCodeBlocks: new Array(...A("code[data-lang")),
+        codeBlocks: A("pre:has(code):not(.language-ansi)"),
+        inlineCodeBlocks: A("code[data-lang]"),
         internalCourseWarning: Q("#internal-course-warning"),
         links: A("sjwc-lesson-content-item a"),
         resources: {
@@ -449,10 +449,7 @@ export function lessonView() {
   // Makes lesson links pop up in new tab
   CG.dom.local.lesson.content.links.forEach((elem) => {
     elem.target = "_blank";
-    if (elem.href.includes("chainguard.dev")) {
-      // set utm_* info if the link is internal (domain name includes chainguard.dev)
-      elem.href = sanitizeUrl(elem.href);
-    }
+    elem.href = sanitizeUrl(elem.href);
   });
 
   // move elements
@@ -479,7 +476,7 @@ export function lessonView() {
     .forEach((elem) => processPre(elem));
 
   // Make section titles normal h3 elements
-  Array.from(A("h3.sjwc-section-title")).map((elem) =>
+  A("h3.sjwc-section-title").forEach((elem) =>
     elem.classList.remove("sjwc-section-title"),
   );
 

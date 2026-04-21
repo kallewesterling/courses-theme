@@ -19,14 +19,13 @@ import { config } from "../data/config.mjs";
  * updateLinks(false);
  */
 function updateLinks(useTestDomain) {
-  const links = A(
+  A(
     'a[href*="' +
-      config.domains.prod.url +
-      '"], a[href*="' +
-      config.domains.stage.url +
-      '"]'
-  );
-  links.forEach((link) => {
+    config.domains.prod.url +
+    '"], a[href*="' +
+    config.domains.stage.url +
+    '"]'
+  ).forEach((link) => {
     const url = new URL(link.href);
     if (useTestDomain && url.hostname === config.domains.prod.url) {
       url.hostname = config.domains.stage.url;

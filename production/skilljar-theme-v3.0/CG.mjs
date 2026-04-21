@@ -21,7 +21,7 @@ export const CG = {
     hasCourse: typeof skilljarCourse !== "undefined",
     hasCatalogPage: typeof skilljarCatalogPage !== "undefined",
     hasCourseProgress: typeof skilljarCourseProgress !== "undefined",
-    hasCourseBoxes: [...A(".coursebox-container")].length > 0,
+    hasCourseBoxes: A(".coursebox-container").length > 0,
 
     get isAdmin() {
       if (!this.isLoggedIn) return false;
@@ -324,7 +324,7 @@ export const CG = {
     bodyHeader: Q("#header"),
     headerLeft: Q("#header-left"),
     headerRight: Q("#header-right"),
-    courseBoxes: [...A(".coursebox-container")],
+    courseBoxes: A(".coursebox-container"),
 
     get contentContainer() {
       return CG.page.isLesson ? Q(".sj-page-lesson") : Q("#skilljar-content");
@@ -345,10 +345,10 @@ export const CG = {
       get links() {
         if (!this.courseInfo) return [];
 
-        return [...A("p", this.courseInfo)]
+        return A("p", this.courseInfo)
           .filter((d) => d.textContent.toLowerCase().includes("learning path"))
           .map((p) =>
-            [...A("a", p)].filter((a) => a.innerHTML === "learning path"),
+            A("a", p).filter((a) => a.innerHTML === "learning path"),
           )
           .flat();
       },
@@ -379,9 +379,7 @@ export const CG = {
     get curriculumSections() {
       if (!CG.dom.curriculumContainer) return [];
 
-      let elements = Array.from(
-        A("[class^='lesson-'],.section", CG.dom.curriculumContainer),
-      ),
+      let elements = A("[class^='lesson-'],.section", CG.dom.curriculumContainer),
         currentSection = 0;
 
       const content = elements
