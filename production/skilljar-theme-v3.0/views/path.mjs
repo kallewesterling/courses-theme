@@ -3,6 +3,7 @@ import { CG } from "../CG.mjs";
 import { hide } from "../styling.mjs";
 import { tryPathSections } from "../sections.mjs";
 import { Q, el } from "../utils.mjs";
+import { animateCompletion } from "../course-completion.mjs";
 
 // static imports
 import { term, tooltips } from "../../data/messages.mjs";
@@ -28,7 +29,19 @@ function postPath() {
   const floaterWord = el("span", { className: "sj-floater-word", textContent: wordText });
   floater.append(floaterWord);
   attachFloaterTooltip(floaterWord, tooltips.learningPath);
-  const metaRow = el("div", { className: "course-meta-row" }, [floater]);
+  const metaItems = [floater];
+  if (CG.state.isPathCompleted) {
+    metaItems.push(el("span", { className: "course-meta-sep", textContent: "●" }));
+    metaItems.push(
+      el("span", {
+        className: "course-completed-badge",
+        textContent: term.completed,
+        title: term.completed,
+        onclick: () => animateCompletion("path"),
+      })
+    );
+  }
+  const metaRow = el("div", { className: "course-meta-row" }, metaItems);
 
   const dpSummary = Q(".dp-summary-wrapper");
   if (dpSummary) {
