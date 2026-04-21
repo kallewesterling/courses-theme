@@ -27,10 +27,10 @@ export function Q(selector, root = document) {
  * Creates and returns the completion popup element with the specified structure and content.
  * @param {string} selector - The CSS selector to query.
  * @param {HTMLElement|Document} [root=document] - The root element to query within.
- * @returns {NodeListOf<HTMLElement>} - A list of matching elements.
+ * @returns {Array<HTMLElement>} - An array of matching elements.
  */
 export function A(selector, root = document) {
-  return root.querySelectorAll(selector);
+  return Array.from(root.querySelectorAll(selector));
 }
 
 /**
