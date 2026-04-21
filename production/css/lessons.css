@@ -90,6 +90,7 @@ body.sj-page-lesson {
     left: 0;
     width: 292px; /* formerly 320px; */
     height: calc(100vh - 60px) !important; /* Skilljar Override: cbp-spmenu sets height: 100% */
+    margin-top: 0;
     overflow-y: auto;
     background-color: var(--color-surface-soft);
     transform: translateX(-100%);
