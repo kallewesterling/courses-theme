@@ -8,13 +8,11 @@ import { makeSections } from "../sections.mjs";
 // static imports
 import { pathSections } from "../../data/path-sections.mjs";
 import { bannerSVGs } from "../../data/graphics.mjs";
+import { header } from "../../data/landing-header.mjs";
+import { cta } from "../../data/landing-cta.mjs";
 
 function createBanner() {
-  const ctas = [
-    // { href: "/", text: "See all our courses", arrow: true },
-  ];
-
-  const ctaLinks = ctas.map(({ href, text, arrow }) =>
+  const ctaLinks = header.ctas.map(({ href, text, arrow }) =>
     el("a", {
       href: sanitizeUrl(href),
       target: "_blank",
@@ -28,10 +26,8 @@ function createBanner() {
     el("div", { className: "banner-inner" }, [
       el("div", { className: "banner-col", innerHTML: bannerSVGs.left }),
       el("div", { className: "banner-center" }, [
-        el("h1", { text: "Let's Get Smarter." }),
-        el("p", {
-          text: "Transform your potential into expertise with Chainguard Courses. Your gateway to a future built on trust and technology.",
-        }),
+        el("h1", { text: header.title }),
+        el("p", { text: header.description }),
         el("div", { className: "banner-cta" }, ctaLinks),
       ]),
       el("div", { className: "banner-col", innerHTML: bannerSVGs.right }),
@@ -74,14 +70,14 @@ export function catalogView() {
   CG.dom.contentContainer.append(
     el("div", { className: "full-width", id: "cta-bottom" }, [
       createClone("chainguard", { width: "83", height: "72" }),
-      el("h2", { text: "Want to learn more about Chainguard?" }),
+      el("h2", { text: cta.title }),
       el("div", {}, [
         el(
           "a",
           {
-            href: sanitizeUrl("https://www.chainguard.dev/contact"),
+            href: sanitizeUrl(cta.url),
             className: "button white",
-            text: "Contact Us",
+            text: cta.button,
           },
           [createClone("rightArrow")],
         ),

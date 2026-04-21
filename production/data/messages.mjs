@@ -32,6 +32,11 @@ export const term = {
     accessCode: "Access Code (optional)",
     partOf: "Part of",
     viewPath: "View path →",
+    completed: "Completed",
+    inProgress: "In Progress",
+    startCourse: "Start course",
+    startPath: "Start path",
+    getBadge: "Get a Badge",
 }
 
 /*
@@ -41,4 +46,10 @@ export const term = {
 export const tooltips = {
     course: "A self-paced course covering a specific topic through a series of short lessons. Complete it at your own pace and revisit any lesson at any time.",
     learningPath: "A curated sequence of courses that guides you through a complete learning journey, from foundational concepts to advanced skills.",
+}
+
+export const completion = {
+    title: "Hooray! You finished {courseTitle}",
+    subTitle: "Seriously, nice work!",
+    notice: 'You can close this popup by clicking outside of it or press ESC to dismiss. It will also disappear automatically in <span id="completion-countdown">{seconds}</span> seconds.',
 }

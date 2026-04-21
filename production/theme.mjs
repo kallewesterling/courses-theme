@@ -13,88 +13,13 @@
  * @see {@link https://courses.chainguard.com|Chainguard Courses}
  */
 
-import { Q, el, remove } from "./skilljar-theme-v3.0/utils.mjs";
+import { remove } from "./skilljar-theme-v3.0/utils.mjs";
 import { CG } from "./skilljar-theme-v3.0/CG.mjs";
 import { animateCompletion } from "./skilljar-theme-v3.0/course-completion.mjs";
 import { generateFooter } from "./skilljar-theme-v3.0/footer.mjs";
 import { hide, showBody } from "./skilljar-theme-v3.0/styling.mjs";
 import { logger } from "./skilljar-theme-v3.0/logger.mjs";
-import { route } from "./skilljar-theme-v3.0/router.mjs";
-import { debugHeading } from "./skilljar-theme-v3.0/debug.mjs";
-
-// Expose logger and animateCompletion to the global scope for debugging and external triggers
-window.logger = logger;
-window.animateCompletion = animateCompletion;
-
-/* 
- * Pre-route setup function to prepare the DOM and environment before routing logic is applied.
- * This function handles tasks such as moving navigation buttons, adding header elements, and setting up admin debug features.
- * It ensures that the necessary DOM structure and elements are in place before the main routing logic is executed.
- */
-function preRoute() {
-  // set body classes
-  if (CG.page.isCourseRegistered) {
-    CG.dom.body.classList.add("course-registered-view");
-
-    if (CG.state.course.completed)
-      CG.dom.body.classList.add("course-completed-view");
-  }
-  
-  if (CG.page.isCourseUnregistered)
-    CG.dom.body.classList.add("course-unregistered-view");
-
-  if (CG.page.isLesson)
-    // if a lesson page, we need to move the nav button before we modify the header
-    CG.dom.contentContainer.append(Q("#left-nav-button"));
-
-  // admin debug heading
-  if (CG.env.isAdmin) debugHeading();
-
-  if (!CG.page.isSignup && !CG.page.isLogin) {
-    // add chainguard link + mobile header
-    Q("#main-container").insertBefore(
-      CG.el.mobileHeader,
-      CG.dom.bodyHeader.nextSibling
-    );
-
-    CG.dom.headerRight.insertBefore(
-      CG.el.toChainguard,
-      CG.dom.headerRight.firstChild
-    );
-
-    CG.dom.mobileHeader = {
-      container: Q("header#mobile-header"),
-      left: Q("#mobile-header-left"),
-      right: Q("#mobile-header-right"),
-    };
-  } else if (CG.env.isPartner) {
-    // add partner menu item
-    const partnerItem = el("a", {
-      href: "/page/partners",
-      text: "Partner Courses",
-    });
-    CG.dom.headerLeft.appendChild(partnerItem);
-    CG.dom.mobileHeader.left.appendChild(partnerItem.cloneNode(true));
-  }
-}
-
-/*
- * Post-route setup function to finalize the DOM adjustments after routing logic has been applied.
- * This function handles tasks such as appending breadcrumbs, adjusting header elements based on the page type, and moving the footer and messages to their final positions.
- * It ensures that the page is fully set up with the correct elements and structure after the main routing logic has executed.
- */
-function postRoute() {
-  // append breadcrumbs above the header band (.top-row-grey) on course/path pages
-  if (CG.page.isCoursePage || CG.page.isPathRegistered) {
-    Q(".top-row-grey")?.before(CG.state.breadcrumbs.nav);
-  }
-
-  // move footer
-  CG.dom.contentContainer.append(Q("#footer-container"));
-
-  // move messages
-  CG.dom.contentContainer.prepend(Q("#messages"));
-}
+import { route, preRoute, postRoute } from "./skilljar-theme-v3.0/router.mjs";
 
 /*
  * Sets up logging based on the environment. Logging is enabled by default for staging and admin users, but can be toggled via localStorage.
@@ -102,7 +27,8 @@ function postRoute() {
  * It checks the environment variables to determine if logging should be enabled and stores this preference in localStorage.
  * Finally, it logs the current environment and state using the logger instance.
  */
-function setupLogging() {
+function setupDebug() {
+  // setup logging based on environment - enabled for staging and admin users by default, but can be toggled
   if ((CG.env.isStaging || CG.env.isAdmin) && !localStorage.getItem("cg-logger-enabled")) {
     localStorage.setItem("cg-logger-enabled", "true");
   } else if (!localStorage.getItem("cg-logger-enabled")) {
@@ -113,11 +39,16 @@ function setupLogging() {
   logger.info("Environment", CG.env);
   logger.info("State", CG.state);
   logger.info("Page", CG.page);
+
+  if (CG.env.isStaging || CG.env.isAdmin) {
+    // Expose logger and animateCompletion to the global scope for debugging and external triggers
+    window.logger = logger;
+    window.animateCompletion = animateCompletion;
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // setup logging based on environment - enabled for staging and admin users by default, but can be toggled
-  setupLogging();
+  setupDebug();
 
   // Clean up DOM: remove elements + set class names
   remove(".search-container");

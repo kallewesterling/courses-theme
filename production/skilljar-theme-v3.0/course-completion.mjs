@@ -1,4 +1,4 @@
-import { el, text, Q } from "./utils.mjs";
+import { el, text, Q, render } from "./utils.mjs";
 import { setStyle } from "./styling.mjs";
 import { CG } from "./CG.mjs";
 
@@ -7,6 +7,7 @@ import { confetti } from "https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0
 
 // static imports
 import { config } from "../data/config.mjs";
+import { completion } from "../data/messages.mjs";
 
 /**
  * Course completion popup and confetti animation module.
@@ -19,6 +20,8 @@ import { config } from "../data/config.mjs";
 export function ensureCompletionPopup() {
   let elem = document.getElementById("completion-popup");
   if (elem) return elem;
+
+  const courseTitle = CG.state.course?.title ? CG.state.course?.title : "the course!";
 
   elem = el(
     "div",
@@ -39,19 +42,17 @@ export function ensureCompletionPopup() {
           [
             el("h1", {
               id: "completion-title",
-              textContent: `Hooray! You finished ${
-                CG.state.course?.title ? CG.state.course?.title : "the course!"
-              }`,
+              textContent: render(completion.title, { courseTitle }),
             }),
             el("p", {
               id: "completion-sub",
-              textContent: "Seriously, nice work!",
+              textContent: completion.subTitle,
             }),
             el("p", {
               id: "completion-notice",
-              innerHTML: `You can close this popup by clicking outside of it or press ESC to dismiss. It will also disappear automatically in <span id="completion-countdown">${
-                config.confetti.autoHideMs / 1000
-              }</span> seconds.`,
+              innerHTML: render(completion.notice, {
+                seconds: config.confetti.autoHideMs / 1000,
+              }),
             }),
           ]
         ),

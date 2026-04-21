@@ -177,3 +177,7 @@ export function toTitleCase(str) {
     (text) => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase(),
   );
 }
+
+export function render(template, vars) {
+  return template.replace(/{(.*?)}/g, (_, key) => vars[key] ?? "")
+}

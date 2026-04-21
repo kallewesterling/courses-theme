@@ -5,6 +5,9 @@ import { createClone } from "./icons.mjs";
 import { CG } from "./CG.mjs";
 import { logger } from "./logger.mjs";
 
+// static imports
+import { term } from "../data/messages.mjs";
+
 /**
  * Generates and appends course sections to a specified parent element.
  * @param {Array} sections - An array of section objects containing details for each section.
@@ -32,7 +35,7 @@ export function makeSections(
       const r = reg(link.slug);
       const c = compl(link.slug);
       const className = `${c} ${r}`;
-      const text = c ? "Completed" : r ? "In Progress" : "";
+      const text = c ? term.completed : r ? term.inProgress : "";
       const pill =
         c || r
           ? el("span", { className: `pill ${className}`, text })
@@ -43,7 +46,7 @@ export function makeSections(
         {
           className: "no-select",
           href: `${baseURL}/${link.slug}`,
-          title: link.isCourse ? "Start course" : "Start path",
+          title: link.isCourse ? term.startCourse : term.startPath,
         },
         [
           el("article", { className }, [
@@ -53,7 +56,7 @@ export function makeSections(
               [
                 pill,
                 el("div", { className: "icon" }, [createClone(link.icon)]),
-                el("h5", { text: link.isCourse ? "Course" : "Learning Path" }, [
+                el("h5", { text: link.isCourse ? term.course : term.learningPath }, [
                   el("span", { textContent: " | Free" }),
                 ]),
                 el("h3", { text: link.title }),
@@ -61,7 +64,7 @@ export function makeSections(
                 link.hasBadge && !c
                   ? el("span", {
                       className: "pill badged",
-                      text: "Get a Badge",
+                      text: term.getBadge,
                     })
                   : undefined,
               ].filter(Boolean)
