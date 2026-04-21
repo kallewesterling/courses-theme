@@ -515,7 +515,7 @@ function slugifyHeadings() {
   if (!inner) return;
 
   const seen = new Set();
-  inner.querySelectorAll("h3").forEach((h) => {
+  A("h3", inner).forEach((h) => {
     if (h.id) return;
 
     let slug = h.textContent
@@ -547,7 +547,7 @@ function buildToc() {
   const inner = CG.dom.local.lesson.innerBody;
   if (!inner) return;
 
-  const headings = Array.from(inner.querySelectorAll("h3[id]"));
+  const headings = A("h3[id]", inner);
   if (headings.length < 2) return;
 
   const scrollEl = Q("#lp-wrapper");
