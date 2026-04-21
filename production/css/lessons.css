@@ -86,10 +86,10 @@ body.sj-page-lesson {
 
   #lp-left-nav {
     position: fixed; /* fixed so it stays at the viewport edge and doesn't scroll away */
-    top: 60px; /* below fixed header */
+    top: 60px !important; /* Skilljar Override: cbp-spmenu sets top: 0, we need below fixed header */
     left: 0;
     width: 292px; /* formerly 320px; */
-    height: calc(100vh - 60px);
+    height: calc(100vh - 60px) !important; /* Skilljar Override: cbp-spmenu sets height: 100% */
     overflow-y: auto;
     background-color: var(--color-surface-soft);
     transform: translateX(-100%);
@@ -99,7 +99,7 @@ body.sj-page-lesson {
 
     @media screen and (max-width: 767px) {
       /* Responsive styles for left nav menu */
-      height: calc(100vh - 60px);
+      height: calc(100vh - 60px) !important;
       padding-bottom: var(--spacing-10);
       background-color: var(--color-surface-base);
 
