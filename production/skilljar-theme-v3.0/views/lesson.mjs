@@ -454,7 +454,7 @@ export function lessonView() {
 
   // Build the nav toggle bar: use Skilljar's if present, otherwise create our own
   if (!CG.dom.local.nav.toggleWrapper) {
-    const navBar = el("div", { id: "left-nav-button" }, [
+    const navBar = el("a", { id: "left-nav-button", href: "#" }, [
       el("i", { className: "fa fa-bars" }),
       el("i", { className: "fa fa-times" }),
     ]);
