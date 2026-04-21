@@ -15,13 +15,17 @@ import { completion } from "../data/messages.mjs";
 
 /**
  * Ensure the completion popup element exists, creating it if necessary.
+ * On first call the popup is created with the provided title string; subsequent
+ * calls return the existing element unchanged (singleton pattern).
+ * @param {string} [title] - Rendered title text for the popup heading.
+ *   Falls back to the current course title when omitted.
  * @returns {HTMLElement} The completion popup element.
  */
-export function ensureCompletionPopup() {
+export function ensureCompletionPopup(title) {
   let elem = document.getElementById("completion-popup");
   if (elem) return elem;
 
-  const courseTitle = CG.state.course?.title ? CG.state.course?.title : "the course!";
+  const headingText = title ?? CG.state.course?.title ?? "the course!";
 
   elem = el(
     "div",
@@ -42,7 +46,7 @@ export function ensureCompletionPopup() {
           [
             el("h1", {
               id: "completion-title",
-              textContent: render(completion.title, { courseTitle }),
+              textContent: headingText,
             }),
             el("p", {
               id: "completion-sub",
@@ -154,10 +158,21 @@ export function shoot() {
 
 /**
  * Animate the completion popup with confetti and auto-hide functionality.
+ * Pass `type = 'path'` on learning-path pages to show a path-specific title.
+ * @param {'course'|'path'} [type='course'] - Whether this is a course or path completion.
  * @returns {void}
  */
-export function animateCompletion() {
-  const elem = ensureCompletionPopup();
+export function animateCompletion(type = "course") {
+  const title =
+    type === "path"
+      ? render(completion.pathTitle, {
+          pathTitle: CG.state.course.path?.title ?? "the learning path",
+        })
+      : render(completion.title, {
+          courseTitle: CG.state.course?.title ?? "the course",
+        });
+
+  const elem = ensureCompletionPopup(title);
   showCompletion(elem);
 
   // Confetti bursts

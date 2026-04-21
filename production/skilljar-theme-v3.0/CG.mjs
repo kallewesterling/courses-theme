@@ -267,6 +267,19 @@ export const CG = {
     get isCompleted() {
       return (slug) => this.courses.completed.includes(slug);
     },
+
+    /**
+     * Whether the current learning path is fully completed.
+     * A path is considered complete when every course in it has been completed
+     * (no registered-but-incomplete courses and no unregistered courses remain).
+     * Returns false when the page is not associated with a learning path.
+     * @returns {boolean}
+     */
+    get isPathCompleted() {
+      if (!CG.env.hasCourseSeries) return false;
+      const { registered, completed, unregistered } = this.courses;
+      return registered.length === 0 && completed.length > 0 && unregistered.length === 0;
+    },
   },
   el: {
     get headingParagraph() {

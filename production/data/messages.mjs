@@ -54,6 +54,7 @@ export const tooltips = {
  */
 export const completion = {
     title: "Hooray! You finished {courseTitle}",
+    pathTitle: "Hooray! You finished the {pathTitle}!",
     subTitle: "Seriously, nice work!",
     notice: 'You can close this popup by clicking outside of it or press ESC to dismiss. It will also disappear automatically in <span id="completion-countdown">{seconds}</span> seconds.',
 }
