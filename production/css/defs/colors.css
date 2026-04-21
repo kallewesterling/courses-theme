@@ -249,7 +249,6 @@
   --max-width: 1444px;
   --max-width-v2: 1402px;
   --primary-border-radius: 20px;
-  --space-section-ends: 80px;
 
   /* Legacy Light Theme Colors */
   --detail-medium-contrast: rgb(234 234 234);
@@ -283,16 +282,6 @@
   /* Legacy Radii (mapped to new radius system in variables.css) */
   --radius-2: var(--radius-3xl); /* 16px */
   --radius-1: var(--radius-2xl); /* 14px */
-
-  /* Legacy Space variables (mapped to spacing system in variables.css) */
-  --space-1: 8px;
-  --space-2: 12px;
-  --space-3: 16px;
-  --space-4: 20px;
-  --space-5: 24px;
-  --space-6: 32px;
-  --space-7: 40px;
-  --space-8: 48px;
 
   /* Current Brand Colors (Direct Mapping) */
   --blurple: var(--color-brand-blurple);
