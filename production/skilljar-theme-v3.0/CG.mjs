@@ -6,6 +6,13 @@ import { logo } from "../data/graphics.mjs";
 import { partnerErrorMessage } from "../data/messages.mjs";
 import { config } from "../data/config.mjs";
 
+/**
+ * CG is a global object that encapsulates the environment, page information, state,
+ * DOM elements, and utility functions for the Skilljar theme. It provides a structured
+ * way to access and manage various aspects of the application, such as user information,
+ * course details, and dynamic content generation. The CG object is designed to be easily
+ * accessible throughout the application for consistent data handling and UI manipulation.
+ */
 export const CG = {
   env: {
     isStaging: window.location.href.includes("chainguard-test"),

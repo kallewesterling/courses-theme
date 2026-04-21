@@ -13,18 +13,42 @@ function isEmpty(obj) {
   return true;
 }
 
+/**
+ * Shorthand for document.querySelector, with an optional root element.
+ * @param {string} selector - The CSS selector to query.
+ * @param {HTMLElement|Document} [root=document] - The root element to query within.
+ * @returns {HTMLElement|null} - The first matching element or null if none found.
+ */
 export function Q(selector, root = document) {
   return root.querySelector(selector);
 }
 
+/**
+ * Creates and returns the completion popup element with the specified structure and content.
+ * @param {string} selector - The CSS selector to query.
+ * @param {HTMLElement|Document} [root=document] - The root element to query within.
+ * @returns {NodeListOf<HTMLElement>} - A list of matching elements.
+ */
 export function A(selector, root = document) {
   return root.querySelectorAll(selector);
 }
 
-export function c(selector) {
-  return Q(selector) ? true : false;
+/**
+ * Checks if an element exists in the DOM.
+ * @param {string} selector - The CSS selector to query.
+ * @param {HTMLElement|Document} [root=document] - The root element to query within.
+ * @returns {boolean} - True if the element exists, false otherwise.
+ */
+export function c(selector, root = document) {
+  return Q(selector, root) ? true : false;
 }
 
+/**
+ * Sanitizes a URL by adding UTM parameters if applicable.
+ * @param {string} link - The URL to sanitize.
+ * @param {Object} [UTM={}] - An object containing UTM parameters.
+ * @returns {string} - The sanitized URL.
+ */
 export function sanitizeUrl(link, UTM = {}) {
   if (!UTM || typeof UTM !== "object" || isEmpty(UTM)) {
     // logger.warn("sanitizeUrl: UTM parameter is not an object or is empty. Setting to standard defaults.");
@@ -171,6 +195,11 @@ export function remove(selector) {
   });
 }
 
+/**
+ * Converts a string to title case.
+ * @param {string} str - The string to convert.
+ * @returns {string} - The converted string in title case.
+ */
 export function toTitleCase(str) {
   return str.replace(
     /\w\S*/g,
@@ -178,6 +207,12 @@ export function toTitleCase(str) {
   );
 }
 
+/**
+ * Renders a template string by replacing placeholders with values from a variables object.
+ * @param {string} template - The template string containing placeholders in the format {key}.
+ * @param {Object} vars - An object containing key-value pairs for replacement.
+ * @returns {string} - The rendered string with placeholders replaced by corresponding values.
+ */
 export function render(template, vars) {
   return template.replace(/{(.*?)}/g, (_, key) => vars[key] ?? "")
 }

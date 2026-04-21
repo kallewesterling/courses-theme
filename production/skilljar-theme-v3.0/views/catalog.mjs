@@ -11,6 +11,10 @@ import { bannerSVGs } from "../../data/graphics.mjs";
 import { header } from "../../data/landing-header.mjs";
 import { cta } from "../../data/landing-cta.mjs";
 
+/**
+ * Creates and returns the banner element for the catalog page, including the title, description, and call-to-action links.
+ * @returns {HTMLElement} The banner element to be inserted into the catalog page.
+ */
 function createBanner() {
   const ctaLinks = header.ctas.map(({ href, text, arrow }) =>
     el("a", {

@@ -48,6 +48,10 @@ export const tooltips = {
     learningPath: "A curated sequence of courses that guides you through a complete learning journey, from foundational concepts to advanced skills.",
 }
 
+/*
+ * Messages related to course completion, including the title, subtitle, and notice about how to dismiss the completion popup.
+ * These messages are displayed to users when they finish a course, providing positive reinforcement and instructions on how to close the popup.
+ */
 export const completion = {
     title: "Hooray! You finished {courseTitle}",
     subTitle: "Seriously, nice work!",

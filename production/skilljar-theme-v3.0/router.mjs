@@ -32,6 +32,13 @@ export const pageHandlers = [
   { test: () => CG.page.is404, handler: notFoundView },
 ];
 
+/**
+ * Main routing function that checks the current page against defined handlers and executes the appropriate view function.
+ * It iterates through the `pageHandlers` array, testing each handler's condition against the current page state.
+ * If a match is found, it logs the handler being executed and calls the corresponding view function.
+ * If no handlers match the current page, it logs a warning message.
+ * @returns {void}
+ */
 export function route() {
   // find first matching handler
   const match = pageHandlers.find(({ test }) => test());

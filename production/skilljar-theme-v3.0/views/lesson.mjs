@@ -16,6 +16,13 @@ import * as shiki from "https://esm.sh/shiki@3.0.0";
 import { config } from "../../data/config.mjs";
 import { term } from "../../data/messages.mjs";
 
+/**
+ * Builds resource boxes on the lesson page based on the presence of resources or
+ * groups in the global `resources` object. It checks for existing resource boxes
+ * in the DOM and populates them with resource cards, or creates a new resource
+ * box if necessary.
+ * @returns {void}
+ */
 function buildResourceBox() {
   const elems = {
     get boxes() {

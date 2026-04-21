@@ -1,3 +1,7 @@
+/**
+ * Course completion popup and confetti animation module.
+ */
+
 import { el, text, Q, render } from "./utils.mjs";
 import { setStyle } from "./styling.mjs";
 import { CG } from "./CG.mjs";
@@ -8,10 +12,6 @@ import { confetti } from "https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0
 // static imports
 import { config } from "../data/config.mjs";
 import { completion } from "../data/messages.mjs";
-
-/**
- * Course completion popup and confetti animation module.
- */
 
 /**
  * Ensure the completion popup element exists, creating it if necessary.
