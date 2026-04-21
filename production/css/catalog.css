@@ -246,6 +246,12 @@ body.sj-page-detail-path {
     .intro {
       padding-right: var(--spacing-8);
       font-family: inherit;
+
+      @media (min-width: 1200px) {
+        position: sticky;
+        top: calc(60px + var(--spacing-4)); /* 60px fixed header + breathing room */
+        align-self: start;
+      }
     }
 
     .intro h2.eyebrow {
