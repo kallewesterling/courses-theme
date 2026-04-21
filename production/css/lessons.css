@@ -575,7 +575,7 @@ body.sj-page-lesson {
             }
 
             sjwc-lesson-content-item {
-              padding-bottom: var(--spacing-24);
+              padding-bottom: var(--spacing-0) !important;
               /* Lesson content item */
               color: var(--ink) !important;
 

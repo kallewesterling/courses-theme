@@ -550,35 +550,50 @@ function buildToc() {
   const headings = Array.from(inner.querySelectorAll("h3[id]"));
   if (headings.length < 2) return;
 
+  const scrollEl = Q("#lp-wrapper");
+  const OFFSET = 24; // breathing room below the top of the scroll container
+
+  const items = [];
+  const listEls = headings.map((h) => {
+    const a = el("a", { href: `#${h.id}`, textContent: h.textContent });
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      const rect = h.getBoundingClientRect();
+      const containerRect = scrollEl.getBoundingClientRect();
+      scrollEl.scrollTo({
+        top: scrollEl.scrollTop + (rect.top - containerRect.top) - OFFSET,
+        behavior: "smooth",
+      });
+    });
+    const li = el("li", {}, [a]);
+    items.push(li);
+    return li;
+  });
+
   const nav = el("nav", { className: "lesson-toc" }, [
     el("div", { className: "lesson-toc-title", textContent: "On this page" }),
-    el("ol", {}, headings.map((h) => {
-      const li = el("li", {}, [
-        el("a", { href: `#${h.id}`, textContent: h.textContent }),
-      ]);
-      return li;
-    })),
+    el("ol", {}, listEls),
   ]);
-
   nav.setAttribute("aria-label", "On this page");
   inner.classList.add("has-toc");
   inner.append(nav);
 
-  // Scroll-spy via IntersectionObserver
-  const items = Array.from(nav.querySelectorAll("li"));
+  // Scroll-spy: highlight the section the reader is currently in
   const map = new Map(headings.map((h, i) => [h, items[i]]));
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        const li = map.get(entry.target);
-        if (li) li.classList.toggle("is-active", entry.isIntersecting);
-      });
-    },
-    { rootMargin: "-10% 0px -80% 0px" },
-  );
+  function updateActive() {
+    const threshold = scrollEl.getBoundingClientRect().top + OFFSET + 10;
+    let active = headings[0];
+    for (const h of headings) {
+      if (h.getBoundingClientRect().top <= threshold) active = h;
+      else break;
+    }
+    items.forEach((li) => li.classList.remove("is-active"));
+    map.get(active)?.classList.add("is-active");
+  }
 
-  headings.forEach((h) => observer.observe(h));
+  scrollEl.addEventListener("scroll", updateActive, { passive: true });
+  updateActive();
 }
 
 /**
