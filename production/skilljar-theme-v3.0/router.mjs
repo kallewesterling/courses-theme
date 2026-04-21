@@ -1,16 +1,17 @@
 import { CG } from "./CG.mjs";
-import { pathUnregisteredView, pathRegisteredView } from "./views/path.mjs";
-import {
-  courseUnregisteredView,
-  courseRegisteredView,
-} from "./views/course.mjs";
-import { lessonView } from "./views/lesson.mjs";
-import { authView } from "./views/auth.mjs";
-import { catalogView } from "./views/catalog.mjs";
-import { notFoundView } from "./views/404.mjs";
 import { logger } from "./logger.mjs";
 import { Q, el } from "./utils.mjs";
 import { debugHeading } from "./debug.mjs";
+import {
+  pathUnregisteredView,
+  pathRegisteredView,
+  courseUnregisteredView,
+  courseRegisteredView,
+  lessonView,
+  authView,
+  catalogView,
+  notFoundView,
+} from "./views/index.mjs";
 
 /**
  * An array of page handlers that map specific page conditions to their corresponding view functions.
