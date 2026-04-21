@@ -44,6 +44,7 @@ function setupDebug() {
     // Expose logger and animateCompletion to the global scope for debugging and external triggers
     window.logger = logger;
     window.animateCompletion = animateCompletion;
+    window.CG = CG; // Expose CG for easier debugging access to state and environment
   }
 }
 
