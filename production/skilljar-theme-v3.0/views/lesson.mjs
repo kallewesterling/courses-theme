@@ -452,6 +452,25 @@ export function lessonView() {
     elem.href = sanitizeUrl(elem.href);
   });
 
+  // Build the nav toggle bar: use Skilljar's if present, otherwise create our own
+  if (!CG.dom.local.nav.toggleWrapper) {
+    const navBar = el("div", { id: "left-nav-button" }, [
+      el("i", { className: "fa fa-bars" }),
+      el("i", { className: "fa fa-times" }),
+    ]);
+    navBar.setAttribute("aria-label", "Toggle course navigation");
+    navBar.addEventListener("click", (e) => {
+      e.preventDefault();
+      document.body.classList.toggle("cbp-spmenu-open");
+    });
+    CG.dom.local.nav.toggleWrapper = navBar;
+  }
+
+  // Open the sidebar by default on desktop
+  if (window.matchMedia("(min-width: 992px)").matches) {
+    document.body.classList.add("cbp-spmenu-open");
+  }
+
   // move elements
   CG.dom.local.body.mainContainer.append(CG.dom.local.footer.container);
   CG.dom.local.body.innerContainer.prepend(
@@ -461,11 +480,7 @@ export function lessonView() {
     ].filter(Boolean),
   );
 
-  try {
-    CG.dom.local.nav.toggleWrapper.append(setupLessonNav());
-  } catch (err) {
-    logger.error("Failed to set up lesson navigation buttons: ", err);
-  }
+  CG.dom.local.nav.toggleWrapper.append(setupLessonNav());
 
   CG.dom.local.lesson.content.inlineCodeBlocks.forEach((elem) =>
     formatCode(elem, elem.dataset.lang || "text"),

@@ -50,6 +50,10 @@ body.sj-page-lesson {
       opacity: 0.8;
     }
 
+    #lp-left-nav {
+      transform: translateX(0);
+    }
+
     #lp-wrapper {
       margin-left: 292px;
 
@@ -87,8 +91,10 @@ body.sj-page-lesson {
     width: 292px; /* formerly 320px; */
     height: calc(100vh - 60px);
     overflow-y: auto;
-    /* Left hand nav menu */
     background-color: var(--color-surface-soft);
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    /* Left hand nav menu */
     /* To counteract padding in footer, add margin-bottom: -63px; here if we add footer back! */
 
     @media screen and (max-width: 767px) {
