@@ -112,6 +112,31 @@ body.sj-page-detail-course {
     }
   }
 
+  .course-completed-badge {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    width: fit-content !important;
+    padding: 4px 10px !important;
+    margin-bottom: var(--spacing-0) !important;
+    border: var(--border-width-thin) solid rgb(from var(--lime) r g b / 0.45) !important;
+    border-radius: var(--radius-pill) !important;
+    background: rgb(from var(--lime) r g b / 0.1) !important;
+    color: var(--lime-text) !important;
+    font-size: var(--font-size-xs) !important;
+    font-weight: var(--font-weight-semibold) !important;
+    line-height: 1 !important;
+    cursor: pointer;
+    user-select: none;
+
+    &::before {
+      content: "\f058"; /* fa-check-circle */
+      font: normal normal normal 11px/1 FontAwesome, monospace;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+
   /* "Part of [Path]" aqua strip — shown when course belongs to a learning path */
   .course-order {
     display: none;

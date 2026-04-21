@@ -1,6 +1,7 @@
 import { Q, el } from "../utils.mjs";
 import { CG } from "../CG.mjs";
 import { logger } from "../logger.mjs";
+import { animateCompletion } from "../course-completion.mjs";
 
 // static imports
 import { courseDetails as staticCourseDetails } from "../../data/course-details.mjs";
@@ -153,6 +154,17 @@ function postCourse() {
   if (CG.dom.local.timeIndicator) {
     metaItems.push(el("span", { className: "course-meta-sep", textContent: "●" }));
     metaItems.push(CG.dom.local.timeIndicator);
+  }
+  if (CG.page.isCourseRegistered && CG.state.course.completed) {
+    metaItems.push(el("span", { className: "course-meta-sep", textContent: "●" }));
+    metaItems.push(
+      el("span", {
+        className: "course-completed-badge",
+        textContent: term.completed,
+        title: term.completed,
+        onclick: () => animateCompletion(),
+      })
+    );
   }
   const metaRow = el("div", { className: "course-meta-row" }, metaItems);
 
