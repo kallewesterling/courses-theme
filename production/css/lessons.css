@@ -31,6 +31,38 @@ body.sj-page-lesson {
     display: none !important; /* Skilljar Override: Hide platform footer */
   }
 
+  #to-chainguard {
+    display: none !important; /* replaced by #header-course-link on lesson pages */
+  }
+
+  #header-course-link {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: var(--spacing-0) var(--spacing-5);
+    border-left: 1px solid var(--neutral-border);
+    overflow: hidden;
+
+    a {
+      overflow: hidden;
+      color: var(--ink) !important;
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      white-space: nowrap;
+      text-decoration: none;
+      text-overflow: ellipsis;
+
+      &:hover {
+        color: var(--blurple) !important;
+        text-decoration: none;
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
+  }
+
   /* ========================================
      2. MENU STATE MANAGEMENT (OPEN/CLOSE)
      ======================================== */

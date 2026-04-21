@@ -500,6 +500,7 @@ export function lessonView() {
   slugifyHeadings();
   buildToc();
   buildEndBanner();
+  buildHeaderCourseLink();
 }
 
 /**
@@ -639,4 +640,25 @@ function buildEndBanner() {
   ]);
 
   inner.append(banner);
+}
+
+/**
+ * Builds a course link in the header that allows users to navigate back to the course overview page. The function
+ * checks for the presence of the header right container and the course title and URL, and if all necessary
+ * information is available, it creates a link element and prepends it to the header right container.
+ * @returns {void}
+ */
+function buildHeaderCourseLink() {
+  const headerRight = CG.dom.headerRight;
+  if (!headerRight) return;
+
+  const title = CG.state.course.title;
+  const href = CG.dom.local.nav.backBtn?.href;
+  if (!title || !href) return;
+
+  const link = el("div", { id: "header-course-link" }, [
+    el("a", { href: sanitizeUrl(href), textContent: title }),
+  ]);
+
+  headerRight.prepend(link);
 }
