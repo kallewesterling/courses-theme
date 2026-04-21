@@ -5,3 +5,6 @@ dist/
 
 # mock files
 mock.html
+
+# internal
+internal/
