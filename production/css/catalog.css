@@ -10,7 +10,7 @@ body.sj-page-detail-path {
 
   #cg-bg {
     position: absolute;
-    inset: 0;
+    inset: var(--spacing-0);
     z-index: -7 !important;
     width: 100%;
     height: 100%;
@@ -28,7 +28,7 @@ body.sj-page-detail-path {
       gap: var(--gap-6);
 
       .coursebox-container {
-        width: calc(50% - var(--spacing-px-24)) !important;
+        width: calc(50% - var(--spacing-6)) !important;
         margin: var(--spacing-0);
 
         @media screen and (max-width: 600px) {
@@ -41,8 +41,8 @@ body.sj-page-detail-path {
           left: 0 !important;
           z-index: 1 !important;
           width: 100% !important;
-          padding: var(--spacing-px-12) var(--spacing-px-12)
-            var(--spacing-px-12) var(--spacing-px-24) !important;
+          padding: var(--spacing-3) var(--spacing-3)
+            var(--spacing-3) var(--spacing-6) !important;
           margin-top: var(--spacing-0) !important;
           background-image: var(--gradient-primary) !important;
           color: var(--color-warning) !important;
@@ -72,12 +72,12 @@ body.sj-page-detail-path {
   #catalog-banner {
     width: 100%;
     max-width: 100%;
-    padding: 0 var(--spacing-px-32);
-    margin: var(--spacing-px-24) auto;
+    padding: var(--spacing-0) var(--spacing-8);
+    margin: var(--spacing-6) auto;
 
     @media screen and (max-width: 767px) {
-      padding: 0 var(--spacing-px-24);
-      margin-top: var(--spacing-px-24);
+      padding: var(--spacing-0) var(--spacing-6);
+      margin-top: var(--spacing-6);
     }
 
     .banner-inner {
@@ -115,11 +115,11 @@ body.sj-page-detail-path {
       justify-content: center;
       align-items: center;
       width: 100%;
-      padding: 160px var(--spacing-px-24);
+      padding: 160px var(--spacing-6);
       text-align: center;
 
       @media screen and (min-width: 1024px) {
-        padding: 40px var(--spacing-px-24);
+        padding: 40px var(--spacing-6);
       }
 
       h1 {
@@ -146,7 +146,7 @@ body.sj-page-detail-path {
       }
 
       p {
-        margin: var(--spacing-px-24) var(--spacing-0) var(--spacing-0);
+        margin: var(--spacing-6) var(--spacing-0) var(--spacing-0);
         color: var(--ink);
         font-family: Roobert, monospace;
         font-size: var(--font-size-md);
@@ -156,7 +156,7 @@ body.sj-page-detail-path {
 
         @media screen and (min-width: 1024px) {
           max-width: 404px;
-          margin-top: var(--spacing-px-16);
+          margin-top: var(--spacing-4);
           line-height: var(--line-height-normal);
         }
       }
@@ -166,10 +166,10 @@ body.sj-page-detail-path {
       display: flex;
       flex-wrap: wrap;
       gap: var(--gap-3);
-      margin-top: var(--spacing-px-24);
+      margin-top: var(--spacing-6);
 
       @media screen and (min-width: 1024px) {
-        margin-top: var(--spacing-px-32);
+        margin-top: var(--spacing-8);
       }
     }
 
@@ -218,7 +218,7 @@ body.sj-page-detail-path {
     }
 
     &.internal {
-      padding: var(--spacing-px-60);
+      padding: var(--spacing-15);
       border: var(--border-width-thin) solid var(--color-border-default);
       border-radius: var(--radius-4xl);
       background-color: var(--color-surface-base) 00;
@@ -235,11 +235,11 @@ body.sj-page-detail-path {
       grid-template-columns: 1fr;
 
       @media (min-width: 1200px) {
-        grid-template-columns: 38% calc(62% - var(--spacing-px-24)) !important;
+        grid-template-columns: 38% calc(62% - var(--spacing-6)) !important;
       }
 
       @media (min-width: 1536px) {
-        grid-template-columns: 34% calc(66% - var(--spacing-px-24)) !important;
+        grid-template-columns: 34% calc(66% - var(--spacing-6)) !important;
       }
     }
 
@@ -385,10 +385,10 @@ body.sj-page-detail-path {
     /* Card inner content area */
     .cards article .inner {
       position: relative;
-      padding: var(--spacing-px-24);
+      padding: var(--spacing-6);
 
       @media (min-width: 900px) {
-        padding: var(--spacing-px-32);
+        padding: var(--spacing-8);
       }
     }
 
@@ -398,8 +398,8 @@ body.sj-page-detail-path {
       display: inline-flex;
       align-items: center;
       gap: var(--gap-1-5);
-      padding: var(--spacing-px-4) var(--spacing-px-12);
-      margin: var(--spacing-px-12) var(--spacing-px-12) var(--spacing-0)
+      padding: var(--spacing-1) var(--spacing-3);
+      margin: var(--spacing-3) var(--spacing-3) var(--spacing-0)
         var(--spacing-0);
       border: var(--border-width-thin) solid var(--color-purple-light);
       border-radius: var(--radius-pill);
@@ -426,8 +426,8 @@ body.sj-page-detail-path {
     .cards article .pill.completed,
     .cards article .pill.in-progress {
       position: absolute;
-      top: var(--spacing-px-24);
-      right: var(--spacing-px-24);
+      top: var(--spacing-6);
+      right: var(--spacing-6);
     }
 
     /* Completed pill styling */
@@ -460,7 +460,7 @@ body.sj-page-detail-path {
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      padding: var(--spacing-px-16);
+      padding: var(--spacing-4);
       margin: var(--spacing-0) auto var(--space-3);
       border: var(--border-width-thin) solid var(--icon-border);
       border-radius: var(--radius-1);
@@ -470,7 +470,7 @@ body.sj-page-detail-path {
     /* Card h5 (course type/category) */
     .cards article h5 {
       padding: var(--spacing-0);
-      margin: var(--spacing-0) var(--spacing-0) var(--spacing-px-8);
+      margin: var(--spacing-0) var(--spacing-0) var(--spacing-2);
       color: var(--color-purple-medium);
       font-family: inherit;
       font-size: var(--font-size-xs-plus);
@@ -484,7 +484,7 @@ body.sj-page-detail-path {
 
     /* Card h3 (course title) */
     .cards article h3 {
-      margin: var(--spacing-0) var(--spacing-0) var(--spacing-px-8);
+      margin: var(--spacing-0) var(--spacing-0) var(--spacing-2);
       font-size: var(
         --font-size-xl
       ); /* Fluid: scales 20px-24px automatically */
@@ -519,19 +519,19 @@ body.sj-page-detail-path {
     width: 100%;
     max-width: 1232px;
     min-height: 200px;
-    padding-right: var(--spacing-px-32);
-    padding-left: var(--spacing-px-32);
+    padding-right: var(--spacing-8);
+    padding-left: var(--spacing-8);
     margin: var(--spacing-0) auto;
     background-color: var(--blurple);
 
     h2 {
       max-width: 1040px;
       margin-top: 96px;
-      margin-bottom: var(--spacing-px-48);
+      margin-bottom: var(--spacing-12);
       color: var(--color-surface-base);
       font-size: var(--font-size-6xl);
       line-height: var(--line-height-88);
-      letter-spacing: var(--letter-spacing-px-tight-xl);
+      letter-spacing: var(--letter-spacing-tightest);
     }
 
     > svg {
@@ -555,7 +555,7 @@ body.sj-page-detail-path {
       gap: var(--gap-2);
       column-gap: var(--gap-2);
       min-width: 180px;
-      padding: var(--spacing-px-24);
+      padding: var(--spacing-6);
       border-width: var(--border-width-thin);
       background-color: var(--color-surface-base);
       color: var(--ink) !important;
@@ -592,8 +592,8 @@ body.sj-page-detail-path {
 
     @media screen and (max-width: 767px) {
       h2 {
-        margin-top: var(--spacing-px-30);
-        margin-bottom: var(--spacing-px-30);
+        margin-top: var(--spacing-7-5);
+        margin-bottom: var(--spacing-7-5);
         font-size: var(--font-size-2xl);
         line-height: var(--line-height-38);
         letter-spacing: var(--letter-spacing-px-tight-lg);
@@ -601,7 +601,7 @@ body.sj-page-detail-path {
 
       > svg {
         display: block;
-        padding-top: var(--spacing-px-32);
+        padding-top: var(--spacing-8);
       }
 
       > div > svg {

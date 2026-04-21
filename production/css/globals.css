@@ -44,7 +44,7 @@ label {
 }
 
 .button {
-  padding: var(--spacing-px-10) var(--spacing-px-20);
+  padding: var(--spacing-2-5) var(--spacing-5);
   border: var(--border-width-none);
   background-color: var(--blurple);
   color: var(--white) !important;

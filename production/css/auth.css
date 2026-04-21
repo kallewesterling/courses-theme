@@ -33,7 +33,7 @@ body.sj-page-signup {
     align-items: center;
     gap: var(--gap-3);
     min-height: 100vh;
-    padding: var(--spacing-px-24) var(--spacing-px-16);
+    padding: var(--spacing-6) var(--spacing-4);
     flex-grow: 1;
 
     @media screen and (max-width: 500px) {
@@ -45,10 +45,10 @@ body.sj-page-signup {
       /* Shared styles for tabs + auth card */
       display: flex;
       width: min(560px, 94vw);
-      margin: var(--spacing-px-18) auto 0;
+      margin: var(--spacing-4-5) auto var(--spacing-0);
 
       @media screen and (max-width: 767px) {
-        margin: var(--spacing-px-8) auto 0;
+        margin: var(--spacing-2) auto var(--spacing-0);
       }
     }
 
@@ -58,7 +58,7 @@ body.sj-page-signup {
       justify-content: flex-start;
       align-items: center;
       gap: var(--gap-3);
-      padding: var(--spacing-0) var(--spacing-px-2);
+      padding: var(--spacing-0) var(--spacing-0-5);
 
       .tab-marker {
         display: none; /* hide old pointer image */
@@ -69,7 +69,7 @@ body.sj-page-signup {
         display: inline-flex;
         align-items: center;
         height: 44px;
-        padding: var(--spacing-0) var(--spacing-px-18);
+        padding: var(--spacing-0) var(--spacing-4-5);
         border: var(--border-width-thin) solid transparent;
         border-radius: var(--radius-pill);
         background-color: var(--color-surface-accent);
@@ -81,7 +81,7 @@ body.sj-page-signup {
     .auth-card {
       flex-direction: column;
       align-items: center;
-      padding: var(--spacing-px-30) var(--spacing-px-40) var(--spacing-px-24);
+      padding: var(--spacing-7-5) var(--spacing-10) var(--spacing-6);
       border: var(--border-width-thin) solid var(--border);
       border-radius: var(--radius-xl);
       background: var(--paper);
@@ -91,7 +91,7 @@ body.sj-page-signup {
         /* "or" divider before "login with google" button */
         position: relative;
         width: 100%;
-        margin: var(--spacing-px-24) 0;
+        margin: var(--spacing-6) var(--spacing-0);
         text-align: center;
 
         &::before {
@@ -108,7 +108,7 @@ body.sj-page-signup {
         span {
           position: relative;
           z-index: 20;
-          padding: var(--spacing-0) var(--spacing-px-12);
+          padding: var(--spacing-0) var(--spacing-3);
           background-color: var(--color-surface-base);
           color: var(--color-text-gray-medium);
           font-size: var(--font-size-sm);
@@ -168,7 +168,7 @@ body.sj-page-signup {
         opacity: 0.5;
 
         @media screen and (max-width: 767px) {
-          margin: var(--spacing-px-32) var(--spacing-0) var(--spacing-0);
+          margin: var(--spacing-8) var(--spacing-0) var(--spacing-0);
           font-size: var(--font-size-xs);
         }
 
@@ -194,7 +194,7 @@ body.sj-page-signup {
     input[type="email"],
     input[type="password"] {
       height: 56px;
-      padding: var(--spacing-px-20) var(--spacing-px-15);
+      padding: var(--spacing-5) var(--spacing-3-75);
       border: var(--border-width-medium) solid var(--blurple); /* rgba(60, 68, 247, 0.55) */
       border-radius: var(--radius-md);
       background-color: var(--color-surface-base);
@@ -205,13 +205,13 @@ body.sj-page-signup {
       box-shadow: var(--shadow-input-outline);
 
       @media screen and (max-width: 991px) {
-        padding: var(--spacing-px-12);
-        margin-bottom: var(--spacing-px-24);
+        padding: var(--spacing-3);
+        margin-bottom: var(--spacing-6);
         border: var(--border-width-medium) solid var(--detail-medium-contrast);
       }
 
       @media screen and (max-width: 767px) {
-        margin-bottom: var(--spacing-px-12);
+        margin-bottom: var(--spacing-3);
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -239,7 +239,7 @@ body.sj-page-signup {
     }
 
     label {
-      margin-bottom: var(--spacing-px-8);
+      margin-bottom: var(--spacing-2);
       font-family: Gellix, sans-serif;
       font-size: var(--font-size-base);
       font-weight: var(--font-weight-bold);
@@ -251,7 +251,7 @@ body.sj-page-signup {
     #button-sign-up {
       width: 100%;
       height: 56px;
-      margin-top: var(--spacing-px-10);
+      margin-top: var(--spacing-2-5);
       border: var(--border-width-medium) solid var(--blurple);
       border-radius: var(--radius-pill);
       background-color: transparent;
@@ -261,7 +261,7 @@ body.sj-page-signup {
       transition: var(--transition-button-full);
 
       @media screen and (max-width: 991px) {
-        margin-bottom: var(--spacing-px-12);
+        margin-bottom: var(--spacing-3);
       }
 
       &:hover {
@@ -287,7 +287,7 @@ body.sj-page-signup {
   /* Forgot password */
   .forgot-password {
     float: right;
-    margin: -6px var(--spacing-0) var(--spacing-px-24) var(--spacing-0);
+    margin: -6px var(--spacing-0) var(--spacing-6) var(--spacing-0);
     color: var(--brand-ink);
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
@@ -296,7 +296,7 @@ body.sj-page-signup {
     border-bottom: var(--border-width-medium) solid transparent;
 
     @media screen and (max-width: 991px) {
-      margin: var(--spacing-px-6) var(--spacing-0) var(--spacing-px-14) var(--spacing-0);
+      margin: var(--spacing-1-5) var(--spacing-0) var(--spacing-3-5) var(--spacing-0);
     }
 
     &:hover {
@@ -336,7 +336,7 @@ body.sj-page-signup #tabs #login-tab-left {
     display: inline-flex;
     align-items: center;
     height: 44px;
-    padding: var(--spacing-0) var(--spacing-px-18);
+    padding: var(--spacing-0) var(--spacing-4-5);
     border-radius: var(--radius-pill);
     color: var(--color-brand-primary-disabled) !important;
     font-weight: var(--font-weight-extrabold);
@@ -350,14 +350,14 @@ body.sj-page-login {
     /* Login form elements */
 
     button#button-sign-in {
-      margin-bottom: var(--spacing-px-2);
+      margin-bottom: var(--spacing-0-5);
       font-family: Roobert, monospace;
       /* Forgot password text + login button */
       font-size: var(--font-size-base);
     }
 
     .large-12.columns:has(#button-sign-in) {
-      margin-bottom: var(--spacing-px-24);
+      margin-bottom: var(--spacing-6);
     }
 
     #id_password {
@@ -379,7 +379,7 @@ body.sj-page-signup {
 
   #signup_form {
     #id_password2 {
-      margin-bottom: var(--spacing-px-24);
+      margin-bottom: var(--spacing-6);
     }
 
     .text-center {

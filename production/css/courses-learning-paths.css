@@ -76,7 +76,7 @@ body.sj-page-curriculum {
         .sj-course-info-wrapper h2 {
           display: block !important;
           max-width: 80%;
-          margin: var(--spacing-0) var(--spacing-0) var(--spacing-px-24) 0;
+          margin: var(--spacing-0) var(--spacing-0) var(--spacing-6) var(--spacing-0);
           color: var(--ink) !important;
           font-family: Roobert, monospace;
           font-size: var(--font-size-base);
@@ -85,7 +85,7 @@ body.sj-page-curriculum {
         }
 
         h1.break-word {
-          margin: var(--spacing-0) var(--spacing-0) var(--spacing-px-12) 0;
+          margin: var(--spacing-0) var(--spacing-0) var(--spacing-3) var(--spacing-0);
           color: var(--ink) !important;
           font-size: var(--font-size-3xl);
           font-weight: var(--font-weight-semibold);
@@ -108,7 +108,7 @@ body.sj-page-curriculum {
     /* Page content */
     max-width: min(1188px, 90%);
     padding: var(--spacing-0);
-    margin: var(--spacing-5) auto var(--spacing-px-46) auto;
+    margin: var(--spacing-5) auto var(--spacing-11-5) auto;
 
     @media screen and (max-width: 991px) {
       grid-template-columns: 1fr;
@@ -132,7 +132,7 @@ body.sj-page-curriculum {
         float: none;
         width: 100%;
         padding: var(--spacing-0);
-        margin-bottom: var(--spacing-px-48);
+        margin-bottom: var(--spacing-12);
 
         h3 {
           /* Headers in content + curriculum */

@@ -1,6 +1,6 @@
 #completion-popup {
   position: fixed; /* covers viewport */
-  inset: 0;
+  inset: var(--spacing-0);
   z-index: 9999;
   display: none;
   background-color: var(--overlay-dark);
@@ -13,7 +13,7 @@
 
   #completion-content {
     position: absolute;
-    inset: 0;
+    inset: var(--spacing-0);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -23,7 +23,7 @@
     #completion-card {
       width: calc(100% - 32px);
       max-width: 520px;
-      padding: var(--spacing-px-24) 28px;
+      padding: var(--spacing-6) 28px;
       border-radius: var(--radius-3xl);
       background-color: var(--color-surface-base);
       font-family: inherit;
@@ -32,17 +32,17 @@
       box-shadow: var(--shadow-elevation-lg);
 
       h1 {
-        margin: var(--spacing-0) 0 0.5rem 0;
+        margin: var(--spacing-0) var(--spacing-0) 0.5rem var(--spacing-0);
         font-size: var(--font-size-xl);
       }
 
       #completion-sub {
-        margin: var(--spacing-0) 0 0 0;
+        margin: var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-0);
         opacity: 0.85;
       }
 
       #completion-notice {
-        margin: var(--spacing-px-16) 0 0 0;
+        margin: var(--spacing-4) var(--spacing-0) var(--spacing-0) var(--spacing-0);
         font-size: var(--font-size-base);
         opacity: 0.7;
       }

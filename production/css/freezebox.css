@@ -99,7 +99,7 @@ body.sj-page-catalog {
 
   /* Course overview content */
   #catalog-courses .coursebox-container .course-overview__content {
-    padding: var(--spacing-px-8) var(--spacing-px-8) 0 var(--spacing-px-8);
+    padding: var(--spacing-2) var(--spacing-2) var(--spacing-0) var(--spacing-2);
   }
 
   /* Course overview links */
@@ -119,6 +119,6 @@ body.sj-page-catalog {
 
   /* Padding when badge box present */
   #catalog-courses .coursebox-container:has(.badge-box) {
-    padding-top: var(--spacing-px-48);
+    padding-top: var(--spacing-12);
   }
 }

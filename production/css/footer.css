@@ -6,7 +6,7 @@
 
 footer {
   border-top: 1px solid var(--color-border-accent);
-  margin: 63px 0 0;
+  margin: 63px var(--spacing-0) var(--spacing-0);
 
   .footer-content-container,
   .footer-bottom-bar {
@@ -66,7 +66,7 @@ footer {
       line-height: var(--line-height-21);
 
       > div + div:last-child {
-        margin-top: var(--spacing-px-24);
+        margin-top: var(--spacing-6);
       }
 
       a,
@@ -76,14 +76,14 @@ footer {
 
       a {
         display: block;
-        margin: var(--spacing-px-14) 0;
+        margin: var(--spacing-3-5) var(--spacing-0);
         color: var(--color-text-secondary) !important;
         font-weight: var(--font-weight-normal);
         text-decoration: none;
       }
 
       h2 {
-        margin: var(--spacing-0) var(--spacing-0) var(--spacing-px-15) 0;
+        margin: var(--spacing-0) var(--spacing-0) var(--spacing-3-75) var(--spacing-0);
         color: var(--color-text-tertiary) !important;
         font-family: Roobert, monospace;
         font-size: var(--font-size-xs);
@@ -165,8 +165,8 @@ footer {
         }
 
         .ctas .button {
-          padding: var(--spacing-px-24);
-          margin-bottom: var(--spacing-px-32);
+          padding: var(--spacing-6);
+          margin-bottom: var(--spacing-8);
           font-size: var(--font-size-lg);
         }
       }
@@ -189,11 +189,11 @@ footer {
       gap: var(--gap-8);
       grid-template-columns: 1fr;
       width: 100% !important;
-      padding: var(--spacing-0) var(--spacing-px-20) 0 var(--spacing-px-20);
+      padding: var(--spacing-0) var(--spacing-5) var(--spacing-0) var(--spacing-5);
 
       .primary-col .small-logo {
         display: block !important;
-        margin-bottom: var(--spacing-px-10);
+        margin-bottom: var(--spacing-2-5);
       }
     }
 

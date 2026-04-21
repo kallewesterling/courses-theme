@@ -14,7 +14,7 @@ body.sj-page-detail-path {
     display: flex;
     align-items: center;
     gap: var(--gap-2);
-    margin-bottom: var(--spacing-px-16);
+    margin-bottom: var(--spacing-4);
   }
 
   .sj-floater-text {
@@ -43,7 +43,7 @@ body.sj-page-detail-course {
     display: flex;
     align-items: center;
     gap: var(--gap-2);
-    margin-bottom: var(--spacing-px-16);
+    margin-bottom: var(--spacing-4);
   }
 
   .course-meta-sep {
@@ -96,7 +96,7 @@ body.sj-page-detail-course {
     gap: 6px !important;
     width: fit-content !important;
     padding: 4px 10px !important;
-    margin-bottom: 0 !important;
+    margin-bottom: var(--spacing-0) !important;
     border: var(--border-width-thin) solid rgb(98 38 251 / 0.35) !important;
     border-radius: var(--radius-pill) !important;
     color: var(--blurple) !important;
@@ -157,8 +157,8 @@ body.sj-page-detail-course {
     gap: var(--gap-4) !important;
     grid-template-columns: repeat(3, 1fr) !important;
     width: 100% !important;
-    padding: var(--spacing-px-16) var(--spacing-px-24) !important;
-    margin-bottom: var(--spacing-px-20) !important;
+    padding: var(--spacing-4) var(--spacing-6) !important;
+    margin-bottom: var(--spacing-5) !important;
     border: var(--border-width-none) !important;
     border-radius: var(--radius-lg) !important;
     background-color: var(--blurple) !important;
@@ -209,18 +209,18 @@ body.sj-page-detail-course {
       .detail-item:not(:last-child) {
         border-right: none;
         border-bottom: var(--border-width-thin) solid rgb(255 255 255 / 0.2);
-        padding-right: 0;
+        padding-right: var(--spacing-0);
         padding-bottom: var(--gap-3);
       }
     }
   }
 
   .tabs {
-    margin: var(--spacing-0) var(--spacing-0) var(--spacing-px-46) 0;
+    margin: var(--spacing-0) var(--spacing-0) var(--spacing-11-5) var(--spacing-0);
     visibility: visible;
 
     @media screen and (max-width: 991px) {
-      margin: var(--spacing-24) var(--spacing-0) var(--spacing-px-46)
+      margin: var(--spacing-24) var(--spacing-0) var(--spacing-11-5)
         var(--spacing-0);
     }
 
@@ -235,7 +235,7 @@ body.sj-page-detail-course {
 
     section .content ul {
       list-style-position: outside;
-      padding-inline-start: var(--spacing-px-30);
+      padding-inline-start: var(--spacing-7-5);
     }
 
     section:nth-of-type(1) {
@@ -260,7 +260,7 @@ body.sj-page-detail-course {
     section:nth-of-type(2) {
       /* Course details section */
       padding: var(--spacing-0) !important;
-      margin-top: var(--spacing-px-48);
+      margin-top: var(--spacing-12);
     }
 
     section:nth-of-type(2) h3 {
@@ -293,8 +293,8 @@ body.sj-page-detail-course {
 
   /* ── "Lessons" heading — always prepended by view functions ────────────── */
   .curriculum-header {
-    padding: var(--spacing-0) var(--spacing-0) var(--spacing-px-12) var(--spacing-0);
-    margin: var(--spacing-0) var(--spacing-0) var(--spacing-px-12) var(--spacing-0);
+    padding: var(--spacing-0) var(--spacing-0) var(--spacing-3) var(--spacing-0);
+    margin: var(--spacing-0) var(--spacing-0) var(--spacing-3) var(--spacing-0);
     color: var(--ink) !important;
     font-family: Gellix, sans-serif;
     font-size: var(--font-size-md) !important;
@@ -305,14 +305,14 @@ body.sj-page-detail-course {
 
   .curriculum-wrapper {
     padding: var(--spacing-0);
-    margin-bottom: var(--spacing-px-30);
+    margin-bottom: var(--spacing-7-5);
     border: var(--border-width-none);
     counter-reset: lesson; /* per-section: lesson counter restarts at 01 in each section */
 
     h3 {
       /* Section label for nested courses — subtle gray uppercase */
-      padding: var(--spacing-px-24) var(--spacing-px-12) var(--spacing-0) var(--spacing-px-12);
-      margin: 0 !important;
+      padding: var(--spacing-6) var(--spacing-3) var(--spacing-0) var(--spacing-3);
+      margin: var(--spacing-0) !important;
       color: var(--color-text-muted) !important;
       font-family: inherit !important;
       font-size: var(--font-size-xs) !important;
@@ -329,7 +329,7 @@ body.sj-page-detail-course {
       flex-direction: row;
       align-items: baseline;
       gap: var(--gap-3);
-      padding: var(--spacing-px-12) var(--spacing-px-12);
+      padding: var(--spacing-3) var(--spacing-3);
       color: var(--ink-dim) !important;
       font-family: inherit;
       font-size: var(--font-size-sm);
@@ -378,7 +378,7 @@ body.sj-page-detail-course {
 
   /* Nested curriculum: collapse gaps so sections flow as a continuous list */
   .curriculum-wrapper:not(:only-child) {
-    margin-bottom: 0;
+    margin-bottom: var(--spacing-0);
   }
 
   /* Thin top border on each section label except the first — acts as the
@@ -577,10 +577,10 @@ body.sj-page-curriculum {
     margin: var(--spacing-0) !important;
 
     section {
-      margin-bottom: var(--spacing-px-48) !important;
+      margin-bottom: var(--spacing-12) !important;
 
       @media screen and (max-width: 767px) {
-        margin-bottom: var(--spacing-px-24) !important;
+        margin-bottom: var(--spacing-6) !important;
       }
     }
 
@@ -665,7 +665,7 @@ body.sj-page-curriculum {
 /* Reset the inner Skilljar button — the wrapper owns shape, colour & hover */
 .cta-badge-btn .button {
   padding: 19px 26px !important;
-  margin: 0 !important;
+  margin: var(--spacing-0) !important;
   border-radius: 0 !important;
   background-color: transparent !important;
   box-shadow: none !important;
