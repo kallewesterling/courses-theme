@@ -3,7 +3,6 @@ import { logger } from "./logger.mjs";
 
 // static import
 import { logo } from "../data/graphics.mjs";
-import { partnerErrorMessage } from "../data/messages.mjs";
 import { config } from "../data/config.mjs";
 
 /**
@@ -364,8 +363,6 @@ export const CG = {
   },
 
   data: {
-    partnerErrorMessage,
-
     get curriculumSections() {
       if (!CG.dom.curriculumContainer) return [];
 

@@ -1,6 +1,9 @@
 import { Q, el } from "../utils.mjs";
 import { CG } from "../CG.mjs";
 
+// static imports
+import { partnerErrorMessage } from "../data/messages.mjs";
+
 /**
  * This function applies styling to the 404 error page.
  * @returns {void}
@@ -12,7 +15,7 @@ export function notFoundView() {
         el("hr"),
         el("p", {
           classList: "sj-text-page-not-found-explanation",
-          innerHTML: CG.data.partnerErrorMessage,
+          innerHTML: partnerErrorMessage,
         }),
       ]
     );
