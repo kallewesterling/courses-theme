@@ -497,8 +497,42 @@ export function lessonView() {
 
   if (typeof resources !== "undefined") buildResourceBox();
 
+  slugifyHeadings();
   buildToc();
   buildEndBanner();
+}
+
+/**
+ * Generates URL-friendly slugs for all <h3> headings in the lesson content that don't already have an ID.
+ * The slugs are created by taking the text content of the heading, converting it to lowercase, replacing
+ * spaces with hyphens, and removing special characters. If multiple headings have the same text, a unique
+ * suffix is added to ensure all IDs are distinct.
+ * @returns {void}
+ */
+function slugifyHeadings() {
+  const inner = CG.dom.local.lesson.innerBody;
+  if (!inner) return;
+
+  const seen = new Set();
+  inner.querySelectorAll("h3").forEach((h) => {
+    if (h.id) return;
+
+    let slug = h.textContent
+      .trim()
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/[\s_]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+
+    if (seen.has(slug)) {
+      let i = 2;
+      while (seen.has(`${slug}-${i}`)) i++;
+      slug = `${slug}-${i}`;
+    }
+
+    seen.add(slug);
+    h.id = slug;
+  });
 }
 
 /**
@@ -546,6 +580,13 @@ function buildToc() {
   headings.forEach((h) => observer.observe(h));
 }
 
+/**
+ * Builds an end-of-lesson banner that appears at the bottom of the lesson content when the user reaches the end.
+ * The banner includes a message indicating that the user has reached the end of the lesson, and a button to mark
+ * the lesson as complete and continue to the next lesson. The next lesson's URL and title are extracted from the
+ * existing footer controls.
+ * @returns {void}
+ */
 function buildEndBanner() {
   const inner = CG.dom.local.lesson.innerBody;
   if (!inner) return;
