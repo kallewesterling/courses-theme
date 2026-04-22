@@ -1,7 +1,7 @@
 import { Q, A, el } from "./utils.mjs";
 import { CG } from "./CG.mjs";
 import { pageHandlers } from "./router.mjs";
-import { animateCompletion } from "./course-completion.mjs";
+import { animateCompletion, shoot } from "./course-completion.mjs";
 import { logger } from "./logger.mjs";
 
 // static imports
@@ -133,6 +133,7 @@ export function setupDebug() {
     // Expose logger and animateCompletion to the global scope for debugging and external triggers
     window.logger = logger;
     window.animateCompletion = animateCompletion;
+    window.shoot = shoot;
     window.CG = CG; // Expose CG for easier debugging access to state and environment
   }
 }
