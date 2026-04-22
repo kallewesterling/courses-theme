@@ -763,7 +763,7 @@ function buildCompletionBadge() {
     textContent: "Browse more courses →",
   });
 
-  const badge = el("div", { className: "completion-badge" }, [
+  const badge = el("div", { className: "completion-badge no-select" }, [
     el("div", { className: "completion-badge-icon", textContent: "🎉" }),
     el("div", { className: "completion-badge-title", textContent: "Course complete!" }),
     el("div", { className: "completion-badge-subtitle", textContent: "You've finished every lesson." }),
