@@ -727,7 +727,7 @@ body.sj-page-lesson {
                 display: inline-flex;
                 padding: var(--spacing-0) var(--spacing-2);
                 margin: var(--spacing-0);
-                background-color: var(--color-border-accent) !important;
+                background-color: var(--ink-5) !important;
                 color: var(--color-text-purple-link) !important;
                 font-size: var(--font-size-sm-large);
               }
