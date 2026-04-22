@@ -777,7 +777,7 @@ function buildCompletionBadge() {
     //   x: (rect.left + rect.width / 2) / window.innerWidth,
     //   y: (rect.top + rect.height / 2) / window.innerHeight,
     // };
-    const coords = { x: e.clientX, y: e.clientY };
+    const coords = { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight };
     shoot("big", coords);
   });
 

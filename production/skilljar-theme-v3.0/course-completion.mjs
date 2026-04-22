@@ -127,29 +127,24 @@ export function hideCompletion(elem) {
  * Shoot confetti bursts with stars, circles, and logos.
  * @returns {void}
  */
-export function shoot(size = "big", { x, y } = {
-  x: window.innerWidth / 2,
-  y: window.innerHeight / 3,
-}) {
-  let configConfetti = Object.assign(config.confetti.defaults, {
-    origin: { x, y },
-  });
+export function shoot(size = "big", { x, y } = { x: 0.5, y: 0.33 }) {
+  const configConfetti = { ...config.confetti.defaults, origin: { x, y } };
   logger.info("Shooting confetti", configConfetti);
   if (size === "big") {
     confetti({
-      ...config.confetti.defaults,
+      ...configConfetti,
       particleCount: config.confetti.particles.stars.count,
       scalar: config.confetti.particles.stars.scalar,
       shapes: ["star"],
     });
     confetti({
-      ...config.confetti.defaults,
+      ...configConfetti,
       particleCount: config.confetti.particles.circles.count,
       scalar: config.confetti.particles.circles.scalar,
       shapes: ["circle"],
     });
     confetti({
-      ...config.confetti.defaults,
+      ...configConfetti,
       particleCount: config.confetti.particles.logos.count,
       scalar: config.confetti.particles.logos.scalar,
       shapes: ["image"],
@@ -164,23 +159,23 @@ export function shoot(size = "big", { x, y } = {
       },
     });
   } else if (size === "small") {
-    configConfetti = Object.assign(configConfetti, config.confetti.small, { particleCount: 40 });
+    const smallConfetti = { ...configConfetti, ...config.confetti.small };
 
     confetti({
-      ...configConfetti,
-      particleCount: 120 / 3, //config.confetti.particles.stars.count,
+      ...smallConfetti,
+      particleCount: 120 / 3,
       scalar: config.confetti.particles.stars.scalar,
       shapes: ["star"],
     });
     confetti({
-      ...configConfetti,
-      particleCount: 120 / 3, //config.confetti.particles.circles.count,
+      ...smallConfetti,
+      particleCount: 120 / 3,
       scalar: config.confetti.particles.circles.scalar,
       shapes: ["circle"],
     });
     confetti({
-      ...configConfetti,
-      particleCount: 120 / 3, // config.confetti.particles.logos.count,
+      ...smallConfetti,
+      particleCount: 120 / 3,
       scalar: config.confetti.particles.logos.scalar,
       shapes: ["image"],
       shapeOptions: {
