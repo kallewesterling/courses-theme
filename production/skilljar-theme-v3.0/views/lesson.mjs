@@ -676,6 +676,9 @@ function buildEndBanner() {
   const inner = CG.dom.local.lesson.innerBody;
   if (!inner) return;
 
+  const activeLesson = Q(".lesson-row.lesson-active", CG.dom.local.nav.menu)?.closest("a.lesson");
+  if (activeLesson?.querySelector(".fa-check-circle")) return;
+
   const footerNext = Q("#lp-footer .next-lesson-link");
   if (!footerNext) return;
 
