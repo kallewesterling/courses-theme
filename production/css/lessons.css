@@ -143,20 +143,18 @@ body.sj-page-lesson {
     position: fixed; /* fixed so it stays at the viewport edge and doesn't scroll away */
     top: 60px !important; /* Skilljar Override: cbp-spmenu sets top: 0, we need below fixed header */
     left: 0;
+    display: flex;
+    flex-direction: column;
     width: 292px; /* formerly 320px; */
     height: calc(100vh - 60px) !important; /* Skilljar Override: cbp-spmenu sets height: 100% */
     margin-top: 0;
-    overflow-y: auto;
+    overflow: hidden; /* lessons-wrapper handles its own scroll */
     background-color: var(--color-surface-soft);
     transform: translateX(-100%);
     transition: transform 0.25s ease;
-    /* Left hand nav menu */
-    /* To counteract padding in footer, add margin-bottom: -63px; here if we add footer back! */
 
     @media screen and (max-width: 767px) {
-      /* Responsive styles for left nav menu */
       height: calc(100vh - 60px) !important;
-      padding-bottom: var(--spacing-10);
       background-color: var(--color-surface-base);
 
       &.cbp-spmenu-open {
@@ -196,7 +194,10 @@ body.sj-page-lesson {
     }
 
     .lessons-wrapper {
-      padding: var(--spacing-2) var(--spacing-3) var(--spacing-8);
+      flex: 1;
+      min-height: 0;
+      padding: var(--spacing-2) var(--spacing-3) var(--spacing-4);
+      overflow-y: auto;
 
       h3.section-title {
         padding: var(--spacing-3) var(--spacing-2) var(--spacing-1) !important;
@@ -318,9 +319,10 @@ body.sj-page-lesson {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
-      padding: 18px 16px 14px;
-      margin: var(--spacing-3) var(--spacing-0) var(--spacing-2);
+      flex-shrink: 0;
+      gap: 10px;
+      padding: 24px 20px;
+      margin: var(--spacing-0) var(--spacing-3) var(--spacing-3);
       border: 1px solid #a0e5a8;
       border-radius: 14px;
       background-image: linear-gradient(145deg, #d4f5d8 0%, #b8eebd 100%);
