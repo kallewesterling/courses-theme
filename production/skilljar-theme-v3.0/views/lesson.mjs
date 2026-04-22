@@ -406,6 +406,21 @@ function setupLessonNav() {
 function createResourceCard(
   resource = { link: "#", title: "Resources", tags: [] },
 ) {
+  const cards = [
+    Array.isArray(resource.tags) && resource.tags.length > 0
+      ? el(
+        "div",
+        { className: "badge-container" },
+        resource.tags.map((tag) =>
+          el("div", { className: "badge", text: tag }),
+        ),
+      )
+      : undefined,
+
+    // title
+    el("h5", { className: "card-title", text: resource.title }),
+  ];
+  
   return el(
     "a",
     {
@@ -418,20 +433,7 @@ function createResourceCard(
         el(
           "div",
           { className: "card-body" },
-          [
-            Array.isArray(resource.tags) && resource.tags.length > 0
-              ? el(
-                "div",
-                { className: "badge-container" },
-                resource.tags.map((tag) =>
-                  el("div", { className: "badge", text: tag }),
-                ),
-              )
-              : undefined,
-
-            // title
-            el("h5", { className: "card-title", text: resource.title }),
-          ].filter(Boolean),
+          cards.filter(Boolean),
         ),
       ]),
     ],
