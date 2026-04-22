@@ -51,11 +51,11 @@ export function ensureCompletionPopup(title) {
             }),
             el("p", {
               id: "completion-sub",
-              textContent: completion.subTitle,
+              textContent: completion.popup.subTitle,
             }),
             el("p", {
               id: "completion-notice",
-              innerHTML: render(completion.notice, {
+              innerHTML: render(completion.popup.notice, {
                 seconds: config.confetti.autoHideMs / 1000,
               }),
             }),
@@ -200,10 +200,10 @@ export function shoot(size = "big", { x, y } = { x: 0.5, y: 0.33 }) {
 export function animateCompletion(type = "course") {
   const title =
     type === "path"
-      ? render(completion.pathTitle, {
+      ? render(completion.popup.pathTitle, {
         pathTitle: CG.state.course.path?.title ?? "the learning path",
       })
-      : render(completion.title, {
+      : render(completion.popup.title, {
         courseTitle: CG.state.course?.title ?? "the course",
       });
 
