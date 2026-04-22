@@ -126,8 +126,12 @@ export function hideCompletion(elem) {
  * Shoot confetti bursts with stars, circles, and logos.
  * @returns {void}
  */
-export function shoot() {
-  confetti({
+export function shoot(size="big", {x, y} = {
+  x: window.innerWidth / 2,
+  y: window.innerHeight / 3,
+}) {
+  if (size === "big") {
+    confetti({
     ...config.confetti.defaults,
     particleCount: config.confetti.particles.stars.count,
     scalar: config.confetti.particles.stars.scalar,
@@ -154,6 +158,40 @@ export function shoot() {
       ],
     },
   });
+  } else if (size === "small") {
+    const configConfetti = Object.assign(config.confetti.defaults, config.confetti.small, {
+      particleCount: 120/3,
+      origin: { x, y },
+    });
+    
+    confetti({
+      ...configConfetti,
+      particleCount: 120/3, //config.confetti.particles.stars.count,
+      scalar: config.confetti.particles.stars.scalar,
+      shapes: ["star"],
+    });
+    confetti({
+      ...configConfetti,
+      particleCount: 120/3, //config.confetti.particles.circles.count,
+      scalar: config.confetti.particles.circles.scalar,
+      shapes: ["circle"],
+    });
+    confetti({
+      ...configConfetti,
+      particleCount: 120/3, // config.confetti.particles.logos.count,
+      scalar: config.confetti.particles.logos.scalar,
+      shapes: ["image"],
+      shapeOptions: {
+        image: [
+          {
+            src: "https://cc.sj-cdn.net/instructor/l9kl0bllkdr4-chainguard/themes/2gr0n1rmedy35/favicon.1757695230.png",
+            width: 32,
+            height: 32,
+          },
+        ],
+      },
+    });
+  }
 }
 
 /**

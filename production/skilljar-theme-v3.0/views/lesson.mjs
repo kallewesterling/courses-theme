@@ -3,6 +3,7 @@ import { CG } from "../CG.mjs";
 import { setStyle } from "../styling.mjs";
 import { createClone } from "../icons.mjs";
 import { logger } from "../logger.mjs";
+import { shoot } from "../course-completion.mjs";
 import {
   addLineNumberSpans,
   parseLineSpec,
@@ -754,42 +755,12 @@ function buildCompletionBadge() {
 
   badge.addEventListener("click", (e) => {
     if (e.target.closest(".completion-badge-cta")) return;
-    fireConfetti(badge);
+    const coords = {
+      x: badge.getBoundingClientRect().left + badge.offsetWidth / 2,
+      y: badge.getBoundingClientRect().top + badge.offsetHeight / 2,
+    };
+    shoot("big", coords);
   });
 
   nav.append(badge);
-}
-
-/**
- * Fires a confetti burst originating from the given element.
- * Lazily loads canvas-confetti on first call.
- * @param {HTMLElement} sourceEl
- * @returns {void}
- */
-function fireConfetti(sourceEl) {
-  function launch(confettiLib) {
-    const rect = sourceEl.getBoundingClientRect();
-    confettiLib({
-      particleCount: 120,
-      spread: 80,
-      origin: {
-        x: (rect.left + rect.width / 2) / window.innerWidth,
-        y: (rect.top + rect.height / 2) / window.innerHeight,
-      },
-      colors: ["#3ab74a", "#6226fb", "#ffd700", "#ff6b6b", "#4ecdc4"],
-      startVelocity: 35,
-      gravity: 0.9,
-      ticks: 200,
-    });
-  }
-
-  if (window.confetti) {
-    launch(window.confetti);
-    return;
-  }
-
-  const script = document.createElement("script");
-  script.src = "https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js";
-  script.onload = () => launch(window.confetti);
-  document.head.appendChild(script);
 }

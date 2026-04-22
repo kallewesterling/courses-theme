@@ -29,6 +29,13 @@ export const config = {
       shapes: ["star"],
       colors: ["#C6FF50", "#50FFE1"],
     },
+    small: {
+      decay: 1.02,
+      gravity: 0.9,
+      spread: 80,
+      startVelocity: 35,
+      ticks: 50
+    }
   },
   codeTheme: "min-light", // Shiki theme to use for code blocks
 };
