@@ -165,42 +165,39 @@ body.sj-page-lesson {
     }
 
     a#returnToOverview {
-      display: flex;
-      justify-content: center;
-      padding: var(--spacing-1);
-      margin-top: var(--spacing-4);
-      border-radius: var(--radius-pill);
-      background: var(--blurple);
-      color: var(--color-surface-base) !important; /* Skilljar Override: White text on button */
-      font-size: var(--font-size-sm);
-      font-weight: var(--font-weight-semibold);
-      transition: var(--transition-button-minimal);
-
-      &:hover {
-        text-decoration: none !important; /* Skilljar Override: No underline on hover */
-      }
-
-      &:focus-visible {
-        outline: none;
-        box-shadow: var(--shadow-focus-ring);
-      }
-
-      &:active {
-        transform: translateY(1px);
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        transition: none;
-      }
-
-      > span.left-nav-return-text {
-        text-decoration: none !important; /* Skilljar Override: No underline on text span */
-      }
+      display: none !important;
     }
 
     h1.course-title {
-      color: var(--ink) !important; /* Skilljar Override: Custom title color */
-      font-family: Gellix, sans-serif;
+      display: none !important;
+    }
+
+    .nav-course-link {
+      display: flex;
+      align-items: center;
+      gap: var(--gap-1-5);
+      padding: var(--spacing-3) var(--spacing-3) var(--spacing-2);
+      color: var(--ink-dim) !important;
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+      text-decoration: none !important;
+      transition: color 0.15s;
+
+      &:hover {
+        color: var(--ink) !important;
+        text-decoration: none !important;
+      }
+    }
+
+    .nav-course-link-arrow {
+      font-size: 10px;
+      opacity: 0.6;
+    }
+
+    .nav-course-link-title {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
     .lessons-wrapper {

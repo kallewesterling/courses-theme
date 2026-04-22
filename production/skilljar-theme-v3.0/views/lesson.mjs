@@ -1,4 +1,4 @@
-import { A, Q, el, text, sanitizeUrl, toTitleCase } from "../utils.mjs";
+import { A, Q, el, sanitizeUrl, toTitleCase } from "../utils.mjs";
 import { CG } from "../CG.mjs";
 import { setStyle } from "../styling.mjs";
 import { createClone } from "../icons.mjs";
@@ -14,7 +14,6 @@ import * as shiki from "https://esm.sh/shiki@3.0.0";
 
 // static imports
 import { config } from "../../data/config.mjs";
-import { term } from "../../data/messages.mjs";
 
 /**
  * Builds resource boxes on the lesson page based on the presence of resources or
@@ -441,10 +440,6 @@ export function lessonView() {
   };
 
   // content
-  if (CG.dom.local.nav.backToCurriculumText) {
-    text(CG.dom.local.nav.backToCurriculumText, term.backToCourseDescription);
-    CG.dom.local.nav.menu.prepend(CG.dom.local.nav.backBtn);
-  }
 
   // Makes lesson links pop up in new tab
   CG.dom.local.lesson.content.links.forEach((elem) => {
@@ -509,6 +504,7 @@ export function lessonView() {
 
   slugifyHeadings();
   buildNavSubItems();
+  buildNavCourseLink();
   buildEndBanner();
   buildHeaderCourseLink();
 }
@@ -544,6 +540,24 @@ function slugifyHeadings() {
     seen.add(slug);
     h.id = slug;
   });
+}
+
+/**
+ * Prepends a compact course-title back-link to the top of the left nav,
+ * replacing Skilljar's "Back to Course Description" button.
+ * @returns {void}
+ */
+function buildNavCourseLink() {
+  const title = CG.state.course.title;
+  const href = CG.dom.local.nav.backBtn?.href;
+  if (!title || !href) return;
+
+  const link = el("a", { className: "nav-course-link", href: sanitizeUrl(href) }, [
+    el("span", { className: "nav-course-link-arrow", textContent: "←" }),
+    el("span", { className: "nav-course-link-title", textContent: title }),
+  ]);
+
+  CG.dom.local.nav.menu.prepend(link);
 }
 
 /**
