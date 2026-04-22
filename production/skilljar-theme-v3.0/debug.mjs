@@ -1,4 +1,5 @@
 import { Q, A, el } from "./utils.mjs";
+import { setStyle } from "./styling.mjs";
 import { CG } from "./CG.mjs";
 import { pageHandlers } from "./router.mjs";
 import { animateCompletion, shoot } from "./course-completion.mjs";
@@ -135,6 +136,7 @@ export function setupDebug() {
     window.animateCompletion = animateCompletion;
     window.shoot = shoot;
     window.el = el;
+    window.setStyle = setStyle;
     window.CG = CG; // Expose CG for easier debugging access to state and environment
   }
 }
