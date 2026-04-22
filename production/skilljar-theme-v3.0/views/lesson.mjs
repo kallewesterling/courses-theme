@@ -755,9 +755,10 @@ function buildCompletionBadge() {
 
   badge.addEventListener("click", (e) => {
     if (e.target.closest(".completion-badge-cta")) return;
+    const rect = badge.getBoundingClientRect();
     const coords = {
-      x: badge.getBoundingClientRect().left + badge.offsetWidth / 2,
-      y: badge.getBoundingClientRect().top + badge.offsetHeight / 2,
+      x: (rect.left + rect.width / 2) / window.innerWidth,
+      y: (rect.top + rect.height / 2) / window.innerHeight,
     };
     shoot("big", coords);
   });
