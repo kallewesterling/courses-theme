@@ -50,6 +50,15 @@ const GLOBALS = { logger, animateCompletion, shoot, el, setStyle, CG };
 function exposeGlobals()   { Object.assign(window, GLOBALS); }
 function unexposeGlobals() { Object.keys(GLOBALS).forEach((k) => delete window[k]); }
 
+// ── helpers ─────────────────────────────────────────────────────────────────
+function onReady(fn) {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", fn, { once: true });
+  } else {
+    fn();
+  }
+}
+
 // ── floating debug FAB ──────────────────────────────────────────────────────
 function buildDebugFab() {
   const styleEl = document.createElement("style");
@@ -250,23 +259,25 @@ function buildDebugFab() {
     panel.hidden = !panel.hidden;
   });
 
-  document.body.append(fab, panel);
+  onReady(() => {
+    document.body.append(fab, panel);
 
-  // apply initial domain state
-  updateLinks(flags.useTestDomain);
+    // apply initial domain state once all links are in the DOM
+    updateLinks(flags.useTestDomain);
 
-  // close on outside click or Escape
-  document.addEventListener(
-    "click",
-    (e) => {
-      if (!panel.hidden && !panel.contains(e.target) && e.target !== fab) {
-        panel.hidden = true;
-      }
-    },
-    { capture: true }
-  );
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !panel.hidden) panel.hidden = true;
+    // close on outside click or Escape
+    document.addEventListener(
+      "click",
+      (e) => {
+        if (!panel.hidden && !panel.contains(e.target) && e.target !== fab) {
+          panel.hidden = true;
+        }
+      },
+      { capture: true }
+    );
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !panel.hidden) panel.hidden = true;
+    });
   });
 }
 
