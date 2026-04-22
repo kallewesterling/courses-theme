@@ -13,7 +13,7 @@
  *   - hide on click outside
  */
 
-import { el } from "./dom.mjs";
+import { el } from "./utils.mjs";
 
 const HIDE_DELAY = 120; // ms
 
