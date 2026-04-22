@@ -178,8 +178,8 @@ body.sj-page-lesson {
       gap: var(--gap-1-5);
       padding: var(--spacing-3) var(--spacing-3) var(--spacing-2);
       color: var(--ink-dim) !important;
-      font-size: var(--font-size-xs);
-      font-weight: var(--font-weight-medium);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-bold);
       text-decoration: none !important;
       transition: color 0.15s;
 
@@ -190,14 +190,9 @@ body.sj-page-lesson {
     }
 
     .nav-course-link-arrow {
+      flex-shrink: 0;
       font-size: 10px;
       opacity: 0.6;
-    }
-
-    .nav-course-link-title {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
     }
 
     .lessons-wrapper {
