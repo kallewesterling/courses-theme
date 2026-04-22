@@ -143,8 +143,8 @@ body.sj-page-lesson {
     position: fixed; /* fixed so it stays at the viewport edge and doesn't scroll away */
     top: 60px !important; /* Skilljar Override: cbp-spmenu sets top: 0, we need below fixed header */
     left: 0;
-    display: flex;
-    flex-direction: column;
+    display: flex !important; /* Skilljar Override: cbp-spmenu sets display: block */
+    flex-direction: column !important; /* Skilljar Override: pin badge to bottom of nav */
     width: 292px; /* formerly 320px; */
     height: calc(100vh - 60px) !important; /* Skilljar Override: cbp-spmenu sets height: 100% */
     margin-top: 0;
