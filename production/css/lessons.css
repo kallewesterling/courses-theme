@@ -178,7 +178,7 @@ body.sj-page-lesson {
       gap: var(--gap-2-5);
       padding: var(--spacing-3) var(--spacing-3) var(--spacing-2);
       color: var(--ink-dim) !important;
-      font-size: var(--font-size-sm);
+      font-size: var(--font-size-md);
       font-weight: var(--font-weight-bold);
       text-decoration: none !important;
       transition: color 0.15s;
