@@ -505,6 +505,7 @@ export function lessonView() {
   slugifyHeadings();
   buildNavSubItems();
   buildNavCourseLink();
+  buildCompletionBadge();
   buildEndBanner();
   buildHeaderCourseLink();
 }
@@ -690,4 +691,73 @@ function buildHeaderCourseLink() {
   ]);
 
   CG.dom.bodyHeader.append(link);
+}
+
+/**
+ * Appends a course-completion badge to the bottom of the left nav when all lessons
+ * are done. Clicking the badge fires a confetti burst (canvas-confetti loaded lazily);
+ * the "Browse more courses" CTA navigates normally.
+ * @returns {void}
+ */
+function buildCompletionBadge() {
+  if (!CG.state.course.completed) return;
+
+  const nav = CG.dom.local.nav.menu;
+  if (!nav) return;
+
+  const href = CG.dom.local.nav.backBtn?.href;
+
+  const cta = el("a", {
+    className: "completion-badge-cta",
+    href: href ? sanitizeUrl(href) : "/catalog",
+    textContent: "Browse more courses →",
+  });
+
+  const badge = el("div", { className: "completion-badge" }, [
+    el("div", { className: "completion-badge-icon", textContent: "🎉" }),
+    el("div", { className: "completion-badge-title", textContent: "Course complete!" }),
+    el("div", { className: "completion-badge-subtitle", textContent: "You've finished every lesson." }),
+    cta,
+  ]);
+
+  badge.addEventListener("click", (e) => {
+    if (e.target.closest(".completion-badge-cta")) return;
+    fireConfetti(badge);
+  });
+
+  nav.append(badge);
+}
+
+/**
+ * Fires a confetti burst originating from the given element.
+ * Lazily loads canvas-confetti on first call.
+ * @param {HTMLElement} sourceEl
+ * @returns {void}
+ */
+function fireConfetti(sourceEl) {
+  function launch(confettiLib) {
+    const rect = sourceEl.getBoundingClientRect();
+    confettiLib({
+      particleCount: 120,
+      spread: 80,
+      origin: {
+        x: (rect.left + rect.width / 2) / window.innerWidth,
+        y: (rect.top + rect.height / 2) / window.innerHeight,
+      },
+      colors: ["#3ab74a", "#6226fb", "#ffd700", "#ff6b6b", "#4ecdc4"],
+      startVelocity: 35,
+      gravity: 0.9,
+      ticks: 200,
+    });
+  }
+
+  if (window.confetti) {
+    launch(window.confetti);
+    return;
+  }
+
+  const script = document.createElement("script");
+  script.src = "https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js";
+  script.onload = () => launch(window.confetti);
+  document.head.appendChild(script);
 }
