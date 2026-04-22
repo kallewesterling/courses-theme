@@ -705,11 +705,11 @@ function buildCompletionBadge() {
   const nav = CG.dom.local.nav.menu;
   if (!nav) return;
 
-  const href = CG.dom.local.nav.backBtn?.href;
+  const href = "/"; // CG.dom.local.nav.backBtn?.href
 
   const cta = el("a", {
     className: "completion-badge-cta",
-    href: href ? sanitizeUrl(href) : "/catalog",
+    href, // : href ? sanitizeUrl(href) : "/catalog",
     textContent: "Browse more courses →",
   });
 
