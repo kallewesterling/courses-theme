@@ -653,7 +653,15 @@ function buildEndBanner() {
   if (!inner) return;
 
   const activeLesson = Q(".lesson-row.lesson-active", CG.dom.local.nav.menu)?.closest("a.lesson");
-  if (activeLesson?.querySelector(".fa-check-circle")) return;
+
+  // Skilljar marks the active lesson with fa-check-circle as soon as it's opened,
+  // so we can't use the current lesson's icon. Instead we look at the next lesson:
+  // if it's already completed the user has been here before and doesn't need the banner.
+  let nextLesson = activeLesson?.nextElementSibling;
+  while (nextLesson && !nextLesson.matches("a.lesson")) {
+    nextLesson = nextLesson.nextElementSibling;
+  }
+  if (nextLesson?.querySelector(".fa-check-circle")) return;
 
   const footerNext = Q("#lp-footer .next-lesson-link");
   if (!footerNext) return;
