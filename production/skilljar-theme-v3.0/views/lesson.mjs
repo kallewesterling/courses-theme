@@ -305,18 +305,6 @@ function setupLessonNav() {
       prev: Q("#lp-footer .prev-lesson-button"),
       next: Q("#lp-footer .next-lesson-link"),
 
-      prevAttrs: {
-        get href() {
-          return this.prev?.getAttribute("href") || "#";
-        },
-        get title() {
-          return this.prev?.getAttribute("title") || "Previous Lesson";
-        },
-        get track() {
-          return this.prev?.getAttribute("data-track-click");
-        },
-      },
-
       nextAttrs: {
         get href() {
           const up = this.next?.getAttribute("onmouseup") || "";
@@ -324,49 +312,60 @@ function setupLessonNav() {
           const match = (up || kd).match(/onNextLessonClick\('([^']+)'\)/);
           return match ? match[1] : "#";
         },
-        get title() {
-          return this.next?.getAttribute("title") || "Next Lesson";
-        },
-        get track() {
-          return this.next?.getAttribute("data-track-click");
-        },
       },
     }
   }
+
+  const attrs = {
+    prev: {
+      href: elems.footer.prev?.getAttribute("href") || "#",
+      title: elems.footer.prev?.getAttribute("title") || "Previous Lesson",
+      track: elems.footer.prev?.getAttribute("data-track-click"),
+    },
+    next: {
+      up: elems.footer.next?.getAttribute("onmouseup") || "",
+      kd: elems.footer.next?.getAttribute("onkeydown") || "",
+      title: elems.footer.next?.getAttribute("title") || "Next Lesson",
+      track: elems.footer.next?.getAttribute("data-track-click"),
+    },
+  };
+  
+  const match = (attrs.next.up || attrs.next.kd).match(/onNextLessonClick\('([^']+)'\)/);
+  attrs.next.href = match ? match[1] : "#";
 
   // Build buttons
   const prevBtn = el("a", {
     className: "lesson-btn prev",
     rel: "prev",
     role: "button",
-    href: elems.footer.prevAttrs.href,
+    href: attrs.prev.href,
     textContent: "← Previous",
-    title: elems.footer.prevAttrs.title,
+    title: attrs.prev.title,
     onclick: (e) => e.stopPropagation(),
   });
-  if (elems.footer.prevAttrs.track) prevBtn.setAttribute("data-track-click", elems.footer.prevAttrs.track);
+  if (attrs.prev.track) prevBtn.setAttribute("data-track-click", attrs.prev.track);
 
   const nextBtn = el("a", {
     className: "lesson-btn next",
     rel: "next",
     role: "button",
     // give it a real href for middle-click/open-in-new-tab
-    href: elems.footer.nextAttrs.href,
+    href: attrs.next.href,
     textContent: "Next →",
-    title: elems.footer.nextAttrs.title,
+    title: attrs.next.title,
     tabindex: 0,
     onclick: (e) => e.stopPropagation(),
   });
-  if (elems.footer.nextAttrs.track) nextBtn.setAttribute("data-track-click", elems.footer.nextAttrs.track);
+  if (attrs.next.track) nextBtn.setAttribute("data-track-click", attrs.next.track);
 
   // Add behavior: call onNextLessonClick just like Skilljar
   function goNext(e) {
-    if (!elems.footer.nextAttrs.href) return;
+    if (!attrs.next.href) return;
     e?.preventDefault();
     if (typeof window.onNextLessonClick === "function") {
-      window.onNextLessonClick(elems.footer.nextAttrs.href);
+      window.onNextLessonClick(attrs.next.href);
     } else {
-      window.location.href = elems.footer.nextAttrs.href;
+      window.location.href = attrs.next.href;
     }
   }
   nextBtn.addEventListener("click", goNext);
@@ -379,10 +378,10 @@ function setupLessonNav() {
   });
 
   // Disable/hide if missing
-  if (!elems.footer.prev || !elems.footer.prevAttrs.href) {
+  if (!elems.footer.prev || !attrs.prev.href) {
     prevBtn.style.display = "none";
   }
-  if (!elems.footer.next || !elems.footer.nextAttrs.href) {
+  if (!elems.footer.next || !attrs.next.href) {
     nextBtn.style.display = "none";
   }
 
