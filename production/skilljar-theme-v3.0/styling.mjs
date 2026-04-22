@@ -4,6 +4,7 @@ import { Q } from "./utils.mjs";
  * Sets the style of an element or a list of elements.
  * Accepts: HTMLElement, NodeList/HTMLCollection/Array of HTMLElements, or selector string.
  * Skips non-element values found in iterables (e.g., strings, nulls, Documents).
+ * Also accepts `{ aria: { label: "X" } }` to set/remove aria attributes alongside styles.
  * @returns {HTMLElement|HTMLElement[]|null}
  */
 export function setStyle(target, style) {
@@ -18,6 +19,14 @@ export function setStyle(target, style) {
 
   const apply = (elem) => {
     for (const [prop, raw] of Object.entries(style)) {
+      if (prop === "aria") {
+        for (const [ariaKey, ariaVal] of Object.entries(raw)) {
+          if (ariaVal === undefined) elem.removeAttribute(`aria-${ariaKey}`);
+          else elem.setAttribute(`aria-${ariaKey}`, ariaVal);
+        }
+        continue;
+      }
+
       const cssProp = toKebab(prop);
 
       // If undefined → unset
