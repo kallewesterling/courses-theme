@@ -82,6 +82,10 @@ export function sanitizeUrl(link, UTM = {}) {
  * Supports both HTML and SVG elements.
  * @param {string} tag - The HTML/SVG tag name.
  * @param {Object} props - An object containing properties and attributes for the element.
+ * @param {Object} [props.aria] - Aria attributes as key/value pairs (e.g., `{ label: "Close" }` → `aria-label="Close"`).
+ * @param {Object} [props.dataset] - Data attributes as key/value pairs (e.g., `{ lang: "js" }` → `data-lang="js"`).
+ * @param {Object} [props.on] - Event listeners as key/value pairs. Value can be a handler function or a
+ *   `[handler, options]` tuple (e.g., `{ click: fn }` or `{ scroll: [fn, { passive: true }] }`).
  * @param {Array} children - An array of child nodes to append to the element.
  * @returns {HTMLElement|SVGElement|null} - The created DOM element or null if no tag is provided.
  *
@@ -112,6 +116,32 @@ export function el(tag, props = {}, children = []) {
     if (/^on[A-Za-z]+$/.test(k) && typeof v === "function") {
       const eventName = k.slice(2).toLowerCase(); // "onclick" -> "click"
       n.addEventListener(eventName, v);
+      continue;
+    }
+
+    if (k === "on") {
+      for (const [event, handlerOrTuple] of Object.entries(v)) {
+        if (Array.isArray(handlerOrTuple)) {
+          const [handler, options] = handlerOrTuple;
+          n.addEventListener(event, handler, options);
+        } else if (typeof handlerOrTuple === "function") {
+          n.addEventListener(event, handlerOrTuple);
+        }
+      }
+      continue;
+    }
+
+    if (k === "aria") {
+      for (const [ariaKey, ariaVal] of Object.entries(v)) {
+        if (ariaVal != null) n.setAttribute(`aria-${ariaKey}`, ariaVal);
+      }
+      continue;
+    }
+
+    if (k === "dataset") {
+      for (const [dataKey, dataVal] of Object.entries(v)) {
+        if (dataVal != null) n.dataset[dataKey] = dataVal;
+      }
       continue;
     }
 
