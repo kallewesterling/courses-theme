@@ -241,12 +241,12 @@ function applyHighlights(codeEl, highlight) {
 async function processPre(pre) {
   const codeEl = Q("code", pre);
 
-  const languages = Array.from(codeEl.classList).filter((e) =>
-    e.includes("language-"),
-  );
-
   const language =
-    languages.length === 0 ? "text" : languages[0].replace("language-", "");
+    pre.dataset.lang ||
+    codeEl.dataset.lang ||
+    Array.from(codeEl.classList).find((c) => c.startsWith("language-"))?.replace("language-", "") ||
+    Array.from(pre.classList).find((c) => c.startsWith("language-"))?.replace("language-", "") ||
+    "text";
 
   const highlight = {
     textContent: codeEl.textContent.trim(),
@@ -373,7 +373,7 @@ function setupLessonNav() {
     className: "lesson-floater",
     role: "navigation",
     ariaLabel: "Lesson navigation",
-  }, [ prevBtn, nextBtn ]);
+  }, [prevBtn, nextBtn]);
 
   return btnWrapper;
 }
