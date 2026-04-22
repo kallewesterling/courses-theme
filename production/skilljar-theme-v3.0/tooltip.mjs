@@ -13,7 +13,7 @@
  *   - hide on click outside
  */
 
-import { el } from "./utils.mjs";
+import { el, addEvtListeners } from "./utils.mjs";
 import { setStyle } from "./styling.mjs";
 
 const HIDE_DELAY = 120; // ms
@@ -111,11 +111,13 @@ export function attachFloaterTooltip(triggerEl, content) {
   triggerEl.setAttribute("aria-describedby", "floater-tooltip");
   triggerEl.setAttribute("data-floater-trigger", "");
 
-  triggerEl.addEventListener("mouseenter", () => showTooltip(triggerEl, content));
-  triggerEl.addEventListener("focus", () => showTooltip(triggerEl, content));
-  triggerEl.addEventListener("mouseleave", scheduleHide);
-  triggerEl.addEventListener("blur", scheduleHide);
-  triggerEl.addEventListener("keydown", (e) => { if (e.key === "Escape") scheduleHide(); });
+  addEvtListeners(triggerEl, {
+    mouseenter: () => showTooltip(triggerEl, content),
+    focus: () => showTooltip(triggerEl, content),
+    mouseleave: scheduleHide,
+    blur: scheduleHide,
+    keydown: (e) => { if (e.key === "Escape") scheduleHide(); },
+  });
 
   ensureOutsideListener();
 }
