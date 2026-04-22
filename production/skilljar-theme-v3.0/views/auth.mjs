@@ -42,10 +42,6 @@ export function authView() {
     method: Q(".sj-text-sign-in-with") || Q(".sj-text-sign-up-with"),
     login: Q("#login-tab-left a span") || Q("#login-tab-left span span"),
     signup: Q("#login-tab-right a") || Q("#login-tab-right span"),
-
-    get altMethod() {
-      return Q("span", CG.dom.auth.method);
-    },
   };
 
   text(CG.dom.local.auth.login, term.logIn);
