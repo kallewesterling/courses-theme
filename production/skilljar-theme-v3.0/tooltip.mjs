@@ -107,9 +107,11 @@ function ensureOutsideListener() {
  * @param {string} content - Plain-text tooltip content (from data/messages.mjs).
  */
 export function attachFloaterTooltip(triggerEl, content) {
-  triggerEl.setAttribute("tabindex", "0");
-  triggerEl.setAttribute("aria-describedby", "floater-tooltip");
-  triggerEl.setAttribute("data-floater-trigger", "");
+  setStyle(triggerEl, {
+    attrs: { tabindex: "0" }, // TODO: can this just be tabindex: 0?
+    aria: { describedby: "floater-tooltip" },
+    dataset: { floaterTrigger: "" },
+  });
 
   addEvtListeners(triggerEl, {
     mouseenter: () => showTooltip(triggerEl, content),
