@@ -278,56 +278,76 @@ async function processPre(pre) {
  * @returns {HTMLElement} The navigation wrapper element containing the previous and next buttons.
  */
 function setupLessonNav() {
-  // 1) Find canonical footer controls
-  const footerPrev = Q("#lp-footer .prev-lesson-button");
-  const footerNext = Q("#lp-footer .next-lesson-link");
+  const elems = {
+    footerPrev: Q("#lp-footer .prev-lesson-button"),
+    footerNext: Q("#lp-footer .next-lesson-link"),
 
-  // 2) Extract Prev
-  const prevHref = footerPrev?.getAttribute("href") || "#";
-  const prevTitle = footerPrev?.getAttribute("title") || "Previous Lesson";
-  const prevTrack = footerPrev?.getAttribute("data-track-click");
+    footer: {
+      prev: Q("#lp-footer .prev-lesson-button"),
+      next: Q("#lp-footer .next-lesson-link"),
 
-  // 3) Extract Next (Skilljar style: onNextLessonClick('<url>'))
-  const up = footerNext?.getAttribute("onmouseup") || "";
-  const kd = footerNext?.getAttribute("onkeydown") || "";
-  const nextMatch = (up || kd).match(/onNextLessonClick\('([^']+)'\)/);
-  const nextUrl = nextMatch ? nextMatch[1] : null;
-  const nextTitle = footerNext?.getAttribute("title") || "Next Lesson";
-  const nextTrack = footerNext?.getAttribute("data-track-click");
+      prevAttrs: {
+        get href() {
+          return this.prev?.getAttribute("href") || "#";
+        },
+        get title() {
+          return this.prev?.getAttribute("title") || "Previous Lesson";
+        },
+        get track() {
+          return this.prev?.getAttribute("data-track-click");
+        },
+      },
 
-  // 4) Build buttons
+      nextAttrs: {
+        get href() {
+          const up = this.next?.getAttribute("onmouseup") || "";
+          const kd = this.next?.getAttribute("onkeydown") || "";
+          const match = (up || kd).match(/onNextLessonClick\('([^']+)'\)/);
+          return match ? match[1] : "#";
+        },
+        get title() {
+          return this.next?.getAttribute("title") || "Next Lesson";
+        },
+        get track() {
+          return this.next?.getAttribute("data-track-click");
+        },
+      },
+    }
+  }
+
+  // Build buttons
   const prevBtn = el("a", {
     className: "lesson-btn prev",
     rel: "prev",
     role: "button",
-    href: prevHref,
+    href: elems.footer.prevAttrs.href,
     textContent: "← Previous",
-    title: prevTitle,
+    title: elems.footer.prevAttrs.title,
     onclick: (e) => e.stopPropagation(),
   });
-  if (prevTrack) prevBtn.setAttribute("data-track-click", prevTrack);
+  if (elems.footer.prevAttrs.track) prevBtn.setAttribute("data-track-click", elems.footer.prevAttrs.track);
 
   const nextBtn = el("a", {
     className: "lesson-btn next",
     rel: "next",
     role: "button",
     // give it a real href for middle-click/open-in-new-tab
-    href: nextUrl || "#",
+    href: elems.footer.nextAttrs.href,
     textContent: "Next →",
-    title: nextTitle,
+    title: elems.footer.nextAttrs.title,
     tabindex: 0,
     onclick: (e) => e.stopPropagation(),
   });
-  if (nextTrack) nextBtn.setAttribute("data-track-click", nextTrack);
+  if (elems.footer.nextAttrs.track) nextBtn.setAttribute("data-track-click", elems.footer.nextAttrs.track);
 
-  // 5) Behavior: call onNextLessonClick just like Skilljar
+  // Add behavior: call onNextLessonClick just like Skilljar
   function goNext(e) {
-    if (!nextUrl) return;
+    if (!elems.footer.nextAttrs.href) return;
     e?.preventDefault();
     if (typeof window.onNextLessonClick === "function") {
-      window.onNextLessonClick(nextUrl);
+      window.onNextLessonClick(elems.footer.nextAttrs.href);
     } else {
-      window.location.href = nextUrl;
+      window.location.href = elems.footer.nextAttrs.href;
     }
   }
   nextBtn.addEventListener("click", goNext);
@@ -340,10 +360,10 @@ function setupLessonNav() {
   });
 
   // Disable/hide if missing
-  if (!footerPrev) {
+  if (!elems.footer.prev || !elems.footer.prevAttrs.href) {
     prevBtn.style.display = "none";
   }
-  if (!footerNext || !nextUrl) {
+  if (!elems.footer.next || !elems.footer.nextAttrs.href) {
     nextBtn.style.display = "none";
   }
 
@@ -352,9 +372,7 @@ function setupLessonNav() {
     className: "lesson-floater",
     role: "navigation",
     ariaLabel: "Lesson navigation",
-  });
-
-  btnWrapper.append(prevBtn, nextBtn);
+  }, [ prevBtn, nextBtn ]);
 
   return btnWrapper;
 }
@@ -469,9 +487,9 @@ export function lessonView() {
   // Close the nav when tapping the backdrop on mobile
   CG.dom.local.body.mainContainer.addEventListener("click", (e) => {
     if (!window.matchMedia("(min-width: 992px)").matches &&
-        document.body.classList.contains("cbp-spmenu-open") &&
-        !CG.dom.local.nav.menu.contains(e.target) &&
-        !CG.dom.local.nav.toggleWrapper.contains(e.target)) {
+      document.body.classList.contains("cbp-spmenu-open") &&
+      !CG.dom.local.nav.menu.contains(e.target) &&
+      !CG.dom.local.nav.toggleWrapper.contains(e.target)) {
       document.body.classList.remove("cbp-spmenu-open");
     }
   });
