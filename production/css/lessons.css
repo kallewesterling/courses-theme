@@ -38,9 +38,9 @@ body.sj-page-lesson {
   #header-course-link {
     position: absolute;
     top: 0;
-    right: 80px;  /* clear of the account nav */
+    right: 80px; /* clear of the account nav */
     bottom: 0;
-    left: 210px;  /* clear of the logo */
+    left: 210px; /* clear of the logo */
     z-index: 1;
     display: flex;
     justify-content: center;
@@ -298,7 +298,9 @@ body.sj-page-lesson {
       color: var(--ink-dim);
       font-size: var(--font-size-xs);
       text-decoration: none;
-      transition: background 0.1s, color 0.1s;
+      transition:
+        background 0.1s,
+        color 0.1s;
 
       &:hover {
         background: rgb(255 255 255 / 0.7);
@@ -372,7 +374,8 @@ body.sj-page-lesson {
           width: 100%;
           height: 55px;
           min-height: 55px;
-          padding: var(--spacing-1) var(--spacing-0) var(--spacing-0) var(--spacing-1);
+          padding: var(--spacing-1) var(--spacing-0) var(--spacing-0)
+            var(--spacing-1);
           overflow: hidden;
           background-color: var(--overlay-light);
           backdrop-filter: blur(1.5px);
@@ -551,7 +554,9 @@ body.sj-page-lesson {
                 font-weight: var(--font-weight-semibold, 600);
                 text-decoration: none;
                 white-space: nowrap;
-                transition: background 0.2s, transform 0.1s;
+                transition:
+                  background 0.2s,
+                  transform 0.1s;
                 cursor: pointer;
 
                 &:hover {
@@ -719,8 +724,12 @@ body.sj-page-lesson {
               }
 
               code:not(pre code) {
+                display: inline-flex;
+                padding: var(--spacing-0) var(--spacing-2);
+                margin: var(--spacing-0);
                 background-color: var(--color-border-accent) !important;
                 color: var(--color-text-purple-link) !important;
+                font-size: var(--font-size-sm-large);
               }
 
               pre {
@@ -974,7 +983,7 @@ sjwc-lesson-content-item {
 
   .callout {
     width: 100% !important;
-    padding: var(--spacing-3)!important;
+    padding: var(--spacing-3) !important;
     margin: var(--spacing-8) var(--spacing-0) !important;
     border: var(--border-width-thin) solid var(--blurple) !important;
     border-radius: var(--radius-md);
