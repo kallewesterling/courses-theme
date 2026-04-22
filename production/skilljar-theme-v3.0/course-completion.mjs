@@ -33,8 +33,10 @@ export function ensureCompletionPopup(title) {
     {
       id: "completion-popup",
       role: "dialog",
-      "aria-modal": "true",
-      "aria-hidden": "true",
+      aria: { modal: "true", hidden: "true" },
+      on: {
+        click: () => hideCompletion(elem),
+      }
     },
     [
       el("div", { id: "completion-content" }, [
@@ -64,8 +66,6 @@ export function ensureCompletionPopup(title) {
       ]),
     ]
   );
-
-  elem.addEventListener("click", () => hideCompletion(elem));
   document.body.appendChild(elem);
 
   // ESC to close
@@ -83,8 +83,7 @@ export function ensureCompletionPopup(title) {
  * @returns {void}
  */
 export function showCompletion(elem) {
-  elem.setAttribute("aria-hidden", "false");
-  setStyle(elem, { display: "block" });
+  setStyle(elem, { display: "block", aria: { hidden: "false" } });
   // Next paint to trigger transition
   requestAnimationFrame(() => setStyle(elem, { opacity: "1" }));
   // focus for accessibility
@@ -114,11 +113,13 @@ export function showCompletion(elem) {
 export function hideCompletion(elem) {
   setStyle(elem, { opacity: "0" });
   const finish = () => {
-    elem.setAttribute("aria-hidden", "true");
-    setStyle(elem, { display: "none" });
-    elem.removeEventListener("transitionend", finish);
+    setStyle(elem, {
+      display: "none",
+      aria: { hidden: "true" },
+      on: { transitionend: undefined }
+    });
   };
-  elem.addEventListener("transitionend", finish);
+  setStyle(elem, { on: { transitionend: finish } });
   // Safety timeout in case transitionend doesn’t fire
   setTimeout(finish, 300);
 }
@@ -130,6 +131,7 @@ export function hideCompletion(elem) {
 export function shoot(size = "big", { x, y } = { x: 0.5, y: 0.33 }) {
   const configConfetti = { ...config.confetti.defaults, origin: { x, y } };
   logger.info("Shooting confetti", configConfetti);
+
   if (size === "big") {
     confetti({
       ...configConfetti,
