@@ -41,14 +41,14 @@ function getTooltip(textContent) {
   return tooltipEl;
 }
 
-function scheduleHide() {
+export function scheduleHide() {
   clearTimeout(hideTimer);
   hideTimer = setTimeout(() => {
     if (tooltipEl) tooltipEl.classList.remove("is-visible");
   }, HIDE_DELAY);
 }
 
-function showTooltip(triggerEl, textContent) {
+export function showTooltip(triggerEl, textContent) {
   clearTimeout(hideTimer);
 
   const tip = getTooltip(textContent);

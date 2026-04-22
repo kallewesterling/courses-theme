@@ -4,6 +4,7 @@ import { setStyle } from "../styling.mjs";
 import { createClone } from "../icons.mjs";
 import { logger } from "../logger.mjs";
 import { shoot } from "../course-completion.mjs";
+import { showTooltip, scheduleHide } from "../tooltip.mjs";
 import {
   addLineNumberSpans,
   parseLineSpec,
@@ -99,51 +100,20 @@ function buildResourceBox() {
  * @returns {void}
  */
 function addCopyButton(pre, codeEl) {
-  function toClipboard(copyText, tooltipContainer) {
-    /**
-     * Animates the tooltip by changing its opacity.
-     * @param {HTMLElement} tooltipEl - The tooltip element to animate.
-     */
-    function animateCopiedTooltip(tooltipEl) {
-      setStyle(tooltipEl, { opacity: "1" });
+  const copyIcon = createClone("copy");
+  const container = el("div", { className: "code-block-controls" }, [copyIcon]);
 
-      setTimeout(() => {
-        setStyle(tooltipEl, { opacity: "0" });
-      }, 400);
+  copyIcon.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(cleanCommandPrompt(codeEl));
+      showTooltip(copyIcon, "Copied");
+      setTimeout(scheduleHide, 800);
+    } catch (err) {
+      logger.error("Failed to copy codeblock to clipboard: ", err);
     }
-
-    return async () => {
-      try {
-        await navigator.clipboard.writeText(copyText);
-        animateCopiedTooltip(tooltipContainer);
-      } catch (err) {
-        logger.error("Failed to copy codeblock to clipboard: ", err);
-      }
-    };
-  }
-
-  const container = el("div", { className: "code-block-controls" }, [
-    createClone("copy"),
-  ]);
-
-  // create 'copied' tooltip
-  const tooltipContainer = el("div", {
-    textContent: "Copied",
-    className: "tooltip-copied",
-    style: "opacity: 0;",
   });
 
-  // add event listener to cloned icon to copy block into clipboard
-  container.firstChild.addEventListener(
-    "click",
-    toClipboard(cleanCommandPrompt(codeEl), tooltipContainer),
-  );
-
-  // add elements
-  pre.append(tooltipContainer);
   pre.prepend(container);
-
-  // Mark that copy icon was added to this code block
   pre.dataset.copyAdded = "true";
 }
 
