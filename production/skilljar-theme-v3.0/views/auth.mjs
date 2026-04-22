@@ -1,4 +1,4 @@
-import { A, Q, el, text, placeholder, remove } from "../utils.mjs";
+import { A, Q, el, text, placeholder, remove, addEvtListeners } from "../utils.mjs";
 import { CG } from "../CG.mjs";
 import { setStyle } from "../styling.mjs";
 
@@ -90,10 +90,9 @@ export function authView() {
       if (!elem.getAttribute("id")) return;
 
       CG.dom.local.auth.rows[elem.getAttribute("id")] = elem.closest(".row");
-      CG.dom.local.auth.rows[elem.getAttribute("id")].setAttribute(
-        "aria-label",
-        elem.getAttribute("id")
-      );
+      setStyle(CG.dom.local.auth.rows[elem.getAttribute("id")], {
+        aria: { label: elem.getAttribute("id") },
+      });
     });
 
     // move Access Code field to after Password Confirm
@@ -103,14 +102,13 @@ export function authView() {
     );
 
     // add focus listeners to fade in labels
-    CG.dom.local.auth.inputs.accessCode.addEventListener("focus", () => {
-      setStyle(CG.dom.local.auth.rows.id_access_code, { opacity: "1" });
-    });
-
-    CG.dom.local.auth.inputs.accessCode.addEventListener("blur", () => {
-      if (CG.dom.local.auth.inputs.accessCode.value === "") {
-        setStyle(CG.dom.local.auth.rows.id_access_code, { opacity: "0.4" });
-      }
+    addEvtListeners(CG.dom.local.auth.inputs.accessCode, {
+      focus: () => setStyle(CG.dom.local.auth.rows.id_access_code, { opacity: "1" }),
+      blur: () => {
+        if (CG.dom.local.auth.inputs.accessCode.value === "") {
+          setStyle(CG.dom.local.auth.rows.id_access_code, { opacity: "0.4" });
+        }
+      },
     });
 
     setStyle(CG.dom.local.auth.rows.id_access_code, { opacity: "0.4" });

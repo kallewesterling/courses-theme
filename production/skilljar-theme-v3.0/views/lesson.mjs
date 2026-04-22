@@ -678,16 +678,18 @@ function buildEndBanner() {
     href: nextUrl || "#",
     role: "button",
     tabindex: 0,
+    aria: { label: "Mark lesson complete and continue" },
+    on: {
+      click: goNext,
+      mouseup: goNext,
+      keydown: (e) => {
+        if (e.key === "Enter" || e.key === " ") goNext(e);
+      },
+    }
   }, [
     el("i", { className: "fa fa-check-circle" }),
     el("span", { textContent: "Mark complete & continue" }),
   ]);
-  btn.setAttribute("aria-label", "Mark lesson complete and continue");
-  btn.addEventListener("click", goNext);
-  btn.addEventListener("mouseup", goNext);
-  btn.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") goNext(e);
-  });
 
   const subtitle = nextTitle ? `Up next: ${nextTitle}` : "You've reached the end of this lesson";
 
