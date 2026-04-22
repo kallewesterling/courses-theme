@@ -53,8 +53,15 @@ export const tooltips = {
  * These messages are displayed to users when they finish a course, providing positive reinforcement and instructions on how to close the popup.
  */
 export const completion = {
-    title: "Hooray! You finished {courseTitle}",
-    pathTitle: "Hooray! You finished the {pathTitle}!",
-    subTitle: "Seriously, nice work!",
-    notice: 'You can close this popup by clicking outside of it or press ESC to dismiss. It will also disappear automatically in <span id="completion-countdown">{seconds}</span> seconds.',
+    popup: {
+        title: "Hooray! You finished {courseTitle}",
+        pathTitle: "Hooray! You finished the {pathTitle}!",
+        subTitle: "Seriously, nice work!",
+        notice: 'You can close this popup by clicking outside of it or press ESC to dismiss. It will also disappear automatically in <span id="completion-countdown">{seconds}</span> seconds.',
+    },
+    badge: {
+        icon: "🎉",
+        title: "Course complete!",
+        subtitle: "You've finished every lesson.",
+    }
 }

@@ -15,6 +15,7 @@ import * as shiki from "https://esm.sh/shiki@3.0.0";
 
 // static imports
 import { config } from "../../data/config.mjs";
+import { completion } from "../../data/messages.mjs";
 
 /**
  * Builds resource boxes on the lesson page based on the presence of resources or
@@ -764,19 +765,14 @@ function buildCompletionBadge() {
   });
 
   const badge = el("div", { className: "completion-badge no-select" }, [
-    el("div", { className: "completion-badge-icon", textContent: "🎉" }),
-    el("div", { className: "completion-badge-title", textContent: "Course complete!" }),
-    el("div", { className: "completion-badge-subtitle", textContent: "You've finished every lesson." }),
+    el("div", { className: "completion-badge-icon", textContent: completion.badge.icon }),
+    el("div", { className: "completion-badge-title", textContent: completion.badge.title }),
+    el("div", { className: "completion-badge-subtitle", textContent: completion.badge.subtitle }),
     cta,
   ]);
 
   badge.addEventListener("click", (e) => {
     if (e.target.closest(".completion-badge-cta")) return;
-    // const rect = badge.getBoundingClientRect();
-    // const coords = {
-    //   x: (rect.left + rect.width / 2) / window.innerWidth,
-    //   y: (rect.top + rect.height / 2) / window.innerHeight,
-    // };
     const coords = { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight };
     shoot("big", coords);
   });
