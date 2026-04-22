@@ -37,6 +37,7 @@ export const term = {
     startCourse: "Start course",
     startPath: "Start path",
     getBadge: "Get a Badge",
+    browseMore: "Browse more courses →",
 }
 
 /*

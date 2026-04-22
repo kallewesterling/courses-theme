@@ -15,7 +15,7 @@ import * as shiki from "https://esm.sh/shiki@3.0.0";
 
 // static imports
 import { config } from "../../data/config.mjs";
-import { completion } from "../../data/messages.mjs";
+import { term, completion } from "../../data/messages.mjs";
 
 /**
  * Builds resource boxes on the lesson page based on the presence of resources or
@@ -761,7 +761,7 @@ function buildCompletionBadge() {
   const cta = el("a", {
     className: "completion-badge-cta",
     href, // : href ? sanitizeUrl(href) : "/catalog",
-    textContent: "Browse more courses →",
+    textContent: term.browseMore,
   });
 
   const badge = el("div", { className: "completion-badge no-select" }, [
