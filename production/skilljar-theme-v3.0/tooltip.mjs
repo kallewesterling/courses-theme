@@ -14,6 +14,7 @@
  */
 
 import { el } from "./utils.mjs";
+import { setStyle } from "./styling.mjs";
 
 const HIDE_DELAY = 120; // ms
 
@@ -22,10 +23,11 @@ let hideTimer = null;
 let outsideListenerAdded = false;
 
 /** Returns the singleton tooltip element, creating it on first call. */
-function getTooltip() {
+function getTooltip(textContent) {
   if (tooltipEl) return tooltipEl;
 
   tooltipEl = el("div", {
+    textContent,
     className: "floater-tooltip",
     role: "tooltip",
     id: "floater-tooltip",
@@ -46,11 +48,10 @@ function scheduleHide() {
   }, HIDE_DELAY);
 }
 
-function showTooltip(triggerEl, content) {
+function showTooltip(triggerEl, textContent) {
   clearTimeout(hideTimer);
 
-  const tip = getTooltip();
-  tip.textContent = content;
+  const tip = getTooltip(textContent);
 
   // Position before making visible so getBoundingClientRect() is accurate.
   positionTooltip(triggerEl, tip);
@@ -58,29 +59,25 @@ function showTooltip(triggerEl, content) {
 }
 
 function positionTooltip(triggerEl, tip) {
-  const rect = triggerEl.getBoundingClientRect();
-  const scrollX = window.scrollX;
-  const scrollY = window.scrollY;
-  const maxWidth = 280;
-  const gap = 8;
+  const maxWidth = 280, gap = 8,
+    rect = triggerEl.getBoundingClientRect(),
+    { scrollX, scrollY, innerWidth, innerHeight } = window;
 
   // Clamp width to viewport with a small margin.
-  const width = Math.min(maxWidth, window.innerWidth - 24);
+  const width = Math.min(maxWidth, innerWidth - 24);
 
   // Centre under the trigger (viewport coords → document coords via scroll).
   let left = rect.left + scrollX + rect.width / 2 - width / 2;
-  left = Math.max(scrollX + 12, Math.min(left, scrollX + window.innerWidth - width - 12));
+  left = Math.max(scrollX + 12, Math.min(left, scrollX + innerWidth - width - 12));
 
   // Default: below the trigger. Flip above if not enough room.
-  const spaceBelow = window.innerHeight - rect.bottom;
+  const spaceBelow = innerHeight - rect.bottom;
   const above = spaceBelow < 100;
   const top = above
     ? rect.top + scrollY - gap
     : rect.bottom + scrollY + gap;
 
-  tip.style.top = `${top}px`;
-  tip.style.left = `${left}px`;
-  tip.style.width = `${width}px`;
+  setStyle(tip, { top: `${top}px`, left: `${left}px`, width: `${width}px` });
   tip.classList.toggle("is-above", above);
 }
 
@@ -115,10 +112,10 @@ export function attachFloaterTooltip(triggerEl, content) {
   triggerEl.setAttribute("data-floater-trigger", "");
 
   triggerEl.addEventListener("mouseenter", () => showTooltip(triggerEl, content));
-  triggerEl.addEventListener("focus",      () => showTooltip(triggerEl, content));
+  triggerEl.addEventListener("focus", () => showTooltip(triggerEl, content));
   triggerEl.addEventListener("mouseleave", scheduleHide);
-  triggerEl.addEventListener("blur",       scheduleHide);
-  triggerEl.addEventListener("keydown",    (e) => { if (e.key === "Escape") scheduleHide(); });
+  triggerEl.addEventListener("blur", scheduleHide);
+  triggerEl.addEventListener("keydown", (e) => { if (e.key === "Escape") scheduleHide(); });
 
   ensureOutsideListener();
 }
