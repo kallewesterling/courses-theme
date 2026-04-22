@@ -175,7 +175,7 @@ body.sj-page-lesson {
     .nav-course-link {
       display: flex;
       align-items: center;
-      gap: var(--gap-1-5);
+      gap: var(--gap-2-5);
       padding: var(--spacing-3) var(--spacing-3) var(--spacing-2);
       color: var(--ink-dim) !important;
       font-size: var(--font-size-sm);
@@ -191,7 +191,7 @@ body.sj-page-lesson {
 
     .nav-course-link-arrow {
       flex-shrink: 0;
-      font-size: 10px;
+      font-size: 13px;
       opacity: 0.6;
     }
 
@@ -263,7 +263,8 @@ body.sj-page-lesson {
             border-radius: 50%;
           }
 
-          .type-icon {
+          .type-icon,
+          .bullet {
             display: none !important;
           }
         }
@@ -277,10 +278,10 @@ body.sj-page-lesson {
         }
 
         &::after {
-          content: "✓";
+          content: "✔";
           background: #3ab74a;
           color: #ffffff;
-          font-size: 11px;
+          font-size: 14px;
           font-weight: var(--font-weight-bold);
         }
       }
