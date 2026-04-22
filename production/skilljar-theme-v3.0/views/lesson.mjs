@@ -343,8 +343,8 @@ function setupLessonNav() {
     textContent: "← Previous",
     title: attrs.prev.title,
     onclick: (e) => e.stopPropagation(),
+    dataset: { trackClick: attrs.prev.track || "" }, // TODO: keep an eye on this
   });
-  if (attrs.prev.track) prevBtn.setAttribute("data-track-click", attrs.prev.track);
 
   const nextBtn = el("a", {
     className: "lesson-btn next",
@@ -356,8 +356,18 @@ function setupLessonNav() {
     title: attrs.next.title,
     tabindex: 0,
     onclick: (e) => e.stopPropagation(),
+    dataset: { trackClick: attrs.next.track || "" }, // TODO: keep an eye on this
+    on: {
+      click: (e) => goNext(e),
+      mouseup: (e) => goNext(e),
+      keydown: (e) => {
+        const k = e.key;
+        if (k === "Enter" || k === " " || k === "Spacebar" || k === "ArrowRight") {
+          goNext(e);
+        }
+      },
+    }
   });
-  if (attrs.next.track) nextBtn.setAttribute("data-track-click", attrs.next.track);
 
   // Add behavior: call onNextLessonClick just like Skilljar
   function goNext(e) {
@@ -369,31 +379,20 @@ function setupLessonNav() {
       window.location.href = attrs.next.href;
     }
   }
-  nextBtn.addEventListener("click", goNext);
-  nextBtn.addEventListener("mouseup", goNext);
-  nextBtn.addEventListener("keydown", (e) => {
-    const k = e.key;
-    if (k === "Enter" || k === " " || k === "Spacebar" || k === "ArrowRight") {
-      goNext(e);
-    }
-  });
 
   // Disable/hide if missing
   if (!elems.footer.prev || !attrs.prev.href) {
-    prevBtn.style.display = "none";
+    setStyle(prevBtn, { display: "none" });
   }
   if (!elems.footer.next || !attrs.next.href) {
-    nextBtn.style.display = "none";
+    setStyle(nextBtn, { display: "none" });
   }
 
-  // 6) Build wrapper
-  const btnWrapper = el("nav", {
+  return el("nav", {
     className: "lesson-floater",
     role: "navigation",
-    ariaLabel: "Lesson navigation",
+    aria: { label: "Lesson navigation" },
   }, [prevBtn, nextBtn]);
-
-  return btnWrapper;
 }
 
 /**
@@ -486,15 +485,20 @@ export function lessonView() {
 
   // Build the nav toggle bar: use Skilljar's if present, otherwise create our own
   if (!CG.dom.local.nav.toggleWrapper) {
-    const navBar = el("a", { id: "left-nav-button", href: "#" }, [
+    const navBar = el("a", {
+      id: "left-nav-button", href: "#", aria: {
+        label: "Toggle course navigation",
+        on: {
+          click: (e) => {
+            e.preventDefault();
+            document.body.classList.toggle("cbp-spmenu-open");
+          }
+        }
+      }
+    }, [
       el("i", { className: "fa fa-bars" }),
       el("i", { className: "fa fa-times" }),
     ]);
-    navBar.setAttribute("aria-label", "Toggle course navigation");
-    navBar.addEventListener("click", (e) => {
-      e.preventDefault();
-      document.body.classList.toggle("cbp-spmenu-open");
-    });
     CG.dom.local.nav.toggleWrapper = navBar;
   }
 
@@ -604,7 +608,7 @@ function buildNavCourseLink() {
   const href = CG.dom.local.nav.backBtn?.href;
   if (!title || !href) return;
 
-  const link = el("a", { className: "nav-course-link", href: sanitizeUrl(href) }, [
+  const link = el("a", { className: "nav-course-link", href: sanitizeUrl(href), aria: { label: "Back to Course Description" } }, [
     el("span", { className: "nav-course-link-arrow", textContent: "←" }),
     el("span", { className: "nav-course-link-title", textContent: title }),
   ]);
