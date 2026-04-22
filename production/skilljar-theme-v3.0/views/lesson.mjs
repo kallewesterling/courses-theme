@@ -239,39 +239,57 @@ function applyHighlights(codeEl, highlight) {
  * @returns {void}
  */
 async function processPre(pre) {
-  const codeEl = Q("code", pre);
+  const elems = {
+    pre,
 
-  const language =
-    pre.dataset.lang ||
-    codeEl.dataset.lang ||
-    Array.from(codeEl.classList).find((c) => c.startsWith("language-"))?.replace("language-", "") ||
-    Array.from(pre.classList).find((c) => c.startsWith("language-"))?.replace("language-", "") ||
-    "text";
+    get codeEl() {
+      return Q("code", this.pre);
+    },
+
+    get codeClasses() {
+      return this.codeEl ? Array.from(this.codeEl.classList) : [];
+    },
+
+    get preClasses() {
+      return this.pre ? Array.from(this.pre.classList) : [];
+    },
+
+    get language() {
+      return (
+        this.pre.dataset.lang ||
+        this.codeEl.dataset.lang ||
+        this.codeClasses.find((c) => c.startsWith("language-"))?.replace("language-", "") ||
+        this.preClasses.find((c) => c.startsWith("language-"))?.replace("language-", "") ||
+        "text"
+      );
+    },
+
+    get content() {
+      return this.codeEl.textContent.trim();
+    }
+  }
 
   const highlight = {
-    textContent: codeEl.textContent.trim(),
-    language,
     highlightLine: pre.dataset?.highlightLine,
     highlightContent: pre.dataset?.highlightContent,
   };
 
-  addCopyButton(pre, codeEl);
+  addCopyButton(pre, elems.codeEl);
 
-  if (language)
+  if (elems.language)
     Q(".code-block-controls", pre).prepend(
       el("span", {
         className: "language-label",
-        textContent: toTitleCase(language),
+        textContent: toTitleCase(elems.language),
       }),
     );
 
   // Apply Shiki highlighting
-  await formatCode(codeEl, highlight.language);
+  await formatCode(elems.codeEl, elems.language);
 
   // Apply optional line/content highlighting
-  // (we need to do this + requery after Shiki)
   if (highlight.highlightLine || highlight.highlightContent)
-    applyHighlights(Q("code", pre), highlight);
+    applyHighlights(elems.codeEl, highlight); // TODO: keep an eye here (reload works? we need to reload after Shiki)
 }
 
 /**
