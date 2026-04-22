@@ -13,6 +13,8 @@
  *   - hide on click outside
  */
 
+import { el } from "./dom.mjs";
+
 const HIDE_DELAY = 120; // ms
 
 let tooltipEl = null;
@@ -23,15 +25,16 @@ let outsideListenerAdded = false;
 function getTooltip() {
   if (tooltipEl) return tooltipEl;
 
-  tooltipEl = document.createElement("div");
-  tooltipEl.className = "floater-tooltip";
-  tooltipEl.setAttribute("role", "tooltip");
-  tooltipEl.setAttribute("id", "floater-tooltip");
+  tooltipEl = el("div", {
+    className: "floater-tooltip",
+    role: "tooltip",
+    id: "floater-tooltip",
+    on: {
+      mouseenter: () => clearTimeout(hideTimer),
+      mouseleave: () => scheduleHide(),
+    }
+  });
   document.body.appendChild(tooltipEl);
-
-  // Hovering the tooltip itself cancels the hide timer.
-  tooltipEl.addEventListener("mouseenter", () => clearTimeout(hideTimer));
-  tooltipEl.addEventListener("mouseleave", scheduleHide);
 
   return tooltipEl;
 }
