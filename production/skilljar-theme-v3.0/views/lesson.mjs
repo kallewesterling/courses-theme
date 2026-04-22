@@ -505,6 +505,7 @@ export function lessonView() {
   slugifyHeadings();
   buildNavSubItems();
   buildNavCourseLink();
+  buildNavScrollShell();
   buildCompletionBadge();
   buildEndBanner();
   buildHeaderCourseLink();
@@ -541,6 +542,19 @@ function slugifyHeadings() {
     seen.add(slug);
     h.id = slug;
   });
+}
+
+/**
+ * Wraps all current children of #lp-left-nav in a .nav-scroll-inner div so
+ * they scroll independently of the completion badge that gets appended after.
+ * @returns {void}
+ */
+function buildNavScrollShell() {
+  const nav = CG.dom.local.nav.menu;
+  if (!nav) return;
+  const scrollInner = el("div", { className: "nav-scroll-inner" });
+  while (nav.firstChild) scrollInner.appendChild(nav.firstChild);
+  nav.appendChild(scrollInner);
 }
 
 /**

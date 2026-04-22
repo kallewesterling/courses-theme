@@ -193,11 +193,14 @@ body.sj-page-lesson {
       opacity: 0.6;
     }
 
-    .lessons-wrapper {
-      flex: 1 !important; /* Skilljar Override: flex grow so badge stays pinned to bottom */
+    .nav-scroll-inner {
+      flex: 1 !important; /* Skilljar Override: fill remaining space, push badge to bottom */
       min-height: 0 !important; /* Skilljar Override: required for overflow-y on flex child */
+      overflow-y: auto !important; /* Skilljar Override: scroll lessons within this shell */
+    }
+
+    .lessons-wrapper {
       padding: var(--spacing-2) var(--spacing-3) var(--spacing-4);
-      overflow-y: auto !important; /* Skilljar Override: scroll lessons when they overflow */
 
       h3.section-title {
         padding: var(--spacing-3) var(--spacing-2) var(--spacing-1) !important;
