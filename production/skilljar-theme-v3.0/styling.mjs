@@ -4,8 +4,8 @@ import { Q } from "./utils.mjs";
  * Sets the style of an element or a list of elements.
  * Accepts: HTMLElement, NodeList/HTMLCollection/Array of HTMLElements, or selector string.
  * Skips non-element values found in iterables (e.g., strings, nulls, Documents).
- * Also accepts `{ aria: { label: "X" } }` and `{ dataset: { lang: "js" } }` to set/remove
- * aria attributes and data attributes alongside styles.
+ * Also accepts `{ aria: { label: "X" } }`, `{ dataset: { lang: "js" } }`, and
+ * `{ attrs: { tabindex: "0" } }` to set/remove attributes alongside styles.
  * @returns {HTMLElement|HTMLElement[]|null}
  */
 export function setStyle(target, style) {
@@ -20,6 +20,14 @@ export function setStyle(target, style) {
 
   const apply = (elem) => {
     for (const [prop, raw] of Object.entries(style)) {
+      if (prop === "attrs") {
+        for (const [attrKey, attrVal] of Object.entries(raw)) {
+          if (attrVal === undefined) elem.removeAttribute(attrKey);
+          else elem.setAttribute(attrKey, attrVal);
+        }
+        continue;
+      }
+
       if (prop === "aria") {
         for (const [ariaKey, ariaVal] of Object.entries(raw)) {
           if (ariaVal === undefined) elem.removeAttribute(`aria-${ariaKey}`);
