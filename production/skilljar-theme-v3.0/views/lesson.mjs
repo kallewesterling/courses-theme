@@ -329,7 +329,7 @@ function setupLessonNav() {
       track: elems.footer.next?.getAttribute("data-track-click"),
     },
   };
-  
+
   const match = (attrs.next.up || attrs.next.kd).match(/onNextLessonClick\('([^']+)'\)/);
   attrs.next.href = match ? match[1] : "#";
 
@@ -772,11 +772,12 @@ function buildCompletionBadge() {
 
   badge.addEventListener("click", (e) => {
     if (e.target.closest(".completion-badge-cta")) return;
-    const rect = badge.getBoundingClientRect();
-    const coords = {
-      x: (rect.left + rect.width / 2) / window.innerWidth,
-      y: (rect.top + rect.height / 2) / window.innerHeight,
-    };
+    // const rect = badge.getBoundingClientRect();
+    // const coords = {
+    //   x: (rect.left + rect.width / 2) / window.innerWidth,
+    //   y: (rect.top + rect.height / 2) / window.innerHeight,
+    // };
+    const coords = { x: e.clientX, y: e.clientY };
     shoot("big", coords);
   });
 
