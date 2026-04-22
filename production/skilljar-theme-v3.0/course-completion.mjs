@@ -5,6 +5,7 @@
 import { el, text, Q, render } from "./utils.mjs";
 import { setStyle } from "./styling.mjs";
 import { CG } from "./CG.mjs";
+import { logger } from "./logger.mjs";
 
 // External libraries
 import { confetti } from "https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/+esm";
@@ -126,59 +127,60 @@ export function hideCompletion(elem) {
  * Shoot confetti bursts with stars, circles, and logos.
  * @returns {void}
  */
-export function shoot(size="big", {x, y} = {
+export function shoot(size = "big", { x, y } = {
   x: window.innerWidth / 2,
   y: window.innerHeight / 3,
 }) {
+  let configConfetti = Object.assign(config.confetti.defaults, {
+    origin: { x, y },
+  });
+  logger.info("Shooting confetti", configConfetti);
   if (size === "big") {
     confetti({
-    ...config.confetti.defaults,
-    particleCount: config.confetti.particles.stars.count,
-    scalar: config.confetti.particles.stars.scalar,
-    shapes: ["star"],
-  });
-  confetti({
-    ...config.confetti.defaults,
-    particleCount: config.confetti.particles.circles.count,
-    scalar: config.confetti.particles.circles.scalar,
-    shapes: ["circle"],
-  });
-  confetti({
-    ...config.confetti.defaults,
-    particleCount: config.confetti.particles.logos.count,
-    scalar: config.confetti.particles.logos.scalar,
-    shapes: ["image"],
-    shapeOptions: {
-      image: [
-        {
-          src: "https://cc.sj-cdn.net/instructor/l9kl0bllkdr4-chainguard/themes/2gr0n1rmedy35/favicon.1757695230.png",
-          width: 32,
-          height: 32,
-        },
-      ],
-    },
-  });
-  } else if (size === "small") {
-    const configConfetti = Object.assign(config.confetti.defaults, config.confetti.small, {
-      particleCount: 120/3,
-      origin: { x, y },
+      ...config.confetti.defaults,
+      particleCount: config.confetti.particles.stars.count,
+      scalar: config.confetti.particles.stars.scalar,
+      shapes: ["star"],
     });
-    
+    confetti({
+      ...config.confetti.defaults,
+      particleCount: config.confetti.particles.circles.count,
+      scalar: config.confetti.particles.circles.scalar,
+      shapes: ["circle"],
+    });
+    confetti({
+      ...config.confetti.defaults,
+      particleCount: config.confetti.particles.logos.count,
+      scalar: config.confetti.particles.logos.scalar,
+      shapes: ["image"],
+      shapeOptions: {
+        image: [
+          {
+            src: "https://cc.sj-cdn.net/instructor/l9kl0bllkdr4-chainguard/themes/2gr0n1rmedy35/favicon.1757695230.png",
+            width: 32,
+            height: 32,
+          },
+        ],
+      },
+    });
+  } else if (size === "small") {
+    configConfetti = Object.assign(configConfetti, config.confetti.small, { particleCount: 40 });
+
     confetti({
       ...configConfetti,
-      particleCount: 120/3, //config.confetti.particles.stars.count,
+      particleCount: 120 / 3, //config.confetti.particles.stars.count,
       scalar: config.confetti.particles.stars.scalar,
       shapes: ["star"],
     });
     confetti({
       ...configConfetti,
-      particleCount: 120/3, //config.confetti.particles.circles.count,
+      particleCount: 120 / 3, //config.confetti.particles.circles.count,
       scalar: config.confetti.particles.circles.scalar,
       shapes: ["circle"],
     });
     confetti({
       ...configConfetti,
-      particleCount: 120/3, // config.confetti.particles.logos.count,
+      particleCount: 120 / 3, // config.confetti.particles.logos.count,
       scalar: config.confetti.particles.logos.scalar,
       shapes: ["image"],
       shapeOptions: {
@@ -204,11 +206,11 @@ export function animateCompletion(type = "course") {
   const title =
     type === "path"
       ? render(completion.pathTitle, {
-          pathTitle: CG.state.course.path?.title ?? "the learning path",
-        })
+        pathTitle: CG.state.course.path?.title ?? "the learning path",
+      })
       : render(completion.title, {
-          courseTitle: CG.state.course?.title ?? "the course",
-        });
+        courseTitle: CG.state.course?.title ?? "the course",
+      });
 
   const elem = ensureCompletionPopup(title);
   showCompletion(elem);
