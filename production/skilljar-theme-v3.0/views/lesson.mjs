@@ -773,8 +773,7 @@ function buildCompletionBadge() {
 
   badge.addEventListener("click", (e) => {
     if (e.target.closest(".completion-badge-cta")) return;
-    const coords = { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight };
-    shoot("big", coords);
+    shoot("big", { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight });
   });
 
   nav.append(badge);
