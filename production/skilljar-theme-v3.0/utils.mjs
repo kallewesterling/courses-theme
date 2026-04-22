@@ -77,6 +77,33 @@ export function sanitizeUrl(link, UTM = {}) {
 }
 
 /**
+ * Adds multiple event listeners to an element in one call.
+ * Each value can be a handler function or a `[handler, options]` tuple.
+ * Returns the element so calls can be chained.
+ * @param {HTMLElement} target - The element to attach listeners to.
+ * @param {Object} listeners - Map of event name → handler or [handler, options].
+ * @returns {HTMLElement} The target element.
+ *
+ * @example
+ * addEvtListeners(btn, {
+ *   click: handleClick,
+ *   keydown: handleKeydown,
+ *   scroll: [handleScroll, { passive: true }],
+ * });
+ */
+export function addEvtListeners(target, listeners) {
+  for (const [event, handlerOrTuple] of Object.entries(listeners)) {
+    if (Array.isArray(handlerOrTuple)) {
+      const [handler, options] = handlerOrTuple;
+      target.addEventListener(event, handler, options);
+    } else if (typeof handlerOrTuple === "function") {
+      target.addEventListener(event, handlerOrTuple);
+    }
+  }
+  return target;
+}
+
+/**
  * Creates a DOM element with specified tag, properties, and children.
  * Supports event listeners by using "onEventName" properties (e.g., "onclick").
  * Supports both HTML and SVG elements.
@@ -120,14 +147,7 @@ export function el(tag, props = {}, children = []) {
     }
 
     if (k === "on") {
-      for (const [event, handlerOrTuple] of Object.entries(v)) {
-        if (Array.isArray(handlerOrTuple)) {
-          const [handler, options] = handlerOrTuple;
-          n.addEventListener(event, handler, options);
-        } else if (typeof handlerOrTuple === "function") {
-          n.addEventListener(event, handlerOrTuple);
-        }
-      }
+      addEvtListeners(n, v);
       continue;
     }
 
