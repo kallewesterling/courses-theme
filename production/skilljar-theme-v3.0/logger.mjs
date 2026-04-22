@@ -11,7 +11,11 @@ export const logger = {
    * @returns {boolean} True if logging is enabled, false otherwise.
    */
   get isEnabled() {
-    return localStorage.getItem("cg-logger-enabled") === "true";
+    try {
+      return JSON.parse(localStorage.getItem("DEBUG_FLAGS") || "{}").logging === true;
+    } catch {
+      return false;
+    }
   },
 
   /**
