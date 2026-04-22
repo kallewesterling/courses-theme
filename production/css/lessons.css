@@ -800,6 +800,10 @@ body.sj-page-lesson {
                 background-color: var(--ink-5) !important;
                 color: var(--color-text-purple-link) !important;
                 font-size: var(--font-size-sm-large);
+
+                p.lead & {
+                  font-size: inherit;
+                }
               }
 
               pre {
