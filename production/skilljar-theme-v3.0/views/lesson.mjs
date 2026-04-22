@@ -508,7 +508,7 @@ export function lessonView() {
   if (typeof resources !== "undefined") buildResourceBox();
 
   slugifyHeadings();
-  buildToc();
+  buildNavSubItems();
   buildEndBanner();
   buildHeaderCourseLink();
 }
@@ -547,25 +547,27 @@ function slugifyHeadings() {
 }
 
 /**
- * Builds a table of contents (ToC) for the lesson page by finding all <h3> headings
- * with IDs and creating a navigation menu. The ToC is appended to the lesson content,
- * and an IntersectionObserver is set up to highlight the active section as the user
- * scrolls through the page.
+ * Builds h3 sub-item links under the active lesson in the left nav.
+ * Replaces the separate right-side TOC; scroll-spy highlights the current section.
  * @returns {void}
  */
-function buildToc() {
+function buildNavSubItems() {
   const inner = CG.dom.local.lesson.innerBody;
-  if (!inner) return;
+  const nav = CG.dom.local.nav.menu;
+  if (!inner || !nav) return;
 
   const headings = A("h3[id]", inner);
   if (headings.length < 2) return;
 
-  const scrollEl = Q("#lp-wrapper");
-  const OFFSET = 120; // breathing room below the top of the scroll container
+  const activeLesson = Q(".lesson-row.lesson-active", nav)?.closest("a.lesson");
+  if (!activeLesson) return;
 
-  const items = [];
-  const listEls = headings.map((h) => {
-    const a = el("a", { href: `#${h.id}`, textContent: h.textContent });
+  const scrollEl = Q("#lp-wrapper");
+  const OFFSET = 120;
+
+  const sublinks = [];
+  const subItems = headings.map((h) => {
+    const a = el("a", { className: "nav-subitem", href: `#${h.id}`, textContent: h.textContent });
     a.addEventListener("click", (e) => {
       e.preventDefault();
       const rect = h.getBoundingClientRect();
@@ -575,21 +577,11 @@ function buildToc() {
         behavior: "smooth",
       });
     });
-    const li = el("li", {}, [a]);
-    items.push(li);
-    return li;
+    sublinks.push(a);
+    return a;
   });
 
-  const nav = el("nav", { className: "lesson-toc" }, [
-    el("div", { className: "lesson-toc-title", textContent: "On this page" }),
-    el("ol", {}, listEls),
-  ]);
-  nav.setAttribute("aria-label", "On this page");
-  inner.classList.add("has-toc");
-  inner.append(nav);
-
-  // Scroll-spy: highlight the section the reader is currently in
-  const map = new Map(headings.map((h, i) => [h, items[i]]));
+  activeLesson.after(el("div", { className: "nav-subitems" }, subItems));
 
   function updateActive() {
     const threshold = scrollEl.getBoundingClientRect().top + OFFSET + 10;
@@ -598,8 +590,9 @@ function buildToc() {
       if (h.getBoundingClientRect().top <= threshold) active = h;
       else break;
     }
-    items.forEach((li) => li.classList.remove("is-active"));
-    map.get(active)?.classList.add("is-active");
+    sublinks.forEach((a) => {
+      a.classList.toggle("is-active", a.getAttribute("href") === `#${active.id}`);
+    });
   }
 
   scrollEl.addEventListener("scroll", updateActive, { passive: true });
