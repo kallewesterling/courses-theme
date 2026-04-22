@@ -475,7 +475,7 @@ body.sj-page-detail-path {
     /* Card h5 (course type/category) */
     .cards article h5 {
       padding: var(--spacing-0);
-      margin: var(--spacing-0) var(--spacing-0) var(--spacing-2);
+      margin: var(--spacing-0);
       color: var(--color-purple-medium);
       font-family: inherit;
       font-size: var(--font-size-xs-plus);
