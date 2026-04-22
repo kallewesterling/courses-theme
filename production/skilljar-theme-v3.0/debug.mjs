@@ -134,6 +134,7 @@ export function setupDebug() {
     window.logger = logger;
     window.animateCompletion = animateCompletion;
     window.shoot = shoot;
+    window.el = el;
     window.CG = CG; // Expose CG for easier debugging access to state and environment
   }
 }
