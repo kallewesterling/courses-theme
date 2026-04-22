@@ -262,8 +262,8 @@ function buildDebugFab() {
   onReady(() => {
     document.body.append(fab, panel);
 
-    // apply initial domain state once all links are in the DOM
-    updateLinks(flags.useTestDomain);
+    // only apply domain swap on load when the flag is explicitly active
+    if (flags.useTestDomain) updateLinks(true);
 
     // close on outside click or Escape
     document.addEventListener(
