@@ -12,7 +12,43 @@ on:
 permissions: {}
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Github Actions Runner
+        uses: step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40 # v2.19.0
+        with:
+          egress-policy: audit
+
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build CSS
+        run: npm run build
+
+      - name: Upload dist artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
   sync-to-gcs:
+    needs: build
     if: github.repository == 'chainguard-dev/courses-theme'
 
     runs-on: ubuntu-latest
@@ -22,7 +58,7 @@ jobs:
       id-token: write
 
     steps:
-      - name: 'Github Actions Runner'
+      - name: Github Actions Runner
         uses: step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40 # v2.19.0
         with:
           egress-policy: audit
@@ -31,6 +67,12 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
+
+      - name: Download dist artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
 
       - name: Authenticate to Google Cloud
         id: auth
@@ -43,9 +85,10 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@aa5489c8933f4cc7a4f7d45035b3b1440c9c10db' # v3.0.1
 
       - name: Sync production directory to GCS
-        run: |
-          gsutil -m rsync -r -d production/ gs://chainguard-courses-theme/production/
+        run: gsutil -m rsync -r -d production/ gs://chainguard-courses-theme/production/
 
       - name: Sync fonts directory to GCS
-        run: |
-          gsutil -m rsync -r -d fonts/ gs://chainguard-courses-theme/fonts/
+        run: gsutil -m rsync -r -d fonts/ gs://chainguard-courses-theme/fonts/
+
+      - name: Sync dist directory to GCS
+        run: gsutil -m rsync -r -d dist/ gs://chainguard-courses-theme/dist/
