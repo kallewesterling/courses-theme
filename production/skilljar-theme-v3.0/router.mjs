@@ -1,6 +1,6 @@
 import { CG } from "./CG.mjs";
 import { logger } from "./logger.mjs";
-import { Q, el } from "./utils.mjs";
+import { Q, el, remove } from "./utils.mjs";
 import { debugHeading } from "./debug.mjs";
 import {
   pathUnregisteredView,
@@ -12,9 +12,8 @@ import {
   catalogView,
   notFoundView,
 } from "./views/index.mjs";
-import { remove } from "./skilljar-theme-v3.0/utils.mjs";
-import { generateFooter } from "./skilljar-theme-v3.0/footer.mjs";
-import { hide } from "./skilljar-theme-v3.0/styling.mjs";
+import { generateFooter } from "./footer.mjs";
+import { hide } from "./styling.mjs";
 
 /**
  * An array of page handlers that map specific page conditions to their corresponding view functions.
