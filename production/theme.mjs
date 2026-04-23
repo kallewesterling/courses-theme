@@ -13,25 +13,13 @@
  * @see {@link https://courses.chainguard.com|Chainguard Courses}
  */
 
-import { remove } from "./skilljar-theme-v3.0/utils.mjs";
 import { CG } from "./skilljar-theme-v3.0/CG.mjs";
-import { generateFooter } from "./skilljar-theme-v3.0/footer.mjs";
-import { hide, showBody } from "./skilljar-theme-v3.0/styling.mjs";
+import { showBody } from "./skilljar-theme-v3.0/styling.mjs";
 import { route, preRoute, postRoute } from "./skilljar-theme-v3.0/router.mjs";
 import { setupDebug } from "./skilljar-theme-v3.0/debug.mjs";
 
 document.addEventListener("DOMContentLoaded", () => {
   if (CG.env.isAdmin) setupDebug();
-
-  // Clean up DOM: remove elements + set class names
-  remove(".search-container");
-  CG.dom.bodyHeader.classList.add("headers");
-  hide("#ep-footer"); // hide Skilljar footer
-
-  // replace logo
-  CG.dom.headerLeft.replaceChildren(CG.el.logo);
-
-  generateFooter();
 
   preRoute();
   route();
