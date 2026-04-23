@@ -1,0 +1,245 @@
+/* Header navigation styling
+ *
+ * NOTE: !important is used to override Skilljar's platform CSS.
+ * This is necessary and expected for custom theming.
+ */
+
+.headers {
+  position: fixed;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 60px;
+  overflow: visible;
+  background-color: var(--white) !important;
+  border-bottom: 1px solid var(--color-border-default) !important;
+
+  #to-chainguard {
+    display: flex;
+    align-items: center;
+    float: left;
+    height: 100%;
+    margin: var(--spacing-0) var(--spacing-5);
+
+    a {
+      color: var(--ink) !important;
+    }
+  }
+
+  + #header {
+    top: 0;
+  }
+
+  + #mobile-header {
+    top: 60px;
+  }
+
+  @media screen and (max-width: 690px) {
+    height: 45px !important;
+
+    + #mobile-header {
+      top: 45px;
+    }
+  }
+}
+
+#header #header-left,
+#mobile-header {
+  overflow: hidden;
+
+  > a {
+    display: flex;
+    align-items: center;
+    min-height: 100%;
+    padding: var(--spacing-5);
+    border-right: 1px solid var(--neutral-border);
+
+    @media screen and (max-width: 690px) {
+      padding: var(--spacing-0);
+    }
+  }
+}
+
+#header {
+  border-bottom: 1px solid var(--neutral-border);
+
+  .back-to-catalog {
+    /* Back to catalog button */
+    display: none !important;
+  }
+
+  .headerheight.align-vertical {
+    border-left: 1px solid var(--neutral-border);
+  }
+
+  .header-dropdown-button {
+    margin-right: var(--spacing-2-5);
+  }
+
+  #header-left {
+    padding-left: var(--spacing-0) !important;
+
+    #logo-wrapper {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: var(--spacing-0) var(--spacing-5);
+      background-color: var(--blurple);
+
+      a {
+        display: flex;
+        align-items: center;
+        height: 100% !important;
+
+        svg {
+          fill: var(--color-surface-base) !important;
+          height: 40%;
+        }
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      #logo-wrapper {
+        padding: var(--spacing-0) var(--spacing-2-5);
+      }
+    }
+  }
+
+  #header-right {
+    .search-container {
+      display: none !important;
+    }
+
+    .info-circle-wrapper {
+      display: flex;
+      align-items: center;
+      float: left;
+      height: 100%;
+      padding: var(--spacing-0) var(--spacing-2-5);
+      cursor: pointer;
+      border-left: 1px solid var(--neutral-border);
+
+      .info-circle {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 32px;
+        height: 32px;
+        border-radius: var(--radius-circle);
+        background: var(--blurple);
+        color: var(--color-surface-base);
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-bold);
+        line-height: var(--line-height-none);
+      }
+    }
+
+    .login-link {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      padding: var(--spacing-0) var(--spacing-12-5);
+      margin: var(--spacing-0);
+      border: var(--border-width-none);
+      border: var(--border-width-medium) solid var(--ring);
+      border-radius: var(--radius-none);
+      background-color: var(--blurple);
+      color: var(--primary-white-hex) !important;
+      font-family: Gellix, sans-serif;
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  .info-circle-menu {
+    position: absolute;
+    top: 52px;
+    left: -999999px;
+    z-index: 200;
+    max-width: 200px;
+    border: var(--border-width-thin) solid var(--color-text-steel);
+    background-color: var(--color-surface-base);
+    list-style: none;
+    box-shadow: var(--shadow-menu-dropdown);
+
+    li {
+      display: block;
+      padding: 0.625em 0.625em;
+      margin: var(--spacing-0);
+      font-size: var(--font-size-sm);
+      line-height: var(--line-height-1-125em);
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--color-hover-bg);
+      }
+
+      a {
+        display: block;
+        padding: 0.625em 0.625em;
+        color: var(--color-text-gray);
+      }
+    }
+  }
+
+  .header-dropdown-button-v2 {
+    margin-right: var(--spacing-2-5);
+  }
+}
+
+@media screen and (max-width: 808px) {
+  #header .info-circle-menu {
+    position: absolute;
+    top: 38.5px;
+    left: 2.5%;
+    width: 95%;
+    max-width: none;
+  }
+
+  .headers {
+    font-size: 80% !important;
+  }
+}
+
+#mobile-header {
+  display: none;
+}
+
+@media screen and (max-width: 690px) {
+  #mobile-header {
+    z-index: 1;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+
+    #mobile-header-left {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      margin: var(--spacing-0) var(--spacing-5);
+    }
+
+    #mobile-header-right {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      margin: var(--spacing-0) var(--spacing-5);
+    }
+  }
+
+  #header #header-left > a,
+  #header #header-right #to-chainguard {
+    display: none;
+  }
+
+  body.sj-page-catalog-root,
+  body.sj-page-curriculum,
+  body.sj-page-detail-bundle.sj-page-detail-path,
+  body.sj-page-catalog.sj-page-series,
+  body.sj-page-detail-course {
+    #skilljar-content,
+    #lp-wrapper {
+      padding-top: var(--spacing-24);
+    }
+  }
+}

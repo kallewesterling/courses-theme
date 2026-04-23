@@ -13,6 +13,8 @@ permissions: {}
 
 jobs:
   sync-to-gcs:
+    if: github.repository == 'chainguard-dev/courses-theme'
+
     runs-on: ubuntu-latest
 
     permissions:

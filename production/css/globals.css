@@ -1,0 +1,147 @@
+/* Global styles and typography
+ *
+ * NOTE: !important is used where needed to override Skilljar's platform CSS.
+ * This is necessary and expected for custom theming.
+ */
+
+* {
+  font-family: Roobert, Lato, monospace;
+}
+
+body {
+  color: var(--ink);
+}
+
+span {
+  font-family: inherit;
+}
+
+h1,
+.h1-style,
+h2,
+.h2-style,
+h3,
+.h3-style,
+h4,
+.h4-style,
+h5,
+h6 {
+  color: var(--ink);
+  font-family: Gellix, sans-serif;
+  font-weight: var(--font-weight-bold);
+}
+
+.no-select {
+  user-select: none;
+}
+
+a {
+  color: var(--blurple) !important;
+}
+
+label {
+  color: var(--ink);
+}
+
+.button {
+  padding: var(--spacing-2-5) var(--spacing-5);
+  border: var(--border-width-none);
+  background-color: var(--blurple);
+  color: var(--white) !important;
+  font-family: Gellix, sans-serif;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  transition: var(--transition-button-full);
+
+  &:hover {
+    background-color: var(--blurple);
+    color: var(--white) !important;
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-focus-ring);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
+  span {
+    color: inherit;
+    font-family: inherit;
+  }
+}
+
+#skilljar-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: transparent !important; /* Hide white background */
+
+  .top-row,
+  .sj-courseboxes-v2,
+  #cp-content {
+    flex: 1;
+  }
+
+  &::after {
+    height: 0;
+  }
+}
+
+svg.clone-icon {
+  display: block;
+  fill: var(--answer-option);
+
+  &.copy-icon {
+    fill: var(--primary-blue-hex);
+    cursor: pointer;
+  }
+
+  &.checkbox-icon {
+    flex-shrink: 0;
+  }
+}
+
+/* ── Floater label (Course / Learning Path) ──────────────────────────────── */
+
+[data-floater-trigger] {
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  cursor: help;
+}
+
+/* ── Tooltip card ─────────────────────────────────────────────────────────── */
+
+.floater-tooltip {
+  position: absolute;
+  z-index: 9999 !important;
+  padding: 10px 14px !important;
+  border-radius: 6px !important;
+  background: var(--ink, #0f1020) !important;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.24) !important;
+  color: #ffffff !important;
+  font-family: Roobert, Lato, sans-serif !important;
+  font-size: 0.8125rem !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+
+  &.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &.is-above {
+    transform: translateY(-100%);
+  }
+}

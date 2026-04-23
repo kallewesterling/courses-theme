@@ -1,0 +1,124 @@
+/* This is where we put legacy styles that we want to freeze and not update, but potentially remove
+ *
+ * NOTE: !important is used to override Skilljar's platform CSS.
+ * This is necessary and expected for custom theming.
+ */
+
+.module-heading {
+  /* TODO: Legacy? */
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-21);
+  letter-spacing: var(--letter-spacing-snug-alt);
+}
+
+.module-list {
+  /* TODO: Legacy? */
+  margin-bottom: var(--spacing-12);
+}
+
+.video-player.flex-video.widescreen {
+  /* Legacy - I don't think we use video player anywhere anymore */
+  padding: var(--spacing-0);
+  border-radius: var(--radius-lg);
+}
+
+.sj-heading-paragraph,
+.sj-floater-text {
+  /* TODO: Legacy, but still remains hardcoded so need to be here for now. */
+  display: none;
+}
+
+.expandable-view
+  a.coursebox-container[title="Claim your Container Crusader Credential"]::after {
+  content: none;
+}
+
+.button.tiny[title="Download certificate PDF"] {
+  display: none;
+}
+
+body.sj-page-catalog {
+  /*
+  These are our legacy styles in the transition period to the new branding.
+  */
+
+  /* Legacy coursebox container */
+  #catalog-courses .coursebox-container {
+        display: flex;
+        flex-direction: column;
+        width: calc(33% - 24px) !important; /* 3 should fit */
+        border: var(--border-width-thin) solid var(--color-border-black);
+        border-radius: var(--radius-3xl);
+
+        @media screen and (max-width: 991px) {
+          width: 100% !important; /* 1 only on mobile */
+        }
+
+  }
+
+  /* Badge box styling */
+  #catalog-courses .coursebox-container .badge-box {
+    background-color: var(--color-brand-blurple) !important;
+    color: var(--color-surface-base) !important;
+    box-shadow: unset !important;
+  }
+
+  /* FontAwesome icon before badge box */
+  #catalog-courses .coursebox-container .badge-box::before {
+          content: "";
+          display: inline-block;
+          margin-right: 10px;
+          font: normal normal normal 14px/1 FontAwesome, monospace;
+          font-size: inherit;
+          text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Hide registered ribbon */
+  #catalog-courses .coursebox-container .sj-ribbon-wrapper {
+    display: none !important;
+  }
+
+  /* Hide course image */
+  #catalog-courses .coursebox-container .coursebox-image {
+    display: none !important;
+  }
+
+  /* Text description */
+  #catalog-courses .coursebox-container .coursebox-text-description {
+    flex: 1;
+    font-size: var(--font-size-sm);
+  }
+
+  /* Course overview section */
+  #catalog-courses .coursebox-container .course-overview {
+    font-size: 80%;
+    font-weight: var(--font-weight-light);
+  }
+
+  /* Course overview content */
+  #catalog-courses .coursebox-container .course-overview__content {
+    padding: var(--spacing-2) var(--spacing-2) var(--spacing-0) var(--spacing-2);
+  }
+
+  /* Course overview links */
+  #catalog-courses .coursebox-container .course-overview__content a {
+    color: var(--blurple);
+  }
+
+  /* Course overview link icons */
+  #catalog-courses .coursebox-container .course-overview__content a i {
+    padding-right: var(--spacing-3);
+  }
+
+  /* Hide type icon */
+  #catalog-courses .coursebox-container .course-overview__content__lesson__type-icon {
+    display: none !important;
+  }
+
+  /* Padding when badge box present */
+  #catalog-courses .coursebox-container:has(.badge-box) {
+    padding-top: var(--spacing-12);
+  }
+}

@@ -1,0 +1,94 @@
+/* Breadcrumb styling
+ *
+ * NOTE: !important is used where needed to override Skilljar's platform CSS.
+ */
+
+body.sj-page-detail-course,
+body.sj-page-detail-path,
+body.sj-page-curriculum,
+body.sj-page-catalog,
+body.sj-page-series {
+  #breadcrumb-wrapper {
+    max-width: min(1188px, 90%);
+    margin: var(--spacing-4) auto;
+
+    .breadcrumbs {
+      width: 100% !important;
+      padding: 10px var(--spacing-0) !important;
+      overflow: visible !important;
+      border: var(--border-width-none) !important;           /* reset Skilljar's border + border-radius */
+      border-top: var(--border-width-none) !important;
+      border-bottom: var(--border-width-none) !important;
+      border-radius: var(--radius-none) !important;
+      background-color: transparent !important;
+      box-shadow: none !important;
+
+      ol {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--gap-2);
+        padding: var(--spacing-0);
+        margin: var(--spacing-0);
+        list-style: none;
+
+        li {
+          display: flex;
+          align-items: center;
+          gap: var(--gap-2);
+          min-width: 0;
+
+          + li::before {
+            /* chevron — indicates drilling down */
+            content: "";
+            flex: 0 0 12px;
+            width: 12px;
+            height: 12px;
+            background-color: var(--color-text-muted-purple);
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 5l7 7-7 7'/></svg>")
+              center/contain no-repeat;
+          }
+        }
+      }
+
+      .crumb {
+        max-width: min-content;
+        overflow: hidden;
+        color: var(--ink-dim) !important;
+        font-size: inherit;
+        font-weight: var(--font-weight-normal);
+        text-decoration: none;
+        opacity: 1 !important;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        &[aria-current="page"] {
+          color: var(--color-text-disabled) !important;
+        }
+
+        &:is(a):hover {
+          color: var(--ink) !important;
+          text-decoration: underline;
+          text-underline-offset: 2px;
+        }
+
+        &:focus-visible {
+          outline: none;
+          box-shadow: var(--shadow-focus-ring);
+          border-radius: var(--radius-sm);
+        }
+      }
+
+      .crumb--home {
+        display: flex;
+        align-items: center;
+        color: var(--ink-dim) !important;
+        font-size: var(--font-size-base);  /* icon scales with font-size */
+
+        &:hover {
+          color: var(--blurple) !important;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

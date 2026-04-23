@@ -1,0 +1,169 @@
+/* Styles that apply to both course and learning path pages
+ *
+ * NOTE: !important is used extensively throughout this file to override
+ * Skilljar's platform CSS. This is necessary and expected for custom theming.
+ */
+
+body.sj-page-detail-path,
+body.sj-page-series,
+body.sj-page-detail-course,
+body.sj-page-curriculum {
+  /*
+  body.sj-page-detail-path: isPathUnregistered
+  body.sj-page-series: isPathRegistered
+  body.sj-page-detail-course: isCourseUnregistered
+  body.sj-page-curriculum: isCourseRegistered
+  */
+
+  .top-row-grey {
+    max-width: 100%;
+    padding: var(--spacing-24) var(--spacing-0);
+    border: var(--border-width-none);
+    background-color: var(--color-card-bg-light) !important;
+
+    @media screen and (max-width: 1320px) {
+      padding-top: 56px;
+      padding-bottom: 56px;
+    }
+
+    .d-flex-center-v2 {
+      justify-content: start;
+      max-width: min(1188px, 90%);
+      margin: var(--spacing-0) auto;
+
+      .cp-summary-row-v2 {
+        width: 100% !important;
+      }
+    }
+
+    .row.dp-row-flex-v2 {
+      display: flex;
+      flex-direction: row-reverse;
+      flex-wrap: nowrap;
+      justify-content: start;
+      gap: var(--gap-6);
+      max-width: min(1188px, 90%);
+
+      .cp-promo-image-wrapper,
+      .dp-promo-image-wrapper {
+        /* Course image */
+        display: none !important;
+      }
+
+      .columns.cp-summary-wrapper,
+      .columns.dp-summary-wrapper {
+        position: static;
+        width: 100%;
+        max-width: 100% !important;
+        padding: var(--spacing-0) !important;
+        border: var(--border-width-none);
+        text-align: left !important;
+
+        /* .sj-course-info-wrapper {
+          display: none !important;
+        } */
+
+        .sj-floater-text {
+          display: block !important;
+          color: var(--color-brand-violet);
+          font-family: Roobert, monospace;
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-bold);
+          line-height: var(--line-height-23-7);
+        }
+
+        .sj-heading-paragraph,
+        .sj-course-info-wrapper h2 {
+          display: block !important;
+          max-width: 80%;
+          margin: var(--spacing-0) var(--spacing-0) var(--spacing-6) var(--spacing-0);
+          color: var(--ink) !important;
+          font-family: Roobert, monospace;
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-normal);
+          line-height: var(--line-height-24);
+        }
+
+        h1.break-word {
+          margin: var(--spacing-0) var(--spacing-0) var(--spacing-3) var(--spacing-0);
+          color: var(--ink) !important;
+          font-size: var(--font-size-3xl);
+          font-weight: var(--font-weight-semibold);
+          line-height: var(--line-height-43-2);
+          letter-spacing: var(--letter-spacing-snug);
+        }
+
+        .social-media-wrapper {
+          display: none !important;
+        }
+      }
+    }
+  }
+
+  #dp-details,
+  #cp-content {
+    display: flex;
+    column-gap: var(--gap-6);
+    grid-template-columns: minmax(100px, 796px) minmax(100px, 368px);
+    /* Page content */
+    max-width: min(1188px, 90%);
+    padding: var(--spacing-0);
+    margin: var(--spacing-5) auto var(--spacing-11-5) auto;
+
+    @media screen and (max-width: 991px) {
+      grid-template-columns: 1fr;
+      margin: var(--spacing-5) auto -10px auto;
+    }
+
+    .show-for-small {
+      /* Mobile body content - hide it! */
+      display: none !important;
+    }
+
+    .hide-for-small {
+      display: grid !important;
+      max-width: 796px;
+      /* Desktop body content */
+      padding: var(--spacing-0);
+
+      .columns {
+        display: block;
+        /* Two columns: content + curriculum */
+        float: none;
+        width: 100%;
+        padding: var(--spacing-0);
+        margin-bottom: var(--spacing-12);
+
+        h3 {
+          /* Headers in content + curriculum */
+          font-weight: var(--font-weight-semibold);
+        }
+      }
+    }
+
+    .large-10.large-centered.columns.tabs-wrapper-v2 {
+      width: 100%;
+      max-width: 100%;
+      margin: var(--spacing-0);
+    }
+  }
+
+  #dp-details-bundle {
+    max-width: 1188px;
+    padding: var(--spacing-24) var(--spacing-0) !important;
+    margin: var(--spacing-0) auto;
+    border-bottom: 1px solid var(--neutral-border);
+
+    @media screen and (max-width: 1320px) {
+      padding: 56px 8vw !important;
+    }
+
+    .row {
+      padding: var(--spacing-0);
+
+      .columns {
+        padding: var(--spacing-0);
+      }
+    }
+  }
+}
