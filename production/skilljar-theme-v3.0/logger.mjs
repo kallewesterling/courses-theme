@@ -49,7 +49,6 @@ export const logger = {
    * @returns {void}
    */
   error(message, ...args) {
-    if (!this.isEnabled) return;
     const style = `color:darkred;${fontWeight}`;
     console.error(`%c[CG] ${message}`, style, ...args);
   },

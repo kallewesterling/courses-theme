@@ -1,4 +1,5 @@
 import { el, sanitizeUrl } from "./utils.mjs";
+import { logger } from "./logger.mjs";
 
 // static imports
 import { footerData } from "../data/footer.mjs";
@@ -14,7 +15,10 @@ export function generateFooter(
   containerId = "footer-container",
 ) {
   const container = document.getElementById(containerId);
-  if (!container) return;
+  if (!container) {
+    logger.error(`generateFooter: #${containerId} not found in DOM`);
+    return;
+  }
   container.innerHTML = "";
 
   const copyrightContent = [

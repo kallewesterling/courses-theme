@@ -81,9 +81,11 @@ export function preRoute() {
   if (CG.page.isCourseUnregistered)
     CG.dom.body.classList.add("course-unregistered-view");
 
-  if (CG.page.isLesson)
+  if (CG.page.isLesson) {
     // if a lesson page, we need to move the nav button before we modify the header
-    CG.dom.contentContainer.append(Q("#left-nav-button"));
+    const navBtn = Q("#left-nav-button");
+    if (navBtn) CG.dom.contentContainer.append(navBtn);
+  }
 
   // admin debug heading
   if (CG.env.isAdmin) debugHeading();
@@ -128,8 +130,10 @@ export function postRoute() {
   }
 
   // move footer
-  CG.dom.contentContainer.append(Q("#footer-container"));
+  const footerContainer = Q("#footer-container");
+  if (footerContainer) CG.dom.contentContainer.append(footerContainer);
 
   // move messages
-  CG.dom.contentContainer.prepend(Q("#messages"));
+  const messages = Q("#messages");
+  if (messages) CG.dom.contentContainer.prepend(messages);
 }
