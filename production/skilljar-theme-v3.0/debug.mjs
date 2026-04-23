@@ -30,7 +30,7 @@ function setFlag(key, value) {
 }
 
 // ── domain swapper ──────────────────────────────────────────────────────────
-function updateLinks(useTestDomain) {
+export function updateLinks(useTestDomain) {
   A(
     `a[href*="${config.domains.prod.url}"], a[href*="${config.domains.stage.url}"]`
   ).forEach((link) => {

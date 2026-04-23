@@ -4,6 +4,7 @@ import { hide } from "./styling.mjs";
 import { createClone } from "./icons.mjs";
 import { CG } from "./CG.mjs";
 import { logger } from "./logger.mjs";
+import { updateLinks } from "./debug.mjs";
 
 // static imports
 import { term } from "../data/messages.mjs";
@@ -102,6 +103,8 @@ export function makeSections(
 
     Q(parentSelector).append(section);
   });
+
+  if (CG.env.isAdmin) updateLinks();
 }
 
 /**

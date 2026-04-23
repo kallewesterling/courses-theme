@@ -21,7 +21,7 @@ import { route, preRoute, postRoute } from "./skilljar-theme-v3.0/router.mjs";
 import { setupDebug } from "./skilljar-theme-v3.0/debug.mjs";
 
 document.addEventListener("DOMContentLoaded", () => {
-  setupDebug();
+  if (CG.env.isAdmin) setupDebug();
 
   // Clean up DOM: remove elements + set class names
   remove(".search-container");
