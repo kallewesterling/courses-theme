@@ -68,7 +68,7 @@ export function preRoute() {
   // replace logo
   CG.dom.headerLeft.replaceChildren(CG.el.logo);
 
-  generateFooter();
+  generateFooter({ appendElement: true }); // generate footer, appending it to the body if container doesn't exist (like on the landing page)
 
   // set body classes
   if (CG.page.isCourseRegistered) {
@@ -77,7 +77,7 @@ export function preRoute() {
     if (CG.state.course.completed)
       CG.dom.body.classList.add("course-completed-view");
   }
-  
+
   if (CG.page.isCourseUnregistered)
     CG.dom.body.classList.add("course-unregistered-view");
 

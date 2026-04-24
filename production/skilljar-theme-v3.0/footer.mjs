@@ -10,11 +10,12 @@ import { footerData } from "../data/footer.mjs";
  * @param {string} containerId - The ID of the container to append the footer to.
  * @returns {void}
  */
-export function generateFooter(
-  data = footerData,
-  containerId = "footer-container",
-  appendElement = false,
-) {
+export function generateFooter(vars = {
+  data: footerData,
+  containerId: "footer-container",
+  appendElement: false
+}) {
+  const { data = footerData, containerId = "footer-container", appendElement = false } = vars;
   const container = document.getElementById(containerId);
   if (!container && !appendElement) {
     logger.error(`generateFooter: #${containerId} not found in DOM`);
@@ -25,17 +26,17 @@ export function generateFooter(
     );
     const newContainer = el("div", { id: containerId });
     
-    // add it after div id="skilljar-content"
+    // add it into div id="skilljar-content"
     const contentDiv = document.getElementById("skilljar-content");
     if (contentDiv) {
-      contentDiv.insertAdjacentElement("afterend", newContainer);
+      contentDiv.appendChild(newContainer);
     } else {
       logger.error(
         `generateFooter: #skilljar-content not found in DOM, cannot append footer container.`,
       );
       return;
     }
-    return generateFooter(data, containerId, appendElement); // call again now that container exists
+    return generateFooter({data, containerId, appendElement}); // call again now that container exists
   }
   container.innerHTML = "";
 
