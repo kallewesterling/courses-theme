@@ -24,7 +24,7 @@ export function generateFooter(vars = {
     logger.warn(
       `generateFooter: #${containerId} not found in DOM, creating and appending to body...`,
     );
-    const newContainer = el("div", { id: containerId });
+    const newContainer = el("footer", { id: containerId });
     
     // add it into div id="skilljar-content"
     const contentDiv = document.getElementById("skilljar-content");
