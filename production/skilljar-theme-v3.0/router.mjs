@@ -1,7 +1,6 @@
 import { CG } from "./CG.mjs";
 import { logger } from "./logger.mjs";
 import { Q, el, remove } from "./utils.mjs";
-import { debugHeading } from "./debug.mjs";
 import {
   pathUnregisteredView,
   pathRegisteredView,
@@ -86,9 +85,6 @@ export function preRoute() {
     const navBtn = Q("#left-nav-button");
     if (navBtn) CG.dom.contentContainer.append(navBtn);
   }
-
-  // admin debug heading
-  if (CG.env.isAdmin) debugHeading();
 
   if (!CG.page.isSignup && !CG.page.isLogin) {
     // add chainguard link + mobile header

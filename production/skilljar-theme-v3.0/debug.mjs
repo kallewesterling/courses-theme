@@ -282,13 +282,6 @@ function buildDebugFab() {
 }
 
 /**
- * Adds a debug heading with environment information and a staging toggle.
- * @deprecated Use setupDebug() — the floating FAB supersedes this.
- * @returns {void}
- */
-export function debugHeading() {}
-
-/**
  * Sets up debug tooling. Reads and initialises DEBUG_FLAGS in localStorage,
  * builds the floating debug FAB, and (unless disabled) wires up logging,
  * global exposure, and environment logging.
