@@ -575,7 +575,7 @@ body.sj-page-detail-course {
 
   #purchase-button-wrapper-large {
     /* Register/sign up/resume button wrapper */
-    justify-content: left !important;
+    justify-content: flex-start !important;
   }
 
   #purchase-button-wrapper-large .signin {
