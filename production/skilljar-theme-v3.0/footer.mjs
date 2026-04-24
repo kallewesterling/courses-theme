@@ -13,11 +13,29 @@ import { footerData } from "../data/footer.mjs";
 export function generateFooter(
   data = footerData,
   containerId = "footer-container",
+  appendElement = false,
 ) {
   const container = document.getElementById(containerId);
-  if (!container) {
+  if (!container && !appendElement) {
     logger.error(`generateFooter: #${containerId} not found in DOM`);
     return;
+  } else if (!container && appendElement) {
+    logger.warn(
+      `generateFooter: #${containerId} not found in DOM, creating and appending to body...`,
+    );
+    const newContainer = el("div", { id: containerId });
+    
+    // add it after div id="skilljar-content"
+    const contentDiv = document.getElementById("skilljar-content");
+    if (contentDiv) {
+      contentDiv.insertAdjacentElement("afterend", newContainer);
+    } else {
+      logger.error(
+        `generateFooter: #skilljar-content not found in DOM, cannot append footer container.`,
+      );
+      return;
+    }
+    return generateFooter(data, containerId, appendElement); // call again now that container exists
   }
   container.innerHTML = "";
 
